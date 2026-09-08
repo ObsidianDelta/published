@@ -1,6 +1,5 @@
 ---
-const { title, description = "Jason Jeyanandan — Bathurst, New Brunswick." } = Astro.props;
-const path = Astro.url.pathname;
+const { title, description = "Jason Jeyanandan." } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -65,16 +64,18 @@ footer a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
+  <!-- 2026-09-08: the Blog link is off the masthead and the footer at Jason's
+       request. The /blog/ routes still build and still resolve, they are simply
+       unlinked until the first post is written -- removing the pages instead
+       would 404 anyone who already has the URL. -->
   <div class="strip"><div class="shell">
     <a class="who" href="/">Jason Jeyanandan</a>
-    <a href="/blog/" aria-current={path.startsWith('/blog') ? 'page' : undefined}>Blog</a>
   </div></div>
 
   <slot />
 
   <footer><div class="shell">
-    <span>Jason Jeyanandan &middot; Bathurst, New Brunswick</span>
-    <a href="/blog/">Blog</a>
+    <span>Jason Jeyanandan</span>
   </div></footer>
 </body>
 </html>
