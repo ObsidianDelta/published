@@ -1,0 +1,80 @@
+---
+const { title, description = "Jason Jeyanandan — Bathurst, New Brunswick." } = Astro.props;
+const path = Astro.url.pathname;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="theme-color" content="#FAF4E8" />
+<link rel="icon" href="data:," />
+<style is:global>
+/* ---------------------------------------------------------------------------
+   Palette is the Obsidian Delta light system: paper #FAF4E8, card #EFE5CE,
+   deep-green ink #2D3A2E, burnt orange #C97224. Orange is the recording light
+   and one accent; it is never decoration.
+   System faces only — no webfonts, no CDN, no analytics, nothing third-party.
+--------------------------------------------------------------------------- */
+:root{
+  --paper:#FAF4E8; --bone:#F5EBD7; --card:#EFE5CE; --line:#D4CCB7;
+  --muted:#6E6859; --ink:#2D3A2E; --strong:#141410;
+  --soft:#2D3A2E;   /* same deep green as --ink; the talk card's controls key off this */
+  --orange:#C97224; --red:#A8311F;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--serif);font-size:19px;line-height:1.66;
+  -webkit-font-smoothing:antialiased;
+}
+p{margin:0 0 1.3em}
+a{color:inherit}
+::selection{background:var(--orange);color:var(--paper)}
+.shell{max-width:1120px;margin:0 auto;padding:0 clamp(1.15rem,4vw,2.5rem)}
+.narrow{max-width:44rem}
+
+/* ---------- masthead ---------- */
+.strip{border-bottom:1px solid var(--line)}
+.strip .shell{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-top:1.1rem;padding-bottom:1.1rem}
+.strip a,.strip span{font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none}
+.strip .who{color:var(--strong)}
+.strip a:hover,.strip a[aria-current]{color:var(--orange)}
+
+h1{
+  font-family:var(--sans);font-weight:600;
+  font-size:clamp(2.1rem,6.2vw,3.5rem);line-height:1.08;letter-spacing:-.025em;
+  margin:0 0 1rem;color:var(--strong);text-wrap:balance;
+}
+.rule{width:56px;height:2px;background:var(--orange);margin:0 0 1.4rem}
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin:0 0 .9rem}
+
+footer{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4rem)}
+footer .shell{padding:1.6rem 0 2.6rem;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{text-decoration:none}
+footer a:hover{color:var(--orange)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+  <div class="strip"><div class="shell">
+    <a class="who" href="/">Jason Jeyanandan</a>
+    <a href="/blog/" aria-current={path.startsWith('/blog') ? 'page' : undefined}>Blog</a>
+  </div></div>
+
+  <slot />
+
+  <footer><div class="shell">
+    <span>Jason Jeyanandan &middot; Bathurst, New Brunswick</span>
+    <a href="/blog/">Blog</a>
+  </div></footer>
+</body>
+</html>

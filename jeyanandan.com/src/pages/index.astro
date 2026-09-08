@@ -1,0 +1,68 @@
+---
+import Base from '../layouts/Base.astro';
+import Talk from '../components/Talk.astro';
+---
+<Base title="Jason Jeyanandan" description="My gift to you — talk to Maddie, and she keeps your life story.">
+  <section class="hero"><div class="shell">
+    <h1>My gift to you</h1>
+    <div class="rule"></div>
+  </div></section>
+
+  <!-- SECTION ONE — left: the writing. right: the recorder. -->
+  <section><div class="shell cols">
+    <div class="col-write">
+      <p class="lede">This is Maddie. She helps people keep their life story just by talking &mdash; no typing, no forms, nothing to learn. Say something and she answers out loud, and she remembers you next time.</p>
+      <p>People carry whole worlds around with them and almost none of it gets written down. Not because nobody cares &mdash; because sitting down to write a memoir is a mountain, and nobody climbs it. But talking is easy. Everyone can talk.</p>
+      <p>So Maddie asks, and listens, and remembers. Talk to her for an hour or a thousand hours; either way what you said becomes a book you can hold. She was built for people in their eighties and nineties, which means she has to be patient, and kind, and she can never make anyone feel stupid.</p>
+      <p>She is yours to use. That is the gift &mdash; no charge, no trial, nothing to cancel.</p>
+    </div>
+    <div class="col-talk">
+      <Talk />
+    </div>
+  </div></section>
+
+  <!-- SECTION TWO — about, then how to keep the above free. -->
+  <section class="alt"><div class="shell cols">
+    <div class="col-write">
+      <p class="eyebrow">About me</p>
+      <!-- JASON: this is your paragraph to write. One line is holding the spot. -->
+      <p>Bathurst, New Brunswick. I build Maddie, and the two organisations underneath her &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not.</p>
+    </div>
+    <div class="col-talk">
+      <p class="eyebrow">Keeping this free</p>
+      <p>Maddie above costs real money to run every time someone talks to her, and it is free because I would rather it were. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
+      <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. No tiers, no perks, no thank-you gift.</p>
+      <!-- Ko-fi's embeddable iframe is deliberately not used here: it is ~700px
+           tall, which would push the disclosure below far away from the button
+           it has to sit directly beneath. The link opens the same page. -->
+      <p><a class="sendbtn" href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Send something</a></p>
+
+      <div class="disclosure">
+        <p>Obsidian Delta has donated the base version of Maddie for this demonstration. Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
+      </div>
+    </div>
+  </div></section>
+</Base>
+
+<style is:global>
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
+section{padding-bottom:clamp(2.5rem,6vw,4rem)}
+section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
+.cols{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.25rem)}
+@media (min-width:900px){
+  .cols{grid-template-columns:1.02fr .98fr;gap:3.25rem;align-items:start}
+}
+.col-write p{color:var(--ink)}
+.lede{font-size:clamp(19px,2.2vw,21px)}
+.col-talk p{color:var(--ink)}
+.sendbtn{
+  display:inline-block;font-family:var(--sans);font-size:20px;font-weight:600;
+  min-height:62px;padding:.95rem 2rem;border:0;border-radius:10px;
+  background:var(--orange);color:#fff;text-decoration:none;cursor:pointer;
+}
+.disclosure{
+  margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
+  background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
+}
+.disclosure p{margin:0}
+</style>

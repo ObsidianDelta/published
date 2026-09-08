@@ -1,0 +1,17 @@
+# jeyanandan.com. The page makes exactly one kind of outbound call, to
+# api.formaddie.com (sign-in, and the recorded turn). Fonts are the system's,
+# there is no CDN and no analytics. media-src allows data: so Maddie's reply
+# mp3 plays straight from the JSON response. Nothing third-party loads on this
+# site at all: the Ko-fi link navigates, it does not embed.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.formaddie.com; media-src 'self' blob: data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://ko-fi.com; object-src 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: microphone=(self), camera=(), geolocation=(), interest-cohort=()
+  X-Frame-Options: DENY
+
+/
+  Cache-Control: no-cache, must-revalidate
+
+/auth-callback/
+  Cache-Control: no-store

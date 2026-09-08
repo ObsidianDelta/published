@@ -1,0 +1,388 @@
+---
+/*
+ * Talk to Maddie. One turn is one recording: tap Record, talk, tap to stop -
+ * stopping IS sending. The clip goes up as a blob to m22's POST /v1/memos,
+ * which transcribes it, gives it to the same Maddie the phone line uses, and
+ * returns her words plus an mp3. The microphone is closed the whole time she
+ * speaks. Sign-in is the formaddie router's magic link, surface "j".
+ *
+ * The page may render a second Record (id="recbtn2" inside #again-rec); this
+ * component drives it if it is there and ignores it if it is not.
+ */
+---
+<div class="card">
+  <p class="eyebrow">Talk to Maddie</p>
+
+  <div id="gate">
+    <p class="why">Maddie keeps each person&rsquo;s stories separate and private, so she needs to know who you are. We&rsquo;ll email you a link &mdash; no password.</p>
+    <form class="signin" id="signin-form" novalidate>
+      <label for="email" style="position:absolute;left:-9999px">Your email address</label>
+      <input id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required>
+      <button class="btn" type="submit" id="signin-btn">Email me a link</button>
+    </form>
+    <p class="said" id="gate-said" hidden></p>
+  </div>
+
+  <div id="talk" hidden>
+    <button class="rec" id="recbtn" type="button">
+      <span id="rec-label">Record</span>
+      <span class="sub" id="rec-sub">Say something, then tap again to stop</span>
+    </button>
+    <div class="meter" id="meter" hidden><i id="meter-bar"></i></div>
+    <div class="stopwrap" id="stopwrap" hidden>
+      <button class="btn ghost" type="button" id="stopbtn">Stop her</button>
+    </div>
+    <p class="state" id="state" role="status" aria-live="polite"></p>
+    <div class="thread" id="thread" role="log" aria-live="polite"></div>
+  </div>
+</div>
+
+<style is:global>
+/* ---------- the Maddie card ---------- */
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:clamp(1.25rem,3.2vw,1.75rem);
+}
+.card .why{font-size:18px;color:var(--muted);margin-bottom:1.05rem}
+form.signin{display:flex;flex-wrap:wrap;gap:.7rem}
+input[type=email],input[type=text]{
+  flex:1 1 13rem;min-height:58px;padding:.65rem .95rem;
+  font-family:var(--sans);font-size:18px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:9px;
+}
+input::placeholder{color:#8f887a}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.btn{
+  font-family:var(--sans);font-size:18px;font-weight:600;
+  min-height:58px;padding:.65rem 1.35rem;border:1px solid transparent;border-radius:9px;
+  background:var(--soft);color:var(--paper);cursor:pointer;
+}
+.btn.ghost{background:transparent;color:var(--soft);border-color:var(--line)}
+.btn[disabled]{opacity:.5;cursor:default}
+form.signin .btn{flex:1 1 11rem;min-height:62px}
+@media (max-width:26rem){form.signin input,form.signin .btn{flex:1 1 100%}}
+.said{font-size:18px;color:var(--soft);margin:0}
+.said .again{display:inline-block;margin-top:.8rem;font-family:var(--sans);font-size:17px;background:none;border:0;padding:0;color:var(--muted);text-decoration:underline;cursor:pointer}
+
+/* the one bold thing: press to record */
+.rec{
+  display:block;width:100%;min-height:104px;padding:1.05rem 1.25rem;
+  border:1px solid var(--soft);border-radius:12px;
+  background:var(--soft);color:var(--paper);
+  font-family:var(--sans);font-size:22px;font-weight:600;letter-spacing:.01em;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.rec .sub{display:block;font-size:16px;font-weight:400;opacity:.78;margin-top:.28rem}
+.rec.live{background:var(--orange);border-color:var(--orange);color:#1d1104}
+.rec.live .sub{opacity:.85}
+.rec[disabled]{opacity:.6;cursor:default}
+.meter{height:5px;border-radius:3px;background:var(--line);margin-top:.8rem;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--orange);transition:width .08s linear}
+.state{font-family:var(--sans);font-size:17px;color:var(--muted);margin:.85rem 0 0;min-height:1.5em}
+.stopwrap{margin-top:.8rem}
+.stopwrap .btn{width:100%;min-height:52px;font-size:17px}
+/* A second Record for someone who has read to the bottom and wants to start
+   there rather than scroll back up. Drives the same one control above. */
+.again-rec{margin-top:2.2rem;padding-top:1.9rem;border-top:1px solid var(--line)}
+.again-rec .rec{max-width:24rem}
+
+.thread{margin-top:1.35rem;border-top:1px solid var(--line);padding-top:1.1rem;max-height:46vh;overflow-y:auto}
+.thread:empty{display:none}
+.turn{margin:0 0 1.05rem}
+.turn .who2{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:.2rem}
+.turn.me{color:var(--muted)}
+.turn.her{color:var(--ink)}
+.turn.note{font-family:var(--sans);font-size:17px;color:var(--muted)}
+</style>
+
+<script is:inline>
+/* ===========================================================================
+   Talk client for j.formaddie.com  -  record, send, she speaks.
+   ---------------------------------------------------------------------------
+   Three states and nothing else: Record, Thinking, Maddie's talking. Tapping
+   to stop IS sending - there is no confirm step and no typing, because nobody
+   is going to type on this page. The clip goes up as a blob to m22's POST
+   /v1/memos, which transcribes it, gives it to the same Maddie the phone line
+   uses, and returns her words plus an mp3. Nothing streams while they speak;
+   the microphone is closed the entire time she is talking.
+=========================================================================== */
+(function () {
+  'use strict';
+
+  /* --- the one thing to change when the Ko-fi page is live ---------------
+     Put the full Ko-fi URL here (e.g. https://ko-fi.com/jason). While it is
+     left as the placeholder the button stays visible but explains itself
+     instead of leading nowhere. */
+  var DONATE_URL = 'REPLACE_WITH_KOFI_URL';
+
+  var API = 'https://api.formaddie.com';
+  var MEMO = API + '/v1/memos';
+  var JWT_KEY = 'j_maddie_jwt';
+  var MAX_SECONDS = 180;
+  /* A hair of silence, played on the first tap. Mobile browsers only let an
+     <audio> element start inside a user gesture, and by the time Maddie's
+     reply comes back that gesture is long gone - so the element is unlocked
+     early and reused for every reply. */
+  var SILENCE = 'data:audio/wav;base64,UklGRkQDAABXQVZFZm10IBAAAAABAAEAQB8AAIA+AAACABAAZGF0YSADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==';
+
+  function $(id) { return document.getElementById(id); }
+  function read(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function store(k, v) { try { if (v === null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
+
+  var S = {
+    jwt: null,
+    phase: 'ready',        // ready | recording | sending | speaking
+    rec: null, chunks: [], blob: null, stream: null,
+    ctx: null, analyser: null, raf: null,
+    seconds: 0, timer: null,
+    audio: null, unlocked: false
+  };
+
+  /* ------------------------------------------------------------ transcript */
+  function turn(cls, who, text) {
+    var el = document.createElement('p');
+    el.className = 'turn ' + cls;
+    if (who) { var w = document.createElement('span'); w.className = 'who2'; w.textContent = who; el.appendChild(w); }
+    el.appendChild(document.createTextNode(text));
+    var t = $('thread'); t.appendChild(el); t.scrollTop = t.scrollHeight;
+    return el;
+  }
+  function note(text) { return turn('note', '', text); }
+  function setState(t) { $('state').textContent = t || ''; }
+
+  function setPhase(p) {
+    S.phase = p;
+    var btn = $('recbtn'), lab = $('rec-label'), sub = $('rec-sub');
+    btn.classList.remove('live'); btn.disabled = false;
+    $('meter').setAttribute('hidden', ''); $('stopwrap').setAttribute('hidden', '');
+    var b2 = $('recbtn2'); if (b2) b2.disabled = (p !== 'ready');
+    if (p === 'ready') { lab.textContent = 'Record'; sub.textContent = 'Say something, then tap again to stop'; setState(''); }
+    else if (p === 'recording') { btn.classList.add('live'); lab.textContent = 'Recording'; sub.textContent = 'Tap when you’re done'; $('meter').removeAttribute('hidden'); }
+    else if (p === 'sending') { btn.disabled = true; lab.textContent = 'Thinking'; sub.textContent = 'Maddie is listening to what you said'; setState(''); }
+    else if (p === 'speaking') { btn.disabled = true; lab.textContent = 'Maddie’s talking'; sub.textContent = 'Have a listen'; $('stopwrap').removeAttribute('hidden'); }
+  }
+  function timeStr() {
+    var m = Math.floor(S.seconds / 60), s = S.seconds % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  /* -------------------------------------------------------------- sign-in */
+  function showTalk() {
+    $('gate').setAttribute('hidden', '');
+    $('talk').removeAttribute('hidden');
+    var ar = $('again-rec'); if (ar) ar.removeAttribute('hidden');
+    setPhase('ready');
+  }
+  function signOut(msg) {
+    store(JWT_KEY, null); S.jwt = null; stopTracks();
+    $('talk').setAttribute('hidden', ''); $('gate').removeAttribute('hidden');
+    var ar2 = $('again-rec'); if (ar2) ar2.setAttribute('hidden', '');
+    $('signin-form').style.display = '';
+    var g = $('gate-said');
+    if (msg) { g.textContent = msg; g.removeAttribute('hidden'); } else g.setAttribute('hidden', '');
+  }
+
+  $('signin-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = ($('email').value || '').trim();
+    var said = $('gate-said'), btn = $('signin-btn');
+    if (email.indexOf('@') < 1 || email.indexOf('.', email.indexOf('@')) < 0) {
+      said.textContent = 'That doesn’t look like an email address — have another go.';
+      said.removeAttribute('hidden'); return;
+    }
+    btn.disabled = true; btn.textContent = 'Sending…'; said.setAttribute('hidden', '');
+    fetch(API + '/v1/auth/start', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, surface: 'j' })
+    }).then(function (r) { return r.json().catch(function () { return {}; }); })
+      .then(function (j) {
+        if (j && j.error) throw new Error(j.error.code || 'failed');
+        if (j && j.magic_link_sent === false) {
+          btn.disabled = false; btn.textContent = 'Email me a link';
+          said.textContent = 'I can’t send a link to that address just now. Email me at jason@obsidiandelta.com and I’ll sort it out.';
+          said.removeAttribute('hidden'); return;
+        }
+        $('signin-form').style.display = 'none';
+        said.textContent = 'On its way to ' + email + '. Open it on this device and tap the link.';
+        var again = document.createElement('button');
+        again.type = 'button'; again.className = 'again'; again.textContent = 'Send it again';
+        again.addEventListener('click', function () {
+          said.setAttribute('hidden', ''); $('signin-form').style.display = '';
+          btn.disabled = false; btn.textContent = 'Email me a link';
+        });
+        said.appendChild(document.createElement('br')); said.appendChild(again);
+        said.removeAttribute('hidden');
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'Email me a link';
+        said.textContent = 'The email didn’t go through just then. Try once more?';
+        said.removeAttribute('hidden');
+      });
+  });
+
+  /* ------------------------------------------------------------- playback */
+  function unlockAudio() {
+    if (S.unlocked) return;
+    try {
+      S.audio = new Audio();
+      S.audio.setAttribute('playsinline', '');
+      S.audio.src = SILENCE;
+      var p = S.audio.play();
+      if (p && p.catch) p.catch(function () {});
+      S.unlocked = true;
+    } catch (e) {}
+  }
+  function speak(b64) {
+    if (!b64) { setPhase('ready'); return; }
+    if (!S.audio) { S.audio = new Audio(); S.audio.setAttribute('playsinline', ''); }
+    S.audio.onended = function () { if (S.phase === 'speaking') setPhase('ready'); };
+    S.audio.onerror = function () { if (S.phase === 'speaking') setPhase('ready'); };
+    S.audio.src = 'data:audio/mpeg;base64,' + b64;
+    setPhase('speaking');
+    var p = S.audio.play();
+    if (p && p.catch) p.catch(function () {
+      /* Sound is the bonus, not the conversation: her words are already on
+         screen, so a blocked autoplay just hands the turn back quietly. */
+      setState('Tap Record to keep going — her voice didn’t play on this device.');
+      setPhase('ready');
+    });
+  }
+  function stopSpeaking() {
+    try { if (S.audio) { S.audio.pause(); S.audio.currentTime = 0; } } catch (e) {}
+    setPhase('ready');
+  }
+
+  /* --------------------------------------------------------------- record */
+  function stopTracks() {
+    if (S.raf) { cancelAnimationFrame(S.raf); S.raf = null; }
+    if (S.timer) { clearInterval(S.timer); S.timer = null; }
+    if (S.stream) { S.stream.getTracks().forEach(function (t) { t.stop(); }); S.stream = null; }
+    if (S.ctx) { try { S.ctx.close(); } catch (e) {} S.ctx = null; S.analyser = null; }
+    var bar = $('meter-bar'); if (bar) bar.style.width = '0';
+  }
+
+  function startRecording() {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || typeof MediaRecorder === 'undefined') {
+      note('This browser can’t record. You can type to her instead — the box is just below.');
+      try { $('typed').focus(); } catch (e) {}
+      return;
+    }
+    navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true, channelCount: 1 } })
+      .then(function (stream) {
+        S.stream = stream; S.chunks = []; S.blob = null; S.seconds = 0;
+        var mime = '';
+        var wanted = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'];
+        for (var i = 0; i < wanted.length; i++) {
+          if (window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(wanted[i])) { mime = wanted[i]; break; }
+        }
+        try { S.rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream); }
+        catch (e) { S.rec = new MediaRecorder(stream); }
+        S.rec.ondataavailable = function (e) { if (e.data && e.data.size) S.chunks.push(e.data); };
+        S.rec.onstop = function () {
+          S.blob = new Blob(S.chunks, { type: S.chunks.length && S.chunks[0].type ? S.chunks[0].type : 'audio/webm' });
+          stopTracks();
+          if (!S.blob.size) { note('I didn’t catch that — try once more?'); setPhase('ready'); return; }
+          /* Stopping is sending. No confirm step: one tap to start, one to finish. */
+          var fd = new FormData();
+          fd.append('audio', S.blob, 'memo.webm');
+          send(fd);
+        };
+        S.rec.start(250);
+        setPhase('recording');
+        meter();
+        S.timer = setInterval(function () {
+          S.seconds++;
+          $('rec-sub').textContent = timeStr() + ' — tap when you’re done';
+          if (S.seconds >= MAX_SECONDS) stopRecording();
+        }, 1000);
+      })
+      .catch(function (err) {
+        var denied = err && (err.name === 'NotAllowedError' || err.name === 'SecurityError');
+        note(denied
+          ? 'Your browser is keeping the microphone shut. If you’d like to speak, allow the microphone for this page and tap Record again — or just type to her below.'
+          : 'I couldn’t get to a microphone on this device. Type to her below instead — she reads it just the same.');
+        setPhase('ready');
+        try { $('typed').focus(); } catch (e) {}
+      });
+  }
+
+  function stopRecording() {
+    if (S.timer) { clearInterval(S.timer); S.timer = null; }
+    try { if (S.rec && S.rec.state === 'recording') S.rec.stop(); } catch (e) { stopTracks(); setPhase('ready'); }
+  }
+
+  function meter() {
+    try {
+      S.ctx = new (window.AudioContext || window.webkitAudioContext)();
+      var src = S.ctx.createMediaStreamSource(S.stream);
+      S.analyser = S.ctx.createAnalyser();
+      S.analyser.fftSize = 1024;
+      src.connect(S.analyser);
+    } catch (e) { return; }
+    var buf = new Float32Array(S.analyser.fftSize), bar = $('meter-bar');
+    var tick = function () {
+      if (S.phase !== 'recording' || !S.analyser) { if (bar) bar.style.width = '0'; S.raf = null; return; }
+      S.analyser.getFloatTimeDomainData(buf);
+      var sum = 0;
+      for (var i = 0; i < buf.length; i++) sum += buf[i] * buf[i];
+      var pct = Math.max(3, Math.min(100, Math.round(Math.sqrt(sum / buf.length) * 900)));
+      if (bar) bar.style.width = pct + '%';
+      S.raf = requestAnimationFrame(tick);
+    };
+    S.raf = requestAnimationFrame(tick);
+  }
+
+  /* ----------------------------------------------------------------- send */
+  function send(form) {
+    setPhase('sending');
+    setState('');
+    fetch(MEMO, { method: 'POST', headers: { 'Authorization': 'Bearer ' + S.jwt }, body: form })
+      .then(function (r) {
+        if (r.status === 401) { signOut('That sign-in has run out. Pop your email in again and I’ll send a fresh link.'); return null; }
+        return r.json().catch(function () { return null; });
+      })
+      .then(function (j) {
+        if (!j) { if (S.jwt) { note('Couldn’t reach Maddie just then. Try again in a moment.'); setPhase('ready'); } return; }
+        if (j.transcript) turn('me', 'You', j.transcript);
+        if (j.ok === false && !j.reply_text) {
+          note('I didn’t catch that — try once more?'); setPhase('ready'); return;
+        }
+        if (j.reply_text) turn('her', 'Maddie', j.reply_text);
+        setState('');
+        speak(j.reply_audio);
+      })
+      .catch(function () {
+        note('Couldn’t reach Maddie just then. Nothing you said is lost — try again in a moment.');
+        setPhase('ready');
+      });
+  }
+
+  /* --------------------------------------------------------------- events */
+  function toggleRecord() {
+    unlockAudio();
+    if (S.phase === 'ready') startRecording();
+    else if (S.phase === 'recording') stopRecording();
+  }
+  $('recbtn').addEventListener('click', toggleRecord);
+  $('stopbtn').addEventListener('click', stopSpeaking);
+
+  /* The Record at the foot of the page drives the same control above it, so
+     there is only ever one state machine and one place the state is shown. */
+  var recBottom = $('recbtn2');
+  if (recBottom) recBottom.addEventListener('click', function () {
+    try { $('talk').scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (e) {}
+    toggleRecord();
+  });
+
+  /* ----------------------------------------------------------------- boot */
+  (function boot() {
+    var m = (window.location.hash || '').match(/token=([^&]+)/);
+    if (m) {
+      store(JWT_KEY, decodeURIComponent(m[1]));
+      try { history.replaceState(null, '', window.location.pathname); } catch (e) { window.location.hash = ''; }
+    }
+    S.jwt = read(JWT_KEY);
+    if (S.jwt) showTalk();
+  })();
+})();
+</script>
