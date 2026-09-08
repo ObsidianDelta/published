@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="What Maddie keeps" description="What is recorded when you talk to Maddie, where it goes, and how to get it back or have it deleted.">
+  <section class="hero"><div class="shell">
+    <h1>What Maddie keeps</h1>
+    <div class="rule"></div>
+  </div></section>
+
+  <section><div class="shell narrow">
+    <p class="lede">Maddie only works if she remembers you, and remembering means keeping what you said. This page is the plain version of what that means. It describes what the thing actually does, not what a policy document would like you to think it does.</p>
+
+    <h2>Maddie is not a person</h2>
+    <p>She is a computer program. She has a voice and she is patient, and she is still a computer program. If you ask her directly, she will tell you so.</p>
+
+    <h2>What is recorded</h2>
+    <p>When you tap Record, the audio of what you say is sent to be turned into text. Both the audio and the text are kept. So are Maddie&rsquo;s replies, and a short running summary she writes for herself so she can pick up where you left off next time. If you share a photograph, the photograph is kept too.</p>
+    <p>Nothing is recorded when you are not recording. The microphone is closed while Maddie is speaking, and closed again the moment you tap stop.</p>
+
+    <h2>Why it is kept</h2>
+    <p>Two reasons, and only two. So Maddie remembers you between conversations, and so that what you said can be turned into a written chapter and, in time, a book. When you ask her to send you a chapter, you get the chapter and the complete transcript of everything either of you has ever said, so you can see exactly what is on file.</p>
+
+    <h2>Where it goes</h2>
+    <p>It is stored on Cloudflare&rsquo;s servers, under an account I control. Turning your voice into text, and writing Maddie&rsquo;s replies, uses language and speech models run by other companies; that means the words of a conversation pass through their systems in order to be processed. Email is sent through Resend.</p>
+    <p>Your stories are yours. They are not sold, not shared with anyone else, not used to advertise anything to you, and not shown to other people who use Maddie &mdash; each person&rsquo;s stories are kept separate from everyone else&rsquo;s, which is the reason you have to sign in at all.</p>
+
+    <h2>Getting it back, or getting rid of it</h2>
+    <p>Ask Maddie to send you your chapter and you will get everything, in the post, as a PDF. If you want it all deleted, write to <a href="mailto:jason@obsidiandelta.com">jason@obsidiandelta.com</a> from the address you signed in with and say so, and it will be deleted &mdash; the recordings, the transcript, the summary, all of it. You do not have to give a reason.</p>
+
+    <h2>Children</h2>
+    <p>This is built for older adults telling their life stories. It is not for anyone under eighteen.</p>
+
+    <h2>Who to ask</h2>
+    <p>Me. <a href="mailto:jason@obsidiandelta.com">jason@obsidiandelta.com</a>. There is no support desk; it is one person, and it is me.</p>
+
+    <p class="stamp">Last updated 8 September 2026.</p>
+  </div></section>
+</Base>
+
+<style is:global>
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
+section{padding-bottom:clamp(2.5rem,6vw,4rem)}
+.narrow{max-width:44rem}
+.narrow h2{font-family:var(--serif);font-size:clamp(20px,2.4vw,23px);margin:2.1rem 0 .55rem;color:var(--strong)}
+.narrow p{color:var(--ink)}
+.lede{font-size:clamp(19px,2.2vw,21px)}
+.narrow a{color:var(--orange)}
+.stamp{margin-top:2.4rem;font-family:var(--mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+</style>
