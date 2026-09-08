@@ -32,14 +32,30 @@ import Talk from '../components/Talk.astro';
       <p class="eyebrow">Keeping this free</p>
       <p>Maddie above costs real money to run every time someone talks to her, and it is free because I would rather it were. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
       <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. No tiers, no perks, no thank-you gift.</p>
-      <!-- Ko-fi's embeddable iframe is deliberately not used here: it is ~700px
-           tall, which would push the disclosure below far away from the button
-           it has to sit directly beneath. The link opens the same page. -->
-      <p><a class="sendbtn" href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Send something</a></p>
-
+      <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
+           button. The Ko-fi embed is ~712px tall and the Support button lives
+           near its top, so anything below the frame is off-screen at the moment
+           someone gives. The paragraph is therefore verbatim but placed
+           directly above the panel and welded to it (no gap, shared border), so
+           it is the last thing read before the button rather than the first
+           thing missed after it. -->
       <div class="disclosure">
         <p>Obsidian Delta has donated the base version of Maddie for this demonstration. Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
       </div>
+
+      <div class="kofi-wrap kofi-welded">
+        <iframe
+          id="kofiframe"
+          src="https://ko-fi.com/jeyanandan/?hidefeed=true&widget=true&embed=true&preview=true"
+          style="border:none;width:100%;padding:4px;background:#f9f9f9;"
+          height="712"
+          title="jeyanandan"
+          loading="lazy"></iframe>
+      </div>
+
+      <!-- No dead end: if the widget is blocked (ad blocker, third-party frames
+           off) the same page is one plain link away. -->
+      <p class="kofi-fallback">If the panel above does not load, <a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">open Ko-fi directly</a>.</p>
     </div>
   </div></section>
 </Base>
@@ -55,14 +71,23 @@ section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:
 .col-write p{color:var(--ink)}
 .lede{font-size:clamp(19px,2.2vw,21px)}
 .col-talk p{color:var(--ink)}
-.sendbtn{
-  display:inline-block;font-family:var(--sans);font-size:20px;font-weight:600;
-  min-height:62px;padding:.95rem 2rem;border:0;border-radius:10px;
-  background:var(--orange);color:#fff;text-decoration:none;cursor:pointer;
+.kofi-wrap{
+  margin:0;border:1px solid var(--line);border-top:0;
+  border-radius:0 0 10px 10px;background:#f9f9f9;overflow:hidden;
 }
+.kofi-wrap iframe{display:block;width:100%}
+.kofi-fallback{
+  margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted);
+}
+.kofi-fallback a{color:var(--orange)}
 .disclosure{
   margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
   background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
+}
+/* Welded to the Ko-fi panel below it: one block, no gap. */
+.disclosure:has(+ .kofi-welded){
+  border:1px solid var(--line);border-left:3px solid var(--ink);border-bottom:0;
+  border-radius:10px 10px 0 0;margin-bottom:0;
 }
 .disclosure p{margin:0}
 </style>
