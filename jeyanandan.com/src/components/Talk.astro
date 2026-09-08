@@ -23,7 +23,16 @@
     <p class="said" id="gate-said" hidden></p>
   </div>
 
+  <!-- Read before anyone presses record. Maddie speaks a disclosure on the first
+       turn too, but a disclosure someone has to sit through after they have
+       already spoken is not consent -- and this is the surface where a stranger
+       meets her for the first time. Same three facts, same order, in text. -->
   <div id="talk" hidden>
+    <div class="brief">
+      <p><strong>Maddie is a computer program, not a person.</strong> She is here to listen, and she will ask you things as you go.</p>
+      <p>What you say is recorded and kept for you, so it can become the written story of your life. You can ask her to send you everything she has, any time. <a href="/privacy/">What is kept, and how to get it back or delete it</a>.</p>
+      <p class="brief-hint">Not sure what to say? Just talk &mdash; or say <em>&ldquo;help&rdquo;</em>, or <em>&ldquo;ask me a question&rdquo;</em>. If something bothers you, say <em>&ldquo;feedback&rdquo;</em> and it comes straight to me.</p>
+    </div>
     <button class="rec" id="recbtn" type="button">
       <span id="rec-label">Record</span>
       <span class="sub" id="rec-sub">Say something, then tap again to stop</span>
@@ -38,6 +47,16 @@
 </div>
 
 <style is:global>
+.brief{
+  margin:0 0 1.15rem;padding:0 0 1.1rem;border-bottom:1px solid var(--line);
+  font-family:var(--sans);font-size:16px;line-height:1.5;color:var(--muted);
+}
+.brief p{margin:0 0 .55rem}
+.brief p:last-child{margin-bottom:0}
+.brief strong{color:var(--ink)}
+.brief a{color:var(--orange)}
+.brief-hint{font-size:15px}
+
 /* ---------- the Maddie card ---------- */
 .card{
   background:var(--card);border:1px solid var(--line);border-radius:14px;
