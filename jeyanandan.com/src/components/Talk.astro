@@ -31,6 +31,7 @@
     <div class="brief">
       <p><strong>Maddie is a computer program, not a person.</strong> She is here to listen, and she will ask you things as you go.</p>
       <p>What you say is recorded and kept for you, so it can become the written story of your life. You can ask her to send you everything she has, any time. <a href="/privacy/">What is kept, and how to get it back or delete it</a>.</p>
+      <p class="brief-stop"><strong>She cannot get help.</strong> Maddie is not a medical, crisis or monitoring service and nobody is alerted by anything you say to her. In an emergency call <strong>911</strong>; in a crisis call or text <strong>988</strong>. <a href="/important/">Please read this before you start</a>.</p>
       <p class="brief-hint">Not sure what to say? Just talk &mdash; or say <em>&ldquo;help&rdquo;</em>, or <em>&ldquo;ask me a question&rdquo;</em>. If something bothers you, say <em>&ldquo;feedback&rdquo;</em> and it comes straight to me.</p>
     </div>
     <button class="rec" id="recbtn" type="button">
@@ -56,6 +57,11 @@
 .brief strong{color:var(--ink)}
 .brief a{color:var(--orange)}
 .brief-hint{font-size:15px}
+.brief-stop{
+  margin:.7rem 0;padding:.6rem .75rem;border-left:3px solid var(--red);
+  background:var(--paper);color:var(--ink);font-size:15px;
+}
+.brief-stop strong{color:var(--red)}
 
 /* ---------- the Maddie card ---------- */
 .card{
