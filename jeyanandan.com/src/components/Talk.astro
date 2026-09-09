@@ -23,16 +23,14 @@
     <p class="said" id="gate-said" hidden></p>
   </div>
 
-  <!-- Read before anyone presses record. Maddie speaks a disclosure on the first
-       turn too, but a disclosure someone has to sit through after they have
-       already spoken is not consent -- and this is the surface where a stranger
-       meets her for the first time. Same three facts, same order, in text. -->
+  <!-- Two short paragraphs and the button. Everything a lawyer wants said lives
+       one section down the page and on /important -- a stranger who has just
+       typed their email should meet Maddie, not a liability notice. She still
+       speaks the full disclosure on the first turn. -->
   <div id="talk" hidden>
     <div class="brief">
       <p><strong>Maddie is a computer program, not a person.</strong> She is here to listen, and she will ask you things as you go.</p>
-      <p>What you say is recorded and kept for you, so it can become the written story of your life. You can ask her to send you everything she has, any time. <a href="/privacy/">What is kept, and how to get it back or delete it</a>.</p>
-      <p class="brief-stop"><strong>She cannot get help.</strong> Maddie is not a medical, crisis or monitoring service and nobody is alerted by anything you say to her. In an emergency call <strong>911</strong>; in a crisis call or text <strong>988</strong>. <a href="/important/">Please read this before you start</a>.</p>
-      <p class="brief-hint">Not sure what to say? Just talk &mdash; or say <em>&ldquo;help&rdquo;</em>, or <em>&ldquo;ask me a question&rdquo;</em>. If something bothers you, say <em>&ldquo;feedback&rdquo;</em> and it comes straight to me.</p>
+      <p>Not sure what to say? Just talk. Or say <em>&ldquo;help&rdquo;</em>, or <em>&ldquo;ask me a question&rdquo;</em>. If something bothers you, say <em>&ldquo;feedback&rdquo;</em> &mdash; it comes straight to me.</p>
     </div>
     <button class="rec" id="recbtn" type="button">
       <span id="rec-label">Record</span>
@@ -42,6 +40,16 @@
     <div class="stopwrap" id="stopwrap" hidden>
       <button class="btn ghost" type="button" id="stopbtn">Stop her</button>
     </div>
+
+    <!-- Typing is a first-class way in, not a fallback. Some people cannot use a
+         microphone, some are in a room where they will not speak out loud, and
+         some just prefer to write. Same lane, same Maddie, same vault. -->
+    <form class="typed" id="typed-form">
+      <label for="typed" class="vh">Type what you would like to say</label>
+      <textarea id="typed" name="typed" rows="3" placeholder="Or write it here instead &mdash; she reads it just the same."></textarea>
+      <button class="btn send" type="submit" id="sendbtn">Send</button>
+    </form>
+
     <p class="state" id="state" role="status" aria-live="polite"></p>
     <div class="thread" id="thread" role="log" aria-live="polite"></div>
   </div>
@@ -56,12 +64,18 @@
 .brief p:last-child{margin-bottom:0}
 .brief strong{color:var(--ink)}
 .brief a{color:var(--orange)}
-.brief-hint{font-size:15px}
-.brief-stop{
-  margin:.7rem 0;padding:.6rem .75rem;border-left:3px solid var(--red);
-  background:var(--paper);color:var(--ink);font-size:15px;
+.brief em{font-style:normal;font-weight:600;color:var(--ink)}
+.vh{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.typed{margin-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+.typed textarea{
+  width:100%;resize:vertical;min-height:5.2rem;
+  font-family:var(--sans);font-size:17px;line-height:1.45;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:.7rem .8rem;
 }
-.brief-stop strong{color:var(--red)}
+.typed textarea::placeholder{color:var(--muted)}
+.typed textarea:focus-visible{outline:2px solid var(--orange);outline-offset:1px;border-color:var(--orange)}
+.btn.send{align-self:flex-start;min-height:44px}
+.btn.send[disabled]{opacity:.45;cursor:default}
 
 /* ---------- the Maddie card ---------- */
 .card{
@@ -181,6 +195,14 @@ form.signin .btn{flex:1 1 11rem;min-height:62px}
     btn.classList.remove('live'); btn.disabled = false;
     $('meter').setAttribute('hidden', ''); $('stopwrap').setAttribute('hidden', '');
     var b2 = $('recbtn2'); if (b2) b2.disabled = (p !== 'ready');
+    /* The Send button follows the same state machine as Record, so a person
+       cannot post a typed turn while Maddie is mid-answer and get two replies
+       stacked on top of each other. */
+    var sb = $('sendbtn'); if (sb) sb.disabled = (p === 'sending');
+    var tb = $('typed');
+    if (tb) tb.placeholder = (p === 'sending')
+      ? 'One moment\u2026'
+      : 'Or write it here instead \u2014 she reads it just the same.';
     if (p === 'ready') { lab.textContent = 'Record'; sub.textContent = 'Say something, then tap again to stop'; setState(''); }
     else if (p === 'recording') { btn.classList.add('live'); lab.textContent = 'Recording'; sub.textContent = 'Tap when you’re done'; $('meter').removeAttribute('hidden'); }
     else if (p === 'sending') { btn.disabled = true; lab.textContent = 'Thinking'; sub.textContent = 'Maddie is listening to what you said'; setState(''); }
@@ -381,6 +403,31 @@ form.signin .btn{flex:1 1 11rem;min-height:62px}
         setPhase('ready');
       });
   }
+
+  /* ------------------------------------------------------------ typed turn */
+  /* Same endpoint, same lane: /v1/memos takes `text` as an alternative to
+     `audio`, so a typed turn is not a second code path, a second vault, or a
+     second Maddie. */
+  function sendTyped() {
+    var box = $('typed');
+    if (!box) return;
+    var t = (box.value || '').trim();
+    if (!t) { box.focus(); return; }
+    if (S.phase === 'recording') stopRecording();
+    stopSpeaking();
+    box.value = '';
+    var fd = new FormData();
+    fd.append('text', t);
+    send(fd);
+  }
+  var typedForm = $('typed-form');
+  if (typedForm) typedForm.addEventListener('submit', function (e) { e.preventDefault(); sendTyped(); });
+  var typedBox = $('typed');
+  if (typedBox) typedBox.addEventListener('keydown', function (e) {
+    /* Enter sends; Shift+Enter is a new line. Plain Enter is what most people
+       expect from a message box, and a new line is the rarer intent. */
+    if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); sendTyped(); }
+  });
 
   /* --------------------------------------------------------------- events */
   function toggleRecord() {
