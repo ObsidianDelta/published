@@ -21,7 +21,30 @@ import Talk from '../components/Talk.astro';
     </div>
   </div></section>
 
-  <!-- SECTION TWO — about, then how to keep the above free. -->
+  <!-- SECTION TWO — the legal strip. Deliberately AFTER the recorder and
+       deliberately small. A stranger who has just typed their email should meet
+       Maddie, not a liability notice; the notice still has to be here, one
+       scroll down, in plain sight, linking to the pages that carry it in full.
+       Maddie also speaks the disclosure herself on a caller's first turn. -->
+  <section class="legal"><div class="shell">
+    <div class="legalgrid">
+      <div>
+        <p class="eyebrow">Before you get going</p>
+        <p><strong>She cannot get help.</strong> Maddie is not a medical, crisis or monitoring service, and nobody is alerted by anything you say to her. In an emergency call <strong>911</strong>. In a crisis, call or text <strong>988</strong>.</p>
+      </div>
+      <div>
+        <p class="eyebrow">What is kept</p>
+        <p>Your voice and your words are recorded and kept for you, so they can become your book. You can have all of it back, or all of it deleted, whenever you ask.</p>
+      </div>
+      <div>
+        <p class="eyebrow">It is all yours, always</p>
+        <p>Every time you ask for a chapter, you get two things: the chapter, and the <strong>complete transcript of everything either of you has ever said</strong> &mdash; word for word, from the very first thing, every single time. Nothing is held back and nothing is summarised away.</p>
+      </div>
+    </div>
+    <p class="legallinks"><a href="/important/">Before you talk to Maddie</a> &mdash; what she is and what she is not &middot; <a href="/privacy/">What Maddie keeps</a> &mdash; and how to get it back or delete it</p>
+  </div></section>
+
+  <!-- SECTION THREE — about, then how to keep the above free. -->
   <section class="alt"><div class="shell cols">
     <div class="col-write">
       <p class="eyebrow">About me</p>
@@ -33,7 +56,7 @@ import Talk from '../components/Talk.astro';
     <div class="col-talk">
       <p class="eyebrow">Keeping this free</p>
       <p>Maddie above costs real money to run every time someone talks to her, and it is free because I would rather it were. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
-      <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. No tiers, no perks, no thank-you gift.</p>
+      <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
       <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
            button. The Ko-fi embed is ~712px tall and the Support button lives
            near its top, so anything below the frame is off-screen at the moment
@@ -42,6 +65,7 @@ import Talk from '../components/Talk.astro';
            it is the last thing read before the button rather than the first
            thing missed after it. -->
       <div class="disclosure">
+        <p class="disc-context">So you know exactly who you would be giving to: I build Maddie through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally, paying for strangers to use Maddie for nothing.</p>
         <p>Obsidian Delta has donated the base version of Maddie for this demonstration. Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
       </div>
 
@@ -82,6 +106,21 @@ section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:
   margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted);
 }
 .kofi-fallback a{color:var(--orange)}
+section.legal{
+  background:var(--paper);border-top:1px solid var(--line);
+  padding-top:clamp(1.8rem,4vw,2.6rem);padding-bottom:clamp(1.8rem,4vw,2.6rem);
+}
+.legalgrid{display:grid;grid-template-columns:1fr;gap:1.35rem}
+@media (min-width:860px){.legalgrid{grid-template-columns:repeat(3,1fr);gap:2.2rem}}
+.legalgrid p{margin:0;font-family:var(--sans);font-size:15.5px;line-height:1.5;color:var(--muted)}
+.legalgrid .eyebrow{margin:0 0 .35rem}
+.legalgrid strong{color:var(--ink)}
+.legallinks{
+  margin:1.6rem 0 0;padding-top:1rem;border-top:1px solid var(--line);
+  font-family:var(--sans);font-size:15px;color:var(--muted);
+}
+.legallinks a{color:var(--orange)}
+.disc-context{margin:0 0 .7rem!important;color:var(--muted);font-size:16px}
 .disclosure{
   margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
   background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
