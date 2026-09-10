@@ -38,14 +38,14 @@ import Base from '../layouts/Base.astro';
     <p>The email address, to sign you in and send you your book. The transcript, because it is the verbatim record and it ships with every memoir. The summary and notes, so Maddie remembers your story across sessions instead of starting cold every time. The audio has no job once the words exist, which is why it does not survive the sentence. Nothing here is used for any other purpose. If I ever wanted to use it for something else, I would ask you first and you would be free to say no.</p>
 
     <h2>Who else touches it</h2>
-    <p>Your recording does not stay on one machine. To work at all, this passes through other companies:</p>
+    <p>What you say does not stay on one machine. To work at all, this passes through other companies:</p>
     <ul>
-      <li><strong>Cloudflare</strong> &mdash; hosting, file storage (audio and transcripts live in Cloudflare R2), and some AI processing.</li>
+      <li><strong>Cloudflare</strong> &mdash; hosting, file storage (transcripts and notes live in Cloudflare R2; the audio is deleted before it is ever stored), and some AI processing.</li>
       <li><strong>A speech-to-text provider</strong> &mdash; turns your recorded voice into words.</li>
       <li><strong>A large language model provider</strong> &mdash; writes Maddie&rsquo;s replies, the summaries and notes, and the memoir prose.</li>
       <li><strong>Resend</strong> &mdash; sends the emails, including your sign-in link and your finished PDFs.</li>
     </ul>
-    <p><strong>Where it physically sits.</strong> These are international services. Your recordings, transcripts and notes are stored and processed outside New Brunswick and, in all likelihood, outside Canada &mdash; including in the United States. While information is in another country it is subject to that country&rsquo;s laws, and courts or agencies there could in principle compel access to it. No Canadian privacy law prevents that. If that is not acceptable to you, please do not use this.</p>
+    <p><strong>Where it physically sits.</strong> These are international services. Your transcripts and notes are stored and processed outside New Brunswick and, in all likelihood, outside Canada &mdash; including in the United States. While information is in another country it is subject to that country&rsquo;s laws, and courts or agencies there could in principle compel access to it. No Canadian privacy law prevents that. If that is not acceptable to you, please do not use this.</p>
 
     <h2>Training AI models</h2>
     <p>I do not use your stories to train, fine-tune or improve any AI model, and I have no interest in doing so.</p>
@@ -69,7 +69,7 @@ import Base from '../layouts/Base.astro';
     <ul>
       <li><strong>A copy of everything</strong> &mdash; transcripts and chapters as PDFs. There is no audio to send, because there is none.</li>
       <li><strong>Delete one piece</strong> &mdash; a chapter, a paragraph, a single sentence you wish you had not said.</li>
-      <li><strong>Delete everything</strong> &mdash; I will offer to send you a copy first, then erase the audio, transcripts, notes and account.</li>
+      <li><strong>Delete everything</strong> &mdash; I will offer to send you a copy first, then erase the transcripts, notes and account. There is no audio to erase.</li>
       <li><strong>Correct something</strong> &mdash; if Maddie&rsquo;s notes about you are wrong, and they may well be, tell me and I will fix or remove them.</li>
     </ul>
     <p>I aim to answer within a few days and will respond within <strong>30 days</strong> at the outside, which is the deadline Canadian law sets. One honest limit: once something is deleted it is gone and I cannot get it back for you afterwards, and I cannot un-send a PDF that has already been emailed.</p>
@@ -85,7 +85,7 @@ import Base from '../layouts/Base.astro';
 
     <h2>If the storyteller dies, or can no longer decide</h2>
     <p>Most people using Maddie are older adults, and it would be dishonest to write this page as though that will never come up.</p>
-    <p><strong>Please decide now, while it is easy.</strong> Email me the name of whoever should receive your recordings, transcripts and memoir if you die or become unable to manage your own affairs, and I will note it on your account. Without that instruction I will not hand anyone your stories, however sincere they sound and however closely related they are. If someone contacts me claiming to be your executor or attorney, I will ask for documentation and I may decline. I would rather disappoint a real relative than hand a life story to the wrong person.</p>
+    <p><strong>Please decide now, while it is easy.</strong> Email me the name of whoever should receive your transcripts and memoir if you die or become unable to manage your own affairs, and I will note it on your account. Without that instruction I will not hand anyone your stories, however sincere they sound and however closely related they are. If someone contacts me claiming to be your executor or attorney, I will ask for documentation and I may decline. I would rather disappoint a real relative than hand a life story to the wrong person.</p>
     <p><strong>On consent.</strong> If you are setting this up for a parent, make sure they understand and agree to being recorded. If they cannot meaningfully consent, please do not enrol them without the proper legal authority to make that decision for them. This is not a small point and I would rather lose the user than get it wrong.</p>
 
     <h2>Children</h2>

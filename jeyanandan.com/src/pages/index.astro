@@ -21,27 +21,15 @@ import Talk from '../components/Talk.astro';
     </div>
   </div></section>
 
-  <!-- SECTION TWO — the legal strip. Deliberately AFTER the recorder and
-       deliberately small. A stranger who has just typed their email should meet
-       Maddie, not a liability notice; the notice still has to be here, one
-       scroll down, in plain sight, linking to the pages that carry it in full.
-       Maddie also speaks the disclosure herself on a caller's first turn. -->
+  <!-- SECTION TWO — one line. It sits AFTER the recorder on purpose: a stranger
+       who has just pressed Record should meet Maddie, not a liability notice.
+       Everything that used to be spelled out here now lives on /important/ and
+       /privacy/, which this line sends people to. The only thing kept on the
+       page itself is the emergency line, because that is the one item that
+       cannot be one click away. Maddie also speaks the disclosure herself on a
+       caller's first turn. -->
   <section class="legal"><div class="shell">
-    <div class="legalgrid">
-      <div>
-        <p class="eyebrow">Before you get going</p>
-        <p><strong>She cannot get help.</strong> Maddie is not a medical, crisis or monitoring service, and nobody is alerted by anything you say to her. In an emergency call <strong>911</strong>. In a crisis, call or text <strong>988</strong>.</p>
-      </div>
-      <div>
-        <p class="eyebrow">Your voice is not kept</p>
-        <p>The recording is turned into text and <strong>deleted within seconds</strong> &mdash; there is no audio of you anywhere. The words are kept, so they can become your book, and you can have all of them back or deleted whenever you ask.</p>
-      </div>
-      <div>
-        <p class="eyebrow">It is all yours, always</p>
-        <p>Every time you ask for a chapter, you get two things: the chapter, and the <strong>complete transcript of everything either of you has ever said</strong> &mdash; word for word, from the very first thing, every single time. Nothing is held back and nothing is summarised away.</p>
-      </div>
-    </div>
-    <p class="legallinks"><a href="/important/">Before you talk to Maddie</a> &mdash; what she is and what she is not &middot; <a href="/privacy/">What Maddie keeps</a> &mdash; and how to get it back or delete it</p>
+    <p class="legalone"><strong>Maddie cannot get help.</strong> In an emergency call <strong>911</strong>; in a crisis, call or text <strong>988</strong>. Before you use her, please read <a href="/important/">what she is and is not</a> and <a href="/privacy/">what she keeps</a>.</p>
   </div></section>
 
   <!-- SECTION THREE — about, then how to keep the above free. -->
@@ -108,18 +96,14 @@ section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:
 .kofi-fallback a{color:var(--orange)}
 section.legal{
   background:var(--paper);border-top:1px solid var(--line);
-  padding-top:clamp(1.8rem,4vw,2.6rem);padding-bottom:clamp(1.8rem,4vw,2.6rem);
+  padding-top:clamp(1.2rem,2.6vw,1.7rem);padding-bottom:clamp(1.2rem,2.6vw,1.7rem);
 }
-.legalgrid{display:grid;grid-template-columns:1fr;gap:1.35rem}
-@media (min-width:860px){.legalgrid{grid-template-columns:repeat(3,1fr);gap:2.2rem}}
-.legalgrid p{margin:0;font-family:var(--sans);font-size:15.5px;line-height:1.5;color:var(--muted)}
-.legalgrid .eyebrow{margin:0 0 .35rem}
-.legalgrid strong{color:var(--ink)}
-.legallinks{
-  margin:1.6rem 0 0;padding-top:1rem;border-top:1px solid var(--line);
-  font-family:var(--sans);font-size:15px;color:var(--muted);
+.legalone{
+  margin:0;font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--muted);
+  max-width:62ch;
 }
-.legallinks a{color:var(--orange)}
+.legalone strong{color:var(--ink)}
+.legalone a{color:var(--orange)}
 .disc-context{margin:0 0 .7rem!important;color:var(--muted);font-size:16px}
 .disclosure{
   margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
