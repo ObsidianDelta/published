@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+
+// The three main initiatives. `status` omitted = live description shown.
+const initiatives = [
+  { name: 'Meta DAX', text: 'Our initiative of universal learning.' },
+  { name: 'Nova DAX', status: 'Coming soon' },
+  { name: 'Skippy DAX', status: 'Coming soon' },
+];
+
+// Supporting elements that sit alongside the Constraint Protocol.
+// Empty on purpose for now; add { name, text } entries as they are announced.
+const supporting: { name: string; text?: string; status?: string }[] = [];
+---
+<Base>
+  <section class="lede" aria-labelledby="dax">
+    <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
+  </section>
+
+  <section class="block" aria-labelledby="initiatives">
+    <h2 id="initiatives">Initiatives</h2>
+    <ul class="rows">
+      {initiatives.map((i) => (
+        <li class="row">
+          <span class="name">{i.name}</span>
+          {i.status
+            ? <span class="status">{i.status}</span>
+            : <span class="text">{i.text}</span>}
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="cp">
+    <h2 id="cp">Constraint Protocol</h2>
+    <p class="body">
+      The Constraint Protocol is the ground everything here stands on: an open,
+      public ledger for declaring constraints and making conduct under them
+      transparent. It is neutral to the constraint and to the kind of entity
+      that holds it. DAX is one constraint built on it.
+    </p>
+
+    {supporting.length > 0 ? (
+      <ul class="rows">
+        {supporting.map((s) => (
+          <li class="row">
+            <span class="name">{s.name}</span>
+            {s.status
+              ? <span class="status">{s.status}</span>
+              : <span class="text">{s.text}</span>}
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="more">More to come.</p>
+    )}
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 5rem 4.5rem; }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    max-width: 22em;
+    text-wrap: balance;
+  }
+  .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 0.25rem 1.5rem;
+    align-items: baseline;
+    padding-block: 0.9rem;
+  }
+  .row + .row { border-top: 1px solid var(--line); }
+  .name { font-weight: 500; }
+  .text { color: var(--fg); }
+  .status {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .more { margin: 1.5rem 0 0; font-size: 0.875rem; color: var(--faint); }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 3rem 3rem; }
+    .row { grid-template-columns: 1fr; }
+  }
+</style>
