@@ -1,5 +1,6 @@
 ---
-title: "The Snowflake: Fuckari in Action"
+title: "The Snowflake"
+subtitle: "Fuckari in Action"
 date: 2026-09-16
 description: "On the release of Fuckery v0.51 — a constraint–process–valuation ontology, demonstrated rather than described."
 draft: false
@@ -16,6 +17,8 @@ A snowflake.
 What follows is the ontology demonstrated rather than described. Twenty-eight steps, one move each. If the framework is going to fail, it should fail somewhere in here, visibly, on an object whose physics is not in dispute.
 
 That is the point of picking snow. Nobody has a stake in what a snowflake is.
+
+That is also why it is about you. Nobody is defending a position about snow, so whatever holds here holds because of the physics rather than because of the argument. And a loop that holds in a crystal has to hold in a brain, an institution, a codebase — anywhere else stable structure forms — or it does not hold at all.
 
 ---
 
