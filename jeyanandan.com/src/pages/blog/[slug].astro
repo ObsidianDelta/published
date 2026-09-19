@@ -113,11 +113,11 @@ article{padding-bottom:clamp(2rem,5vw,3rem)}
       !important below is a guard so this block stays legible even if a future
       highlighter starts emitting one again.
    2. The block scrolls on its own axis. A 79-column diagram is wider than the
-      measure on every screen, so it must scroll inside its own box and never
-      drag the page sideways. */
+      measure on a phone, so it must scroll inside its own box and never drag
+      the page sideways. */
 .prose pre{
   font-family:var(--mono);
-  font-size:clamp(11px,2.8vw,13.5px);
+  font-size:clamp(12px,2.9vw,13.5px);
   line-height:1.5;
   color:var(--ink)!important;
   background:var(--bone)!important;
@@ -156,13 +156,14 @@ article{padding-bottom:clamp(2rem,5vw,3rem)}
 /* ---------- figures ----------
    astro.config.mjs promotes a lone image in a paragraph to <figure> and moves
    its alt text into a <figcaption>, so the description of each diagram is on
-   the page instead of only in the markup. */
+   the page instead of only in the markup. The caption is sized in em so it
+   scales from the body text rather than from the 16px root. */
 .prose figure{
   margin:clamp(1.9rem,5vw,2.8rem) 0;padding:0;
   display:flex;flex-direction:column;align-items:center;gap:.8rem;
 }
 .prose figcaption{
-  font-family:var(--sans);font-size:.87rem;line-height:1.45;
+  font-family:var(--sans);font-size:.85em;line-height:1.45;
   color:var(--muted);text-align:center;text-wrap:pretty;max-width:34rem;
 }
 .prose img{display:block;max-width:100%;height:auto;border-radius:8px}
