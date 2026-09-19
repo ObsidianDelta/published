@@ -82,6 +82,8 @@ Let's watch the loop run.
 
 ## 1. Before there is a snowflake, there is already a constraint field
 
+![Possibility space progressively narrowed by molecular, thermodynamic and environmental constraints](/figures/fig-01-constraint-field.svg)
+
 Start before the crystal.
 
 Water is not a shapeless substance at the molecular level. A water molecule has a specific geometry and a specific distribution of electrical charge. Hydrogen bonding is directional.
@@ -129,6 +131,8 @@ That is constraint-first thinking. The first question is not "what force moved i
 
 ## 2. Typing the constraints, so the word keeps its meaning
 
+![The eight constraint types, with four active and four having no substrate yet](/figures/fig-02-constraint-taxonomy.svg)
+
 Here is where most constraint-talk quietly dies.
 
 If "constraint" is allowed to mean anything that influences anything, it means nothing. You get a framework that explains everything and forbids nothing.
@@ -155,6 +159,8 @@ That absence matters. Keep the table in mind, because the whole argument turns o
 ---
 
 ## 3. Nucleation: the first emergent step
+
+![Before and after nucleation: vapour versus vapour plus a crystal interface](/figures/fig-03-nucleation.svg)
 
 Now a small number of water molecules form an ordered ice structure. A crystal embryo appears.
 
@@ -198,6 +204,8 @@ An organizational constraint now exists. It did not exist five seconds ago. Noth
 
 ## 4. Why hexagonal — and why that is not yet the interesting part
 
+![The bottom-up chain to hexagonal symmetry, and the reductionist objection](/figures/fig-04-why-hexagonal.svg)
+
 The crystal becomes hexagonal. The sixfold structure arises from the properties of ice and the way water molecules organize into the lattice.
 
 ```text
@@ -228,6 +236,8 @@ That is where the framework earns its keep or fails.
 
 ## 5. The hexagon creates different local worlds
 
+![A hexagonal plate showing corner, edge and face as physically distinct locations](/figures/fig-05-local-worlds.svg)
+
 Imagine a water molecule approaching the crystal.
 
 It might encounter a flat face, an edge, a corner, a defect, or a protrusion.
@@ -247,6 +257,8 @@ Not by adding a force. By existing in a particular shape.
 ---
 
 ## 6. Corners become privileged growth sites
+
+![The amplification spiral from tiny asymmetry to runaway protrusion](/figures/fig-06-corner-feedback.svg)
 
 Now the loop starts turning.
 
@@ -284,6 +296,8 @@ No molecule was pushed. Every molecule did exactly what molecular physics says i
 
 ## 7. Where exactly is top-down causation here?
 
+![Top-down causation as restriction of a possibility space, not injection of a force](/figures/fig-07-topdown-restriction.svg)
+
 This is the question the framework must answer precisely, because it is where most emergence talk becomes mush.
 
 Top-down causation here does **not** mean:
@@ -311,6 +325,8 @@ That is the entire mechanism. It is unglamorous, and it is enough.
 
 ## 8. The equivalence-class bridge
 
+![Many microstates mapping to one macrostate which restricts future events](/figures/fig-08-equivalence-class.svg)
+
 There is a standard objection at this point, and it deserves a real answer rather than a wave.
 
 > *"If the micro-level is causally closed, the macro-level has nothing left to do. Either it is redundant or you are double-counting causes."*
@@ -335,6 +351,8 @@ Top-down causation applies **only in the diachronic sense.** Where that distinct
 
 ## 9. Branching: the second emergent regime
 
+![Branch structure as a second emergent regime stacked on the hexagonal lattice](/figures/fig-09-branching.svg)
+
 Push the feedback loop from section 6 far enough and something qualitatively new appears.
 
 The protruding corners become tips. The tips become arms. The arms become branches. Under the right conditions, side-branches sprout from the arms.
@@ -353,6 +371,8 @@ Constraint regimes stack. Each new one inherits the restrictions of those below 
 ---
 
 ## 10. Diffusion: the structure begins shielding itself
+
+![Branches intercepting vapour and casting a shadow over the crystal interior](/figures/fig-10-self-shielding.svg)
 
 Here is the part that makes the snowflake more than a pretty feedback loop.
 
@@ -386,6 +406,8 @@ A distinction worth marking: the crystal is not maintaining itself against pertu
 
 ## 11. Temperature: the regime changes underneath the structure
 
+![Temperature bands and the morphologies each one favours](/figures/fig-11-temperature-regimes.svg)
+
 Everything so far assumed a stable environment. Real snowflakes do not get one.
 
 Ice crystal growth is famously sensitive to temperature. Small temperature differences produce qualitatively different growth habits — plates in one range, columns in another, complex dendrites in another, and the transitions are sharp rather than gradual.
@@ -399,6 +421,8 @@ The environmental constraint regime is not a fixed backdrop. It is a variable, a
 ---
 
 ## 12. The snowflake is falling the entire time
+
+![A crystal falling through four atmospheric regimes, carrying accumulated structure](/figures/fig-12-falling-through-regimes.svg)
 
 Now combine sections 10 and 11 with the fact everyone forgets.
 
@@ -430,6 +454,8 @@ So at every altitude, two constraint sources interact: the environment the cryst
 
 ## 13. Constraints are therefore dynamic
 
+![Three sources of constraint change, including the interaction term](/figures/fig-13-dynamic-constraints.svg)
+
 This gives the sharpest refinement in the whole example.
 
 Constraints are not fixed forever. They are not a static frame within which events play out.
@@ -449,6 +475,8 @@ The system is not moving through a constraint landscape. It is moving through a 
 ---
 
 ## 14. Noise is not the enemy of constraint
+
+![Microscopic noise amplified into a permanent macroscopic feature](/figures/fig-14-noise-symmetry-breaking.svg)
 
 Impurities, dust particles, defects in the lattice, local turbulence.
 
@@ -482,6 +510,8 @@ Determinism at the bottom, unrepeatability at the top. Both, simultaneously, wit
 
 ## 15. The nested hierarchy
 
+![Four levels of constraint, two given and two manufactured by the process](/figures/fig-15-nested-hierarchy.svg)
+
 We can now state the whole constraint structure explicitly. Four levels, all active at once.
 
 **Level 1 — Fundamental and local**
@@ -510,6 +540,8 @@ Level 1 never changes and is never violated. Level 2 changes but not because of 
 
 ## 16. The whole process, stage by stage
 
+![Stages A through H of crystal growth, looping back into recursion](/figures/fig-16-stages.svg)
+
 **Stage A — Constrained possibility.** Vapor, temperature, molecular rules. Enormous but already-restricted possibility space. No structure.
 
 **Stage B — Nucleation.** A stable ice embryo forms. First organizational constraint enters existence.
@@ -532,6 +564,8 @@ Read the stages as a sequence and something becomes obvious: **you cannot reorde
 
 ## 17. The snowflake has a growth history, not merely a shape
 
+![A snowflake as concentric growth rings, each recording a regime](/figures/fig-17-growth-history.svg)
+
 This is the consequence that matters most.
 
 A finished snowflake is not a shape that happens to have taken time to appear. It is a **record**.
@@ -553,6 +587,8 @@ Those are not two facts about a snowflake. They are the same fact, viewed from e
 
 ## 18. Where exactly is emergence here?
 
+![Eight rungs of emergent properties, each restricting the rungs below](/figures/fig-18-emergence-ladder.svg)
+
 Locate it precisely, or the word is doing no work.
 
 ```text
@@ -573,6 +609,8 @@ Emergence is not one event that happened at nucleation. It is happening continuo
 ---
 
 ## 19. The complete resonance loop
+
+![The constraint-interaction-emergence-new constraint loop](/figures/fig-19-resonance-loop.svg)
 
 We can now write the dynamics almost as an equation.
 
@@ -615,6 +653,8 @@ Arguing about which is "really" doing the work is like arguing whether the upstr
 
 ## 20. Why "resonance" is the right word
 
+![Four coupled levels exchanging influence across repeated passes](/figures/fig-20-resonance-coupling.svg)
+
 Resonance here does not mean mystical vibration. It means that structures and constraints at different levels **repeatedly influence one another, with each pass conditioning the next.**
 
 ```text
@@ -644,6 +684,8 @@ The snowflake is having that conversation as it falls.
 ---
 
 ## 21. The broader template
+
+![The same loop in brain, organism, society and software](/figures/fig-21-broader-template.svg)
 
 The snowflake is not ultimately about snow. It is a **model system** — the cleanest physical case of a pattern that shows up wherever stable structure forms.
 
@@ -679,6 +721,8 @@ Anyone who has watched an early architectural decision quietly determine three y
 
 ## 22. Scope discipline: this is not a claim that everything is fractal
 
+![Observed, plausible and forbidden — the scope discipline guard rail](/figures/fig-22-scope-discipline.svg)
+
 Section 21 is exactly where frameworks like this one usually go wrong, so the guard rail goes here, immediately after the temptation.
 
 Having found a pattern that recurs across crystals, brains, organisms, institutions, and software, the seductive move is to announce that reality is fractal, that the same structure repeats at all scales, that everything is the same thing.
@@ -696,6 +740,8 @@ A framework that explains everything predicts nothing. The list in section 21 is
 ---
 
 ## 23. What would falsify this
+
+![Seven falsification conditions, three of them load-bearing](/figures/fig-23-falsification.svg)
 
 If the framework cannot fail, it is not a framework. So here is what failure looks like.
 
@@ -720,6 +766,8 @@ I would rather publish that list than not.
 
 ## 24. Where the snowflake breaks down
 
+![Four capacities the snowflake lacks: valuation, closure, stake, self-model](/figures/fig-24-where-it-breaks-down.svg)
+
 Every model system has a domain, and pretending otherwise is how illustrations turn into overclaims. Here is where this one stops.
 
 **The snowflake has no valuation.** Nothing about it treats any trajectory as to-be-preserved. It does not maintain itself against perturbation; it simply persists until it melts. Living systems do something categorically different, and the snowflake cannot show you what.
@@ -737,6 +785,8 @@ That is the correct division of labor for an illustration. It is also the reason
 ---
 
 ## 25. The one difference that makes consciousness
+
+![A passive constraint loop beside a self-editable one](/figures/fig-25-self-editable.svg)
 
 Everything above happens without anything noticing.
 
@@ -759,6 +809,8 @@ The seam is held open on purpose. Ten of them are, throughout the canon, each wi
 ---
 
 ## 26. Why this is Fuckari in action
+
+![The framework's version history running the constraint resonance loop](/figures/fig-26-fuckari-in-action.svg)
 
 Now the reflexive turn, which is the actual argument of this post.
 
@@ -800,6 +852,8 @@ Which is also why it is named the way it is. A framework in this position cannot
 
 ## 27. The most concise formulation
 
+![The full snowflake account compressed into one paragraph](/figures/fig-27-concise-formulation.svg)
+
 If the whole example compressed to one paragraph:
 
 > **A snowflake begins within a field of molecular, thermodynamic, and environmental constraints. Local interactions produce an emergent crystal structure. Once that structure exists it is no longer merely an outcome — its faces, edges, corners, tips, and branches alter local boundary conditions, vapor accessibility, diffusion patterns, and attachment probabilities. Those altered conditions influence subsequent molecular events, producing further structure. As the crystal falls through changing atmospheric conditions, the external constraint regime shifts while accumulated structure persists, so prior emergent constraints interact with new environmental ones. The resulting form is a recursive history in which lower-level constraints generate higher-level structure, higher-level structure generates new constraints, and those constraints reshape the lower-level possibility space from which further structure emerges.**
@@ -809,6 +863,8 @@ That is the snowflake. That is constraint resonance. That is Fuckari.
 ---
 
 ## 28. The one sentence
+
+![The one sentence, with the physical chain beneath it](/figures/fig-28-one-sentence.svg)
 
 If everything else were stripped away and one sentence had to survive:
 
