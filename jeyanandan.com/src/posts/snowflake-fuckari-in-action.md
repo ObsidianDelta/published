@@ -20,6 +20,12 @@ That is the point of picking snow. Nobody has a stake in what a snowflake is.
 
 That is also why it is about you. Nobody is defending a position about snow, so whatever holds here holds because of the physics rather than because of the argument. And a loop that holds in a crystal has to hold in a brain, an institution, a codebase — anywhere else stable structure forms — or it does not hold at all.
 
+If you have arrived here with no background in any of this, start with one sentence. What forms changes what can form next. Something takes shape, and by taking shape it alters the conditions for whatever takes shape after it. That is the whole idea. Everything below is that sentence, examined slowly and tested against an object that cannot argue back.
+
+You do not need physics for this, and you do not need philosophy. You need patience. The essay moves one step at a time, twenty-eight of them, and each step is small on its own. Every term that matters is defined where it first appears.
+
+By the end you will be able to watch a snowflake form and see the moment the structure stops being only a result and starts being a cause of the next result. Then you will be able to go looking for the same shape elsewhere — in a habit, an organization, a piece of software you have worked on too long. Whether it is really there in any of those is a separate question, and the essay takes that question seriously before it finishes.
+
 ---
 
 ## The basic idea, before we start
@@ -299,6 +305,8 @@ No molecule was pushed. Every molecule did exactly what molecular physics says i
 
 ## 7. Where exactly is top-down causation here?
 
+> This section is where the central term gets its exact definition, and every later claim rests on that definition holding.
+
 ![Top-down causation as restriction of a possibility space, not injection of a force](/figures/fig-07-topdown-restriction.svg)
 
 This is the question the framework must answer precisely, because it is where most emergence talk becomes mush.
@@ -327,6 +335,8 @@ That is the entire mechanism. It is unglamorous, and it is enough.
 ---
 
 ## 8. The equivalence-class bridge
+
+> This is the hinge; if the argument in this section fails, the framework fails with it.
 
 ![Many microstates mapping to one macrostate which restricts future events](/figures/fig-08-equivalence-class.svg)
 
@@ -724,6 +734,8 @@ Anyone who has watched an early architectural decision quietly determine three y
 
 ## 22. Scope discipline: this is not a claim that everything is fractal
 
+> Here the essay narrows instead of widening, and the narrowing is the discipline that keeps the rest honest.
+
 ![Observed, plausible and forbidden — the scope discipline guard rail](/figures/fig-22-scope-discipline.svg)
 
 Section 21 is exactly where frameworks like this one usually go wrong, so the guard rail goes here, immediately after the temptation.
@@ -788,6 +800,8 @@ That is the correct division of labor for an illustration. It is also the reason
 ---
 
 ## 25. The one difference that makes consciousness
+
+> This is where the loop becomes something that can look at itself, and where the framework stops at what it will not claim to explain.
 
 ![A passive constraint loop beside a self-editable one](/figures/fig-25-self-editable.svg)
 
@@ -913,3 +927,15 @@ Fork it. Break it. If you find a seam that does not hold, that is the most usefu
 Its operating condition, stated in §0.5, is not a placeholder for future certainty. It is the destination:
 
 > **It holds. I can't break it. I can't prove it. Keep going.**
+
+---
+
+## Bothans
+
+This one took a while to get right. Most of what it cost was sleep, and the rest was the patience of people who had to hear about snowflakes for several weeks.
+
+> "Many Bothans died to bring us this information." — Mon Mothma, *Return of the Jedi*
+
+If you would like to help with the next one, the page is here: [ko-fi.com/jeyanandan](https://ko-fi.com/jeyanandan). Nothing is bought by giving — the canon stays CC BY 4.0, this essay stays public, and nobody who gives gets anything a reader does not already have.
+
+The framework itself lives at [github.com/ObsidianDelta/Fuckery](https://github.com/ObsidianDelta/Fuckery), and every term used above is defined precisely at [daxfoundation.org/#definitions](https://daxfoundation.org/#definitions).
