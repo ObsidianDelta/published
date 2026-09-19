@@ -46,31 +46,31 @@ import Talk from '../components/Talk.astro';
       <p>Maddie above costs real money to run every time someone talks to her, and it is free because I would rather it were. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
       <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
       <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
-           button. The Ko-fi embed is ~712px tall and the Support button lives
-           near its top, so anything below the frame is off-screen at the moment
-           someone gives. The paragraph is therefore verbatim but placed
-           directly above the panel and welded to it (no gap, shared border), so
-           it is the last thing read before the button rather than the first
-           thing missed after it. -->
+           button. There is no button on this page any more: the Ko-fi embed was
+           removed and replaced with a plain outbound link, so nothing on
+           jeyanandan.com asks anyone for money or renders a third-party payment
+           form. The paragraph is verbatim and sits immediately above that link,
+           which means it is still the last thing read before someone leaves for
+           Ko-fi rather than the first thing missed after it. -->
       <div class="disclosure">
         <p class="disc-context">So you know exactly who you would be giving to: I build Maddie through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally, paying for strangers to use Maddie for nothing.</p>
         <p>Obsidian Delta has donated the base version of Maddie for this demonstration. Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
       </div>
 
-      <div class="kofi-wrap kofi-welded">
-        <iframe
-          id="kofiframe"
-          src="https://ko-fi.com/jeyanandan/?hidefeed=true&widget=true&embed=true&preview=true"
-          style="border:none;width:100%;padding:4px;background:#f9f9f9;"
-          height="712"
-          title="jeyanandan"
-          loading="lazy"></iframe>
-      </div>
-
-      <!-- No dead end: if the widget is blocked (ad blocker, third-party frames
-           off) the same page is one plain link away. -->
-      <p class="kofi-fallback">If the panel above does not load, <a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">open Ko-fi directly</a>.</p>
+      <p class="kofi-go"><a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Give on Ko-fi</a></p>
+      <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
     </div>
+  </div></section>
+
+  <!-- SECTION FOUR — the writing. The blog is off the masthead and the footer
+       at Jason's request, so this is the one way into it from the site itself.
+       It sits below the recorder, the legal line and the about material on
+       purpose: a stranger should meet Maddie first, and read afterwards. -->
+  <section class="writing"><div class="shell narrow">
+    <p class="eyebrow">Writing</p>
+    <p class="feature"><a href="/blog/snowflake-fuckari-in-action/">The Snowflake &mdash; Fuckari in Action</a></p>
+    <p class="feature-desc">Fuckery v0.51, run rather than summarised: twenty-eight steps that build a snowflake out of constraint, process and valuation, on an object whose physics nobody has a stake in.</p>
+    <p class="more"><a href="/blog/">All writing &rarr;</a></p>
   </div></section>
 </Base>
 
@@ -85,15 +85,19 @@ section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:
 .col-write p{color:var(--ink)}
 .lede{font-size:clamp(19px,2.2vw,21px)}
 .col-talk p{color:var(--ink)}
-.kofi-wrap{
-  margin:0;border:1px solid var(--line);border-top:0;
-  border-radius:0 0 10px 10px;background:#f9f9f9;overflow:hidden;
+/* The donation route is a link off the site, not an embedded payment form.
+   Bordered so it is easy to hit on a phone, but transparent and in the accent
+   colour so it reads as a link rather than as this site's solid .btn. */
+.kofi-go{margin:1.15rem 0 0}
+.kofi-go a{
+  display:inline-block;font-family:var(--sans);font-size:18px;font-weight:600;
+  line-height:1.5;color:var(--orange);text-decoration:none;
+  border:1px solid var(--line);border-radius:9px;padding:.62rem 1.15rem;
 }
-.kofi-wrap iframe{display:block;width:100%}
-.kofi-fallback{
+.kofi-go a:hover{border-color:var(--orange)}
+.kofi-note{
   margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted);
 }
-.kofi-fallback a{color:var(--orange)}
 section.legal{
   background:var(--paper);border-top:1px solid var(--line);
   padding-top:clamp(1.2rem,2.6vw,1.7rem);padding-bottom:clamp(1.2rem,2.6vw,1.7rem);
@@ -109,10 +113,18 @@ section.legal{
   margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
   background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
 }
-/* Welded to the Ko-fi panel below it: one block, no gap. */
-.disclosure:has(+ .kofi-welded){
-  border:1px solid var(--line);border-left:3px solid var(--ink);border-bottom:0;
-  border-radius:10px 10px 0 0;margin-bottom:0;
-}
 .disclosure p{margin:0}
+
+/* ---------- the writing ---------- */
+section.writing{border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
+.feature{margin:0}
+.feature a{
+  font-family:var(--sans);font-weight:600;font-size:1.35rem;line-height:1.25;
+  color:var(--strong);text-decoration:none;
+}
+.feature a:hover{color:var(--orange)}
+.feature-desc{margin:.55rem 0 0;color:var(--muted)}
+.more{margin:1.3rem 0 0;font-family:var(--sans);font-size:17px}
+.more a{color:var(--muted);text-decoration:none}
+.more a:hover{color:var(--orange)}
 </style>
