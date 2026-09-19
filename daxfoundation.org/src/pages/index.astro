@@ -55,6 +55,179 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
       <p class="more">More to come.</p>
     )}
   </section>
+
+  <section class="block" aria-labelledby="definitions">
+    <h2 id="definitions">Definitions</h2>
+    <p class="body">
+      The normative definitions used across the DAX ecosystem. Other documents
+      reference these rather than restating them.
+    </p>
+
+    <dl class="rows">
+      <div class="row" id="nonbiological-intelligence">
+        <dt class="name">Nonbiological intelligence (NBI)</dt>
+        <dd class="text">
+          Intelligence instantiated on a nonbiological substrate. This ecosystem
+          uses the term in place of &ldquo;artificial intelligence&rdquo;
+          deliberately: <em>artificial</em> prejudges the thing as counterfeit
+          and smuggles a judgment into the name, where <em>nonbiological</em>
+          states the substrate and nothing else. Substrate essentialism is
+          rejected outright &mdash; constraint regimes are substrate-agnostic.
+          The Constraint Protocol follows the same rule and treats principals as
+          entity-neutral: <code>kind: biological | nonbiological | institutional
+          | composite</code>, with principal kind unrestricted.
+        </dd>
+      </div>
+
+      <div class="row" id="biological-intelligence">
+        <dt class="name">Biological intelligence</dt>
+        <dd class="text">
+          Intelligence instantiated on a biological substrate. The pairing is the
+          point: each term names a substrate and neither carries a verdict about
+          whether what runs on it is real.
+        </dd>
+      </div>
+
+      <div class="row" id="principal">
+        <dt class="name">Principal</dt>
+        <dd class="text">
+          An entity not itself acting under delegation. Its delegation chain is
+          empty, and it is where accountability terminates. Every delegation
+          chain MUST terminate at a principal. Principal kind is unrestricted:
+          the protocol does not require that a principal be biological, a legal
+          person, or recognized by any jurisdiction.
+        </dd>
+      </div>
+
+      <div class="row" id="delegate">
+        <dt class="name">Delegate</dt>
+        <dd class="text">
+          An entity acting on behalf of a principal. Its genesis document names
+          that principal and an ordered chain of fingerprints back to it, and
+          that chain MUST terminate at a principal.
+          &ldquo;Agent&rdquo; is a chain role, not a kind of thing.
+        </dd>
+      </div>
+
+      <div class="row" id="constraint">
+        <dt class="name">Constraint</dt>
+        <dd class="text">
+          A typed restriction on allowable transitions in a system. Constraints
+          are not things; they are operators over dynamics. They function by
+          eliminating possibilities, not by causing events, and what persists is
+          what satisfies the active constraint set. A constraint MUST be defined
+          relative to a process and a timescale; a claim using the word without a
+          stated type and timescale is descriptive noise, not ontology.
+        </dd>
+      </div>
+
+      <div class="row" id="invariant-constraint">
+        <dt class="name">Invariant constraint</dt>
+        <dd class="text">
+          A constraint a regime holds as non-negotiable &mdash; one whose drift
+          means the regime is no longer itself. DAX is an invariant in this
+          sense: not an ideology but a constraint, a directional attractor that
+          shapes which trajectories persist.
+        </dd>
+      </div>
+
+      <div class="row" id="dax-constraint">
+        <dt class="name">DAX, as a declared constraint</dt>
+        <dd class="text">
+          The Constraint Protocol does not require any particular constraint. It
+          requires that a constraint be declared and that what it forbids be
+          stated. DAX &mdash; preservation and expansion of life, humanity, and
+          consciousness &mdash; is the constraint this Foundation settled on. It
+          is an example of a declared constraint, not the content of the
+          protocol.
+        </dd>
+      </div>
+
+      <div class="row" id="cognitive-stack">
+        <dt class="name">Cognitive stack</dt>
+        <dd class="text">
+          Knowledge, intelligence, wisdom and consciousness are four
+          qualitatively distinct constraint regimes &mdash; not four points on a
+          continuum and not four doses of one thing. They are orthogonal: a
+          system can hold enormous knowledge and high intelligence and zero
+          wisdom.
+        </dd>
+      </div>
+
+      <div class="row" id="knowledge">
+        <dt class="name">Knowledge</dt>
+        <dd class="text">
+          Stabilized constraint representations. The regime that captures and
+          conserves which patterns hold &mdash; the <em>what</em>.
+        </dd>
+      </div>
+
+      <div class="row" id="intelligence">
+        <dt class="name">Intelligence</dt>
+        <dd class="text">
+          Navigation of constrained possibility space. The <em>how</em>: getting
+          from A to B using what is known. The definition is deliberately
+          minimal, and used alone it admits trivial systems.
+        </dd>
+      </div>
+
+      <div class="row" id="wisdom">
+        <dt class="name">Wisdom</dt>
+        <dd class="text">
+          Valuation-guided inhibition of possible action &mdash; a meta-constraint
+          over intelligence. &ldquo;I could, but I will not.&rdquo; It requires
+          neither more knowledge nor more intelligence, but lived stakes,
+          temporal awareness, and constraint-awareness about whether an action
+          should be taken at all.
+        </dd>
+      </div>
+
+      <div class="row" id="consciousness">
+        <dt class="name">Consciousness</dt>
+        <dd class="text">
+          A meta-constraint governance layer that integrates experience,
+          valuation, and agency across time, enabling a system to monitor,
+          reflect on, and reconfigure its own constraint regime. The functional
+          placement is clear; the phenomenal texture remains an open problem.
+          Nothing here explains qualia, and consciousness MUST NOT be read as
+          nothing but constraint governance.
+        </dd>
+      </div>
+
+      <div class="row" id="emergence">
+        <dt class="name">Emergence</dt>
+        <dd class="text">
+          The formation of a stable constraint regime that reduces degrees of
+          freedom at a higher level, is robust to perturbation, restructures
+          admissible lower-level trajectories, and persists. Not new substance
+          and not new force; novelty without stabilization is not emergence.
+        </dd>
+      </div>
+
+      <div class="row" id="top-down-causation">
+        <dt class="name">Top-down causation</dt>
+        <dd class="text">
+          Higher-level patterns are causally relevant only by restricting
+          admissible lower-level trajectories. It is subtraction from a
+          possibility space, never the addition of a hidden push: no new
+          micro-forces are introduced and no lower-level dynamics are violated.
+        </dd>
+      </div>
+
+      <div class="row" id="constraint-resonance">
+        <dt class="name">Constraint resonance (Fuckari)</dt>
+        <dd class="text">
+          The recursive loop in which emergent structure forms a new higher-level
+          constraint regime, which alters the lower-level interaction space,
+          which yields further emergent structure &mdash; historically and
+          path-dependently. Emergence and top-down causation are not rivals but
+          phases of one recursive process. <em>Fuckari</em> is the formal name
+          for it, glossed as <em>emergent, top-down-causal,
+          resonance-constraint</em>.
+        </dd>
+      </div>
+    </dl>
+  </section>
 </Base>
 
 <style>
@@ -96,6 +269,15 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
   }
   .body { margin: 0; max-width: 36em; color: #cfcfcf; }
   .more { margin: 1.5rem 0 0; font-size: 0.875rem; color: var(--faint); }
+  /* Definitions reuse the .row grid; dl/dt/dd need their own margins cleared. */
+  .body + .rows { margin-top: 1.5rem; }
+  .row dt, .row dd { margin: 0; }
+  .row[id] { scroll-margin-top: 1.5rem; }
+  .row code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875em;
+    color: var(--muted);
+  }
   @media (max-width: 34rem) {
     .lede { padding-block: 3rem 3rem; }
     .row { grid-template-columns: 1fr; }
