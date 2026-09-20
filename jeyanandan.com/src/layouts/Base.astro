@@ -1,14 +1,5 @@
 ---
 const { title, description = "Jason Jeyanandan." } = Astro.props;
-
-// PRIVACY_LINK_LABEL -- neutralised 2026-09-20, with the homepage demo.
-// This footer link read "What Maddie keeps" while the recorder was on the home
-// page. The route is unchanged and /privacy/ still says everything it always
-// said; only the label is plain now, because the footer is on every page
-// including the home page, which no longer introduces her. To restore the old
-// wording, set this back to 'What Maddie keeps' (and flip SHOW_MADDIE_DEMO in
-// src/pages/index.astro).
-const PRIVACY_LINK_LABEL = 'Privacy';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -22,14 +13,14 @@ const PRIVACY_LINK_LABEL = 'Privacy';
 <style is:global>
 /* ---------------------------------------------------------------------------
    Palette is the Obsidian Delta light system: paper #FAF4E8, card #EFE5CE,
-   deep-green ink #2D3A2E, burnt orange #C97224. Orange is the recording light
-   and one accent; it is never decoration.
+   deep-green ink #2D3A2E, burnt orange #C97224. Orange is the one accent; it
+   is never decoration.
    System faces only — no webfonts, no CDN, no analytics, nothing third-party.
 --------------------------------------------------------------------------- */
 :root{
   --paper:#FAF4E8; --bone:#F5EBD7; --card:#EFE5CE; --line:#D4CCB7;
   --muted:#6E6859; --ink:#2D3A2E; --strong:#141410;
-  --soft:#2D3A2E;   /* same deep green as --ink; the talk card's controls key off this */
+  --soft:#2D3A2E;   /* same deep green as --ink; no page built today uses it */
   --orange:#C97224; --red:#A8311F;
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
   --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -67,8 +58,6 @@ h1{
 footer{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4rem)}
 footer .shell{padding:1.6rem 0 2.6rem;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer a{text-decoration:none}
-footer .flinks a{color:var(--muted)}
-footer .flinks a:hover{color:var(--orange)}
 footer a:hover{color:var(--orange)}
 
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -77,17 +66,20 @@ footer a:hover{color:var(--orange)}
 <body>
   <!-- 2026-09-08: the Blog link is off the masthead and the footer at Jason's
        request. The /blog/ routes still build and still resolve, they are simply
-       unlinked until the first post is written -- removing the pages instead
-       would 404 anyone who already has the URL. -->
+       unlinked from the chrome; the home page links into them twice. -->
   <div class="strip"><div class="shell">
     <a class="who" href="/">Jason Jeyanandan</a>
   </div></div>
 
   <slot />
 
+  <!-- 2026-09-20: the footer carried two links, "Before you start" to
+       /important/ and "Privacy" to /privacy/. Both pages were taken off the
+       site with the rest of the product surface, so the footer is the name
+       alone rather than two links to nothing. The pages are kept, unbuilt, in
+       src/_suppressed/ -- see the README there before restoring either. -->
   <footer><div class="shell">
     <span>Jason Jeyanandan</span>
-    <span class="flinks"><a href="/important/">Before you start</a> &middot; <a href="/privacy/">{PRIVACY_LINK_LABEL}</a></span>
   </div></footer>
 </body>
 </html>
