@@ -1,20 +1,24 @@
-# jeyanandan.com. The page makes exactly one kind of outbound call, to
-# api.formaddie.com (sign-in, and the recorded turn). Fonts are the system's,
-# there is no CDN and no analytics. media-src allows data: so Maddie's reply
-# mp3 plays straight from the JSON response. The single third party is the
-# Ko-fi donation panel, embedded in an iframe: frame-src names ko-fi.com and
-# nothing else, and default-src stays 'self' so the frame cannot pull scripts,
-# styles or beacons into this document. Without an explicit frame-src the
-# widget is blocked by default-src and the donation panel renders empty.
+# jeyanandan.com. A personal site: an introduction, the writing, and one
+# outbound link to ko-fi.com. Nothing is embedded and nothing is submitted --
+# every built page carries no <iframe>, no <form> and, today, no <script> at
+# all. Fonts are the system's, there is no CDN and no analytics. img-src allows
+# data: for the one-byte inline favicon in Base.astro.
+#
+# 2026-09-20, with the product pages: frame-src named ko-fi.com for a donation
+# iframe that was replaced by a plain outbound link; form-action named ko-fi.com
+# for a payment form that is not on the page; connect-src named
+# api.formaddie.com and media-src allowed blob:/data: for the recorder, which is
+# no longer built; and microphone=(self) was that recorder's microphone. All of
+# them are gone. Verified against the built pages before the change: no iframe,
+# frame, embed, object, form, formaction, script, fetch, XMLHttpRequest,
+# WebSocket, getUserMedia, MediaRecorder, audio, video or blob: on any of /,
+# /blog/, /blog/snowflake-fuckari-in-action/ or the 404.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.formaddie.com; frame-src https://ko-fi.com https://storage.ko-fi.com; media-src 'self' blob: data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://ko-fi.com; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; media-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: microphone=(self), camera=(), geolocation=(), interest-cohort=()
+  Permissions-Policy: microphone=(), camera=(), geolocation=(), interest-cohort=()
   X-Frame-Options: DENY
 
 /
   Cache-Control: no-cache, must-revalidate
-
-/auth-callback/
-  Cache-Control: no-store
