@@ -6,7 +6,7 @@ description: "Every claim in the framework is marked for provenance except one â
 draft: false
 ---
 
-*The third of three. The first was the mechanism. The second was the threat. This one is the person.*
+*The third of three. The first was the mechanism. The second was [the threat](/blog/the-constraint/). This one is the person.*
 
 ---
 
