@@ -1,146 +1,68 @@
 ---
 import Base from '../layouts/Base.astro';
-import Talk from '../components/Talk.astro';
 
-// ---------------------------------------------------------------------------
-// SHOW_MADDIE_DEMO -- suppressed 2026-09-20, pending the paid launch.
+// jeyanandan.com -- Jason's personal site. An introduction, the writing, and
+// one way to help pay for it.
 //
-// Every block on this page that presented Maddie -- the recorder, the demo
-// copy, the "my gift to you" framing, the emergency line that belongs with a
-// live recorder, and the donated-base-version sentence in the Ko-fi
-// disclosure -- is wrapped in this one flag. Nothing has been deleted. Set it
-// back to `true` and the page comes back exactly as it was.
-//
-// Not behind the flag, and on the page either way: the introduction, the
-// writing section and its links, the Ko-fi link, the disclosure that says who
-// the money goes to, and the footer.
-//
-// Two things travelled with this flag and have to come back with it:
-//   1. .github/workflows/deploy-jeyanandan.yml -- the deploy greps the BUILT
-//      page, and the three Maddie-specific greps (the donated-base-version
-//      sentence, /v1/memos, surface: 'j') were dropped in the same
-//      change-set. Flipping this to `true` without restoring them ships the
-//      demo ungated.
-//   2. src/layouts/Base.astro -- PRIVACY_LINK_LABEL, the footer link that
-//      read "What Maddie keeps".
-// ---------------------------------------------------------------------------
-const SHOW_MADDIE_DEMO = false;
+// 2026-09-20: the Maddie demonstration that used to sit on this page is gone
+// rather than hidden. The recorder, the demo copy, the "my gift to you"
+// framing and the emergency notice that belonged with a live recorder went out
+// with /privacy/, /important/ and /auth-callback/. The pages are kept, unbuilt,
+// in src/_suppressed/; the recorder component is kept, unimported, at
+// src/components/Talk.astro. See src/_suppressed/README.md before restoring
+// any of it -- the links that pointed at those pages went too.
 ---
 <Base
   title="Jason Jeyanandan"
-  description={SHOW_MADDIE_DEMO
-    ? 'My gift to you — talk to Maddie, and she keeps your life story.'
-    : 'Jason Jeyanandan — I build software, and I write about constraint, emergence, and what it takes for structure to hold.'}
+  description="Jason Jeyanandan — I build software, and I write about constraint, emergence, and what it takes for structure to hold."
 >
-  <section class="hero"><div class={SHOW_MADDIE_DEMO ? 'shell' : 'shell narrow'}>
-    <h1>{SHOW_MADDIE_DEMO ? 'My gift to you' : 'Jason Jeyanandan'}</h1>
+  <section class="hero"><div class="shell narrow">
+    <h1>Jason Jeyanandan</h1>
     <div class="rule"></div>
   </div></section>
 
-  <!-- INTRODUCTION - what the top of the page is while the demo is suppressed.
-       Three short paragraphs and the three places the rest of the work lives.
-       The hero above runs at this same measure while the demo is off, so the
-       heading sits over its own text instead of hanging out to the left of it;
-       with the demo on it goes back to the full width the two columns need. -->
-  {!SHOW_MADDIE_DEMO && (
-    <section><div class="shell narrow">
-      <p class="lede">I build software, and I write about how things hold together.</p>
-      <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and <a href="https://daxfoundation.org/">the DAX Foundation</a>, which holds the part a company should not.</p>
-      <p><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a> is the thinking underneath the rest of it &mdash; a framework for constraint and emergence, and what it takes for structure to form and then hold. It is published in full, dead ends included, and it is meant to be argued with.</p>
-      <p class="more"><a href="/blog/">The writing &rarr;</a></p>
-    </div></section>
-  )}
-
-  {/* SECTION ONE - left: the writing. right: the recorder. */}
-  {SHOW_MADDIE_DEMO && (
-    <section><div class="shell cols">
-      <div class="col-write">
-        <p class="lede">This is Maddie. She helps people keep their life story just by talking &mdash; no typing, no forms, nothing to learn. Say something and she answers out loud, and she remembers you next time.</p>
-        <p>People carry whole worlds around with them and almost none of it gets written down. Not because nobody cares &mdash; because sitting down to write a memoir is a mountain, and nobody climbs it. But talking is easy. Everyone can talk.</p>
-        <p>So Maddie asks, and listens, and remembers. Talk to her for an hour or a thousand hours; either way what you said becomes a book you can hold. She was built for people in their eighties and nineties, which means she has to be patient, and kind, and she can never make anyone feel stupid.</p>
-        <p>She is yours to use. That is the gift &mdash; no charge, no trial, nothing to cancel.</p>
-      </div>
-      <div class="col-talk">
-        <Talk />
-      </div>
-    </div></section>
-  )}
-
-  {/* SECTION TWO - one line. It sits AFTER the recorder on purpose: a stranger
-      who has just pressed Record should meet Maddie, not a liability notice.
-      Everything that used to be spelled out here now lives on /important/ and
-      /privacy/, which this line sends people to. The only thing kept on the
-      page itself is the emergency line, because that is the one item that
-      cannot be one click away. Maddie also speaks the disclosure herself on a
-      caller's first turn.
-
-      Suppressed 2026-09-20 with the recorder, and only with the recorder: the
-      911/988 line is here because someone could talk to her from this page
-      (Jason, 2026-09-10, state/DECISIONS.md "Public surfaces"). Nothing on the
-      page can be talked to while the flag is false, so the notice has no
-      subject; the moment the flag goes back to true this returns with it. */}
-  {SHOW_MADDIE_DEMO && (
-    <section class="legal"><div class="shell">
-      <p class="legalone"><strong>Maddie cannot get help.</strong> In an emergency call <strong>911</strong>; in a crisis, call or text <strong>988</strong>. Before you use her, please read <a href="/important/">what she is and is not</a> and <a href="/privacy/">what she keeps</a>.</p>
-    </div></section>
-  )}
-
-  <!-- SECTION THREE - about, then how to keep the writing going. -->
-  <section class={SHOW_MADDIE_DEMO ? 'alt' : 'alt solo'}><div class="shell cols">
-    {SHOW_MADDIE_DEMO && (
-      <div class="col-write">
-        {/* JASON WRITES THIS. Emptied 2026-09-08 at his request; the heading is
-            deliberately left standing so the section keeps its place in the
-            layout. Until there is a paragraph here the right-hand column
-            carries the section on its own. While the demo is suppressed this
-            column is not rendered at all - the introduction at the top of the
-            page is doing its job - and the section runs as one column. */}
-        <p class="eyebrow">About me</p>
-      </div>
-    )}
-    <div class="col-talk">
-      {SHOW_MADDIE_DEMO ? (
-        <Fragment>
-          <p class="eyebrow">Keeping this free</p>
-          <p>Maddie above costs real money to run every time someone talks to her, and it is free because I would rather it were. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
-          <p>If you would like to help keep it free &mdash; and keep me going while I build the rest &mdash; you can. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
-        </Fragment>
-      ) : (
-        <Fragment>
-          <p class="eyebrow">Keeping it going</p>
-          <p>The writing here is free and it stays free. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
-          <p>If any of it was worth something to you, you can keep me going while I build the rest. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
-        </Fragment>
-      )}
-      <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
-           button. There is no button on this page any more: the Ko-fi embed was
-           removed and replaced with a plain outbound link, so nothing on
-           jeyanandan.com asks anyone for money or renders a third-party payment
-           form. The paragraph is verbatim and sits immediately above that link,
-           which means it is still the last thing read before someone leaves for
-           Ko-fi rather than the first thing missed after it. -->
-      <div class="disclosure">
-        {SHOW_MADDIE_DEMO ? (
-          <Fragment>
-            <p class="disc-context">So you know exactly who you would be giving to: I build Maddie through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally, paying for strangers to use Maddie for nothing.</p>
-            <p>Obsidian Delta has donated the base version of Maddie for this demonstration. Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
-          </Fragment>
-        ) : (
-          <Fragment>
-            <p class="disc-context">So you know exactly who you would be giving to: I build through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally.</p>
-            <p>Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
-          </Fragment>
-        )}
-      </div>
-
-      <p class="kofi-go"><a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Give on Ko-fi</a></p>
-      <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
-    </div>
+  <!-- INTRODUCTION. Three short paragraphs and the way into the writing. The
+       hero above runs at this same measure, so the heading sits over its own
+       text instead of hanging out to the left of it. -->
+  <section><div class="shell narrow">
+    <p class="lede">I build software, and I write about how things hold together.</p>
+    <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and <a href="https://daxfoundation.org/">the DAX Foundation</a>, which holds the part a company should not.</p>
+    <p><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a> is the thinking underneath the rest of it &mdash; a framework for constraint and emergence, and what it takes for structure to form and then hold. It is published in full, dead ends included, and it is meant to be argued with.</p>
+    <p class="more"><a href="/blog/">The writing &rarr;</a></p>
   </div></section>
 
-  <!-- SECTION FOUR - the writing. The blog is off the masthead and the footer
-       at Jason's request, so this section and the introduction above are the
-       ways into it from the site itself. -->
+  <!-- KEEPING IT GOING - why the link is here, the disclosure, then the link. -->
+  <section class="alt"><div class="shell narrow">
+    <p class="eyebrow">Keeping it going</p>
+    <p>The writing here is free and it stays free. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
+    <p>If any of it was worth something to you, you can keep me going while I build the rest. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
+    <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
+         button. There is no button on this page: the Ko-fi embed was removed
+         and replaced with a plain outbound link, so nothing on jeyanandan.com
+         asks anyone for money or renders a third-party payment form. The
+         paragraph sits immediately above that link, which means it is still
+         the last thing read before someone leaves for Ko-fi rather than the
+         first thing missed after it.
+
+         The second paragraph is a deploy gate: the build greps the BUILT page
+         for "not the Foundation and not the company." and refuses to ship
+         without it (.github/workflows/deploy-jeyanandan.yml). It is true of
+         this page with or without the demonstration that used to be on it --
+         the money goes to a person, not to Obsidian Delta and not to the DAX
+         Foundation. Reword it and the gate has to change in the same
+         change-set, workflow first. -->
+    <div class="disclosure">
+      <p class="disc-context">So you know exactly who you would be giving to: I build through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally.</p>
+      <p>Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
+    </div>
+
+    <p class="kofi-go"><a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Give on Ko-fi</a></p>
+    <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
+  </div></section>
+
+  <!-- THE WRITING. The blog is off the masthead and the footer at Jason's
+       request, so this section and the introduction above are the ways into it
+       from the site itself. -->
   <section class="writing"><div class="shell narrow">
     <p class="eyebrow">Writing</p>
     <p class="feature"><a href="/blog/snowflake-fuckari-in-action/">The Snowflake &mdash; Fuckari in Action</a></p>
@@ -153,18 +75,7 @@ const SHOW_MADDIE_DEMO = false;
 .hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
 section{padding-bottom:clamp(2.5rem,6vw,4rem)}
 section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
-.cols{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.25rem)}
-@media (min-width:900px){
-  .cols{grid-template-columns:1.02fr .98fr;gap:3.25rem;align-items:start}
-}
-/* 2026-09-20: while the demo is suppressed the alt section has one column, not
-   two - the empty "About me" placeholder is not rendered - so it runs at the
-   same measure as the writing section instead of leaving half the row blank.
-   Flipping SHOW_MADDIE_DEMO back to true drops .solo and restores the grid. */
-section.alt.solo .cols{grid-template-columns:1fr;max-width:44rem}
-.col-write p{color:var(--ink)}
 .lede{font-size:clamp(19px,2.2vw,21px)}
-.col-talk p{color:var(--ink)}
 /* The donation route is a link off the site, not an embedded payment form.
    Bordered so it is easy to hit on a phone, but transparent and in the accent
    colour so it reads as a link rather than as this site's solid .btn. */
@@ -178,16 +89,6 @@ section.alt.solo .cols{grid-template-columns:1fr;max-width:44rem}
 .kofi-note{
   margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted);
 }
-section.legal{
-  background:var(--paper);border-top:1px solid var(--line);
-  padding-top:clamp(1.2rem,2.6vw,1.7rem);padding-bottom:clamp(1.2rem,2.6vw,1.7rem);
-}
-.legalone{
-  margin:0;font-family:var(--sans);font-size:15.5px;line-height:1.6;color:var(--muted);
-  max-width:62ch;
-}
-.legalone strong{color:var(--ink)}
-.legalone a{color:var(--orange)}
 .disc-context{margin:0 0 .7rem!important;color:var(--muted);font-size:16px}
 .disclosure{
   margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
