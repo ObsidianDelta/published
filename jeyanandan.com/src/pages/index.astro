@@ -32,13 +32,16 @@ const SHOW_MADDIE_DEMO = false;
     ? 'My gift to you — talk to Maddie, and she keeps your life story.'
     : 'Jason Jeyanandan — I build software, and I write about constraint, emergence, and what it takes for structure to hold.'}
 >
-  <section class="hero"><div class="shell">
+  <section class="hero"><div class={SHOW_MADDIE_DEMO ? 'shell' : 'shell narrow'}>
     <h1>{SHOW_MADDIE_DEMO ? 'My gift to you' : 'Jason Jeyanandan'}</h1>
     <div class="rule"></div>
   </div></section>
 
   <!-- INTRODUCTION - what the top of the page is while the demo is suppressed.
-       Three short paragraphs and the three places the rest of the work lives. -->
+       Three short paragraphs and the three places the rest of the work lives.
+       The hero above runs at this same measure while the demo is off, so the
+       heading sits over its own text instead of hanging out to the left of it;
+       with the demo on it goes back to the full width the two columns need. -->
   {!SHOW_MADDIE_DEMO && (
     <section><div class="shell narrow">
       <p class="lede">I build software, and I write about how things hold together.</p>
