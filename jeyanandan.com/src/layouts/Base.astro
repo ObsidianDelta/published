@@ -1,5 +1,14 @@
 ---
 const { title, description = "Jason Jeyanandan." } = Astro.props;
+
+// PRIVACY_LINK_LABEL -- neutralised 2026-09-20, with the homepage demo.
+// This footer link read "What Maddie keeps" while the recorder was on the home
+// page. The route is unchanged and /privacy/ still says everything it always
+// said; only the label is plain now, because the footer is on every page
+// including the home page, which no longer introduces her. To restore the old
+// wording, set this back to 'What Maddie keeps' (and flip SHOW_MADDIE_DEMO in
+// src/pages/index.astro).
+const PRIVACY_LINK_LABEL = 'Privacy';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +87,7 @@ footer a:hover{color:var(--orange)}
 
   <footer><div class="shell">
     <span>Jason Jeyanandan</span>
-    <span class="flinks"><a href="/important/">Before you start</a> &middot; <a href="/privacy/">What Maddie keeps</a></span>
+    <span class="flinks"><a href="/important/">Before you start</a> &middot; <a href="/privacy/">{PRIVACY_LINK_LABEL}</a></span>
   </div></footer>
 </body>
 </html>
