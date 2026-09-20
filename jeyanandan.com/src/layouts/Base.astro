@@ -1,5 +1,20 @@
 ---
 const { title, description = "Jason Jeyanandan." } = Astro.props;
+
+// 2026-09-08: the Blog link is off the masthead and the footer at Jason's
+// request. The /blog/ routes still build and still resolve, they are simply
+// unlinked from the chrome; the home page links into them twice.
+//
+// 2026-09-20: the footer carried two links, "Before you start" to /important/
+// and "Privacy" to /privacy/. Both pages were taken off the site with the rest
+// of the product surface, so the footer is the name alone rather than two links
+// to nothing. The pages are kept, unbuilt, in src/_suppressed/ -- read the
+// README there before restoring either.
+//
+// These notes live in the frontmatter, not in an HTML comment in the body,
+// because this layout wraps every page on the site: an <!-- --> here is emitted
+// into the built HTML of all of them, and internal notes about pages that no
+// longer exist are not something to ship to readers.
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -64,20 +79,12 @@ footer a:hover{color:var(--orange)}
 </style>
 </head>
 <body>
-  <!-- 2026-09-08: the Blog link is off the masthead and the footer at Jason's
-       request. The /blog/ routes still build and still resolve, they are simply
-       unlinked from the chrome; the home page links into them twice. -->
   <div class="strip"><div class="shell">
     <a class="who" href="/">Jason Jeyanandan</a>
   </div></div>
 
   <slot />
 
-  <!-- 2026-09-20: the footer carried two links, "Before you start" to
-       /important/ and "Privacy" to /privacy/. Both pages were taken off the
-       site with the rest of the product surface, so the footer is the name
-       alone rather than two links to nothing. The pages are kept, unbuilt, in
-       src/_suppressed/ -- see the README there before restoring either. -->
   <footer><div class="shell">
     <span>Jason Jeyanandan</span>
   </div></footer>
