@@ -6,6 +6,11 @@ import Base from '../layouts/Base.astro';
 // a cloaking signature to reputation scanners, and an invitation for search
 // engines to index unbounded duplicate pages once the blog grows. Astro emits
 // this route as dist/404.html, which Pages serves with a real 404 status.
+//
+// 2026-09-20: this list named three places. One of them described the home
+// page as Maddie's and one of them was /important/, which is no longer a page
+// on this site. It names two now, and every link in it is checked against what
+// actually builds.
 ---
 <Base title="Not found" description="There is no page at that address.">
   <section class="hero"><div class="shell">
@@ -15,11 +20,10 @@ import Base from '../layouts/Base.astro';
 
   <section><div class="shell narrow">
     <p class="lede">There is no page at that address. Either it never existed, or I moved it and left nothing behind to point the way.</p>
-    <p>Three places that do exist:</p>
+    <p>Two places that do exist:</p>
     <ul class="ways">
-      <li><a href="/">The home page</a> &mdash; Maddie, and what she is for.</li>
+      <li><a href="/">The home page</a> &mdash; who I am and what I am building.</li>
       <li><a href="/blog/">Writing</a> &mdash; everything I have posted.</li>
-      <li><a href="/important/">Before you start</a> &mdash; what Maddie is and is not. The most important page here.</li>
     </ul>
   </div></section>
 </Base>
