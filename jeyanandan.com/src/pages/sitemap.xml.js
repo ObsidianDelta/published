@@ -11,13 +11,17 @@
 // so the two cannot drift apart.
 //
 // Astro emits an endpoint whose filename carries an extension at that exact
-// path, so this builds to dist/sitemap.xml. /auth-callback/ is deliberately
-// absent: it is a redirect target, not a page anyone should land on from a
-// search result.
+// path, so this builds to dist/sitemap.xml.
+//
+// STATIC_ROUTES is the hand-maintained half, and it is the half that rots: a
+// route listed here that no longer builds is a 404 advertised to every search
+// engine. /important/, /privacy/ and /auth-callback/ were taken off the site
+// on 2026-09-20 and came out of this list in the same change. Nothing may go
+// back in here that does not exist in dist/.
 
 const SITE = 'https://jeyanandan.com';
 
-const STATIC_ROUTES = ['/', '/blog/', '/important/', '/privacy/'];
+const STATIC_ROUTES = ['/', '/blog/'];
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
 
