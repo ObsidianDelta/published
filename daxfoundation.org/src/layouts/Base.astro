@@ -8,6 +8,17 @@ const {
   description = 'DAX: preservation and expansion of life, humanity, and consciousness.',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// 2026-09-20: the footer used to carry "Canadian not-for-profit" in its right
+// corner. It is gone at Jason's request, and nothing has taken its place: the
+// Foundation is not incorporated yet, so any sentence here about its legal
+// status -- incorporated, registered, charitable, or a softer wording of the
+// same claim -- would be a claim it cannot stand behind. This footer says the
+// name. When incorporation actually happens, the claim can come back with a
+// number behind it.
+//
+// This note is in the frontmatter, not an HTML comment: this layout wraps
+// every page on the site, so an <!-- --> here ships on all of them.
 ---
 <!doctype html>
 <html lang="en">
@@ -34,7 +45,6 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
     <footer class="wrap foot">
       <span>DAX Foundation</span>
-      <span>Canadian not-for-profit</span>
     </footer>
   </body>
 </html>
