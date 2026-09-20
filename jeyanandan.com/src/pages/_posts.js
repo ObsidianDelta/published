@@ -27,10 +27,29 @@
 //   rename, or a move -- any of the three takes
 //   https://jeyanandan.com/blog/fuckarian/ down, and deploy-jeyanandan.yml
 //   gates on that page building and on its body text rendering into it.
+//
+//   the-constraint -- 2026-09-20, later the same day, Jason's call, and with it
+//   fuckarian changes from "kept off the reading list" to hidden: "Hide the
+//   Constraint blog post and also the Fuckarian blog post. Just hide them, so
+//   those are just work in progress." Both stay built and both URLs keep
+//   serving, so he can keep reviewing them. The same three things must not
+//   happen to it as to fuckarian, for the same reason: deploy-jeyanandan.yml
+//   gates on https://jeyanandan.com/blog/the-constraint/ building too.
+//
+// UNLISTED ALSO MEANS NOINDEX. Keeping a post off this site's own indexes does
+// not keep it out of a search engine that reaches it some other way, so
+// src/pages/blog/[slug].astro asks isUnlisted() below and, for an unlisted
+// post, has Base.astro emit <meta name="robots" content="noindex, nofollow">.
+// The indexes and the robots tag read the same function, so a post cannot be
+// off the lists and still invite indexing, or the other way round.
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
 
-export const UNLISTED_SLUGS = new Set(['fuckarian']);
+export const UNLISTED_SLUGS = new Set(['fuckarian', 'the-constraint']);
+
+/** The one rule for unlisted: either route in is enough. */
+export const isUnlisted = (slug, frontmatter = {}) =>
+  frontmatter.unlisted === true || UNLISTED_SLUGS.has(slug);
 
 const newestFirst = (a, b) => new Date(b.date) - new Date(a.date);
 
@@ -42,7 +61,7 @@ export const posts = Object.entries(modules)
     return {
       ...frontmatter,
       slug,
-      unlisted: frontmatter.unlisted === true || UNLISTED_SLUGS.has(slug),
+      unlisted: isUnlisted(slug, frontmatter),
     };
   })
   .filter((p) => !p.draft)

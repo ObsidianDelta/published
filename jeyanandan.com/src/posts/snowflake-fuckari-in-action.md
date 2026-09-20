@@ -6,7 +6,7 @@ description: "On the release of Fuckery v0.51 — a constraint–process–valua
 draft: false
 ---
 
-Today I'm releasing **Fuckery v0.51**, the current canon of an ontology I've been building since January.
+Today I'm releasing **[Fuckery v0.51](https://github.com/ObsidianDelta/Fuckery)**, the current canon of an ontology I've been building since January.
 
 Rather than summarize it, I want to run it.
 
@@ -918,7 +918,7 @@ That is the entire dance. ❄️
 
 ---
 
-## Fuckery v0.51
+## [Fuckery v0.51](https://github.com/ObsidianDelta/Fuckery)
 
 The full canon — three primitives, the invariant core, the cognitive constraint regimes, three dissolutions of the hard problem, the dual-vector framework, and ten open problems held open on purpose — is published under CC BY 4.0.
 

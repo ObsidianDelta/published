@@ -1,5 +1,5 @@
 ---
-const { title, description = "Jason Jeyanandan." } = Astro.props;
+const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.props;
 
 // 2026-09-08: the Blog link is off the masthead and the footer at Jason's
 // request. The /blog/ routes still build and still resolve, they are simply
@@ -15,6 +15,10 @@ const { title, description = "Jason Jeyanandan." } = Astro.props;
 // because this layout wraps every page on the site: an <!-- --> here is emitted
 // into the built HTML of all of them, and internal notes about pages that no
 // longer exist are not something to ship to readers.
+//
+// 2026-09-20: `noindex` is passed only by src/pages/blog/[slug].astro, for a
+// post src/pages/_posts.js marks unlisted. Every other page leaves it off and
+// emits no robots meta at all, which is the default: index, follow.
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +27,7 @@ const { title, description = "Jason Jeyanandan." } = Astro.props;
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
 <meta name="theme-color" content="#FAF4E8" />
 <link rel="icon" href="data:," />
 <style is:global>

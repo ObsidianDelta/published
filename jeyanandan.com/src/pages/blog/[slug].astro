@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { isUnlisted } from '../_posts.js';
 
 export async function getStaticPaths() {
   const modules = import.meta.glob('../../posts/*.md', { eager: true });
@@ -23,8 +24,14 @@ const fmt = new Date(frontmatter.date).toLocaleDateString('en-CA', {
 const fullTitle = frontmatter.subtitle
   ? `${frontmatter.title}: ${frontmatter.subtitle}`
   : frontmatter.title;
+
+// An unlisted post is off every index on this site, and it asks search engines
+// to keep it off theirs: Base.astro emits a noindex, nofollow robots tag for it.
+// isUnlisted() is the rule the home page, /blog/ and /sitemap.xml already use
+// to leave it out, so the robots tag and the lists cannot disagree.
+const noindex = isUnlisted(Astro.params.slug, frontmatter);
 ---
-<Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle}>
+<Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle} noindex={noindex}>
   <section class="hero"><div class="shell narrow">
     <p class="eyebrow">{fmt}</p>
     <h1>{frontmatter.title}</h1>
