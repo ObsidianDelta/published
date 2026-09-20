@@ -14,37 +14,43 @@
 # WebSocket, getUserMedia, MediaRecorder, audio, video or blob: on any of /,
 # /blog/, /blog/snowflake-fuckari-in-action/ or the 404.
 #
-# CACHING, 2026-09-20. HTML is never held by a shared cache without
-# revalidation: a page removed from src/ has to stop being served promptly,
-# and the home page's existing no-cache rule is the shape the rest of the site
-# now follows. Assets split two ways. /_astro/* filenames carry Astro's
-# content hash, so a change is a new URL and the old one can be immutable for
-# a year. /figures/* filenames do NOT carry a hash -- fig-01..28 and the
-# genealogy pair keep stable names and their contents do get corrected -- so
-# they are long-lived at the edge (s-maxage, which a deploy purge flushes) and
-# short in the browser (max-age + must-revalidate, which no purge can reach).
-# Do not add immutable to /figures/*: a corrected diagram would then not reach
-# a reader who had already loaded the old one.
+# CACHING, 2026-09-20. HTML is never held by a shared cache without revalidation:
+# a page removed from src/ has to stop being served promptly. /* carries the
+# no-cache the home page already had, and that covers every HTML document plus
+# /version.json.
+#
+# Pages APPENDS matching rules, it does not override them. Measured on this site
+# 2026-09-20: a /* rule plus a / rule produced the literal header
+# "no-cache, must-revalidate, no-cache, must-revalidate", and /blog/* doubled it
+# again. So do NOT add a second Cache-Control rule for a path /* already covers.
+# The asset rules below are additive on purpose: the zone sets the base value for
+# static files (measured: public, max-age=14400, must-revalidate) and the rule
+# here contributes the shared-cache lifetime on top of it.
+#
+# /_astro/* filenames carry Astro's content hash, so a change is a new URL and the
+# old one can be immutable for a year. The site emits no /_astro/ assets today --
+# the CSS is inlined and there is no script -- so this rule is inert until one is
+# added. /figures/* filenames do NOT carry a hash: fig-01..28 and the genealogy
+# pair keep stable names and their contents do get corrected. They are long-lived
+# at the edge (s-maxage, which a deploy purge can flush) and short in the browser
+# (max-age + must-revalidate, which no purge can reach). Do NOT add immutable to
+# /figures/*: a corrected diagram would then not reach a reader who already has
+# the old one.
 #
 # This file is NOT what served /privacy/, /important/, /auth-callback/ and
-# /blog/neurodivergent/ as HTTP 200 after they were removed. Checked
-# 2026-09-20: the Pages origin 404s all four (jeyanandan.pages.dev and a
-# ?cb= query both 404 from the same deployment the apex serves), and no
-# s-maxage=604800 or x-robots-tag string existed anywhere in this repo.
-# Those four responses come from a cache at the jeyanandan.com zone, above
-# the origin. Only a Cloudflare purge clears them; this file cannot.
+# /blog/neurodivergent/ as HTTP 200 after they were removed, and changing it did
+# not fix them. Measured 2026-09-20: the Pages origin 404s all four
+# (jeyanandan.pages.dev and a ?cb= query both 404), no s-maxage or x-robots-tag
+# string exists anywhere in this repo, and after this file shipped the four URLs
+# picked up the new cache-control while still returning the OLD body with an age:
+# that never reset -- across a deployment whose purge step is best-effort. A cache
+# at the jeyanandan.com zone holds them. Only a Cloudflare purge clears it.
 /*
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; media-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: microphone=(), camera=(), geolocation=(), interest-cohort=()
   X-Frame-Options: DENY
-  Cache-Control: no-cache, must-revalidate
-
-/
-  Cache-Control: no-cache, must-revalidate
-
-/blog/*
   Cache-Control: no-cache, must-revalidate
 
 /_astro/*
