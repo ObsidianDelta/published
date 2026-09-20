@@ -11,6 +11,28 @@ import Base from '../layouts/Base.astro';
 // in src/_suppressed/; the recorder component is kept, unimported, at
 // src/components/Talk.astro. See src/_suppressed/README.md before restoring
 // any of it -- the links that pointed at those pages went too.
+//
+// THE DISCLOSURE, AND THE GATE ON IT.
+// The spec puts the disclosure directly beneath the donation button. There is
+// no button on this page: the Ko-fi embed was removed and replaced with a plain
+// outbound link, so nothing on jeyanandan.com asks anyone for money or renders
+// a third-party payment form. The paragraph sits immediately above that link,
+// which means it is still the last thing read before someone leaves for Ko-fi
+// rather than the first thing missed after it.
+//
+// The second paragraph of it is a deploy gate: the build greps the BUILT page
+// for "not the Foundation and not the company." and refuses to ship without it
+// (.github/workflows/deploy-jeyanandan.yml). It is true of this page with or
+// without the demonstration that used to be on it -- the money goes to a
+// person, not to Obsidian Delta and not to the DAX Foundation -- so it was kept
+// word for word and the gate was left alone. Reword it and the gate has to
+// change in the same change-set, workflow first.
+//
+// Note on comments below: they are {/* ... */}, not <!-- ... -->. Astro emits
+// an HTML comment nested inside an element into the built page; this file must
+// not ship its own notes to readers, and above all must not ship the gate
+// sentence, or the grep above would pass on a comment while the real paragraph
+// was missing.
 ---
 <Base
   title="Jason Jeyanandan"
@@ -21,9 +43,9 @@ import Base from '../layouts/Base.astro';
     <div class="rule"></div>
   </div></section>
 
-  <!-- INTRODUCTION. Three short paragraphs and the way into the writing. The
-       hero above runs at this same measure, so the heading sits over its own
-       text instead of hanging out to the left of it. -->
+  {/* INTRODUCTION. Three short paragraphs and the way into the writing. The
+      hero above runs at this same measure, so the heading sits over its own
+      text instead of hanging out to the left of it. */}
   <section><div class="shell narrow">
     <p class="lede">I build software, and I write about how things hold together.</p>
     <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and <a href="https://daxfoundation.org/">the DAX Foundation</a>, which holds the part a company should not.</p>
@@ -31,26 +53,12 @@ import Base from '../layouts/Base.astro';
     <p class="more"><a href="/blog/">The writing &rarr;</a></p>
   </div></section>
 
-  <!-- KEEPING IT GOING - why the link is here, the disclosure, then the link. -->
+  {/* KEEPING IT GOING - why the link is here, the disclosure, then the link.
+      The disclosure and the gate on it are explained in the frontmatter. */}
   <section class="alt"><div class="shell narrow">
     <p class="eyebrow">Keeping it going</p>
     <p>The writing here is free and it stays free. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
     <p>If any of it was worth something to you, you can keep me going while I build the rest. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
-    <!-- SPEC NOTE. The spec puts the disclosure directly BENEATH the donation
-         button. There is no button on this page: the Ko-fi embed was removed
-         and replaced with a plain outbound link, so nothing on jeyanandan.com
-         asks anyone for money or renders a third-party payment form. The
-         paragraph sits immediately above that link, which means it is still
-         the last thing read before someone leaves for Ko-fi rather than the
-         first thing missed after it.
-
-         The second paragraph is a deploy gate: the build greps the BUILT page
-         for "not the Foundation and not the company." and refuses to ship
-         without it (.github/workflows/deploy-jeyanandan.yml). It is true of
-         this page with or without the demonstration that used to be on it --
-         the money goes to a person, not to Obsidian Delta and not to the DAX
-         Foundation. Reword it and the gate has to change in the same
-         change-set, workflow first. -->
     <div class="disclosure">
       <p class="disc-context">So you know exactly who you would be giving to: I build through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally.</p>
       <p>Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
@@ -60,9 +68,9 @@ import Base from '../layouts/Base.astro';
     <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
   </div></section>
 
-  <!-- THE WRITING. The blog is off the masthead and the footer at Jason's
-       request, so this section and the introduction above are the ways into it
-       from the site itself. -->
+  {/* THE WRITING. The blog is off the masthead and the footer at Jason's
+      request, so this section and the introduction above are the ways into it
+      from the site itself. */}
   <section class="writing"><div class="shell narrow">
     <p class="eyebrow">Writing</p>
     <p class="feature"><a href="/blog/snowflake-fuckari-in-action/">The Snowflake &mdash; Fuckari in Action</a></p>
