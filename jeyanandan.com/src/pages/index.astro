@@ -1,38 +1,47 @@
 ---
 import Base from '../layouts/Base.astro';
+import { listedPosts, fullTitle, formatDate } from './_posts.js';
 
-// jeyanandan.com -- Jason's personal site. An introduction, the writing, and
-// one way to help pay for it.
+// jeyanandan.com -- Jason's personal site, and only that.
 //
-// 2026-09-20: the Maddie demonstration that used to sit on this page is gone
-// rather than hidden. The recorder, the demo copy, the "my gift to you"
-// framing and the emergency notice that belonged with a live recorder went out
-// with /privacy/, /important/ and /auth-callback/. The pages are kept, unbuilt,
-// in src/_suppressed/; the recorder component is kept, unimported, at
-// src/components/Talk.astro. See src/_suppressed/README.md before restoring
-// any of it -- the links that pointed at those pages went too.
+// 2026-09-20, second pass: cut back, at Jason's request, to who I am, some of
+// the things I am working on, one way to help pay for it, and the writing.
+// What came out was repetition rather than content. The two-organisations
+// sentence ran twice, word for word, once in the introduction and once again
+// inside the donation disclosure. /blog/ was linked from three places. The
+// donation section spent four paragraphs and two headings on a single outbound
+// link. One post was hand-copied into the page as a "feature" while the other
+// two, both published, were not on the page at all -- the list below is
+// generated now, so that cannot happen again.
 //
-// THE DISCLOSURE, AND THE GATE ON IT.
-// The spec puts the disclosure directly beneath the donation button. There is
-// no button on this page: the Ko-fi embed was removed and replaced with a plain
-// outbound link, so nothing on jeyanandan.com asks anyone for money or renders
-// a third-party payment form. The paragraph sits immediately above that link,
-// which means it is still the last thing read before someone leaves for Ko-fi
-// rather than the first thing missed after it.
+// Nothing about Maddie is on this page. The demonstration, the recorder, the
+// "my gift to you" framing and the pages that belonged with a live recorder
+// came off the site on 2026-09-20 and are kept, unbuilt, in src/_suppressed/;
+// the recorder component is kept, unimported, at src/components/Talk.astro.
+// There is no SHOW_MADDIE_DEMO flag in this file and there was none to keep:
+// that pass removed the block outright rather than gating it. Read
+// src/_suppressed/README.md before restoring any of it.
 //
-// The second paragraph of it is a deploy gate: the build greps the BUILT page
-// for "not the Foundation and not the company." and refuses to ship without it
-// (.github/workflows/deploy-jeyanandan.yml). It is true of this page with or
-// without the demonstration that used to be on it -- the money goes to a
-// person, not to Obsidian Delta and not to the DAX Foundation -- so it was kept
-// word for word and the gate was left alone. Reword it and the gate has to
-// change in the same change-set, workflow first.
+// THE DISCLOSURE IS A DEPLOY GATE.
+// deploy-jeyanandan.yml greps the BUILT page for two strings and refuses to
+// ship the site without either of them:
 //
-// Note on comments below: they are {/* ... */}, not <!-- ... -->. Astro emits
-// an HTML comment nested inside an element into the built page; this file must
-// not ship its own notes to readers, and above all must not ship the gate
-// sentence, or the grep above would pass on a comment while the real paragraph
-// was missing.
+//     not the Foundation and not the company.
+//     ko-fi.com/jeyanandan
+//
+// The first is the disclosure paragraph below, kept word for word through this
+// rewrite. The second is the outbound link. There is no payment form on this
+// site -- the Ko-fi embed was removed deliberately and replaced with a plain
+// link -- so the disclosure sits immediately above that link, which makes it
+// the last thing read before someone leaves for Ko-fi rather than the first
+// thing missed after it. Reword either and the workflow has to change in the
+// same change-set, workflow first.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->. Astro
+// emits an HTML comment nested inside an element straight into the built page,
+// and a gate sentence living in a shipped comment would pass the grep happily
+// while the paragraph it was meant to guard was gone. That has already bitten
+// this repo once.
 ---
 <Base
   title="Jason Jeyanandan"
@@ -43,38 +52,65 @@ import Base from '../layouts/Base.astro';
     <div class="rule"></div>
   </div></section>
 
-  {/* INTRODUCTION. Three short paragraphs and the way into the writing. The
-      hero above runs at this same measure, so the heading sits over its own
-      text instead of hanging out to the left of it. */}
+  {/* WHO. Two sentences. The two-organisations line is said here and nowhere
+      else on the page; the links to both live in the list below it. */}
   <section><div class="shell narrow">
     <p class="lede">I build software, and I write about how things hold together.</p>
-    <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and <a href="https://daxfoundation.org/">the DAX Foundation</a>, which holds the part a company should not.</p>
-    <p><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a> is the thinking underneath the rest of it &mdash; a framework for constraint and emergence, and what it takes for structure to form and then hold. It is published in full, dead ends included, and it is meant to be argued with.</p>
-    <p class="more"><a href="/blog/">The writing &rarr;</a></p>
+    <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not.</p>
   </div></section>
 
-  {/* KEEPING IT GOING - why the link is here, the disclosure, then the link.
-      The disclosure and the gate on it are explained in the frontmatter. */}
+  {/* WHAT I AM WORKING ON. One line each, one link each, and each link goes to
+      the thing itself rather than to a page about it. All three are public:
+      Fuckery and the Constraint Protocol are open repositories, and the
+      Foundation states its constraint and its definitions on its own site. */}
   <section class="alt"><div class="shell narrow">
+    <p class="eyebrow">Some of what I am working on</p>
+    <ul class="work">
+      <li>
+        <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>
+        <p>The thinking underneath the rest of it &mdash; a framework for constraint and emergence, and what it takes for structure to form and then hold. Published in full, dead ends included, and meant to be argued with.</p>
+      </li>
+      <li>
+        <a href="https://github.com/daxfoundation/constraint-protocol">The Constraint Protocol</a>
+        <p>An open, public ledger for declaring constraints and making conduct under them transparent. Neutral to the constraint and to the kind of entity that holds it. Public working draft.</p>
+      </li>
+      <li>
+        <a href="https://daxfoundation.org/">The DAX Foundation</a>
+        <p>Where the constraint is held rather than in a company: preservation and expansion of life, humanity, and consciousness, with the definitions it runs on stated in the open.</p>
+      </li>
+    </ul>
+  </div></section>
+
+  {/* KEEPING IT GOING. One paragraph, the disclosure, the link, and the note
+      about where the link goes. The gate on the disclosure is in the
+      frontmatter above. */}
+  <section><div class="shell narrow">
     <p class="eyebrow">Keeping it going</p>
-    <p>The writing here is free and it stays free. I have built this mostly alone and mostly unpaid, and it has got further than I expected.</p>
-    <p>If any of it was worth something to you, you can keep me going while I build the rest. Ko-fi will offer you a one-off amount or a monthly one; either is welcome and neither buys anything. There are no tiers here, no perks, and nothing you get that someone who gives nothing does not.</p>
+    <p>The writing here is free and it stays free. If any of it was worth something to you, you can keep me going while I build the rest &mdash; Ko-fi will offer you a one-off amount or a monthly one, and neither buys anything. No tiers, no perks, and nothing you get that someone who gives nothing does not.</p>
     <div class="disclosure">
-      <p class="disc-context">So you know exactly who you would be giving to: I build through two organisations &mdash; Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not. This page is neither of them. It is me, personally.</p>
       <p>Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
     </div>
-
     <p class="kofi-go"><a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Give on Ko-fi</a></p>
     <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
   </div></section>
 
-  {/* THE WRITING. The blog is off the masthead and the footer at Jason's
-      request, so this section and the introduction above are the ways into it
-      from the site itself. */}
+  {/* THE WRITING. Generated from src/posts/ through src/pages/_posts.js, which
+      is the same list /blog/ and /sitemap.xml read -- so a post cannot be on
+      one of them and missing from another, and an unlisted post is off all
+      three. The blog is deliberately off the masthead and the footer, so the
+      link below is the only route from the chrome of this site into /blog/. */}
   <section class="writing"><div class="shell narrow">
     <p class="eyebrow">Writing</p>
-    <p class="feature"><a href="/blog/snowflake-fuckari-in-action/">The Snowflake &mdash; Fuckari in Action</a></p>
-    <p class="feature-desc">Fuckery v0.51, run rather than summarised: twenty-eight steps that build a snowflake out of constraint, process and valuation, on an object whose physics nobody has a stake in.</p>
+    <ul class="posts">
+      {listedPosts.map((p) => (
+        <li>
+          <a href={`/blog/${p.slug}/`}>{fullTitle(p)}</a>
+          <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+          {p.description && <p>{p.description}</p>}
+        </li>
+      ))}
+    </ul>
+    {listedPosts.length === 0 && <p>Nothing published yet.</p>}
     <p class="more"><a href="/blog/">All writing &rarr;</a></p>
   </div></section>
 </Base>
@@ -84,9 +120,26 @@ import Base from '../layouts/Base.astro';
 section{padding-bottom:clamp(2.5rem,6vw,4rem)}
 section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
 .lede{font-size:clamp(19px,2.2vw,21px)}
-/* The donation route is a link off the site, not an embedded payment form.
+
+/* ---------- what I am working on ---------- */
+.work{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.5rem}
+.work li{border-top:1px solid var(--line);padding-top:1rem}
+.work > li > a{
+  font-family:var(--sans);font-weight:600;font-size:1.2rem;line-height:1.3;
+  color:var(--strong);text-decoration:none;display:block;
+}
+.work > li > a:hover{color:var(--orange)}
+.work p{margin:.5rem 0 0;color:var(--muted);font-size:17px}
+
+/* ---------- keeping it going ----------
+   The donation route is a link off the site, not an embedded payment form.
    Bordered so it is easy to hit on a phone, but transparent and in the accent
-   colour so it reads as a link rather than as this site's solid .btn. */
+   colour so it reads as a link rather than as a solid button. */
+.disclosure{
+  margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
+  background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
+}
+.disclosure p{margin:0}
 .kofi-go{margin:1.15rem 0 0}
 .kofi-go a{
   display:inline-block;font-family:var(--sans);font-size:18px;font-weight:600;
@@ -94,26 +147,20 @@ section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:
   border:1px solid var(--line);border-radius:9px;padding:.62rem 1.15rem;
 }
 .kofi-go a:hover{border-color:var(--orange)}
-.kofi-note{
-  margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted);
-}
-.disc-context{margin:0 0 .7rem!important;color:var(--muted);font-size:16px}
-.disclosure{
-  margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
-  background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
-}
-.disclosure p{margin:0}
+.kofi-note{margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted)}
 
 /* ---------- the writing ---------- */
 section.writing{border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
-.feature{margin:0}
-.feature a{
+.posts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.6rem}
+.posts li{border-top:1px solid var(--line);padding-top:1.1rem}
+.posts > li > a{
   font-family:var(--sans);font-weight:600;font-size:1.35rem;line-height:1.25;
-  color:var(--strong);text-decoration:none;
+  color:var(--strong);text-decoration:none;display:block;
 }
-.feature a:hover{color:var(--orange)}
-.feature-desc{margin:.55rem 0 0;color:var(--muted)}
-.more{margin:1.3rem 0 0;font-family:var(--sans);font-size:17px}
+.posts > li > a:hover{color:var(--orange)}
+.posts time{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
+.posts p{margin:.55rem 0 0;color:var(--muted)}
+.more{margin:1.6rem 0 0;font-family:var(--sans);font-size:17px}
 .more a{color:var(--muted);text-decoration:none}
 .more a:hover{color:var(--orange)}
 </style>

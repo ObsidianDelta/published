@@ -1,19 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { listedPosts, formatDate } from '../_posts.js';
 
-// import.meta.glob rather than a content collection: one folder of markdown,
-// no schema to drift, nothing to configure.
-const modules = import.meta.glob('../../posts/*.md', { eager: true });
-const posts = Object.entries(modules)
-  .map(([file, mod]) => ({
-    slug: file.split('/').pop().replace(/\.md$/, ''),
-    ...mod.frontmatter,
-  }))
-  .filter((p) => !p.draft)
-  .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-const fmt = (d) =>
-  new Date(d).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' });
+// The reading list. It shows listedPosts, not every post that builds: a post
+// marked unlisted still has its own URL and still serves in full, it is simply
+// not advertised here. src/pages/_posts.js holds that list and the reasoning,
+// and the home page and /sitemap.xml read the same module, so the three cannot
+// disagree about what is published.
 ---
 <Base title="Blog — Jason Jeyanandan" description="Writing by Jason Jeyanandan.">
   <section class="hero"><div class="shell">
@@ -22,15 +15,15 @@ const fmt = (d) =>
   </div></section>
   <section><div class="shell narrow">
     <ul class="posts">
-      {posts.map((p) => (
+      {listedPosts.map((p) => (
         <li>
           <a href={`/blog/${p.slug}/`}>{p.title}</a>
-          <time datetime={new Date(p.date).toISOString()}>{fmt(p.date)}</time>
+          <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
           {p.description && <p>{p.description}</p>}
         </li>
       ))}
     </ul>
-    {posts.length === 0 && <p>Nothing published yet.</p>}
+    {listedPosts.length === 0 && <p>Nothing published yet.</p>}
   </div></section>
 </Base>
 
