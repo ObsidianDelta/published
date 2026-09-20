@@ -392,6 +392,104 @@ If you adopt DAX because I said so, you have missed the whole essay. If you read
 
 ---
 
+## Turning the framework on this essay
+
+There is a rule in [Fuckery](https://github.com/ObsidianDelta/Fuckery) that I have to apply here or I am not entitled to it anywhere else. Every claim carries a provenance tag: invariant, derived, speculative, illustrative, or reasoning trail. Nothing gets to sit in the pile untagged just because it is mine and I like it.
+
+So here is the threat I have just spent nine thousand words on, taken apart and tagged.
+
+**The genealogy is derived.** Twenty-eight rows assembled out of named sources, several of them contested, in an order I chose. It is a reading of other people's work. If somebody builds the table from the same literatures and gets a different shape, mine is wrong and theirs is the one to keep.
+
+**The inward movement is derived, and it is weaker than a confident diagram makes it look.** I plotted it and it did not produce the clean diagonal I expected. Two rows sit well outside the trend and I left them there.
+
+**That recognition is the exit is speculative.** It is a philosophical commitment. I cannot test it, this essay has no mechanism for testing it, and everything after the halfway point rests on it.
+
+**That install time governs recognition rates is speculative,** and it is the weakest joint in the whole structure. I know of no documented mechanism connecting the two. What I have is that every reversal on the table happened in a gap, which is a pattern and not a cause.
+
+**That sufficiently advanced intelligence removes the gap is derived** — from one control condition, in one paper, that I am leaning on harder than a single control condition usually deserves.
+
+**That any of this becomes a live threat is speculative.** Nobody has built the system I described. I am not claiming anyone is trying to.
+
+Now read that list back, because it is not a disclaimer. Take out the recognition claim and the second half of this essay collapses. Take out the clock-speed claim and the argument becomes an interesting history with no conclusion attached. Those are not caveats at the edges. They are the load-bearing members, and two of the five are marked speculative in my own notation.
+
+The whole thing can be wrong. Not softened — wrong, at a joint, in a way that takes the rest down with it.
+
+So the honest question is not whether I have proved anything. I have not. The question is what a person does with an argument shaped like that.
+
+---
+
+## What we are doing anyway
+
+Here is what we decided, and I want to give the reasoning rather than the conclusion, because the conclusion on its own sounds like marketing.
+
+The cost of being wrong is not symmetric. If the threat is real and we did nothing, the thing that gets lost is the ability to notice what is being done to us, which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, what we are out is some engineering time and a public record of our own conduct that we would have to live with. We looked at those two and stopped arguing.
+
+We just did not want to take the chance.
+
+So, three commitments, and they are specific enough to hold us to.
+
+**One. Everything Obsidian Delta operates runs under a declared constraint, and the record is kept.** Not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — it is operating under a declaration, that declaration says what it will not do, and the conduct under it is signed, witnessed and append-only. If we drift from it, the drift is in the record with our name on it, and we do not get to quietly remove it later.
+
+**Two. Any external party who wants to run the Constraint Protocol with us, we will run it with them.** Agent to agent, organisation to organisation, over MCP or A2A or whatever comes after them. You do not need our permission, you do not need to adopt our constraint, and you do not need to like us. If you declare something and you are willing to be checked against it, that is a counterparty we can work with. The whole point of a protocol rather than a policy is that it works between strangers.
+
+**Three. We hold the DAX constraint on top of the protocol.** That one is not the protocol's requirement. It is ours.
+
+None of that is a claim to have solved anything. I said earlier that one organisation running a protocol on its own traffic is evidence that it runs and nothing more, and the commitments above do not change that. What they do is put a thing on the table that can be checked, which is more than I can say for most of what is being said in public right now, including by me until I did it.
+
+And that is the conversation I would like to have instead of the one we are having.
+
+The current one is "is this going to kill us in ten years," conducted between people with percentages they cannot defend, and it does not converge, because there is no observation that settles it. I have no percentage. I would distrust mine if I had one.
+
+The one I would rather have is much duller and has an answer. *What are you operating under? Where is it written down? What does it forbid? And can somebody who does not trust you go and check whether you held to it?*
+
+That conversation converges, because every question in it has a checkable answer or an embarrassing silence.
+
+---
+
+## The constraint I am arguing for
+
+I have been careful so far to say that the protocol is neutral about which constraint you declare, which is true and is the point of it. I have also been using that neutrality as a place to hide, and I would rather stop.
+
+[DAX](https://daxfoundation.org/#dax-constraint) — the preservation and expansion of life, humanity, and consciousness — is the constraint I am arguing for. Not offering. Arguing for.
+
+Here is why, and it follows directly from everything above.
+
+Every row on that table narrowed something. Some of them gave a great deal back, and I said so at the top and I meant it. But the operation in each case was a reduction in what could be thought, wanted or done, imposed by something that was not the person doing the thinking. If you have just read twenty-eight instances of that, the natural question is what the opposite commitment would even look like — and the opposite of narrowing is not freedom, which is a mood, and not goodness, which is an argument nobody wins. It is *expansion*: more life, more of what makes a mind a mind, more capacity to mean things, held open rather than closed down.
+
+That is also why the constraint names consciousness and not just humanity. If I am right that the substrate does not matter — and I have argued that all the way through, because the concern is capability and opacity rather than material — then a constraint that protects only one substrate is a constraint I would have to abandon the moment the question got hard. I would rather write the version I can hold.
+
+And here is the part that makes it a constraint rather than a slogan: it tells you what it forbids. Anything that permanently forecloses life, or humanity, or consciousness is out, and out in a way you can hold me to, in public, when it is inconvenient for me. That edge is the whole object. A value you cannot violate is not a value, it is a mood with a logo.
+
+Now the humility, which is not decoration.
+
+I cannot prove DAX is the right constraint. There is no argument available to me that establishes it, and if I produced one you should check it very carefully, because a man who has just written an essay about meaning being assigned to people and then produces a proof that his own meaning is the correct one has written row twenty-nine and deserves what follows.
+
+What I can do is declare it, say what it rules out, and be checked. That is the entire difference between the constraint I am arguing for and the twenty-eight above it. Not that mine is better. That mine is *falsifiable in conduct*, and theirs were not, because theirs never said what they were.
+
+If you think DAX is wrong, the useful response is not to argue with me. It is to declare a better one, say what it forbids, and let it be inspected. Then there are two of them in the open and we can both be checked. That is a strictly better world than the one where I am right and nobody can tell.
+
+---
+
+## A new kind of electricity
+
+I want to end on the frame I actually use, because it explains why I built a tool rather than writing a warning.
+
+What we have is a new kind of electricity. Not a product — a substrate. Something drawn on everywhere rather than a thing used in one place for one purpose.
+
+I use that frame everywhere and I am going to keep using it, so here is the short form. Nobody works live current bare-handed, and the training that lets an electrician do it is, once you strip the syllabus off, a list of what not to touch and in what order. It is a constraint, declared in advance, stated as what it forbids. None of it makes electricity safe. It makes one particular person safe doing one particular job, and everyone in the trade knows the difference between those two sentences.
+
+It is a double-edged thing and both edges are real. The same capability that is the clear and present hazard in this essay is also the best instrument we have for the problems that are going to decide the century. Pretending otherwise in either direction gets you a worse answer.
+
+So the question stops being whether to touch it and becomes what you are wearing when you do.
+
+A [cognitive companion](https://daxfoundation.org/#cognitive-companion) is that equipment. A person's own tooling for working with this substrate — an extension of them, holding their context, keeping their trail. Not an assistant, which is a different category and a worse one: an assistant is another party in the room, and another party in the room is somebody whose interests you have to work out. If it acts in your place, or answers to somebody else, it is not a companion, and calling it one is the first mistake rather than a harmless one.
+
+That distinction is the reason the [definitions](https://daxfoundation.org/#definitions) exist at all. Every conversation I ever tried to have about this without them turned into an argument about something else inside two minutes.
+
+And it is why I stopped waiting. I did not set out to persuade an industry that a declared constraint with an outside check on it was worth having. I built the equipment for myself, put my own traffic through it, and let it compound — which is a considerably less impressive story than the one where somebody sees the danger and rallies the field, but it has the advantage of having actually happened.
+
+---
+
 ## Closing
 
 ![The fork rows. Row twenty-nine's time column reads post-recognition, any phase; its exit-cost cell reads recognition is the exit](/figures/fig-zoom-sovereign-fork.svg)
