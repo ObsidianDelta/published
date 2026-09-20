@@ -1,14 +1,13 @@
 # security.txt for jeyanandan.com -- RFC 9116.
 #
-# This is a one-person site. There is no security team, no bug bounty and no
-# triage queue; there is me, and I read everything that arrives. If you have
-# found something wrong here, please tell me. I would far rather hear about a
-# problem early and fix it than not hear about it at all.
+# This is a one-person site: a personal page and some writing. There is no
+# security team, no bug bounty and no triage queue; there is me, and I read
+# everything that arrives. If you have found something wrong here, please tell
+# me. I would far rather hear about a problem early and fix it than not hear
+# about it at all.
 #
-# 2026-09-20: this file used to carry a second Contact: line pointing at
-# /important/, and a note about the recorder on the home page that talked to
-# api.formaddie.com. Neither exists on this site any more. The mailto below is
-# the whole of it, and it reaches one person.
+# One address, and it reaches one person. Anything else this file used to point
+# at is gone; the history is in git, not in a file the whole internet reads.
 
 Contact: mailto:jason@obsidiandelta.com
 Expires: 2027-09-19T00:00:00.000Z
