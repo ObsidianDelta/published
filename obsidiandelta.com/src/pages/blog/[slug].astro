@@ -1,0 +1,103 @@
+---
+import Base from '../../layouts/Base.astro';
+import { postEntries, isNoindex, isDraft, formatDate } from '../_posts.js';
+
+// One page per post that builds. Which posts build is decided in one place,
+// src/pages/_posts.js: a draft builds only in a review build (OD_SHOW_DRAFTS=1),
+// never in production. Slug is the filename in src/posts/.
+export async function getStaticPaths() {
+  return postEntries.map((e) => ({
+    params: { slug: e.slug },
+    props: { frontmatter: e.frontmatter, Content: e.Content },
+  }));
+}
+
+const { frontmatter, Content } = Astro.props;
+const slug = Astro.params.slug;
+const draft = isDraft(frontmatter);
+
+// Title and optional deck rejoined for the tab and share cards.
+const fullTitle = frontmatter.subtitle
+  ? `${frontmatter.title}: ${frontmatter.subtitle}`
+  : frontmatter.title;
+
+// Unlisted or draft means noindex, nofollow -- the same rule the indexes use to
+// leave the post out, so the robots tag and the lists cannot disagree.
+const noindex = isNoindex(slug, frontmatter);
+---
+<Base title={`${fullTitle} — Obsidian Delta`} description={frontmatter.description || fullTitle} noindex={noindex}>
+  {draft && (
+    <div class="draft-banner" role="note"><div class="shell narrow">
+      <strong>Draft</strong> — not published. This page exists only in review builds and is not indexed.
+    </div></div>
+  )}
+  <section class="hero"><div class="shell narrow">
+    <p class="eyebrow">{[frontmatter.date && formatDate(frontmatter.date), draft && 'Draft'].filter(Boolean).join(' · ')}</p>
+    <h1>{frontmatter.title}</h1>
+    {frontmatter.subtitle && <p class="deck">{frontmatter.subtitle}</p>}
+    <div class="rule"></div>
+  </div></section>
+  <article><div class="shell narrow prose">
+    <Content />
+  </div></article>
+  <div class="shell narrow"><p class="back"><a href="/blog/">&larr; All writing</a></p></div>
+</Base>
+
+<style is:global>
+/* Long-form typography for one post, in the Obsidian Delta dark system:
+   white headings, bone body text, orange as the single accent. Measures and
+   rhythm follow the front page's timeline items (680px body measure,
+   16-17px Inter at 1.7). */
+.draft-banner{background:var(--orange);color:var(--black)}
+.draft-banner .shell{padding-top:10px;padding-bottom:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em}
+.draft-banner strong{text-transform:uppercase;letter-spacing:.18em}
+
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(32px,6vw,48px)}
+.deck{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(20px,3vw,26px);line-height:1.3;letter-spacing:-.01em;
+  color:var(--ash);margin-top:16px;text-wrap:balance;
+}
+
+article{padding-bottom:clamp(24px,5vw,40px)}
+.prose{color:var(--bone);font-size:17px;line-height:1.75}
+.prose p{margin:0 0 1.25em;text-wrap:pretty}
+.prose > p:first-of-type{font-size:1.12em;line-height:1.6;color:var(--white)}
+.prose strong{color:var(--white);font-weight:500}
+.prose em{color:var(--orange);font-style:italic}
+.prose a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.prose a:hover{color:var(--white);border-color:var(--white)}
+
+.prose h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(24px,3.4vw,30px);line-height:1.2;letter-spacing:-.02em;
+  color:var(--white);margin:2.4em 0 .7em;text-wrap:balance;
+}
+.prose h3{font-family:var(--font-display);font-weight:500;font-size:20px;line-height:1.3;color:var(--white);margin:1.8em 0 .5em}
+.prose hr{border:0;border-top:1px solid var(--steel);margin:2.6em 0}
+.prose hr + h2{margin-top:0}
+
+.prose ul,.prose ol{margin:0 0 1.25em;padding-left:1.3rem}
+.prose ul{list-style:disc}
+.prose ol{list-style:decimal}
+.prose li{margin:0 0 .45em}
+.prose li::marker{color:var(--orange)}
+
+.prose blockquote{
+  margin:1.8em 0;padding:4px 0 4px 20px;
+  border-left:2px solid var(--orange);color:var(--white);
+}
+.prose blockquote p:last-child{margin-bottom:0}
+
+.prose code{font-family:var(--font-mono);font-size:.86em;background:var(--shade);border:1px solid var(--steel);padding:.08em .34em;overflow-wrap:break-word}
+.prose pre{
+  font-family:var(--font-mono);font-size:13px;line-height:1.55;
+  color:var(--bone);background:var(--ink);border:1px solid var(--steel);
+  margin:1.6em 0;padding:16px;max-width:100%;overflow-x:auto;
+}
+.prose pre code{background:none;border:0;padding:0;font-size:inherit;white-space:pre}
+
+.back{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:8px}
+.back a{color:var(--ash);text-decoration:none}
+.back a:hover{color:var(--orange)}
+</style>
