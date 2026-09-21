@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Obsidian Delta</title>
+<meta name="description" content="Obsidian Delta — building software at the intersection of artificial intelligence and telecommunications since 2015." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Obsidian Delta" />
+<meta property="og:description" content="Since 2017." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://obsidiandelta.com" />
+<meta name="theme-color" content="#000000" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #000000;
+    --shade: #1A1A1A;
+    --steel: #222222;
+    --ash: #888888;
+    --bone: #E5E5E5;
+    --white: #FAFAFA;
+    --orange: #E89339;
+    --red: #C73E2D;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  img, svg { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  ol, ul { list-style: none; }
+  ::selection { background: var(--orange); color: var(--black); }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 0 32px; }
+
+  /* HERO — just the logo + name, nothing else */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 96px 32px;
+  }
+  .hero__logo { width: 240px; height: 240px; margin-bottom: 56px; }
+  @media (min-width: 768px) { .hero__logo { width: 320px; height: 320px; } }
+  .hero__name {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1;
+  }
+  .hero__rule {
+    width: 56px;
+    height: 2px;
+    background: var(--orange);
+    margin: 40px auto 0;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    padding: 96px 32px 120px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .timeline__intro {
+    font-family: var(--font-mono);
+    color: var(--ash);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  .timeline__intro span { color: var(--orange); }
+
+  .item {
+    position: relative;
+    padding: 48px 0 48px 40px;
+    border-left: 1px solid var(--steel);
+    margin-left: 12px;
+  }
+  .item + .item { border-top: 1px solid var(--steel); margin-top: 0; }
+  .item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 60px;
+    width: 13px;
+    height: 13px;
+    background: var(--orange);
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px var(--black);
+  }
+  .item--rabbit::before {
+    left: -16px;
+    top: 48px;
+    width: 32px;
+    height: 32px;
+    background: url('/rabbit.svg') center / contain no-repeat transparent;
+    border-radius: 0;
+    box-shadow: 0 0 0 6px var(--black);
+    transition: transform 0.25s;
+  }
+  .item__rabbit-link {
+    position: absolute;
+    left: -16px;
+    top: 48px;
+    width: 32px;
+    height: 32px;
+    z-index: 3;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .item__rabbit-link:hover ~ .item__date {
+    /* hover the rabbit, the date faintly nods */
+    color: var(--white);
+  }
+  .item--rabbit:has(.item__rabbit-link:hover)::before {
+    transform: scale(1.18);
+  }
+  .item__date {
+    font-family: var(--font-mono);
+    color: var(--orange);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .item__name {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: clamp(28px, 4.2vw, 44px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .item__name a {
+    text-decoration: none;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .item__name a:hover { color: var(--orange); border-color: var(--white); }
+  .item__dotcom {
+    font-size: 0.45em;
+    color: var(--ash);
+    letter-spacing: 0;
+    margin-left: 4px;
+    font-weight: 400;
+    vertical-align: 0.4em;
+  }
+  .item__body {
+    font-family: var(--font-body);
+    color: var(--bone);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 680px;
+  }
+  .item__body + .item__body { margin-top: 16px; }
+  .item__body strong { color: var(--white); font-weight: 500; }
+  .item__body em { color: var(--orange); font-style: italic; }
+  .item__body a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); }
+  .item__body a:hover { color: var(--white); border-color: var(--white); }
+
+  .item__banner {
+    margin: 32px 0 24px;
+    overflow: hidden;
+    transition: transform 0.25s;
+    display: block;
+  }
+  .item__banner:hover { transform: translateY(-2px); }
+  .item__banner img { width: 100%; height: auto; display: block; }
+  .item__banner--solo { margin: 24px 0 0; }
+  .item__inline-video { width: 100%; max-width: 800px; margin-top: 28px; display: block; border: 1px solid var(--steel); background: var(--shade); }
+
+  .item__video {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+    max-width: 360px;
+    text-decoration: none;
+    transition: transform 0.2s;
+  }
+  .item__video:hover { transform: translateY(-2px); }
+  .item__thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border: 1px solid var(--steel);
+    transition: border-color 0.2s;
+  }
+  .item__video:hover .item__thumb { border-color: var(--orange); }
+  .item__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .item__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .item__video:hover .item__play { background: var(--orange); }
+  .item__play::before {
+    content: '';
+    border-style: solid;
+    border-width: 10px 0 10px 16px;
+    border-color: transparent transparent transparent var(--white);
+    margin-left: 4px;
+  }
+  .item__caption {
+    font-family: var(--font-mono);
+    color: var(--ash);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .item__caption span { color: var(--orange); }
+
+  /* FOOTER — full viewport width border, inner content centered */
+  .footer {
+    border-top: 1px solid var(--steel);
+    margin-top: 64px;
+    padding: 40px 0;
+    width: 100%;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--ash);
+    letter-spacing: 0.06em;
+  }
+  .footer__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer__left { display: flex; align-items: center; gap: 12px; }
+  .footer__left img { height: 24px; width: 24px; opacity: 0.85; }
+  .footer__stripe { color: var(--ash); }
+  .footer__stripe span { color: var(--bone); }
+
+  /* HERO LOGO — hover/touch morph into the live mark */
+  .hero__logo {
+    position: relative;
+    display: block;
+    margin-bottom: 56px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    aspect-ratio: 1 / 1;
+  }
+  .hero__logo .hero__logo-still,
+  .hero__logo .hero__logo-alive {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    will-change: opacity, transform, filter;
+    transition: opacity 420ms cubic-bezier(.25,.8,.25,1),
+                transform 420ms cubic-bezier(.25,.8,.25,1),
+                filter 420ms cubic-bezier(.25,.8,.25,1);
+  }
+  /* still + video must occupy exactly the same geometry — no scale, no translate, no jump on cross-fade */
+  .hero__logo .hero__logo-still {
+    opacity: 1;
+    z-index: 2;
+    transform: none;
+  }
+  .hero__logo .hero__logo-alive {
+    opacity: 0;
+    z-index: 1;
+    transform: none;
+    mix-blend-mode: screen;
+    -webkit-mask-image: radial-gradient(circle at center, black 56%, transparent 70%);
+    mask-image: radial-gradient(circle at center, black 56%, transparent 70%);
+    filter: saturate(1);
+    /* Slow opacity cross-fade for clip-to-clip transitions */
+    transition: opacity 320ms cubic-bezier(.4,.0,.2,1) !important;
+  }
+  /* Two stacked video buffers — only the .active one is visible at any time. */
+  .hero__logo .hero__logo-alive.active { opacity: 1; }
+  .hero__logo.alive .hero__logo-still { opacity: 0; }
+  /* When alive, the video's opacity is driven by .active, NOT by the parent .alive class.
+     If neither buffer is .active (e.g. brief gap), the still shows through underneath. */
+  /* No idle-breath animation, no drop-shadow halo. The video itself carries the pulse. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__logo .hero__logo-still, .hero__logo .hero__logo-alive { transition: opacity 200ms linear; transform: none !important; }
+    .hero__logo:not(.alive) .hero__logo-still { animation: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__logo" id="heroLogo" role="button" tabindex="0" aria-label="Obsidian Delta — hover to bring the mark to life">
+    <img src="/logo-transparent.png" alt="Obsidian Delta" class="hero__logo-still" />
+    <video class="hero__logo-alive hero__logo-alive--a" id="heroLogoVideoA" poster="/logo-transparent.png" muted playsinline preload="metadata" aria-hidden="true"></video>
+    <video class="hero__logo-alive hero__logo-alive--b" id="heroLogoVideoB" poster="/logo-transparent.png" muted playsinline preload="metadata" aria-hidden="true"></video>
+  </div>
+  <h1 class="hero__name">Obsidian Delta</h1>
+  <div class="hero__rule"></div>
+</section>
+
+<section class="timeline">
+  <ol>
+    <!-- for maddie — current initiative -->
+    <li class="item item--rabbit">
+      <a href="https://formaddie.com" target="_blank" rel="noopener" class="item__rabbit-link" aria-label="Follow the White Rabbit to formaddie.com" title="Follow the White Rabbit"></a>
+      <p class="item__date">2026  ·  current initiative</p>
+      <a href="https://formaddie.com" target="_blank" rel="noopener" class="item__banner item__banner--solo">
+        <img src="/formaddie-banner.png" alt="for maddie · your stories will live forever" loading="lazy" />
+      </a>
+    </li>
+
+    <!-- Delta Suite 2.0 -->
+    <li class="item">
+      <p class="item__date">February 4, 2022</p>
+      <h2 class="item__name">Delta Suite 2.0</h2>
+      <p class="item__body">A next-generation voice automation suite for the taxi industry. Integrated with any dispatch backend, reduced the need for live call takers by <strong>up to 60%</strong>. <strong>Forged in coordination with Microsoft Research.</strong></p>
+      <p class="item__body">Industry-specific call-flow capabilities: accurate address translation, price quotes mid-call, effortless booking against historical addresses, fixed locations, and popular destinations. Anonymous passenger-to-driver communication. Live ride status. Update or cancel mid-ride. The unified communications layer ran on 3CX. Call takers and dispatchers worked from anywhere.</p>
+      <video class="item__inline-video" controls preload="metadata" poster="/videos/delta-suite-2-poster.jpg">
+        <source src="/videos/delta-suite-2.mp4" type="video/mp4" />
+        Your browser does not support inline video. <a href="/videos/delta-suite-2.mp4">Download the video</a>.
+      </video>
+    </li>
+
+    <!-- DAX -->
+    <li class="item">
+      <p class="item__date">August 31, 2021</p>
+      <h2 class="item__name">DAX  ·  A Personal AI Agent</h2>
+      <p class="item__body">Years before AI became ubiquitous, we started DAX &mdash; a personal AI agent designed as <em>"a guardian angel to protect you against malicious AI."</em> An agent that learns your goals, surfaces the right information at the right time, and stays on your side as the rest of the world's AI grows louder.</p>
+      
+      <video class="item__inline-video" controls preload="metadata" poster="/videos/dax-poster.jpg">
+        <source src="/videos/dax.mp4" type="video/mp4" />
+        Your browser does not support inline video. <a href="/videos/dax.mp4">Download the video</a>.
+      </video>
+    </li>
+
+    <!-- Delta Suite 1.0 -->
+    <li class="item">
+      <p class="item__date">September 1, 2015  ·  obsidian delta established</p>
+      <h2 class="item__name">Delta Suite 1.0</h2>
+      <p class="item__body">Our first product. An enterprise telephony platform integrated directly with Mobile Knowledge dispatch software, serving the taxi industry across North America. Driver requests a call-out, the suite handled the rest &mdash; thousands of simultaneous calls, distributed data centers, fault-tolerant architecture, 24/7 monitoring.</p>
+      <p class="item__body">Delta Suite 1.0 sat inside a wider product family: <strong>Delta Bot</strong> dispatched 30%+ of call volume; <strong>Delta Cloud</strong> ran an enterprise cloud call center; <strong>Delta Local</strong> the on-prem version; <strong>Delta Rescue</strong> a backup solution for any call center.</p>
+      <video class="item__inline-video" controls preload="metadata" poster="/videos/delta-suite-1-poster.jpg">
+        <source src="/videos/delta-suite-1.mp4" type="video/mp4" />
+        Your browser does not support inline video. <a href="/videos/delta-suite-1.mp4">Download the video</a>.
+      </video>
+    </li>
+  </ol>
+</section>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__left">
+      <img src="/logo-transparent.png" alt="" />
+      <span>obsidian delta · since 2015</span>
+    </div>
+    <div class="footer__stripe">payments <span>secured by Stripe</span></div>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// Audio engine — synth bed + procedural heartbeat
+// Presence = how on-screen + how-close-to-cursor the logo is. Drives bed gain.
+// Heartbeat: bassier kick with click transient. Rate + intensity climb after click.
+// Heartbeat silenced when logo scrolls out of view (presence near zero).
+// ============================================================
+window.HeroAudio = (function () {
+  var ctx = null;
+  var masterBed = null, masterBeat = null;
+  var nodes = {};
+  var armed = false, awake = false;
+  var proximity = 0;        // 0..1 from cursor distance to logo center
+  var screenPresence = 1;   // 0..1 from logo's visibility in viewport
+  var armedAt = 0;
+  var heartbeatTimer = null;
+  var watchTimer = null;
+  var stage = null;
+
+  var RAMP_DURATION = 40;
+  var BPM_START = 50, BPM_END = 130;
+  var INT_START = 0.30, INT_END = 1.0;
+
+  function rampProgress() {
+    if (!ctx || !armed) return 0;
+    var t = (ctx.currentTime - armedAt) / RAMP_DURATION;
+    if (t < 0) t = 0; if (t > 1) t = 1;
+    return Math.pow(t, 1.7);
+  }
+  function currentBpm() { return BPM_START + (BPM_END - BPM_START) * rampProgress(); }
+  function currentIntensity() { return INT_START + (INT_END - INT_START) * rampProgress(); }
+
+  // ---- presence trackers (always live, no audio context needed) ----
+  function updateProximity(x, y) {
+    if (!stage) stage = document.getElementById('heroLogo');
+    if (!stage) return;
+    var r = stage.getBoundingClientRect();
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    var dx = x - cx, dy = y - cy;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    var inside = Math.max(r.width, r.height) / 2;
+    var falloff = 700;
+    var p;
+    if (d <= inside) p = 1;
+    else p = Math.max(0, 1 - (d - inside) / falloff);
+    proximity = proximity * 0.7 + p * 0.3;
+    if (armed) updateBedGain();
+  }
+  function updateScreenPresence() {
+    // Binary cutoff at the hero section boundary.
+    // While the hero section has ANY pixel below the viewport top, audio plays.
+    // Once the user has scrolled past the hero entirely (hero.bottom <= 0), audio silences.
+    var hero = document.querySelector('.hero') || document.querySelector('section');
+    if (!hero) { screenPresence = 1; if (armed) updateBedGain(); return; }
+    var r = hero.getBoundingClientRect();
+    screenPresence = (r.bottom > 0) ? 1 : 0;
+    if (armed) updateBedGain();
+  }
+  (function startTrackers() {
+    var queued = false, sQueued = false;
+    document.addEventListener('mousemove', function (e) {
+      if (queued) return; queued = true;
+      requestAnimationFrame(function () { queued = false; updateProximity(e.clientX, e.clientY); });
+    }, { passive: true });
+    function onScroll() {
+      if (sQueued) return; sQueued = true;
+      requestAnimationFrame(function () { sQueued = false; updateScreenPresence(); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    // Prime once
+    setTimeout(updateScreenPresence, 50);
+  })();
+
+  function ensureCtx() {
+    if (ctx) return ctx;
+    var Ctor = window.AudioContext || window.webkitAudioContext;
+    if (!Ctor) return null;
+    ctx = new Ctor();
+    masterBed = ctx.createGain();  masterBed.gain.value = 0;  masterBed.connect(ctx.destination);
+    masterBeat = ctx.createGain(); masterBeat.gain.value = 0; masterBeat.connect(ctx.destination);
+    return ctx;
+  }
+
+  function buildSynthBed() {
+    if (!ctx || nodes.builtBed) return;
+    var lp = ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 240; lp.Q.value = 0.6;
+    lp.connect(masterBed);
+    var oscA = ctx.createOscillator(); oscA.type = 'sine'; oscA.frequency.value = 50;
+    var oscB = ctx.createOscillator(); oscB.type = 'sine'; oscB.frequency.value = 53;
+    var oscGain = ctx.createGain(); oscGain.gain.value = 0.5;
+    oscA.connect(oscGain); oscB.connect(oscGain); oscGain.connect(lp);
+    var lfo = ctx.createOscillator(); lfo.type = 'sine'; lfo.frequency.value = 0.32;
+    var lfoGain = ctx.createGain(); lfoGain.gain.value = 0.10;
+    lfo.connect(lfoGain); lfoGain.connect(masterBed.gain);
+    oscA.start(); oscB.start(); lfo.start();
+    nodes.builtBed = true;
+  }
+
+  // Bassier heartbeat kick: pitched-down sine sweep + filtered noise click attack + octave body warmth.
+  function kick(t, baseFreq, gain, decay) {
+    // Body: sine with pitch sweep from base*1.4 → base*0.55. The sweep is what gives the "thump" character.
+    var body = ctx.createOscillator();
+    body.type = 'sine';
+    body.frequency.setValueAtTime(baseFreq * 1.4, t);
+    body.frequency.exponentialRampToValueAtTime(baseFreq * 0.55, t + decay);
+    var bodyEnv = ctx.createGain();
+    bodyEnv.gain.setValueAtTime(0, t);
+    bodyEnv.gain.linearRampToValueAtTime(gain, t + 0.005);
+    bodyEnv.gain.exponentialRampToValueAtTime(0.001, t + decay);
+    body.connect(bodyEnv); bodyEnv.connect(masterBeat);
+    body.start(t); body.stop(t + decay + 0.1);
+
+    // Octave body warmth: half-amplitude sine at 2x freq, shorter decay.
+    var oct = ctx.createOscillator();
+    oct.type = 'sine'; oct.frequency.value = baseFreq * 2;
+    var octEnv = ctx.createGain();
+    octEnv.gain.setValueAtTime(0, t);
+    octEnv.gain.linearRampToValueAtTime(gain * 0.18, t + 0.003);
+    octEnv.gain.exponentialRampToValueAtTime(0.001, t + decay * 0.6);
+    oct.connect(octEnv); octEnv.connect(masterBeat);
+    oct.start(t); oct.stop(t + decay);
+
+    // Click transient: filtered noise burst (lowpass 240 Hz) with 12ms decay. Adds "thump" punch.
+    var nBuf = ctx.createBuffer(1, Math.floor(0.05 * ctx.sampleRate), ctx.sampleRate);
+    var nd = nBuf.getChannelData(0);
+    for (var i = 0; i < nd.length; i++) nd[i] = (Math.random() * 2 - 1) * 0.7;
+    var noise = ctx.createBufferSource(); noise.buffer = nBuf;
+    var nFilter = ctx.createBiquadFilter(); nFilter.type = 'lowpass'; nFilter.frequency.value = 240;
+    var nEnv = ctx.createGain();
+    nEnv.gain.setValueAtTime(gain * 0.5, t);
+    nEnv.gain.exponentialRampToValueAtTime(0.001, t + 0.012);
+    noise.connect(nFilter); nFilter.connect(nEnv); nEnv.connect(masterBeat);
+    noise.start(t); noise.stop(t + 0.05);
+  }
+  // Lub-dub: lub louder + slightly lower, dub a bit higher and softer with shorter gap.
+  function scheduleHeartbeat(when, intensity) {
+    kick(when,        58, 0.62 * intensity, 0.26);   // lub
+    kick(when + 0.20, 64, 0.40 * intensity, 0.22);   // dub
+  }
+
+  function refreshHeartbeat() {
+    if (heartbeatTimer) { clearInterval(heartbeatTimer); heartbeatTimer = null; }
+    if (!ctx || !armed) return;
+    var bpm = currentBpm();
+    var period = 60 / bpm;
+    scheduleHeartbeat(ctx.currentTime + 0.04, currentIntensity());
+    heartbeatTimer = setInterval(function () {
+      var bpmNow = currentBpm();
+      scheduleHeartbeat(ctx.currentTime + 0.04, currentIntensity());
+      if (Math.abs(60 / bpmNow - period) > 0.04) {
+        clearInterval(heartbeatTimer); heartbeatTimer = null;
+        refreshHeartbeat();
+      }
+    }, period * 1000);
+  }
+
+  function updateBedGain() {
+    if (!ctx || !masterBed) return;
+    // Smooth scroll-presence factor. When 0 (fully scrolled past the logo), both layers go silent.
+    var sp = Math.max(0, Math.min(1, screenPresence));
+    var prox = Math.max(0, Math.min(1, proximity));
+    // Bed: base floor + cursor-proximity boost + active-hover bonus, ALL multiplied by sp.
+    // → at the bottom of the page (sp=0), every term is 0 and the bed is completely silent.
+    var bedFloor   = 0.05 * sp;
+    var bedFromPx  = 0.20 * prox * sp;
+    var bedHoverBn = (awake ? 0.10 : 0) * sp;
+    var bedTarget = bedFloor + bedFromPx + bedHoverBn;
+    var t = ctx.currentTime;
+    masterBed.gain.cancelScheduledValues(t);
+    masterBed.gain.setValueAtTime(masterBed.gain.value, t);
+    masterBed.gain.linearRampToValueAtTime(bedTarget, t + 0.45);
+
+    // Heartbeat also fades smoothly with sp. Squared so it falls off faster than the bed —
+    // the heartbeat is the more focused "you're at the logo" element, the bed is the wider ambient.
+    var beatGain = (awake ? 0.5 : 0) * sp * sp;
+    masterBeat.gain.cancelScheduledValues(t);
+    masterBeat.gain.setValueAtTime(masterBeat.gain.value, t);
+    masterBeat.gain.linearRampToValueAtTime(beatGain, t + 0.4);
+  }
+
+  function arm() {
+    if (armed) return;
+    if (!ensureCtx()) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    buildSynthBed();
+    armed = true;
+    armedAt = ctx.currentTime;
+    updateBedGain();
+    if (!watchTimer) {
+      watchTimer = setInterval(function () {
+        // Re-poll geometry every tick — covers cases where scroll events fail to fire
+        // (rapid scroll-and-stop, scroll containers, browser quirks).
+        updateScreenPresence();
+        updateBedGain();
+        if (awake) refreshHeartbeat();
+      }, 500);
+    }
+  }
+
+  function wake() {
+    awake = true;
+    if (!armed) return;
+    if (ctx.state === 'suspended') ctx.resume();
+    refreshHeartbeat();
+    updateBedGain();
+  }
+
+  function sleep() {
+    awake = false;
+    if (!armed) return;
+    if (heartbeatTimer) { clearInterval(heartbeatTimer); heartbeatTimer = null; }
+    updateBedGain();
+  }
+
+  function setLevel(_) {}
+
+  return {
+    arm: arm, wake: wake, sleep: sleep, setLevel: setLevel,
+    isArmed: function () { return armed; },
+    _debug: function () {
+      return {
+        armed: armed,
+        awake: awake,
+        proximity: proximity,
+        screenPresence: screenPresence,
+        bedGain: masterBed ? masterBed.gain.value : null,
+        beatGain: masterBeat ? masterBeat.gain.value : null,
+        ctxState: ctx ? ctx.state : null,
+        elapsedSinceArmed: ctx && armedAt ? (ctx.currentTime - armedAt) : null,
+        currentBpm: ctx && armed ? currentBpm() : null
+      };
+    }
+  };
+})();
+</script>
+
+<script>
+(function () {
+  var stage = document.getElementById('heroLogo');
+  if (!stage) return;
+  var videoA = document.getElementById('heroLogoVideoA');
+  var videoB = document.getElementById('heroLogoVideoB');
+  if (!videoA || !videoB) return;
+
+  var CLIPS = [
+    { mp4: '/logo-alive-1.mp4' },
+    { mp4: '/logo-alive-2.mp4' },
+    // clip 3 + clip 4 dropped — outputs were off, breaks the flow
+    { mp4: '/logo-alive-5.mp4' }
+  ];
+  var playlist = [];
+  var level = 0;
+  var hovering = false;
+  var current = videoA;     // the buffer that is currently visible/playing
+  var next = videoB;        // the buffer that is preloading the next clip
+
+  function probe(url) {
+    return fetch(url, { method: 'HEAD' }).then(function (r) {
+      if (!r.ok) return false;
+      var ct = (r.headers.get('content-type') || '').toLowerCase();
+      return ct.indexOf('video/') === 0;
+    }).catch(function () { return false; });
+  }
+
+  function setSrc(el, url) {
+    if (el.dataset.currentSrc === url) return Promise.resolve();
+    while (el.firstChild) el.removeChild(el.firstChild);
+    var s = document.createElement('source');
+    s.src = url;
+    s.type = 'video/mp4';
+    el.appendChild(s);
+    el.dataset.currentSrc = url;
+    return new Promise(function (resolve) {
+      var ok = function () { el.removeEventListener('canplay', ok); resolve(); };
+      el.addEventListener('canplay', ok);
+      try { el.load(); } catch (e) {}
+      // Safety timeout in case canplay never fires
+      setTimeout(function () { el.removeEventListener('canplay', ok); resolve(); }, 4000);
+    });
+  }
+
+  function activate(el) {
+    el.classList.add('active');
+  }
+  function deactivate(el) {
+    el.classList.remove('active');
+  }
+
+  function preloadNext() {
+    var nextLevel = Math.min(level + 1, playlist.length - 1);
+    var clip = playlist[nextLevel];
+    if (!clip) return;
+    setSrc(next, clip.mp4);
+  }
+
+  function startCurrentClip() {
+    var clip = playlist[level];
+    if (!clip) return;
+    setSrc(current, clip.mp4).then(function () {
+      if (!hovering) return;
+      try { current.currentTime = 0; } catch (e) {}
+      current.play().catch(function () {});
+      activate(current);
+      preloadNext();
+    });
+  }
+
+  function advance() {
+    if (level >= playlist.length - 1) {
+      try { current.currentTime = 0; } catch (e) {}
+      current.play().catch(function () {});
+      return;
+    }
+    level += 1;
+    if (window.HeroAudio) window.HeroAudio.setLevel(level);
+    var clip = playlist[level];
+    // Make sure next has the right source (preloadNext should have already done this).
+    setSrc(next, clip.mp4).then(function () {
+      if (!hovering) return;
+      try { next.currentTime = 0; } catch (e) {}
+      next.play().catch(function () {});
+      // Cross-fade: bring next in, fade current out simultaneously.
+      activate(next);
+      deactivate(current);
+      // After the fade finishes, swap roles + pre-load the clip after that.
+      setTimeout(function () {
+        try { current.pause(); } catch (e) {}
+        var tmp = current; current = next; next = tmp;
+        preloadNext();
+      }, 340);
+    });
+  }
+
+  // Wire ended on BOTH buffers — whichever is currently playing fires it.
+  function onEnded() {
+    if (!hovering) return;
+    if (this !== current) return;  // stale event from old buffer, ignore
+    advance();
+  }
+  videoA.addEventListener('ended', onEnded);
+  videoB.addEventListener('ended', onEnded);
+
+  // Error fallback: if one buffer errors out, hop to the next clip.
+  function onError() {
+    if (!hovering) return;
+    if (level < playlist.length - 1) advance();
+  }
+  videoA.addEventListener('error', onError);
+  videoB.addEventListener('error', onError);
+
+  function wakeUp() {
+    hovering = true;
+    stage.classList.add('alive');
+    if (level >= playlist.length) level = 0;
+    // Visuals start on hover. Audio starts on the click handler below (browser gesture rule).
+    if (window.HeroAudio && window.HeroAudio.isArmed()) {
+      window.HeroAudio.wake();
+      window.HeroAudio.setLevel(level);
+    }
+    startCurrentClip();
+  }
+
+  function sleep() {
+    hovering = false;
+    stage.classList.remove('alive');
+    deactivate(current);
+    deactivate(next);
+    setTimeout(function () {
+      try { current.pause(); } catch (e) {}
+      try { next.pause(); } catch (e) {}
+    }, 340);
+    level = 0;
+    if (window.HeroAudio) window.HeroAudio.sleep();
+    var clip = playlist[0];
+    if (clip) setSrc(current, clip.mp4);
+  }
+
+  Promise.all(CLIPS.map(function (c) { return probe(c.mp4); })).then(function (results) {
+    playlist = CLIPS.filter(function (_, i) { return results[i]; });
+    if (playlist.length === 0) {
+      playlist = [{ mp4: '/logo-alive.mp4' }];
+    }
+    // Pre-load clip 0 into the current buffer so the first hover is snappy.
+    setSrc(current, playlist[0].mp4);
+  });
+
+  stage.addEventListener('mouseenter', wakeUp);
+  stage.addEventListener('mouseleave', sleep);
+  var aliveOnTouch = false;
+  stage.addEventListener('touchstart', function () {
+    if (window.HeroAudio) window.HeroAudio.arm();
+    if (!aliveOnTouch) {
+      wakeUp();
+      if (window.HeroAudio) { window.HeroAudio.wake(); window.HeroAudio.setLevel(level); }
+      aliveOnTouch = true;
+    } else {
+      sleep();
+      aliveOnTouch = false;
+    }
+  }, { passive: true });
+  stage.addEventListener('focus', wakeUp);
+  stage.addEventListener('blur', sleep);
+  stage.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      stage.classList.contains('alive') ? sleep() : wakeUp();
+    }
+  });
+
+  // Clicking the logo arms the audio context (browser policy: audio needs a real gesture)
+  // and immediately wakes it for whatever clip is currently visible.
+  stage.addEventListener('click', function (e) {
+    if (window.HeroAudio) {
+      window.HeroAudio.arm();
+      // If we're currently in the alive (hover) state when click happens, immediately wake audio.
+      if (hovering) {
+        window.HeroAudio.wake();
+        window.HeroAudio.setLevel(level);
+      }
+    }
+  });
+})();
+</script>
+</body>
+</html>

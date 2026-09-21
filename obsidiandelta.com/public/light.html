@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Obsidian Delta — light preview</title>
+<meta name="description" content="for maddie is an Obsidian Delta initiative. Payments processed by Stripe — PCI DSS Level 1, SOC 1/2 Type II, 256-bit TLS." />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content="Obsidian Delta" />
+<meta property="og:description" content="for maddie is an Obsidian Delta initiative." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://obsidiandelta.com" />
+<meta name="theme-color" content="#FAF4E8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --black: #FAF4E8;        /* paper */
+    --ink: #F5EBD7;          /* bone, alt surface */
+    --shade: #EFE5CE;        /* card surface */
+    --steel: #D4CCB7;        /* borders, hairlines */
+    --ash: #6E6859;          /* muted text */
+    --bone: #2D3A2E;          /* soft text */
+    --white: #0A0A0A;        /* primary text */
+    --orange: #C97224;       /* darkened orange for contrast */
+    --red: #A8311F;          /* darkened red for contrast */
+    --stripe-blurple: #635BFF;
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  img, svg { max-width: 100%; height: auto; display: block; }
+  a { color: inherit; }
+  ::selection { background: var(--orange); color: var(--black); }
+
+  .container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  .nav { border-bottom: 1px solid var(--steel); }
+  .nav__inner { max-width: 1200px; margin: 0 auto; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; }
+  .nav__brand { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+  .nav__brand img { height: 36px; width: 36px; }
+  .nav__brand span { font-family: var(--font-display); color: var(--white); font-size: 18px; font-weight: 500; letter-spacing: -0.005em; }
+  .nav__contact { font-family: var(--font-mono); color: var(--ash); font-size: 12px; text-decoration: none; transition: color 0.2s; }
+  .nav__contact:hover { color: var(--orange); }
+
+  /* HERO */
+  .hero { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 120px 32px 96px; }
+  .hero__logo { width: 220px; height: 220px; margin-bottom: 56px; }
+  @media (min-width: 768px) { .hero__logo { width: 280px; height: 280px; } }
+  .hero__name { font-family: var(--font-display); color: var(--white); font-size: clamp(48px, 8vw, 88px); font-weight: 500; letter-spacing: -0.025em; line-height: 1; margin-bottom: 28px; }
+  .hero__rule { width: 56px; height: 2px; background: var(--orange); margin: 0 auto 28px; }
+  .hero__tagline { font-family: var(--font-display); font-weight: 300; color: var(--bone); font-size: clamp(17px, 2.2vw, 22px); line-height: 1.5; max-width: 520px; margin: 0 auto; letter-spacing: -0.005em; }
+
+  /* SECTION COMMONS */
+  .section { padding: 96px 32px; border-top: 1px solid var(--steel); }
+  .section__label { font-family: var(--font-mono); color: var(--orange); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; display: block; }
+  .section__heading { font-family: var(--font-display); color: var(--white); font-size: clamp(28px, 4.2vw, 44px); line-height: 1.12; letter-spacing: -0.02em; font-weight: 500; margin-bottom: 16px; max-width: 720px; }
+  .section__lead { font-family: var(--font-body); color: var(--ash); font-size: clamp(15px, 1.8vw, 17px); line-height: 1.65; max-width: 580px; margin-bottom: 56px; }
+
+  /* TRUST PANEL — initiative + payment, 2 cards */
+  .trust__inner { display: grid; grid-template-columns: 1fr; gap: 32px; }
+  @media (min-width: 768px) { .trust__inner { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .trust__card { border: 1px solid var(--steel); padding: 48px 36px; display: flex; flex-direction: column; }
+  .trust__label { font-family: var(--font-mono); color: var(--orange); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 24px; }
+  .trust__title { font-family: var(--font-display); color: var(--white); font-size: clamp(22px, 2.6vw, 28px); line-height: 1.2; letter-spacing: -0.015em; font-weight: 500; margin-bottom: 16px; }
+  .trust__body { font-family: var(--font-body); color: var(--ash); font-size: 15px; line-height: 1.65; flex: 1; }
+  .trust__body strong { color: var(--white); font-weight: 500; }
+  .trust__cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; font-family: var(--font-mono); color: var(--orange); font-size: 12px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; border-bottom: 1px solid var(--orange); padding-bottom: 4px; transition: color 0.2s, border-color 0.2s; align-self: flex-start; }
+  .trust__cta:hover { color: var(--white); border-color: var(--white); }
+  .trust__mark { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--steel); }
+  .trust__mark img { height: 64px; width: auto; }
+  .trust__mark__name { font-family: var(--font-display); color: var(--white); font-size: 22px; font-weight: 400; letter-spacing: -0.01em; }
+  .trust__mark__sub { font-family: var(--font-mono); color: var(--ash); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; margin-top: 4px; }
+  .trust__stripe-mark { display: flex; align-items: baseline; gap: 12px; padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid var(--steel); }
+  .trust__stripe-mark__powered { font-family: var(--font-body); color: var(--ash); font-size: 14px; font-weight: 400; }
+  .trust__stripe-mark__name { font-family: var(--font-display); color: var(--stripe-blurple); font-size: 30px; font-weight: 600; letter-spacing: -0.025em; }
+
+  /* STRIPE CREDENTIALS */
+  .stripe-creds__hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 56px;
+  }
+  @media (min-width: 768px) { .stripe-creds__hero { grid-template-columns: 1fr auto; gap: 56px; } }
+  .stripe-wordmark {
+    font-family: var(--font-display);
+    color: var(--stripe-blurple);
+    font-size: clamp(48px, 7vw, 84px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stripe-meta {
+    font-family: var(--font-mono);
+    color: var(--ash);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+  .stripe-meta__strong { color: var(--white); }
+
+  .creds-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--steel); border: 1px solid var(--steel); }
+  @media (min-width: 768px) { .creds-grid { grid-template-columns: repeat(3, 1fr); } }
+  .cred {
+    background: var(--black);
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cred__badge {
+    font-family: var(--font-mono);
+    color: var(--orange);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .cred__title {
+    font-family: var(--font-display);
+    color: var(--white);
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .cred__body {
+    font-family: var(--font-body);
+    color: var(--ash);
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .stripe-footnote {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--steel);
+    font-family: var(--font-body);
+    color: var(--ash);
+    font-size: 13px;
+    line-height: 1.6;
+    max-width: 720px;
+  }
+  .stripe-footnote a { color: var(--bone); border-bottom: 1px solid var(--steel); text-decoration: none; transition: border-color 0.2s; }
+  .stripe-footnote a:hover { border-color: var(--orange); }
+
+  /* CONTACT */
+  .contact { text-align: center; padding: 128px 32px; border-top: 1px solid var(--steel); }
+  .contact__line { font-family: var(--font-mono); color: var(--ash); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 24px; }
+  .contact__email { font-family: var(--font-display); color: var(--white); font-size: clamp(22px, 4vw, 36px); font-weight: 400; letter-spacing: -0.015em; text-decoration: none; border-bottom: 2px solid var(--orange); padding-bottom: 4px; transition: color 0.2s, border-color 0.2s; }
+  .contact__email:hover { color: var(--orange); border-color: var(--red); }
+
+  /* FOOTER */
+  .footer { padding: 32px; border-top: 1px solid var(--steel); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; width: 100%; font-family: var(--font-mono); font-size: 11px; color: var(--ash); letter-spacing: 0.06em; }
+  .footer__left { display: flex; align-items: center; gap: 12px; }
+  .footer__left img { height: 24px; width: 24px; opacity: 0.85; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav__inner">
+    <a class="nav__brand" href="/"><img src="/logo-transparent.png" alt="Obsidian Delta" /><span>Obsidian Delta</span></a>
+    <a class="nav__contact" href="mailto:hello@obsidiandelta.com">hello@obsidiandelta.com</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img src="/logo-transparent.png" alt="Obsidian Delta" class="hero__logo" />
+  <h1 class="hero__name">Obsidian Delta</h1>
+  <div class="hero__rule"></div>
+  <p class="hero__tagline">Privacy-first software, built quietly.</p>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section__label">// who we are · who we run</span>
+    <h2 class="section__heading">Two facts about us, in case they help.</h2>
+    <p class="section__lead">If you arrived here because something in for maddie's checkout flow brought you to look us up, this is what we'd want you to know.</p>
+
+    <div class="trust__inner">
+      <div class="trust__card">
+        <span class="trust__label">// our initiative</span>
+        <div class="trust__mark">
+          <img src="/formaddie-tree.svg" alt="for maddie bristlecone" />
+          <div>
+            <div class="trust__mark__name">for maddie</div>
+            <div class="trust__mark__sub">memoirs · live · 2026</div>
+          </div>
+        </div>
+        <h3 class="trust__title">for maddie is our initiative.</h3>
+        <p class="trust__body">A memoir companion that turns six gentle phone conversations into a printed book. We build it. We run it. <strong>We stand behind it.</strong> When the Stripe charge appears on your statement as Obsidian Delta, this is what it paid for.</p>
+        <a href="https://formaddie.com" class="trust__cta">Visit formaddie.com →</a>
+      </div>
+
+      <div class="trust__card">
+        <span class="trust__label">// payment</span>
+        <div class="trust__stripe-mark">
+          <span class="trust__stripe-mark__powered">Powered by</span>
+          <span class="trust__stripe-mark__name">Stripe</span>
+        </div>
+        <h3 class="trust__title">Card data never touches us.</h3>
+        <p class="trust__body">Every payment is processed end-to-end by <strong>Stripe</strong> — the same payment infrastructure used by Amazon, Google, Shopify, and roughly half of the Fortune 100. <strong>Card numbers never reach our servers.</strong> They go directly from your browser to Stripe over a 256-bit TLS channel.</p>
+        <a href="https://stripe.com/security" class="trust__cta" target="_blank" rel="noopener">stripe.com/security →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <span class="section__label">// stripe credentials</span>
+    <div class="stripe-creds__hero">
+      <div>
+        <div class="stripe-wordmark">Stripe.</div>
+        <p class="section__lead" style="margin-top: 24px; margin-bottom: 0;">Stripe is one of the most rigorously certified payment processors on earth. Every checkout we run inherits the full surface of these credentials. None of it requires anything from you.</p>
+      </div>
+      <div class="stripe-meta">
+        certified annually<br/>
+        <span class="stripe-meta__strong">independent QSA audit</span><br/>
+        <br/>
+        publicly verifiable<br/>
+        <span class="stripe-meta__strong">stripe.com/security</span>
+      </div>
+    </div>
+
+    <div class="creds-grid">
+      <div class="cred">
+        <span class="cred__badge">Highest Tier</span>
+        <h3 class="cred__title">PCI DSS Level 1 Service Provider</h3>
+        <p class="cred__body">The most stringent level of certification under the Payment Card Industry Data Security Standard. Audited annually by an independent Qualified Security Assessor.</p>
+      </div>
+      <div class="cred">
+        <span class="cred__badge">Audited</span>
+        <h3 class="cred__title">SOC 1 Type II</h3>
+        <p class="cred__body">Independent attestation that controls over financial reporting are designed and operating effectively.</p>
+      </div>
+      <div class="cred">
+        <span class="cred__badge">Audited</span>
+        <h3 class="cred__title">SOC 2 Type II</h3>
+        <p class="cred__body">Independent attestation of security, availability, processing integrity, confidentiality, and privacy controls — over a period, not just a moment.</p>
+      </div>
+      <div class="cred">
+        <span class="cred__badge">Public</span>
+        <h3 class="cred__title">SOC 3 Report</h3>
+        <p class="cred__body">A general-use report, publicly published, summarizing the SOC 2 audit. Available to anyone, no NDA required.</p>
+      </div>
+      <div class="cred">
+        <span class="cred__badge">Encryption</span>
+        <h3 class="cred__title">256-bit TLS in transit</h3>
+        <p class="cred__body">All card data flows over TLS 1.2+ with strong cipher suites. Tokenized at rest. Decryption keys hardware-isolated.</p>
+      </div>
+      <div class="cred">
+        <span class="cred__badge">Standards</span>
+        <h3 class="cred__title">PA-DSS · NIST aligned</h3>
+        <p class="cred__body">Stripe Terminal certified to PA-DSS. Stripe's broader information security program aligns with the NIST Cybersecurity Framework.</p>
+      </div>
+    </div>
+
+    <p class="stripe-footnote">
+      We do not store, process, or transmit raw cardholder data. The "Powered by Stripe" badge is how the industry says "this merchant has outsourced the entire payment-data surface to a regulated third party." That is exactly what we have done. For the full security posture, see <a href="https://stripe.com/security" target="_blank" rel="noopener">stripe.com/security</a> and <a href="https://stripe.com/legal/marks" target="_blank" rel="noopener">stripe.com/legal/marks</a>.
+    </p>
+  </div>
+</section>
+
+<section class="contact">
+  <p class="contact__line">// say hello</p>
+  <a href="mailto:hello@obsidiandelta.com" class="contact__email">hello@obsidiandelta.com</a>
+</section>
+
+<footer class="footer">
+  <div class="footer__left">
+    <img src="/logo-transparent.png" alt="" />
+    <span>obsidian delta · 2026</span>
+  </div>
+  <div>privacy-first · built without compromise</div>
+</footer>
+
+</body>
+</html>

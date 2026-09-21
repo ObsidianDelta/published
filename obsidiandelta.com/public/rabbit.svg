@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <g fill="#FAFAFA">
+    <!-- Ears (back, then front) -->
+    <ellipse cx="20" cy="12" rx="3" ry="10" transform="rotate(-10 20 12)"/>
+    <ellipse cx="28" cy="11" rx="3" ry="10" transform="rotate(4 28 11)"/>
+    <!-- Head -->
+    <circle cx="24" cy="26" r="8.5"/>
+    <!-- Body (egg-shaped, sitting profile) -->
+    <ellipse cx="38" cy="40" rx="15" ry="11"/>
+    <!-- Tail (puff) -->
+    <circle cx="53" cy="38" r="3.5"/>
+    <!-- Back foot -->
+    <ellipse cx="42" cy="52" rx="6" ry="3"/>
+    <!-- Front paw -->
+    <ellipse cx="29" cy="49" rx="3.5" ry="2.5"/>
+  </g>
+</svg>
