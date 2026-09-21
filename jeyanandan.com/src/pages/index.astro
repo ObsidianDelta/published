@@ -1,166 +1,106 @@
 ---
 import Base from '../layouts/Base.astro';
-import { listedPosts, fullTitle, formatDate } from './_posts.js';
+import { listedPosts } from './_posts.js';
 
 // jeyanandan.com -- Jason's personal site, and only that.
 //
-// 2026-09-20, second pass: cut back, at Jason's request, to who I am, some of
-// the things I am working on, one way to help pay for it, and the writing.
-// What came out was repetition rather than content. The two-organisations
-// sentence ran twice, word for word, once in the introduction and once again
-// inside the donation disclosure. /blog/ was linked from three places. The
-// donation section spent four paragraphs and two headings on a single outbound
-// link. One post was hand-copied into the page as a "feature" while the other
-// two, both published, were not on the page at all -- the list below is
-// generated now, so that cannot happen again.
+// 2026-09-21: rewritten, at Jason's request, to a very minimal page: who I am,
+// what I have released, what I am working on, the writing, and one Ko-fi link.
+// The copy was written and signed off before this file was touched; it is
+// placed here verbatim. Do not add a tagline, a CTA or another section.
 //
-// Nothing about Maddie is on this page. The demonstration, the recorder, the
-// "my gift to you" framing and the pages that belonged with a live recorder
-// came off the site on 2026-09-20 and are kept, unbuilt, in src/_suppressed/;
-// the recorder component is kept, unimported, at src/components/Talk.astro.
-// There is no SHOW_MADDIE_DEMO flag in this file and there was none to keep:
-// that pass removed the block outright rather than gating it. Read
-// src/_suppressed/README.md before restoring any of it.
+// THE WRITING LIST IS GENERATED. It reads listedPosts from ./_posts.js, the
+// same list /blog/ and /sitemap.xml read, so an unlisted post (fuckarian,
+// the-constraint) cannot appear here while it is hidden there. Each entry is
+// the post's own frontmatter: title and subtitle joined with a colon, the form
+// the post pages use in their <title>, then its description.
 //
-// THE DISCLOSURE IS A DEPLOY GATE.
-// deploy-jeyanandan.yml greps the BUILT page for two strings and refuses to
-// ship the site without either of them:
+// MADDIE. The only Maddie content on this page is the one For Maddie line, the
+// bristlecone mark and the outbound link to formaddie.com. The demonstration,
+// the recorder, the privacy policy, sign-in and the auth callbacks stay off the
+// site; they are kept, unbuilt, in src/_suppressed/ and the recorder component,
+// unimported, at src/components/Talk.astro. Read src/_suppressed/README.md
+// before restoring any of it. The mark is self-hosted under /assets/ because
+// the CSP is img-src 'self' data:. Do not swap in formaddie-rabbit.svg: its
+// fill is near-white and it disappears on this paper background.
+//
+// TWO DEPLOY GATES. deploy-jeyanandan.yml greps the BUILT page for:
 //
 //     not the Foundation and not the company.
 //     ko-fi.com/jeyanandan
 //
-// The first is the disclosure paragraph below, kept word for word through this
-// rewrite. The second is the outbound link. There is no payment form on this
-// site -- the Ko-fi embed was removed deliberately and replaced with a plain
-// link -- so the disclosure sits immediately above that link, which makes it
-// the last thing read before someone leaves for Ko-fi rather than the first
-// thing missed after it. Reword either and the workflow has to change in the
-// same change-set, workflow first.
+// The first is the end of the opening paragraph, the second is the closing
+// link. Both must stay real body text on one source line each. Reword either
+// and the workflow has to change in the same change-set, workflow first.
 //
 // Comments in the markup below are {/* ... */}, never <!-- ... -->. Astro
 // emits an HTML comment nested inside an element straight into the built page,
 // and a gate sentence living in a shipped comment would pass the grep happily
-// while the paragraph it was meant to guard was gone. That has already bitten
-// this repo once.
+// while the paragraph it was meant to guard was gone.
+
+const postTitle = (p) => (p.subtitle ? `${p.title}: ${p.subtitle}` : p.title);
 ---
 <Base
   title="Jason Jeyanandan"
-  description="Jason Jeyanandan — I build software, and I write about constraint, emergence, and what it takes for structure to hold."
+  description="I build things, mostly for myself first, and publish the ones that hold up."
 >
   <section class="hero"><div class="shell narrow">
     <h1>Jason Jeyanandan</h1>
     <div class="rule"></div>
+    <p class="lede">I build things, mostly for myself first, and publish the ones that hold up. This is my personal site — not the Foundation and not the company.</p>
   </div></section>
 
-  {/* WHO. Two sentences. The two-organisations line is said here and nowhere
-      else on the page; the links to both live in the list below it. */}
   <section><div class="shell narrow">
-    <p class="lede">I build software, and I write about how things hold together.</p>
-    <p>Most of it comes out of two organisations: Obsidian Delta, which makes the machinery, and the DAX Foundation, which holds the part a company should not.</p>
+    <h2 class="eyebrow">Released</h2>
+    <p><strong><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a></strong> — a framework about constraint and emergence. Structure forms under constraint, then becomes the constraint on whatever forms next. Named so that nobody genuflects at it. v0.51, CC BY 4.0.</p>
+    <p><strong><a href="https://github.com/daxfoundation/constraint-protocol">The Constraint Protocol</a></strong> — people call it a ledger, which is accurate and leaves out most of it. Yes, it keeps a signed record nobody can quietly edit. It also makes each party say in advance what it will not do, keeps the witness separate from the participants and the judging separate from the witnessing, lets a declared constraint hold back certain work and note anyone who tries to skip it, lets anyone dispute anything, and lets the past be judged again without being rewritten. People, companies and software get treated the same. v0.5, a public working draft, run once so far.</p>
+    <p><strong><a href="https://daxfoundation.org">The DAX Foundation</a></strong> publishes the protocol. It holds the part a company should not: the mission, and the constraint it answers to — DAX, <em>the preservation and expansion of life, humanity, and consciousness</em> — kept apart from the company that builds the infrastructure. Its site carries the definitions everything else here runs on.</p>
   </div></section>
 
-  {/* WHAT I AM WORKING ON. One line each, one link each, and each link goes to
-      the thing itself rather than to a page about it. All three are public:
-      Fuckery and the Constraint Protocol are open repositories, and the
-      Foundation states its constraint and its definitions on its own site. */}
-  <section class="alt"><div class="shell narrow">
-    <p class="eyebrow">Some of what I am working on</p>
-    <ul class="work">
-      <li>
-        <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>
-        <p>The thinking underneath the rest of it &mdash; a framework for constraint and emergence, and what it takes for structure to form and then hold. Published in full, dead ends included, and meant to be argued with.</p>
-      </li>
-      <li>
-        <a href="https://github.com/daxfoundation/constraint-protocol">The Constraint Protocol</a>
-        <p>An open, public ledger for declaring constraints and making conduct under them transparent. Neutral to the constraint and to the kind of entity that holds it. Public working draft.</p>
-      </li>
-      <li>
-        <a href="https://daxfoundation.org/">The DAX Foundation</a>
-        <p>Where the constraint is held rather than in a company: preservation and expansion of life, humanity, and consciousness, with the definitions it runs on stated in the open.</p>
-      </li>
-    </ul>
-  </div></section>
-
-  {/* KEEPING IT GOING. One paragraph, the disclosure, the link, and the note
-      about where the link goes. The gate on the disclosure is in the
-      frontmatter above. */}
   <section><div class="shell narrow">
-    <p class="eyebrow">Keeping it going</p>
-    <p>The writing here is free and it stays free. If any of it was worth something to you, you can keep me going while I build the rest &mdash; Ko-fi will offer you a one-off amount or a monthly one, and neither buys anything. No tiers, no perks, and nothing you get that someone who gives nothing does not.</p>
-    <div class="disclosure">
-      <p>Money sent here supports me personally &mdash; not the Foundation and not the company.</p>
+    <h2 class="eyebrow">Working on</h2>
+    <div class="maddie">
+      <a class="mark" href="https://formaddie.com"><img src="/assets/formaddie-bristlecone.png" width="140" height="145" alt="For Maddie" /></a>
+      <p><strong><a href="https://formaddie.com">For Maddie</a></strong> — talk with Maddie and she turns your memories into chapters, emailed to you with the full transcript. It is for keeping a life story. Built at <strong><a href="https://www.obsidiandelta.com">Obsidian Delta</a></strong>, which is the company.</p>
     </div>
-    <p class="kofi-go"><a href="https://ko-fi.com/jeyanandan" target="_blank" rel="noopener">Give on Ko-fi</a></p>
-    <p class="kofi-note">The link opens ko-fi.com in a new tab. Nothing is collected on this page.</p>
   </div></section>
 
-  {/* THE WRITING. Generated from src/posts/ through src/pages/_posts.js, which
-      is the same list /blog/ and /sitemap.xml read -- so a post cannot be on
-      one of them and missing from another, and an unlisted post is off all
-      three. The blog is deliberately off the masthead and the footer, so the
-      link below is the only route from the chrome of this site into /blog/. */}
-  <section class="writing"><div class="shell narrow">
-    <p class="eyebrow">Writing</p>
-    <ul class="posts">
-      {listedPosts.map((p) => (
-        <li>
-          <a href={`/blog/${p.slug}/`}>{fullTitle(p)}</a>
-          <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
-          {p.description && <p>{p.description}</p>}
-        </li>
-      ))}
-    </ul>
-    {listedPosts.length === 0 && <p>Nothing published yet.</p>}
-    <p class="more"><a href="/blog/">All writing &rarr;</a></p>
+  {listedPosts.length > 0 && (
+    <section><div class="shell narrow">
+      <h2 class="eyebrow">Writing</h2>
+      <ul class="posts">
+        {listedPosts.map((p) => (
+          <li><a href={`/blog/${p.slug}/`}>{postTitle(p)}</a>{p.description && ` — ${p.description}`}</li>
+        ))}
+      </ul>
+    </div></section>
+  )}
+
+  <section><div class="shell narrow">
+    <p>If any of this is useful to you, <a href="https://ko-fi.com/jeyanandan">buy me a coffee</a>.</p>
   </div></section>
 </Base>
 
 <style is:global>
-.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
-section{padding-bottom:clamp(2.5rem,6vw,4rem)}
-section.alt{background:var(--bone);border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
-.lede{font-size:clamp(19px,2.2vw,21px)}
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(2rem,5vw,3rem)}
+.lede{font-size:clamp(19px,2.2vw,21px);margin:0}
+section + section{border-top:1px solid var(--line);padding:clamp(2rem,5vw,3rem) 0}
+section p:last-child{margin-bottom:0}
+section a{text-decoration-thickness:1px;text-underline-offset:.16em}
+section a:hover{color:var(--orange)}
+section strong{font-weight:600;color:var(--strong)}
 
-/* ---------- what I am working on ---------- */
-.work{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.5rem}
-.work li{border-top:1px solid var(--line);padding-top:1rem}
-.work > li > a{
-  font-family:var(--sans);font-weight:600;font-size:1.2rem;line-height:1.3;
-  color:var(--strong);text-decoration:none;display:block;
+/* ---------- working on: the mark beside the line, above it on a phone ---------- */
+.maddie{display:flex;gap:1.5rem;align-items:flex-start}
+.maddie .mark{flex:0 0 auto;display:block;line-height:0}
+.maddie img{display:block;width:140px;max-width:100%;height:auto}
+.maddie p{margin:0}
+@media (max-width:560px){
+  .maddie{flex-direction:column;gap:1rem}
+  .maddie img{width:120px}
 }
-.work > li > a:hover{color:var(--orange)}
-.work p{margin:.5rem 0 0;color:var(--muted);font-size:17px}
 
-/* ---------- keeping it going ----------
-   The donation route is a link off the site, not an embedded payment form.
-   Bordered so it is easy to hit on a phone, but transparent and in the accent
-   colour so it reads as a link rather than as a solid button. */
-.disclosure{
-  margin:1.4rem 0 0;padding:1.05rem 1.15rem;border-left:3px solid var(--ink);
-  background:var(--paper);font-family:var(--sans);font-size:18px;line-height:1.55;color:var(--ink);
-}
-.disclosure p{margin:0}
-.kofi-go{margin:1.15rem 0 0}
-.kofi-go a{
-  display:inline-block;font-family:var(--sans);font-size:18px;font-weight:600;
-  line-height:1.5;color:var(--orange);text-decoration:none;
-  border:1px solid var(--line);border-radius:9px;padding:.62rem 1.15rem;
-}
-.kofi-go a:hover{border-color:var(--orange)}
-.kofi-note{margin:.85rem 0 0;font-family:var(--sans);font-size:16px;color:var(--muted)}
-
-/* ---------- the writing ---------- */
-section.writing{border-top:1px solid var(--line);padding-top:clamp(2.5rem,6vw,4rem)}
-.posts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.6rem}
-.posts li{border-top:1px solid var(--line);padding-top:1.1rem}
-.posts > li > a{
-  font-family:var(--sans);font-weight:600;font-size:1.35rem;line-height:1.25;
-  color:var(--strong);text-decoration:none;display:block;
-}
-.posts > li > a:hover{color:var(--orange)}
-.posts time{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:.35rem}
-.posts p{margin:.55rem 0 0;color:var(--muted)}
-.more{margin:1.6rem 0 0;font-family:var(--sans);font-size:17px}
-.more a{color:var(--muted);text-decoration:none}
-.more a:hover{color:var(--orange)}
+/* ---------- writing ---------- */
+.posts{list-style:none;margin:0;padding:0}
+.posts li + li{margin-top:.9rem}
 </style>
