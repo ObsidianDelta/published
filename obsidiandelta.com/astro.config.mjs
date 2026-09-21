@@ -1,9 +1,10 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// obsidiandelta.com, as an Astro site. SAMPLE BUILD, branch od-astro-sample.
-// Nothing here is deployed; www.obsidiandelta.com is still served by the
-// Cloudflare Pages project "obsidiandelta-apex" from a hand-uploaded bundle.
+// obsidiandelta.com, as an Astro site. PRODUCTION since the 2026-09-21 cut-over:
+// .github/workflows/deploy-obsidiandelta.yml builds this directory and deploys
+// dist/ to the Cloudflare Pages project "obsidiandelta-apex", which serves
+// www.obsidiandelta.com. The hand-uploaded bundle it replaced is public/.
 //
 // Same shape as views/jeyanandan/: static output, no adapter, no integrations,
 // one dependency. A dependency this site does not have is one that cannot break

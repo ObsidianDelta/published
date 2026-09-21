@@ -2,7 +2,8 @@
 title: "Nobody works live current bare-handed"
 subtitle: "What we mean by a cognitive companion"
 description: "AI is becoming a substrate, like electricity. A cognitive companion is the tool set a person uses to work with it: an extension of the person, not an assistant and not an agent acting in their place."
-draft: true
+date: 2026-09-21
+draft: false
 ---
 
 Electricity is not a product. It is something drawn on everywhere, and it is dangerous to touch. Nobody who works with it does so bare-handed. An electrician arrives with boots, gloves, a mat and training, and the work gets done because of that kit, not in spite of it.
