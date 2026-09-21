@@ -45,7 +45,7 @@
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
 
-export const UNLISTED_SLUGS = new Set(['fuckarian', 'the-constraint']);
+export const UNLISTED_SLUGS = new Set(['fuckarian']);
 
 /** The one rule for unlisted: either route in is enough. */
 export const isUnlisted = (slug, frontmatter = {}) =>
