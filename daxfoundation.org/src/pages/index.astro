@@ -23,6 +23,10 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
 // it back to work in progress; it still serves on his site, unlisted and
 // noindexed there, and a public link from this page would undo that. The
 // Snowflake and Fuckery links stay.
+//
+// 2026-09-21: The Constraint is back on the Reading list, in its old place.
+// Jason published it again ("I want to publish this right away"). Fuckarian
+// stays unlisted on his site and is still not linked from here.
 ---
 <Base>
   <section class="lede" aria-labelledby="dax">
@@ -245,12 +249,41 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
       <div class="row" id="cognitive-companion">
         <dt class="name">Cognitive companion</dt>
         <dd class="text">
-          A person&rsquo;s own tool set for working with nonbiological
-          intelligence &mdash; an extension of the person, not a separate agent
-          acting in their place. It gives its user more intelligence in the
-          sense defined above: greater navigation of constrained possibility
-          space. It belongs to the person using it; a tool set that acts in the
-          person&rsquo;s place, or answers to someone else, is not a companion.
+          <p>
+            A person&rsquo;s own tool set for working with nonbiological
+            intelligence &mdash; an extension of the person, not a separate agent
+            acting in their place.
+          </p>
+          <p>
+            It does two things. It gives its user more intelligence in the sense
+            defined above: greater navigation of constrained possibility space.
+            And it gives its user the hands, eyes and ears to work with the
+            substrate &mdash; to act through it, to perceive through it, and to
+            hear what comes back. That is all it is.
+          </p>
+          <p>
+            A person and their cognitive companion form one working unit. The
+            companion has no interests of its own to be negotiated with; its
+            context, its trail and its capability are the person&rsquo;s.
+          </p>
+          <p>
+            It belongs to the person using it; a tool set that acts in the
+            person&rsquo;s place, or answers to someone else, is not a companion.
+          </p>
+          <p>A cognitive companion is not:</p>
+          <ul class="rows">
+            <li><strong>an assistant</strong> &mdash; an assistant is a second party you hand tasks to;</li>
+            <li><strong>a companion in the social sense</strong> &mdash; not a friend, a partner or a relationship, and a product that simulates one is not a cognitive companion;</li>
+            <li><strong>an agent acting in the person&rsquo;s absence</strong>;</li>
+            <li><strong>answerable to anyone but its user.</strong></li>
+          </ul>
+          <p>
+            In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
+            nonbiological intelligence is a new kind of electricity, a cognitive
+            companion is the electrician&rsquo;s kit &mdash; the gloves, the mat
+            and the training that let one particular person work with live
+            current safely.
+          </p>
         </dd>
       </div>
 
@@ -282,6 +315,14 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
     </p>
 
     <ul class="rows">
+      <li class="row">
+        <span class="name"><a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a></span>
+        <span class="text">
+          Twenty-eight points in human history where meaning was assigned to
+          people by something that was not those people, and why the speed
+          matters more than the mechanism.
+        </span>
+      </li>
       <li class="row">
         <span class="name"><a href="https://jeyanandan.com/blog/snowflake-fuckari-in-action/">The Snowflake</a></span>
         <span class="text">
@@ -353,6 +394,10 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
   /* Definitions reuse the .row grid; dl/dt/dd need their own margins cleared. */
   .body + .rows { margin-top: 1.5rem; }
   .row dt, .row dd { margin: 0; }
+  /* #cognitive-companion runs to several paragraphs and a list. Nothing sits
+     above its first line, so it stays on the dt's baseline. */
+  .row dd > p { margin: 0; }
+  .row dd > * + p, .row dd > * + ul { margin-top: 0.75rem; }
   .row[id] { scroll-margin-top: 1.5rem; }
   .row code {
     font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
