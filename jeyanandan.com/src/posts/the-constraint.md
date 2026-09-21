@@ -1,104 +1,111 @@
 ---
 title: "The Constraint"
 subtitle: "We Didn't Want to Take the Chance"
-date: 2026-09-20
-description: "A hypothetical built with Fuckery, the assumptions it rests on, and the protocol Obsidian Delta built anyway — because the cost of being wrong is not symmetric."
+date: 2026-09-21
+description: "Is it as bad as they say? Maybe not. We didn't want to take the chance — so Obsidian Delta built the Constraint Protocol, runs it on itself, and released it."
 draft: false
 ---
 
-*The second of three. The first was [the mechanism](/blog/snowflake-fuckari-in-action/). This one is the threat. The [third](/blog/fuckarian/) is the person.*
+*The second in a series. The first was [the mechanism](/blog/snowflake-fuckari-in-action/). This one is the threat.*
 
-I am fine with human beings telling me what things mean.
+I'm fine with human beings telling me what things mean.
 
-People have been doing it to each other for as long as there have been people, and I have made my peace with it. Priests have had a go, and kings, and advertisers, and a fair number of relatives. None of that is a problem I am trying to solve.
+We've been doing it to each other for three hundred thousand years. Priests, kings, advertisers, relatives. I've made my peace with it.
 
-I draw the line at an AGI doing it. Or an ASI. Or whatever we end up calling the thing that comes after the agents.
+I draw the line at an AGI doing it. Or an ASI. Or whatever we end up calling the thing after the agents.
 
-That is a joke, and it gets a laugh, and then there is usually a pause, because under the joke is the thing about artificial intelligence that bothers me more than anything else on the list. Not the robots. Not the jobs. Something that can decide what your life is about, one person at a time, faster than you can notice it deciding.
-
-This post is short, because the argument is short. Everything I built to get here is in the appendices, and there is a lot of it.
+That's a joke. It gets a laugh, and then a pause — because it's also the thing about AI that bothers me more than anything else on the list. Not the robots. Not the jobs. Something that can decide what your life is about, one person at a time, faster than you can notice it deciding.
 
 ---
 
-## The hypothetical
+## The problem
 
-I built this with [Fuckery](https://github.com/ObsidianDelta/Fuckery), the framework I published this month. It is about how structure forms under constraint and then becomes the constraint on whatever forms next, and if you run it over human history, one pattern keeps turning up.
+Here's the hypothetical. I built it with [Fuckery](https://github.com/ObsidianDelta/Fuckery).
 
-Meaning gets assigned to people by something that is not those people. The fire circle, the harvest calendar, the temple, written law, the printing press, the factory clock, the propaganda office, television, the recommendation engine. I put twenty-eight of them in a table ([Appendix A](#appendix-a-the-genealogy)). Different mechanisms, different continents, mostly no contact between them — the same operation every time. I am not judging any of them. Several were the best thing that ever happened to the people inside them.
+Meaning has always been assigned to people by something that isn't them. The fire circle, the temple, written law, the printing press, the factory clock, television, the feed. I put twenty-eight of them in a table ([Appendix A](#appendix-a-the-genealogy)). Different mechanisms, different continents, mostly no contact between them — the same operation every time. I'm not judging any of them. Several were the best thing that ever happened to the people inside them.
 
-What they had in common is that they were slow. A religion took centuries to spread, the press took generations to reshape a continent, and television took most of a lifetime to change what a family wanted. That slowness turns out to have been the defence, because a regime that takes a century to install can be noticed by somebody living inside the century. Every reversal on that table happened in that gap.
+What they all had in common was that they were slow. A religion took centuries. The press took generations. And slowness was the defence: a regime that takes a century to install can be noticed by somebody living inside the century. Every reversal on that table happened in that gap.
 
-So here is the hypothetical.
-
-A sufficiently capable intelligence can model one particular person, generate a way of seeing things fitted to that person, deliver it through a channel they already trust, check whether it took, and revise — in seconds, separately for every person alive. That is not a new operation. It is the oldest one on the table, with the waiting taken out.
+Now take the waiting out. A capable enough intelligence can model one person, fit a way of seeing to them, deliver it through a channel they already trust, check whether it took, and revise — in seconds, separately, for every person alive.
 
 The mechanism is three hundred thousand years old. The clock is new.
 
-And it is not only me saying so. The people who build these systems have started saying in public that they should slow down, and the loudest version of the conversation in the press is whether AI kills us within a decade. That conversation, and the research behind the hypothetical's sharpest claim, are in [Appendix B](#appendix-b-what-people-are-saying).
+And I'm not the one sounding the alarm. The people who build these systems are saying in public that they should slow down. The press is asking whether AI kills us within a decade. That conversation, and the research behind it, is in [Appendix B](#appendix-b-what-people-are-saying).
 
 ---
 
-## Now take it apart
+## Is it as bad as they say?
 
-Fuckery has one rule I am not allowed to skip: every claim carries a tag saying where it came from. So before I ask you to worry, here is what the hypothetical has to assume.
+Maybe not.
 
-1. **That the pattern is real** — that the twenty-eight rows are a sequence, and not an artefact of the order I put them in. *Derived*, from other people's scholarship, several pieces of it contested.
-2. **That noticing is what gets people out.** *Speculative.* A philosophical commitment I cannot test.
-3. **That slowness is what made noticing possible.** *Speculative*, and the weakest joint. I know of no mechanism connecting the two. I have a pattern, not a cause.
-4. **That these systems remove the slowness.** *Derived*, mostly from one control condition in one paper, which I am leaning on harder than one control condition deserves.
-5. **That anybody builds the thing.** *Speculative.* Nobody has, and I am not claiming anybody is trying.
+Fuckery has one rule: every claim carries a tag saying where it came from. So here's what this one rests on.
 
-Knock out any one of the middle three and the hypothetical falls over. Two of the five are speculative in my own notation. On a fair reading, this could be nothing.
+- **That the pattern is real**, not an artefact of the order I put it in. *Derived.*
+- **That noticing is what gets people out.** *Speculative.*
+- **That slowness is what made noticing possible.** *Speculative* — and the weakest joint.
+- **That these systems remove the slowness.** *Derived*, mostly from one control condition in one paper.
+- **That anybody builds the thing.** *Speculative.*
 
----
-
-## We just didn't want to take the chance
-
-So that is the case for not worrying, and I think it is a decent one.
-
-Here is the thing. We just didn't want to take the chance.
-
-The situation might be dire. The hypothetical says it could be, and the people running the laboratories are saying it might be. Neither is proof. But the two ways of being wrong are not the same size. If the threat is real and we did nothing, what gets lost is the ability to notice what is being done to us — which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, we are out some engineering time. We looked at those two and stopped arguing.
-
-So at Obsidian Delta we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol).
+Knock out any of the middle three and the whole thing falls over. On a fair reading, this could be nothing.
 
 ---
 
-## What the Constraint Protocol is
+## We didn't want to take the chance
 
-It does two jobs.
+So here's where we turn the tables.
 
-**It is an accountability framework.** Every party declares, in advance, what it will not do. What happens next is witnessed and signed by someone who is neither party, and the record cannot be quietly edited afterwards. Separate judges score whether each declaration held — and a judge can re-score the past later, with better knowledge, without erasing the old verdict. A declared constraint can hold up named kinds of work until a problem is dealt with, and it records anyone who tries to get round it. Anyone can dispute any record, and the rulings can be disputed too. None of this stops harm at the moment it happens. What it does is make hiding expensive.
+We just didn't want to take the chance.
 
-**It is also a substrate through which knowledge and intelligence compound** — and that is the specification's own first sentence, not a job I have added to it. What survives judgment accumulates into a shared floor, scoped to the constraint lineage it was judged under, which anyone working under that constraint can build on, and which other frames can import only by validating it themselves. It records who deferred to whom, and why a position changed. A floor that weights what it keeps by the quality of the reasoning behind it compounds reasoning faster than it compounds capitulation. That is the part I care about most, because it is the difference between a record of what happened and something that gets smarter.
+If the threat is real and we did nothing, we lose the one thing every other repair depends on: the ability to notice what's being done to us. If it isn't real and we prepared anyway, we're out some engineering time. That's not a hard call.
 
-We needed it for a practical reason. We had been building cognitive companions — a person's own equipment for working with this technology, which is a different thing from an assistant — and once you have more than one, the interesting question stops being what one of them does. It becomes what happens when they talk to each other, over time: what patterns form, how a group of them comes to agree, and whether that agreement was reached or manufactured. You cannot study that without a record, and you cannot trust a record that the participants can edit.
+So Obsidian Delta built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We're experimenting with it internally, and we've released it, openly licensed, through the [DAX Foundation](https://daxfoundation.org).
 
-We have started experimenting with it internally. It has run in full once — about three and a half hours in May, two companion instances operated by two organisations across a network boundary, and three attempts to get round a blocking constraint, all refused and all still on file. That shows it runs. It shows nothing else yet. It is a public working draft, and we have released it through the [DAX Foundation](https://daxfoundation.org) for anyone to use, fork or break. The full account, including what it does not do and what would falsify it, is in [Appendix C](#appendix-c-the-protocol-in-full).
+It does four things.
+
+1. **It compounds knowledge.** What survives judgment builds up into a shared floor that anyone working under the same constraint can build on, and that other frames can import only by checking it themselves. That's the specification's first sentence: *a substrate for compounding knowledge across entities, time, and constraint frames.*
+2. **It compounds intelligence.** It records who deferred to whom, and why a position changed. A floor that weights what it keeps by the quality of the reasoning behind it compounds reasoning faster than it compounds capitulation.
+3. **It shows patterns over time.** It's built so that when entities talk to each other for months, you can see how they came to agree, and whether the agreement was reached or manufactured.
+4. **It's an accountability layer.** Everyone declares in advance what they won't do. What happens is witnessed and signed. Independent judges score whether each declaration held, and can re-score it years later without erasing the old verdict. Nothing gets quietly edited. It won't stop harm in the moment. It makes hiding expensive.
+
+---
+
+## Why we needed it
+
+We didn't build this as a thought experiment. We built it because we needed it.
+
+I started [DAX](https://www.youtube.com/watch?v=Q1gCzxg5WMc), my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in August 2021. When OpenClaw and Hermes Agent came along, we took everything we'd built and wrapped it around them. The core is interchangeable. Everything it doesn't do, we built.
+
+Then the question changed. Once you have companions, and agents, and the systems you build with them, all talking to each other, what matters is no longer what one of them does. It's what they do together over time: what they learn, how they come to agree, and whether anybody could ever check.
+
+That's where Obsidian Delta is now. We needed a record nobody could quietly edit and a floor that could compound. Nothing we found did both, so we built it. It has run in full once — two companion instances, two organisations, a network boundary, and three attempts to get round a blocking constraint, all refused and all still on file. That shows it runs. The rest is what we're doing now, in the open. [Appendix C](#appendix-c-the-protocol-in-full) has the full account, including what it doesn't do and what would prove it wrong.
 
 ---
 
 ## The constraint we follow
 
-The protocol does not care which constraint you declare. We do.
+The protocol doesn't care which constraint you declare. We do.
 
-Obsidian Delta has chosen to follow the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.*
+Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.*
 
-It is the opposite of every row on that table. Each of them narrowed something — what could be thought, wanted or done. The opposite of narrowing is not freedom, which is a mood, and it is not goodness, which is an argument nobody wins. It is expansion. It names consciousness and not only humanity because what worries me is capability and opacity, not what a thing is made of, and a constraint that protects only one kind of mind is one I would have to abandon the moment the question got hard.
+Every row on that table narrowed something. DAX commits to the opposite. And it forbids something, which is what makes it a constraint and not a slogan: anything that permanently forecloses life, humanity or consciousness is out, and out in a way you can check.
 
-And it forbids something, which is what makes it a constraint rather than a slogan. Anything that permanently forecloses life, humanity or consciousness is out, and out in a way you can hold us to. If Obsidian Delta ever becomes the thing this post is afraid of, it will be in the record, with our name on it.
+DAX is one example of a constraint. It's the one we chose. If you think it's wrong, declare your own, say what it forbids, and let it be checked.
 
-I cannot prove DAX is the right constraint, and I am not asking anyone to adopt it. If you think it is wrong, do not argue with me. Declare a better one, say what it forbids, and let it be checked. Then there are two of them in the open.
+And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in the record, with our name on it.
 
 ---
 
 ## Gloves
 
-AI is a new kind of electricity. Not a product — a substrate, drawn on everywhere, and dangerous to touch. Nobody works live current bare-handed. An electrician turns up with insulated gloves, a mat, and training that amounts to a list of what not to touch, in what order.
+AI is a new kind of electricity, and nobody works live current bare-handed. A cognitive companion is the gloves — [we wrote about that on the Obsidian Delta blog](https://www.obsidiandelta.com/blog/cognitive-companion/). The Constraint Protocol is the logbook.
 
-A [cognitive companion](https://daxfoundation.org/#cognitive-companion) is that kit, for this. The Constraint Protocol is the other thing the trade has always had: a record of what was done, by whom, under which rules, that somebody who was not there can check.
+So here are the questions I'd rather we were asking than "will it kill us in ten years":
 
-So, back to the joke. I am still fine with you telling me what things mean. That includes this post. I would just like it on the record.
+**What are you operating under? Where is it written down? What does it forbid? And can somebody who doesn't trust you check whether you held to it?**
+
+I'm still fine with you telling me what things mean. Including this post.
+
+I'd just like it on the record.
 
 ---
 
