@@ -34,7 +34,7 @@ Three things follow from the definition.
 
 The Foundation defines intelligence narrowly, as the navigation of constrained possibility space: the *how* of getting from A to B using what is known. On that definition a companion gives its user more intelligence. Not more facts, and not a second mind, but more reach across what is possible, inside the constraints that apply.
 
-That is the whole claim.
+That is the whole claim, and it is deliberately modest.
 
 ## Name the thing being done
 
