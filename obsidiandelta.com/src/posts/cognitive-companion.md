@@ -43,3 +43,5 @@ So on this blog we will try to name the thing being done. When we write about a 
 ## What comes next
 
 This is the first piece in a series on cognition and the tools around it. Later posts will take up the other half of the picture, the idea of a cognition provider, and will report where our own work stands as it moves. Where something is still an idea, we will say so.
+
+Why we built an accountability and compounding layer to go with it is in [The Constraint](https://jeyanandan.com/blog/the-constraint/).
