@@ -1,0 +1,127 @@
+---
+// The Obsidian Delta layout for every page Astro builds: /blog/, each post and
+// the 404. It is NOT used by the home page, which is the live static page in
+// public/index.html, carried over untouched.
+//
+// THEME. Tokens are the Obsidian Delta brand system as written down in
+// od/assets/README.md (palette table and typography) and as the live front
+// page already declares them in its own :root. Black ground, white text, one
+// orange accent, red kept rare. Space Grotesk for display, Inter for body,
+// JetBrains Mono for labels -- loaded from Google Fonts with the exact
+// stylesheet URL the front page uses, so a reader moving between / and /blog/
+// sees one typeface system, and a browser that cached it for one has it for
+// the other.
+//
+// `noindex` is passed by src/pages/blog/[slug].astro for a post that is
+// unlisted or a draft, and by 404.astro. Every other page omits it, which is
+// the default: index, follow.
+//
+// These notes live in the frontmatter, not in an HTML comment, because an
+// HTML comment in a layout ships inside every page built from it.
+const {
+  title,
+  description = 'Obsidian Delta.',
+  noindex = false,
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>{title}</title>
+<meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#000000" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style is:global>
+:root{
+  --black:#000000; --ink:#0A0A0A; --shade:#1A1A1A; --steel:#222222;
+  --ash:#888888; --bone:#E5E5E5; --white:#FAFAFA;
+  --orange:#E89339; --red:#C73E2D;
+  --font-display:'Space Grotesk',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+  --gutter:clamp(16px,5vw,32px);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--black);color:var(--white);
+  font-family:var(--font-body);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;display:flex;flex-direction:column;
+}
+main{flex:1}
+img,svg{max-width:100%;height:auto;display:block}
+a{color:inherit}
+::selection{background:var(--orange);color:var(--black)}
+
+.shell{max-width:1080px;margin:0 auto;padding:0 var(--gutter)}
+.narrow{max-width:calc(680px + 2 * var(--gutter))}
+
+/* ---------- masthead ---------- */
+.strip{border-bottom:1px solid var(--steel)}
+.strip .shell{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:18px;padding-bottom:18px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{width:28px;height:28px}
+.brand span{font-family:var(--font-display);font-weight:500;font-size:18px;letter-spacing:-.01em;color:var(--white)}
+.nav{display:flex;gap:24px}
+.nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
+.nav a:hover,.nav a[aria-current]{color:var(--orange)}
+
+/* ---------- shared type ---------- */
+h1{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(36px,6.4vw,64px);line-height:1.05;letter-spacing:-.025em;
+  color:var(--white);text-wrap:balance;
+}
+.eyebrow{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px;
+}
+.rule{width:56px;height:2px;background:var(--orange);margin:32px 0 0}
+
+/* ---------- footer: the front page's footer, same rhythm ---------- */
+.footer{
+  border-top:1px solid var(--steel);margin-top:64px;padding:40px 0;
+  font-family:var(--font-mono);font-size:11px;color:var(--ash);letter-spacing:.06em;
+}
+.footer .shell{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.footer__left{display:flex;align-items:center;gap:12px}
+.footer__left img{height:24px;width:24px;opacity:.85}
+.footer a{text-decoration:none;color:var(--ash)}
+.footer a:hover{color:var(--orange)}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+  <header class="strip"><div class="shell">
+    <a class="brand" href="/"><img src="/logo-flat.png" alt="" width="28" height="28" /><span>Obsidian Delta</span></a>
+    <nav class="nav" aria-label="Site">
+      <a href="/">Home</a>
+      <a href="/blog/" aria-current={Astro.url.pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a>
+    </nav>
+  </div></header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer class="footer"><div class="shell">
+    <div class="footer__left">
+      <img src="/logo-flat.png" alt="" width="24" height="24" />
+      <span>obsidian delta · since 2015</span>
+    </div>
+    <a href="/blog/">blog</a>
+  </div></footer>
+</body>
+</html>

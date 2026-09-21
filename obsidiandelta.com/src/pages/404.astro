@@ -1,0 +1,36 @@
+---
+import Base from '../layouts/Base.astro';
+
+// A real 404. Until this sample, www.obsidiandelta.com had no 404.html, so
+// Cloudflare Pages fell back to serving the front page with HTTP 200 for every
+// unknown URL (/blog/, /robots.txt, /definitely-not-real/ all answered 200 with
+// the home page, measured 2026-09-21). Astro emits this route as
+// dist/404.html, which Pages serves with a 404 status for any path that does
+// not exist -- the same fix jeyanandan.com took on 2026-09-19.
+---
+<Base title="Not found — Obsidian Delta" description="There is no page at that address." noindex={true}>
+  <section class="hero"><div class="shell narrow">
+    <p class="eyebrow">404</p>
+    <h1>Not found</h1>
+    <div class="rule"></div>
+  </div></section>
+
+  <section><div class="shell narrow">
+    <p class="lede">There is no page at that address.</p>
+    <ul class="ways">
+      <li><a href="/">Home</a><span>The Obsidian Delta front page.</span></li>
+      <li><a href="/blog/">Blog</a><span>Writing on cognition and where the work stands.</span></li>
+    </ul>
+  </div></section>
+</Base>
+
+<style is:global>
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(32px,6vw,48px)}
+.lede{color:var(--bone);font-size:clamp(18px,2.2vw,21px);margin-bottom:32px}
+.ways{list-style:none;display:flex;flex-direction:column}
+.ways li{border-top:1px solid var(--steel);padding:20px 0;display:flex;flex-direction:column;gap:6px}
+.ways li:last-child{border-bottom:1px solid var(--steel)}
+.ways a{font-family:var(--font-display);font-weight:500;font-size:24px;letter-spacing:-.02em;color:var(--white);text-decoration:none;transition:color .2s}
+.ways a:hover{color:var(--orange)}
+.ways span{color:var(--ash);font-size:15px}
+</style>
