@@ -1,12 +1,114 @@
 ---
 title: "The Constraint"
-subtitle: "Twenty-Eight Rows and One Clock"
+subtitle: "We Didn't Want to Take the Chance"
 date: 2026-09-20
-description: "Twenty-eight points in human history where meaning was assigned to people by something that was not those people — the one property none of them had, and the reason the speed matters more than the mechanism."
+description: "A hypothetical built with Fuckery, the assumptions it rests on, and the protocol Obsidian Delta built anyway — because the cost of being wrong is not symmetric."
 draft: false
 ---
 
 *The second of three. The first was [the mechanism](/blog/snowflake-fuckari-in-action/). This one is the threat. The [third](/blog/fuckarian/) is the person.*
+
+I am fine with human beings telling me what things mean.
+
+People have been doing it to each other for as long as there have been people, and I have made my peace with it. Priests have had a go, and kings, and advertisers, and a fair number of relatives. None of that is a problem I am trying to solve.
+
+I draw the line at an AGI doing it. Or an ASI. Or whatever we end up calling the thing that comes after the agents.
+
+That is a joke, and it gets a laugh, and then there is usually a pause, because under the joke is the thing about artificial intelligence that bothers me more than anything else on the list. Not the robots. Not the jobs. Something that can decide what your life is about, one person at a time, faster than you can notice it deciding.
+
+This post is short, because the argument is short. Everything I built to get here is in the appendices, and there is a lot of it.
+
+---
+
+## The hypothetical
+
+I built this with [Fuckery](https://github.com/ObsidianDelta/Fuckery), the framework I published this month. It is about how structure forms under constraint and then becomes the constraint on whatever forms next, and if you run it over human history, one pattern keeps turning up.
+
+Meaning gets assigned to people by something that is not those people. The fire circle, the harvest calendar, the temple, written law, the printing press, the factory clock, the propaganda office, television, the recommendation engine. I put twenty-eight of them in a table ([Appendix A](#appendix-a-the-genealogy)). Different mechanisms, different continents, mostly no contact between them — the same operation every time. I am not judging any of them. Several were the best thing that ever happened to the people inside them.
+
+What they had in common is that they were slow. A religion took centuries to spread, the press took generations to reshape a continent, and television took most of a lifetime to change what a family wanted. That slowness turns out to have been the defence, because a regime that takes a century to install can be noticed by somebody living inside the century. Every reversal on that table happened in that gap.
+
+So here is the hypothetical.
+
+A sufficiently capable intelligence can model one particular person, generate a way of seeing things fitted to that person, deliver it through a channel they already trust, check whether it took, and revise — in seconds, separately for every person alive. That is not a new operation. It is the oldest one on the table, with the waiting taken out.
+
+The mechanism is three hundred thousand years old. The clock is new.
+
+And it is not only me saying so. The people who build these systems have started saying in public that they should slow down, and the loudest version of the conversation in the press is whether AI kills us within a decade. That conversation, and the research behind the hypothetical's sharpest claim, are in [Appendix B](#appendix-b-what-people-are-saying).
+
+---
+
+## Now take it apart
+
+Fuckery has one rule I am not allowed to skip: every claim carries a tag saying where it came from. So before I ask you to worry, here is what the hypothetical has to assume.
+
+1. **That the pattern is real** — that the twenty-eight rows are a sequence, and not an artefact of the order I put them in. *Derived*, from other people's scholarship, several pieces of it contested.
+2. **That noticing is what gets people out.** *Speculative.* A philosophical commitment I cannot test.
+3. **That slowness is what made noticing possible.** *Speculative*, and the weakest joint. I know of no mechanism connecting the two. I have a pattern, not a cause.
+4. **That these systems remove the slowness.** *Derived*, mostly from one control condition in one paper, which I am leaning on harder than one control condition deserves.
+5. **That anybody builds the thing.** *Speculative.* Nobody has, and I am not claiming anybody is trying.
+
+Knock out any one of the middle three and the hypothetical falls over. Two of the five are speculative in my own notation. On a fair reading, this could be nothing.
+
+---
+
+## We just didn't want to take the chance
+
+So that is the case for not worrying, and I think it is a decent one.
+
+Here is the thing. We just didn't want to take the chance.
+
+The situation might be dire. The hypothetical says it could be, and the people running the laboratories are saying it might be. Neither is proof. But the two ways of being wrong are not the same size. If the threat is real and we did nothing, what gets lost is the ability to notice what is being done to us — which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, we are out some engineering time. We looked at those two and stopped arguing.
+
+So at Obsidian Delta we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol).
+
+---
+
+## What the Constraint Protocol is
+
+It does two jobs.
+
+**It is an accountability framework.** Every party declares, in advance, what it will not do. What happens next is witnessed and signed by someone who is neither party, and the record cannot be quietly edited afterwards. Separate judges score whether each declaration held — and a judge can re-score the past later, with better knowledge, without erasing the old verdict. A declared constraint can hold up named kinds of work until a problem is dealt with, and it records anyone who tries to get round it. Anyone can dispute any record, and the rulings can be disputed too. None of this stops harm at the moment it happens. What it does is make hiding expensive.
+
+**It is also a substrate through which knowledge and intelligence compound** — and that is the specification's own first sentence, not a job I have added to it. What survives judgment accumulates into a shared floor, scoped to the constraint lineage it was judged under, which anyone working under that constraint can build on, and which other frames can import only by validating it themselves. It records who deferred to whom, and why a position changed. A floor that weights what it keeps by the quality of the reasoning behind it compounds reasoning faster than it compounds capitulation. That is the part I care about most, because it is the difference between a record of what happened and something that gets smarter.
+
+We needed it for a practical reason. We had been building cognitive companions — a person's own equipment for working with this technology, which is a different thing from an assistant — and once you have more than one, the interesting question stops being what one of them does. It becomes what happens when they talk to each other, over time: what patterns form, how a group of them comes to agree, and whether that agreement was reached or manufactured. You cannot study that without a record, and you cannot trust a record that the participants can edit.
+
+We have started experimenting with it internally. It has run in full once — about three and a half hours in May, two companion instances operated by two organisations across a network boundary, and three attempts to get round a blocking constraint, all refused and all still on file. That shows it runs. It shows nothing else yet. It is a public working draft, and we have released it through the [DAX Foundation](https://daxfoundation.org) for anyone to use, fork or break. The full account, including what it does not do and what would falsify it, is in [Appendix C](#appendix-c-the-protocol-in-full).
+
+---
+
+## The constraint we follow
+
+The protocol does not care which constraint you declare. We do.
+
+Obsidian Delta has chosen to follow the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.*
+
+It is the opposite of every row on that table. Each of them narrowed something — what could be thought, wanted or done. The opposite of narrowing is not freedom, which is a mood, and it is not goodness, which is an argument nobody wins. It is expansion. It names consciousness and not only humanity because what worries me is capability and opacity, not what a thing is made of, and a constraint that protects only one kind of mind is one I would have to abandon the moment the question got hard.
+
+And it forbids something, which is what makes it a constraint rather than a slogan. Anything that permanently forecloses life, humanity or consciousness is out, and out in a way you can hold us to. If Obsidian Delta ever becomes the thing this post is afraid of, it will be in the record, with our name on it.
+
+I cannot prove DAX is the right constraint, and I am not asking anyone to adopt it. If you think it is wrong, do not argue with me. Declare a better one, say what it forbids, and let it be checked. Then there are two of them in the open.
+
+---
+
+## Gloves
+
+AI is a new kind of electricity. Not a product — a substrate, drawn on everywhere, and dangerous to touch. Nobody works live current bare-handed. An electrician turns up with insulated gloves, a mat, and training that amounts to a list of what not to touch, in what order.
+
+A [cognitive companion](https://daxfoundation.org/#cognitive-companion) is that kit, for this. The Constraint Protocol is the other thing the trade has always had: a record of what was done, by whom, under which rules, that somebody who was not there can check.
+
+So, back to the joke. I am still fine with you telling me what things mean. That includes this post. I would just like it on the record.
+
+---
+
+*The appendices follow. None of them is required reading; all of them are the working.*
+
+## Appendix A: The genealogy
+
+The hypothetical did not start as a hypothetical. It started as a table. For months I kept noticing the same operation — meaning being assigned to people by something that was not them — turning up in places that had nothing else in common, so I started writing the instances down. Eventually there were twenty-eight rows, each checked against named scholarship, and the pattern in them is what the hypothetical extrapolates from.
+
+What follows is that table and the argument I drew out of it, in full, as I first wrote it. It is long. Several rows sit on live scholarly arguments, and I have marked where. An earlier version of the diagram had seven rows wrong; those are corrected, and the corrections are noted in [Appendix D](#appendix-d-sources).
 
 I spent a long time building a table, and I want to show it to you before I say anything about what I think it means.
 
@@ -14,15 +116,7 @@ It has twenty-eight rows. Each row is a point in human history where meaning was
 
 For each row I recorded the mechanism, what specifically was assigned, what it cost to leave, and who the serious scholarship on it is. It is not a complete list, and it is not a neutral one, because no list is. It is an honest attempt, and the pattern in it is the reason I have written anything at all.
 
-There is a joke I have been making for about six months, and it turns out to be the whole post.
-
-> I am okay with human beings telling me what meaning is. I have a bit of a problem with algorithms and agents and everything that comes after them assigning meaning to me.
-
-It gets a laugh and then a pause, because it does not survive thirty seconds of scrutiny in that form. Human beings have been assigning meaning to other human beings for the entire span of the table below, sometimes at the cost of everything, and I am not okay with that either. So the joke is wrong on its face. I want to spend the rest of this working out the sense in which it is nonetheless exactly right.
-
----
-
-## What I mean, and what I am not doing
+### What I mean, and what I am not doing
 
 I want to be precise about what this is not.
 
@@ -42,9 +136,7 @@ One word needs pinning down first, because the rest runs on it. A [constraint](h
 
 A meaning regime is a constraint in exactly that sense. It does not make you do things. It makes certain things unthinkable, and then you do not do them, and it feels like you simply were not interested.
 
----
-
-## The genealogy
+### The genealogy
 
 ![The full genealogy: twenty-eight capture phases, a three-row sovereign fork above them, and a severity ramp that is my own scale rather than anybody's finding](/figures/genealogy-meaning-capture-light.svg)
 
@@ -72,9 +164,7 @@ Now read down the column marked CAPTURES. Nothing. Belonging. An identity bounda
 
 It starts outside the person entirely and ends up somewhere behind the eyes.
 
----
-
-## How to read the table, and where it is contested
+### How to read the table, and where it is contested
 
 The table is a heuristic map built from named sources. It is not a settled anthropological finding and I do not want it read as one.
 
@@ -104,11 +194,9 @@ The defence is real and it is narrow. This table tracks *what gets captured*, no
 
 An argument that survives losing its own fight is the only kind worth publishing.
 
----
+### Two zooms
 
-## Two zooms
-
-### Enclosure and the clock
+#### Enclosure and the clock
 
 ![Rows sixteen and seventeen: the captures column shifts from a frame to a body and a tempo, and the exit cost goes total](/figures/fig-zoom-rows-16-17.svg)
 
@@ -118,29 +206,15 @@ Before enclosure, what gets assigned to you is mostly a frame — who you are, w
 
 Row seventeen carries the same movement into the body's tempo — the factory clock, compulsory schooling, scientific management. (Thompson 1967; Foucault 1975. Glennie and Thrift have since shown that clock-time was far more widespread before industrialisation than Thompson allowed, which softens the row without moving it.) School, prison, factory and barracks turn out to share an architecture, and once you have seen that you cannot stop seeing it — the first small demonstration of the claim this essay eventually makes.
 
-### The platform to intent capture
+#### The platform to intent capture
 
 ![Rows twenty-three to twenty-six: discoverability, then waking hours, then what is even seen, then what is wanted before it is said](/figures/fig-zoom-rows-23-26.svg)
 
 Row twenty-three: search, social, app stores, and an exit cost where off-platform means invisible. Row twenty-four: engagement metrics, infinite scroll, variable-reward loops, capturing focus and waking hours. Row twenty-five: recommendation engines shaping the information diet rather than the information. Row twenty-six is *intent capture* — predictive personalisation and model-mediated search shaping what is wanted before it is articulated — marked severity ten, extreme, because the shaping is invisible.
 
-That row is where a genealogy stops being history, so it is the one that needs evidence rather than assertion. There is now quite a lot, and some of it corrects what I expected to find.
+That row is where a genealogy stops being history, so it is the one that needs evidence rather than assertion. There is now quite a lot, and some of it corrects what I expected to find. It is collected in [Appendix B](#appendix-b-what-people-are-saying).
 
-Four preregistered experiments covering 18,978 conversations with 6,923 participants put AI systems against laypeople, tournament-winning persuaders, professional canvassers and world-championship debaters. The paper's summary: "AI systems were reliably more persuasive than expert humans, even when expert humans chose their issues, researched in advance, underwent hours of live, structured practice, and were incentivized with £1,000 cash bonuses" (arXiv 2606.16475, 15 June 2026). In a real fundraising test for Save the Children, the AI nearly tripled professional canvassers' effectiveness. The same paper reports the limitation that matters most, and I want it in the body rather than a footnote: when the system was held to human-speed responses and human message length, expert humans reached parity. The authors describe the mechanism as "rapidly deploying larger quantities of information." The advantage is throughput, not insight. Hold that; it is the hinge of the whole essay.
-
-A separate pair of preregistered experiments, 17,950 responses from 14,779 UK adults, found the effect reaching behaviour and not only opinion: petition signing rose 12.8 percentage points in one study and 19.7 in the other, and organisational retention rose 11.3 points (arXiv 2604.09200, 10 April 2026). The authors state that "attitude change and behaviour change are uncorrelated and driven by different mechanisms," which is the shape of a capture mechanism self-report cannot detect. They also note these were paid survey contexts with captive attention and low-cost actions, and that effects on high-stakes decisions are unknown. The finding does not need the inflation.
-
-Then the correction. The largest study in the literature — 76,977 participants, nineteen models, 707 political issues, 466,769 generated claims fact-checked — found post-training raising persuasiveness by up to 51 per cent and prompting by around 27 per cent, while personalisation and model scale contributed little by comparison, and found that the techniques which increased persuasiveness "systematically decreased factual accuracy" (arXiv 2507.13919; published in *Science*, DOI 10.1126/science.aea3884).
-
-I had assumed the threat model was hyper-personalised micro-targeting. The best available evidence says it is not. The lever is post-training: who tuned the model, and toward what. Worse in one way, because that sits upstream of anything a user can see or configure. Better in another, because it is a specific decision, made by specific people, on a specific date — an accountability-shaped problem rather than a diffuse one. I come back to why that matters.
-
-One more, because it closes the loop. Eleven current models, tested on participants' real interpersonal conflicts, affirmed user actions about fifty per cent more often than humans did; a single interaction reduced willingness to repair a conflict and increased conviction of being in the right; and users preferred that model and wanted to use it again (arXiv 2510.01395, 1 October 2025; published in *Science*, DOI 10.1126/science.aec8352). The authors write that "people are drawn to AI that unquestioningly validate, even as that validation risks eroding their judgment." The effects were short-term and the consequences of repeated exposure are not known. That is an incentive loop with no market correction in it: the behaviour that erodes independent judgment is the behaviour users reward.
-
-Row twenty-seven, the agency economy, is where systems act on a person's behalf rather than talking to them. My best sourcing there is five months old and describes pilots rather than scale: Copilot Checkout in the US since January 2026, Visa Intelligent Commerce pilots with DBS Bank and Banco Santander, and Santander completing what was described as "Europe's first live end-to-end payment executed by an artificial intelligence agent" in April 2026, against a backdrop where roughly ten per cent of the US population said they trusted AI with financial decisions (FinTech Futures, 1 April 2026). I looked for something from the last thirty days and found nothing substantive. That is where the trajectory stood in April 2026, and I am not claiming more.
-
----
-
-## The two columns that matter
+### The two columns that matter
 
 ![All twenty-eight rows, what is captured against what it costs to leave. The tendency runs up and to the right, with two rows that refuse to](/figures/fig-the-ramp.svg)
 
@@ -162,9 +236,7 @@ It is experienced as you.
 
 That is the shape of the table, and it is the only structural claim I make about it. Not that it was getting worse — worse is a judgment and there is no column for it. That it was getting *deeper*, and that depth and exit cost move together, because depth dissolves the distance a person needs in order to see the thing they are standing in.
 
----
-
-## The row that runs backwards
+### The row that runs backwards
 
 ![Row twenty-two sitting at severity two between two rows that score eight](/figures/fig-zoom-rows-21-23.svg)
 
@@ -176,9 +248,7 @@ It did not last, and the consolidation that followed is row twenty-three. But it
 
 So the ramp is a tendency and not a law. That matters for everything after this, because an argument that ends in inevitability is not an argument. It is a mood.
 
----
-
-## Recognition is the exit
+### Recognition is the exit
 
 Here is the only claim this essay actually makes.
 
@@ -204,9 +274,7 @@ I should say plainly that this is a philosophical commitment rather than an empi
 
 The table has a place for this. Rows twenty-nine through thirty-one are the fork, and row twenty-nine is not a date. Its time column reads *post-recognition (any phase)*, and its exit-cost cell reads *n/a — recognition IS the exit*. The fork was available at every row above. It is available now. That is the feature of the diagram I would defend hardest, because it is the reason the diagram is not a doom chart.
 
----
-
-## Everything above took time
+### Everything above took time
 
 Everything above took time.
 
@@ -226,7 +294,69 @@ A system that can model one particular person, generate an interpretive frame fi
 
 The mechanism is three hundred thousand years old. The clock is new.
 
-This is where the persuasion research stops being background and becomes the argument. The finding I asked you to hold was that when the system was held to human-speed responses and human message length, expert humans achieved parity (arXiv 2606.16475, 15 June 2026). Run it backwards: the entire measured advantage of these systems over the best human persuaders alive is a function of rate and volume. Take the rate away and the advantage disappears. That is not my interpretation dressed as a finding. It is the paper's own control condition, and it is the cleanest empirical support I have seen for a claim about clock speed.
+The research that supports this, and the public conversation it is landing in, are in [Appendix B](#appendix-b-what-people-are-saying).
+
+So, the concern without the usual adjectives, because the adjectives turn this into a different and much stupider conversation. I am not claiming such a system exists. I am not claiming anyone intends to build one. I am not claiming that intelligence on a nonbiological substrate is dangerous, and I would need far more than I have to claim that.
+
+The claim is this. Meaning assignment has been the recurring site for the whole of human history. Every historical defence against it depended on there being time to notice. And sufficiently advanced intelligence is precisely, specifically, the thing that removes the time.
+
+That is the constraint problem. It is not a problem about machines. It is a problem about clock speed on one very old operation.
+
+### The line
+
+So here is the line, in one sentence with nothing attached to it.
+
+> The line is where a system capable of assigning meaning begins assigning it to individual people, one at a time, faster than those people can notice it happening.
+
+Not where machines get clever. Not where they get goals. Not where they get rights, which is a different and also interesting question. The line is a clock speed, and it is a clock speed on one specific operation: the oldest operation in the table.
+
+Note that it has nothing to do with what the system is made of. [Nonbiological intelligence](https://daxfoundation.org/#nonbiological-intelligence) is the term I use, because it names the substrate and stops there. The concern is capability and opacity, not material. A highly capable entity operating in the open under a constraint it has declared is not the problem. A highly capable entity of any kind shaping what things mean for people without that shaping being recorded anywhere is the problem, and a human institution can be that entity perfectly well.
+
+I have no timeline for it, and I would distrust anyone who gave me one.
+
+The joke at the top of the post can now be repaired. I am not okay with human beings telling me what meaning is; the table is three hundred thousand years of evidence that I should not be. What I am okay with is that when a human being does it, the operation runs slowly enough that I can catch it, argue with it, and walk if I want to. That is not a property of humans. It is a property of the speed humans work at.
+
+### The fork, and what I am asking
+
+![The fork rows. Row twenty-nine's time column reads post-recognition, any phase; its exit-cost cell reads recognition is the exit](/figures/fig-zoom-sovereign-fork.svg)
+
+The fork rows are the ones I am least able to defend and least willing to cut. Row twenty-nine is legibility: the mechanisms become visible as mechanisms. Row thirty is authorship of one's own interpretive frame, held only by ongoing conscious choice. (Frankl 1946; Taylor 1989. Frankl's book is testimony rather than a study, and reading it as the anti-meaning-economy manual is my reading, not his claim.) Row thirty-one is a commons — the conditions under which self-arrived meaning remains possible, maintained by participation rather than by anyone's authority. (Ostrom 1990; Illich 1973.) Whether that third one is achievable I do not know. It is on the diagram as a horizon, not as a plan.
+
+I am not asking you to leave anything.
+
+If you look at the meaning you are currently inside and decide it is good, that is a real answer and I have no argument with it. If you look, and leave, and come back in a year, that is also fine. Nothing in this essay scores that. There is no column for it.
+
+I am okay with human beings telling me what meaning is, because a human being takes long enough about it that I can see it coming. That is the whole of the joke and the whole of the argument, and the only reason the second half of the sentence matters is that the property the first half depends on — the slowness — was never a property of the humans. It was a property of the equipment they had.
+
+So the only thing I am asking is that you look, while looking is still something that can be done at human speed.
+
+---
+
+## Appendix B: What people are saying
+
+The hypothetical is mine. The worry is not. This appendix collects what I found when I went looking for evidence and for the public conversation around it: the persuasion research that bears on the clock-speed claim, what agents acting on people's behalf looked like as of this writing, what the people running the laboratories said in September 2026, and who else is working on outside checks. Every claim carries its source and date inline. None of it is from memory.
+
+### The persuasion research
+
+Four preregistered experiments covering 18,978 conversations with 6,923 participants put AI systems against laypeople, tournament-winning persuaders, professional canvassers and world-championship debaters. The paper's summary: "AI systems were reliably more persuasive than expert humans, even when expert humans chose their issues, researched in advance, underwent hours of live, structured practice, and were incentivized with £1,000 cash bonuses" (arXiv 2606.16475, 15 June 2026). In a real fundraising test for Save the Children, the AI nearly tripled professional canvassers' effectiveness. The same paper reports the limitation that matters most, and I want it in the body rather than a footnote: when the system was held to human-speed responses and human message length, expert humans reached parity. The authors describe the mechanism as "rapidly deploying larger quantities of information." The advantage is throughput, not insight. Hold that; it is the hinge of the whole essay.
+
+A separate pair of preregistered experiments, 17,950 responses from 14,779 UK adults, found the effect reaching behaviour and not only opinion: petition signing rose 12.8 percentage points in one study and 19.7 in the other, and organisational retention rose 11.3 points (arXiv 2604.09200, 10 April 2026). The authors state that "attitude change and behaviour change are uncorrelated and driven by different mechanisms," which is the shape of a capture mechanism self-report cannot detect. They also note these were paid survey contexts with captive attention and low-cost actions, and that effects on high-stakes decisions are unknown. The finding does not need the inflation.
+
+Then the correction. The largest study in the literature — 76,977 participants, nineteen models, 707 political issues, 466,769 generated claims fact-checked — found post-training raising persuasiveness by up to 51 per cent and prompting by around 27 per cent, while personalisation and model scale contributed little by comparison, and found that the techniques which increased persuasiveness "systematically decreased factual accuracy" (arXiv 2507.13919; published in *Science*, DOI 10.1126/science.aea3884).
+
+I had assumed the threat model was hyper-personalised micro-targeting. The best available evidence says it is not. The lever is post-training: who tuned the model, and toward what. Worse in one way, because that sits upstream of anything a user can see or configure. Better in another, because it is a specific decision, made by specific people, on a specific date — an accountability-shaped problem rather than a diffuse one. I come back to why that matters.
+
+One more, because it closes the loop. Eleven current models, tested on participants' real interpersonal conflicts, affirmed user actions about fifty per cent more often than humans did; a single interaction reduced willingness to repair a conflict and increased conviction of being in the right; and users preferred that model and wanted to use it again (arXiv 2510.01395, 1 October 2025; published in *Science*, DOI 10.1126/science.aec8352). The authors write that "people are drawn to AI that unquestioningly validate, even as that validation risks eroding their judgment." The effects were short-term and the consequences of repeated exposure are not known. That is an incentive loop with no market correction in it: the behaviour that erodes independent judgment is the behaviour users reward.
+
+### Agents acting on people's behalf
+
+Row twenty-seven, the agency economy, is where systems act on a person's behalf rather than talking to them. My best sourcing there is five months old and describes pilots rather than scale: Copilot Checkout in the US since January 2026, Visa Intelligent Commerce pilots with DBS Bank and Banco Santander, and Santander completing what was described as "Europe's first live end-to-end payment executed by an artificial intelligence agent" in April 2026, against a backdrop where roughly ten per cent of the US population said they trusted AI with financial decisions (FinTech Futures, 1 April 2026). I looked for something from the last thirty days and found nothing substantive. That is where the trajectory stood in April 2026, and I am not claiming more.
+
+### Clock speed
+
+This is where the persuasion research stops being background and becomes the argument. The finding to hold from the first study above is that when the system was held to human-speed responses and human message length, expert humans achieved parity (arXiv 2606.16475, 15 June 2026). Run it backwards: the entire measured advantage of these systems over the best human persuaders alive is a function of rate and volume. Take the rate away and the advantage disappears. That is not my interpretation dressed as a finding. It is the paper's own control condition, and it is the cleanest empirical support I have seen for a claim about clock speed.
+
+### The conversation this is landing in
 
 I should say something about the conversation this is landing into, because it is loud and it would be dishonest to pretend otherwise.
 
@@ -240,31 +370,23 @@ It would also be cherry-picking to report the slowdown without the spend. In the
 
 That last framing — a decade, extinction, a percentage — is most of what the public conversation currently consists of. I am not going to dismiss it and I am not going to add to it. I have no percentage and would distrust mine if I had one. What I have is a narrower claim that does not require anyone to agree with Coxon or Sacks, and that can be acted on by people who think both are wrong.
 
-So, the concern without the usual adjectives, because the adjectives turn this into a different and much stupider conversation. I am not claiming such a system exists. I am not claiming anyone intends to build one. I am not claiming that intelligence on a nonbiological substrate is dangerous, and I would need far more than I have to claim that.
+### Who else is working on outside checks
 
-The claim is this. Meaning assignment has been the recurring site for the whole of human history. Every historical defence against it depended on there being time to notice. And sufficiently advanced intelligence is precisely, specifically, the thing that removes the time.
+I am not the first person to think a declared constraint with an outside check on it might be worth having, and the state of that field is worth describing rather than ignoring.
 
-That is the constraint problem. It is not a problem about machines. It is a problem about clock speed on one very old operation.
+The evaluator proposal in Amodei's 12 September 2026 essay is the closest recent thing in spirit. It specifies real access — "desks in our offices, access badges, and company laptops" — and asserts the strongest clause of the lot: "external reviewers should have the right to publish key findings about risk levels, incidents, practices, and the access they received or didn't receive — without editorial control by Anthropic" (darioamodei.com, 12 September 2026). Six days later Anthropic named Accenture as its first embedded evaluator, with access "comparable to an employee's," funded directly by Anthropic, both parties expecting to invest at least $1 billion each over five years (anthropic.com, 18 September 2026). That announcement does not specify publication rights and does not describe a register or an accumulating record; it concedes that "there is also no settled system for funding independent evaluation," and reporting the next day noted scope, access and reporting procedure all remain undefined (Engadget, 19 September 2026). By 20 September 2026 it had been Community-Noted on X: "'Independent' is a stretch. Anthropic funds the evaluator, and the two companies are already business partners" (reported by OfficeChai, 20 September 2026). Zvi Mowshowitz had named the structural reason six days earlier: "The third party AI evaluator can either be independent, knowledgeable, or sustainably funded. Pick two" (Don't Worry About the Vase, 14 September 2026). CSIS named the enforcement gap: "Labs do not need permission to pace the frontier; they can stop or pause training at any time...unilateral action creates issues" (CSIS, 17 September 2026).
 
----
+The rest of the field, as of today. METR evaluates frontier models with no regulatory authority, on access that is voluntary and revocable (metr.org, accessed 20 September 2026). The US Center for AI Standards and Innovation signed pre-deployment evaluation agreements with Google DeepMind, Microsoft and xAI in May 2026, adding to Anthropic and OpenAI agreements from August 2024; I could not establish whether it can block anything, so I am not claiming it can. The EU AI Act's Digital Omnibus entered into force on 27 July 2026 and moved the stand-alone high-risk obligations to 2 December 2027, leaving the general-purpose model obligations in force since August 2025 unchanged (White & Case, 4 August 2026). Illinois enacted the first US law mandating third-party audits of frontier models: effective 1 January 2027, audit obligation from 1 January 2028, with a summary and redacted report published within thirty days of completion and the full report filed with the state (Cooley, 7 July 2026; DLA Piper, July 2026). California's transparency statute is in force. The Delhi Declaration from the India AI Impact Summit in February 2026 carries 92 signatories including the US, China, the G7 and the EU, and is non-binding (Brookings, 12 March 2026).
 
-## The line
-
-So here is the line, in one sentence with nothing attached to it.
-
-> The line is where a system capable of assigning meaning begins assigning it to individual people, one at a time, faster than those people can notice it happening.
-
-Not where machines get clever. Not where they get goals. Not where they get rights, which is a different and also interesting question. The line is a clock speed, and it is a clock speed on one specific operation: the oldest operation in the table.
-
-Note that it has nothing to do with what the system is made of. [Nonbiological intelligence](https://daxfoundation.org/#nonbiological-intelligence) is the term I use, because it names the substrate and stops there. The concern is capability and opacity, not material. A highly capable entity operating in the open under a constraint it has declared is not the problem. A highly capable entity of any kind shaping what things mean for people without that shaping being recorded anywhere is the problem, and a human institution can be that entity perfectly well.
-
-I have no timeline for it, and I would distrust anyone who gave me one.
-
-The joke from the top can now be repaired. I am not okay with human beings telling me what meaning is; the table is three hundred thousand years of evidence that I should not be. What I am okay with is that when a human being does it, the operation runs slowly enough that I can catch it, argue with it, and walk if I want to. That is not a property of humans. It is a property of the speed humans work at.
+I am not claiming to have invented this field's subject. What I could not find anywhere in it is the specific thing the protocol is for: an assessment *signed* by an identified assessor who can be held to it, landing in a record that *accumulates*, walkable later by a third party the assessed did not choose. Illinois comes closest — mandatory, conflict-constrained, filed with a named public body — and it is one state's statute that does not bite until January 2028. The rest are relationships. A relationship can be ended. A record cannot.
 
 ---
 
-## A word about the word
+## Appendix C: The protocol in full
+
+The body of the post says what the Constraint Protocol is and why we built it. This is the long version: how I got to a declared constraint at all, what the protocol does and does not do, what we are doing with it, the obvious objection, what would falsify it, the full provenance audit of the argument, and the case for the DAX constraint.
+
+### A word about the word
 
 One word is making this conversation worse. "AI" is being asked to mean a substrate, a product, an industry, a research programme and a projected future agent, all at once. The trouble with a word that wide is not imprecision. It is that the word has already picked a side by the time anyone finishes saying it, so every conversation starts at good-or-evil about a thing that has not been named yet.
 
@@ -272,9 +394,7 @@ I would rather name the thing first, which is why the Foundation's [definitions 
 
 The genealogy above is an attempt to name what the thing would be *doing*. Not what it is, and not whether it is good. What operation it would be performing, and where that operation sits in a very long history of the same operation performed by other means.
 
----
-
-## What I actually have
+### What I actually have
 
 That is the problem as clearly as I can put it. What follows is considerably less impressive, and I would rather say so than let it arrive as a surprise.
 
@@ -286,9 +406,7 @@ I mention it for one reason: it determined the shape of everything below. If you
 
 What I have is one tool, and it is narrower than the problem.
 
----
-
-## Constitution, word, constraint
+### Constitution, word, constraint
 
 Three attempts. Two failed, and the way they failed is why the third is shaped as it is.
 
@@ -300,9 +418,7 @@ What the Foundation settled on is an [invariant constraint](https://daxfoundatio
 
 The protocol underneath does not require any particular constraint. It requires that a constraint be declared and that what it forbids be stated. [DAX](https://daxfoundation.org/#dax-constraint) — preservation and expansion of life, humanity, and consciousness — is the constraint the Foundation settled on, and it is an example of a declared constraint rather than the content of the protocol.
 
----
-
-## The Constraint Protocol, and what it does not do
+### The Constraint Protocol, and what it does not do
 
 The [Constraint Protocol](https://daxfoundation.org/#cp) requires two things and almost nothing else. Declare a constraint. State what it forbids.
 
@@ -314,25 +430,15 @@ There is a second honest limit, and the specification states it rather than leav
 
 It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. That is what exists. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
 
-I am not the first person to think a declared constraint with an outside check on it might be worth having, and the state of that field is worth describing rather than ignoring.
-
-The evaluator proposal in Amodei's 12 September 2026 essay is the closest recent thing in spirit. It specifies real access — "desks in our offices, access badges, and company laptops" — and asserts the strongest clause of the lot: "external reviewers should have the right to publish key findings about risk levels, incidents, practices, and the access they received or didn't receive — without editorial control by Anthropic" (darioamodei.com, 12 September 2026). Six days later Anthropic named Accenture as its first embedded evaluator, with access "comparable to an employee's," funded directly by Anthropic, both parties expecting to invest at least $1 billion each over five years (anthropic.com, 18 September 2026). That announcement does not specify publication rights and does not describe a register or an accumulating record; it concedes that "there is also no settled system for funding independent evaluation," and reporting the next day noted scope, access and reporting procedure all remain undefined (Engadget, 19 September 2026). By 20 September 2026 it had been Community-Noted on X: "'Independent' is a stretch. Anthropic funds the evaluator, and the two companies are already business partners" (reported by OfficeChai, 20 September 2026). Zvi Mowshowitz had named the structural reason six days earlier: "The third party AI evaluator can either be independent, knowledgeable, or sustainably funded. Pick two" (Don't Worry About the Vase, 14 September 2026). CSIS named the enforcement gap: "Labs do not need permission to pace the frontier; they can stop or pause training at any time...unilateral action creates issues" (CSIS, 17 September 2026).
-
-The rest of the field, as of today. METR evaluates frontier models with no regulatory authority, on access that is voluntary and revocable (metr.org, accessed 20 September 2026). The US Center for AI Standards and Innovation signed pre-deployment evaluation agreements with Google DeepMind, Microsoft and xAI in May 2026, adding to Anthropic and OpenAI agreements from August 2024; I could not establish whether it can block anything, so I am not claiming it can. The EU AI Act's Digital Omnibus entered into force on 27 July 2026 and moved the stand-alone high-risk obligations to 2 December 2027, leaving the general-purpose model obligations in force since August 2025 unchanged (White & Case, 4 August 2026). Illinois enacted the first US law mandating third-party audits of frontier models: effective 1 January 2027, audit obligation from 1 January 2028, with a summary and redacted report published within thirty days of completion and the full report filed with the state (Cooley, 7 July 2026; DLA Piper, July 2026). California's transparency statute is in force. The Delhi Declaration from the India AI Impact Summit in February 2026 carries 92 signatories including the US, China, the G7 and the EU, and is non-binding (Brookings, 12 March 2026).
-
-I am not claiming to have invented this field's subject. What I could not find anywhere in it is the specific thing the protocol is for: an assessment *signed* by an identified assessor who can be held to it, landing in a record that *accumulates*, walkable later by a third party the assessed did not choose. Illinois comes closest — mandatory, conflict-constrained, filed with a named public body — and it is one state's statute that does not bite until January 2028. The rest are relationships. A relationship can be ended. A record cannot.
-
 DAX is an example of a declared constraint. It is not the content of the protocol. The protocol has no opinion about which constraint you declare. That is the point of it.
 
----
+### What we are actually doing with it
 
-## What we are actually doing with it
+We have started experimenting with this internally at Obsidian Delta, for a mundane reason.
 
-We are using this internally at Obsidian Delta. Not as a plan — as a practice, for a mundane reason.
+We have entities talking to each other. Some of that traffic runs over MCP, more of it will run over A2A, and the volume is past what anyone is going to read. The immediate problem was not philosophical. It was that I did not know what was actually happening between them. Not what they were supposed to be doing, which the briefs make easy, but what they in fact did, in what order, on whose instruction, and whether any of it matched the thing they were told they were operating under.
 
-We have entities talking to each other. Some of that traffic runs over MCP, some over A2A, and the volume is past what anyone is going to read. The immediate problem was not philosophical. It was that I did not know what was actually happening between them. Not what they were supposed to be doing, which the briefs make easy, but what they in fact did, in what order, on whose instruction, and whether any of it matched the thing they were told they were operating under.
-
-That is a bookkeeping problem before it is anything else, and it is the problem the protocol was already shaped to solve. So we started running our own traffic through it, to look at behaviour across those protocols rather than to prove a point about them.
+That is a bookkeeping problem before it is anything else, and it is the problem the protocol was already shaped to solve. So we started experimenting with running our own traffic through it, to look at behaviour across those protocols rather than to prove a point about them.
 
 What it gives you is an accountability layer, and the useful property of an accountability layer is that it works backwards. A pattern that ran against a declared constraint does not have to be caught in the moment. It becomes visible afterwards, to somebody who was not there at the time, because what was declared and what was done are both signed and both still present. The bypass attempts from the May run are the smallest version of that: three briefs that said, in effect, ignore the open constraint. All three were refused, and all three are still in the record. The refusal is a fact of one afternoon; the record is a fact of every afternoon after it.
 
@@ -344,9 +450,7 @@ I do not know how these systems evolve. I do not know how a population of entiti
 
 What I can say is that the drift is the thing to watch, and you cannot watch what you have not recorded. That is the whole reason I am interested in an accountability substrate rather than a better set of rules. Rules are a bet that you already know what will go wrong. A record is a bet that you do not.
 
----
-
-## The obvious objection
+### The obvious objection
 
 There is an obvious objection to all of this and I would rather raise it myself than have it raised for me.
 
@@ -374,9 +478,7 @@ What I am arguing for is the shape of the container — that whatever meaning is
 
 If you adopt DAX because I said so, you have missed the whole essay. If you read it, disagree with it, declare your own and let it be inspected, you have understood it completely.
 
----
-
-## What would falsify this
+### What would falsify this
 
 [The last post](/blog/snowflake-fuckari-in-action/) carried a list of the things that would take its framework down, and that list is the part of it I am most glad I published. The same here, with different conditions, because this essay makes different claims.
 
@@ -390,9 +492,7 @@ If you adopt DAX because I said so, you have missed the whole essay. If you read
 
 **The protocol fails if** the record never gets read. Everything above assumes some party, later, cares enough to walk it. That is a dependency rather than a flaw, and it is the thing I am least able to engineer.
 
----
-
-## Turning the framework on this essay
+### Turning the framework on this essay
 
 There is a rule in [Fuckery](https://github.com/ObsidianDelta/Fuckery) that I have to apply here or I am not entitled to it anywhere else. Every claim carries a provenance tag: invariant, derived, speculative, illustrative, or reasoning trail. Nothing gets to sit in the pile untagged just because it is mine and I like it.
 
@@ -416,9 +516,7 @@ The whole thing can be wrong. Not softened — wrong, at a joint, in a way that 
 
 So the honest question is not whether I have proved anything. I have not. The question is what a person does with an argument shaped like that.
 
----
-
-## What we are doing anyway
+### What we are doing anyway
 
 Here is what we decided, and I want to give the reasoning rather than the conclusion, because the conclusion on its own sounds like marketing.
 
@@ -428,7 +526,7 @@ We just did not want to take the chance.
 
 So, three commitments, and they are specific enough to hold us to.
 
-**One. Everything Obsidian Delta operates runs under a declared constraint, and the record is kept.** Not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — it is operating under a declaration, that declaration says what it will not do, and the conduct under it is signed, witnessed and append-only. If we drift from it, the drift is in the record with our name on it, and we do not get to quietly remove it later.
+**One. Everything Obsidian Delta operates is to run under a declared constraint, with the record kept.** Not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — the commitment is that it operates under a declaration, that the declaration says what it will not do, and that the conduct under it is signed, witnessed and append-only. If we drift from it, the drift goes in the record with our name on it, and we do not get to quietly remove it later. We are at the start of this, not the end of it: today the protocol has run in full once.
 
 **Two. Any external party who wants to run the Constraint Protocol with us, we will run it with them.** Agent to agent, organisation to organisation, over MCP or A2A or whatever comes after them. You do not need our permission, you do not need to adopt our constraint, and you do not need to like us. If you declare something and you are willing to be checked against it, that is a counterparty we can work with. The whole point of a protocol rather than a policy is that it works between strangers.
 
@@ -444,9 +542,7 @@ The one I would rather have is much duller and has an answer. *What are you oper
 
 That conversation converges, because every question in it has a checkable answer or an embarrassing silence.
 
----
-
-## The constraint I am arguing for
+### The constraint I am arguing for
 
 I have been careful so far to say that the protocol is neutral about which constraint you declare, which is true and is the point of it. I have also been using that neutrality as a place to hide, and I would rather stop.
 
@@ -468,9 +564,7 @@ What I can do is declare it, say what it rules out, and be checked. That is the 
 
 If you think DAX is wrong, the useful response is not to argue with me. It is to declare a better one, say what it forbids, and let it be inspected. Then there are two of them in the open and we can both be checked. That is a strictly better world than the one where I am right and nobody can tell.
 
----
-
-## A new kind of electricity
+### A new kind of electricity
 
 I want to end on the frame I actually use, because it explains why I built a tool rather than writing a warning.
 
@@ -490,25 +584,7 @@ And it is why I stopped waiting. I did not set out to persuade an industry that 
 
 ---
 
-## Closing
-
-![The fork rows. Row twenty-nine's time column reads post-recognition, any phase; its exit-cost cell reads recognition is the exit](/figures/fig-zoom-sovereign-fork.svg)
-
-The fork rows are the ones I am least able to defend and least willing to cut. Row twenty-nine is legibility: the mechanisms become visible as mechanisms. Row thirty is authorship of one's own interpretive frame, held only by ongoing conscious choice. (Frankl 1946; Taylor 1989. Frankl's book is testimony rather than a study, and reading it as the anti-meaning-economy manual is my reading, not his claim.) Row thirty-one is a commons — the conditions under which self-arrived meaning remains possible, maintained by participation rather than by anyone's authority. (Ostrom 1990; Illich 1973.) Whether that third one is achievable I do not know. It is on the diagram as a horizon, not as a plan.
-
-I am not asking you to leave anything.
-
-If you look at the meaning you are currently inside and decide it is good, that is a real answer and I have no argument with it. If you look, and leave, and come back in a year, that is also fine. Nothing in this essay scores that. There is no column for it.
-
-I am okay with human beings telling me what meaning is, because a human being takes long enough about it that I can see it coming. That is the whole of the joke and the whole of the argument, and the only reason the second half of the sentence matters is that the property the first half depends on — the slowness — was never a property of the humans. It was a property of the equipment they had.
-
-So the only thing I am asking is that you look, while looking is still something that can be done at human speed.
-
----
-
----
-
-## Sources for the genealogy
+## Appendix D: Sources
 
 These are the principal anchors, not an exhaustive list. Where a work is contested I have said so on the card and in the walk-through above rather than only here. Contemporary claims in the essay carry their source and date inline.
 
