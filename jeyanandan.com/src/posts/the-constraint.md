@@ -42,9 +42,15 @@ This isn't abstract for us.
 
 I started DAX, my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in 2021. Today our companions direct agents, and the agents talk to other agents. The question stopped being what any one of them does. It became what they do together, over time — what they learn, how they come to agree, and whether anybody could ever check.
 
-Is it as bad as they say? Maybe not.
+Is it as bad as they say?
 
-We didn't want to take the chance.
+Maybe. Maybe worse. Nobody knows, and that includes everyone quoting you a percentage.
+
+What I do know is that it cuts both ways. The same capability that could take the noticing away from us is the best instrument we have ever had for the things that actually matter. You don't get one edge without the other, and anyone selling you a version with only one edge is selling you something else.
+
+So we stopped arguing about the odds.
+
+**We just didn't want to take the chance.**
 
 ---
 
@@ -67,7 +73,17 @@ Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/#dax-const
 
 AI is a new kind of electricity, and most of what's being sold on top of it is appliances. A cognitive companion isn't an appliance. It's the part of you that's wired in. The Constraint Protocol keeps the log.
 
-And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in that log, with our name on it.
+---
+
+## What the precautions are for
+
+Precautions aren't the point. They're what lets you stop arguing about the downside and go and work on the upside.
+
+And the upside is not small. The Foundation defines [intelligence](https://daxfoundation.org/#intelligence) narrowly — the navigation of constrained possibility space, the *how* of getting from A to B with what's known. On that definition a person working with a companion isn't a little sharper. They're differently capable. Make that a hundredfold and you're not talking about better email. You're talking about the things we've all filed under *someday*: Mars, or letting a person decide whether they die at a hundred or at a thousand.
+
+That's the edge we're actually here for. The protocol is how we keep going after it without pretending the other edge isn't there.
+
+And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in the log, with our name on it.
 
 ---
 
