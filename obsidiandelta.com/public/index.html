@@ -259,6 +259,23 @@
   }
   .footer__left { display: flex; align-items: center; gap: 12px; }
   .footer__left img { height: 24px; width: 24px; opacity: 0.85; }
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+  }
+  .footer__nav a {
+    color: var(--ash);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .footer__nav a:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+  }
   .footer__stripe { color: var(--ash); }
   .footer__stripe span { color: var(--bone); }
 
@@ -379,8 +396,17 @@
   <div class="footer__inner">
     <div class="footer__left">
       <img src="/logo-transparent.png" alt="" />
-      <span>obsidian delta · since 2015 · <a href="/blog/">blog</a> · <a href="/blog/cognitive-companion/">nobody works live current bare-handed</a></span>
+      <span>obsidian delta · since 2015</span>
     </div>
+    <nav class="footer__nav" aria-label="Elsewhere">
+      <a href="/blog/">blog</a>
+      <a href="/blog/cognitive-companion/">the cognitive companion</a>
+      <a href="https://formaddie.com" target="_blank" rel="noopener">formaddie.com</a>
+      <a href="https://daxfoundation.org" target="_blank" rel="noopener">daxfoundation.org</a>
+      <a href="https://daxfoundation.org/#cp" target="_blank" rel="noopener">constraint protocol</a>
+      <a href="https://jeyanandan.com" target="_blank" rel="noopener">jeyanandan.com</a>
+      <a href="https://www.linkedin.com/in/jasonjeyanandan" target="_blank" rel="noopener">linkedin</a>
+    </nav>
     <div class="footer__stripe">payments <span>secured by Stripe</span></div>
   </div>
 </footer>
