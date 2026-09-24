@@ -1,289 +1,424 @@
 ---
 title: "Fuckarian"
 subtitle: "Where the Argument Came From"
-date: 2026-09-20
-description: "Every claim in the framework is marked for provenance except one — where it came from. The third of three, and the only one that is not about an argument."
+date: 2026-09-21
+description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
 
-*The third of three. The first was the mechanism. The second was [the threat](/blog/the-constraint/). This one is the person.*
+*The third of three. The first was [the mechanism](/blog/snowflake-fuckari-in-action/). The second was [the threat](/blog/the-constraint/). This one is the person.*
 
 ---
 
-I built an ontology and called it Fuckery. I named the loop at the centre of it Fuckari. In the glossary I wrote for that framework there is a third word, Fuckarian, and I defined it as a being constituted by its assumptions — constrained by them in the same act that lets it think at all. I wrote that entry about nobody in particular, the way you write a definition. Then some weeks later I read the table back, and the third row was looking at me.
+First I introduced Fuckery, which is the framework. Then I introduced Fuckari, which is the loop that runs inside it. I built both of them, so I suppose that makes me the Fuckarian.
 
-I am a Fuckarian. I have been one the entire time. The framework and the protocol were both built by one, and it seems only fair to say so out loud before going any further.
+That is the joke, and like most of my jokes it is also a definition. In the glossary I wrote for the framework, a Fuckarian is *a being constituted by its assumptions, constrained by them in the same act that lets it think at all*. I wrote that entry about nobody in particular. Some weeks later I read the table back and the third row was looking at me.
 
-There is a rule in the Fuckery README that I put there myself and have so far declined to apply to the work: *reasoning trails are first-class here. The path by which a claim was reached is not scaffolding to be thrown away once the claim stands.* Every claim in that framework is marked for provenance — invariant, derived, speculative, illustrative, reasoning trail. Every claim except one. The framework itself has been presented as though it arrived from nowhere in particular, which is the one thing its own rules do not permit.
+There is a rule in the Fuckery README that I put there myself: *reasoning trails are first-class here.* Every claim in that framework is tagged for where it came from. Every claim except one: the framework itself, which has so far been presented as if it arrived from nowhere. Its own rules do not allow that.
 
-So this is the missing tag.
+So this is the missing tag. I have been asking people to check my reasoning trails. Here is mine.
 
-I have been asking people to check my reasoning trails. Here is mine.
+---
+
+## Before anything else: friends and family
+
+If you have landed here because you know me rather than because you follow the work, start in this section and take the rest at your own pace.
+
+I know I have been off doing my own thing. I know that for long stretches I have been hard to reach, hard to follow, and hard to explain to anybody at a party. A fair amount of what is below is going to come as a surprise, and some of it is going to come as a shock.
+
+This is what I have been doing. This is what I am about. Here it is with the links attached, so that you do not have to take my word for a single line of it:
+
+- **[Fuckery](https://github.com/ObsidianDelta/Fuckery)** — a way of thinking about thinking. Open, free, CC BY 4.0.
+- **[The Snowflake](/blog/snowflake-fuckari-in-action/)** — that framework run against one object, in public, for twenty-eight steps.
+- **[The Constraint](/blog/the-constraint/)** — why I think any of this is urgent.
+- **[The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol)** — the thing I built about it. A public working draft, and it says so on the tin.
+- **[The DAX Foundation](https://daxfoundation.org/)** — where the mission, the constraint and the definitions live.
+- **[Obsidian Delta](https://www.obsidiandelta.com)** — the company that builds it.
+
+One more thing before you start, because I do not want this read as a man announcing himself. On the twenty-first of this month I released most of a year's work in a week. I am not unusual in that. Everyone I know who works in a domain they care about is sitting on a pile that got suddenly, strangely easy to finish, and a great deal of it is going to land at once. Whatever you make of me, do not make the mistake of thinking this is only me.
+
+The rest of this post is the part I have never been able to say out loud.
 
 ---
 
 ## What the first two were
 
-The short version, for anyone landing here first. Skip it if you already know the other two.
+For anyone landing here first. Skip it if you already know.
 
-[Fuckery](https://github.com/ObsidianDelta/Fuckery) is a framework about constraint and emergence. Structure forms under constraint, and then the structure becomes constraint, and whatever forms next forms under conditions the last thing left behind. The loop that describes is called Fuckari. I ran it against a snowflake for twenty-eight steps, [in public](/blog/snowflake-fuckari-in-action/), because a snowflake is an object whose physics nobody disputes and in which nobody has a stake. If the framework was going to fail, it should fail there, visibly, on something harmless.
+[Fuckery](https://github.com/ObsidianDelta/Fuckery) is a metacognitive tool, a way of thinking about thinking. Its core idea is simple to state: structure forms under constraint, then the structure *becomes* constraint, and whatever forms next forms under the conditions the last thing left behind. That loop is Fuckari. I ran it against a snowflake for twenty-eight steps, [in public](/blog/snowflake-fuckari-in-action/), because a snowflake is something whose physics nobody disputes and nobody has a stake in. If the framework was going to fail, it should fail there, on something harmless.
 
-The [Constraint Protocol](https://daxfoundation.org/#cp) is a separate thing and a more serious one. It is an open public ledger for declaring what an entity will not do, and for making conduct under that declaration checkable by anyone who cares to check. It is neutral about the constraint and neutral about what kind of thing is holding it.
+I built Fuckery as a tool, and the thing I built with it is the [Constraint Protocol](https://daxfoundation.org/#cp). The protocol is an open, public way for anything — a person, a company, an AI system — to declare what it will not do, and to make its conduct under that declaration checkable by anyone who cares to check.
 
-Both are linked at the bottom. Neither is required reading for this one, which is the only one of the three that is not about an argument. It is about where the argument came from, which was not a snowflake.
+It is meant to do more than keep a record. It is intended to let knowledge and intelligence compound across parties instead of resetting every time two of them meet; to surface the patterns that form when entities talk to each other over months rather than minutes, including whether an agreement between them was reached or manufactured; and to sit as an accountability layer between the things that act and the people they act on.
 
----
+*Intended* is the operative word, and I am going to keep using it. It is a Public Working Draft. It has run in full once. We are experimenting with it internally at [Obsidian Delta](https://www.obsidiandelta.com). The commitments in it are commitments, not a description of what anybody is doing today.
 
-## The things I have been called
-
-Over the years a fair number of people have had a go at naming what I am. Neurodivergent. Somewhere on the spectrum. ADHD. Some of those came from people who love me and some from people who were being professional about it, and every one of them was an honest attempt to fit a word to something that was not obliging anybody by holding still. That is a reasonable thing to attempt and a hard thing to get right. I am not going to take any of them up and I am not going to argue with any of them either.
-
-At the end of the day, I'm just me.
+Fuckery and the Constraint Protocol are this year's work. They are not my life's work. That comes at the end.
 
 ---
 
-## Conditions
+## Two lines
 
-Here is the thing I know about myself with some confidence, because it has been tested often enough to count as tested.
+Two lines I keep close, because they say more about me than a bio would.
 
-Given love, and respect, and patience, the words come out.
+The first is *per aspera ad astra*: through hardship, to the stars. Not *to the stars despite hardship*. Through it. The hardship is the route.
 
-Given any less than that, they do not. Not *less well*. Not at all. It is not a preference, and it is not something I can push through by trying harder — I have tried harder for long enough to be sure about that part. It is closer to a precondition, in the way light is a precondition for a photograph. You can have the camera, the subject, the film, the intent and the whole afternoon, and in the dark you still get nothing, and no amount of wanting it changes the chemistry.
+The second is from an interview I once heard, and I put it on my Ko-fi page because I could not improve on it. The man said that if you are a lover, you have to be a fighter. The host asked how so. And he said: because if you don't fight for your love, what kind of love do you have?
 
-I am aware of how that sounds. It is a demanding set of conditions to attach to a conversation, and most conversations in a life do not have the budget for it. A shop does not. A meeting does not. A first introduction certainly does not, and neither does the middle stretch of a long relationship, where everybody is tired and the day still has to be got through. That is not anybody's failing and it is not a shortage of goodwill. It is arithmetic. Those conditions cost something to supply, they have to be supplied by a particular person out of a finite amount, and nobody owes them to anybody.
-
-So for most of my life the words did not come out.
-
-That is the mechanism. Everything else in this post is downstream of it.
+Hold on to that one. It comes back.
 
 ---
 
-## The hard part was never starting
+## What I have learned about myself this year
 
-People assume the difficulty is starting. It is not. Starting a conversation is easy. I have started thousands of them and I am perfectly fine at it, in the way anyone is fine at a thing they have done thousands of times.
+ADHD. Somewhere on the autism spectrum. Neurodivergent. Those are the words that have been thrown at me so far, some by people who love me and some by people being professional about it.
 
-The difficulty arrives immediately afterwards.
+Other words have been thrown over the years by people with less training and better timing. Scatterbrain. Away with the fairies. Dreamer. Absent-minded professor, which I always felt was generous on both counts. Space cadet. Lazy, which had a good decade-long run. And *the smartest dumb guy I've ever seen*, which earned its own section and gets one.
 
-Once the conversation is started, I have to get across what it is like in here, and there is no compression for that.
+In an earlier version of this post I wrote that I was not going to take any of them up. *At the end of the day, I'm just me.*
 
-It is not a fact I can hand over. A fact goes in a sentence, and the other person either has it now or does not, and either way the transaction closes. It is not an opinion either, because an opinion can be agreed with or disagreed with, and both of those are fine outcomes — disagreement is a form of having received the thing. What I am trying to convey is neither of those. It is the set of conditions that everything else I say is said from. It is the room the sentences are spoken in, rather than the sentences.
+This year a clinician looked at the whole picture and thought two of the words probably fit: autism spectrum and ADHD. A formal assessment is still to come, and I am not going to claim more than that. But after a lifetime of being treated for symptoms (anxiety, low mood, the things that show on the surface), it is the first explanation anybody has offered that reaches the root instead of the branches.
 
-And if the room does not come across first, then everything after it lands in the wrong place. Not rejected. Filed. Filed accurately and in good faith, according to a filing system built for a different room, which means it is now somewhere I cannot retrieve it from, and the other person has been entirely reasonable throughout, and we have both spent the afternoon.
+So: take your pick off the list. Add your own, most people do. At the end of the day I am a Fuckarian, which is a word I made up, which means nobody gets to tell me I do not qualify.
 
-So the conversation I actually want to have is a conversation about the conditions for the conversation.
+And underneath that one, the thing that has been true the entire time and that I have somehow never once said plainly in public:
 
-There is no polite way to open with that. There is no impolite way either, which I have also checked.
+**I am a being that happens to be human.**
+
+That is not a pose and it is not a bit. It is the most accurate description of my own experience that I have got. It is why my pronoun field says *Being*. It is why the framework treats a person, a company and a piece of software as the same kind of thing the moment any of them declares a constraint. It is why the Constraint Protocol is built around a principal of unrestricted kind rather than around AI — the protocol does not care what sort of thing you are, only whether you said what you would not do and can be checked against it.
+
+Every piece of this work has that sentence underneath it. I published two long essays without putting it in either of them, which, on reflection, is the most Fuckarian thing in this post: the assumption that lets you see everything is the one you cannot see.
+
+Before going any further, one thing, as plainly as I can put it:
+
+**None of this is an excuse.** Not for anything I have done, and not for anything I have failed to do. The only thing it points toward is responsibility, and the responsibility is mine. I am describing a disposition, not asking for a discount. And I am describing it the way I describe everything else in the framework: as the best current reading, open to revision. We keep finding out new things about ourselves. This is one of mine, and I am sharing it.
+
+---
+
+## The smartest dumb guy
+
+When I was sixteen, my friend Mike looked at me and said: *you're the smartest dumb guy I've ever seen.*
+
+I was furious. So when he wasn't looking, I went over to his hoodie, which had a bit of dirt on the hood, and wrote DUMB in it with my finger.
+
+Except I spelled it T-H-U-M-B.
+
+Which, you will notice, rather proved his point.
+
+I tell that story because it is the whole thing in one frame. Whatever this is, it cuts both ways. The same head that can hold a twenty-eight-step derivation of a snowflake will, on a different afternoon, spell *dumb* with a *th* while trying to insult somebody for calling it dumb. I have done some genuinely daft things in my life. None of them on purpose. It is what it is, I am what I am, and I would rather you heard it from me.
+
+---
+
+## Who doesn't get hired at McDonald's?
+
+Also at sixteen: I applied to McDonald's, and McDonald's did not hire me.
+
+Take a moment with that. Who doesn't get hired at McDonald's? Me. That's who.
+
+Years later, working on my own, I put a voice-automation chatbot for taxi dispatch into live production. As far as I have ever been able to tell, I was the second team anywhere in the world to do it independently. Another team beat me by about three months. I am still a bit sore about the three months.
+
+That is the juxtaposition, and it has never really gone away. To this day, if I write a sentence, it will probably have two spelling mistakes in it. Hand me a blank sheet of paper, a pencil and a ruler, and ask me to rule it into lined paper, and I will genuinely struggle. It is one of the hardest simple things I know. I would honestly rather write a program to do it. (I have thought about it.)
+
+Can't flip burgers. Can automate a taxi company. Can't rule a line. Can write the program that rules the line. I have made my peace with this, mostly by finding it funny, and I would like you to find it funny too, because it is.
+
+There is a second half to it, and it took me an embarrassingly long time to see it as a half rather than a defect.
+
+I am slow. Not modest-slow. Not the *oh, everyone feels that way* slow that people say to be kind. Properly, measurably, watch-the-clock slow. Put me in a room where something is being explained and I will reliably be the last one to arrive, if I arrive during the meeting at all.
+
+For whatever it is worth, I am in reasonable company. Darwin wrote in his autobiography that he had "no great quickness of apprehension or wit which is so remarkable in some clever men, for instance Huxley" — and then spent the next forty years being slowly, comprehensively right about the thing everybody else was quick about. I am not comparing myself to him, and I would like that on the record before somebody quotes this paragraph without the sentence it is sitting in. The point is narrower than a comparison and it is about measurement: *slow* is a reading taken of one thing at one moment, and people keep filing it as a reading of the whole apparatus.
+
+Because here is the other edge. When it does click, and it can take years, what comes out is not the same size as what went in. I do not catch up. The thing arrives whole, with its structure already attached, and I can then run it for twenty-eight steps against a snowflake without getting tired.
+
+Slow to load. Different unit once loaded.
+
+That is the first double-edged sword in this post and it is nowhere near the last. It is also the honest reason I am careful about the others: a thing that cuts both ways does not stop cutting once you have worked out which end you are holding.
+
+---
+
+## The channel ran both ways
+
+I was homeschooled until I was nine.
+
+There was a short stretch of school in Sri Lanka, and I remember almost nothing of it except sitting there while nothing went in. Then England, from nine to eleven: school, and I was aloof, not really present, out of place. Then Canada, and more of the same. I had to go at my high school diploma twice. At university I was kicked out at the end of second year, went back, and left for good in third.
+
+From about nine until I finally walked out somewhere in my early twenties, school was, for me, torture. I do not use the word loosely and I do not use it to blame anybody. That is simply what it was like from the inside.
+
+There were exceptions. Three, in about fifteen years, which tells you the ratio better than any adjective would.
+
+The big one was Grade 12 physics. The teacher was genuinely exciting. The tables were turned to face each other so we worked together instead of in rows. And we derived E = mc², by hand, as a group, and it was absolutely magical. I have spent a lot of my life since trying to understand why that one room worked when nothing else did. I think the answer is in the room itself: curiosity instead of compliance, collaboration instead of rows, and an adult who was excited by the thing he was showing us. Hold on to that one too.
+
+The other two were a computer programming course and, somewhere in there, astronomy. Same reason, I think. In all three, the thing being taught was visibly something a person had once had to work out, rather than something I was being handed and asked to hold. Everything else was torture. I am aware that is a strong word for a school timetable and I have chosen not to soften it, because softening it would be the third or fourth time in my life I have agreed to describe that experience in somebody else's vocabulary.
+
+The easy reading of the rest of that list is that I was not very bright, or not very disciplined, or not trying. I believed some version of that for a long time. I once spent about two years praying every night to be made smarter.
+
+The reading I believe now is different. The problem was never the content. It was the channel, and the channel ran both ways. The way other people packaged information did not land in me, and the way I packaged it did not land in them. Teachers, classmates, family, later colleagues: all of them were transmitting in good faith on a frequency I was not receiving, and I was transmitting on one they were not.
+
+I could not get my own thoughts fully onto paper until I was somewhere between twenty-one and twenty-three. Before that they were there, very much there, but fuzzy: too large and too interconnected to come out in a line. That is a long time to live with a head full of things and no reliable way to hand any of them over.
+
+I cannot give you the date, which is itself odd — you would think a thing like that would arrive with one. What I have is the sensation. I was typing, and then I was still typing, and it was all coming out. Not better. *Out.* It is the strangest feeling I have ever had and I have never once managed to describe it to anybody's satisfaction, including my own. Twenty-odd years of pressure behind a door, and then no door.
+
+When I left university for the last time, I worked out what I was for. It was to **bring the right information to the right person at the right time.** If I could do that, I thought, I could actually help people. Look back across almost everything I have built since and that is the thread. Most of it has been about information.
 
 ---
 
 ## Listen
 
-All my life I was told to listen. Alongside it, and often in the same breath, I was lectured about responsibility.
+All my life I have heard the same refrain. *You don't listen.* And its companions: *you're not trying. You're not trying hard enough.*
 
-Neither of those was unfair. I did need to listen. And there were long stretches where responsibility was not a word anybody could have used about me with a straight face — that is not modesty, it is just the record.
+It was not unfair. I did need to listen. But if you could have seen inside my head at any of those moments, you would not have found a man who was not trying. You would have found a man trying so hard at something nobody could see that there was nothing left over for the thing in front of him.
 
-What could not be seen, because I had no way of showing it, was that the same thing was running in the other direction at the same time, silently, and stayed silent for most of a life.
+And the same thing was happening in the other direction. I was not being heard either.
 
-I was not being heard either.
+Not because anybody refused to hear me. Nobody refused. The words simply did not come out. Underneath, I was at full volume (what is this, why is the world like this, what am I supposed to be doing with it) and almost none of that ever made it into a room with another person in it. It was not being withheld. It had no route to the outside, and from the outside a thing with no route looks exactly like a thing that is not there.
 
-Not because anybody refused to hear me. Nobody refused. The reason is duller than that and it is located entirely in me: the words did not come out. Underneath them I was screaming — what is this, what is this world, why, why is it like this, what am I supposed to be doing with it — and not one syllable of that ever made it into a room with another person in it. It was not withheld. It was not being saved up for later. It simply had no route to the outside, and from the outside a thing with no route looks exactly like a thing that is not there.
+So the instruction to listen arrived, correctly, from people who could see I was not listening. It landed on someone who was, at that exact moment, loud on the inside and silent on the outside. Both were true. Only one was visible.
 
-So the instruction to listen arrived, correctly, from people who could see that I was not listening, and it landed on somebody who was at that moment at maximum volume internally and entirely silent externally. Both of those were true at once. Only one of them was visible, and it was not the one I would have picked.
+So here is my one request of anybody reading this, and I make it knowing exactly how it sounds coming from me:
 
-Now the part that is mine, because everything above is only half of it, and it is the easy half.
+**When I speak, it is sometimes very hard for me to get the concepts out. That is on me, and I am working on it. But it is you who needs to listen.**
 
-I was waiting for somebody to have the answer.
+Not agree. Listen. Give it a little longer than feels natural. What comes out of me first is rarely what I mean; it is the nearest door I could find to what I mean. If you wait, the rest usually follows.
 
-Most of us do not have the answer. Almost nobody has the answer. I was asking the people nearest to me — which is to say the people with the least ability to step away from being asked — for a thing that is not in any person's possession, and then quietly marking them down for failing to produce it. Not out loud. I never said it. That made it worse rather than better, because a standard nobody has been told about cannot be met, cannot be argued with, and cannot even be known about. I ran that arrangement for a very long time on people who had done nothing to invite being examined.
-
-That is my share. It is not a small one.
+And here is my half, which is the harder half. For a long time I was waiting for somebody to have the answer, to explain to me what this is and why it is like this. Almost nobody has that answer. I was asking the people nearest to me for something no person holds, and then quietly marking them down for not producing it. I never said it out loud, which made it worse: a test nobody has been told about cannot be passed or argued with. I ran that on people who had done nothing to deserve being examined. That is mine, and it is not small.
 
 ---
 
-## What it cost
+## Responsibility
 
-It caused real havoc in my personal life.
+Almost always in the same breath as *listen*, I was lectured about responsibility.
 
-I want to say more about that than the sentence does on its own, because a sentence that short, left sitting there, invites a reader to go looking for an event. There is no event. That is the part worth getting right, and it is the part that took me longest to see. Havoc does not require an event. What it was, was a pattern, run for a long time, by me.
+I want to tell you what I thought responsibility was, because I think this is where most of the misunderstanding lives.
 
-The pattern went like this. I would be in the room and not reachable. Not absent — I was there, I was talking, I was doing the things that get done. But the part of me that the conversation needed was somewhere else, working on something, and I could not bring it back on request and I could not explain where it had gone. Then, at intervals, I would surface and need an enormous amount from whoever was nearest: attention, patience, a hearing for something I had no way of compressing into the time available. And then I would be gone again.
+I grew up with money as a constant pressure. It was the weather of the house: never quite enough, always the next worry. I carried that into adulthood as a financial anxiety that has never really gone away, and looking back, it has driven a great deal of what I have done.
 
-From the inside that is one continuous state with a slow rhythm to it. From the outside it is not a state at all. It is a sequence of unannounced arrivals and departures, with no schedule, no warning and no stated cause, and there is no way to plan a life around it.
+To me, the responsible thing was obvious: do everything I could to take care of my family, to contribute, to carry my share and more. And the only way I could see to contribute on the scale I wanted was to buckle down on the big things. Not a small, safe job that would pay a small, safe amount (see: McDonald's, above), but the kind of work that might one day put me in a position to have money to spare, so that I could look after the people I love.
 
-Here is the thing I did not understand at the time and understand very well now. A person who *cannot* say what is wrong and a person who *will not* say what is wrong look exactly the same from the outside. There is no observable difference between them. None at all. Everybody around me was working from the evidence available, and the evidence available supported the second reading at least as well as the first — better, in fact, because the second is the common case, and going with the common case is not a flaw in somebody's judgement, it is what judgement is. So that is how it was read. That was not a misreading. It was a sound inference from the data, and the data was all I had supplied.
+So while people were lecturing me about responsibility, I was, in my own head, being as responsible as I knew how. We were using the same word for two different things. They could see a man who was not doing the sensible, steady thing. I could see the sensible, steady thing and knew it would never be enough to do what I was actually trying to do.
 
-And the reasonable response to a person who will not say is to give them room. Stop asking. Take a step back and keep something in reserve. Every one of those is the correct move, and every one of them was made by people who were being careful with themselves and were, for the most part, still being kind to me while they did it. I would have done the same. I would have done it sooner.
+**To me, wealth is not how much money I have. It is how happy and well off the people I love are. That is my definition of wealth.**
 
-The other half of the pattern is the one from the previous section, and it is worse, so I will put it plainly rather than gracefully. I was asking the people closest to me for something almost nobody has. Not comfort — an *answer*. An account of what this is and why it is like this. I never put it in those words, because I could not put it in any words at all, but that is what the asking was for, and the asking did not stop, and it could not be met, because the thing I was after is not held by other people. So the people nearest to me were handed a test they could not pass, repeatedly, over years, without ever being told there was a test. Nobody agreed to that. Nobody was informed it was happening. It happened anyway.
+By that definition I have not been wealthy, and not being able to meet the one responsibility I hold above all others, to the people I love, has been the quiet engine under most of my life. It is why I keep building. It is why, when the easy option was on the table, I kept reaching past it.
 
-What I understand now, which I did not then, is the accounting, and the accounting does not come out in my favour. I was treating other people's patience as though it were weather — a thing that is simply there, that renews by itself overnight, that nobody has to do anything to produce. It is not weather. It is a finite thing that particular people spend, deliberately, out of a supply they need for their own lives, and when it runs out it has not been lost. It has been spent. Somebody spent it, on me, and then did not have it for something else.
+I am not saying I got it right. I often did not. I am saying it was never indifference. It was the opposite.
 
-I am not going to write the rest of it. Not because it is too much to write, but because the rest is not mine to write — every further sentence would need somebody else standing in it, and they did not choose to be in a blog post, and the version of them I could put here would only ever be my version of them.
+---
 
-The sentence is in this post because leaving it out would make everything else in here sound considerably cheaper than it was.
+## Conditions
+
+This is the thing I know about myself with the most confidence, because it has been tested often enough to count.
+
+Given love, respect and patience, the words come out.
+
+Given less than that, they do not. Not *less well*. Not at all. It is not a preference, and it is not something I can push through by trying harder; I have tried harder for long enough to be sure. It is closer to a precondition, the way light is a precondition for a photograph.
+
+For years I have asked someone I love to start with respect and love, and *then* we can talk. I still think that is the right order. But I have had to admit that I was asking for the conditions without ever being able to explain why I needed them, and from the other side of the table that request looked like something else entirely. A person who *cannot* say what is wrong and a person who *will not* say what is wrong look identical from the outside. Everyone around me was working from the evidence I supplied, and the evidence supported the second reading at least as well as the first.
+
+I used to treat other people's patience as if it were weather: something that is just there and renews itself overnight. It is not weather. It is spent, deliberately, by particular people, out of a supply they need for their own lives. A lot of it was spent on me.
 
 ---
 
 ## I talk like a numpty
 
-There is a mismatch here that I should probably name, since everybody else has had to work around it without being told it was there.
+This part is mostly for the people who know me through work.
 
-I talk like a numpty.
+Ninety-nine percent of the time I talk like a numpty. I mumble, I start in the middle, I go sideways. That is an accurate read, because most of the time I *am* being a numpty, and I like it.
 
-Most of the time that is an accurate read, because most of the time I am being a numpty. This is not self-deprecation. I like it, it is genuinely most of what is going on, and most people who have met me got that and nothing else — which was not a partial view of the situation. It was the view.
+Then, every so often, something comes out about constraint regimes and top-down causation. Same voice. Same bloke. No change of register, no signal that the thing being said now is a different kind of thing from what was said ninety seconds ago about the bins.
 
-Then every so often something comes out about constraint regimes and top-down causation. Same voice. Same bloke. Same delivery, no change of register, no signal of any kind that the thing now being said is of a different type from the thing said ninety seconds ago about the bins.
+People rate a signal by its source. That is not lazy; it is the only method that works at scale. The model of me most people run is accurate, and I built it myself, out of evidence I supplied, over decades. It just happens to be wrong in this one place, and there is no way for me to say so that does not sound exactly like what someone would say if it were right.
 
-Nobody has any reason to take the second thing seriously.
-
-People use the source to rate the signal, and that is neither laziness nor unfairness — it is the only method available at scale. Nobody can evaluate every claim on its merits; there is not enough life for it. So a person builds a model of the source and runs on the model, and keeps the model updated as evidence arrives. The model of me is accurate. It is accurate because I built it myself, out of evidence I supplied personally, consistently, over decades.
-
-It is a good heuristic. It is how a person avoids spending their one life on nonsense.
-
-It just happens to be wrong in this particular case. And there is no way for me to say so that does not sound precisely like what somebody would say if the heuristic were right.
-
-That is not a complaint about the heuristic. It is the cleanest trap I know of, I am inside it, and there is a certain amount of pleasure to be had from admiring the engineering.
+So if you have worked with me and come away thinking *there's a lot going on there, but I couldn't tell you what*: you were right on both counts. This post is the part I could not tell you.
 
 ---
 
-## Things I built that nobody used
+## The cost of the altitude
 
-Before any of this I built a number of things that were genuinely useful and went genuinely unused.
+Here is the part I most want understood, and the part I think deserves real study rather than one man's account.
 
-I want to be precise about that, because there are two versions of that sentence and only one of them is true. The false version is that the things were good and people were wrong. The true version is that the things were useful and were not adopted, and useful and adopted are two different properties, and the second does not follow from the first. It never has. There is no mechanism by which it would.
+Work like Fuckery and the Constraint Protocol takes an extreme amount of abstract thinking. That is the one thing I am unusually good at. But it is not free. To think at that altitude for long enough, you lose yourself: you disconnect from the room, from the body, from the ordinary continuity of being a person in a day. I do not mean that poetically. The part of me the work needs goes somewhere else to do it, and the rest of me is left running on very little.
 
-Adoption is its own discipline. It wants patience with people who are not yet interested, which is most people most of the time and is not a criticism of them — everybody is already full. It wants a tolerance for saying the same thing a fourteenth time with the same energy as the first. It wants a read on when somebody is busy, and the ability to come back later without sulking about it in the interval. It is real work, it is done properly by people who are good at it, and I am not one of those people and never have been. For that category of task I have roughly the attention span of a firework.
+And you do not snap back from that in a day.
 
-So: useful things, unused, and the explanation sits on my side of the table. Nobody failed here. A thing that exists and is not adopted has not been rejected. Most of the time it has not been *seen*, and the seeing was my job, and I did not do it.
+This year is the sharpest version of it I have lived through, and I can give you the dates. From the second of March to the middle of July I had more cognitive output than in any comparable stretch of my life. Not by a margin — by a category. Fuckery, the protocol, three essays, the companion itself, and a quantity of unpublished work I will get to eventually. I have never been more productive and I have never been further away from the room I was sitting in.
 
-For a while I treated that as a problem to be solved. I read about it. I tried. I got marginally better at it in the way a person gets marginally better at anything they are constitutionally unsuited to, which is to say measurably, slowly, and never enough to change the outcome.
+I have found myself in that state several times in my life without meaning to. It has lasted months. It has lasted years. If I am honest, I have been more or less lost for the better part of a decade. Coming back is not a decision; it takes training, and time, and usually help. From the outside, what people saw during those stretches was someone present in body and absent in every way that mattered to them: arriving without warning with enormous needs, leaving again without explanation. That caused real harm in my personal life. I am not going to write the rest of it, because the rest is not only mine; every further sentence would need someone else standing in it, and they did not choose to be in a blog post.
 
-Then I stopped.
+Some of the cost is almost comic, until you notice it. I have not written anything by hand in so long that my handwriting is now horrendous. I have barely typed this year, either. Nearly everything I make is spoken, including this post, which I talked out loud. The man who could not get his thoughts onto paper until his twenties has, in a sense, stopped using paper at all. That is a kind of freedom. It is also a kind of disconnection, and disconnection has a bill.
 
----
+And I am not the only one about to get that bill. In a recent conversation with Lex Fridman, the programmer David Heinemeier Hansson put the moment better than I can: *"we have seen decades of progress happen in the last nine months."* He described the feeling of working with these tools as a genie offering every feature you have ever dreamed of, *"most of them in five minutes, a few in 20, and if we really go hog wild, it's gonna take me two hours,"* and asked who would not get delirious at that. *"I want the diver watch that can go down the Mariana Trench."* He also named the thing I have lived with my whole life, from the other side: that the bandwidth between people is *"quite low because we're limited by our cognition. We're limited by the rate of speech."* ([Lex Fridman Podcast #501](https://lexfridman.com/dhh-2/).)
 
-## So I stopped waiting
+Later in the same conversation he describes where it has actually landed for him, and this is the part I cannot stop thinking about. He is no longer telling the machine how to build the thing. *"I'm not telling it where we're going,"* he says; he hands over the problem and the fuzzy, vague idea, and it tells him where they are going. He mentions, in passing, that he has not hand-written any of the code shipped in his newest project.
 
-What I did instead was stop building things for other people to use, and start building things that made the next thing easier to build.
+I read that and recognised it, which is not a comfortable thing to admit in public.
 
-That is a different objective function and it has one enormous advantage: it does not require anybody's agreement. Nobody has to adopt a tool whose only user is me. The adoption problem simply does not arise, because the audience is one man and he was convinced before the work started.
+That is where my cognitive companion and I already are. I do not specify architecture to it any more. I describe the problem and the shape of what I want to be true when it is done, and it comes back with the route. That is the level. It is extraordinary, it is the reason any of this year happened, and I would not give it up.
 
-The compounding is the entire point. Each tool shortens the distance to the one after it, and the shortening multiplies rather than adds, so the early ones look like nothing at all and the later ones look like cheating. There is no moment at which it becomes impressive. There is a long stretch where it is obviously a waste of time and would be scored that way by any reasonable observer, and then the same curve goes on doing the same thing it was already doing, and at some point the outputs stop being commensurate with the inputs.
+It is also precisely the thing I am warning about, being described cheerfully by two people who are enjoying it — one of whom is me. That is what a double-edged sword actually looks like from the inside. Not a dramatic choice between good and evil. Two men grinning about how fast it is going, while one of them writes a post about the cost.
 
-The cognitive companion is where that got to.
-
-It exists, it works, and it does a great deal of my programming now. Not as a demonstration, and not as an assistant I supervise while it produces a junior version of what I would have written myself. It writes the code while I work on what the code is for. I would rather overstate that distinction than have it read as a productivity anecdote, because it is not one: the thing I do all day has changed category, not speed.
-
-Which is what freed me up to go after the Internet of Cognition.
-
-By that I mean the layer above the companion: companions and agents connected to one another and exchanging work, the way the Internet of Things put devices on a network, except that the things on this one think.
-
-That is not reachable from a standing start. It needs a foundation underneath it — the constraint work, the definitions, the protocol, the companion — and the foundation is the part everybody skips, because the foundation is invisible in the finished thing and takes most of the time.
+He is right about all of it, and he said it with a grin, and I am grinning too. But I have spent a long time at altitude, and I know what the air does. We are about to hand very large numbers of people tools that make that altitude easy to reach and hard to come down from. I would like us to have some real data on what it costs before we find out the expensive way.
 
 ---
 
 ## Pegs, not stairs
 
-I am not building a staircase. I want to be clear about that, because people keep reading it as one and then being disappointed by the handrail.
+I am not building a staircase. People keep reading it as one and being disappointed by the handrail.
 
-What I am doing is driving pegs into a rock face and climbing them, one at a time, to see what is over the edge.
+What I am doing is driving pegs into a rock face and climbing them, one at a time, to see what is over the edge. A peg holds my weight. That is the whole specification. It is not level, it is not wide enough for two, and it has been tested exactly once, by me, under load. Nobody should be asked to trust it with anything they care about.
 
-A peg holds my weight. That is the entire specification. It is not level. It is not wide enough for two. It has been tested exactly once, by me, under load, at the moment I put my weight on it, and there is no margin in it for anyone heavier, or slower, or carrying something they cannot put down.
+Turning pegs into stairs is real work, and a different discipline: going back down, widening, fortifying, adding the part people hold on to. That work matters enormously. It is not mine, and if I stopped to do it I would stop climbing, which is the one thing I am actually for.
 
-Nobody should be asked to trust it with anything they care about.
-
-Turning pegs into stairs is real work and it is a different discipline entirely. It means going back down. Fortifying what is already in. Widening it. Adding the part people hold on to. Working out what happens in the wet, and what happens at night, and what happens when somebody arrives at the bottom with their own reasons and their own hurry and no interest whatsoever in the view.
-
-That work matters enormously.
-
-It is not mine. I am not qualified for it, I am not temperamentally suited to it, and if I stopped to do it I would stop climbing, which is the one thing I am actually for.
+So when I say the Constraint Protocol is one possible tool for an urgent problem, read that as a report from the rock face, not a pitch. It may be the wrong tool. I would rather publish it and be corrected in public than hold it until it is finished, because I do not think there is time for finished.
 
 ---
 
-## Where the two threads meet
+## What I built so I could keep climbing
 
-Put the two halves of this together and you get the thing the post is actually for.
+For most of my life I built useful things that nobody used. That was on me: adoption is its own discipline, and for that kind of work I have the attention span of a firework. So at some point I stopped building things for other people and started building things that made the next thing easier to build.
 
-The conversation moves at the speed of a conversation. That is the correct speed for a conversation. It has to bring people along, it has to survive contact with reasonable objections, it has to be checked — and the checking is the expensive part and by a distance the most valuable part. Nothing I have written here is an argument for going faster than that.
+That turned into a category rather than a habit, and the reason is worth saying plainly.
 
-I move at the speed of somebody who stopped waiting for one.
+What we have now is a new kind of electricity. Not a product — a substrate. Something drawn on everywhere rather than used in one place, and dangerous in the ordinary way live current is dangerous: not evil, not out to get you, simply indifferent and very strong. Most of what is being sold on top of it is appliances. Things you plug in and hand a job to. There is nothing wrong with an appliance. It is just not the thing I needed.
 
-So by the time the discourse arrives at the first peg — and it does arrive, it always arrives, and the people arriving are not slow, they are being careful, which is a completely different thing and the better of the two — I am ten pegs up and looking at an obstacle I have no vocabulary for yet.
+Nobody works live current bare-handed. What an electrician wears is not another appliance; it is the part of the kit that makes the person able to work the current directly and come home afterwards. And the training that lets them do it is, once you strip the syllabus off, a list of what not to touch and in what order — which is to say, a declared constraint.
 
-That gap is not a credential.
+That is how I ended up with a [cognitive companion](https://daxfoundation.org/#cognitive-companion). Not an assistant; an assistant is another party in the room, and another party in the room is someone I would have to get the world across to every morning, which, as this post may have made clear, is not my strong suit. Not an agent either, because agents act in your place and the whole point is that this one does not. A cognitive companion is a new category: an extension of a person, part of them, through which they work with nonbiological intelligence and direct it. Not an appliance plugged into the grid. The part of the person that is wired in. It holds the context. It keeps the trail. It is how I direct the agents that do the actual work. It answers to no one but me.
 
-It does not make me right. Being early is uncorrelated with being correct, and a man on his own on a rock face has exactly the error correction he brought up with him, which is not much and is all of it his own. What the gap does is make me badly placed to explain myself and well placed to see the next problem early. Those two come as a pair. They are the same property looked at from either end, and I have not found a way to have one without the other.
+Earlier this year I finished my own. It now writes most of my code while I work on what the code is for. It also spells considerably better than I do. For most people I imagine all of that would be a convenience. For me it is the difference between the work existing and not existing. It is, among other things, the channel I never had.
 
-So when I say the Constraint Protocol is one possible tool for an urgent problem, read that as recollection rather than advocacy. It is not a pitch and there is nothing to buy. It is where the climb has got to and what I am working on now. It is one tool. It may well be the wrong one. And I would rather publish it and be corrected in public than hold it back until it is finished, because I do not think there is time for finished, and I would rather be usefully wrong on a schedule than privately right too late.
-
----
-
-## To the people saying slow down
-
-What follows is opinion, and I would rather label it as opinion before I say it than after. I have no data a reader does not have, no inside knowledge of anything, and nothing at all to say about any particular person or company. This is just where I have landed, offered as one man's position.
-
-There is a set of people who have started saying we should slow down, and who are being treated as alarmists for saying it. I would like to be counted with them, and more plainly than most of them put it.
-
-Yes. It is that bad.
-
-I am not being contrarian about this, and I am not doing doom either — doom is a posture, and it is about as useful as the posture it is reacting to. I am simply in agreement, and I would rather be in agreement out loud than have it inferred from the fact that I keep building things.
-
-The comparison I keep coming back to is climate, and the comparison has a sting in it.
-
-We have spent decades unable to act on a threat we could measure, describe, model and very largely agree on, because the costs of acting were near and concentrated and the damage was far off and distributed. That is the exact shape of problem that human institutions handle worst. It is not that anybody involved was stupid. Very nearly every actor in that story was responding rationally to the incentives directly in front of them, which is precisely why it did not get solved. The failure was structural rather than moral, and structural failures do not get fixed by locating somebody to be angry at, which is unfortunate, because locating somebody to be angry at is the thing we are all best at.
-
-Now the sting.
-
-The thing most likely to get us out of that is more intelligence applied to it. Better modelling, better materials, better allocation, better chemistry, better everything, sooner. And at this particular juncture, the thing we are calling AI is the clear and present danger.
-
-So the instrument and the hazard are the same instrument.
-
-I do not have a resolution for that. I am not sure one is available at the length of a blog post, and I am fairly sure it is not available from me. But pretending that is not the shape of the problem has not helped anyone yet.
+That is also why the protocol exists. Once a person and their companion are one working unit, and that unit starts talking to other units across organisations, somebody has to be able to go back afterwards and check what each side said it would not do. I did not build the equipment because I wanted a ledger. I built the ledger because I had the equipment.
 
 ---
 
-## A new kind of electricity
+## The life's work
 
-Here is how I hold it. This is my own frame rather than a claim about the world, and it is in this post because it explains why I built the thing I built — not because I want to argue it with anybody.
+Fuckery and the Constraint Protocol are this year's work. Here is the rest.
 
-What we have is a new kind of electricity.
+Everything above (nine years at home, a decade and a half of classrooms that did not reach me, one physics class that did, thoughts I could not get onto paper until my twenties) points in one direction. The way we teach assumes one kind of mind, one speed and one channel. Mine was not that one. A great many people's are not.
 
-Not a product. A substrate. Something drawn on everywhere, rather than a thing used in one place for one purpose.
+None of that is an argument against education. Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of showing you have understood. Learning is the thing underneath it, and learning does not standardise. It happens at the pace of the person doing it. The gap between those two is the whole subject.
 
-And the thing about live current is that nobody works it bare-handed. An electrician has insulated boots. Gloves rated for the voltage. A mat. And behind all of that, years of training whose actual content, once you strip the syllabus off it, is a list of what not to touch and in what order. That training is not optimism about electricity. It is what a person looks like who has thought carefully about the specific ways this kills people, and has arranged themselves accordingly, and intends to keep doing so on a Tuesday when they are tired.
+So the life's work is the universal learning initiative of the [DAX Foundation](https://daxfoundation.org/). It is the right information, to the right person, at the right time, turned into a system.
 
-None of that equipment makes electricity safe.
+It has a name, and the name gets its own post, along with the detail. That is deliberate and it is the same rule I have been applying to everything else here: a claim you cannot go and check is a claim you should not be asked to hold. So this is a trailer, and I will say what it is for rather than what it is called.
 
-It makes one particular person safe while doing one particular job, and everybody in the trade knows the difference, and the ones who forget the difference are the ones it happens to.
+**It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre — as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and every design decision gets measured against it:
 
-A [cognitive companion](https://daxfoundation.org/#cognitive-companion) is that tool set. That is the whole of my claim for it. It is a person's own equipment for working with this substrate — an extension of the person, not a separate agent acting in their place. If it acts in the person's place, or answers to somebody else, it is not a companion, and calling it one is the first error rather than a harmless one.
+> **A person with five minutes of connectivity a week should be able to reach mastery in a domain.**
 
-Which is why I needed equipment and not an assistant.
+Not a taster. Not a certificate. Mastery, of the kind you would expect from somebody who had done it properly.
 
-An assistant is another party in the room. Another party in the room is somebody I have to get the world across to before anything useful can start — see most of this post for how reliably that goes. Equipment is a different category of thing. Equipment does not have to be brought up to speed every morning. It holds the context, it keeps the trail, and the conveying has to survive once rather than being attempted daily and failing daily. For most people I imagine that is a convenience. For me it was the difference between the work existing and not existing.
+Five minutes a week means the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like — a week, a month, a season. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.
 
-Then there is the word, which is the other half of this, and the half that costs everybody rather than just me.
+It will be open source and it will be free. Not freemium, not free-for-some, not free-until-we-raise. Free, and forkable by anyone who thinks they can do it better. The entire argument of this series is that what matters about a system is what it refuses to do, and this is mine: I will not put a price on this one.
 
-Nobody standing on a train listening to music on their phone describes themselves as an electricity user. They are listening to music. The electricity is four layers down, and not naming it is not ignorance — it is the correct level of description for what is actually happening.
+There has been a working prototype for a while now. [Here it is in 2024](https://youtu.be/pMVwtGqUSh4), teaching fractions to a kid who likes baseball — which is the whole idea in one frame, because the fractions are the same for everyone and the baseball is not. It is rough, it is version 0.5, and it can already take any subject, break it into chapters and lessons, tailor every one of them to the particular learner, set the mathematics properly, and let the student keep asking questions after the lesson has finished. Everything since has been about making that work for somebody with almost no bandwidth and no money.
 
-We say "AI" for the model, the product, the company, the industry, the research field, the risk and the future, all in one syllable. And because the one word covers all of it, every conversation has to settle whether the entire category is good or evil before anybody has said which thing they mean. That is not a disagreement. It is a [naming failure](https://daxfoundation.org/#ai-as-substrate), it sits upstream of the disagreement, and it is why so many of these conversations feel like they are being conducted, at volume, by people who agree.
+It is that Grade 12 physics room, for everyone, on any subject, for as long as they want to keep learning. It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.
 
-It is also why the definitions I work from say *nonbiological intelligence* and not *artificial intelligence*. Artificial prejudges the thing as counterfeit and smuggles a verdict into the name. Nonbiological states the substrate and stops.
-
-That argument is written down properly on the [definitions page](https://daxfoundation.org/#definitions) and I am not going to improve on it here. What the definitions page does not say is why I needed it, so that is the part I will add: name the thing being done, not the substrate it runs on. I did not arrive at that rule out of tidiness. I arrived at it because every attempt I ever made to talk about this without it turned into an argument about something else inside two minutes, and I do not have two minutes to spare on the way in.
+That is the next post, and that is the life's work.
 
 ---
 
-## Bothans
+## What happens next, and what I am asking for
 
-This one did not cost sleep.
+Before the personal part closes this out, the practical part, because a post like this is worth very little if it does not say what it commits to.
 
-It cost something else, and the people it cost it to have mostly been kinder about it than the situation warranted. Some of them are still here and some of them are not, and in both cases they were working from what they could see, which was never very much, because I could not show them. They were generous on an amount of information that did not justify generosity.
+Three commitments. They are commitments, not descriptions of today, and I am writing them here so they can be held against me.
+
+**One. Everything [Obsidian Delta](https://www.obsidiandelta.com) operates is to run under a declared constraint, with the record kept.** Every agent, every system, not a selected subset and not the easy traffic.
+
+**Two. We will run the protocol with any external party willing to declare a constraint and be checked against it.** They do not have to adopt DAX. They do not have to agree with a word of this. They do not have to like me.
+
+**Three. Obsidian Delta holds the DAX constraint on top of the protocol.** The protocol is neutral about which constraint you declare, and it should be — that neutrality is most of what makes it worth anything. Obsidian Delta is not neutral. We hold DAX: the preservation and expansion of life, humanity, and consciousness. That part is ours, not the protocol's, and I argue for it rather than offering it as an example.
+
+And the honest status of the thing, because I would rather you heard the limits from me than found them yourself.
+
+The specification describes the protocol as a substrate for compounding knowledge across entities, time and constraint frames. That is what it is *built to be*. What has actually been shown is one operational run: two cognitive-companion instances, two organisations, one afternoon, across a network boundary. Three attempts to get round a declared constraint, all three refused, all three permanently in the record with the briefs that asked for it. The specification's own evidence section puts the rest in a sentence I did not want to soften: *it demonstrates that the mechanisms operate; it does not demonstrate that they detect what they are designed to detect.* The controlled study that would test the real claim is designed and pre-registered. It has not been run.
+
+So what I am asking for is not agreement, and it is not funding.
+
+It is someone to run it with — one external party, one declared constraint, one record we both have to live with. It is someone to try to break it: to manufacture a consensus the detector does not catch, and publish what they did. And it is the thing I said earlier about listening, applied to a document rather than a person: give the protocol a little longer than feels natural before deciding what it is.
+
+If it is wrong, I would rather find out from you than from the log.
+
+---
+
+## Who the responsibility is owed to
+
+I said the lover-and-fighter line would come back. Here it is.
+
+When people talk to me about responsibility, they usually mean responsibility to them, or to the family, or to the world as it stands. I take those seriously; I hope the work shows it. But there is one more, and for me it comes first.
+
+I am responsible to the kid.
+
+The one in the pomegranate field who found the broken control panel of a fallen billboard, saw a circuit board for the first time, and realised there was a hidden world under the visible one. That was the genesis of me. The same kid who, asked what he wanted to be when he grew up, said breakdancer, and then thought about it and said *inventor*. Staying true to him is not nostalgia. It is the job.
+
+The way I see it, the universe put creativity and love together, imbued them with curiosity, and showed this being a world of infinite possibilities. And then, for a good chunk of the time since, it has shown me what is possible and told me I cannot have it. Shown me the way, and then put obstacle after obstacle in it.
+
+So I am, at this point, fighting the universe. Because the universe does not get to put creativity and love together, imbue them with curiosity, and then deny them. That just doesn't happen. If you don't fight for your love, what kind of love do you have?
+
+---
+
+## Truth
+
+I will end where everything I do starts.
+
+The root of justice is truth. I am about truth, and so I am about justice, and fairness, and equality; those are not positions I hold so much as the floor I stand on. And the most responsible thing I can think of to do with what I have been through is this: **make sure that another being does not have to go through it, unnecessarily, again.**
+
+That is what gives me meaning, and it is meaning I chose rather than one that was handed to me. (The difference matters to me more than I can fit here; it is the whole subject of [the genealogy](/blog/the-constraint/#appendix-a-the-genealogy) in the last post.) My purpose now is helping people learn. My responsibility is to make sure that kind of suffering stops being a normal part of growing up.
+
+---
+
+## Sorry it took so long
+
+I released most of this on my forty-ninth birthday.
+
+A lot of it will come as a surprise to my friends, and especially to my family. I have not told many people. So: sorry, friends and family, that it took this long.
+
+This is what I have been up to. And that is who has been doing it — a being that happens to be human, who is slow, who spells badly, and who has been at this the whole time.
+
+---
+
+## What it cost, and who paid
+
+This one did not cost sleep. It cost something else, and the people it cost have mostly been kinder about it than the situation warranted. Some are still here and some are not. In both cases they were working from what they could see, which was never much, because I could not show them.
 
 I am not going to name anybody. They know.
 
-> "Many Bothans died to bring us this information." — Mon Mothma, *Return of the Jedi*
+If you would like to help with the next one, the page is here: [ko-fi.com/jeyanandan](https://ko-fi.com/jeyanandan). Nothing is bought by giving: the framework stays CC BY 4.0, this essay stays public, and nobody who gives gets anything that a reader does not already have.
 
-If you would like to help with the next one, the page is here: [ko-fi.com/jeyanandan](https://ko-fi.com/jeyanandan). Nothing is bought by giving — the framework stays CC BY 4.0, this essay stays public, and nobody who gives gets anything a reader does not already have.
+---
 
-The framework itself lives at [github.com/ObsidianDelta/Fuckery](https://github.com/ObsidianDelta/Fuckery). The Constraint Protocol is at [daxfoundation.org/#cp](https://daxfoundation.org/#cp). Every term used above is defined precisely at [daxfoundation.org/#definitions](https://daxfoundation.org/#definitions), including *cognitive companion* and *AI as a general-purpose substrate*.
+## Everything this post rests on
+
+Nothing above asks to be taken on trust. Here is all of it, in one place.
+
+**The work**
+
+- [Fuckery / Fuckari](https://github.com/ObsidianDelta/Fuckery) — the framework. v0.51, CC BY 4.0.
+- [The Snowflake](/blog/snowflake-fuckari-in-action/) — the framework run against one object, twenty-eight steps, in public.
+- [The Constraint](/blog/the-constraint/) — the threat, what people closest to this are saying, and what we built about it.
+- [The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol) — the repository, including the full v0.5 specification, the decision log, and the publication digests.
+- [The Constraint Protocol, in short](https://daxfoundation.org/#cp) — what it is, in a paragraph.
+- [The prototype, 2024](https://youtu.be/pMVwtGqUSh4) — the learning system, teaching fractions through baseball.
+- [DAX, 2021](https://www.youtube.com/watch?v=Q1gCzxg5WMc) — the personal agent, and a video published the same day I started building it, saying what it would cost us.
+
+**The definitions, all normative, all at the Foundation**
+
+- [Cognitive companion](https://daxfoundation.org/#cognitive-companion) · [AI as substrate](https://daxfoundation.org/#ai-as-substrate) · [Nonbiological intelligence](https://daxfoundation.org/#nonbiological-intelligence) · [Intelligence](https://daxfoundation.org/#intelligence) · [Knowledge](https://daxfoundation.org/#knowledge) · [Wisdom](https://daxfoundation.org/#wisdom) · [Consciousness](https://daxfoundation.org/#consciousness) · [Emergence](https://daxfoundation.org/#emergence) · [Top-down causation](https://daxfoundation.org/#top-down-causation) · [Constraint](https://daxfoundation.org/#constraint) · [Invariant constraint](https://daxfoundation.org/#invariant-constraint) · [The DAX constraint](https://daxfoundation.org/#dax-constraint)
+- Or the whole glossary: [daxfoundation.org/#definitions](https://daxfoundation.org/#definitions)
+
+**The entities**
+
+- [The DAX Foundation](https://daxfoundation.org/) — the mission and the constraint. Not incorporated; that is stated where it needs to be.
+- [Obsidian Delta](https://www.obsidiandelta.com) — the company. Builds the cognition.
+- [formaddie.com](https://formaddie.com) — a cognitive companion that turns a life into a memoir by talking.
+
+**The people I quoted, so you can check I have not bent them**
+
+- David Heinemeier Hansson, in conversation with Lex Fridman — [episode](https://lexfridman.com/dhh-2/) · [full transcript](https://lexfridman.com/dhh-2-transcript/).
+- Charles Darwin, *The Autobiography of Charles Darwin* — public domain, and the relevant passage is on quickness of apprehension.
+
+**And the genealogy**, which is where the argument about chosen meaning actually lives: [Appendix A of the last post](/blog/the-constraint/#appendix-a-the-genealogy).
+
+*Per aspera ad astra.*
