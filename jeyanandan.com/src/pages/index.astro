@@ -1,44 +1,49 @@
 ---
 import Base from '../layouts/Base.astro';
-import { listedPosts } from './_posts.js';
+import { listedPosts, fullTitle, formatDate } from './_posts.js';
 
 // jeyanandan.com -- Jason's personal site, and only that.
 //
-// 2026-09-21: rewritten, at Jason's request, to a very minimal page: who I am,
-// what I have released, what I am working on, the writing, and one Ko-fi link.
-// The copy was written and signed off before this file was touched; it is
-// placed here verbatim. Do not add a tagline, a CTA or another section.
+// 2026-09-24: reordered, at Jason's request. The old page led with Fuckery,
+// the most obscure thing here, and that was the wrong first impression. New
+// order: who I am, in one line -> what I am working on right now
+// (formaddie.com, the most prominent thing on the page) -> the initiatives,
+// as a set, in a tile grid, so the whole shape is visible at a glance -> the
+// writing, given real prominence instead of a footnote -> the Ko-fi
+// disclosure and link. Jason's own lines run through the page between
+// sections, as punctuation, spread out rather than clustered. Nothing is
+// hidden: Fuckery is still on the page, it is just not the opening line.
 //
-// THE WRITING LIST IS GENERATED. It reads listedPosts from ./_posts.js, the
-// same list /blog/ and /sitemap.xml read, so an unlisted post (fuckarian,
-// the-constraint) cannot appear here while it is hidden there. Each entry is
-// the post's own frontmatter: title and subtitle joined with a colon, the form
-// the post pages use in their <title>, then its description.
+// THE WRITING LIST IS GENERATED. It reads listedPosts (and fullTitle,
+// formatDate) from ./_posts.js, the same module /blog/ and /sitemap.xml
+// read, so an unlisted post (fuckarian, the-constraint) cannot appear here
+// while it is hidden there. fullTitle joins title and subtitle the same way
+// the rest of the site does, so a change to that join happens in one place.
 //
-// MADDIE. The only Maddie content on this page is the one For Maddie line, the
-// bristlecone mark and the outbound link to formaddie.com. The demonstration,
-// the recorder, the privacy policy, sign-in and the auth callbacks stay off the
-// site; they are kept, unbuilt, in src/_suppressed/ and the recorder component,
-// unimported, at src/components/Talk.astro. Read src/_suppressed/README.md
-// before restoring any of it. The mark is self-hosted under /assets/ because
-// the CSP is img-src 'self' data:. Do not swap in formaddie-rabbit.svg: its
-// fill is near-white and it disappears on this paper background.
+// MADDIE. The only formaddie.com content on this page is the feature card
+// below: the bristlecone mark, one paragraph and the outbound link. The
+// demonstration, the recorder, the privacy policy, sign-in and the auth
+// callbacks stay off the site; they are kept, unbuilt, in src/_suppressed/
+// and the recorder component, unimported, at src/components/Talk.astro. Read
+// src/_suppressed/README.md before restoring any of it. The mark is
+// self-hosted under /assets/ because the CSP is img-src 'self' data:. Do not
+// swap in formaddie-rabbit.svg: its fill is near-white and it disappears on
+// this paper background.
 //
 // TWO DEPLOY GATES. deploy-jeyanandan.yml greps the BUILT page for:
 //
 //     not the Foundation and not the company.
 //     ko-fi.com/jeyanandan
 //
-// The first is the end of the opening paragraph, the second is the closing
-// link. Both must stay real body text on one source line each. Reword either
-// and the workflow has to change in the same change-set, workflow first.
+// The first is the end of the hero paragraph, the second is the closing
+// link's href. Both must stay real body text (real markup, not a comment)
+// on one source line each. Reword either and the workflow has to change in
+// the same change-set, workflow first.
 //
 // Comments in the markup below are {/* ... */}, never <!-- ... -->. Astro
-// emits an HTML comment nested inside an element straight into the built page,
-// and a gate sentence living in a shipped comment would pass the grep happily
-// while the paragraph it was meant to guard was gone.
-
-const postTitle = (p) => (p.subtitle ? `${p.title}: ${p.subtitle}` : p.title);
+// emits an HTML comment nested inside an element straight into the built
+// page, and a gate sentence living in a shipped comment would pass the grep
+// happily while the paragraph it was meant to guard was gone.
 ---
 <Base
   title="Jason Jeyanandan"
@@ -50,19 +55,61 @@ const postTitle = (p) => (p.subtitle ? `${p.title}: ${p.subtitle}` : p.title);
     <p class="lede">I build things, mostly for myself first, and publish the ones that hold up. This is my personal site — not the Foundation and not the company.</p>
   </div></section>
 
-  <section><div class="shell narrow">
-    <h2 class="eyebrow">Released</h2>
-    <p><strong><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a></strong> — a framework about constraint and emergence. Structure forms under constraint, then becomes the constraint on whatever forms next. Named so that nobody genuflects at it. v0.51, CC BY 4.0.</p>
-    <p><strong><a href="https://github.com/daxfoundation/constraint-protocol">The Constraint Protocol</a></strong> — people call it a ledger, which is accurate and leaves out most of it. Yes, it keeps a signed record nobody can quietly edit. It also makes each party say in advance what it will not do, keeps the witness separate from the participants and the judging separate from the witnessing, lets a declared constraint hold back certain work and note anyone who tries to skip it, lets anyone dispute anything, and lets the past be judged again without being rewritten. People, companies and software get treated the same. v0.5, a public working draft, run once so far.</p>
-    <p><strong><a href="https://daxfoundation.org">The DAX Foundation</a></strong> publishes the protocol. It holds the part a company should not: the mission, and the constraint it answers to — DAX, <em>the preservation and expansion of life, humanity, and consciousness</em> — kept apart from the company that builds the infrastructure. Its site carries the definitions everything else here runs on.</p>
+  <section class="quote-band"><div class="shell narrow">
+    <p class="quote">"If you're not failing, you're not succeeding."</p>
   </div></section>
 
-  <section><div class="shell narrow">
-    <h2 class="eyebrow">Working on</h2>
-    <div class="maddie">
-      <a class="mark" href="https://formaddie.com"><img src="/assets/formaddie-bristlecone.png" width="140" height="145" alt="For Maddie" /></a>
-      <p><strong><a href="https://formaddie.com">For Maddie</a></strong> — talk with Maddie and she turns your memories into chapters, emailed to you with the full transcript. It is for keeping a life story. Built at <strong><a href="https://www.obsidiandelta.com">Obsidian Delta</a></strong>, which is the company.</p>
+  <section class="feature"><div class="shell narrow">
+    <h2 class="eyebrow">Working on now</h2>
+    <div class="feature-card">
+      <a class="mark" href="https://formaddie.com"><img src="/assets/formaddie-bristlecone.png" width="140" height="145" alt="formaddie.com" /></a>
+      <div class="feature-body">
+        <h3 class="feature-title"><a href="https://formaddie.com">formaddie.com</a></h3>
+        <p class="feature-date">Released <time datetime="2026-09-21">21 September 2026</time></p>
+        <p class="feature-lede">A senior-facing <a href="https://daxfoundation.org/#cognitive-companion">cognitive companion</a> that turns a life into a memoir by talking. Built at <a href="https://www.obsidiandelta.com">Obsidian Delta</a>.</p>
+        <p class="feature-tag">"Your stories will live forever."</p>
+      </div>
     </div>
+  </div></section>
+
+  <section class="quote-band"><div class="shell narrow">
+    <p class="quote"><em>Per aspera ad astra</em> — through hardship, to the stars. The hardship is the route.</p>
+  </div></section>
+
+  <section><div class="shell">
+    <h2 class="eyebrow">Initiatives</h2>
+    <div class="tiles">
+      <div class="tile">
+        <p class="tile-kind">Foundation</p>
+        <h3><a href="https://daxfoundation.org">The DAX Foundation</a></h3>
+        <p>The mission, and the constraint it answers to — DAX, the preservation and expansion of life, humanity, and consciousness — kept apart from the company that builds the infrastructure.</p>
+      </div>
+      <div class="tile">
+        <p class="tile-kind">Company</p>
+        <h3><a href="https://www.obsidiandelta.com">Obsidian Delta</a></h3>
+        <p>The company. Builds the cognition.</p>
+      </div>
+      <div class="tile">
+        <p class="tile-kind">Public working draft</p>
+        <h3><a href="https://github.com/daxfoundation/constraint-protocol">The Constraint Protocol</a></h3>
+        <p>A signed record nobody can quietly edit, and a way for a person, a company or a piece of software to declare in advance what it will not do — and be checked against it. v0.5.</p>
+      </div>
+      <div class="tile">
+        <p class="tile-kind">Metacognitive framework</p>
+        <h3><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a></h3>
+        <p>Structure forms under constraint, then becomes the constraint on whatever forms next. Named so that nobody genuflects at it. v0.51, CC BY 4.0.</p>
+      </div>
+      <div class="tile coming">
+        <p class="tile-kind">Learning initiative</p>
+        <h3>Meta DAX</h3>
+        <p>The DAX Foundation's universal learning initiative.</p>
+        <span class="badge">Coming</span>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="quote-band"><div class="shell narrow">
+    <p class="quote">"If you don't fight for your love, what kind of love do you have?"</p>
   </div></section>
 
   {listedPosts.length > 0 && (
@@ -70,14 +117,26 @@ const postTitle = (p) => (p.subtitle ? `${p.title}: ${p.subtitle}` : p.title);
       <h2 class="eyebrow">Writing</h2>
       <ul class="posts">
         {listedPosts.map((p) => (
-          <li><a href={`/blog/${p.slug}/`}>{postTitle(p)}</a>{p.description && ` — ${p.description}`}</li>
+          <li>
+            <a href={`/blog/${p.slug}/`}>{fullTitle(p)}</a>
+            <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+            {p.description && <p>{p.description}</p>}
+          </li>
         ))}
       </ul>
     </div></section>
   )}
 
+  <section class="quote-band"><div class="shell narrow">
+    <p class="quote">"Wealth is not how much money I have. It is how happy and well off the people I love are."</p>
+  </div></section>
+
   <section><div class="shell narrow">
     <p>If any of this is useful to you, <a href="https://ko-fi.com/jeyanandan">buy me a coffee</a>.</p>
+  </div></section>
+
+  <section class="quote-band"><div class="shell narrow">
+    <p class="quote">"I am a being that happens to be human."</p>
   </div></section>
 </Base>
 
@@ -90,17 +149,61 @@ section a{text-decoration-thickness:1px;text-underline-offset:.16em}
 section a:hover{color:var(--orange)}
 section strong{font-weight:600;color:var(--strong)}
 
-/* ---------- working on: the mark beside the line, above it on a phone ---------- */
-.maddie{display:flex;gap:1.5rem;align-items:flex-start}
-.maddie .mark{flex:0 0 auto;display:block;line-height:0}
-.maddie img{display:block;width:140px;max-width:100%;height:auto}
-.maddie p{margin:0}
-@media (max-width:560px){
-  .maddie{flex-direction:column;gap:1rem}
-  .maddie img{width:120px}
+/* ---------- quotes: punctuation between sections, not clustered ---------- */
+.quote-band{padding:clamp(1.5rem,4vw,2.25rem) 0}
+.quote-band .narrow{max-width:30rem}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.4vw,1.25rem);line-height:1.55;color:var(--soft);text-align:center;margin:0}
+.quote em{font-style:italic}
+
+/* ---------- working on now: the lead feature ---------- */
+.feature-card{
+  display:flex;gap:1.75rem;align-items:flex-start;
+  margin-top:.5rem;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-top:3px solid var(--orange);
+  border-radius:6px;
+  padding:clamp(1.5rem,4vw,2.5rem);
+}
+.feature-card .mark{flex:0 0 auto;display:block;line-height:0}
+.feature-card img{display:block;width:140px;max-width:100%;height:auto}
+.feature-body{min-width:0}
+.feature-title{font-family:var(--sans);font-weight:600;font-size:clamp(1.9rem,4.5vw,2.6rem);line-height:1.1;letter-spacing:-.02em;margin:0 0 .4rem;color:var(--strong)}
+.feature-title a{text-decoration:none}
+.feature-title a:hover{color:var(--orange)}
+.feature-date{font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin:0 0 1.1rem}
+.feature-lede{font-size:clamp(17px,2vw,19px);margin:0 0 1rem}
+.feature-tag{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--orange);margin:0}
+@media (max-width:600px){
+  .feature-card{flex-direction:column;gap:1.1rem;padding:1.5rem}
+  .feature-card img{width:110px}
 }
 
-/* ---------- writing ---------- */
-.posts{list-style:none;margin:0;padding:0}
-.posts li + li{margin-top:.9rem}
+/* ---------- initiatives: tile grid, the whole shape at a glance ---------- */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;margin-top:.25rem}
+.tile{
+  display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--line);border-radius:6px;
+  padding:1.4rem 1.5rem 1.6rem;
+}
+.tile.coming{border-style:dashed}
+.tile-kind{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--orange);margin:0 0 .55rem}
+.tile h3{font-family:var(--sans);font-weight:600;font-size:1.08rem;line-height:1.25;margin:0 0 .55rem;color:var(--strong)}
+.tile h3 a{text-decoration:none}
+.tile h3 a:hover{color:var(--orange)}
+.tile p{font-size:.95rem;line-height:1.55;margin:0;color:var(--ink)}
+.tile .badge{
+  align-self:flex-start;margin-top:.9rem;
+  font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--orange);border:1px solid var(--orange);border-radius:3px;padding:.2rem .45rem;
+}
+
+/* ---------- writing, given real prominence ---------- */
+.posts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.5rem}
+.posts li{border-top:1px solid var(--line);padding-top:1.1rem}
+.posts li:first-child{border-top:none;padding-top:0}
+.posts a{font-family:var(--sans);font-weight:600;font-size:1.3rem;line-height:1.3;color:var(--strong);text-decoration:none;display:block}
+.posts a:hover{color:var(--orange)}
+.posts time{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-top:.4rem}
+.posts p{margin:.6rem 0 0;color:var(--muted)}
 </style>

@@ -39,14 +39,23 @@ And all of the above is only *this year*. What I have actually been doing for th
 - **If you want the argument** — *What the first two were*, then *What happens next, and what I am asking for*.
 - **Nothing here needs the other two essays first**, and nothing technical is load-bearing for the human parts. Skim past anything that stops being interesting; I will not know.
 
-This is what I have been doing. This is what I am about. Here it is with the links attached, so that you do not have to take my word for a single line of it:
+This is what I have been doing. This is what I am about. Here it all is, described properly rather than in the shorthand I have apparently been using at family gatherings.
 
-- **[Fuckery](https://github.com/ObsidianDelta/Fuckery)** — a way of thinking about thinking. Open, free, CC BY 4.0.
-- **[The Snowflake](/blog/snowflake-fuckari-in-action/)** — that framework run against one object, in public, for twenty-eight steps.
-- **[The Constraint](/blog/the-constraint/)** — why I think any of this is urgent.
-- **[The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol)** — the thing I built about it. A public working draft, and it says so on the tin.
-- **[The DAX Foundation](https://daxfoundation.org/)** — where the mission, the constraint and the definitions live.
-- **[Obsidian Delta](https://www.obsidiandelta.com)** — the company that builds it.
+### Start here, because this is the one you can actually use
+
+**[formaddie.com](https://formaddie.com)** — released this year, on my birthday. You talk to it about your life, and it turns what you say into a book in your own voice. There is no blank page, no typing, and no requirement that a life be remarkable before it is worth keeping. It was built with older people in mind first, because that is where the loss happens fastest and is least recoverable. If you have a parent or a grandparent whose stories are going to go with them, this is the thing I made about that.
+
+Underneath Maddie is a **[cognitive companion](https://daxfoundation.org/#cognitive-companion)** — a category I ended up having to define rather than borrow, because none of the existing words fit. It is not a chatbot and it is not an assistant. An assistant is a second party you hand jobs to. A companion is an extension of the person: part of you, the part through which you work with this technology and direct it. Maddie is one of those, pointed at a single subject, which is your own life. The full definition is at that link, and everything below is what it takes to build one of these responsibly.
+
+### The rest, in the order that makes sense
+
+- **[Obsidian Delta](https://www.obsidiandelta.com)** — the company, and fourteen years old now. It started in telephony and voice automation, built a voice agent that took real taxi bookings on bad phone lines at night, and it now builds the cognition everything else here runs on. This is the part that pays for things.
+- **[The DAX Foundation](https://daxfoundation.org/)** — deliberately separate from the company. A company can commit to a constraint; it should not also be the thing that holds the constraint. So the Foundation holds the mission, the constraint, and the definitions that everything else refers back to. It is not incorporated yet, and the site says so plainly.
+- **[Fuckery](https://github.com/ObsidianDelta/Fuckery)** — the name is a joke, the thing is not. It is a metacognitive framework, which is a pompous way of saying it is a tool for thinking about how thinking gets shaped. One idea holds it up: structure forms under pressure, and then becomes the pressure that the next thing forms under. Free, openly licensed, no catch.
+- **[The Snowflake](/blog/snowflake-fuckari-in-action/)** — that framework, run against a single snowflake, step by step, twenty-eight times, in public. I chose a snowflake on purpose: nobody argues about the physics and nobody has anything at stake in the answer. If the method was going to fall over, it should fall over somewhere harmless.
+- **[The Constraint](/blog/the-constraint/)** — the serious one. Why I think the next few years are genuinely dangerous, what the people closest to this technology are actually saying about it in public, and what we built because we did not want to take the chance.
+- **[The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol)** — the thing we built. An open, public way for anything — a person, a company, a piece of software — to declare in advance what it will not do, and then be checked against that declaration by anybody who cares to look. Published, free to use, and honest about the fact that it has only run once so far.
+- **Meta DAX** — the learning one, and the one I care about most. It is not released yet. It gets its own announcement, shortly.
 
 One last thing before you start, because I do not want this read as a man announcing himself. On the twenty-first of this month I released most of a year's work in a week. That is not remarkable. Everyone I know who works in a domain they care about is sitting on a pile that got suddenly, strangely easy to finish, and a great deal of it is going to land at once over the next while. Whatever you end up making of me, do not make the mistake of thinking this is only me.
 
