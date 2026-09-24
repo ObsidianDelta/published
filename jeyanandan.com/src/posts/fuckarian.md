@@ -301,17 +301,17 @@ So the life's work is **Meta DAX**, the universal learning initiative of the [DA
 
 It gets its own post, with the detail attached. This is the trailer, and that is deliberate — it is the same rule I have applied to everything else here: a claim you cannot go and check is a claim you should not be asked to hold. So I will tell you what it is for and what standard it is held to, and save the rest for something you can argue with.
 
-**It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre — as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and every design decision gets measured against it:
+**It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre — as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and I want to be upfront that the sentence is absurd:
 
-> **A person with five minutes of connectivity a week should be able to reach mastery in a domain.**
+> **Take a person who can just about read and write, and get them to the equivalent of a master's degree from a North American university — on five minutes of connectivity a week.**
 
-Not a taster. Not a certificate. Mastery, of the kind you would expect from somebody who had done it properly.
+That is not a roadmap and I am not claiming it is achievable. It is a deliberately ridiculous theoretical benchmark, held on purpose, because holding it does one useful thing: it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists and already fails these people.
 
-Five minutes a week means the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like — a week, a month, a season. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.
+And the five minutes is the part that does the work. If that is the budget, the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like — a week, a month, a season. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.
 
 It will be open source and it will be free. Not freemium, not free-for-some, not free-until-we-raise. Free, and forkable by anyone who thinks they can do it better. The entire argument of this series is that what matters about a system is what it refuses to do, and this is mine: I will not put a price on this one.
 
-There has been a working prototype for a while now. [Here it is in 2024](https://youtu.be/kCtn0B7-OG0), building an entire cell biology course for one student in grade eleven, from nothing — which is the whole idea in one frame, because the biology is the same for everybody and the student is not. It is rough and it is an early version, and it can already take a subject, break it into chapters and lessons, tailor every one of them to the particular learner, lay the material out properly, and let the student keep asking questions after the lesson has finished. Everything since has been about making that work for somebody with almost no bandwidth and no money.
+There has been a working prototype since 2024. [Here it is](https://youtu.be/kCtn0B7-OG0), building a fractions course for an eleven-year-old and running every example through baseball, because baseball is what that particular learner cares about — which is the whole idea in one frame, since the fractions are the same for everybody and the baseball is not. It takes a subject and breaks it into chapters, lessons and parts; it writes each one against instructions aimed at that specific student; it sets the mathematics properly; it generates interactive tests from the material it has just produced and scores them against Bloom's taxonomy rather than against recall; and when the student is curious past the end of the lesson, it lets them keep asking. Everything since has been about making that work for somebody with almost no bandwidth and no money.
 
 It is that Grade 12 physics room, for everyone, on any subject, for as long as they want to keep learning. It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.
 
@@ -400,7 +400,7 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 - [The Constraint](/blog/the-constraint/) — the threat, what people closest to this are saying, and what we built about it.
 - [The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol) — the repository, including the full v0.5 specification, the decision log, and the publication digests.
 - [The Constraint Protocol, in short](https://daxfoundation.org/#cp) — what it is, in a paragraph.
-- [The prototype, 2024](https://youtu.be/kCtn0B7-OG0) — the learning system building a cell biology course for one grade-eleven student.
+- [The prototype, 2024](https://youtu.be/kCtn0B7-OG0) — the learning system building a fractions course for an eleven-year-old, entirely through baseball.
 - [DAX, 2021](https://www.youtube.com/watch?v=Q1gCzxg5WMc) — the personal agent, and a video published the same day I started building it, saying what it would cost us.
 
 **The definitions, all normative, all at the Foundation**
