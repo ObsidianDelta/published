@@ -19,33 +19,32 @@
 // UNLISTED_SLUGS below is the second way in, for when the decision belongs to
 // the site rather than to the post. Either is enough; both are honoured.
 //
-// THE SET ABOVE IS THE TRUTH. These notes are history, and history goes stale
+// THE SET BELOW IS THE TRUTH. These notes are history, and history goes stale
 // faster than code does. If a comment here and UNLISTED_SLUGS disagree, the
 // comment is the thing that is wrong.
 //
-//   fuckarian -- unlisted on 2026-09-20, Jason's call, and still unlisted:
-//   "Hide the Constraint blog post and also the Fuckarian blog post. Just hide
-//   them, so those are just work in progress." It builds, its URL serves in
-//   full, no index here advertises it, and it carries noindex. Since
-//   2026-09-21 nothing links to it either -- the last public link, from
-//   the-constraint, came out. It is named here rather than in the post's own
-//   frontmatter only because src/posts/ was being edited elsewhere at the
-//   time; moving it into that file later changes nothing, because the two
-//   routes are OR'd.
+//   NOTHING IS UNLISTED RIGHT NOW. The set is empty, so every post that builds
+//   is listed on the home page and /blog/, is in the sitemap, and is indexable.
 //
-//   the-constraint -- unlisted alongside fuckarian on 2026-09-20, then
-//   published on 2026-09-23, Jason's call, and taken back out of this set. It
-//   is an ordinary listed post now: home page, /blog/, sitemap, no noindex.
-//   Nothing about it is special any more, and it is mentioned here only
-//   because the pair of them was hidden together and someone reading an older
-//   revision of this file will expect to find it in the set.
+//   fuckarian -- unlisted on 2026-09-20, Jason's call ("Hide the Constraint
+//   blog post and also the Fuckarian blog post. Just hide them, so those are
+//   just work in progress"), and published on 2026-09-24 together with a
+//   substantial rewrite of the essay. An ordinary listed post now.
+//
+//   the-constraint -- unlisted alongside fuckarian on 2026-09-20, published on
+//   2026-09-23. Also ordinary.
 //
 //   WHAT MUST NOT HAPPEN TO EITHER, listed or not: `draft: true`, a rename, or
 //   a move. Any of the three takes the URL down, and deploy-jeyanandan.yml
-//   gates on both https://jeyanandan.com/blog/fuckarian/ and
-//   https://jeyanandan.com/blog/the-constraint/ building, and on their body
-//   text rendering into those pages. Unlisting a post is safe. Unbuilding one
-//   fails the deploy, which is the point.
+//   gates on both pages building AND on one exact sentence of real body text
+//   rendering into each of them:
+//
+//     fuckarian       I am not building a staircase.
+//     the-constraint  The mechanism is three hundred thousand years old. The clock is new.
+//
+//   Those two sentences are load-bearing. Edit the paragraph around them
+//   freely; delete or reword the sentence itself and the deploy fails closed,
+//   which is the point. Unlisting a post is safe. Unbuilding one is not.
 //
 // UNLISTED ALSO MEANS NOINDEX. Keeping a post off this site's own indexes does
 // not keep it out of a search engine that reaches it some other way, so
@@ -56,7 +55,7 @@
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
 
-export const UNLISTED_SLUGS = new Set(['fuckarian']);
+export const UNLISTED_SLUGS = new Set([]);
 
 /** The one rule for unlisted: either route in is enough. */
 export const isUnlisted = (slug, frontmatter = {}) =>
