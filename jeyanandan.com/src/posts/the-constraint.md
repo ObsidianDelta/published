@@ -56,12 +56,12 @@ So we stopped arguing about the odds.
 
 ## The Constraint Protocol
 
-So we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We're running it internally, as an experiment, and we've released it, openly, through the [DAX Foundation](https://daxfoundation.org).
+So we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We've started putting some of our own traffic through it, as an experiment, and we've released it openly through the [DAX Foundation](https://daxfoundation.org).
 
-- **It compounds knowledge.** What survives judgment becomes the floor the next thing builds on.
-- **It compounds intelligence.** It records who deferred to whom, and why — so reasoning compounds faster than capitulation.
-- **It shows patterns over time.** How entities came to agree, and whether the agreement was reached or manufactured.
-- **It holds everyone to account.** Declare what you won't do. Everything after that is witnessed, signed, and can't be quietly edited.
+- **It is built to compound knowledge.** What survives judgment is meant to become the floor the next thing builds on. That is the specification's first sentence, and it is design intent — not a result anyone has measured yet.
+- **It is intended to compound intelligence.** It records who deferred to whom, and why. The reasoning behind a changed position is kept rather than thrown away, so that what accumulates is argument rather than capitulation. Whether it accumulates that way at scale is exactly what has not been tested.
+- **It is designed to surface patterns over time.** How entities came to agree, and whether the agreement was reached or manufactured. The detector for that is specified. It has not been run against an adversary.
+- **It holds everyone to account — retrospectively.** Declare what you won't do. Everything after that is witnessed, signed, and can't be quietly edited. What the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
 
 ---
 
@@ -375,14 +375,14 @@ The body of the post says what the Constraint Protocol is and why we built it. T
 
 If the threat is real and we did nothing, we lose the one thing every other repair depends on: the ability to notice what's being done to us. If it isn't real and we prepared anyway, we're out some engineering time. That's not a hard call.
 
-So Obsidian Delta built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We're experimenting with it internally, and we've released it, openly licensed, through the [DAX Foundation](https://daxfoundation.org).
+So Obsidian Delta built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We're experimenting with it on some of our own traffic, and we've released it, openly licensed, through the [DAX Foundation](https://daxfoundation.org).
 
 It does four things.
 
-1. **It compounds knowledge.** What survives judgment builds up into a shared floor that anyone working under the same constraint can build on, and that other frames can import only by checking it themselves. That's the specification's first sentence: *a substrate for compounding knowledge across entities, time, and constraint frames.*
-2. **It compounds intelligence.** It records who deferred to whom, and why a position changed. A floor that weights what it keeps by the quality of the reasoning behind it compounds reasoning faster than it compounds capitulation.
-3. **It shows patterns over time.** It's built so that when entities talk to each other for months, you can see how they came to agree, and whether the agreement was reached or manufactured.
-4. **It's an accountability layer.** Everyone declares in advance what they won't do. What happens is witnessed and signed. Independent judges score whether each declaration held, and can re-score it years later without erasing the old verdict. Nothing gets quietly edited. It won't stop harm in the moment. It makes hiding expensive.
+1. **It is built to compound knowledge.** What survives judgment is meant to build into a shared floor that anyone working under the same constraint can build on, and that other frames can import only by checking it themselves. That is the specification's first sentence, word for word: *a substrate for compounding knowledge across entities, time, and constraint frames.* Note the noun. A substrate *for* something states what a thing is built to carry, not what it has carried.
+2. **It is intended to compound intelligence.** It records who deferred to whom, and why a position changed. The design bet is that a floor which weights what it keeps by the quality of the reasoning behind it will accumulate reasoning faster than it accumulates capitulation. That is a bet. It needs months of real traffic and an adversary before anyone should believe it, and it has had neither.
+3. **It is designed to surface patterns over time.** It is built so that when entities talk to each other for months, you can see how they came to agree, and whether the agreement was reached or manufactured. The specification goes further and names the measurement: detection rate of manufactured consensus, against a seeded bloc, at a stated false-positive rate. The study is pre-registered and unrun.
+4. **It's an accountability layer — retrospectively.** Everyone declares in advance what they won't do. What happens is witnessed and signed. Independent judges score whether each declaration held, and can re-score it years later without erasing the old verdict. Nothing gets quietly edited. It won't stop harm in the moment, and it doesn't hold anyone to account on its own: what it provides is the *capacity* for accountability. Somebody still has to go and look. What it changes is that hiding gets expensive.
 
 We didn't build this as a thought experiment. We built it because we needed it.
 
@@ -492,6 +492,8 @@ The answer is that a declared constraint is a different kind of object from ever
 
 **It is forkable, and it is exitable.** You can take it, change it, declare your own, and walk off with it. The protocol does not object — forking is a first-class operation with a lineage that can be walked, and exit is recorded as a success state rather than a failure. Not one of the twenty-eight rows had a fork.
 
+**And the answer is not that DAX is a *better* meaning.** I have no way to establish that. The moment I claim it, I have written row twenty-nine, and I would deserve everything that followed.
+
 So here is the honest statement. DAX is a meaning. It is my meaning. I am asking nobody to adopt it.
 
 What I am arguing for is the shape of the container — that whatever meaning is operating be declared, bounded, inspectable and forkable, because those four properties are precisely the ones that make recognition possible for somebody who was not in the room when it was decided.
@@ -546,7 +548,7 @@ We just did not want to take the chance.
 
 So, three commitments, and they are specific enough to hold us to.
 
-**One. Everything Obsidian Delta operates is to run under a declared constraint, with the record kept.** Not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — the commitment is that it operates under a declaration, that the declaration says what it will not do, and that the conduct under it is signed, witnessed and append-only. If we drift from it, the drift goes in the record with our name on it, and we do not get to quietly remove it later. We are at the start of this, not the end of it: today the protocol has run in full once.
+**One. Obsidian Delta aims for everything it operates to run under a declared constraint, with the record kept.** *Aims.* Not does — and I want that word in the sentence rather than in a footnote, because everything above this point describes work that is already running, and by the time you reach a bolded line in a list of commitments it is easy to read it as one more description of what is. It is not. **Today, Obsidian Delta does not run everything it operates under the Constraint Protocol.** The protocol has run in full once, and some of our own agent traffic goes through it as an experiment. The rest is the target, not the state. What the commitment fixes is the shape of that target: not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — the commitment is that it operates under a declaration, that the declaration says what it will not do, and that the conduct under it is signed, witnessed and append-only. If we drift from it, the drift goes in the record with our name on it, and we do not get to quietly remove it later. Judge us on the distance we close, and on whether we keep telling you where we actually are.
 
 **Two. Any external party who wants to run the Constraint Protocol with us, we will run it with them.** Agent to agent, organisation to organisation, over MCP or A2A or whatever comes after them. You do not need our permission, you do not need to adopt our constraint, and you do not need to like us. If you declare something and you are willing to be checked against it, that is a counterparty we can work with. The whole point of a protocol rather than a policy is that it works between strangers.
 
