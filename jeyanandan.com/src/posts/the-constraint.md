@@ -22,8 +22,6 @@ Every one of them was slow, and slowness was the defence. You can notice a regim
 
 A capable enough intelligence takes the waiting out. It can model one person, fit a way of seeing to them, deliver it through a channel they already trust, and check whether it took — in seconds, for everyone at once.
 
-The mechanism is three hundred thousand years old. The clock is new.
-
 ---
 
 ## The conversation
@@ -277,8 +275,6 @@ Now take the gap out.
 
 A system that can model one particular person, generate an interpretive frame fitted to that person, deliver it through a channel that person already trusts, measure whether it took, and revise — all inside a second, and separately for every person — is not doing a new thing. There is no new mechanism in that description. It is row twenty-six with the waiting removed.
 
-The mechanism is three hundred thousand years old. The clock is new.
-
 The research that supports this, and the public conversation it is landing in, are in [Appendix B](#appendix-b-what-people-are-saying).
 
 So, the concern without the usual adjectives, because the adjectives turn this into a different and much stupider conversation. I am not claiming such a system exists. I am not claiming anyone intends to build one. I am not claiming that intelligence on a nonbiological substrate is dangerous, and I would need far more than I have to claim that.
@@ -448,7 +444,7 @@ It does not prevent anything. I want to be blunt about that, because it is the f
 
 There is a second honest limit, and the specification states it rather than leaving it to be found: the protocol provides the capacity for retrospective accountability, not its exercise. A record is only as consequential as somebody's willingness to go and read it later.
 
-It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. That is what exists. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
+It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. There is a great deal more to say about that run, and it will get its own write-up. That is what exists. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
 
 DAX is an example of a declared constraint. It is not the content of the protocol. The protocol has no opinion about which constraint you declare. That is the point of it.
 
