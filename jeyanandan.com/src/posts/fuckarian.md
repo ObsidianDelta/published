@@ -148,7 +148,6 @@ There were exceptions. Three, in about fifteen years, which tells you the ratio 
 The big one was Grade 12 physics. The teacher was genuinely exciting. The tables were turned to face each other so we worked together instead of in rows. And we derived E = mc², by hand, as a group, and it was absolutely magical. I have spent a lot of my life since trying to understand why that one room worked when nothing else did. I think the answer is in the room itself: curiosity instead of compliance, collaboration instead of rows, and an adult who was excited by the thing he was showing us. Hold on to that one too.
 
 The other two were a computer programming course and, somewhere in there, astronomy. Same reason, I think. In all three, the thing being taught was visibly something a person had once had to work out, rather than something I was being handed and asked to hold. Everything else was torture. I am aware that is a strong word for a school timetable and I have chosen not to soften it, because softening it would be the third or fourth time in my life I have agreed to describe that experience in somebody else's vocabulary.
-
 The easy reading of the rest of that list is that I was not very bright, or not very disciplined, or not trying. I believed some version of that for a long time. I once spent about two years praying every night to be made smarter.
 
 The reading I believe now is different. The problem was never the content. It was the channel, and the channel ran both ways. The way other people packaged information did not land in me, and the way I packaged it did not land in them. Teachers, classmates, family, later colleagues: all of them were transmitting in good faith on a frequency I was not receiving, and I was transmitting on one they were not.
@@ -297,9 +296,8 @@ Everything above (nine years at home, a decade and a half of classrooms that did
 
 None of that is an argument against education. Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of showing you have understood. Learning is the thing underneath it, and learning does not standardise. It happens at the pace of the person doing it. The gap between those two is the whole subject.
 
-So the life's work is the universal learning initiative of the [DAX Foundation](https://daxfoundation.org/). It is the right information, to the right person, at the right time, turned into a system.
-
-It has a name, and the name gets its own post, along with the detail. That is deliberate and it is the same rule I have been applying to everything else here: a claim you cannot go and check is a claim you should not be asked to hold. So this is a trailer, and I will say what it is for rather than what it is called.
+So the life's work is **Meta DAX**, the universal learning initiative of the [DAX Foundation](https://daxfoundation.org/#learning). It is the right information, to the right person, at the right time, turned into a system.
+It gets its own post, with the detail attached. This is the trailer, and that is deliberate — it is the same rule I have applied to everything else here: a claim you cannot go and check is a claim you should not be asked to hold. So I will tell you what it is for and what standard it is held to, and save the rest for something you can argue with.
 
 **It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre — as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and every design decision gets measured against it:
 
