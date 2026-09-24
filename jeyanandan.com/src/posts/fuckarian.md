@@ -22,9 +22,22 @@ So this is the missing tag. I have been asking people to check my reasoning trai
 
 ## Before anything else: friends and family
 
-If you have landed here because you know me rather than because you follow the work, start in this section and take the rest at your own pace.
+If you have landed here because you know me rather than because you follow the work, this section is for you. Read it, take what you want, and leave the rest. It will still be here.
 
-I know I have been off doing my own thing. I know that for long stretches I have been hard to reach, hard to follow, and hard to explain to anybody at a party. A fair amount of what is below is going to come as a surprise, and some of it is going to come as a shock.
+**An apology first.** Over the last couple of weeks — including on my birthday, which cannot have helped — I am fairly sure I frightened off a couple of cousins. I was launching formaddie.com, and re-releasing the ontology, and putting out the protocol, and saying that something called Meta DAX is coming. I suspect what arrived on the other side of those conversations was a man speaking in tongues. Riddles, at best.
+
+So, sorry. To them and to the rest of the family. It was not you, you had not missed a memo, and it was not a test. I was mid-launch and I do not have a second register to drop into when I am.
+
+In my defence, the pace is not entirely my doing. There is a section further down where I quote the programmer David Heinemeier Hansson — about as level-headed as that field produces — describing this year as decades of progress arriving in nine months. That is happening to everybody who builds things right now. It is intoxicating, it is fast, and it makes otherwise reasonable people sound unhinged at family gatherings. I am not special in this. I am one of a great many it happened to, in a year when it happened to a lot of us at once.
+
+And all of the above is only *this year*. What I have actually been doing for the last three years is a separate pile, most of it still unreleased. That comes soon as well.
+
+**How to read this, if you want to.** It is long, and it is not written in one register. So:
+
+- **If you only want to know what I have been up to** — read the links below and stop there. You will have the whole of it.
+- **If you want the person rather than the work** — skip to *What I have learned about myself this year* and read to the end. That is the part I have never managed to say out loud, and it is the part I most want the family to have.
+- **If you want the argument** — *What the first two were*, then *What happens next, and what I am asking for*.
+- **Nothing here needs the other two essays first**, and nothing technical is load-bearing for the human parts. Skim past anything that stops being interesting; I will not know.
 
 This is what I have been doing. This is what I am about. Here it is with the links attached, so that you do not have to take my word for a single line of it:
 
@@ -35,7 +48,7 @@ This is what I have been doing. This is what I am about. Here it is with the lin
 - **[The DAX Foundation](https://daxfoundation.org/)** — where the mission, the constraint and the definitions live.
 - **[Obsidian Delta](https://www.obsidiandelta.com)** — the company that builds it.
 
-One more thing before you start, because I do not want this read as a man announcing himself. On the twenty-first of this month I released most of a year's work in a week. I am not unusual in that. Everyone I know who works in a domain they care about is sitting on a pile that got suddenly, strangely easy to finish, and a great deal of it is going to land at once. Whatever you make of me, do not make the mistake of thinking this is only me.
+One last thing before you start, because I do not want this read as a man announcing himself. On the twenty-first of this month I released most of a year's work in a week. That is not remarkable. Everyone I know who works in a domain they care about is sitting on a pile that got suddenly, strangely easy to finish, and a great deal of it is going to land at once over the next while. Whatever you end up making of me, do not make the mistake of thinking this is only me.
 
 The rest of this post is the part I have never been able to say out loud.
 
@@ -376,16 +389,6 @@ I released most of this on my forty-ninth birthday.
 A lot of it will come as a surprise to my friends, and especially to my family. I have not told many people. So: sorry, friends and family, that it took this long.
 
 This is what I have been up to. And that is who has been doing it — a being that happens to be human, who is slow, who spells badly, and who has been at this the whole time.
-
----
-
-## What it cost, and who paid
-
-This one did not cost sleep. It cost something else, and the people it cost have mostly been kinder about it than the situation warranted. Some are still here and some are not. In both cases they were working from what they could see, which was never much, because I could not show them.
-
-I am not going to name anybody. They know.
-
-If you would like to help with the next one, the page is here: [ko-fi.com/jeyanandan](https://ko-fi.com/jeyanandan). Nothing is bought by giving: the framework stays CC BY 4.0, this essay stays public, and nobody who gives gets anything that a reader does not already have.
 
 ---
 
