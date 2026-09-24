@@ -349,8 +349,6 @@ There has been a working prototype since 2024. [Here it is](https://youtu.be/kCt
 
 It is that Grade 12 physics room, for everyone, on any subject, for as long as they want to keep learning. It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.
 
-The channel is why. I was not badly taught; I was taught in a way that assumed a mind I did not have, and only three classes in fifteen years bothered to arrive in a shape I could actually take. Meta DAX is the attempt to make that shape available to every kid whose channel does not match the one standard classroom, not just the lucky handful who happen to sit in the right room in the right year.
-
 That is the next post, and that is the life's work.
 
 ---
@@ -381,7 +379,7 @@ If it is wrong, I would rather find out from you than from the log.
 
 ## Who the responsibility is owed to
 
-I said the lover-and-fighter line would come back. Here it is. And so does the other half of the responsibility section — *responsible for what* and *responsible to whom* are two different questions, and this is the second one.
+I said the lover-and-fighter line would come back. Here it is. And so does the other half of the responsibility section.
 
 Earlier I said that responsibility, to me, meant taking care of the people I love, and that I was being as responsible as I knew how even while being lectured about not being. All of that is true. It is also only the *for what*. It says nothing about who is owed the answer.
 
