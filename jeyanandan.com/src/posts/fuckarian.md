@@ -223,6 +223,8 @@ By that definition I have not been wealthy, and not being able to meet the one r
 
 I am not saying I got it right. I often did not. I am saying it was never indifference. It was the opposite.
 
+There is a second half to this, and it is at the end of the post rather than here, because it took me most of my life to work out that *responsible for what* and *responsible to whom* are two different questions. I had spent decades answering the first one and had never once sat down with the second.
+
 ---
 
 ## Conditions
@@ -315,7 +317,17 @@ That is also why the protocol exists. Once a person and their companion are one 
 
 Fuckery and the Constraint Protocol are this year's work. Here is the rest.
 
-Everything above (nine years at home, a decade and a half of classrooms that did not reach me, one physics class that did, thoughts I could not get onto paper until my twenties) points in one direction. The way we teach assumes one kind of mind, one speed and one channel. Mine was not that one. A great many people's are not.
+Everything above points in one direction, and I want to draw the line explicitly rather than leave it implied, because it is the entire reason this is a life's work and not a business plan.
+
+I was not badly taught. I was taught in a way that assumed a mind I did not have. One pace, one sequence, one channel, and one accepted way of demonstrating that you had understood — and then fifteen years of being measured against all four. The content was never the problem. It was the channel, and the channel ran both ways: what was sent did not arrive in me, and what I had did not come out in a form anybody could receive. Three classes reached me in all those years, and the only thing the three had in common was that somebody had taken the trouble to make the subject arrive in a shape I could take.
+
+I spent two years praying to be made smarter. What I actually needed was for the material to be handed over differently. Nobody had the time for that, and at the scale a school runs at, nobody could have. It is not a failure of teachers. It is arithmetic.
+
+**That is the gap.** And a system that can build a course for one specific person, in the shape that person can actually receive it, working at whatever pace they work at, is the first thing I have ever seen that could close that gap without requiring a saint in every classroom.
+
+I am not guessing at what that would have been worth. I know exactly what it would have been worth, because I was the kid it did not exist for.
+
+The way we teach assumes one kind of mind, one speed and one channel. Mine was not that one. A great many people's are not.
 
 None of that is an argument against education. Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of showing you have understood. Learning is the thing underneath it, and learning does not standardise. It happens at the pace of the person doing it. The gap between those two is the whole subject.
 
@@ -336,6 +348,8 @@ It will be open source and it will be free. Not freemium, not free-for-some, not
 There has been a working prototype since 2024. [Here it is](https://youtu.be/kCtn0B7-OG0), building a fractions course for an eleven-year-old and running every example through baseball, because baseball is what that particular learner cares about — which is the whole idea in one frame, since the fractions are the same for everybody and the baseball is not. It takes a subject and breaks it into chapters, lessons and parts; it writes each one against instructions aimed at that specific student; it sets the mathematics properly; it generates interactive tests from the material it has just produced and scores them against Bloom's taxonomy rather than against recall; and when the student is curious past the end of the lesson, it lets them keep asking. Everything since has been about making that work for somebody with almost no bandwidth and no money.
 
 It is that Grade 12 physics room, for everyone, on any subject, for as long as they want to keep learning. It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.
+
+The channel is why. I was not badly taught; I was taught in a way that assumed a mind I did not have, and only three classes in fifteen years bothered to arrive in a shape I could actually take. Meta DAX is the attempt to make that shape available to every kid whose channel does not match the one standard classroom, not just the lucky handful who happen to sit in the right room in the right year.
 
 That is the next post, and that is the life's work.
 
@@ -367,9 +381,11 @@ If it is wrong, I would rather find out from you than from the log.
 
 ## Who the responsibility is owed to
 
-I said the lover-and-fighter line would come back. Here it is.
+I said the lover-and-fighter line would come back. Here it is. And so does the other half of the responsibility section — *responsible for what* and *responsible to whom* are two different questions, and this is the second one.
 
-When people talk to me about responsibility, they usually mean responsibility to them, or to the family, or to the world as it stands. I take those seriously; I hope the work shows it. But there is one more, and for me it comes first.
+Earlier I said that responsibility, to me, meant taking care of the people I love, and that I was being as responsible as I knew how even while being lectured about not being. All of that is true. It is also only the *for what*. It says nothing about who is owed the answer.
+
+When people talk to me about responsibility, they usually mean responsibility to them, or to the family, or to the world as it stands. I take all of those seriously; I hope the work shows it. But there is one more, and for me it comes first — and it is the one that makes sense of everything in the section above, including the parts of it that look like stubbornness.
 
 I am responsible to the kid.
 
