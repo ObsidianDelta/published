@@ -492,8 +492,6 @@ The answer is that a declared constraint is a different kind of object from ever
 
 **It is forkable, and it is exitable.** You can take it, change it, declare your own, and walk off with it. The protocol does not object — forking is a first-class operation with a lineage that can be walked, and exit is recorded as a success state rather than a failure. Not one of the twenty-eight rows had a fork.
 
-**And the answer is not that DAX is a *better* meaning.** I have no way to establish that. The moment I claim it, I have written row twenty-nine, and I would deserve everything that followed.
-
 So here is the honest statement. DAX is a meaning. It is my meaning. I am asking nobody to adopt it.
 
 What I am arguing for is the shape of the container — that whatever meaning is operating be declared, bounded, inspectable and forkable, because those four properties are precisely the ones that make recognition possible for somebody who was not in the room when it was decided.
