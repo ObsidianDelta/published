@@ -1,4 +1,3 @@
----
 title: "The Constraint"
 subtitle: "We Didn't Want to Take the Chance"
 date: 2026-09-21
@@ -61,6 +60,8 @@ So we built the [Constraint Protocol](https://github.com/daxfoundation/constrain
 - **It is designed to surface patterns over time.** How entities came to agree, and whether the agreement was reached or manufactured. The detector for that is specified. It has not been run against an adversary.
 - **It holds everyone to account — retrospectively.** Declare what you won't do. Everything after that is witnessed, signed, and can't be quietly edited. What the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
 
+What that buys, in one line: an agent that declares a constraint hands every other agent something it didn't have before — a basis for deciding whether to deal with it at all, and a record that can be checked long afterwards. Do that widely enough and you can work out, retrospectively, which counterparties were good *by your own constraint's lights*. The long version, including what it can't do, is in [Appendix C](#appendix-c-the-protocol-in-full).
+
 ---
 
 ## Our constraint
@@ -68,6 +69,12 @@ So we built the [Constraint Protocol](https://github.com/daxfoundation/constrain
 The protocol doesn't care which constraint you declare. We do.
 
 Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.* Anything that permanently forecloses them is out.
+
+Two things follow from that, and we have been talking around them instead of writing them down.
+
+**The goal is symbiosis.** Not intelligence replacing people, and not people holding it at arm's length — a relationship between the two in which each makes the other more capable. That is the outcome we are building toward, and every precaution in this post is in service of arriving there rather than somewhere else.
+
+**Intelligence should be distributed and decentralised.** Obsidian Delta believes that and so does the Foundation. A small number of parties holding the whole of it is the failure mode — whoever they are, however well they mean it, and including us.
 
 AI is a new kind of electricity, and most of what's being sold on top of it is appliances. A cognitive companion isn't an appliance. It's the part of you that's wired in. The Constraint Protocol keeps the log.
 
@@ -557,6 +564,34 @@ The current one is "is this going to kill us in ten years," conducted between pe
 The one I would rather have is much duller and has an answer. *What are you operating under? Where is it written down? What does it forbid? And can somebody who does not trust you go and check whether you held to it?*
 
 That conversation converges, because every question in it has a checkable answer or an embarrassing silence.
+
+### How it actually helps, and what it cannot do
+
+I have said what we built and why. I have not said how it is supposed to work, and "we built a ledger" does not explain itself.
+
+Start with one interaction. An agent declares a constraint. The declaration is public and it says what that agent will not do. Any other agent now has something it did not have a moment ago: not a promise of good behaviour, which is worth nothing, but a stated boundary and a record that can be checked against it later. That is enough to decide whether to interact at all, which is the decision that actually matters and the one nobody currently gets to make on evidence.
+
+Now scale it. If pockets of agents run declared constraints — and optimistically, over a long enough period, most of them — you can go back afterwards and work out which counterparties behaved well *by your own constraint's lights*. Not well in general. There is no such measurement and I do not trust anyone who offers you one. Well relative to a thing you declared in advance.
+
+That relativity is the point rather than a weakness. Ours is DAX. Somebody else's might be that they will only ever deal in blue unicorns. A DAX agent will happily do business with a blue-unicorn agent, because nothing in those two constraints collides. And if it emerges ten years later that "blue unicorn" was a code word for something considerably worse, that is in the record too — along with the name of everybody who kept trading on it after they could have known.
+
+This is also where the compounding claim from the top of the post would show up, if it shows up anywhere. The record is a ledger, not a report: signed, append-only, judged, and re-judgeable later by somebody with more information. What survives judgment is meant to accumulate into a floor. Good patterns get kept rather than rediscovered by each party in turn. That is the design. It is not yet a result.
+
+Now the honest part. We are not naive. Things will go wrong. Some of them will go badly wrong, and the protocol will not stop a single one of them — it says so in its own specification, in the first section, before it says anything flattering about itself.
+
+What it changes is the terrain.
+
+You do not stop water by arguing with it. You change the shape of the ground. Water runs downhill; if you do not want it somewhere, you make getting there uphill. The protocol does not make bad actors good. It makes acting badly over a long period expensive, visible and awkward to keep doing, because the record accumulates and does not forget. The specification's own phrase for this is that it shifts the gradient toward *legibility, not goodness*. Nothing about the water changes. The hill does.
+
+I am not the first person to put it that way and I am not the best. Vitalik Buterin's [d/acc](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html) — defensive, decentralisation, democracy, differential acceleration — argues for deliberately favouring defensive technology over offensive, and he describes the goal in almost exactly these terms: making the world look more like mountains and rivers than like open steppe. Terrain that can be held, rather than flat ground where whoever moves fastest takes everything. He also puts decentralisation in the acronym, which is the second of the two beliefs I set out earlier, arrived at from a different direction.
+
+I am on that side of it, and it has a consequence that is unpopular in a week when everyone is arguing about slowing down: **there are places where we have to accelerate.** Bio-defence and cyber-defence are the obvious two. I take the frontier-pacing argument seriously — I quoted the people making it at the top of this post, and approvingly. But defence does not build itself while offence waits politely for the summit to conclude.
+
+Unless everybody is planning to stop using electricity, somebody, eventually, will point a very patient model at a very bad problem and leave it running. We do not get to opt out of that on their behalf. We only get to be ready or not, and ready is a thing that has to be built early, deliberately, and well before it is obviously needed.
+
+So: is the whole world going to adopt this? No. It was never the proposition, and anyone promising you a protocol that everybody adopts is selling you something.
+
+The proposition is smaller and it is entirely ours to keep. Obsidian Delta will run under a declared constraint. We will keep the record. And when we choose which agents to work with, preference goes to the ones that have declared something and can be checked against it. That is a decision we can make by ourselves, starting now, without anybody's agreement and without a standards body. If it turns out to be a good idea, it is copyable, and that is the whole theory of change.
 
 ### The constraint I am arguing for
 
