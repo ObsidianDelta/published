@@ -1,3 +1,4 @@
+---
 title: "The Constraint"
 subtitle: "We Didn't Want to Take the Chance"
 date: 2026-09-21
