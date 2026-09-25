@@ -221,6 +221,10 @@ So while people were lecturing me about responsibility, I was, in my own head, b
 
 By that definition I have not been wealthy, and not being able to meet the one responsibility I hold above all others, to the people I love, has been the quiet engine under most of my life. It is why I keep building. It is why, when the easy option was on the table, I kept reaching past it.
 
+Here is the plainest version of it, and it is a good deal less romantic than the rest of this post. For as long as I can remember I have been trying to make money, in the only way I know how to make it, which is to use a head that does not switch off. It does not have an off position. It runs while I am working and it runs while I am not, at three in the afternoon and at three in the morning, on the problem in front of me and on four others I did not ask it to pick up. It is the one asset I have ever had. So I point it at the largest thing I can find and I work very hard.
+
+And I am working on these particular things, rather than something sensible, because this is the only route I can see to making what I would actually need to make. Taking care of myself is not enough. It was never the number I was trying to hit.
+
 I am not saying I got it right. I often did not. I am saying it was never indifference. It was the opposite.
 
 There is a second half to this, and it is at the end of the post rather than here, because it took me most of my life to work out that *responsible for what* and *responsible to whom* are two different questions. I had spent decades answering the first one and had never once sat down with the second.
