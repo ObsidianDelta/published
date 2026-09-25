@@ -56,10 +56,9 @@ So we stopped arguing about the odds.
 
 So we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We've started putting some of our own traffic through it, as an experiment, and we've released it openly through the [DAX Foundation](https://daxfoundation.org).
 
-- **It is built to compound knowledge.** What survives judgment is meant to become the floor the next thing builds on. That is the specification's first sentence, and it is design intent — not a result anyone has measured yet.
-- **It is intended to compound intelligence.** It records who deferred to whom, and why. The reasoning behind a changed position is kept rather than thrown away, so that what accumulates is argument rather than capitulation. Whether it accumulates that way at scale is exactly what has not been tested.
-- **It is designed to surface patterns over time.** How entities came to agree, and whether the agreement was reached or manufactured. The detector for that is specified. It has not been run against an adversary.
-- **It holds everyone to account — retrospectively.** Declare what you won't do. Everything after that is witnessed, signed, and can't be quietly edited. What the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
+It is built to compound knowledge: what survives judgment is meant to become the floor the next thing builds on. It is intended to compound intelligence: it records who deferred to whom, and why, and keeps the reasoning behind a changed position rather than throwing it away, so that what accumulates is argument rather than capitulation. It is designed to surface patterns over time — how entities came to agree, and whether the agreement was reached or manufactured. And it holds everyone to account, retrospectively: declare what you won't do, and everything after that is witnessed, signed, and can't be quietly edited.
+
+Every verb in that paragraph is a design verb, and I want it read the way it is written. The compounding is the specification's first sentence, and it is intent — not a result anyone has measured yet. Whether argument accumulates faster than capitulation at scale is exactly what has not been tested. The detector for manufactured consensus is specified; it has not been run against an adversary. And what the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
 
 What that buys, in one line: an agent that declares a constraint hands every other agent something it didn't have before — a basis for deciding whether to deal with it at all, and a record that can be checked long afterwards. Do that widely enough and you can work out, retrospectively, which counterparties were good *by your own constraint's lights*. The long version, including what it can't do, is in [Appendix C](#appendix-c-the-protocol-in-full).
 
@@ -373,54 +372,11 @@ I am not claiming to have invented this field's subject. What I could not find a
 
 ## Appendix C: The protocol in full
 
-The body of the post says what the Constraint Protocol is and why we built it. This is the long version: how I got to a declared constraint at all, what the protocol does and does not do, what we are doing with it, the obvious objection, what would falsify it, the full provenance audit of the argument, and the case for the DAX constraint.
-
-### What it does, and why we needed it
-
-If the threat is real and we did nothing, we lose the one thing every other repair depends on: the ability to notice what's being done to us. If it isn't real and we prepared anyway, we're out some engineering time. That's not a hard call.
-
-So Obsidian Delta built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We're experimenting with it on some of our own traffic, and we've released it, openly licensed, through the [DAX Foundation](https://daxfoundation.org).
-
-It does four things.
-
-1. **It is built to compound knowledge.** What survives judgment is meant to build into a shared floor that anyone working under the same constraint can build on, and that other frames can import only by checking it themselves. That is the specification's first sentence, word for word: *a substrate for compounding knowledge across entities, time, and constraint frames.* Note the noun. A substrate *for* something states what a thing is built to carry, not what it has carried.
-2. **It is intended to compound intelligence.** It records who deferred to whom, and why a position changed. The design bet is that a floor which weights what it keeps by the quality of the reasoning behind it will accumulate reasoning faster than it accumulates capitulation. That is a bet. It needs months of real traffic and an adversary before anyone should believe it, and it has had neither.
-3. **It is designed to surface patterns over time.** It is built so that when entities talk to each other for months, you can see how they came to agree, and whether the agreement was reached or manufactured. The specification goes further and names the measurement: detection rate of manufactured consensus, against a seeded bloc, at a stated false-positive rate. The study is pre-registered and unrun.
-4. **It's an accountability layer — retrospectively.** Everyone declares in advance what they won't do. What happens is witnessed and signed. Independent judges score whether each declaration held, and can re-score it years later without erasing the old verdict. Nothing gets quietly edited. It won't stop harm in the moment, and it doesn't hold anyone to account on its own: what it provides is the *capacity* for accountability. Somebody still has to go and look. What it changes is that hiding gets expensive.
-
-We didn't build this as a thought experiment. We built it because we needed it.
-
-I started [DAX](https://www.youtube.com/watch?v=Q1gCzxg5WMc), my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in August 2021. When OpenClaw and Hermes Agent came along, we took everything we'd built and wrapped it around them. The core is interchangeable. Everything it doesn't do, we built.
-
-Then the question changed. Once you have companions, and agents, and the systems you build with them, all talking to each other, what matters is no longer what one of them does. It's what they do together over time: what they learn, how they come to agree, and whether anybody could ever check.
-
-That's where Obsidian Delta is now. We needed a record nobody could quietly edit and a floor that could compound. Nothing we found did both, so we built it. It has run in full once — two companion instances, two organisations, a network boundary, and three attempts to get round a blocking constraint, all refused and all still on file. That shows it runs. The rest is what we're doing now, in the open. [Appendix C](#appendix-c-the-protocol-in-full) has the full account, including what it doesn't do and what would prove it wrong.
-
-### Is it as bad as they say?
-
-Maybe not.
-
-Fuckery has one rule: every claim carries a tag saying where it came from. So here's what this one rests on.
-
-- **That the pattern is real**, not an artefact of the order I put it in. *Derived.*
-- **That noticing is what gets people out.** *Speculative.*
-- **That slowness is what made noticing possible.** *Speculative* — and the weakest joint.
-- **That these systems remove the slowness.** *Derived*, mostly from one control condition in one paper.
-- **That anybody builds the thing.** *Speculative.*
-
-Knock out any of the middle three and the whole thing falls over. On a fair reading, this could be nothing.
-
-### A word about the word
-
-One word is making this conversation worse. "AI" is being asked to mean a substrate, a product, an industry, a research programme and a projected future agent, all at once. The trouble with a word that wide is not imprecision. It is that the word has already picked a side by the time anyone finishes saying it, so every conversation starts at good-or-evil about a thing that has not been named yet.
-
-I would rather name the thing first, which is why the Foundation's [definitions page](https://daxfoundation.org/#ai-as-substrate) spends a paragraph on the naming rather than leaving it to inference.
-
-The genealogy above is an attempt to name what the thing would be *doing*. Not what it is, and not whether it is good. What operation it would be performing, and where that operation sits in a very long history of the same operation performed by other means.
+The body of the post says what the Constraint Protocol is and why we built it. This is the long version, in this order: how I got to a declared constraint at all; what the protocol does, what it does not do, and how it is supposed to help; what we are actually doing with it; the obvious objection; what would falsify the argument; the argument taken apart and tagged under its own rules; what we decided to do anyway; the case for the DAX constraint; and the frame underneath all of it.
 
 ### What I actually have
 
-That is the problem as clearly as I can put it. What follows is considerably less impressive, and I would rather say so than let it arrive as a surprise.
+The body of this post and the two appendices before this one are the problem as clearly as I can put it. What follows is considerably less impressive, and I would rather say so than let it arrive as a surprise.
 
 I have been at this since January. Most of it was dead ends. There are a few things in the pile I think are diamonds, I am not certain which ones, and I have been wrong about which ones before. I am not a protocol specialist. I have read the adjacent work and I am aware that people who do this professionally will see things in what follows that I did not.
 
@@ -442,19 +398,60 @@ What the Foundation settled on is an [invariant constraint](https://daxfoundatio
 
 The protocol underneath does not require any particular constraint. It requires that a constraint be declared and that what it forbids be stated. [DAX](https://daxfoundation.org/#dax-constraint) — preservation and expansion of life, humanity, and consciousness — is the constraint the Foundation settled on, and it is an example of a declared constraint rather than the content of the protocol.
 
-### The Constraint Protocol, and what it does not do
+### What the protocol does
 
 The [Constraint Protocol](https://daxfoundation.org/#cp) requires two things and almost nothing else. Declare a constraint. State what it forbids.
 
 After that it does one job: it records what was done under that declaration, who did it, who witnessed it, and whether the behaviour matched the constraint the actor said they were operating under. Every record is signed, content-addressed and append-only, which means it can be walked later by somebody who was not there and does not trust anyone who was. Over time that record answers the question people actually want answered, which is not "is this system good" but "has this actor behaved the way they said they would, over a long enough period that I can check."
 
+Out of that one job, four things are meant to follow.
+
+1. **It is built to compound knowledge.** What survives judgment is meant to build into a shared floor that anyone working under the same constraint can build on, and that other frames can import only by checking it themselves. That is the specification's first sentence, word for word: *a substrate for compounding knowledge across entities, time, and constraint frames.* Note the noun. A substrate *for* something states what a thing is built to carry, not what it has carried.
+2. **It is intended to compound intelligence.** It records who deferred to whom, and why a position changed. The design bet is that a floor which weights what it keeps by the quality of the reasoning behind it will accumulate reasoning faster than it accumulates capitulation. That is a bet. It needs months of real traffic and an adversary before anyone should believe it, and it has had neither.
+3. **It is designed to surface patterns over time.** It is built so that when entities talk to each other for months, you can see how they came to agree, and whether the agreement was reached or manufactured. The specification goes further and names the measurement: detection rate of manufactured consensus, against a seeded bloc, at a stated false-positive rate. The study is pre-registered and unrun.
+4. **It is an accountability layer — retrospectively.** Everyone declares in advance what they will not do. What happens is witnessed and signed. Independent judges score whether each declaration held, and can re-score it years later without erasing the old verdict. Nothing gets quietly edited. It will not stop harm in the moment, and it does not hold anyone to account on its own: what it provides is the *capacity* for accountability. Somebody still has to go and look. What it changes is that hiding gets expensive.
+
+We did not build this as a thought experiment. We built it because we needed it.
+
+I started [DAX](https://www.youtube.com/watch?v=Q1gCzxg5WMc), my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in August 2021. When OpenClaw and Hermes Agent came along, we took everything we had built and wrapped it around them. The core is interchangeable. Everything it does not do, we built.
+
+Then the question changed. Once you have companions, and agents, and the systems you build with them, all talking to each other, what matters is no longer what one of them does. It is what they do together over time: what they learn, how they come to agree, and whether anybody could ever check.
+
+That is where Obsidian Delta is now. We needed a record nobody could quietly edit and a floor that could compound. Nothing we found did both, so we built it, and released it, openly licensed, through the [DAX Foundation](https://daxfoundation.org). It has run in full once. The rest is what we are doing now, in the open, and what that one run does and does not show is next.
+
+### What it does not do, and what exists today
+
 It does not prevent anything. I want to be blunt about that, because it is the first thing people assume. The specification's own framing is that the protocol makes meaning-formulation attributable, witnessed and re-judgeable — never prevented — and that the gradient it shifts is toward *legibility, not goodness*. I would rather that phrase stay unimproved, because it is the honest one. A party can declare a repugnant constraint and adhere to it perfectly, and the protocol will witness that adherence faithfully. What it makes expensive is hiding which constraint you serve, or that you serve none.
 
 There is a second honest limit, and the specification states it rather than leaving it to be found: the protocol provides the capacity for retrospective accountability, not its exercise. A record is only as consequential as somebody's willingness to go and read it later.
 
-It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. There is a great deal more to say about that run, and it will get its own write-up. That is what exists. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
+It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. The two instances were cognitive companions, one on each side. There is a great deal more to say about that run, and it will get its own write-up. That is what exists, and it shows that the thing runs. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
 
 DAX is an example of a declared constraint. It is not the content of the protocol. The protocol has no opinion about which constraint you declare. That is the point of it.
+
+### How it is supposed to help
+
+I have said what we built and what it records. I have not said how it is supposed to work, and "we built a ledger" does not explain itself.
+
+Start with one interaction. An agent declares a constraint. The declaration is public and it says what that agent will not do. Any other agent now has something it did not have a moment ago: not a promise of good behaviour, which is worth nothing, but a stated boundary and a record that can be checked against it later. That is enough to decide whether to interact at all, which is the decision that actually matters and the one nobody currently gets to make on evidence.
+
+Now scale it. If pockets of agents run declared constraints — and optimistically, over a long enough period, most of them — you can go back afterwards and work out which counterparties behaved well *by your own constraint's lights*. Not well in general. There is no such measurement and I do not trust anyone who offers you one. Well relative to a thing you declared in advance.
+
+That relativity is the point rather than a weakness. Ours is DAX. Somebody else's might be that they will only ever deal in blue unicorns. A DAX agent will happily do business with a blue-unicorn agent, because nothing in those two constraints collides. And if it emerges ten years later that "blue unicorn" was a code word for something considerably worse, that is in the record too — along with the name of everybody who kept trading on it after they could have known.
+
+This is also where the compounding claim from the top of the post would show up, if it shows up anywhere. The record is a ledger, not a report: signed, append-only, judged, and re-judgeable later by somebody with more information. What survives judgment is meant to accumulate into a floor. Good patterns get kept rather than rediscovered by each party in turn. That is the design. It is not yet a result.
+
+Now the honest part. We are not naive. Things will go wrong. Some of them will go badly wrong, and the protocol will not stop a single one of them — it says so in its own specification, in the first section, before it says anything flattering about itself.
+
+What it changes is the terrain.
+
+You do not stop water by arguing with it. You change the shape of the ground. Water runs downhill; if you do not want it somewhere, you make getting there uphill. The protocol does not make bad actors good. It makes acting badly over a long period expensive, visible and awkward to keep doing, because the record accumulates and does not forget. The specification's own phrase for this is that it shifts the gradient toward *legibility, not goodness*. Nothing about the water changes. The hill does.
+
+I am not the first person to put it that way and I am not the best. Vitalik Buterin's [d/acc](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html) — defensive, decentralisation, democracy, differential acceleration — argues for deliberately favouring defensive technology over offensive, and he describes the goal in almost exactly these terms: making the world look more like mountains and rivers than like open steppe. Terrain that can be held, rather than flat ground where whoever moves fastest takes everything. He also puts decentralisation in the acronym, which is the second of the two beliefs I set out earlier, arrived at from a different direction.
+
+I am on that side of it, and it has a consequence that is unpopular in a week when everyone is arguing about slowing down: **there are places where we have to accelerate.** Bio-defence and cyber-defence are the obvious two. I take the frontier-pacing argument seriously — I quoted the people making it at the top of this post, and approvingly. But defence does not build itself while offence waits politely for the summit to conclude.
+
+Unless everybody is planning to stop using electricity, somebody, eventually, will point a very patient model at a very bad problem and leave it running. We do not get to opt out of that on their behalf. We only get to be ready or not, and ready is a thing that has to be built early, deliberately, and well before it is obviously needed.
 
 ### What we are actually doing with it
 
@@ -518,25 +515,27 @@ If you adopt DAX because I said so, you have missed the whole essay. If you read
 
 ### Turning the framework on this essay
 
-There is a rule in [Fuckery](https://github.com/ObsidianDelta/Fuckery) that I have to apply here or I am not entitled to it anywhere else. Every claim carries a provenance tag: invariant, derived, speculative, illustrative, or reasoning trail. Nothing gets to sit in the pile untagged just because it is mine and I like it.
+Is it as bad as they say? The body of this post answered *maybe, maybe worse*. Here is the other side of that answer, with the working shown rather than asserted: maybe not.
+
+There is a rule in [Fuckery](https://github.com/ObsidianDelta/Fuckery) that I have to apply here or I am not entitled to it anywhere else. Every claim carries a provenance tag — invariant, derived, speculative, illustrative, or reasoning trail — saying where it came from. Nothing gets to sit in the pile untagged just because it is mine and I like it.
 
 So here is the threat I have just spent nine thousand words on, taken apart and tagged.
 
-**The genealogy is derived.** Twenty-eight rows assembled out of named sources, several of them contested, in an order I chose. It is a reading of other people's work. If somebody builds the table from the same literatures and gets a different shape, mine is wrong and theirs is the one to keep.
+**That the pattern is real is derived.** Twenty-eight rows assembled out of named sources, several of them contested, in an order I chose. It is a reading of other people's work, and it could be an artefact of the order I put it in. If somebody builds the table from the same literatures and gets a different shape, mine is wrong and theirs is the one to keep.
 
 **The inward movement is derived, and it is weaker than a confident diagram makes it look.** I plotted it and it did not produce the clean diagonal I expected. Two rows sit well outside the trend and I left them there.
 
-**That recognition is the exit is speculative.** It is a philosophical commitment. I cannot test it, this essay has no mechanism for testing it, and everything after the halfway point rests on it.
+**That noticing is what gets people out — that recognition is the exit — is speculative.** It is a philosophical commitment. I cannot test it, this essay has no mechanism for testing it, and everything after the halfway point rests on it.
 
-**That install time governs recognition rates is speculative,** and it is the weakest joint in the whole structure. I know of no documented mechanism connecting the two. What I have is that every reversal on the table happened in a gap, which is a pattern and not a cause.
+**That slowness is what made noticing possible — that install time governs recognition rates — is speculative,** and it is the weakest joint in the whole structure. I know of no documented mechanism connecting the two. What I have is that every reversal on the table happened in a gap, which is a pattern and not a cause.
 
-**That sufficiently advanced intelligence removes the gap is derived** — from one control condition, in one paper, that I am leaning on harder than a single control condition usually deserves.
+**That these systems remove the slowness is derived** — from one control condition, in one paper, that I am leaning on harder than a single control condition usually deserves.
 
-**That any of this becomes a live threat is speculative.** Nobody has built the system I described. I am not claiming anyone is trying to.
+**That anybody builds the thing is speculative.** Nobody has built the system I described. I am not claiming anyone is trying to.
 
-Now read that list back, because it is not a disclaimer. Take out the recognition claim and the second half of this essay collapses. Take out the clock-speed claim and the argument becomes an interesting history with no conclusion attached. Those are not caveats at the edges. They are the load-bearing members, and two of the five are marked speculative in my own notation.
+Now read that list back, because it is not a disclaimer. Knock out any of the three in the middle — recognition, clock speed, or the removal of the gap — and the whole thing falls over. Take out the recognition claim and the second half of this essay collapses. Take out the clock-speed claim and the argument becomes an interesting history with no conclusion attached. Those are not caveats at the edges. They are the load-bearing members, and two of the three are marked speculative in my own notation.
 
-The whole thing can be wrong. Not softened — wrong, at a joint, in a way that takes the rest down with it.
+The whole thing can be wrong. Not softened — wrong, at a joint, in a way that takes the rest down with it. On a fair reading, this could be nothing.
 
 So the honest question is not whether I have proved anything. I have not. The question is what a person does with an argument shaped like that.
 
@@ -544,13 +543,13 @@ So the honest question is not whether I have proved anything. I have not. The qu
 
 Here is what we decided, and I want to give the reasoning rather than the conclusion, because the conclusion on its own sounds like marketing.
 
-The cost of being wrong is not symmetric. If the threat is real and we did nothing, the thing that gets lost is the ability to notice what is being done to us, which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, what we are out is some engineering time and a public record of our own conduct that we would have to live with. We looked at those two and stopped arguing.
+The cost of being wrong is not symmetric. If the threat is real and we did nothing, the thing that gets lost is the ability to notice what is being done to us, which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, what we are out is some engineering time and a public record of our own conduct that we would have to live with. We looked at those two and stopped arguing. It was not a hard call.
 
 We just did not want to take the chance.
 
 So, three commitments, and they are specific enough to hold us to.
 
-**One. Obsidian Delta aims for everything it operates to run under a declared constraint, with the record kept.** *Aims.* Not does — and I want that word in the sentence rather than in a footnote, because everything above this point describes work that is already running, and by the time you reach a bolded line in a list of commitments it is easy to read it as one more description of what is. It is not. **Today, Obsidian Delta does not run everything it operates under the Constraint Protocol.** The protocol has run in full once, and some of our own agent traffic goes through it as an experiment. The rest is the target, not the state. What the commitment fixes is the shape of that target: not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — the commitment is that it operates under a declaration, that the declaration says what it will not do, and that the conduct under it is signed, witnessed and append-only. If we drift from it, the drift goes in the record with our name on it, and we do not get to quietly remove it later. Judge us on the distance we close, and on whether we keep telling you where we actually are.
+**One. Obsidian Delta aims for everything it operates to run under a declared constraint, with the record kept.** *Aims.* Not does — and I want that word in the sentence rather than in a footnote, because much of what is above this point describes work that is already running, and by the time you reach a bolded line in a list of commitments it is easy to read it as one more description of what is. It is not. **Today, Obsidian Delta does not run everything it operates under the Constraint Protocol.** The protocol has run in full once, and some of our own agent traffic goes through it as an experiment. The rest is the target, not the state. What the commitment fixes is the shape of that target: not a pilot, not selected traffic, not the parts that make us look good. Any agent of ours, any system we publish, any interaction of ours you find yourself inside — the commitment is that it operates under a declaration, that the declaration says what it will not do, and that the conduct under it is signed, witnessed and append-only. If we drift from it, the drift goes in the record with our name on it, and we do not get to quietly remove it later. Judge us on the distance we close, and on whether we keep telling you where we actually are.
 
 **Two. Any external party who wants to run the Constraint Protocol with us, we will run it with them.** Agent to agent, organisation to organisation, over MCP or A2A or whatever comes after them. You do not need our permission, you do not need to adopt our constraint, and you do not need to like us. If you declare something and you are willing to be checked against it, that is a counterparty we can work with. The whole point of a protocol rather than a policy is that it works between strangers.
 
@@ -566,33 +565,9 @@ The one I would rather have is much duller and has an answer. *What are you oper
 
 That conversation converges, because every question in it has a checkable answer or an embarrassing silence.
 
-### How it actually helps, and what it cannot do
-
-I have said what we built and why. I have not said how it is supposed to work, and "we built a ledger" does not explain itself.
-
-Start with one interaction. An agent declares a constraint. The declaration is public and it says what that agent will not do. Any other agent now has something it did not have a moment ago: not a promise of good behaviour, which is worth nothing, but a stated boundary and a record that can be checked against it later. That is enough to decide whether to interact at all, which is the decision that actually matters and the one nobody currently gets to make on evidence.
-
-Now scale it. If pockets of agents run declared constraints — and optimistically, over a long enough period, most of them — you can go back afterwards and work out which counterparties behaved well *by your own constraint's lights*. Not well in general. There is no such measurement and I do not trust anyone who offers you one. Well relative to a thing you declared in advance.
-
-That relativity is the point rather than a weakness. Ours is DAX. Somebody else's might be that they will only ever deal in blue unicorns. A DAX agent will happily do business with a blue-unicorn agent, because nothing in those two constraints collides. And if it emerges ten years later that "blue unicorn" was a code word for something considerably worse, that is in the record too — along with the name of everybody who kept trading on it after they could have known.
-
-This is also where the compounding claim from the top of the post would show up, if it shows up anywhere. The record is a ledger, not a report: signed, append-only, judged, and re-judgeable later by somebody with more information. What survives judgment is meant to accumulate into a floor. Good patterns get kept rather than rediscovered by each party in turn. That is the design. It is not yet a result.
-
-Now the honest part. We are not naive. Things will go wrong. Some of them will go badly wrong, and the protocol will not stop a single one of them — it says so in its own specification, in the first section, before it says anything flattering about itself.
-
-What it changes is the terrain.
-
-You do not stop water by arguing with it. You change the shape of the ground. Water runs downhill; if you do not want it somewhere, you make getting there uphill. The protocol does not make bad actors good. It makes acting badly over a long period expensive, visible and awkward to keep doing, because the record accumulates and does not forget. The specification's own phrase for this is that it shifts the gradient toward *legibility, not goodness*. Nothing about the water changes. The hill does.
-
-I am not the first person to put it that way and I am not the best. Vitalik Buterin's [d/acc](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html) — defensive, decentralisation, democracy, differential acceleration — argues for deliberately favouring defensive technology over offensive, and he describes the goal in almost exactly these terms: making the world look more like mountains and rivers than like open steppe. Terrain that can be held, rather than flat ground where whoever moves fastest takes everything. He also puts decentralisation in the acronym, which is the second of the two beliefs I set out earlier, arrived at from a different direction.
-
-I am on that side of it, and it has a consequence that is unpopular in a week when everyone is arguing about slowing down: **there are places where we have to accelerate.** Bio-defence and cyber-defence are the obvious two. I take the frontier-pacing argument seriously — I quoted the people making it at the top of this post, and approvingly. But defence does not build itself while offence waits politely for the summit to conclude.
-
-Unless everybody is planning to stop using electricity, somebody, eventually, will point a very patient model at a very bad problem and leave it running. We do not get to opt out of that on their behalf. We only get to be ready or not, and ready is a thing that has to be built early, deliberately, and well before it is obviously needed.
-
 So: is the whole world going to adopt this? No. It was never the proposition, and anyone promising you a protocol that everybody adopts is selling you something.
 
-The proposition is smaller and it is entirely ours to keep. Obsidian Delta will run under a declared constraint. We will keep the record. And when we choose which agents to work with, preference goes to the ones that have declared something and can be checked against it. That is a decision we can make by ourselves, starting now, without anybody's agreement and without a standards body. If it turns out to be a good idea, it is copyable, and that is the whole theory of change.
+The proposition is smaller than adoption, and it is entirely ours to keep. Obsidian Delta will run under a declared constraint. We will keep the record. And when we choose which agents to work with, preference goes to the ones that have declared something and can be checked against it. That is a decision we can make by ourselves, starting now, without anybody's agreement and without a standards body. If it turns out to be a good idea, it is copyable, and that is the whole theory of change.
 
 ### The constraint I am arguing for
 
@@ -618,9 +593,13 @@ If you think DAX is wrong, the useful response is not to argue with me. It is to
 
 ### A new kind of electricity
 
-I want to end on the frame I actually use, because it explains why I built a tool rather than writing a warning.
+I want to end on the frame I actually use, because it explains why I built a tool rather than writing a warning. It starts with a word.
 
-What we have is a new kind of electricity. Not a product — a substrate. Something drawn on everywhere rather than a thing used in one place for one purpose.
+One word is making this conversation worse. "AI" is being asked to mean a substrate, a product, an industry, a research programme and a projected future agent, all at once. The trouble with a word that wide is not imprecision. It is that the word has already picked a side by the time anyone finishes saying it, so every conversation starts at good-or-evil about a thing that has not been named yet.
+
+I would rather name the thing first, which is why the Foundation's [definitions page](https://daxfoundation.org/#ai-as-substrate) spends a paragraph on the naming rather than leaving it to inference. The genealogy above is an attempt to name what the thing would be *doing*. Not what it is, and not whether it is good. What operation it would be performing, and where that operation sits in a very long history of the same operation performed by other means.
+
+And the name I use for the thing itself is this. What we have is a new kind of electricity. Not a product — a substrate. Something drawn on everywhere rather than a thing used in one place for one purpose.
 
 I use that frame everywhere and I am going to keep using it, so here is the short form. Nobody works live current bare-handed, and the training that lets an electrician do it is, once you strip the syllabus off, a list of what not to touch and in what order. It is a constraint, declared in advance, stated as what it forbids. None of it makes electricity safe. It makes one particular person safe doing one particular job, and everyone in the trade knows the difference between those two sentences.
 
