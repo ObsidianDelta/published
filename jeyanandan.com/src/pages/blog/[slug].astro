@@ -17,6 +17,17 @@ const fmt = new Date(frontmatter.date).toLocaleDateString('en-CA', {
   year: 'numeric', month: 'long', day: 'numeric',
 });
 
+// `date` is when a post was first published and it never moves. `updated` is
+// optional and is set by hand every time the text of a post changes, so a
+// reader can see both: first published, and last revised. An `updated` that is
+// missing, unparseable, or not later than `date` is simply not shown.
+const published = new Date(frontmatter.date);
+const revised = frontmatter.updated ? new Date(frontmatter.updated) : null;
+const showUpdated = revised && !Number.isNaN(revised.getTime()) && revised > published;
+const fmtUpdated = showUpdated
+  ? revised.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' })
+  : null;
+
 // A post may split its title in two: `title` sits large, `subtitle` sits under
 // it as a deck. The tab, the bookmark and every share card still want the whole
 // thing in one line, so they get the two rejoined. Posts without a subtitle are
@@ -33,7 +44,7 @@ const noindex = isUnlisted(Astro.params.slug, frontmatter);
 ---
 <Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle} noindex={noindex}>
   <section class="hero"><div class="shell narrow">
-    <p class="eyebrow">{fmt}</p>
+    <p class="eyebrow"><time datetime={published.toISOString()}>{fmt}</time>{showUpdated && <span class="updated"> <span aria-hidden="true">·</span> Updated <time datetime={revised.toISOString()}>{fmtUpdated}</time></span>}</p>
     <h1>{frontmatter.title}</h1>
     {frontmatter.subtitle && <p class="deck">{frontmatter.subtitle}</p>}
     <div class="rule"></div>
@@ -54,6 +65,7 @@ const noindex = isUnlisted(Astro.params.slug, frontmatter);
 /* ---------- masthead of the piece ---------- */
 .hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
 .hero h1{margin-bottom:.4rem}
+.eyebrow .updated{color:var(--muted)}
 .deck{
   font-family:var(--sans);font-weight:400;
   font-size:clamp(1.15rem,3.6vw,1.7rem);line-height:1.22;letter-spacing:-.012em;

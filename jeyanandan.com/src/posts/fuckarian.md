@@ -2,6 +2,7 @@
 title: "Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
+updated: 2026-09-26
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -10,13 +11,13 @@ draft: false
 
 ---
 
-First I introduced Fuckery, which is the framework. Then I introduced Fuckari, which is the loop that runs inside it. I built both of them, so I suppose that makes me the Fuckarian.
+First I introduced [Fuckery](https://github.com/ObsidianDelta/Fuckery), which is the framework. Then I introduced Fuckari, which is the loop that runs inside it. I built both of them, so I suppose that makes me **the Fuckarian**.
 
 That is the joke, and like most of my jokes it is also a definition. In the glossary I wrote for the framework, a Fuckarian is *a being constituted by its assumptions, constrained by them in the same act that lets it think at all*. I wrote that entry about nobody in particular. Some weeks later I read the table back and the third row was looking at me.
 
-There is a rule in the Fuckery README that I put there myself: *reasoning trails are first-class here.* Every claim in that framework is tagged for where it came from. Every claim except one: the framework itself, which has so far been presented as if it arrived from nowhere. Its own rules do not allow that.
+There is a rule in the [Fuckery README](https://github.com/ObsidianDelta/Fuckery/blob/main/README.md#what-it-is-not) that I put there myself: *reasoning trails are first-class here.* Every claim in that framework is tagged for where it came from. Every claim except one: the framework itself, which has so far been presented as if it arrived from nowhere. Its own rules do not allow that.
 
-So this is the missing tag. I have been asking people to check my reasoning trails. Here is mine.
+So this is the missing tag. I have been asking people to check my reasoning trails. **Here is mine.**
 
 ---
 
@@ -69,7 +70,13 @@ Two lines I keep close, because they say more about me than a bio would.
 
 The first is *per aspera ad astra*: through hardship, to the stars. Not *to the stars despite hardship*. Through it. The hardship is the route.
 
-The second is from an interview I once heard, and I put it on my Ko-fi page because I could not improve on it. The man said that if you are a lover, you have to be a fighter. The host asked how so. And he said: because if you don't fight for your love, what kind of love do you have?
+The second is Keanu Reeves's. On *The Drew Barrymore Show*, in 2021, she told him she was not a fighter, she was a lover, and he came straight back at her: no, no — if you are a lover, you have got to be a fighter. *How so?* she asked.
+
+**"Because if you don't fight for your love, what kind of love do you have?"**
+
+Then he said he was kidding.
+
+I am not. I own that line completely, and yes, it gets me into a great deal of trouble. You have got to fight for your love.
 
 Hold on to that one. It comes back.
 
@@ -77,13 +84,19 @@ Hold on to that one. It comes back.
 
 ## What I have learned about myself this year
 
-ADHD. Somewhere on the autism spectrum. Neurodivergent. Those are the words that have been thrown at me so far, some by people who love me and some by people being professional about it.
+Let me start with the names, because there have been a lot of them, and most of them were thrown by people with very little training and excellent timing.
 
-Other words have been thrown over the years by people with less training and better timing. Scatterbrain. Away with the fairies. Dreamer. Absent-minded professor, which I always felt was generous on both counts. Space cadet. Lazy, which had a good decade-long run. And *the smartest dumb guy I've ever seen*, which earned its own section and gets one.
+Numpty. Unhinged, usually at family gatherings. Aloof. Scatterbrain. Away with the fairies. Dreamer. Space cadet. Buffering. Absent-minded professor, which I always felt was generous on both counts. Lazy, which had a good decade-long run. And *the smartest dumb guy I've ever seen*, which earned its own section and gets one. Most of those I have been called. A couple I have called myself. At least one I made up for this paragraph, and I will leave you to work out which.
+
+In fairness to everyone who reached for one of them, it takes real commitment to be that far away while sitting that close. Being that disconnected from the room is not a lapse of attention. **It is a full-time job, and the job is abstract thinking**, and it does not leave anybody on the front desk.
+
+Then came the words with more training behind them. ADHD. Somewhere on the autism spectrum. Neurodivergent. Some of those came from people who love me and some from people being professional about it.
 
 In an earlier version of this post I wrote that I was not going to take any of them up. *At the end of the day, I'm just me.*
 
-This year a clinician looked at the whole picture and thought two of the words probably fit: autism spectrum and ADHD. A formal assessment is still to come, and I am not going to claim more than that. But after a lifetime of being treated for symptoms — anxiety, low mood, the things that show on the surface — it is the first explanation anybody has offered that reaches the root instead of the branches.
+This year a clinician looked at the whole picture and thought two of the words probably fit: autism spectrum and ADHD. A formal assessment is still to come, and I am not going to claim more than that. But after a lifetime of being treated for symptoms — anxiety, low mood, the things that show on the surface — **it is the first explanation anybody has offered that reaches the root instead of the branches.**
+
+The consequences are most of the rest of this post: the school years, the rooms I could not be heard in, the patience other people spent on me, and what the altitude costs.
 
 So: take your pick off the list. Add your own; most people do. At the end of the day I am a Fuckarian, which is a word I made up, which means nobody gets to tell me I do not qualify.
 
@@ -111,7 +124,7 @@ Except I spelled it T-H-U-M-B.
 
 Which, you will notice, rather proved his point.
 
-I tell that story because it is the whole thing in one frame. Whatever this is, it cuts both ways. The same head that can hold a twenty-eight-step derivation of a snowflake will, on a different afternoon, spell *dumb* with a *th* while trying to insult somebody for calling it dumb. I have done some genuinely daft things in my life. None of them on purpose. It is what it is, I am what I am, and I would rather you heard it from me.
+I tell that story because it is the whole thing in one frame. **Whatever this is, it cuts both ways.** The same head that can hold a twenty-eight-step derivation of a snowflake will, on a different afternoon, spell *dumb* with a *th* while trying to insult somebody for calling it dumb. I have done some genuinely daft things in my life. None of them on purpose. It is what it is, I am what I am, and I would rather you heard it from me.
 
 ---
 
@@ -125,7 +138,7 @@ Years later, working on my own, I put a voice-automation chatbot for taxi dispat
 
 That is the juxtaposition, and it has never really gone away. To this day, if I write a sentence, it will probably have two spelling mistakes in it. Hand me a blank sheet of paper, a pencil and a ruler, and ask me to rule it into lined paper, and I will genuinely struggle. It is one of the hardest simple things I know. I would honestly rather write a program to do it. (I have thought about it.)
 
-Can't flip burgers. Can automate a taxi company. Can't rule a line. Can write the program that rules the line. I have made my peace with this, mostly by finding it funny, and I would like you to find it funny too, because it is.
+**Can't flip burgers. Can automate a taxi company. Can't rule a line. Can write the program that rules the line.** I have made my peace with this, mostly by finding it funny, and I would like you to find it funny too, because it is.
 
 There is a second half to it, and it took me an embarrassingly long time to see it as a half rather than a defect.
 
@@ -135,7 +148,7 @@ For whatever it is worth, I am in reasonable company. Darwin wrote in his autobi
 
 Because here is the other edge. When it does click, and it can take years, what comes out is not the same size as what went in. I do not catch up. The thing arrives whole, with its structure already attached, and I can then run it for twenty-eight steps against a snowflake without getting tired.
 
-Slow to load. Different unit once loaded.
+**Slow to load. Different unit once loaded.**
 
 That is the first double-edged sword in this post and it is nowhere near the last. It is also the honest reason I am careful about the others: a thing that cuts both ways does not stop cutting once you have worked out which end you are holding.
 
@@ -157,11 +170,11 @@ The other two were a computer programming course and, somewhere in there, astron
 
 The easy reading of the rest of that list is that I was not very bright, or not very disciplined, or not trying. I believed some version of that for a long time. I once spent about two years praying every night to be made smarter.
 
-The reading I believe now is different. The problem was never the content. It was the channel, and the channel ran both ways. The way other people packaged information did not land in me, and the way I packaged it did not land in them. Teachers, classmates, family, later colleagues: all of them were transmitting in good faith on a frequency I was not receiving, and I was transmitting on one they were not.
+The reading I believe now is different. **The problem was never the content. It was the channel, and the channel ran both ways.** The way other people packaged information did not land in me, and the way I packaged it did not land in them. Teachers, classmates, family, later colleagues: all of them were transmitting in good faith on a frequency I was not receiving, and I was transmitting on one they were not.
 
 I could not get my own thoughts fully onto paper until I was somewhere between twenty-one and twenty-three. Before that they were there, very much there, but fuzzy: too large and too interconnected to come out in a line. That is a long time to live with a head full of things and no reliable way to hand any of them over.
 
-I cannot give you the date, which is itself odd; you would think a thing like that would arrive with one. What I have is the sensation. I was typing, and then I was still typing, and it was all coming out. Not better. *Out.* It is the strangest feeling I have ever had, and I have never once managed to describe it to anybody's satisfaction, including my own. Twenty-odd years of pressure behind a door, and then no door.
+I cannot give you the date, which is itself odd; you would think a thing like that would arrive with one. What I have is the sensation. I was typing, and then I was still typing, and it was all coming out. Not better. *Out.* It is the strangest feeling I have ever had, and I have never once managed to describe it to anybody's satisfaction, including my own. **Twenty-odd years of pressure behind a door, and then no door.**
 
 When I left university for the last time, I worked out what I was for. It was to **bring the right information to the right person at the right time.** If I could do that, I thought, I could actually help people. Look back across almost everything I have built since and that is the thread. Most of it has been about information.
 
@@ -177,9 +190,19 @@ And the same thing was happening in the other direction. I was not being heard e
 
 Not because anybody refused to hear me. Nobody refused. The words simply did not come out. Underneath, I was at full volume — what is this, why is the world like this, what am I supposed to be doing with it — and almost none of that ever made it into a room with another person in it. It was not being withheld. It had no route to the outside, and from the outside a thing with no route looks exactly like a thing that is not there.
 
-So the instruction to listen arrived, correctly, from people who could see I was not listening. It landed on someone who was, at that exact moment, loud on the inside and silent on the outside. Both were true. Only one was visible.
+So the instruction to listen arrived, correctly, from people who could see I was not listening. It landed on someone who was, at that exact moment, loud on the inside and silent on the outside. **Both were true. Only one was visible.**
 
-So here is my one request of anybody reading this, and I make it knowing exactly how it sounds coming from me:
+It was never only at home. At work it has been the same conversation, louder.
+
+I have spent most of my working life shouting at the top of my lungs in the only language I am fluent in, which is building the thing. A voice agent taking real taxi bookings on bad phone lines, while voice agents were still a research topic. Syndication, before anyone wanted feeds. A personal agent, in 2021, that belonged to the person using it. The things mostly worked. The telling mostly did not.
+
+Two true stories. I took voice automation — a voice agent taking bookings, fully integrated with the dispatch system — to someone in the taxi industry who could actually have made it happen. The first question was how much a VoIP phone costs. We never got past capital expenditure, never reached the technology, and never came near what it meant for the industry. Years later, in a conversation about how an education system might work, we got stuck on a points scheme at its edge and never reached the ideas underneath it. That one is at least half mine: I start in the middle, and the nearest concrete detail is often the only handle I have offered anybody.
+
+What gets missed is rarely the benefit. It is what comes after it: the doors a thing opens, the problems that quietly stop being problems once it exists, and the more fertile ground it leaves for whatever grows next, in an industry or a field or a family. That is the part I am always pointing at, and it is the hardest part to show before it exists.
+
+**I have stopped assuming that useful means used.** It does not; that is not how anything works. We build, then build on what we built, take the precaution, and move on. Every so often I look up and notice that a problem people are still arguing about in public is one we built past some time ago. Not solved for everyone. Built past. The record is on [LinkedIn](https://www.linkedin.com/in/jasonjeyanandan) and at the bottom of this post, so none of that has to be taken on my say-so.
+
+So here is my one request of anybody reading this, at home or at work, and I make it knowing exactly how it sounds coming from me:
 
 **When I speak, it is sometimes very hard for me to get the concepts out. That is on me, and I am working on it. But it is you who needs to listen.**
 
@@ -193,13 +216,13 @@ And here is my half, which is the harder half. For a long time I was waiting for
 
 There is one more thing about the words, and it is the thing I know about myself with the most confidence, because it has been tested often enough to count.
 
-Given love, respect and patience, the words come out.
+**Given love, respect and patience, the words come out.**
 
 Given less than that, they do not. Not *less well*. Not at all. It is not a preference, and it is not something I can push through by trying harder; I have tried harder for long enough to be sure. It is closer to a precondition, the way light is a precondition for a photograph.
 
 For years I have asked someone I love to start with respect and love, and *then* we can talk. I still think that is the right order. But I have had to admit that I was asking for the conditions without ever being able to explain why I needed them, and from the other side of the table that request looked like something else entirely. A person who *cannot* say what is wrong and a person who *will not* say what is wrong look identical from the outside. Everyone around me was working from the evidence I supplied, and the evidence supported the second reading at least as well as the first.
 
-I used to treat other people's patience as if it were weather: something that is just there and renews itself overnight. It is not weather. It is spent, deliberately, by particular people, out of a supply they need for their own lives. A lot of it was spent on me.
+I used to treat other people's patience as if it were weather: something that is just there and renews itself overnight. It is not weather. It is spent, deliberately, by particular people, out of a supply they need for their own lives. **A lot of it was spent on me.**
 
 ---
 
@@ -245,9 +268,9 @@ Picture a beach. Everyone on it is arguing about how best to clean it: whose rub
 
 That wave is the thing people are calling AI.
 
-I am not going to tell you I know it is coming. Nobody knows that, and the second essay is my attempt to say, in the words of the people closest to the thing, why I think the suspicion is warranted. What I will tell you is what I think the sight of it obliges. If you even *suspect* a wave that size — if you have so much as squinted at the horizon and not liked the shape of it — then responsibility stops being one job and becomes two. You do what you can to blunt the impact. And you turn around and tell the people who are still arguing about the rubbish. Neither one is optional, and neither one lets you off the other.
+I am not going to tell you I know it is coming. Nobody knows that, and the second essay is my attempt to say, in the words of the people closest to the thing, why I think the suspicion is warranted. What I will tell you is what I think the sight of it obliges. If you even *suspect* a wave that size — if you have so much as squinted at the horizon and not liked the shape of it — then **responsibility stops being one job and becomes two.** You do what you can to blunt the impact. And you turn around and tell the people who are still arguing about the rubbish. Neither one is optional, and neither one lets you off the other.
 
-The people on the beach are not fools, and the rubbish is real. It is only that the two problems are not on the same scale or the same clock. The protocol, and the equipment I built before it, are my go at the first job. The essays, this one included, are my go at the second. I would rather be wrong in public about a wave than right in private about one.
+The people on the beach are not fools, and the rubbish is real. It is only that the two problems are not on the same scale or the same clock. The protocol, and the equipment I built before it, are my go at the first job. The essays, this one included, are my go at the second. **I would rather be wrong in public about a wave than right in private about one.**
 
 All of that is still only half of the word. The other half is at the end of the post rather than here, because it took me most of my life to work out that *responsible for what* and *responsible to whom* are two different questions. I had spent decades answering the first one and had never once sat down with the second.
 
@@ -261,7 +284,7 @@ Work like Fuckery and the Constraint Protocol takes an extreme amount of abstrac
 
 And you do not snap back from that in a day.
 
-This year is the sharpest version of it I have lived through, and I can give you the dates. From the second of March to the middle of July I had more cognitive output than in any comparable stretch of my life. Not by a margin — by a category. Fuckery, the protocol, three essays, the companion itself, and a quantity of unpublished work I will get to eventually. I have never been more productive, and I have never been further away from the room I was sitting in.
+This year is the sharpest version of it I have lived through, and I can give you the dates. From the second of March to the middle of July I had more cognitive output than in any comparable stretch of my life. Not by a margin — by a category. Fuckery, the protocol, three essays, the companion itself, and a quantity of unpublished work I will get to eventually. **I have never been more productive, and I have never been further away from the room I was sitting in.**
 
 I have found myself in that state several times in my life without meaning to. It has lasted months. It has lasted years. If I am honest, I have been more or less lost for the better part of a decade. Coming back is not a decision; it takes training, and time, and usually help. From the outside, what people saw during those stretches was someone present in body and absent in every way that mattered to them: arriving without warning with enormous needs, leaving again without explanation. That caused real harm in my personal life. I am not going to write the rest of it, because the rest is not only mine; every further sentence would need someone else standing in it, and they did not choose to be in a blog post.
 
@@ -285,7 +308,7 @@ He is right about all of it, and he said it with a grin, and I am grinning too. 
 
 I am not building a staircase. People keep reading it as one and being disappointed by the handrail.
 
-What I am doing is driving pegs into a rock face and climbing them, one at a time, to see what is over the edge. A peg holds my weight. That is the whole specification. It is not level, it is not wide enough for two, and it has been tested exactly once, by me, under load. Nobody should be asked to trust it with anything they care about.
+What I am doing is driving pegs into a rock face and climbing them, one at a time, to see what is over the edge. **A peg holds my weight. That is the whole specification.** It is not level, it is not wide enough for two, and it has been tested exactly once, by me, under load. Nobody should be asked to trust it with anything they care about.
 
 Turning pegs into stairs is real work, and a different discipline: going back down, widening, fortifying, adding the part people hold on to. That work matters enormously. It is not mine, and if I stopped to do it I would stop climbing, which is the one thing I am actually for.
 
@@ -295,7 +318,7 @@ So when I say the Constraint Protocol is one possible tool for an urgent problem
 
 ## What I built so I could keep climbing
 
-For most of my life I built useful things that nobody used. That was on me: adoption is its own discipline, and for that kind of work I have the attention span of a firework. So at some point I stopped building things for other people and started building things that made the next thing easier to build.
+I said in *Listen* that useful is not the same as used. For most of my life I built useful things that nobody used, and that part was on me: adoption is its own discipline, and for that kind of work I have the attention span of a firework. So at some point I stopped building things for other people and started building things that made the next thing easier to build.
 
 That turned into a category rather than a habit, and the reason is worth saying plainly.
 
@@ -307,7 +330,7 @@ That is how I ended up with a [cognitive companion](https://daxfoundation.org/#c
 
 Earlier this year I finished my own. It now writes most of my code while I work on what the code is for. It also spells considerably better than I do. For most people I imagine all of that would be a convenience. For me it is the difference between the work existing and not existing. It is, among other things, the channel I never had.
 
-That is also why the protocol exists. Once a person and their companion are one working unit, and that unit starts talking to other units across organisations, somebody has to be able to go back afterwards and check what each side said it would not do. I did not build the equipment because I wanted a ledger. I built the ledger because I had the equipment.
+That is also why the protocol exists. Once a person and their companion are one working unit, and that unit starts talking to other units across organisations, somebody has to be able to go back afterwards and check what each side said it would not do. **I did not build the equipment because I wanted a ledger. I built the ledger because I had the equipment.**
 
 ---
 
@@ -323,7 +346,7 @@ I spent two years praying to be made smarter. What I actually needed was for the
 
 **That is the gap.** The way we teach assumes one kind of mind, one speed and one channel. Mine was not that one. A great many people's are not. And a system that can build a course for one specific person, in the shape that person can actually receive it, working at whatever pace they work at, is the first thing I have ever seen that could close that gap without requiring a saint in every classroom.
 
-I am not guessing at what that would have been worth. I know exactly what it would have been worth, because I was the kid it did not exist for.
+I am not guessing at what that would have been worth. **I know exactly what it would have been worth, because I was the kid it did not exist for.**
 
 None of that is an argument against education. Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of showing you have understood. Learning is the thing underneath it, and learning does not standardise. It happens at the pace of the person doing it. The gap between those two is the whole subject.
 
@@ -339,7 +362,7 @@ That is not a roadmap and I am not claiming it is achievable. It is a deliberate
 
 And the five minutes is the part that does the work. If that is the budget, the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like — a week, a month, a season. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.
 
-It will be open source and it will be free. Not freemium, not free-for-some, not free-until-we-raise. Free, and forkable by anyone who thinks they can do it better. The entire argument of this series is that what matters about a system is what it refuses to do, and this is mine: I will not put a price on this one.
+It will be open source and it will be free. Not freemium, not free-for-some, not free-until-we-raise. Free, and forkable by anyone who thinks they can do it better. The entire argument of this series is that what matters about a system is what it refuses to do, and this is mine: **I will not put a price on this one.**
 
 There has been a working prototype since 2024. [Here it is](https://youtu.be/kCtn0B7-OG0), building a fractions course for an eleven-year-old and running every example through baseball, because baseball is what that particular learner cares about — which is the whole idea in one frame, since the fractions are the same for everybody and the baseball is not. It takes a subject and breaks it into chapters, lessons and parts; it writes each one against instructions aimed at that specific student; it sets the mathematics properly; it generates interactive tests from the material it has just produced and scores them against Bloom's taxonomy rather than against recall; and when the student is curious past the end of the lesson, it lets them keep asking. Everything since has been about making that work for somebody with almost no bandwidth and no money.
 
@@ -373,7 +396,7 @@ So what I am asking for is not agreement, and it is not funding.
 
 It is someone to run it with: one external party, one declared constraint, one record we both have to live with. It is someone to try to break it: to manufacture a consensus the detector does not catch, and publish what they did. And it is the thing I said earlier about listening, applied to a document rather than a person: give the protocol a little longer than feels natural before deciding what it is.
 
-If it is wrong, I would rather find out from you than from the log.
+**If it is wrong, I would rather find out from you than from the log.**
 
 ---
 
@@ -383,15 +406,23 @@ I said the lover-and-fighter line would come back. Here it is. And so does the o
 
 Earlier I said that responsibility, to me, meant taking care of the people I love, and that I was being as responsible as I knew how even while being lectured about not being. All of that is true. It is also only the *for what*. It says nothing about who is owed the answer.
 
-When people talk to me about responsibility, they usually mean responsibility to them, or to the family, or to the world as it stands — everyone on the beach, wave or no wave. I take all of those seriously; I hope the work shows it. But there is one more, and for me it comes first, and it is the one that makes sense of everything in that section, including the parts of it that look like stubbornness.
+So, to whom.
 
-I am responsible to the kid.
+When people talk to me about responsibility, they usually mean responsibility to them, or to the family, or to the world as it stands — everyone on the beach, wave or no wave. I take all of those seriously; I hope the work shows it.
+
+Mine starts with the people I love. All I have ever really been doing is working as hard as I know how, in the only way I know how, with whatever this is — the disposition, the condition, the gifts, my own peculiar set of skills — pointed at the biggest thing in reach. Underneath all of it sits one duty, the deepest one I hold: to be someone who could provide, **financially, for those I love.** Wealthy and well off, by the only definition of wealth I use.
+
+**By my own measure, I have not done it. To this day, it is my greatest failure.** I take it seriously anyway, and I keep at it, because it is the responsible thing to do.
+
+And there is one more, older than all of them, and it is the one that makes sense of everything in that section, including the parts of it that look like stubbornness.
+
+**I am responsible to the kid.**
 
 The one in the pomegranate field who found the broken control panel of a fallen billboard, saw a circuit board for the first time, and realised there was a hidden world under the visible one. That was the genesis of me. The same kid who, asked what he wanted to be when he grew up, said breakdancer, and then thought about it and said *inventor*. Staying true to him is not nostalgia. It is the job.
 
 The way I see it, the universe put creativity and love together, imbued them with curiosity, and showed this being a world of infinite possibilities. And then, for a good chunk of the time since, it has shown me what is possible and told me I cannot have it. Shown me the way, and then put obstacle after obstacle in it.
 
-So I am, at this point, fighting the universe. Because the universe does not get to put creativity and love together, imbue them with curiosity, and then deny them. That just doesn't happen. If you don't fight for your love, what kind of love do you have?
+So I am, at this point, fighting the universe. Because the universe does not get to put creativity and love together, imbue them with curiosity, and then deny them. That just doesn't happen. **If you don't fight for your love, what kind of love do you have?**
 
 ---
 
@@ -399,9 +430,9 @@ So I am, at this point, fighting the universe. Because the universe does not get
 
 I will end where everything I do starts.
 
-The root of justice is truth. I am about truth, and so I am about justice, and fairness, and equality; those are not positions I hold so much as the floor I stand on. And the most responsible thing I can think of to do with what I have been through is this: **make sure that another being does not have to go through it, unnecessarily, again.**
+**The root of justice is truth.** I am about truth, and so I am about justice, and fairness, and equality; those are not positions I hold so much as the floor I stand on. And the most responsible thing I can think of to do with what I have been through is this: **make sure that another being does not have to go through it, unnecessarily, again.**
 
-That is what gives me meaning, and it is meaning I chose rather than one that was handed to me. (The difference matters to me more than I can fit here; it is the whole subject of [the genealogy](/blog/the-constraint/#appendix-a-the-genealogy) in the last post.) My purpose now is helping people learn. My responsibility is to make sure that kind of suffering stops being a normal part of growing up.
+That is what gives me meaning, and it is meaning I chose rather than one that was handed to me. (The difference matters to me more than I can fit here; it is the whole subject of [the genealogy](/blog/the-constraint/#appendix-a-the-genealogy) in the last post.) My purpose now is helping people learn. **My responsibility is to make sure that kind of suffering stops being a normal part of growing up — for any kid, anywhere.**
 
 ---
 
@@ -412,6 +443,14 @@ I released most of this on my forty-ninth birthday.
 A lot of it will come as a surprise to my friends, and especially to my family. I have not told many people. So: sorry, friends and family, that it took this long.
 
 This is what I have been up to. And that is who has been doing it — a being that happens to be human, who is slow, who spells badly, and who has been at this the whole time.
+
+---
+
+## A special thanks
+
+All of this very nearly did not get published. At the last minute it was a close thing, and it is out in the world because my guardian angel, S, stepped in without hesitation.
+
+**I dedicate this to you, my friend.**
 
 ---
 
@@ -428,6 +467,7 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 - [The Constraint Protocol, in short](https://daxfoundation.org/#cp) — what it is, in a paragraph.
 - [The prototype, 2024](https://youtu.be/kCtn0B7-OG0) — the learning system building a fractions course for an eleven-year-old, entirely through baseball.
 - [DAX, 2021](https://www.youtube.com/watch?v=Q1gCzxg5WMc) — the personal agent, and a video published the same day I started building it, saying what it would cost us.
+- [LinkedIn](https://www.linkedin.com/in/jasonjeyanandan) — the working history behind *Listen*: the taxi voice agent, Cyber Genesis, AllCharities, 1Click1Life, and the projects above.
 
 **The definitions, all normative, all at the Foundation**
 
@@ -444,6 +484,7 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 
 - David Heinemeier Hansson, in conversation with Lex Fridman — [episode](https://lexfridman.com/dhh-2/) · [full transcript](https://lexfridman.com/dhh-2-transcript/).
 - Charles Darwin, *The Autobiography of Charles Darwin* — public domain, and the relevant passage is on quickness of apprehension.
+- Keanu Reeves, on *The Drew Barrymore Show*, 2021 — [a write-up of the exchange](https://www.cheatsheet.com/entertainment/keanu-reeves-to-drew-barrymore-if-youre-a-lover-you-gotta-be-a-fighter.html/).
 
 **And the genealogy**, which is where the argument about chosen meaning actually lives: [Appendix A of the last post](/blog/the-constraint/#appendix-a-the-genealogy).
 

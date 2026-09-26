@@ -18,7 +18,7 @@ import { listedPosts, formatDate } from '../_posts.js';
       {listedPosts.map((p) => (
         <li>
           <a href={`/blog/${p.slug}/`}>{p.title}</a>
-          <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+          <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}{p.updated && new Date(p.updated) > new Date(p.date) && ` · Updated ${formatDate(p.updated)}`}</time>
           {p.description && <p>{p.description}</p>}
         </li>
       ))}

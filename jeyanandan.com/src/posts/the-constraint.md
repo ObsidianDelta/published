@@ -2,6 +2,7 @@
 title: "The Constraint"
 subtitle: "We Didn't Want to Take the Chance"
 date: 2026-09-21
+updated: 2026-09-26
 description: "The hypothetical, the global conversation, and what Obsidian Delta built because it didn't want to take the chance."
 draft: false
 ---
@@ -10,7 +11,7 @@ draft: false
 
 I'm fine with human beings telling me what things mean. I draw the line at an AGI doing it.
 
-That's a joke. It's also the whole post. Because the thing about AI that bothers me most isn't the robots or the jobs. It's something that can decide what your life is about, one person at a time, faster than you can notice it deciding.
+That's a joke. It's also the whole post. Because the thing about AI that bothers me most isn't the robots or the jobs. **It's something that can decide what your life is about, one person at a time, faster than you can notice it deciding.**
 
 ---
 
@@ -18,7 +19,7 @@ That's a joke. It's also the whole post. Because the thing about AI that bothers
 
 For three hundred thousand years, meaning has been handed to people by something that isn't them. The temple. The printing press. The factory clock. Television. The feed. Twenty-eight times, by my count ([Appendix A](#appendix-a-the-genealogy)).
 
-Every one of them was slow, and slowness was the defence. You can notice a regime that takes a century to install.
+**Every one of them was slow, and slowness was the defence.** You can notice a regime that takes a century to install.
 
 A capable enough intelligence takes the waiting out. It can model one person, fit a way of seeing to them, deliver it through a channel they already trust, and check whether it took — in seconds, for everyone at once.
 
@@ -30,7 +31,7 @@ I'm not the one sounding the alarm.
 
 On 12 September, Dario Amodei published *We Must Pace the Frontier*. Sam Altman, Elon Musk and Demis Hassabis backed it within days. The headlines are about whether AI ends us within a decade.
 
-Nobody agrees on the odds. Nobody has a way to check. ([Appendix B](#appendix-b-what-people-are-saying))
+**Nobody agrees on the odds. Nobody has a way to check.** ([Appendix B](#appendix-b-what-people-are-saying))
 
 ---
 
@@ -44,7 +45,7 @@ Is it as bad as they say?
 
 Maybe. Maybe worse. Nobody knows, and that includes everyone quoting you a percentage.
 
-What I do know is that it cuts both ways. The same capability that could take the noticing away from us is the best instrument we have ever had for the things that actually matter. You don't get one edge without the other, and anyone selling you a version with only one edge is selling you something else.
+**What I do know is that it cuts both ways.** The same capability that could take the noticing away from us is the best instrument we have ever had for the things that actually matter. You don't get one edge without the other, and anyone selling you a version with only one edge is selling you something else.
 
 So we stopped arguing about the odds.
 
@@ -58,7 +59,7 @@ So we built the [Constraint Protocol](https://github.com/daxfoundation/constrain
 
 It is built to compound knowledge: what survives judgment is meant to become the floor the next thing builds on. It is intended to compound intelligence: it records who deferred to whom, and why, and keeps the reasoning behind a changed position rather than throwing it away, so that what accumulates is argument rather than capitulation. It is designed to surface patterns over time — how entities came to agree, and whether the agreement was reached or manufactured. And it holds everyone to account, retrospectively: declare what you won't do, and everything after that is witnessed, signed, and can't be quietly edited.
 
-Every verb in that paragraph is a design verb, and I want it read the way it is written. The compounding is the specification's first sentence, and it is intent — not a result anyone has measured yet. Whether argument accumulates faster than capitulation at scale is exactly what has not been tested. The detector for manufactured consensus is specified; it has not been run against an adversary. And what the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
+**Every verb in that paragraph is a design verb, and I want it read the way it is written.** The compounding is the specification's first sentence, and it is intent — not a result anyone has measured yet. Whether argument accumulates faster than capitulation at scale is exactly what has not been tested. The detector for manufactured consensus is specified; it has not been run against an adversary. And what the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
 
 What that buys, in one line: an agent that declares a constraint hands every other agent something it didn't have before — a basis for deciding whether to deal with it at all, and a record that can be checked long afterwards. Do that widely enough and you can work out, retrospectively, which counterparties were good *by your own constraint's lights*. The long version, including what it can't do, is in [Appendix C](#appendix-c-the-protocol-in-full).
 
@@ -66,7 +67,7 @@ What that buys, in one line: an agent that declares a constraint hands every oth
 
 ## Our constraint
 
-The protocol doesn't care which constraint you declare. We do.
+**The protocol doesn't care which constraint you declare. We do.**
 
 Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.* Anything that permanently forecloses them is out.
 
@@ -82,13 +83,13 @@ AI is a new kind of electricity, and most of what's being sold on top of it is a
 
 ## What the precautions are for
 
-Precautions aren't the point. They're what lets you stop arguing about the downside and go and work on the upside.
+**Precautions aren't the point.** They're what lets you stop arguing about the downside and go and work on the upside.
 
 And the upside is not small. The Foundation defines [intelligence](https://daxfoundation.org/#intelligence) narrowly — the navigation of constrained possibility space, the *how* of getting from A to B with what's known. On that definition a person working with a companion isn't a little sharper. They're differently capable. Make that a hundredfold and you're not talking about better email. You're talking about the things we've all filed under *someday*: Mars, or letting a person decide whether they die at a hundred or at a thousand.
 
 That's the edge we're actually here for. The protocol is how we keep going after it without pretending the other edge isn't there.
 
-And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in the log, with our name on it.
+**And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in the log, with our name on it.**
 
 ---
 
@@ -384,7 +385,7 @@ The first thing out of the pile was an ontology, published this month and [on Gi
 
 I mention it for one reason: it determined the shape of everything below. If you think in constraints, you do not reach for a rule when you want to change a system's behaviour. You reach for the boundary of what it is allowed to do, because constraints work by removing possibilities rather than by pushing anything, and because a removal is inspectable in a way that a push is not.
 
-What I have is one tool, and it is narrower than the problem.
+**What I have is one tool, and it is narrower than the problem.**
 
 ### Constitution, word, constraint
 
@@ -421,7 +422,7 @@ That is where Obsidian Delta is now. We needed a record nobody could quietly edi
 
 ### What it does not do, and what exists today
 
-It does not prevent anything. I want to be blunt about that, because it is the first thing people assume. The specification's own framing is that the protocol makes meaning-formulation attributable, witnessed and re-judgeable — never prevented — and that the gradient it shifts is toward *legibility, not goodness*. I would rather that phrase stay unimproved, because it is the honest one. A party can declare a repugnant constraint and adhere to it perfectly, and the protocol will witness that adherence faithfully. What it makes expensive is hiding which constraint you serve, or that you serve none.
+**It does not prevent anything.** I want to be blunt about that, because it is the first thing people assume. The specification's own framing is that the protocol makes meaning-formulation attributable, witnessed and re-judgeable — never prevented — and that the gradient it shifts is toward *legibility, not goodness*. I would rather that phrase stay unimproved, because it is the honest one. A party can declare a repugnant constraint and adhere to it perfectly, and the protocol will witness that adherence faithfully. What it makes expensive is hiding which constraint you serve, or that you serve none.
 
 There is a second honest limit, and the specification states it rather than leaving it to be found: the protocol provides the capacity for retrospective accountability, not its exercise. A record is only as consequential as somebody's willingness to go and read it later.
 
@@ -443,9 +444,9 @@ This is also where the compounding claim from the top of the post would show up,
 
 Now the honest part. We are not naive. Things will go wrong. Some of them will go badly wrong, and the protocol will not stop a single one of them — it says so in its own specification, in the first section, before it says anything flattering about itself.
 
-What it changes is the terrain.
+**What it changes is the terrain.**
 
-You do not stop water by arguing with it. You change the shape of the ground. Water runs downhill; if you do not want it somewhere, you make getting there uphill. The protocol does not make bad actors good. It makes acting badly over a long period expensive, visible and awkward to keep doing, because the record accumulates and does not forget. The specification's own phrase for this is that it shifts the gradient toward *legibility, not goodness*. Nothing about the water changes. The hill does.
+You do not stop water by arguing with it. You change the shape of the ground. Water runs downhill; if you do not want it somewhere, you make getting there uphill. The protocol does not make bad actors good. It makes acting badly over a long period expensive, visible and awkward to keep doing, because the record accumulates and does not forget. The specification's own phrase for this is that it shifts the gradient toward *legibility, not goodness*. **Nothing about the water changes. The hill does.**
 
 I am not the first person to put it that way and I am not the best. Vitalik Buterin's [d/acc](https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html) — defensive, decentralisation, democracy, differential acceleration — argues for deliberately favouring defensive technology over offensive, and he describes the goal in almost exactly these terms: making the world look more like mountains and rivers than like open steppe. Terrain that can be held, rather than flat ground where whoever moves fastest takes everything. He also puts decentralisation in the acronym, which is the second of the two beliefs I set out earlier, arrived at from a different direction.
 
@@ -469,7 +470,7 @@ Here is the thing I actually do not know, which I would rather state as an open 
 
 I do not know how these systems evolve. I do not know how a population of entities talking to each other over these protocols drifts — whether it converges on a shared way of reading the world or fragments, whether the drift is fast or slow, whether it is legible at all from the inside. Most of all I do not know how such a population comes to assign meaning one way rather than another. I have watched a small number of these interactions closely, I have hypotheses, and I am not going to publish hypotheses as findings.
 
-What I can say is that the drift is the thing to watch, and you cannot watch what you have not recorded. That is the whole reason I am interested in an accountability substrate rather than a better set of rules. Rules are a bet that you already know what will go wrong. A record is a bet that you do not.
+What I can say is that the drift is the thing to watch, and you cannot watch what you have not recorded. That is the whole reason I am interested in an accountability substrate rather than a better set of rules. **Rules are a bet that you already know what will go wrong. A record is a bet that you do not.**
 
 ### The obvious objection
 
@@ -493,11 +494,11 @@ The answer is that a declared constraint is a different kind of object from ever
 
 **It is forkable, and it is exitable.** You can take it, change it, declare your own, and walk off with it. The protocol does not object — forking is a first-class operation with a lineage that can be walked, and exit is recorded as a success state rather than a failure. Not one of the twenty-eight rows had a fork.
 
-So here is the honest statement. DAX is a meaning. It is my meaning. I am asking nobody to adopt it.
+So here is the honest statement. **DAX is a meaning. It is my meaning. I am asking nobody to adopt it.**
 
 What I am arguing for is the shape of the container — that whatever meaning is operating be declared, bounded, inspectable and forkable, because those four properties are precisely the ones that make recognition possible for somebody who was not in the room when it was decided.
 
-If you adopt DAX because I said so, you have missed the whole essay. If you read it, disagree with it, declare your own and let it be inspected, you have understood it completely.
+**If you adopt DAX because I said so, you have missed the whole essay.** If you read it, disagree with it, declare your own and let it be inspected, you have understood it completely.
 
 ### What would falsify this
 
@@ -535,7 +536,7 @@ So here is the threat I have just spent nine thousand words on, taken apart and 
 
 Now read that list back, because it is not a disclaimer. Knock out any of the three in the middle — recognition, clock speed, or the removal of the gap — and the whole thing falls over. Take out the recognition claim and the second half of this essay collapses. Take out the clock-speed claim and the argument becomes an interesting history with no conclusion attached. Those are not caveats at the edges. They are the load-bearing members, and two of the three are marked speculative in my own notation.
 
-The whole thing can be wrong. Not softened — wrong, at a joint, in a way that takes the rest down with it. On a fair reading, this could be nothing.
+**The whole thing can be wrong.** Not softened — wrong, at a joint, in a way that takes the rest down with it. On a fair reading, this could be nothing.
 
 So the honest question is not whether I have proved anything. I have not. The question is what a person does with an argument shaped like that.
 
@@ -563,7 +564,7 @@ The current one is "is this going to kill us in ten years," conducted between pe
 
 The one I would rather have is much duller and has an answer. *What are you operating under? Where is it written down? What does it forbid? And can somebody who does not trust you go and check whether you held to it?*
 
-That conversation converges, because every question in it has a checkable answer or an embarrassing silence.
+**That conversation converges, because every question in it has a checkable answer or an embarrassing silence.**
 
 So: is the whole world going to adopt this? No. It was never the proposition, and anyone promising you a protocol that everybody adopts is selling you something.
 
@@ -581,13 +582,13 @@ Every row on that table narrowed something. Some of them gave a great deal back,
 
 That is also why the constraint names consciousness and not just humanity. If I am right that the substrate does not matter — and I have argued that all the way through, because the concern is capability and opacity rather than material — then a constraint that protects only one substrate is a constraint I would have to abandon the moment the question got hard. I would rather write the version I can hold.
 
-And here is the part that makes it a constraint rather than a slogan: it tells you what it forbids. Anything that permanently forecloses life, or humanity, or consciousness is out, and out in a way you can hold me to, in public, when it is inconvenient for me. That edge is the whole object. A value you cannot violate is not a value, it is a mood with a logo.
+And here is the part that makes it a constraint rather than a slogan: it tells you what it forbids. Anything that permanently forecloses life, or humanity, or consciousness is out, and out in a way you can hold me to, in public, when it is inconvenient for me. That edge is the whole object. **A value you cannot violate is not a value, it is a mood with a logo.**
 
 Now the humility, which is not decoration.
 
 I cannot prove DAX is the right constraint. There is no argument available to me that establishes it, and if I produced one you should check it very carefully, because a man who has just written an essay about meaning being assigned to people and then produces a proof that his own meaning is the correct one has written row twenty-nine and deserves what follows.
 
-What I can do is declare it, say what it rules out, and be checked. That is the entire difference between the constraint I am arguing for and the twenty-eight above it. Not that mine is better. That mine is *falsifiable in conduct*, and theirs were not, because theirs never said what they were.
+What I can do is declare it, say what it rules out, and be checked. That is the entire difference between the constraint I am arguing for and the twenty-eight above it. Not that mine is better. **That mine is *falsifiable in conduct*, and theirs were not, because theirs never said what they were.**
 
 If you think DAX is wrong, the useful response is not to argue with me. It is to declare a better one, say what it forbids, and let it be inspected. Then there are two of them in the open and we can both be checked. That is a strictly better world than the one where I am right and nobody can tell.
 

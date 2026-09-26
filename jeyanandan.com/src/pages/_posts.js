@@ -40,11 +40,23 @@
 //   rendering into each of them:
 //
 //     fuckarian       I am not building a staircase.
-//     the-constraint  The mechanism is three hundred thousand years old. The clock is new.
+//     the-constraint  There has been one operational run, on 4 May 2026, between two
+//                     instances operated by two organisations across a network
+//                     boundary -- ... (the whole sentence, verbatim; the clock line it
+//                     replaced was removed from the essay on 2026-09-25)
+//
+//   deploy-jeyanandan.yml is the authority on the exact strings. If this comment
+//   and the workflow disagree, the workflow is right.
 //
 //   Those two sentences are load-bearing. Edit the paragraph around them
 //   freely; delete or reword the sentence itself and the deploy fails closed,
 //   which is the point. Unlisting a post is safe. Unbuilding one is not.
+//
+// PUBLISHED AND UPDATED. `date` is first publication and never changes.
+// `updated` (optional, YYYY-MM-DD) is bumped by hand in the same commit as any
+// change to a post's text. The post page shows both, /blog/ shows both, and the
+// sitemap uses `updated` as lastmod. Sorting stays on `date`, so revising an old
+// post does not float it to the top of the list.
 //
 // UNLISTED ALSO MEANS NOINDEX. Keeping a post off this site's own indexes does
 // not keep it out of a search engine that reaches it some other way, so

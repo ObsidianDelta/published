@@ -46,7 +46,8 @@ const escape = (s) =>
 export async function GET() {
   const entries = [
     ...STATIC_ROUTES.map((path) => ({ loc: SITE + path, lastmod: null })),
-    ...listedPosts.map((p) => ({ loc: SITE + '/blog/' + p.slug + '/', lastmod: day(p.date) })),
+    // lastmod is the last revision when a post has one, else its publication date.
+    ...listedPosts.map((p) => ({ loc: SITE + '/blog/' + p.slug + '/', lastmod: day(p.updated) || day(p.date) })),
   ];
 
   const body =
