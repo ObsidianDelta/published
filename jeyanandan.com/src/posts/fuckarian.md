@@ -422,9 +422,11 @@ The one in the pomegranate field who found the broken control panel of a fallen 
 
 The way I see it, the universe put love and creativity together, imbued them with curiosity, and showed this being a world of infinite possibilities. *You can do all of this,* it said. Then, every time I went looking for the how, it handed me dead end after dead end. And not only that: it put obstacle after obstacle in the way.
 
-So yes, at this point I am fighting the universe. Fuck yeah, I am. I am fighting for love and creativity, because the universe does not get to put them together, light them up with curiosity, show me everything they could make, and then deny them. That just doesn't happen.
+So, fuck yeah, at this point I am fighting the universe. I am fighting for love and creativity, because the universe does not get to put them together, light them up with curiosity, show me everything they could make, and then deny them. That just doesn't happen.
 
-And the love is not abstract, so let me be specific. I am fighting for the kid in the pomegranate field, who saw a circuit board and knew there was a world underneath this one. For my family, and for the people I love: well off, by the only definition of wealth I use. For everyone who spent their patience on me. For every kid sitting in a classroom while nothing goes in, and for every parent and grandparent whose stories are about to go with them. For the people still on the beach arguing about the rubbish, whether or not they ever turn around. And for life, for humanity and for consciousness, which I have already declared in public as the constraint I hold, and asked to be held to.
+And the love is not abstract, so let me be specific. I am fighting for the kid in the pomegranate field, who saw a circuit board and knew there was a world underneath this one. For my family, and for the people I love: well off, by the only definition of wealth I use. For everyone who spent their patience on me. For every kid sitting in a classroom while nothing goes in, and for the people still on the beach arguing about the rubbish, whether or not they ever turn around. And for life, for humanity and for consciousness, which I have already declared in public as the constraint I hold, and asked to be held to.
+
+So I ask you:
 
 **If you don't fight for your love, what kind of love do you have?**
 
