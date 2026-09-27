@@ -420,9 +420,13 @@ And there is one more, older than all of them, and it is the one that makes sens
 
 The one in the pomegranate field who found the broken control panel of a fallen billboard, saw a circuit board for the first time, and realised there was a hidden world under the visible one. That was the genesis of me. The same kid who, asked what he wanted to be when he grew up, said breakdancer, and then thought about it and said *inventor*. Staying true to him is not nostalgia. It is the job.
 
-The way I see it, the universe put creativity and love together, imbued them with curiosity, and showed this being a world of infinite possibilities. And then, for a good chunk of the time since, it has shown me what is possible and told me I cannot have it. Shown me the way, and then put obstacle after obstacle in it.
+The way I see it, the universe put love and creativity together, imbued them with curiosity, and showed this being a world of infinite possibilities. *You can do all of this,* it said. Then, every time I went looking for the how, it handed me dead end after dead end. And not only that: it put obstacle after obstacle in the way.
 
-So I am, at this point, fighting the universe. Because the universe does not get to put creativity and love together, imbue them with curiosity, and then deny them. That just doesn't happen. **If you don't fight for your love, what kind of love do you have?**
+So yes, at this point I am fighting the universe. Fuck yeah, I am. I am fighting for love and creativity, because the universe does not get to put them together, light them up with curiosity, show me everything they could make, and then deny them. That just doesn't happen.
+
+And the love is not abstract, so let me be specific. I am fighting for the kid in the pomegranate field, who saw a circuit board and knew there was a world underneath this one. For my family, and for the people I love: well off, by the only definition of wealth I use. For everyone who spent their patience on me. For every kid sitting in a classroom while nothing goes in, and for every parent and grandparent whose stories are about to go with them. For the people still on the beach arguing about the rubbish, whether or not they ever turn around. And for life, for humanity and for consciousness, which I have already declared in public as the constraint I hold, and asked to be held to.
+
+**If you don't fight for your love, what kind of love do you have?**
 
 ---
 
