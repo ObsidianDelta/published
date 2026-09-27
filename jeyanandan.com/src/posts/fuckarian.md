@@ -1,8 +1,8 @@
 ---
-title: "Fuckarian"
+title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-09-26
+updated: 2026-09-27
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -168,7 +168,7 @@ The big one was Grade 12 physics. The teacher was genuinely exciting. The tables
 
 The other two were a computer programming course and, somewhere in there, astronomy. Same reason, I think. In all three, the thing being taught was visibly something a person had once had to work out, rather than something I was being handed and asked to hold. Everything else was torture.
 
-The easy reading of the rest of that list is that I was not very bright, or not very disciplined, or not trying. I believed some version of that for a long time. I once spent about two years praying every night to be made smarter.
+The easy reading of the rest of that list is that I was not very bright, or not very disciplined, or not trying. I believed some version of that for a long time. When I first started school in England, I remember praying every single night for God to make me smarter.
 
 The reading I believe now is different. **The problem was never the content. It was the channel, and the channel ran both ways.** The way other people packaged information did not land in me, and the way I packaged it did not land in them. Teachers, classmates, family, later colleagues: all of them were transmitting in good faith on a frequency I was not receiving, and I was transmitting on one they were not.
 
@@ -342,7 +342,7 @@ Everything above points in one direction, and I want to draw the line explicitly
 
 I was not badly taught. I was taught in a way that assumed a mind I did not have. One pace, one sequence, one channel, and one accepted way of demonstrating that you had understood — and then fifteen years of being measured against all four. The content was never the problem. It was the channel, and the channel ran both ways: what was sent did not arrive in me, and what I had did not come out in a form anybody could receive. Three classes reached me in all those years, and the only thing the three had in common was that somebody had taken the trouble to make the subject arrive in a shape I could take.
 
-I spent two years praying to be made smarter. What I actually needed was for the material to be handed over differently. Nobody had the time for that, and at the scale a school runs at, nobody could have. It is not a failure of teachers. It is arithmetic.
+As a boy in England I prayed every night for God to make me smarter. What I actually needed was for the material to be handed over differently. Nobody had the time for that, and at the scale a school runs at, nobody could have. It is not a failure of teachers. It is arithmetic.
 
 **That is the gap.** The way we teach assumes one kind of mind, one speed and one channel. Mine was not that one. A great many people's are not. And a system that can build a course for one specific person, in the shape that person can actually receive it, working at whatever pace they work at, is the first thing I have ever seen that could close that gap without requiring a saint in every classroom.
 
