@@ -56,7 +56,7 @@ Underneath Maddie is a **[cognitive companion](https://daxfoundation.org/#cognit
 - **[The Snowflake](/blog/snowflake-fuckari-in-action/)** — that loop, run against a single snowflake, step by step, twenty-eight times, in public. I chose a snowflake on purpose: nobody disputes the physics and nobody has anything at stake in the answer. If the method was going to fall over, it should fall over somewhere harmless.
 - **[The Constraint](/blog/the-constraint/)** — the serious one. Why I think the next few years are genuinely dangerous, what the people closest to this technology are actually saying about it in public, and what we built because we did not want to take the chance.
 - **[The Constraint Protocol](https://github.com/daxfoundation/constraint-protocol)** — the thing we built, and the thing I built Fuckery in order to build. An open, public way for anything — a person, a company, a piece of software — to declare in advance what it will not do, and then be checked against that declaration by anybody who cares to look. Published, free to use, and honest about the fact that it has only run once so far.
-- **[Meta DAX](/blog/meta-dax/)** — the learning one, and the one I care about most. Fuckery and the protocol are this year's work; this is the life's work, and it is further down. It went public on 28 September, [experiments and all](https://github.com/daxfoundation/metadax).
+- **[Meta DAX](/blog/meta-dax/)** — the learning one, and the one I care about most. Fuckery and the protocol are this year's work; this is my purpose, and it is further down. It went public on 28 September, [experiments and all](https://github.com/daxfoundation/metadax).
 
 One last thing before you start, because I do not want this read as a man announcing himself. On the twenty-first of this month I released most of a year's work in a week. That is not remarkable. Everyone I know who works in a domain they care about is sitting on a pile that got suddenly, strangely easy to finish, and a great deal of it is going to land at once over the next while. Whatever you end up making of me, do not make the mistake of thinking this is only me.
 
@@ -334,11 +334,11 @@ That is also why the protocol exists. Once a person and their companion are one 
 
 ---
 
-## The life's work
+## My purpose
 
 Fuckery and the Constraint Protocol are this year's work. Here is the rest.
 
-Everything above points in one direction, and I want to draw the line explicitly rather than leave it implied, because it is the entire reason this is a life's work and not a business plan.
+Everything above points in one direction, and I want to draw the line explicitly rather than leave it implied, because it is the entire reason this is my purpose and not a business plan.
 
 I was not badly taught. I was taught in a way that assumed a mind I did not have. One pace, one sequence, one channel, and one accepted way of demonstrating that you had understood — and then fifteen years of being measured against all four. The content was never the problem. It was the channel, and the channel ran both ways: what was sent did not arrive in me, and what I had did not come out in a form anybody could receive. Three classes reached me in all those years, and the only thing the three had in common was that somebody had taken the trouble to make the subject arrive in a shape I could take.
 
@@ -350,7 +350,7 @@ I am not guessing at what that would have been worth. **I know exactly what it w
 
 None of that is an argument against education. Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of showing you have understood. Learning is the thing underneath it, and learning does not standardise. It happens at the pace of the person doing it. The gap between those two is the whole subject.
 
-So the life's work is **[Meta DAX](/blog/meta-dax/)**, the universal learning initiative of the [DAX Foundation](https://daxfoundation.org/#learning). It is the right information, to the right person, at the right time, turned into a system.
+So my purpose is **[Meta DAX](/blog/meta-dax/)**, the universal learning initiative of the [DAX Foundation](https://daxfoundation.org/#learning). It is the right information, to the right person, at the right time, turned into a system.
 
 It gets [its own post](/blog/meta-dax/), with the detail attached. This is the trailer, and that is deliberate; it is the same rule I have applied to everything else here: a claim you cannot go and check is a claim you should not be asked to hold. So I will tell you what it is for and what standard it is held to, and save the rest for something you can argue with.
 
@@ -368,7 +368,7 @@ There has been a working prototype since 2024. [Here it is](https://youtu.be/pMV
 
 It is that Grade 12 physics room, for everyone, on any subject, for as long as they want to keep learning. It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.
 
-That is [the next post](/blog/meta-dax/), and that is the life's work.
+That is [the next post](/blog/meta-dax/), and that is my purpose.
 
 ---
 
@@ -473,7 +473,7 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 - [The Constraint Protocol, in short](https://daxfoundation.org/#cp) — what it is, in a paragraph.
 - [The prototype, 2024](https://youtu.be/pMVwtGqUSh4) — the learning system building a fractions course for an eleven-year-old, entirely through baseball.
 - [The prototype, the long version](https://youtu.be/kCtn0B7-OG0) — fifteen minutes of the same system building a cell-biology course, and answering the questions that came after it.
-- [Meta DAX: An Introduction](/blog/meta-dax/) — the life's work, public since 28 September 2026, with [the repository](https://github.com/daxfoundation/metadax) and its experiments.
+- [Meta DAX: An Introduction](/blog/meta-dax/) — my purpose, public since 28 September 2026, with [the repository](https://github.com/daxfoundation/metadax) and its experiments.
 - [DAX, 2021](https://www.youtube.com/watch?v=Q1gCzxg5WMc) — the personal agent, and a video published the same day I started building it, saying what it would cost us.
 - [LinkedIn](https://www.linkedin.com/in/jasonjeyanandan) — the working history behind *Listen*: the taxi voice agent, Cyber Genesis, AllCharities, 1Click1Life, and the projects above.
 

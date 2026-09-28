@@ -20,8 +20,11 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
 //     "failing / succeeding" quote that sat directly under it is NOT gone: it
 //     moved down, to sit between formaddie.com and Meta DAX, where it belongs
 //     (the experiments are the failing). Two quotes in a row was the problem.
-//   - Meta DAX has its own feature card ("The life's work", his phrase in The
-//     Fuckarian), the same shape as the formaddie.com card: mark, title, date,
+//   - Meta DAX has its own feature card, eyebrow "My purpose" (Jason: "it's
+//     not my life's work ... it should be my purpose" -- the same word
+//     replaced "life's work" in The Fuckarian, where the section is now
+//     #my-purpose, and in the Meta DAX post), the same shape as the
+//     formaddie.com card: mark, title, date,
 //     lede, links, tag. The mark is the DAX Foundation favicon redrawn in this
 //     palette as inline SVG (img-src is 'self' data:, and an inline <svg> is
 //     the document, not an image request).
@@ -106,7 +109,7 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
   </div></section>
 
   <section class="feature"><div class="shell narrow">
-    <h2 class="eyebrow">The life's work</h2>
+    <h2 class="eyebrow">My purpose</h2>
     <div class="feature-card">
       <a class="mark" href="/blog/meta-dax/" aria-label="Meta DAX"><svg class="dax-mark" viewBox="0 0 32 32" width="140" height="140" aria-hidden="true" focusable="false"><rect class="dax-tile" width="32" height="32" rx="6"/><circle class="dax-ring" cx="16" cy="16" r="8.5"/><circle class="dax-dot" cx="16" cy="16" r="2"/></svg></a>
       <div class="feature-body">
@@ -240,7 +243,7 @@ h2.eyebrow::after{content:"";flex:1 1 auto;height:1px;background:var(--line)}
 .coda .narrow::before{width:56px;margin-bottom:1.5rem}
 .coda .quote{font-size:clamp(1.5rem,3.8vw,2.1rem);line-height:1.3;color:var(--strong)}
 
-/* ---------- feature cards: working on now, and the life's work ---------- */
+/* ---------- feature cards: working on now, and my purpose ---------- */
 .feature-card{
   display:flex;gap:1.75rem;align-items:flex-start;
   margin-top:.5rem;

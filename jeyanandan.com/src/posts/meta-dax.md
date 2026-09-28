@@ -33,7 +33,7 @@ Let me draw one line, carefully, because everything I care about sits on one sid
 
 I am for learning with everything I have. And the thing I want most is the thing no school on earth has ever been able to afford: **to invert the ratio.** Not thirty students to one teacher. **Thirty teachers, coaches and mentors to every one learner** — one who knows how you think, one who knows what you already know, one who knows what you are about to get wrong, one who notices when you are lost and knows the way home. That is absurd to ask of any institution. It is not absurd to ask of a system.
 
-That is what Meta DAX means to me. It is the [DAX Foundation's](https://daxfoundation.org/#learning) universal learning initiative, and it is [my life's work](/blog/fuckarian/#the-lifes-work). It is that Grade 12 room for everyone, on any subject, for as long as they want to keep learning. **It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.**
+That is what Meta DAX means to me. It is the [DAX Foundation's](https://daxfoundation.org/#learning) universal learning initiative, and it is [my purpose](/blog/fuckarian/#my-purpose). It is that Grade 12 room for everyone, on any subject, for as long as they want to keep learning. **It is the thing I needed at nine, and at eleven, and at nineteen, and did not have.**
 
 ---
 
