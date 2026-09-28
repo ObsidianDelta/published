@@ -356,7 +356,7 @@ It gets its own post, with the detail attached. This is the trailer, and that is
 
 **It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre, but as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and I want to be upfront that the sentence is absurd:
 
-> **Take a person who can just about read and write, and get them to the equivalent of a master's degree from a North American university — on five minutes of connectivity a week.**
+> **Take a person who can communicate, and get them to the equivalent of a master's degree from a North American university — on five minutes of connectivity a day.**
 
 That is not a roadmap and I am not claiming it is achievable. It is a deliberately ridiculous theoretical benchmark, held on purpose, because holding it does one useful thing: it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists and already fails these people.
 
