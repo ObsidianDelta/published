@@ -2,6 +2,7 @@
 title: "Meta DAX"
 subtitle: "An Introduction"
 date: 2026-09-28
+updated: 2026-09-28
 description: "The first was the mechanism, the second was the threat, the third was the person. This one is the point: what Meta DAX means to me, what it has the nerve to attempt, and why it compounds."
 draft: false
 ---
@@ -48,7 +49,7 @@ Here is the part I want to say loudly, because some days I forget how large it i
 
 It takes a subject, breaks it into chapters, lessons and parts, writes each one against instructions aimed at a particular student, builds interactive tests from the material it has just produced, scores them against Bloom's taxonomy rather than recall, and lets the student keep asking past the end of the lesson. [Here it is again](https://youtu.be/pMVwtGqUSh4), in two and a half minutes, building a fractions course for an eleven-year-old and running every example through baseball, because baseball is what that particular kid cared about. **The fractions are the same for everybody. The baseball is not.**
 
-**This is what we are running now to achieve it.** [Fourteen experiments](https://github.com/daxfoundation/metadax/tree/main/experiments), each with a question, a method, and the result that would tell us to stop. The first ones are done, and here is the record: **[Newton's laws, taught and taken](https://claude.ai/artifact/Nv4j2tpPh9PidXvLiAaP31)**.
+**This is what we are running now to achieve it.** [Fourteen experiments](https://github.com/daxfoundation/metadax/tree/main/experiments) — the first fourteen of countless more to come — each with a question, a method, and the result that would tell us to stop. The first ones are done, and here is the record: **[Newton's laws, taught and taken](https://claude.ai/artifact/Nv4j2tpPh9PidXvLiAaP31)**.
 
 What you are looking at in that report is this:
 
