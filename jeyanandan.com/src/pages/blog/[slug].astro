@@ -187,6 +187,18 @@ article{padding-bottom:clamp(2rem,5vw,3rem)}
 }
 .prose img{display:block;max-width:100%;height:auto;border-radius:8px}
 
+/* ---------- embedded video ----------
+   A YouTube embed pasted into a post keeps the width/height attributes YouTube
+   gives it (560x315). Those are overridden here so the player fills the measure
+   and keeps 16:9 at any width, phone included. The CSP in public/_headers is
+   what allows the frame at all: frame-src names www.youtube.com and
+   www.youtube-nocookie.com and nothing else. */
+.prose iframe{
+  display:block;width:100%;height:auto;aspect-ratio:16/9;
+  border:0;border-radius:8px;background:var(--bone);
+  margin:1.7rem 0;
+}
+
 .back{font-family:var(--sans);font-size:17px;margin-top:.5rem}
 .back a{color:var(--muted);text-decoration:none}
 .back a:hover{color:var(--orange)}
