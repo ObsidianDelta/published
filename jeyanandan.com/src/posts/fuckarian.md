@@ -2,7 +2,7 @@
 title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-09-27
+updated: 2026-09-28
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -102,7 +102,7 @@ So: take your pick off the list. Add your own; most people do. At the end of the
 
 And underneath that one, the thing that has been true the entire time and that I have somehow never once said plainly in public:
 
-**I am a being that happens to be human.**
+**I am a being that just happens to be human.**
 
 That is not a pose and it is not a bit. It is the most accurate description of my own experience that I have got. It is why my pronoun field says *Being*. It is why the framework treats a person, a company and a piece of software as the same kind of thing the moment any of them declares a constraint. It is why the Constraint Protocol is built around a principal of unrestricted kind rather than around AI: the protocol does not care what sort of thing you are, only whether you said what you would not do and can be checked against it.
 
@@ -448,7 +448,7 @@ I released most of this on my forty-ninth birthday.
 
 A lot of it will come as a surprise to my friends, and especially to my family. I have not told many people. So: sorry, friends and family, that it took this long.
 
-This is what I have been up to. And that is who has been doing it — a being that happens to be human, who is slow, who spells badly, and who has been at this the whole time.
+This is what I have been up to. And that is who has been doing it — a being that just happens to be human, who is slow, who spells badly, and who has been at this the whole time.
 
 ---
 

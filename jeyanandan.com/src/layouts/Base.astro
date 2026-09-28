@@ -11,6 +11,10 @@ const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.prop
 // to nothing. The pages are kept, unbuilt, in src/_suppressed/ -- read the
 // README there before restoring either.
 //
+// 2026-09-28: the footer carries one outbound link, to Jason's LinkedIn, at his
+// request -- LinkedIn is the reference for him, and this layout wraps every
+// page, so every post links to it too.
+//
 // These notes live in the frontmatter, not in an HTML comment in the body,
 // because this layout wraps every page on the site: an <!-- --> here is emitted
 // into the built HTML of all of them, and internal notes about pages that no
@@ -92,6 +96,7 @@ footer a:hover{color:var(--orange)}
 
   <footer><div class="shell">
     <span>Jason Jeyanandan</span>
+    <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>
   </div></footer>
 </body>
 </html>

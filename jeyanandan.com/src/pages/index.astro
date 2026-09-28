@@ -40,6 +40,12 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
 // on one source line each. Reword either and the workflow has to change in
 // the same change-set, workflow first.
 //
+// 2026-09-28: LinkedIn is the reference for Jason himself. The opening quote
+// links to his LinkedIn profile (its About section opens with the same idea),
+// and the site footer in Base.astro carries a LinkedIn link on every page. The
+// closing line is his saying as he says it: "a being that just happens to be
+// human".
+//
 // Comments in the markup below are {/* ... */}, never <!-- ... -->. Astro
 // emits an HTML comment nested inside an element straight into the built
 // page, and a gate sentence living in a shipped comment would pass the grep
@@ -56,7 +62,7 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
   </div></section>
 
   <section class="quote-band"><div class="shell narrow">
-    <p class="quote">"If you're not failing, you're not succeeding."</p>
+    <p class="quote"><a href="https://www.linkedin.com/in/jasonjeyanandan" title="Jason Jeyanandan on LinkedIn">"If you're not failing, you're not succeeding."</a></p>
   </div></section>
 
   <section class="feature"><div class="shell narrow">
@@ -136,7 +142,7 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
   </div></section>
 
   <section class="quote-band"><div class="shell narrow">
-    <p class="quote">"I am a being that happens to be human."</p>
+    <p class="quote">"I am a being that just happens to be human."</p>
   </div></section>
 </Base>
 
@@ -154,6 +160,8 @@ section strong{font-weight:600;color:var(--strong)}
 .quote-band .narrow{max-width:30rem}
 .quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.4vw,1.25rem);line-height:1.55;color:var(--soft);text-align:center;margin:0}
 .quote em{font-style:italic}
+.quote a{color:inherit;text-decoration-color:var(--line)}
+.quote a:hover{color:var(--orange);text-decoration-color:currentColor}
 
 /* ---------- working on now: the lead feature ---------- */
 .feature-card{
