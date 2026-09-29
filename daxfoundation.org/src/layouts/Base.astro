@@ -19,6 +19,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 //
 // This note is in the frontmatter, not an HTML comment: this layout wraps
 // every page on the site, so an <!-- --> here ships on all of them.
+//
+// 2026-09-29: the definitions moved to their own page, so the masthead carries
+// one link to it, in the same quiet register as the mark.
 ---
 <!doctype html>
 <html lang="en">
@@ -39,6 +42,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <header class="wrap top">
       <a class="mark" href="/">DAX Foundation</a>
+      <nav class="nav" aria-label="Site">
+        <a class="mark" href="/definitions/">Definitions</a>
+      </nav>
     </header>
     <main class="wrap">
       <slot />
@@ -80,7 +86,13 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     margin: 0 auto;
     padding-inline: 1.5rem;
   }
-  .top { padding-block: 2rem; }
+  .top {
+    padding-block: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+  }
   .mark {
     text-decoration: none;
     font-size: 0.8125rem;

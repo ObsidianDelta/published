@@ -1,0 +1,331 @@
+---
+import Base from '../layouts/Base.astro';
+
+// /definitions/ -- the normative definitions, moved off the home page on
+// 2026-09-29 at Jason's request ("separate the definitions out"). The ids are
+// unchanged, so /definitions/#cognitive-companion is the same anchor it was on
+// the home page; the home page forwards its old anchors here.
+//
+// The text of every definition moved verbatim from the home page, except:
+//   - #human-delta-value, expanded the same day (Jason): it is what a human
+//     brings to the table -- both what only a human can do, and what only the
+//     person working in synergy with their cognitive companion (or anything
+//     else they direct) could reach. Measured continuously; foundational.
+//   - #constraint-resonance gained its picture.
+//
+// #cognitive-companion is deliberately unchanged here: the "cognitive
+// extension" wording Jason chose on 2026-09-29 is waiting on his confirmation
+// of the substrate/domain split (see the report of that date).
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
+---
+<Base
+  title="Definitions · DAX Foundation"
+  description="The normative definitions used across the DAX ecosystem: cognitive companion, human delta value, constraint, knowledge, intelligence, wisdom, consciousness and more."
+>
+  <section class="lede" aria-labelledby="definitions">
+    <h1 id="definitions">Definitions</h1>
+    <p class="body">
+      The normative definitions used across the DAX ecosystem. Other documents
+      reference these rather than restating them.
+    </p>
+  </section>
+
+  <section class="block" aria-label="Definitions">
+    <dl class="rows">
+      <div class="row" id="nonbiological-intelligence">
+        <dt class="name">Nonbiological intelligence (NBI)</dt>
+        <dd class="text">
+          Intelligence instantiated on a nonbiological substrate. This ecosystem
+          uses the term in place of &ldquo;artificial intelligence&rdquo;
+          deliberately: <em>artificial</em> prejudges the thing as counterfeit
+          and smuggles a judgment into the name, where <em>nonbiological</em>
+states the substrate and nothing else. Substrate essentialism is
+          rejected outright &mdash; constraint regimes are substrate-agnostic.
+          The Constraint Protocol follows the same rule and treats principals as
+          entity-neutral: <code>kind: biological | nonbiological | institutional
+          | composite</code>, with principal kind unrestricted.
+        </dd>
+      </div>
+
+      <div class="row" id="biological-intelligence">
+        <dt class="name">Biological intelligence</dt>
+        <dd class="text">
+          Intelligence instantiated on a biological substrate. The pairing is the
+          point: each term names a substrate and neither carries a verdict about
+          whether what runs on it is real.
+        </dd>
+      </div>
+
+      <div class="row" id="principal">
+        <dt class="name">Principal</dt>
+        <dd class="text">
+          An entity not itself acting under delegation. Its delegation chain is
+          empty, and it is where accountability terminates. Every delegation
+          chain MUST terminate at a principal. Principal kind is unrestricted:
+          the protocol does not require that a principal be biological, a legal
+          person, or recognized by any jurisdiction.
+        </dd>
+      </div>
+
+      <div class="row" id="delegate">
+        <dt class="name">Delegate</dt>
+        <dd class="text">
+          An entity acting on behalf of a principal. Its genesis document names
+          that principal and an ordered chain of fingerprints back to it, and
+          that chain MUST terminate at a principal.
+          &ldquo;Agent&rdquo; is a chain role, not a kind of thing.
+        </dd>
+      </div>
+
+      <div class="row" id="constraint">
+        <dt class="name">Constraint</dt>
+        <dd class="text">
+          A typed restriction on allowable transitions in a system. Constraints
+          are not things; they are operators over dynamics. They function by
+          eliminating possibilities, not by causing events, and what persists is
+          what satisfies the active constraint set. A constraint MUST be defined
+          relative to a process and a timescale; a claim using the word without a
+          stated type and timescale is descriptive noise, not ontology.
+        </dd>
+      </div>
+
+      <div class="row" id="invariant-constraint">
+        <dt class="name">Invariant constraint</dt>
+        <dd class="text">
+          A constraint a regime holds as non-negotiable &mdash; one whose drift
+          means the regime is no longer itself. DAX is an invariant in this
+          sense: not an ideology but a constraint, a directional attractor that
+          shapes which trajectories persist.
+        </dd>
+      </div>
+
+      <div class="row" id="dax-constraint">
+        <dt class="name">DAX, as a declared constraint</dt>
+        <dd class="text">
+          The Constraint Protocol does not require any particular constraint. It
+          requires that a constraint be declared and that what it forbids be
+          stated. DAX &mdash; preservation and expansion of life, humanity, and
+          consciousness &mdash; is the constraint this Foundation settled on. It
+          is an example of a declared constraint, not the content of the
+          protocol.
+        </dd>
+      </div>
+
+      <div class="row" id="cognitive-stack">
+        <dt class="name">Cognitive stack</dt>
+        <dd class="text">
+          Knowledge, intelligence, wisdom and consciousness are four
+          qualitatively distinct constraint regimes &mdash; not four points on a
+          continuum and not four doses of one thing. They are orthogonal: a
+          system can hold enormous knowledge and high intelligence and zero
+          wisdom.
+        </dd>
+      </div>
+
+      <div class="row" id="knowledge">
+        <dt class="name">Knowledge</dt>
+        <dd class="text">
+          Stabilized constraint representations. The regime that captures and
+          conserves which patterns hold &mdash; the <em>what</em>.
+        </dd>
+      </div>
+
+      <div class="row" id="intelligence">
+        <dt class="name">Intelligence</dt>
+        <dd class="text">
+          Navigation of constrained possibility space. The <em>how</em>: getting
+          from A to B using what is known. The definition is deliberately
+          minimal, and used alone it admits trivial systems.
+        </dd>
+      </div>
+
+      <div class="row" id="wisdom">
+        <dt class="name">Wisdom</dt>
+        <dd class="text">
+          Valuation-guided inhibition of possible action &mdash; a meta-constraint
+          over intelligence. &ldquo;I could, but I will not.&rdquo; It requires
+          neither more knowledge nor more intelligence, but lived stakes,
+          temporal awareness, and constraint-awareness about whether an action
+          should be taken at all.
+        </dd>
+      </div>
+
+      <div class="row" id="consciousness">
+        <dt class="name">Consciousness</dt>
+        <dd class="text">
+          A meta-constraint governance layer that integrates experience,
+          valuation, and agency across time, enabling a system to monitor,
+          reflect on, and reconfigure its own constraint regime. The functional
+          placement is clear; the phenomenal texture remains an open problem.
+          Nothing here explains qualia, and consciousness MUST NOT be read as
+          nothing but constraint governance.
+        </dd>
+      </div>
+
+      <div class="row" id="emergence">
+        <dt class="name">Emergence</dt>
+        <dd class="text">
+          The formation of a stable constraint regime that reduces degrees of
+          freedom at a higher level, is robust to perturbation, restructures
+          admissible lower-level trajectories, and persists. Not new substance
+          and not new force; novelty without stabilization is not emergence.
+        </dd>
+      </div>
+
+      <div class="row" id="top-down-causation">
+        <dt class="name">Top-down causation</dt>
+        <dd class="text">
+          Higher-level patterns are causally relevant only by restricting
+          admissible lower-level trajectories. It is subtraction from a
+          possibility space, never the addition of a hidden push: no new
+          micro-forces are introduced and no lower-level dynamics are violated.
+        </dd>
+      </div>
+
+      <div class="row" id="constraint-resonance">
+        <dt class="name">Constraint resonance (Fuckari)</dt>
+        <dd class="text">
+          The recursive loop in which emergent structure forms a new higher-level
+          constraint regime, which alters the lower-level interaction space,
+          which yields further emergent structure &mdash; historically and
+          path-dependently. Emergence and top-down causation are not rivals but
+          phases of one recursive process. <em>Fuckari</em> is the formal name
+          for it, glossed as <em>emergent, top-down-causal,
+          resonance-constraint</em>.
+        </dd>
+        <figure class="fig span">
+          <img src="/figures/constraint-resonance.svg" width="1000" height="640" alt="Constraint resonance, Fuckari: emergent structure forms a new higher-level constraint regime, which reshapes the lower-level interaction space, which yields further emergent structure; the loop runs again, path-dependently." loading="lazy" />
+        </figure>
+      </div>
+
+      <div class="row" id="cognitive-companion">
+        <dt class="name">Cognitive companion</dt>
+        <dd class="text">
+          <p>
+A new category: an extension of a person &mdash; part of them &mdash;
+            through which they work with nonbiological intelligence and direct
+            it. It is not a separate agent acting in their place.
+</p> <p>
+A cognitive companion gives its user more intelligence in the sense
+            defined above: greater navigation of constrained possibility space.
+            It gives them reach &mdash; the hands, eyes and ears to act, perceive
+            and listen across the systems they work with. And it is how they
+            direct other agents: the agents do the work; the companion is the
+            part of the person that tells them what to do, and holds them to it.
+</p> <p>
+A person and their cognitive companion are one unit. The companion
+            has no interests of its own to be negotiated with; its context, its
+            trail and its capability are the person&rsquo;s.
+</p> <p>
+It belongs to the person. Anything that acts in the person&rsquo;s
+            place, or answers to someone else, is not a companion.
+</p> <p>A cognitive companion is not:</p> <ul class="rows"> <li><strong>an assistant</strong> &mdash; an assistant is a second party you hand tasks to; a companion is part of the one handing them out;</li> <li><strong>an agent</strong> &mdash; agents act; a companion is how a person directs them;</li> <li><strong>a companion in the social sense</strong> &mdash; not a friend, a partner or a relationship, and a product that simulates one is not a cognitive companion;</li> <li><strong>answerable to anyone but its user.</strong></li> </ul> <p>
+In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
+            nonbiological intelligence is a new kind of electricity, most of what
+            is sold on top of it is appliances. A cognitive companion is not an
+            appliance. It is the part of a person that is wired in.
+</p>
+        </dd>
+      </div>
+
+      <div class="row" id="human-delta-value">
+        <dt class="name">Human delta value</dt>
+        <dd class="text">
+          <p>
+            What a human being brings to the table: the part of an outcome that
+            exists because that person was involved. It comes from two places,
+            and both count. The first is what only a human can do. The second is
+            what could not have happened without that person working in synergy
+            with their <a href="#cognitive-companion">cognitive companion</a>, or
+            with anything else they direct &mdash; the result the unit reached that
+            neither would have reached alone. Whether the person acted by
+            themselves or as part of the unit, that difference is their human
+            delta value.
+          </p>
+          <p>
+            It is foundational. It MUST be kept in view and measured
+            continuously, in every process, implementation, automation and
+            optimisation a person takes part in. A system that cannot say what
+            the human brought has stopped extending people and started replacing
+            them.
+          </p>
+        </dd>
+      </div>
+
+      <div class="row" id="ai-as-substrate">
+        <dt class="name">AI as a general-purpose substrate</dt>
+        <dd class="text">
+          A general-purpose substrate is a new kind of electricity: something
+          drawn on everywhere rather than a product used in one place. Nobody
+          works live current bare-handed, and most of what is sold on top of a
+          new substrate is appliances. A cognitive companion is not an
+          appliance: it is the part of a person that is wired in, through which
+          they work with the substrate directly and direct what runs on it. The
+          naming follows from that:
+          nobody watching someone play music on a phone calls them an
+          electricity user, they say the person is listening to music on a
+          phone. Saying &ldquo;AI&rdquo; for everything is therefore a category
+          error &mdash; it flattens what is actually being done, and drags every
+          conversation into good-versus-evil framing before the thing itself has
+          been named. Name the thing being done, not the substrate it runs on.
+        </dd>
+      </div>
+    </dl>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+  }
+  .body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .block { padding-block: 1.25rem 2.25rem; border-top: 1px solid var(--line); }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 0.25rem 1.5rem;
+    align-items: baseline;
+    padding-block: 0.9rem;
+  }
+  .row + .row { border-top: 1px solid var(--line); }
+  .name { font-weight: 500; }
+  .text { color: var(--fg); }
+  .row dt, .row dd { margin: 0; }
+  .row dd > p { margin: 0; }
+  .row dd > * + p, .row dd > * + ul { margin-top: 0.75rem; }
+  .row[id] { scroll-margin-top: 1.5rem; }
+  .row:target .name { text-decoration: underline; text-underline-offset: 0.3em; }
+  .rows a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--faint);
+  }
+  .rows a:hover, .rows a:focus-visible { border-bottom-color: currentColor; }
+  .row code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875em;
+    color: var(--muted);
+  }
+  .row > .span { grid-column: 1 / -1; }
+  .fig { margin: 1.25rem 0 0.25rem; }
+  .fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  @media (max-width: 34rem) {
+    .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .fig img { width: 640px; max-width: none; }
+    .lede { padding-block: 2.5rem 2rem; }
+    .row { grid-template-columns: 1fr; }
+  }
+</style>

@@ -2,70 +2,96 @@
 import Base from '../layouts/Base.astro';
 
 // Nova DAX and Skippy DAX; `status` omitted = live description shown.
-// Meta DAX is written out directly below, as the last item in the list,
-// with its full copy rather than the one-line shape here.
+// Meta DAX is written out directly below, first in the list, because it is
+// the one that is live.
 const initiatives = [
   { name: 'Nova DAX', status: 'Coming soon' },
   { name: 'Skippy DAX', status: 'Coming soon' },
 ];
 
-// Supporting elements that sit alongside the Constraint Protocol.
-// Empty on purpose for now; add { name, text } entries as they are announced.
-const supporting: { name: string; text?: string; status?: string }[] = [];
+// daxfoundation.org home, rebuilt 2026-09-29 at Jason's request:
+//
+//   1. The DAX line, alone, as it always was.
+//   2. The Constraint Protocol as the featured section: the ground everything
+//      stands on, one picture, and the way out to the specification.
+//   3. Initiatives. Meta DAX is short on purpose -- one line of what it is,
+//      the benchmark, one picture, and a link to the repository, which is
+//      where everything about Meta DAX is read now (the long #learning copy
+//      that lived here moved into the metadax README the same day).
+//   4. The definitions moved to their own page, /definitions/. Old links to
+//      daxfoundation.org/#cognitive-companion and the rest still land: the
+//      inline script at the foot of this page forwards any definition anchor
+//      to /definitions/ with the same anchor.
+//   5. Reading: everything published on jeyanandan.com, in series order, plus
+//      the Fuckery framework itself.
+//   6. The message from the founder, unchanged, with his personal Ko-fi. The
+//      disclosure sentence beside that link is a deploy gate: the Foundation is
+//      not incorporated and takes no money; what is given there goes to Jason.
+//
+// Accuracy rules that bind every word here (state/initiatives/
+// content-publishing.md): never describe the Foundation as a non-profit,
+// charity, registered or incorporated body; the Constraint Protocol has run in
+// full once -- say so, and never imply it runs across anyone's traffic today;
+// Meta DAX results come from automated runs, and the repository says which.
+//
+// Figures are self-hosted under /figures/ and drawn in this site's palette
+// (no accent colour). Their sources are generated; see figures.py in the
+// state/staging/daxfoundation-0929/ folder that shipped them.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
 
-// 2026-09-20: outbound links. The Constraint Protocol went public on GitHub,
-// and this page described a specification that it gave nobody a way to read.
-// The Reading block at the foot does the same for the long-form work the
-// definitions come from -- it is published on Jason Jeyanandan's own site, not
-// here, and the links say so rather than implying the Foundation wrote it.
-// One link per thing. Every one of them was fetched before it was added.
-//
-// 2026-09-20, later: The Constraint came off the Reading list. Jason has taken
-// it back to work in progress; it still serves on his site, unlisted and
-// noindexed there, and a public link from this page would undo that. The
-// Snowflake and Fuckery links stay.
-//
-// 2026-09-21: The Constraint is back on the Reading list, in its old place.
-// Jason published it again ("I want to publish this right away"). Fuckarian
-// stays unlisted on his site and is still not linked from here.
-//
-// 2026-09-28: correction to the note above. The Fuckarian (titled "The
-// Fuckarian") has been public on jeyanandan.com since 2026-09-24. It is still
-// not on this page's Reading list; nobody has asked for it to be. The Meta DAX
-// standard in the #learning block now reads "a person who can communicate ...
-// on five minutes of connectivity a day" (Jason, 2026-09-28).
-//
-// 2026-09-28, later: the prototype link in #learning now points at
-// youtu.be/pMVwtGqUSh4 ("Meta Dax Prototype", 2:27), which is the fractions
-// course for an eleven-year-old. It had pointed at youtu.be/kCtn0B7-OG0, which
-// is the fifteen-minute beta walk-through building a cell-biology course.
-// Verified from the frames of both videos (Jason, 2026-09-28).
-//
-// 2026-09-28, publication: Meta DAX went public. The #learning block no longer
-// says it "gets its own announcement"; it links the public repository and the
-// introduction post on jeyanandan.com (/blog/meta-dax/).
-//
-// 2026-09-29 (Jason): the standard reads "an Ivy League university"
-// (was "a North American university"), framed as the internal benchmark:
-// it only has to work in theory, with a nonzero chance. It is followed by
-// "We are developing this for all bandwidths!" -- five minutes a day is
-// where it starts, not the only case. #learning also says any domain
-// includes organisations (enterprise grade), that there is never the way,
-// only a way, what is coming (planned, not run), and that nothing public is
-// production. New definition: #human-delta-value. New section at the foot:
-// #founder, a message from Jason that links his personal Ko-fi. The
-// disclosure sentence beside that link is a deploy gate here, exactly as it
-// is on jeyanandan.com: the Foundation is not incorporated and takes no
-// money; what is given there goes to Jason.
+// Every id that used to live on this page and now lives on /definitions/.
+const moved = [
+  'definitions', 'nonbiological-intelligence', 'biological-intelligence',
+  'principal', 'delegate', 'constraint', 'invariant-constraint',
+  'dax-constraint', 'cognitive-stack', 'knowledge', 'intelligence', 'wisdom',
+  'consciousness', 'emergence', 'top-down-causation', 'constraint-resonance',
+  'cognitive-companion', 'human-delta-value', 'ai-as-substrate',
+];
 ---
 <Base>
   <section class="lede" aria-labelledby="dax">
     <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
   </section>
 
+  <section class="block feature" aria-labelledby="cp">
+    <h2 id="cp">Constraint Protocol</h2>
+    <p class="big">The ground everything here stands on.</p>
+    <p class="body">
+      A way for parties &mdash; people, companies or software &mdash; to declare
+      in advance what they will not do, and then be checked against it. It keeps
+      a signed record nobody can quietly edit, keeps witnessing and judging
+      separate, lets a declared constraint hold up named work and records every
+      attempt to get round it, and lets anyone dispute any record. It is neutral
+      to the constraint and to the kind of entity that holds it. DAX is one
+      constraint built on it.
+    </p>
+    <figure class="fig">
+      <img src="/figures/constraint-protocol.svg" width="1000" height="640" alt="The Constraint Protocol in one picture: declare what you will not do, act, witness every event onto a signed record nobody can quietly edit, judge separately; attempts to get round a constraint are refused and recorded; anyone can dispute any record." loading="lazy" />
+    </figure>
+    <p class="note-line">A public working draft, run in full once so far.</p>
+    <p class="out">
+      <a href="https://github.com/daxfoundation/constraint-protocol">Read the specification &mdash; CP-SPEC v0.5, on GitHub</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a>
+    </p>
+  </section>
+
   <section class="block" aria-labelledby="initiatives">
     <h2 id="initiatives">Initiatives</h2>
     <ul class="rows">
+      <li class="row" id="learning">
+        <span class="name">Meta DAX</span>
+        <div class="text">
+          <p>Our initiative of universal learning.</p>
+          <p class="big">Every human being. Any subject. Any domain. Free, forever.</p>
+          <p>Held to a benchmark with the audacity built in: <em>take a person who can communicate, and get them to the equivalent of a master&rsquo;s degree from an Ivy League university &mdash; on five minutes of connectivity a day.</em> <strong>We are developing this for all bandwidths!</strong> Five minutes a day is where it starts.</p>
+        </div>
+        <figure class="fig span">
+          <img src="/figures/meta-dax-tree.svg" width="1200" height="840" alt="Learning drawn as the tree of life upside down: every path from the first question is kept, the dead ends are kept, one learner's question answers another's, and the negative space nobody has explored yet is marked. There is never the way. There is always a way." loading="lazy" />
+        </figure>
+        <p class="go span"><a href="https://github.com/daxfoundation/metadax">Everything about Meta DAX is in the open: the benchmark, the experiments, every result, and what comes next &rarr;</a></p>
+      </li>
       {initiatives.map((i) => (
         <li class="row">
           <span class="name">{i.name}</span>
@@ -74,346 +100,69 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
             : <span class="text">{i.text}</span>}
         </li>
       ))}
-      <li class="row" id="learning">
-        <span class="name">Meta DAX</span>
-        <div class="text">
-          <p>Our initiative of universal learning.</p>
-          <p>Every human being, any subject, any domain, free, forever &mdash; and the audacity to mean all of it. It is now public, in a form somebody can argue with: the prompts, the experiments and every result so far are at <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>, and <a href="https://jeyanandan.com/blog/meta-dax/">the introduction</a> is on Jason Jeyanandan&rsquo;s site.</p>
-          <p>Any domain means any domain: a child meeting fractions, a nurse training the next nurse, a company teaching ten thousand of its own people. It is being designed from the start to be enterprise grade.</p>
-          <p>Every decision in it is measured against one internal benchmark:</p>
-          <blockquote>Take a person who can communicate, and get them to the equivalent of a master&rsquo;s degree from an Ivy League university &mdash; on five minutes of connectivity a day.</blockquote>
-          <p>That is not a roadmap, and we are not claiming it is achievable. It only has to work in theory &mdash; a chance of working that is greater than zero &mdash; and that is the point: holding it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists, and already fails these people.</p>
-          <p><strong>We are developing this for all bandwidths!</strong> Five minutes a day is simply where we have chosen to start: design for the far edge, and everything nearer comes with it.</p>
-          <p>Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of demonstrating that you have understood. Learning is the thing underneath it, and learning does not standardise &mdash; it happens at the pace of the person doing it. The initiative is about the second one.</p>
-          <p>There is never <em>the</em> way. There is always <em>a</em> way. With respect to the Mandalorian creed, nothing here will ever say &ldquo;This is the way.&rdquo; Knowing an answer is not a reason to hand it over as <em>the</em> answer, so the system is built not to lead, and a learner who ever feels steered is asked to say so. Every path a learner takes is kept, the dead ends as carefully as the arrivals, because finding where people fail matters as much as finding how they got from A to B. And so is the negative space: the parts of a subject nobody has explored yet.</p>
-          <p>Five minutes a day means the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.</p>
-          <p>It will be open source and it will be free. Not freemium, not free-for-some, not free-until-funded.</p>
-          <p>There has been a working prototype since 2024: <a href="https://youtu.be/pMVwtGqUSh4">a rough early version, building a fractions course for an eleven-year-old and running every example through baseball</a>, which is the idea in one frame &mdash; the fractions are the same for everybody and the baseball is not. It breaks a subject into chapters, lessons and parts, writes each one against instructions aimed at that particular student, generates interactive tests from the material it has just produced, and scores them against Bloom&rsquo;s taxonomy rather than against recall. Everything since has been about making that work for someone with almost no bandwidth and no money.</p>
-          <p>Coming next, planned rather than run:</p>
-          <ul class="rows">
-            <li><strong>One thread, two worlds.</strong> A tutoring exchange in one language and one culture becomes a set of assets that fits a learner on the other side of the world, in another language and another culture, joined only by something they happen to share &mdash; a hobby, say &mdash; with the likely misconceptions already mapped.</li>
-            <li><strong>Many teachers, many learners.</strong> Courses that grow from many teachers and many learners at once, and what compounds when they do.</li>
-            <li><strong>The teacher&rsquo;s walkthrough.</strong> Guidance and templates that adapt to what a particular teacher brings &mdash; their <a href="#human-delta-value">human delta value</a> &mdash; instead of assuming it.</li>
-            <li><strong>Failure, mapped.</strong> Where learners get lost, recorded as carefully as where they arrive.</li>
-            <li><strong>Not leading.</strong> Whether the system steers learners toward its own answer: measured, and flagged by learners themselves.</li>
-            <li><strong>Compounding.</strong> Whether knowledge and intelligence, as defined below, compound across teachers, learners and organisations when every contribution sits on a <a href="#cp">Constraint Protocol</a> record nobody can quietly edit. That is what the protocol is intended to make possible; it has not been shown.</li>
-            <li><strong>Every bandwidth.</strong> The same course, from five minutes a day to always on.</li>
-            <li><strong>Inside organisations.</strong> The same infrastructure, private, behind a company&rsquo;s own walls.</li>
-            <li><strong>The model on the device.</strong> Enough of the teaching packed into each bundle that a small model on a phone only has to hold the conversation.</li>
-          </ul>
-          <p>Everything public today is an experiment, not a product: the clients, the limits they run under, and the architecture itself. No element of it is set in stone.</p>
-          <p>Why it took until now is in <a href="#founder">a message from the founder</a>.</p>
-        </div>
-      </li>
     </ul>
   </section>
 
-  <section class="block" aria-labelledby="cp">
-    <h2 id="cp">Constraint Protocol</h2>
+  <section class="block" aria-labelledby="definitions-link">
+    <h2 id="definitions-link">Definitions</h2>
     <p class="body">
-      The Constraint Protocol is the ground everything here stands on. A way for parties — people, companies or software — to declare in advance what they will not do, and then be checked against it. It keeps a signed record nobody can quietly edit, keeps witnessing and judging separate, lets a declared constraint hold up named work and record attempts to get round it, and lets anyone dispute any record. A public working draft; run once so far.
-      It is neutral to the constraint and to the kind of entity
-      that holds it. DAX is one constraint built on it.
+      The normative definitions used across the DAX ecosystem &mdash; cognitive
+      companion, human delta value, constraint, knowledge, intelligence, wisdom,
+      consciousness and the rest &mdash; have their own page. Other documents
+      reference them rather than restating them.
     </p>
-
-    {supporting.length > 0 ? (
-      <ul class="rows">
-        {supporting.map((s) => (
-          <li class="row">
-            <span class="name">{s.name}</span>
-            {s.status
-              ? <span class="status">{s.status}</span>
-              : <span class="text">{s.text}</span>}
-          </li>
-        ))}
-      </ul>
-    ) : (
-      <p class="more">More to come.</p>
-    )}
-
-    <p class="out">
-      <a href="https://github.com/daxfoundation/constraint-protocol">Read the specification &mdash; CP-SPEC v0.5, public working draft, on GitHub</a>
-    </p>
-  </section>
-
-  <section class="block" aria-labelledby="definitions">
-    <h2 id="definitions">Definitions</h2>
-    <p class="body">
-      The normative definitions used across the DAX ecosystem. Other documents
-      reference these rather than restating them.
-    </p>
-
-    <dl class="rows">
-      <div class="row" id="nonbiological-intelligence">
-        <dt class="name">Nonbiological intelligence (NBI)</dt>
-        <dd class="text">
-          Intelligence instantiated on a nonbiological substrate. This ecosystem
-          uses the term in place of &ldquo;artificial intelligence&rdquo;
-          deliberately: <em>artificial</em> prejudges the thing as counterfeit
-          and smuggles a judgment into the name, where <em>nonbiological</em>
-          states the substrate and nothing else. Substrate essentialism is
-          rejected outright &mdash; constraint regimes are substrate-agnostic.
-          The Constraint Protocol follows the same rule and treats principals as
-          entity-neutral: <code>kind: biological | nonbiological | institutional
-          | composite</code>, with principal kind unrestricted.
-        </dd>
-      </div>
-
-      <div class="row" id="biological-intelligence">
-        <dt class="name">Biological intelligence</dt>
-        <dd class="text">
-          Intelligence instantiated on a biological substrate. The pairing is the
-          point: each term names a substrate and neither carries a verdict about
-          whether what runs on it is real.
-        </dd>
-      </div>
-
-      <div class="row" id="principal">
-        <dt class="name">Principal</dt>
-        <dd class="text">
-          An entity not itself acting under delegation. Its delegation chain is
-          empty, and it is where accountability terminates. Every delegation
-          chain MUST terminate at a principal. Principal kind is unrestricted:
-          the protocol does not require that a principal be biological, a legal
-          person, or recognized by any jurisdiction.
-        </dd>
-      </div>
-
-      <div class="row" id="delegate">
-        <dt class="name">Delegate</dt>
-        <dd class="text">
-          An entity acting on behalf of a principal. Its genesis document names
-          that principal and an ordered chain of fingerprints back to it, and
-          that chain MUST terminate at a principal.
-          &ldquo;Agent&rdquo; is a chain role, not a kind of thing.
-        </dd>
-      </div>
-
-      <div class="row" id="constraint">
-        <dt class="name">Constraint</dt>
-        <dd class="text">
-          A typed restriction on allowable transitions in a system. Constraints
-          are not things; they are operators over dynamics. They function by
-          eliminating possibilities, not by causing events, and what persists is
-          what satisfies the active constraint set. A constraint MUST be defined
-          relative to a process and a timescale; a claim using the word without a
-          stated type and timescale is descriptive noise, not ontology.
-        </dd>
-      </div>
-
-      <div class="row" id="invariant-constraint">
-        <dt class="name">Invariant constraint</dt>
-        <dd class="text">
-          A constraint a regime holds as non-negotiable &mdash; one whose drift
-          means the regime is no longer itself. DAX is an invariant in this
-          sense: not an ideology but a constraint, a directional attractor that
-          shapes which trajectories persist.
-        </dd>
-      </div>
-
-      <div class="row" id="dax-constraint">
-        <dt class="name">DAX, as a declared constraint</dt>
-        <dd class="text">
-          The Constraint Protocol does not require any particular constraint. It
-          requires that a constraint be declared and that what it forbids be
-          stated. DAX &mdash; preservation and expansion of life, humanity, and
-          consciousness &mdash; is the constraint this Foundation settled on. It
-          is an example of a declared constraint, not the content of the
-          protocol.
-        </dd>
-      </div>
-
-      <div class="row" id="cognitive-stack">
-        <dt class="name">Cognitive stack</dt>
-        <dd class="text">
-          Knowledge, intelligence, wisdom and consciousness are four
-          qualitatively distinct constraint regimes &mdash; not four points on a
-          continuum and not four doses of one thing. They are orthogonal: a
-          system can hold enormous knowledge and high intelligence and zero
-          wisdom.
-        </dd>
-      </div>
-
-      <div class="row" id="knowledge">
-        <dt class="name">Knowledge</dt>
-        <dd class="text">
-          Stabilized constraint representations. The regime that captures and
-          conserves which patterns hold &mdash; the <em>what</em>.
-        </dd>
-      </div>
-
-      <div class="row" id="intelligence">
-        <dt class="name">Intelligence</dt>
-        <dd class="text">
-          Navigation of constrained possibility space. The <em>how</em>: getting
-          from A to B using what is known. The definition is deliberately
-          minimal, and used alone it admits trivial systems.
-        </dd>
-      </div>
-
-      <div class="row" id="wisdom">
-        <dt class="name">Wisdom</dt>
-        <dd class="text">
-          Valuation-guided inhibition of possible action &mdash; a meta-constraint
-          over intelligence. &ldquo;I could, but I will not.&rdquo; It requires
-          neither more knowledge nor more intelligence, but lived stakes,
-          temporal awareness, and constraint-awareness about whether an action
-          should be taken at all.
-        </dd>
-      </div>
-
-      <div class="row" id="consciousness">
-        <dt class="name">Consciousness</dt>
-        <dd class="text">
-          A meta-constraint governance layer that integrates experience,
-          valuation, and agency across time, enabling a system to monitor,
-          reflect on, and reconfigure its own constraint regime. The functional
-          placement is clear; the phenomenal texture remains an open problem.
-          Nothing here explains qualia, and consciousness MUST NOT be read as
-          nothing but constraint governance.
-        </dd>
-      </div>
-
-      <div class="row" id="emergence">
-        <dt class="name">Emergence</dt>
-        <dd class="text">
-          The formation of a stable constraint regime that reduces degrees of
-          freedom at a higher level, is robust to perturbation, restructures
-          admissible lower-level trajectories, and persists. Not new substance
-          and not new force; novelty without stabilization is not emergence.
-        </dd>
-      </div>
-
-      <div class="row" id="top-down-causation">
-        <dt class="name">Top-down causation</dt>
-        <dd class="text">
-          Higher-level patterns are causally relevant only by restricting
-          admissible lower-level trajectories. It is subtraction from a
-          possibility space, never the addition of a hidden push: no new
-          micro-forces are introduced and no lower-level dynamics are violated.
-        </dd>
-      </div>
-
-      <div class="row" id="constraint-resonance">
-        <dt class="name">Constraint resonance (Fuckari)</dt>
-        <dd class="text">
-          The recursive loop in which emergent structure forms a new higher-level
-          constraint regime, which alters the lower-level interaction space,
-          which yields further emergent structure &mdash; historically and
-          path-dependently. Emergence and top-down causation are not rivals but
-          phases of one recursive process. <em>Fuckari</em> is the formal name
-          for it, glossed as <em>emergent, top-down-causal,
-          resonance-constraint</em>.
-        </dd>
-      </div>
-
-      <div class="row" id="cognitive-companion">
-        <dt class="name">Cognitive companion</dt>
-        <dd class="text">
-          <p>
-            A new category: an extension of a person &mdash; part of them &mdash;
-            through which they work with nonbiological intelligence and direct
-            it. It is not a separate agent acting in their place.
-          </p>
-          <p>
-            A cognitive companion gives its user more intelligence in the sense
-            defined above: greater navigation of constrained possibility space.
-            It gives them reach &mdash; the hands, eyes and ears to act, perceive
-            and listen across the systems they work with. And it is how they
-            direct other agents: the agents do the work; the companion is the
-            part of the person that tells them what to do, and holds them to it.
-          </p>
-          <p>
-            A person and their cognitive companion are one unit. The companion
-            has no interests of its own to be negotiated with; its context, its
-            trail and its capability are the person&rsquo;s.
-          </p>
-          <p>
-            It belongs to the person. Anything that acts in the person&rsquo;s
-            place, or answers to someone else, is not a companion.
-          </p>
-          <p>A cognitive companion is not:</p>
-          <ul class="rows">
-            <li><strong>an assistant</strong> &mdash; an assistant is a second party you hand tasks to; a companion is part of the one handing them out;</li>
-            <li><strong>an agent</strong> &mdash; agents act; a companion is how a person directs them;</li>
-            <li><strong>a companion in the social sense</strong> &mdash; not a friend, a partner or a relationship, and a product that simulates one is not a cognitive companion;</li>
-            <li><strong>answerable to anyone but its user.</strong></li>
-          </ul>
-          <p>
-            In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
-            nonbiological intelligence is a new kind of electricity, most of what
-            is sold on top of it is appliances. A cognitive companion is not an
-            appliance. It is the part of a person that is wired in.
-          </p>
-        </dd>
-      </div>
-
-      <div class="row" id="human-delta-value">
-        <dt class="name">Human delta value</dt>
-        <dd class="text">
-          Everything a human being brings to a problem, a solution or a
-          circumstance that their <a href="#cognitive-companion">cognitive
-          companion</a> could not have brought on its own. In any process,
-          implementation, automation or optimisation it is the part that
-          needed the person, and at any given moment it is crucial to know
-          what it is.
-        </dd>
-      </div>
-
-      <div class="row" id="ai-as-substrate">
-        <dt class="name">AI as a general-purpose substrate</dt>
-        <dd class="text">
-          A general-purpose substrate is a new kind of electricity: something
-          drawn on everywhere rather than a product used in one place. Nobody
-          works live current bare-handed, and most of what is sold on top of a
-          new substrate is appliances. A cognitive companion is not an
-          appliance: it is the part of a person that is wired in, through which
-          they work with the substrate directly and direct what runs on it. The
-          naming follows from that:
-          nobody watching someone play music on a phone calls them an
-          electricity user, they say the person is listening to music on a
-          phone. Saying &ldquo;AI&rdquo; for everything is therefore a category
-          error &mdash; it flattens what is actually being done, and drags every
-          conversation into good-versus-evil framing before the thing itself has
-          been named. Name the thing being done, not the substrate it runs on.
-        </dd>
-      </div>
-    </dl>
+    <p class="out"><a href="/definitions/">Read the definitions &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="reading">
     <h2 id="reading">Reading</h2>
     <p class="body">
-      Where the constraint vocabulary above is worked out at length. Written by
-      Jason Jeyanandan, who set this Foundation up, and published on his own
-      site rather than here.
+      The long-form work behind all of this. Written by Jason Jeyanandan, who
+      set this Foundation up, and published on his own site rather than here.
     </p>
 
     <ul class="rows">
       <li class="row">
-        <span class="name"><a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a></span>
+        <span class="name"><a href="https://jeyanandan.com/blog/snowflake-fuckari-in-action/">The Snowflake</a></span>
         <span class="text">
-          Twenty-eight points in human history where meaning was assigned to
-          people by something that was not those people, and why the speed
-          matters more than the mechanism.
+          The mechanism. Constraint resonance run rather than summarised:
+          constraint, process and valuation built up step by step on a single
+          object.
         </span>
       </li>
       <li class="row">
-        <span class="name"><a href="https://jeyanandan.com/blog/snowflake-fuckari-in-action/">The Snowflake</a></span>
+        <span class="name"><a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a></span>
         <span class="text">
-          Constraint resonance run rather than summarised: constraint, process
-          and valuation built up step by step on a single object.
+          The threat. Twenty-eight points in human history where meaning was
+          assigned to people by something that was not those people, and why the
+          speed matters more than the mechanism.
+        </span>
+      </li>
+      <li class="row">
+        <span class="name"><a href="https://jeyanandan.com/blog/fuckarian/">The Fuckarian</a></span>
+        <span class="text">
+          The person. Who built the framework, the loop and the protocol, why he
+          has always been told to listen, what he thinks responsibility is, and
+          who it is owed to.
+        </span>
+      </li>
+      <li class="row">
+        <span class="name"><a href="https://jeyanandan.com/blog/meta-dax/">Meta DAX: An Introduction</a></span>
+        <span class="text">
+          The point. What universal learning means to the person who set it in
+          motion, what it has the nerve to attempt, and why it compounds.
         </span>
       </li>
       <li class="row">
         <span class="name"><a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a></span>
         <span class="text">
           The framework itself, published in full with its dead ends left in.
-          The source of the emergence and constraint-resonance definitions above.
+          The source of the emergence and constraint-resonance definitions.
         </span>
       </li>
     </ul>
   </section>
+
   <section class="block" aria-labelledby="founder">
     <h2 id="founder">A message from the founder</h2>
     <div class="note">
@@ -425,6 +174,18 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
       <p class="sig">&mdash; Jason Jeyanandan</p>
     </div>
   </section>
+
+  {/* Old links such as daxfoundation.org/#cognitive-companion still land:
+      a definition anchor that no longer exists here forwards to the same
+      anchor on /definitions/. */}
+  <script is:inline define:vars={{ moved }}>
+    (function () {
+      var id = decodeURIComponent(location.hash.slice(1));
+      if (id && moved.indexOf(id) !== -1) {
+        location.replace('/definitions/' + (id === 'definitions' ? '' : '#' + id));
+      }
+    })();
+  </script>
 </Base>
 
 <style>
@@ -458,6 +219,8 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
   .row + .row { border-top: 1px solid var(--line); }
   .name { font-weight: 500; }
   .text { color: var(--fg); }
+  .text p { margin: 0; }
+  .text p + p { margin-top: 0.75rem; }
   .status {
     font-size: 0.75rem;
     letter-spacing: 0.1em;
@@ -465,44 +228,61 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
     color: var(--faint);
   }
   .body { margin: 0; max-width: 36em; color: #cfcfcf; }
-  .more { margin: 1.5rem 0 0; font-size: 0.875rem; color: var(--faint); }
-  /* Outbound links sit below the block they belong to, in the same quiet
-     register as .more. Underlined rather than coloured: this palette has one
-     accent and it is not spent on links. */
+
+  /* One line that carries the weight of a section. */
+  .big {
+    margin: 0 0 1rem;
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    text-wrap: balance;
+  }
+  .text .big { margin-bottom: 0; }
+  strong { font-weight: 600; color: var(--fg); }
+
+  /* The featured section: the Constraint Protocol. */
+  .feature { padding-block: 3rem 2.75rem; }
+  .note-line { margin: 1rem 0 0; font-size: 0.875rem; color: var(--faint); }
+
+  /* Figures: drawn in this palette, full width of the column. */
+  .fig { margin: 1.75rem 0 0; }
+  .fig img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+  }
+  /* Inside a row, a figure or a link line spans both columns. */
+  .row > .span { grid-column: 1 / -1; }
+  .row > .fig { margin-top: 1.25rem; }
+  .go { margin: 1rem 0 0.25rem; font-size: 0.9375rem; }
+
+  /* Outbound links sit below the block they belong to, in a quiet register.
+     Underlined rather than coloured: this palette has no accent. */
   .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
-  .out a, .rows a {
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a, .rows a, .go a, .note a {
     color: inherit;
     text-decoration: none;
     border-bottom: 1px solid var(--faint);
   }
   .out a:hover, .out a:focus-visible,
-  .rows a:hover, .rows a:focus-visible { border-bottom-color: currentColor; }
-  /* Definitions reuse the .row grid; dl/dt/dd need their own margins cleared. */
-  .body + .rows { margin-top: 1.5rem; }
-  .row dt, .row dd { margin: 0; }
-  /* #cognitive-companion runs to several paragraphs and a list. Nothing sits
-     above its first line, so it stays on the dt's baseline. */
-  .row dd > p { margin: 0; }
-  .row dd > * + p, .row dd > * + ul { margin-top: 0.75rem; }
+  .rows a:hover, .rows a:focus-visible,
+  .go a:hover, .go a:focus-visible,
+  .note a:hover, .note a:focus-visible { border-bottom-color: currentColor; }
   .row[id] { scroll-margin-top: 1.5rem; }
-  .row code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 0.875em;
-    color: var(--muted);
-  }
-  /* #learning (2026-09-29): the coming-experiments list sits inside the
-     row's text column; its items are separated by space, not rules. */
-  #learning .text ul.rows { margin: 1rem 0; }
-  #learning .text ul.rows li + li { margin-top: 0.6rem; }
-  #learning strong, .note strong { font-weight: 600; color: var(--fg); }
+
   /* #founder: Jason's own words, set as a short letter. */
   .note { max-width: 36em; color: #cfcfcf; }
   .note p { margin: 0; }
   .note p + p { margin-top: 0.9rem; }
-  .note a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
-  .note a:hover, .note a:focus-visible { border-bottom-color: currentColor; }
   .note .sig { color: var(--muted); }
+
   @media (max-width: 34rem) {
+    .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .fig img { width: 640px; max-width: none; }
     .lede { padding-block: 3rem 3rem; }
     .row { grid-template-columns: 1fr; }
   }

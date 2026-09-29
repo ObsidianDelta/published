@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" role="img" aria-labelledby="t d">
+<title id="t">The Constraint Protocol, in one picture</title>
+<desc id="d">Four stages left to right: declare, act, witness, judge. A party declares in advance what it will not do; work goes ahead, and a declared constraint can hold up named work; every event is signed onto a record nobody can quietly edit; judging is kept separate from witnessing. Beneath them runs the record, a chain of linked entries. An attempt to get round a constraint branches off the act stage and is refused and recorded for good. A loop from the record back to judging reads: anyone can dispute any record.</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#8c8c8c"/></marker></defs>
+<rect width="1000" height="640" fill="#0a0a0a"/>
+<rect x="50" y="50" width="205" height="190" rx="12" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+<text x="70" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="3" fill="#e8e8e8" font-weight="600">DECLARE</text>
+<text x="70" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">States, in advance,</text>
+<text x="70" y="166" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">what it will</text>
+<text x="70" y="196" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">not do.</text>
+<path d="M261 145 L274 145" stroke="#8c8c8c" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="282" y="50" width="205" height="190" rx="12" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+<text x="302" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="3" fill="#e8e8e8" font-weight="600">ACT</text>
+<text x="302" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">Work goes ahead;</text>
+<text x="302" y="166" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">a constraint can</text>
+<text x="302" y="196" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">hold it up.</text>
+<path d="M493 145 L505 145" stroke="#8c8c8c" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="513" y="50" width="205" height="190" rx="12" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+<text x="533" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="3" fill="#e8e8e8" font-weight="600">WITNESS</text>
+<text x="533" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">Every event signed</text>
+<text x="533" y="166" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">onto a record</text>
+<text x="533" y="196" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">nobody can edit.</text>
+<path d="M724 145 L737 145" stroke="#8c8c8c" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="745" y="50" width="205" height="190" rx="12" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+<text x="765" y="94" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="20" letter-spacing="3" fill="#e8e8e8" font-weight="600">JUDGE</text>
+<text x="765" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">Kept separate</text>
+<text x="765" y="166" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">from witnessing.</text>
+<rect x="50" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M63 447 h36 M63 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M112 452 L143 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="143" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M156 447 h36 M156 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M205 452 L236 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="236" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M249 447 h36 M249 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M298 452 L329 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="329" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M342 447 h36 M342 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M391 452 L422 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="422" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M435 447 h36 M435 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M484 452 L516 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="516" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M529 447 h36 M529 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M578 452 L609 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="609" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M622 447 h36 M622 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M671 452 L702 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="702" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M715 447 h36 M715 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M764 452 L795 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="795" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M808 447 h36 M808 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M857 452 L888 452" stroke="#e8e8e8" stroke-width="1.6"/>
+<rect x="888" y="430" width="62" height="44" rx="6" fill="none" stroke="#e8e8e8" stroke-width="1.6"/>
+<path d="M901 447 h36 M901 458 h24" stroke="#5c5c5c" stroke-width="2.4" stroke-linecap="round"/>
+<text x="50" y="514" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" letter-spacing="2" fill="#8c8c8c">THE RECORD: SIGNED, LINKED, APPEND-ONLY</text>
+<path d="M152 246 L152 422" stroke="#5c5c5c" stroke-width="1.4" stroke-dasharray="4 6" marker-end="url(#ar)"/>
+<path d="M384 246 L384 422" stroke="#5c5c5c" stroke-width="1.4" stroke-dasharray="4 6" marker-end="url(#ar)"/>
+<path d="M616 246 L616 422" stroke="#5c5c5c" stroke-width="1.4" stroke-dasharray="4 6" marker-end="url(#ar)"/>
+<path d="M848 246 L848 422" stroke="#5c5c5c" stroke-width="1.4" stroke-dasharray="4 6" marker-end="url(#ar)"/>
+<path d="M461 244 C471 296 505 332 531 332" fill="none" stroke="#8c8c8c" stroke-width="1.6" stroke-dasharray="6 6"/>
+<path d="M535.6666666666666 323 L553.6666666666666 341 M553.6666666666666 323 L535.6666666666666 341" stroke="#e8e8e8" stroke-width="2.6" stroke-linecap="round"/>
+<rect x="562.6666666666666" y="302" width="300" height="60" fill="#0a0a0a"/>
+<text x="568.6666666666666" y="327" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">an attempt to get round it:</text>
+<text x="568.6666666666666" y="353" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#cfcfcf">refused, and recorded for good</text>
+<path d="M950 452 C990 452 990 185 958 185" fill="none" stroke="#8c8c8c" stroke-width="1.6" marker-end="url(#ar)"/>
+<text x="950" y="514" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="20" font-style="italic" fill="#cfcfcf">anyone can dispute any record</text>
+<text x="50" y="606" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" letter-spacing="2" fill="#5c5c5c">PUBLIC WORKING DRAFT · CP-SPEC v0.5 · RUN IN FULL ONCE SO FAR</text>
+</svg>
