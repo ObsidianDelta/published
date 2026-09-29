@@ -2,7 +2,7 @@
 title: "Meta DAX"
 subtitle: "An Introduction"
 date: 2026-09-28
-updated: 2026-09-28
+updated: 2026-09-29
 description: "The first was the mechanism, the second was the threat, the third was the person. This one is the point: what Meta DAX means to me, what it has the nerve to attempt, and why it compounds."
 draft: false
 ---
@@ -79,15 +79,19 @@ This is not a library. Libraries hold still. **This is learning infrastructure t
 
 That is the wild part. Not that one person can learn anything. That **all of us are, for the first time, learning on the same open ground** — and the ground gets better every time somebody walks on it.
 
+And none of it is meant to lead. **There is never *the* way. There is always *a* way.** With respect to the Mandalorian creed, nobody here will ever say *this is the way*. Knowing an answer is not a reason to hand it over as *the* answer, and if a learner ever feels steered, the system wants to be told. Every path somebody took is kept — the dead ends as carefully as the arrivals — and so is the negative space: the parts of a subject nobody has walked yet.
+
 ---
 
 ## It has the nerve to try
 
 Every piece of this is held to one sentence, and I want to be upfront that the sentence is absurd:
 
-> **Take a person who can communicate, and get them to the equivalent of a master's degree from a North American university — on five minutes of connectivity a day.**
+> **Take a person who can communicate, and get them to the equivalent of a master's degree from an Ivy League university — on five minutes of connectivity a day.**
 
-That is not a roadmap, and I am not claiming it is achievable. It is a deliberately ridiculous benchmark, held on purpose, because holding it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. **If it works at the edge, it works everywhere.**
+That is our internal benchmark, and it is audacious on purpose. It is not a roadmap, and I am not claiming it is achievable. It only has to work in theory — a chance of working that is greater than zero — and that is the point: holding it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. **If it works at the edge, it works everywhere.**
+
+**We are developing this for all bandwidths!** Five minutes a day is simply where we have chosen to start.
 
 Most things are aimed at a market. **This is aimed at every human being on the planet**, including the ones no market has ever bothered to reach. It has the nerve to try, and I would rather be publicly, measurably short of that than comfortably on target for something smaller.
 

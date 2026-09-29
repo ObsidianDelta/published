@@ -44,6 +44,19 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
 // 2026-09-28, publication: Meta DAX went public. The #learning block no longer
 // says it "gets its own announcement"; it links the public repository and the
 // introduction post on jeyanandan.com (/blog/meta-dax/).
+//
+// 2026-09-29 (Jason): the standard reads "an Ivy League university"
+// (was "a North American university"), framed as the internal benchmark:
+// it only has to work in theory, with a nonzero chance. It is followed by
+// "We are developing this for all bandwidths!" -- five minutes a day is
+// where it starts, not the only case. #learning also says any domain
+// includes organisations (enterprise grade), that there is never the way,
+// only a way, what is coming (planned, not run), and that nothing public is
+// production. New definition: #human-delta-value. New section at the foot:
+// #founder, a message from Jason that links his personal Ko-fi. The
+// disclosure sentence beside that link is a deploy gate here, exactly as it
+// is on jeyanandan.com: the Foundation is not incorporated and takes no
+// money; what is given there goes to Jason.
 ---
 <Base>
   <section class="lede" aria-labelledby="dax">
@@ -65,14 +78,31 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
         <span class="name">Meta DAX</span>
         <div class="text">
           <p>Our initiative of universal learning.</p>
-          <p>The Foundation&rsquo;s long work, and now public, in a form somebody can argue with: the prompts, the experiments and every result so far are at <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>, and <a href="https://jeyanandan.com/blog/meta-dax/">the introduction</a> is on Jason Jeyanandan&rsquo;s site.</p>
-          <p>The standard is what every decision in it gets measured against:</p>
-          <blockquote>Take a person who can communicate, and get them to the equivalent of a master&rsquo;s degree from a North American university &mdash; on five minutes of connectivity a day.</blockquote>
-          <p>That is not a roadmap, and we are not claiming it is achievable. It is a deliberately ridiculous theoretical benchmark, held on purpose, because holding it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing &mdash; and the reasonable thing already exists, and already fails these people.</p>
+          <p>Every human being, any subject, any domain, free, forever &mdash; and the audacity to mean all of it. It is now public, in a form somebody can argue with: the prompts, the experiments and every result so far are at <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>, and <a href="https://jeyanandan.com/blog/meta-dax/">the introduction</a> is on Jason Jeyanandan&rsquo;s site.</p>
+          <p>Any domain means any domain: a child meeting fractions, a nurse training the next nurse, a company teaching ten thousand of its own people. It is being designed from the start to be enterprise grade.</p>
+          <p>Every decision in it is measured against one internal benchmark:</p>
+          <blockquote>Take a person who can communicate, and get them to the equivalent of a master&rsquo;s degree from an Ivy League university &mdash; on five minutes of connectivity a day.</blockquote>
+          <p>That is not a roadmap, and we are not claiming it is achievable. It only has to work in theory &mdash; a chance of working that is greater than zero &mdash; and that is the point: holding it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists, and already fails these people.</p>
+          <p><strong>We are developing this for all bandwidths!</strong> Five minutes a day is simply where we have chosen to start: design for the far edge, and everything nearer comes with it.</p>
           <p>Education does an enormous amount of good, and at scale it has no choice but to standardise: one pace, one sequence, one way of demonstrating that you have understood. Learning is the thing underneath it, and learning does not standardise &mdash; it happens at the pace of the person doing it. The initiative is about the second one.</p>
+          <p>There is never <em>the</em> way. There is always <em>a</em> way. With respect to the Mandalorian creed, nothing here will ever say &ldquo;This is the way.&rdquo; Knowing an answer is not a reason to hand it over as <em>the</em> answer, so the system is built not to lead, and a learner who ever feels steered is asked to say so. Every path a learner takes is kept, the dead ends as carefully as the arrivals, because finding where people fail matters as much as finding how they got from A to B. And so is the negative space: the parts of a subject nobody has explored yet.</p>
           <p>Five minutes a day means the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.</p>
           <p>It will be open source and it will be free. Not freemium, not free-for-some, not free-until-funded.</p>
           <p>There has been a working prototype since 2024: <a href="https://youtu.be/pMVwtGqUSh4">a rough early version, building a fractions course for an eleven-year-old and running every example through baseball</a>, which is the idea in one frame &mdash; the fractions are the same for everybody and the baseball is not. It breaks a subject into chapters, lessons and parts, writes each one against instructions aimed at that particular student, generates interactive tests from the material it has just produced, and scores them against Bloom&rsquo;s taxonomy rather than against recall. Everything since has been about making that work for someone with almost no bandwidth and no money.</p>
+          <p>Coming next, planned rather than run:</p>
+          <ul class="rows">
+            <li><strong>One thread, two worlds.</strong> A tutoring exchange in one language and one culture becomes a set of assets that fits a learner on the other side of the world, in another language and another culture, joined only by something they happen to share &mdash; a hobby, say &mdash; with the likely misconceptions already mapped.</li>
+            <li><strong>Many teachers, many learners.</strong> Courses that grow from many teachers and many learners at once, and what compounds when they do.</li>
+            <li><strong>The teacher&rsquo;s walkthrough.</strong> Guidance and templates that adapt to what a particular teacher brings &mdash; their <a href="#human-delta-value">human delta value</a> &mdash; instead of assuming it.</li>
+            <li><strong>Failure, mapped.</strong> Where learners get lost, recorded as carefully as where they arrive.</li>
+            <li><strong>Not leading.</strong> Whether the system steers learners toward its own answer: measured, and flagged by learners themselves.</li>
+            <li><strong>Compounding.</strong> Whether knowledge and intelligence, as defined below, compound across teachers, learners and organisations when every contribution sits on a <a href="#cp">Constraint Protocol</a> record nobody can quietly edit. That is what the protocol is intended to make possible; it has not been shown.</li>
+            <li><strong>Every bandwidth.</strong> The same course, from five minutes a day to always on.</li>
+            <li><strong>Inside organisations.</strong> The same infrastructure, private, behind a company&rsquo;s own walls.</li>
+            <li><strong>The model on the device.</strong> Enough of the teaching packed into each bundle that a small model on a phone only has to hold the conversation.</li>
+          </ul>
+          <p>Everything public today is an experiment, not a product: the clients, the limits they run under, and the architecture itself. No element of it is set in stone.</p>
+          <p>Why it took until now is in <a href="#founder">a message from the founder</a>.</p>
         </div>
       </li>
     </ul>
@@ -318,6 +348,18 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
         </dd>
       </div>
 
+      <div class="row" id="human-delta-value">
+        <dt class="name">Human delta value</dt>
+        <dd class="text">
+          Everything a human being brings to a problem, a solution or a
+          circumstance that their <a href="#cognitive-companion">cognitive
+          companion</a> could not have brought on its own. In any process,
+          implementation, automation or optimisation it is the part that
+          needed the person, and at any given moment it is crucial to know
+          what it is.
+        </dd>
+      </div>
+
       <div class="row" id="ai-as-substrate">
         <dt class="name">AI as a general-purpose substrate</dt>
         <dd class="text">
@@ -371,6 +413,17 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
         </span>
       </li>
     </ul>
+  </section>
+  <section class="block" aria-labelledby="founder">
+    <h2 id="founder">A message from the founder</h2>
+    <div class="note">
+      <p>I have been at this since I was 23. I am now 49.</p>
+      <p>It has taken a tremendous amount of personal sacrifice, on every single level, and it still does. All of it has come out of my own pocket.</p>
+      <p>There are other problems, just as big, that I have found myself tackling &mdash; above all the accountability the Constraint Protocol is for, as I set it out in <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>, and why it matters. You may not think it, but I have been putting Meta DAX off since the beginning of the year, because of the urgency of that work.</p>
+      <p>But this is my purpose.</p>
+      <p>So, being completely transparent: if you would like to <a href="https://ko-fi.com/jeyanandan">buy me a coffee</a>, that would be great. It goes to me personally, not the Foundation and not the company.</p>
+      <p class="sig">&mdash; Jason Jeyanandan</p>
+    </div>
   </section>
 </Base>
 
@@ -437,6 +490,18 @@ const supporting: { name: string; text?: string; status?: string }[] = [];
     font-size: 0.875em;
     color: var(--muted);
   }
+  /* #learning (2026-09-29): the coming-experiments list sits inside the
+     row's text column; its items are separated by space, not rules. */
+  #learning .text ul.rows { margin: 1rem 0; }
+  #learning .text ul.rows li + li { margin-top: 0.6rem; }
+  #learning strong, .note strong { font-weight: 600; color: var(--fg); }
+  /* #founder: Jason's own words, set as a short letter. */
+  .note { max-width: 36em; color: #cfcfcf; }
+  .note p { margin: 0; }
+  .note p + p { margin-top: 0.9rem; }
+  .note a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .note a:hover, .note a:focus-visible { border-bottom-color: currentColor; }
+  .note .sig { color: var(--muted); }
   @media (max-width: 34rem) {
     .lede { padding-block: 3rem 3rem; }
     .row { grid-template-columns: 1fr; }

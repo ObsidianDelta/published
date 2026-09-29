@@ -2,7 +2,7 @@
 title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-09-28
+updated: 2026-09-29
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -356,9 +356,11 @@ It gets [its own post](/blog/meta-dax/), with the detail attached. This is the t
 
 **It is built for low-connectivity environments first.** Not as a charitable afterthought bolted onto a product designed for people with fibre, but as the constraint the whole thing is shaped by. The internal standard we hold it to is one sentence, and I want to be upfront that the sentence is absurd:
 
-> **Take a person who can communicate, and get them to the equivalent of a master's degree from a North American university — on five minutes of connectivity a day.**
+> **Take a person who can communicate, and get them to the equivalent of a master's degree from an Ivy League university — on five minutes of connectivity a day.**
 
-That is not a roadmap and I am not claiming it is achievable. It is a deliberately ridiculous theoretical benchmark, held on purpose, because holding it does one useful thing: it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists and already fails these people.
+That is not a roadmap and I am not claiming it is achievable. It is a deliberately audacious benchmark that only has to work in theory — a chance above zero — held on purpose, because holding it does one useful thing: it throws out every design that quietly assumes bandwidth, or money, or a teacher in the room. Aim at a reasonable target and you build the reasonable thing, and the reasonable thing already exists and already fails these people.
+
+**We are developing this for all bandwidths!** Five minutes a day is where we have chosen to start.
 
 And the five minutes is the part that does the work. If that is the budget, the learning cannot live on the network, so it does not. A bundle is generated, customised to the particular learner and to what they have already done, and it comes down whole. They work through it interactively, offline, for as long as they like — a week, a month, a season. What they did goes back up on their next five minutes, and the next bundle comes down shaped by it.
 
