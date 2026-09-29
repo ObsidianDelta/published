@@ -13,9 +13,17 @@ import Base from '../layouts/Base.astro';
 //     else they direct) could reach. Measured continuously; foundational.
 //   - #constraint-resonance gained its picture.
 //
-// #cognitive-companion is deliberately unchanged here: the "cognitive
-// extension" wording Jason chose on 2026-09-29 is waiting on his confirmation
-// of the substrate/domain split (see the report of that date).
+// Later on 2026-09-29, after Jason confirmed the wording:
+//   - the lede says why the Foundation defines its terms at all (his ask:
+//     "a reason for why we are defining things", right at the top);
+//   - #cognitive-companion is revised ("cognitive extension"; responsibility
+//     follows direction; declared rules; modality is configuration; the
+//     social-sense exclusion in the statutes' own words);
+//   - #principal lists the kinds a principal can be, so there is no ambiguity
+//     that an organisation or a nonbiological intelligence can be one;
+//   - #operator is new, beside principal and delegate;
+//   - #changes, at the foot, keeps every earlier wording. Versioning of the
+//     definitions starts here: an entry that changed carries its date.
 //
 // Comments in the markup below are {/* ... */}, never <!-- ... -->.
 ---
@@ -26,8 +34,28 @@ import Base from '../layouts/Base.astro';
   <section class="lede" aria-labelledby="definitions">
     <h1 id="definitions">Definitions</h1>
     <p class="body">
-      The normative definitions used across the DAX ecosystem. Other documents
-      reference these rather than restating them.
+      We define our terms so that we can talk about this work without getting
+      caught in arguments about words. Even the foremost experts in the field
+      do not agree on a concise definition of AI, let alone AGI or ASI. Words
+      are loose by nature, and for what is at stake in this domain, loose is
+      not good enough.
+    </p>
+    <p class="body">
+      So these say what we mean, not what everyone means. Where we chose a
+      term over a more common one, the choice was made on purpose: we say
+      <em>nonbiological intelligence</em> rather than <em>digital
+      intelligence</em> because there could be quantum intelligence, or
+      something else again, and the word has to hold either way. Anyone who
+      works with us knows, when we use one of these words, exactly what we
+      mean by it. Other fields have other words for the same things, and that
+      is fine; the Constraint Protocol keeps a map between its terms and
+      theirs for exactly that reason.
+    </p>
+    <p class="body">
+      Other documents reference these rather than restating them. The set was
+      first published on 21 September 2026. An entry that has changed since
+      carries the date, and the earlier wording is kept
+      <a href="#changes">at the end of the page</a>.
     </p>
   </section>
 
@@ -63,8 +91,10 @@ states the substrate and nothing else. Substrate essentialism is
           An entity not itself acting under delegation. Its delegation chain is
           empty, and it is where accountability terminates. Every delegation
           chain MUST terminate at a principal. Principal kind is unrestricted:
-          the protocol does not require that a principal be biological, a legal
-          person, or recognized by any jurisdiction.
+          a person, an organisation, or a nonbiological intelligence can be a
+          principal. The protocol does not require that a principal be
+          biological, a legal person, or recognized by any jurisdiction.
+          <p class="rev">Revised 29 September 2026.</p>
         </dd>
       </div>
 
@@ -75,6 +105,21 @@ states the substrate and nothing else. Substrate essentialism is
           that principal and an ordered chain of fingerprints back to it, and
           that chain MUST terminate at a principal.
           &ldquo;Agent&rdquo; is a chain role, not a kind of thing.
+        </dd>
+      </div>
+
+      <div class="row" id="operator">
+        <dt class="name">Operator</dt>
+        <dd class="text">
+          An entity that builds or runs a <a href="#cognitive-companion">cognitive
+          companion</a>, or a <a href="#delegate">delegate</a>, for a
+          <a href="#principal">principal</a>. The operator answers for how it is
+          built and run. Building or running something does not make the
+          operator its principal: the principal answers for what it is directed
+          to do, and neither responsibility passes to the other. It is the same
+          word the law uses for whoever provides such a system, and that is
+          deliberate.
+          <p class="rev">Added 29 September 2026.</p>
         </dd>
       </div>
 
@@ -203,29 +248,68 @@ states the substrate and nothing else. Substrate essentialism is
         <dt class="name">Cognitive companion</dt>
         <dd class="text">
           <p>
-A new category: an extension of a person &mdash; part of them &mdash;
-            through which they work with nonbiological intelligence and direct
-            it. It is not a separate agent acting in their place.
-</p> <p>
-A cognitive companion gives its user more intelligence in the sense
-            defined above: greater navigation of constrained possibility space.
-            It gives them reach &mdash; the hands, eyes and ears to act, perceive
-            and listen across the systems they work with. And it is how they
-            direct other agents: the agents do the work; the companion is the
-            part of the person that tells them what to do, and holds them to it.
-</p> <p>
-A person and their cognitive companion are one unit. The companion
-            has no interests of its own to be negotiated with; its context, its
-            trail and its capability are the person&rsquo;s.
-</p> <p>
-It belongs to the person. Anything that acts in the person&rsquo;s
-            place, or answers to someone else, is not a companion.
-</p> <p>A cognitive companion is not:</p> <ul class="rows"> <li><strong>an assistant</strong> &mdash; an assistant is a second party you hand tasks to; a companion is part of the one handing them out;</li> <li><strong>an agent</strong> &mdash; agents act; a companion is how a person directs them;</li> <li><strong>a companion in the social sense</strong> &mdash; not a friend, a partner or a relationship, and a product that simulates one is not a cognitive companion;</li> <li><strong>answerable to anyone but its user.</strong></li> </ul> <p>
-In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
+            A new category: a cognitive extension of a person &mdash; part of
+            them &mdash; through which they work with nonbiological intelligence
+            and direct it. It is not a separate agent acting in their place.
+          </p>
+          <p>
+            A cognitive companion gives its person more intelligence in the
+            sense defined above: greater navigation of constrained possibility
+            space. It gives them reach &mdash; the hands, eyes and ears to act,
+            perceive and listen across the systems they work with. And it is how
+            they direct other agents: the agents do the work; the companion is
+            the part of the person that tells them what to do, and holds them to
+            it.
+          </p>
+          <p>
+            A person and their cognitive companion are one unit, and what that
+            unit reaches that neither would reach alone is part of the
+            person&rsquo;s <a href="#human-delta-value">human delta value</a>.
+            The companion has no interests of its own to be negotiated with; its
+            context, its trail and its direction are the person&rsquo;s.
+          </p>
+          <p>
+            <strong>Responsibility follows direction.</strong> Everything in a
+            cognitive companion&rsquo;s domain &mdash; its compute, its memory,
+            and every <a href="#delegate">delegate</a> it starts, to any depth
+            &mdash; acts under its person&rsquo;s direction, and its person
+            answers for it. In the terms of the Constraint Protocol, the person
+            is the <a href="#principal">principal</a>, and every delegate&rsquo;s
+            chain ends with them. An organisation can stand in that place: a
+            cognitive companion can extend an organisation, and the organisation
+            then answers for it in the same way. Where it runs, and whose
+            hardware it runs on, changes none of this. Delegating to it, or
+            deferring to its judgment, is a decision the person makes, and the
+            decision stays theirs. Whoever builds or operates a cognitive
+            companion &mdash; its <a href="#operator">operator</a> &mdash;
+            answers for how it is built and operated. Neither responsibility
+            passes to the other.
+          </p>
+          <p>
+            It answers to its person, within a constraint declared in advance,
+            and to no one else. A rule it follows that its person did not set is
+            legitimate only if it is declared in public beforehand; it is never
+            a second party directing it unseen.
+          </p>
+          <p>
+            How a person works with it &mdash; by voice or text, and the
+            character they give it &mdash; is their configuration, not part of
+            the definition.
+          </p>
+          <p>A cognitive companion is not:</p>
+          <ul class="rows">
+            <li><strong>an assistant</strong> &mdash; an assistant is a second party you hand tasks to; a companion is part of the one handing them out;</li>
+            <li><strong>an agent</strong> &mdash; agents act; a companion is how a person directs them;</li>
+            <li><strong>a companion in the social sense</strong> &mdash; not a friend, a partner or a relationship. It is not designed to meet a person&rsquo;s social needs or to simulate a relationship with them, and a product that does either is not a cognitive companion;</li>
+            <li><strong>answerable to anyone but its person,</strong> or bound by any rule that has not been declared.</li>
+          </ul>
+          <p>
+            In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
             nonbiological intelligence is a new kind of electricity, most of what
             is sold on top of it is appliances. A cognitive companion is not an
             appliance. It is the part of a person that is wired in.
-</p>
+          </p>
+          <p class="rev">Revised 29 September 2026. The earlier wording is <a href="#changes">below</a>.</p>
         </dd>
       </div>
 
@@ -250,6 +334,7 @@ In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
             the human brought has stopped extending people and started replacing
             them.
           </p>
+          <p class="rev">Expanded 29 September 2026.</p>
         </dd>
       </div>
 
@@ -273,6 +358,59 @@ In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
       </div>
     </dl>
   </section>
+
+  <section class="block" aria-labelledby="changes">
+    <h2 id="changes">Changes</h2>
+    <p class="body">
+      Every change since 21 September 2026, with the wording it replaced, so
+      that anything quoting an earlier version can still be read against it.
+    </p>
+    <dl class="rows">
+      <div class="row">
+        <dt class="name">29 September 2026</dt>
+        <dd class="text">
+          <p>
+            <a href="#cognitive-companion">Cognitive companion</a>, revised.
+            &ldquo;An extension&rdquo; became &ldquo;a cognitive
+            extension&rdquo;; &ldquo;user&rdquo; became &ldquo;person&rdquo;;
+            &ldquo;its capability&rdquo; became &ldquo;its direction&rdquo;;
+            &ldquo;It belongs to the person&rdquo; was replaced by the paragraph
+            on responsibility; the sentences on declared rules and on modality
+            are new; and the social-sense exclusion now says what it excludes.
+          </p>
+          <details>
+            <summary>Earlier wording, 21 September 2026</summary>
+            <p>A new category: an extension of a person &mdash; part of them &mdash; through which they work with nonbiological intelligence and direct it. It is not a separate agent acting in their place.</p>
+            <p>A cognitive companion gives its user more intelligence in the sense defined above: greater navigation of constrained possibility space. It gives them reach &mdash; the hands, eyes and ears to act, perceive and listen across the systems they work with. And it is how they direct other agents: the agents do the work; the companion is the part of the person that tells them what to do, and holds them to it.</p>
+            <p>A person and their cognitive companion are one unit. The companion has no interests of its own to be negotiated with; its context, its trail and its capability are the person&rsquo;s.</p>
+            <p>It belongs to the person. Anything that acts in the person&rsquo;s place, or answers to someone else, is not a companion.</p>
+            <p>A cognitive companion is not: an assistant &mdash; an assistant is a second party you hand tasks to; a companion is part of the one handing them out; an agent &mdash; agents act; a companion is how a person directs them; a companion in the social sense &mdash; not a friend, a partner or a relationship, and a product that simulates one is not a cognitive companion; answerable to anyone but its user.</p>
+            <p>In the terms of AI as substrate: if nonbiological intelligence is a new kind of electricity, most of what is sold on top of it is appliances. A cognitive companion is not an appliance. It is the part of a person that is wired in.</p>
+          </details>
+          <p>
+            <a href="#principal">Principal</a>, revised: the kinds a principal
+            can be are now listed. Earlier wording: &ldquo;Principal kind is
+            unrestricted: the protocol does not require that a principal be
+            biological, a legal person, or recognized by any
+            jurisdiction.&rdquo;
+          </p>
+          <p><a href="#operator">Operator</a>, added.</p>
+          <p>
+            <a href="#human-delta-value">Human delta value</a>, expanded
+            earlier the same day.
+          </p>
+          <details>
+            <summary>Earlier wording, 29 September 2026 (morning)</summary>
+            <p>Everything a human being brings to a problem, a solution or a circumstance that their cognitive companion could not have brought on its own. In any process, implementation, automation or optimisation it is the part that needed the person, and at any given moment it is crucial to know what it is.</p>
+          </details>
+          <p>
+            The definitions moved from the home page to this page. Links to the
+            old anchors still land.
+          </p>
+        </dd>
+      </div>
+    </dl>
+  </section>
 </Base>
 
 <style>
@@ -285,6 +423,19 @@ In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
     letter-spacing: -0.012em;
   }
   .body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rev { color: var(--muted); font-size: 0.875em; }
+  details { margin-top: 0.75rem; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 0.9375em; }
+  details p { margin: 0.75rem 0 0; color: var(--muted); }
   .block { padding-block: 1.25rem 2.25rem; border-top: 1px solid var(--line); }
   .rows { list-style: none; margin: 0; padding: 0; }
   .row {
@@ -299,7 +450,8 @@ In the terms of <a href="#ai-as-substrate">AI as substrate</a>: if
   .text { color: var(--fg); }
   .row dt, .row dd { margin: 0; }
   .row dd > p { margin: 0; }
-  .row dd > * + p, .row dd > * + ul { margin-top: 0.75rem; }
+  .row dd > * + p, .row dd > * + ul, .row dd > * + details { margin-top: 0.75rem; }
+  .row dd > p.rev { margin-top: 0.75rem; }
   .row[id] { scroll-margin-top: 1.5rem; }
   .row:target .name { text-decoration: underline; text-underline-offset: 0.3em; }
   .rows a {

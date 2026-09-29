@@ -16,15 +16,15 @@ Our answer has a name: a **cognitive companion**. It is a new category, and it i
 
 ## The definition
 
-We use the definition the [DAX Foundation publishes](https://daxfoundation.org/#cognitive-companion):
+We use the definition the [DAX Foundation publishes](https://daxfoundation.org/definitions/#cognitive-companion):
 
-> An extension of a person — part of them — through which they work with nonbiological intelligence and direct it. It is not a separate agent acting in their place.
+> A cognitive extension of a person — part of them — through which they work with nonbiological intelligence and direct it. It is not a separate agent acting in their place.
 
 *Nonbiological intelligence* is the Foundation's term for what is usually called artificial intelligence. It names the substrate and nothing else, where *artificial* smuggles in a verdict that the thing is counterfeit.
 
 Three things follow from the definition.
 
-**It is part of you.** A companion is not a second party. You and your companion are one unit: its context, its trail and its capability are yours, and it has no interests of its own to negotiate with. In the Foundation's words, anything that acts in the person's place, or answers to someone else, is not a companion.
+**It is part of you.** A companion is not a second party. You and your companion are one unit: its context, its trail and its direction are yours, and it has no interests of its own to negotiate with. In the Foundation's words, it answers to its person, within a constraint declared in advance, and to no one else.
 
 **It is how you direct agents.** Agents are going to do more and more of the work. Somebody has to tell them what to do, hold them to it, and check what they did. A companion is the part of you that does that — the hands, eyes and ears you work through when the work is being done by systems that are not you.
 
@@ -54,7 +54,7 @@ A companion in the general case is a person's whole working life, which is a gre
 
 So the first one we have released goes the other way. It takes a single domain and goes all the way down.
 
-**[formaddie.com](https://formaddie.com)** — released 21 September 2026 — is a [cognitive companion](https://daxfoundation.org/#cognitive-companion) whose domain is your own life, and whose output is the book of it. You talk. Maddie remembers what you have already said, notices what is missing, and asks the question that gets the story rather than the summary. What comes back is a memoir in your own voice.
+**[formaddie.com](https://formaddie.com)** — released 21 September 2026 — is a [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion) whose domain is your own life, and whose output is the book of it. You talk. Maddie remembers what you have already said, notices what is missing, and asks the question that gets the story rather than the summary. What comes back is a memoir in your own voice.
 
 No blank page. No typing. No requirement that a life be remarkable before it is worth recording.
 

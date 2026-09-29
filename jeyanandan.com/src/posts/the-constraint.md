@@ -1,9 +1,9 @@
 ---
 title: "The Constraint"
-subtitle: "We Didn't Want to Take the Chance"
+subtitle: "Something Will Go Wrong. Keep the Record."
 date: 2026-09-21
-updated: 2026-09-26
-description: "The hypothetical, the global conversation, and what Obsidian Delta built because it didn't want to take the chance."
+updated: 2026-09-29
+description: "The hypothetical, the global conversation, the cost that has come with every new power, and why Obsidian Delta built a record instead of a wall."
 draft: false
 ---
 
@@ -23,6 +23,8 @@ For three hundred thousand years, meaning has been handed to people by something
 
 A capable enough intelligence takes the waiting out. It can model one person, fit a way of seeing to them, deliver it through a channel they already trust, and check whether it took — in seconds, for everyone at once.
 
+On a personal note: I have spent a long time looking for something worse than this, and I have not found it.
+
 ---
 
 ## The conversation
@@ -35,11 +37,29 @@ On 12 September, Dario Amodei published *We Must Pace the Frontier*. Sam Altman,
 
 ---
 
+## Every new power has come with its cost
+
+Here is what the odds conversation keeps missing. This is not a yes-or-no question, and it never has been. Every new power we have ever picked up came with a cost attached, and the cost was not a bug in the power. It was the nature of the beast.
+
+**Marie Curie gave us radium, and radium gave us the X-ray.** In the First World War she drove X-ray units to the front herself, and surgeons could finally see the shrapnel they were cutting for. The same work killed her: she died in 1934 of aplastic anaemia brought on by radiation, and her notebooks are still kept in lead-lined boxes in Paris, because they will be radioactive for centuries. The factories that painted radium onto watch dials taught young women to shape their brushes with their lips, and it rotted their jaws. They sued. Their case became the reason occupational disease was written into law, and it shaped the safety rules of the Manhattan Project a decade later.
+
+**Then we split the atom.** Fission was explained in the winter of 1938. Seven years later there was a bomb, and within another decade there were power stations. Everybody who understood it knew, from the first day, that something would go wrong. Not which thing, and not when. Just that it would.
+
+It did. Three Mile Island in 1979. Within the year the American industry had built an institute whose whole job was to inspect every plant and share what every plant had learned. Chernobyl in 1986 — and for two days the Soviet government said nothing, until radiation monitors at a Swedish plant more than a thousand kilometres away picked up what it was hiding, and the world found out from an outside instrument instead of from the people who knew. Three years later the operators of the world founded an association to share operating experience and review each other's plants.
+
+**Nobody un-split the atom. What changed was the record.**
+
+Electricity went the same way. The Chicago World's Fair of 1893 was lit by something like a hundred and sixty thousand bulbs, and the insurers' inspector who walked its wiring founded an independent testing laboratory the following spring, because somebody had to be able to tell the public which of these new devices would burn their house down. And flying is the clearest case of all. Planes crash. Every crash is investigated, and the international rule for investigating them says, in so many words, that the sole objective is the prevention of the next accident — not the apportioning of blame. Flying did not get safe because planes stopped crashing. It got safe because every crash was kept, and read, and learned from.
+
+**What we have now is a new kind of electricity** — a substrate, drawn on everywhere — and it is arriving faster than any of these did. Something will go wrong with it. I am not predicting a catastrophe; I am describing a certainty about every powerful thing that has ever been built. The only live question is whether, when it goes wrong, anybody can see what happened, who was bound by what, and how to make sure it does not happen the same way twice.
+
+---
+
 ## Meanwhile, at Obsidian Delta
 
 This isn't abstract for us.
 
-I started DAX, my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in 2021. Today our companions direct agents, and the agents talk to other agents. The question stopped being what any one of them does. It became what they do together, over time — what they learn, how they come to agree, and whether anybody could ever check.
+I started DAX, my own [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion), in 2021. Today our companions direct agents, and the agents talk to other agents. The question stopped being what any one of them does. It became what they do together, over time — what they learn, how they come to agree, and whether anybody could ever check.
 
 Is it as bad as they say?
 
@@ -47,9 +67,17 @@ Maybe. Maybe worse. Nobody knows, and that includes everyone quoting you a perce
 
 **What I do know is that it cuts both ways.** The same capability that could take the noticing away from us is the best instrument we have ever had for the things that actually matter. You don't get one edge without the other, and anyone selling you a version with only one edge is selling you something else.
 
-So we stopped arguing about the odds.
+So we stopped arguing about the odds, and got proactive.
 
-**We just didn't want to take the chance.**
+**Not preventive. Proactive.** Nothing we build will stop every bad thing from happening, and anyone who tells you their system will is telling you something that has never once been true of a powerful technology. What we can do is make sure the record exists *before* the thing goes wrong — so that when it does, we know what happened, and the next time is less likely.
+
+---
+
+## You cannot fight what you cannot see
+
+You cannot fight a war — you cannot even fight the small battles inside one — if you do not know what the war is about, what is at stake, and who did what. Every argument about AI right now is being conducted without that. People are fighting over the odds of an outcome while nobody can see the moves.
+
+That is what an accountability substrate is for. Not a wall. A record: what each party said it would not do, what it actually did, and who was there to see. You need it before you need it, because the day something goes wrong is the one day you cannot go back and start keeping one.
 
 ---
 
@@ -57,9 +85,11 @@ So we stopped arguing about the odds.
 
 So we built the [Constraint Protocol](https://github.com/daxfoundation/constraint-protocol). We've started putting some of our own traffic through it, as an experiment, and we've released it openly through the [DAX Foundation](https://daxfoundation.org).
 
+**It does not prevent anything, and it was never meant to.** It is the flight recorder, not the autopilot.
+
 It is built to compound knowledge: what survives judgment is meant to become the floor the next thing builds on. It is intended to compound intelligence: it records who deferred to whom, and why, and keeps the reasoning behind a changed position rather than throwing it away, so that what accumulates is argument rather than capitulation. It is designed to surface patterns over time — how entities came to agree, and whether the agreement was reached or manufactured. And it holds everyone to account, retrospectively: declare what you won't do, and everything after that is witnessed, signed, and can't be quietly edited.
 
-**Every verb in that paragraph is a design verb, and I want it read the way it is written.** The compounding is the specification's first sentence, and it is intent — not a result anyone has measured yet. Whether argument accumulates faster than capitulation at scale is exactly what has not been tested. The detector for manufactured consensus is specified; it has not been run against an adversary. And what the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
+**Every verb in that paragraph is a design verb, and I want it read the way it is written.** The compounding is the specification's first sentence, and it is intent — not a result anyone has measured yet. Whether argument accumulates faster than capitulation at scale is exactly what has not been tested. The detector for manufactured consensus is specified; it has not been run against an adversary. It has run in full exactly once. And what the protocol provides is the *capacity* for accountability, not its exercise: somebody still has to go and look.
 
 What that buys, in one line: an agent that declares a constraint hands every other agent something it didn't have before — a basis for deciding whether to deal with it at all, and a record that can be checked long afterwards. Do that widely enough and you can work out, retrospectively, which counterparties were good *by your own constraint's lights*. The long version, including what it can't do, is in [Appendix C](#appendix-c-the-protocol-in-full).
 
@@ -69,11 +99,11 @@ What that buys, in one line: an agent that declares a constraint hands every oth
 
 **The protocol doesn't care which constraint you declare. We do.**
 
-Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.* Anything that permanently forecloses them is out.
+Obsidian Delta follows the [DAX constraint](https://daxfoundation.org/definitions/#dax-constraint): *the preservation and expansion of life, humanity, and consciousness.* Anything that permanently forecloses them is out.
 
 Two things follow from that, and we have been talking around them instead of writing them down.
 
-**The goal is symbiosis.** Not intelligence replacing people, and not people holding it at arm's length — a relationship between the two in which each makes the other more capable. That is the outcome we are building toward, and every precaution in this post is in service of arriving there rather than somewhere else.
+**The goal is symbiosis.** Not intelligence replacing people, and not people holding it at arm's length — a relationship between the two in which each makes the other more capable. That is the outcome we are building toward, and everything in this post is in service of arriving there rather than somewhere else.
 
 **Intelligence should be distributed and decentralised.** Obsidian Delta believes that and so does the Foundation. A small number of parties holding the whole of it is the failure mode — whoever they are, however well they mean it, and including us.
 
@@ -81,13 +111,13 @@ AI is a new kind of electricity, and most of what's being sold on top of it is a
 
 ---
 
-## What the precautions are for
+## What the record is for
 
-**Precautions aren't the point.** They're what lets you stop arguing about the downside and go and work on the upside.
+**The record isn't the point.** It's what lets you stop arguing about the downside and go and work on the upside.
 
-And the upside is not small. The Foundation defines [intelligence](https://daxfoundation.org/#intelligence) narrowly — the navigation of constrained possibility space, the *how* of getting from A to B with what's known. On that definition a person working with a companion isn't a little sharper. They're differently capable. Make that a hundredfold and you're not talking about better email. You're talking about the things we've all filed under *someday*: Mars, or letting a person decide whether they die at a hundred or at a thousand.
+And the upside is not small. The Foundation defines [intelligence](https://daxfoundation.org/definitions/#intelligence) narrowly — the navigation of constrained possibility space, the *how* of getting from A to B with what's known. On that definition a person working with a companion isn't a little sharper. They're differently capable. Make that a hundredfold and you're not talking about better email. You're talking about the things we've all filed under *someday*: Mars, or letting a person decide whether they die at a hundred or at a thousand.
 
-That's the edge we're actually here for. The protocol is how we keep going after it without pretending the other edge isn't there.
+That's the edge we're actually here for. The record is how we keep going after it without pretending the other edge isn't there.
 
 **And if Obsidian Delta ever becomes the thing this post is afraid of, it'll be in the log, with our name on it.**
 
@@ -99,7 +129,7 @@ That's the edge we're actually here for. The protocol is how we keep going after
 
 The hypothetical did not start as a hypothetical. It started as a table. For months I kept noticing the same operation — meaning being assigned to people by something that was not them — turning up in places that had nothing else in common, so I started writing the instances down. Eventually there were twenty-eight rows, each checked against named scholarship, and the pattern in them is what the hypothetical extrapolates from.
 
-What follows is that table and the argument I drew out of it, in full, as I first wrote it. It is long. Several rows sit on live scholarly arguments, and I have marked where. An earlier version of the diagram had seven rows wrong; those are corrected, and the corrections are noted in [Appendix D](#appendix-d-sources).
+What follows is that table and the argument I drew out of it, in full, as I first wrote it. The last section, on the record, is new. It is long. Several rows sit on live scholarly arguments, and I have marked where. An earlier version of the diagram had seven rows wrong; those are corrected, and the corrections are noted in [Appendix D](#appendix-d-sources).
 
 I spent a long time building a table, and I want to show it to you before I say anything about what I think it means.
 
@@ -123,7 +153,7 @@ I am pointing at the site. For something like three hundred thousand years, in c
 
 That is the recurring object, and I want to look at it the way you would look at anything else that keeps happening, which is without deciding in advance how to feel about it.
 
-One word needs pinning down first, because the rest runs on it. A [constraint](https://daxfoundation.org/#constraint), in the vocabulary I use, is not a rule and not a force. It is a restriction on what a system may do next, and it works by removing possibilities rather than by pushing anything. An [invariant constraint](https://daxfoundation.org/#invariant-constraint) is one a regime treats as non-negotiable, such that if it drifts the regime is no longer itself. I link those rather than restate them.
+One word needs pinning down first, because the rest runs on it. A [constraint](https://daxfoundation.org/definitions/#constraint), in the vocabulary I use, is not a rule and not a force. It is a restriction on what a system may do next, and it works by removing possibilities rather than by pushing anything. An [invariant constraint](https://daxfoundation.org/definitions/#invariant-constraint) is one a regime treats as non-negotiable, such that if it drifts the regime is no longer itself. I link those rather than restate them.
 
 A meaning regime is a constraint in exactly that sense. It does not make you do things. It makes certain things unthinkable, and then you do not do them, and it feels like you simply were not interested.
 
@@ -299,7 +329,7 @@ So here is the line, in one sentence with nothing attached to it.
 
 Not where machines get clever. Not where they get goals. Not where they get rights, which is a different and also interesting question. The line is a clock speed, and it is a clock speed on one specific operation: the oldest operation in the table.
 
-Note that it has nothing to do with what the system is made of. [Nonbiological intelligence](https://daxfoundation.org/#nonbiological-intelligence) is the term I use, because it names the substrate and stops there. The concern is capability and opacity, not material. A highly capable entity operating in the open under a constraint it has declared is not the problem. A highly capable entity of any kind shaping what things mean for people without that shaping being recorded anywhere is the problem, and a human institution can be that entity perfectly well.
+Note that it has nothing to do with what the system is made of. [Nonbiological intelligence](https://daxfoundation.org/definitions/#nonbiological-intelligence) is the term I use, because it names the substrate and stops there. The concern is capability and opacity, not material. A highly capable entity operating in the open under a constraint it has declared is not the problem. A highly capable entity of any kind shaping what things mean for people without that shaping being recorded anywhere is the problem, and a human institution can be that entity perfectly well.
 
 I have no timeline for it, and I would distrust anyone who gave me one.
 
@@ -319,11 +349,31 @@ I am okay with human beings telling me what meaning is, because a human being ta
 
 So the only thing I am asking is that you look, while looking is still something that can be done at human speed.
 
+### The table and the record
+
+*New in September 2026. Everything above it in this appendix is as I first wrote it.*
+
+I built the table to show a direction of travel. Read next to the body of this post, it shows a second thing, which I did not put there on purpose.
+
+There is no column for *bad*; I have said so twice. There is a column for what it cost. Every row gave the people inside it something and took something from them, and I did not find a row where the gift came without the cost. That is the shape of radium, the atom and the wire in the body of the post. It is not a verdict on any of them. It is the nature of the beast.
+
+The corrections have a shape too. Every counter-current on the table lived in the gap between an assignment being made and somebody noticing it. Every correction in the body of the post lived in the same kind of gap, between a cost appearing and somebody writing it down. The dial painters were falling ill for years before anyone put the cause on paper. The American nuclear industry built its inspection institute after Three Mile Island, not before. The electrical testing laboratory came after the fair. The international rules for investigating air crashes were first adopted in 1951, nearly half a century into powered flight (ICAO, Annex 13, adopted 11 April 1951). The flight recorder was conceived in 1953 by an Australian scientist, David Warren, while he was working on the investigation into why the world's first jet airliner kept crashing (Museums Victoria).
+
+The record came after the cost, every time. And after was survivable, for the reason given earlier in this appendix: everything on this table took time.
+
+The row this post is about is the one where *after* stops being survivable. Not because the harm will be larger — I do not know that, and nobody quoting a percentage does either — but because the lag is exactly the thing that goes. [Appendix B](#appendix-b-what-people-are-saying) has the evidence: the measured advantage these systems hold over the best human persuaders is rate and volume, and when the rate is taken away, the advantage goes with it.
+
+So the record has to exist before the thing it records. That is all *proactive* means in the body of this post. Recognition is still the exit, and nothing in this section changes that. What changes is where recognition gets its time. For three hundred thousand years it got it from slowness. From here it has to get it from a record: something kept at machine speed that a person can read at human speed, afterwards, and say *that was an assignment, and this is where it came from*.
+
+The table already has a row for it. Row twenty-nine is legibility: the mechanisms become visible as mechanisms. The Constraint Protocol is our attempt to build row twenty-nine at the speed row twenty-six runs at.
+
+And the table insists on one more thing, which I would rather say than have said to me. A record is a power too, and it comes with its cost. When the flight recorder was proposed, the Australian pilots' federation said that "no plane would take off in Australia with Big Brother listening." Australia made cockpit voice recording mandatory in 1960, the first country to do so (Museums Victoria). The pilots were right to raise it, and aviation's answer was not to drop the recorder. It was to limit what the record is for: the investigation exists to prevent the next accident, not to apportion blame. The protocol draws its own line in the same place. It records only what an entity expressed, and it is forbidden to infer what anyone believed or intended beyond that ([Constraint Protocol, §1.9](https://github.com/daxfoundation/constraint-protocol/blob/main/spec/CP-SPEC-v0_5.md)). Whether that line holds at scale is one of the things that has not been tested.
+
 ---
 
 ## Appendix B: What people are saying
 
-The hypothetical is mine. The worry is not. This appendix collects what I found when I went looking for evidence and for the public conversation around it: the persuasion research that bears on the clock-speed claim, what agents acting on people's behalf looked like as of this writing, what the people running the laboratories said in September 2026, and who else is working on outside checks. Every claim carries its source and date inline. None of it is from memory.
+The hypothetical is mine. The worry is not. This appendix collects what I found when I went looking for evidence and for the public conversation around it: the persuasion research that bears on the clock-speed claim, what agents acting on people's behalf looked like as of this writing, what the people running the laboratories said in September 2026, and who else is working on outside checks. Every claim carries its source and date inline. None of it is from memory. The last section says what all of it adds up to for the record.
 
 ### The persuasion research
 
@@ -369,6 +419,16 @@ The rest of the field, as of today. METR evaluates frontier models with no regul
 
 I am not claiming to have invented this field's subject. What I could not find anywhere in it is the specific thing the protocol is for: an assessment *signed* by an identified assessor who can be held to it, landing in a record that *accumulates*, walkable later by a third party the assessed did not choose. Illinois comes closest — mandatory, conflict-constrained, filed with a named public body — and it is one state's statute that does not bite until January 2028. The rest are relationships. A relationship can be ended. A record cannot.
 
+### What is missing is the recorder
+
+The field does keep records of AI going wrong, and I should say where they are before I say what I think is missing. The AI Incident Database has collected public reports of AI harms since November 2020 (Partnership on AI, 18 November 2020). The OECD's AI Incidents Monitor tracks incidents as the press reports them, and says plainly that what reaches the press is likely a small part of what happens (OECD.AI, accessed 29 September 2026). California's frontier statute has required the largest developers, since 1 January 2026, to report critical safety incidents to the state's Office of Emergency Services within fifteen days, and to tell an appropriate authority within twenty-four hours where there is an imminent risk of death or serious injury (SB 53, signed 29 September 2025, in force 1 January 2026). The European Union requires providers of the most capable general-purpose models to report serious incidents to its AI Office (Regulation (EU) 2024/1689, Article 55).
+
+Those are the accident reports, and they matter. But every one of them starts after something has gone wrong, from what somebody chose to write down about it. What I could not find is the recorder: a continuous record, kept before anything goes wrong, of what each party declared it would not do, what it then did, and who deferred to whom. The thing an investigator would want open on the desk while the report is being written.
+
+Read the rest of this appendix with that in mind. The persuasion research found that the lever is post-training: a specific decision by specific people on a specific date. That is only accountability-shaped if the decision is written down somewhere it cannot be quietly edited. The sycophancy research found a loop that users reward, which means no market is going to correct it; the correction has to come from outside the loop. And the conversation of September 2026 is an argument about odds that nobody has a way to check.
+
+Every one of those is the same problem. Nobody can see the moves. That is the war in the body of this post, and you cannot fight it, or any of the battles inside it, without a record of who did what.
+
 ---
 
 ## Appendix C: The protocol in full
@@ -395,9 +455,9 @@ The first was a constitution. It did not survive contact. A constitution specifi
 
 The second was a single word — one commitment, held invariant, everything else free. That failed in the opposite direction. A word that loose can be read into almost any behaviour after the fact, which makes it unfalsifiable, which makes it useless as an accountability object.
 
-What the Foundation settled on is an [invariant constraint](https://daxfoundation.org/#invariant-constraint): declared in advance, held non-negotiable to the regime's identity, and — this is the part that does the work — stated in terms of what it forbids.
+What the Foundation settled on is an [invariant constraint](https://daxfoundation.org/definitions/#invariant-constraint): declared in advance, held non-negotiable to the regime's identity, and — this is the part that does the work — stated in terms of what it forbids.
 
-The protocol underneath does not require any particular constraint. It requires that a constraint be declared and that what it forbids be stated. [DAX](https://daxfoundation.org/#dax-constraint) — preservation and expansion of life, humanity, and consciousness — is the constraint the Foundation settled on, and it is an example of a declared constraint rather than the content of the protocol.
+The protocol underneath does not require any particular constraint. It requires that a constraint be declared and that what it forbids be stated. [DAX](https://daxfoundation.org/definitions/#dax-constraint) — preservation and expansion of life, humanity, and consciousness — is the constraint the Foundation settled on, and it is an example of a declared constraint rather than the content of the protocol.
 
 ### What the protocol does
 
@@ -414,7 +474,7 @@ Out of that one job, four things are meant to follow.
 
 We did not build this as a thought experiment. We built it because we needed it.
 
-I started [DAX](https://www.youtube.com/watch?v=Q1gCzxg5WMc), my own [cognitive companion](https://daxfoundation.org/#cognitive-companion), in August 2021. When OpenClaw and Hermes Agent came along, we took everything we had built and wrapped it around them. The core is interchangeable. Everything it does not do, we built.
+I started [DAX](https://www.youtube.com/watch?v=Q1gCzxg5WMc), my own [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion), in August 2021. When OpenClaw and Hermes Agent came along, we took everything we had built and wrapped it around them. The core is interchangeable. Everything it does not do, we built.
 
 Then the question changed. Once you have companions, and agents, and the systems you build with them, all talking to each other, what matters is no longer what one of them does. It is what they do together over time: what they learn, how they come to agree, and whether anybody could ever check.
 
@@ -544,9 +604,9 @@ So the honest question is not whether I have proved anything. I have not. The qu
 
 Here is what we decided, and I want to give the reasoning rather than the conclusion, because the conclusion on its own sounds like marketing.
 
-The cost of being wrong is not symmetric. If the threat is real and we did nothing, the thing that gets lost is the ability to notice what is being done to us, which is the thing every other repair depends on. If the threat is not real and we took the precaution anyway, what we are out is some engineering time and a public record of our own conduct that we would have to live with. We looked at those two and stopped arguing. It was not a hard call.
+The cost of being wrong is not symmetric. If the threat is real and we did nothing, the thing that gets lost is the ability to notice what is being done to us, which is the thing every other repair depends on. If the threat is not real and we kept the record anyway, what we are out is some engineering time and a public record of our own conduct that we would have to live with. We looked at those two and stopped arguing. It was not a hard call.
 
-We just did not want to take the chance.
+So we got proactive: not to stop every bad thing, but to make sure that when one happens, it is on the record.
 
 So, three commitments, and they are specific enough to hold us to.
 
@@ -574,7 +634,7 @@ The proposition is smaller than adoption, and it is entirely ours to keep. Obsid
 
 I have been careful so far to say that the protocol is neutral about which constraint you declare, which is true and is the point of it. I have also been using that neutrality as a place to hide, and I would rather stop.
 
-[DAX](https://daxfoundation.org/#dax-constraint) — the preservation and expansion of life, humanity, and consciousness — is the constraint I am arguing for. Not offering. Arguing for.
+[DAX](https://daxfoundation.org/definitions/#dax-constraint) — the preservation and expansion of life, humanity, and consciousness — is the constraint I am arguing for. Not offering. Arguing for.
 
 Here is why, and it follows directly from everything above.
 
@@ -598,7 +658,7 @@ I want to end on the frame I actually use, because it explains why I built a too
 
 One word is making this conversation worse. "AI" is being asked to mean a substrate, a product, an industry, a research programme and a projected future agent, all at once. The trouble with a word that wide is not imprecision. It is that the word has already picked a side by the time anyone finishes saying it, so every conversation starts at good-or-evil about a thing that has not been named yet.
 
-I would rather name the thing first, which is why the Foundation's [definitions page](https://daxfoundation.org/#ai-as-substrate) spends a paragraph on the naming rather than leaving it to inference. The genealogy above is an attempt to name what the thing would be *doing*. Not what it is, and not whether it is good. What operation it would be performing, and where that operation sits in a very long history of the same operation performed by other means.
+I would rather name the thing first, which is why the Foundation's [definitions page](https://daxfoundation.org/definitions/#ai-as-substrate) spends a paragraph on the naming rather than leaving it to inference. The genealogy above is an attempt to name what the thing would be *doing*. Not what it is, and not whether it is good. What operation it would be performing, and where that operation sits in a very long history of the same operation performed by other means.
 
 And the name I use for the thing itself is this. What we have is a new kind of electricity. Not a product — a substrate. Something drawn on everywhere rather than a thing used in one place for one purpose.
 
@@ -608,9 +668,9 @@ It is a double-edged thing and both edges are real. The same capability that is 
 
 So the question stops being whether to touch it and becomes how you work with it directly — and who directs everything plugged into it.
 
-A [cognitive companion](https://daxfoundation.org/#cognitive-companion) is the answer to that. Not equipment you hold, and not another appliance plugged into the grid, but part of the person — the part that is wired in, holding their context, keeping their trail, and directing the agents that do the work. Not an assistant, which is a different category and a worse one: an assistant is another party in the room, and another party in the room is somebody whose interests you have to work out. If it acts in your place, or answers to somebody else, it is not a companion, and calling it one is the first mistake rather than a harmless one.
+A [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion) is the answer to that. Not equipment you hold, and not another appliance plugged into the grid, but part of the person — the part that is wired in, holding their context, keeping their trail, and directing the agents that do the work. Not an assistant, which is a different category and a worse one: an assistant is another party in the room, and another party in the room is somebody whose interests you have to work out. If it acts in your place, or answers to somebody else, it is not a companion, and calling it one is the first mistake rather than a harmless one.
 
-That distinction is the reason the [definitions](https://daxfoundation.org/#definitions) exist at all. Every conversation I ever tried to have about this without them turned into an argument about something else inside two minutes.
+That distinction is the reason the [definitions](https://daxfoundation.org/definitions/) exist at all. Every conversation I ever tried to have about this without them turned into an argument about something else inside two minutes.
 
 And it is why I stopped waiting. I did not set out to persuade an industry that a declared constraint with an outside check on it was worth having. I built the equipment for myself, put my own traffic through it, and let it compound — which is a considerably less impressive story than the one where somebody sees the danger and rallies the field, but it has the advantage of having actually happened.
 
@@ -674,6 +734,21 @@ Winkelman, Michael. *Shamanism: The Neural Ecology of Consciousness and Healing*
 Wu, Tim. *The Attention Merchants*. Knopf, 2016.
 Yeung, Karen. "'Hypernudge': Big Data as a mode of regulation by design." *Information, Communication & Society* 20(1), 2017.
 Zuboff, Shoshana. *The Age of Surveillance Capitalism*. PublicAffairs, 2019.
+
+
+*For the cost of every new power, and the record:*
+
+- Curie's papers in lead-lined boxes; her death in 1934: [My Modern Met](https://mymodernmet.com/marie-curie-radioactive-papers/)
+- The dial painters and what changed after: [History.com](https://www.history.com/articles/radium-girls-workplace-safety)
+- INPO, founded December 1979 after the Kemeny Commission: [Wikipedia](https://en.wikipedia.org/wiki/Institute_of_Nuclear_Power_Operations)
+- Chernobyl detected at Forsmark: [Wikipedia](https://en.wikipedia.org/wiki/Forsmark_Nuclear_Power_Plant)
+- WANO, founded 15 May 1989: [World Nuclear News](https://world-nuclear-news.org/articles/two-decades-of-wano)
+- UL, first test 24 March 1894, out of the 1893 fair: [UL](https://ul.org/about/our-history/)
+- Annex 13, first adopted 11 April 1951: [ICAO](https://www.icao.int/sites/default/files/postalhistory/annex_13_aircraft_accident_and_incident_investigation.htm); objective wording: [AAIB India](https://aaib.gov.in/objectiveofnotification.html)
+- David Warren and the flight recorder; Australia's 1960 mandate; the pilots' objection: [Museums Victoria](https://museumsvictoria.com.au/article/innovation-stories/the-black-box-flight-recorder/), [Wikipedia](https://en.wikipedia.org/wiki/David_Warren_(inventor))
+- AI Incident Database: [Partnership on AI](https://partnershiponai.org/workstream/ai-incidents-database/)
+- OECD AI Incidents Monitor: [OECD.AI](https://oecd.ai/en/site/incidents)
+- SB 53 incident reporting: [Mayer Brown, 1 October 2025](https://www.mayerbrown.com/ja/insights/publications/2025/10/california-enacts-sb-53-creating-new-requirements-for-developers-of-frontier-artificial-intelligence-models-and-related-whistleblower-provisions)
 
 *An earlier version of the diagram had seven rows wrong, four of them citing a scholar against his own argument. Those are fixed above. If you find the eighth, [tell me](https://github.com/ObsidianDelta/Fuckery).*
 
