@@ -3,6 +3,7 @@ title: "The Cognitive Companion"
 subtitle: "What we mean by it, where ours came from, and the first one you can use"
 description: "AI is becoming a substrate, like electricity, and most of what is sold on top of it is appliances. A cognitive companion is a new category: not an appliance, not an assistant, not an agent — the part of you that is wired in."
 date: 2026-09-21
+updated: 2026-09-29
 draft: false
 ---
 

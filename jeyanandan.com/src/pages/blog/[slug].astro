@@ -41,10 +41,15 @@ const fullTitle = frontmatter.subtitle
 // isUnlisted() is the rule the home page, /blog/ and /sitemap.xml already use
 // to leave it out, so the robots tag and the lists cannot disagree.
 const noindex = isUnlisted(Astro.params.slug, frontmatter);
+
+// Every post is in the public record, github.com/ObsidianDelta/published: the
+// History link beside the dates is this file's commit list there, every change
+// readable as a diff. Jason, 2026-10-01: nothing is quietly edited.
+const history = `https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/${Astro.params.slug}.md`;
 ---
 <Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle} noindex={noindex}>
   <section class="hero"><div class="shell narrow">
-    <p class="eyebrow"><time datetime={published.toISOString()}>{fmt}</time>{showUpdated && <span class="updated"> <span aria-hidden="true">·</span> Updated <time datetime={revised.toISOString()}>{fmtUpdated}</time></span>}</p>
+    <p class="eyebrow"><time datetime={published.toISOString()}>{fmt}</time>{showUpdated && <span class="updated"> <span aria-hidden="true">·</span> Updated <time datetime={revised.toISOString()}>{fmtUpdated}</time></span>} <span class="updated"><span aria-hidden="true">·</span> <a class="history" href={history} rel="noopener">History</a></span></p>
     <h1>{frontmatter.title}</h1>
     {frontmatter.subtitle && <p class="deck">{frontmatter.subtitle}</p>}
     <div class="rule"></div>
@@ -66,6 +71,8 @@ const noindex = isUnlisted(Astro.params.slug, frontmatter);
 .hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
 .hero h1{margin-bottom:.4rem}
 .eyebrow .updated{color:var(--muted)}
+.eyebrow .history{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line)}
+.eyebrow .history:hover{color:var(--orange);border-color:var(--orange)}
 .deck{
   font-family:var(--sans);font-weight:400;
   font-size:clamp(1.15rem,3.6vw,1.7rem);line-height:1.22;letter-spacing:-.012em;
