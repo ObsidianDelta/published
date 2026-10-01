@@ -24,9 +24,17 @@ const initiatives = [
 //      to /definitions/ with the same anchor.
 //   5. Reading: everything published on jeyanandan.com, in series order, plus
 //      the Fuckery framework itself.
-//   6. The message from the founder, unchanged, with his personal Ko-fi. The
-//      disclosure sentence beside that link is a deploy gate: the Foundation is
-//      not incorporated and takes no money; what is given there goes to Jason.
+//   6. The note from the founder, with his personal Ko-fi. The disclosure
+//      sentence beside that link is a deploy gate: the Foundation is not
+//      incorporated and takes no money; what is given there goes to Jason.
+//      2026-10-01: the note is about Meta DAX, so it moved into the Meta DAX
+//      row (v2 text, Jason's), directly under the repository link, and the
+//      standalone section at the foot is gone. It keeps id="founder" so the
+//      old #founder links still land.
+//   7. 2026-10-01: the Meta DAX row also says how the small experiments earn
+//      the big ones (the bridge figure), and carries the human delta value
+//      thread, which Jason calls "almost the point": invert the ratio of
+//      students to teachers, hand teachers their cognition back on purpose.
 //
 // Accuracy rules that bind every word here (state/initiatives/
 // content-publishing.md): never describe the Foundation as a non-profit,
@@ -90,7 +98,26 @@ const moved = [
         <figure class="fig span">
           <img src="/figures/meta-dax-tree.svg" width="1200" height="840" alt="Learning drawn as the tree of life upside down: every path from the first question is kept, the dead ends are kept, one learner's question answers another's, and the negative space nobody has explored yet is marked. There is never the way. There is always a way." loading="lazy" />
         </figure>
-        <p class="go span"><a href="https://github.com/daxfoundation/metadax">Everything about Meta DAX is in the open: the benchmark, the experiments, every result, and what comes next &rarr;</a></p>
+        <div class="text span">
+          <p>Fourteen small experiments first. Two have run, with a model playing the teacher and a simulated adult as the learner. Then the legwork nobody writes a post about: identifiers and schemas that hold at a million nodes, reuse across languages without copying, the five-minute bundle, prompts certified by evals rather than by reputation. Then the twelve we can already picture: a tutor&rsquo;s move made once in Indonesian and offered in Spanish to a stranger who shares nothing with the first learner but kites; a course that grows from many teachers and many learners at once; one person on a phone going from five minutes a day to a master&rsquo;s. The small ones are how we earn the big ones.</p>
+        </div>
+        <figure class="fig span">
+          <img src="/figures/meta-dax-bridge.svg" width="1200" height="590" alt="The bridge: on the left, what has run, one teacher run and one learner run with a model in both chairs; across the span, the legwork, identifiers and schemas at scale, a registry of millions, reuse across languages, the five-minute bundle, certification, the constraint fields made live, the learner's privacy; on the right, the twelve experiments we can already picture, ending at five minutes to master's. The small ones earn the big ones." loading="lazy" />
+        </figure>
+        <div class="text span">
+          <p>The measure under every one of them is <a href="/definitions/#human-delta-value">human delta value</a>: what the teacher brings, and what the teacher and their cognitive companion reach together that neither would alone. Meta DAX is built to invert the ratio of students to teachers, and to hand teachers back the cognition the busywork took, on purpose, for the problems they could previously only dream about. It is not a one-off measurement. It is the thread through all of it, and it is close to the point. <a href="/writing/human-delta-value/">Why, and how it is measured &rarr;</a></p>
+        </div>
+        <p class="go span"><a href="https://github.com/daxfoundation/metadax">Everything about Meta DAX is in the open: the benchmark, the experiments, every result, and where it is going &rarr;</a></p>
+        <div class="note span" id="founder">
+          <p class="note-head">A note from the founder</p>
+          <p>I have been at this since I was 23. I am now 49.</p>
+          <p>&ldquo;This&rdquo; has only ever been one thing: <a href="https://jeyanandan.com/blog/meta-dax/#what-i-am-fighting-for">the right information, to the right person, at the right time</a>. I found it the day I left university for the last time, and everything I have built since has been a draft of it. Meta DAX is the current one: the latest expansion of the same purpose, and the first where the information is the kind that lets a person go and get all the rest.</p>
+          <p>It has taken a tremendous amount of personal sacrifice, on every level, and it still does. All of it has come out of my own pocket.</p>
+          <p>If you want to know why it means this much to me, <a href="https://jeyanandan.com/blog/meta-dax/#what-meta-dax-means-to-me">it is here</a>. I was <a href="https://jeyanandan.com/blog/meta-dax/#the-kid-it-did-not-exist-for">the kid it did not exist for</a>.</p>
+          <p>On the way to getting Meta DAX out, while working out how knowledge and intelligence could be made to compound, it became clear that I needed something else first: an accountability framework. A flight recorder, the black box the aviation industry keeps, for the thing I could see coming. I set that out in <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>. They are not two separate fights. The rubbish on the beach is a real problem, and so is the thousand-foot wave coming towards it, and you do not get to pick one. But while that work was in front of me I did not have the cognitive capacity to give Meta DAX what it needed, and I put it off from the beginning of this year. It is my purpose, and as of 28 September <a href="https://jeyanandan.com/blog/meta-dax/">it is in the open</a>: the experiments, every result, and what comes next.</p>
+          <p>So, being completely transparent: if you would like to <a href="https://ko-fi.com/jeyanandan">buy me a coffee</a>, it would mean a great deal to me, from the bottom of my heart. Thank you. It goes to me personally, not the Foundation and not the company.</p>
+          <p class="sig">&mdash; <a href="https://jeyanandan.com">Jason Jeyanandan</a></p>
+        </div>
       </li>
       {initiatives.map((i) => (
         <li class="row">
@@ -161,18 +188,6 @@ const moved = [
         </span>
       </li>
     </ul>
-  </section>
-
-  <section class="block" aria-labelledby="founder">
-    <h2 id="founder">A message from the founder</h2>
-    <div class="note">
-      <p>I have been at this since I was 23. I am now 49.</p>
-      <p>It has taken a tremendous amount of personal sacrifice, on every single level, and it still does. All of it has come out of my own pocket.</p>
-      <p>There are other problems, just as big, that I have found myself tackling &mdash; above all the accountability the Constraint Protocol is for, as I set it out in <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>, and why it matters. You may not think it, but I have been putting Meta DAX off since the beginning of the year, because of the urgency of that work.</p>
-      <p>But this is my purpose.</p>
-      <p>So, being completely transparent: if you would like to <a href="https://ko-fi.com/jeyanandan">buy me a coffee</a>, that would be great. It goes to me personally, not the Foundation and not the company.</p>
-      <p class="sig">&mdash; Jason Jeyanandan</p>
-    </div>
   </section>
 
   {/* Old links such as daxfoundation.org/#cognitive-companion still land:
@@ -274,11 +289,24 @@ const moved = [
   .note a:hover, .note a:focus-visible { border-bottom-color: currentColor; }
   .row[id] { scroll-margin-top: 1.5rem; }
 
-  /* #founder: Jason's own words, set as a short letter. */
-  .note { max-width: 36em; color: #cfcfcf; }
+  /* #founder: Jason's own words, set as a short letter inside the Meta DAX
+     row, under the repository link. */
+  .note { max-width: 36em; color: #cfcfcf; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
   .note p { margin: 0; }
   .note p + p { margin-top: 0.9rem; }
+  .note .note-head {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
   .note .sig { color: var(--muted); }
+  .note .sig a { border-bottom-color: var(--line); }
+  .text.span { margin-top: 1.25rem; }
+  .text.span a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .text.span a:hover, .text.span a:focus-visible { border-bottom-color: currentColor; }
 
   @media (max-width: 34rem) {
     .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }

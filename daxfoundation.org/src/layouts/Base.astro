@@ -22,6 +22,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 //
 // 2026-09-29: the definitions moved to their own page, so the masthead carries
 // one link to it, in the same quiet register as the mark.
+//
+// 2026-10-01: /writing/ is new (the Foundation's own pieces), so the masthead
+// carries a second link. The footer links the public record and the one page
+// that explains how everything here is published, Jason's "How I Publish".
 ---
 <!doctype html>
 <html lang="en">
@@ -44,6 +48,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <a class="mark" href="/">DAX Foundation</a>
       <nav class="nav" aria-label="Site">
         <a class="mark" href="/definitions/">Definitions</a>
+        <a class="mark" href="/writing/">Writing</a>
       </nav>
     </header>
     <main class="wrap">
@@ -51,7 +56,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     </main>
     <footer class="wrap foot">
       <span>DAX Foundation</span>
-      <a href="https://github.com/ObsidianDelta/published/tree/main/daxfoundation.org">Versioned, in public</a>
+      <span class="foot-links">
+        <a href="https://github.com/ObsidianDelta/published/tree/main/daxfoundation.org">Versioned, in public</a>
+        <a href="https://jeyanandan.com/blog/how-i-publish/">How this is published</a>
+      </span>
     </footer>
   </body>
 </html>
@@ -102,6 +110,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     color: var(--muted);
   }
   .mark:hover, .mark:focus-visible { color: var(--fg); }
+  .nav { display: flex; gap: 1.25rem; }
   .foot {
     display: flex;
     flex-wrap: wrap;
@@ -111,6 +120,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     font-size: 0.8125rem;
     color: var(--faint);
   }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
   .foot a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
   .foot a:hover, .foot a:focus-visible { color: var(--fg); }
   :focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }
