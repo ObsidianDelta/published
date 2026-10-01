@@ -18,6 +18,11 @@
 //
 // These notes live in the frontmatter, not in an HTML comment, because an
 // HTML comment in a layout ships inside every page built from it.
+//
+// 2026-10-01: the footer links the public record (every post's history, at
+// github.com/ObsidianDelta/published) and the one page that explains how
+// everything on these surfaces is published, Jason's "How I Publish". The home
+// page is the pinned static file and is not touched by this.
 const {
   title,
   description = 'Obsidian Delta.',
@@ -97,6 +102,7 @@ h1{
 .footer .shell{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
 .footer__left{display:flex;align-items:center;gap:12px}
 .footer__left img{height:24px;width:24px;opacity:.85}
+.footer__right{display:flex;flex-wrap:wrap;gap:8px 20px}
 .footer a{text-decoration:none;color:var(--ash)}
 .footer a:hover{color:var(--orange)}
 
@@ -121,7 +127,11 @@ h1{
       <img src="/logo-flat.png" alt="" width="24" height="24" />
       <span>obsidian delta · since 2015</span>
     </div>
-    <a href="/blog/">blog</a>
+    <span class="footer__right">
+      <a href="/blog/">blog</a>
+      <a href="https://github.com/ObsidianDelta/published/tree/main/obsidiandelta.com">versioned, in public</a>
+      <a href="https://jeyanandan.com/blog/how-i-publish/">how this is published</a>
+    </span>
   </div></footer>
 </body>
 </html>

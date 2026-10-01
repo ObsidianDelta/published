@@ -1,6 +1,6 @@
 # published
 
-What Jason Jeyanandan and his cognitive companion publish on the web, as a git history anyone can read.
+What Jason Jeyanandan publishes on the web, as a git history anyone can read. How and why is in one short post, [How I Publish](https://jeyanandan.com/blog/how-i-publish/).
 
 | Folder | Site | What is in it |
 |---|---|---|
@@ -22,7 +22,7 @@ Not here: media files (video, audio, raster images), build lock files, pages tha
 
 ## How it is produced
 
-For now this history is derived from the private repository where the sites are built: a workflow re-derives it on every change to the sites and pushes it here, so it is a pure function of that repository's history. Commits authored "Obsidian Delta" are the companion's landings under Jason's direction; the rest are his. Author emails are rewritten to a no-reply address.
+For now this history is derived from the private repository where the sites are built: a workflow re-derives it on every change to the sites and pushes it here, so it is a pure function of that repository's history. Everything in it is published by Jason through his [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion), which is part of him, not a second party: the two are one unit, and what lands here is his, however it was produced. Commits authored "Obsidian Delta" are landings the companion made; the rest Jason typed himself. Author emails are rewritten to a no-reply address.
 
 The direction is going to flip: this repository is intended to become the place content is landed first, with the sites built from it, so that "first published" and "updated" come from git rather than from a hand-typed date.
 

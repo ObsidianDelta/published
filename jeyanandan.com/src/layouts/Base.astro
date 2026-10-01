@@ -15,6 +15,10 @@ const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.prop
 // request -- LinkedIn is the reference for him, and this layout wraps every
 // page, so every post links to it too.
 //
+// 2026-10-01: two more, on every page: "How I publish" (/blog/how-i-publish/,
+// the explainer every surface points at) and the public record,
+// github.com/ObsidianDelta/published, where every post's history is readable.
+//
 // These notes live in the frontmatter, not in an HTML comment in the body,
 // because this layout wraps every page on the site: an <!-- --> here is emitted
 // into the built HTML of all of them, and internal notes about pages that no
@@ -81,6 +85,7 @@ h1{
 
 footer{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4rem)}
 footer .shell{padding:1.6rem 0 2.6rem;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer .links{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
 footer a{text-decoration:none}
 footer a:hover{color:var(--orange)}
 
@@ -96,7 +101,11 @@ footer a:hover{color:var(--orange)}
 
   <footer><div class="shell">
     <span>Jason Jeyanandan</span>
-    <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>
+    <span class="links">
+      <a href="/blog/how-i-publish/">How I publish</a>
+      <a href="https://github.com/ObsidianDelta/published/tree/main/jeyanandan.com">Versioned, in public</a>
+      <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>
+    </span>
   </div></footer>
 </body>
 </html>
