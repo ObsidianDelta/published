@@ -1,9 +1,9 @@
 ---
 title: "The Cognitive Companion"
-subtitle: "What we mean by it, where ours came from, and the first one you can use"
+subtitle: "What we mean by it, where ours came from, and what we are building"
 description: "AI is becoming a substrate, like electricity, and most of what is sold on top of it is appliances. A cognitive companion is a new category: not an appliance, not an assistant, not an agent — the part of you that is wired in."
 date: 2026-09-21
-updated: 2026-09-29
+updated: 2026-10-01
 draft: false
 ---
 
@@ -49,19 +49,13 @@ Along the way the word *agent* stopped fitting. An agent acts in your place, and
 
 It is worth saying plainly that we did not build the whole stack. The core is open source — OpenClaw, or Nous Research's Hermes Agent, pick your poison — and we built everything it does not do around it. Have we built a personal agent? Of course we have. Everyone building seriously in this space has. The interesting part was never the agent.
 
-## The first one you can actually use
+## What we are building
 
 A companion in the general case is a person's whole working life, which is a great deal of surface area and not a product.
 
-So the first one we have released goes the other way. It takes a single domain and goes all the way down.
+What Obsidian Delta is working on is the engine: the cognitive companion itself, and the cognition it runs on. That makes us the **cognition provider**, and the division is deliberate. It is the same one we apply everywhere: the companion belongs to its person, who directs it and answers for what it is directed to do; the cognition underneath is our job, and how it is built and run is our liability. In the Foundation's terms we are its [operator](https://daxfoundation.org/definitions/#operator), never its principal.
 
-**[formaddie.com](https://formaddie.com)** — released 21 September 2026 — is a [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion) whose domain is your own life, and whose output is the book of it. You talk. Maddie remembers what you have already said, notices what is missing, and asks the question that gets the story rather than the summary. What comes back is a memoir in your own voice.
-
-No blank page. No typing. No requirement that a life be remarkable before it is worth recording.
-
-*Your stories will live forever.*
-
-Obsidian Delta is the **cognition provider** behind it. Maddie is the companion; we build and run the cognition it is made of. That division is deliberate and it is the same one we apply everywhere: the thing that faces a person belongs to that person, and the substrate underneath it is our job and our liability.
+Products will be built on it. Each will be described in its own terms.
 
 ## What happens when two of them meet
 

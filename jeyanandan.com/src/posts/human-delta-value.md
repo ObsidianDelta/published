@@ -2,17 +2,19 @@
 title: "Human Delta Value"
 subtitle: "What Only You Bring, and Why It Now Matters More"
 date: 2026-10-01
-description: "The first Meta DAX run showed me what the teacher was for. Human delta value is the measure of what a person brings, alone and as one unit with their companion, and it is close to the point of everything I am doing."
+description: "What is it to be human? I have been asking for a long time. Human delta value is the part of the answer that can be measured: what a person brings, alone and as one unit with their companion. It is close to the point of everything I am doing."
 draft: false
 ---
 
 *The personal one. The technical version, with the definition and its consequences, is on [daxfoundation.org](https://daxfoundation.org/writing/human-delta-value/).*
 
-On 27 September Meta DAX ran end to end for the first time. A model played the teacher and a simulated adult played the learner, so nothing about people was proven that day, and I have said so everywhere the results are published. What I want to write about is what I saw when I read the report, because it was not the physics.
+Human delta value is not a new idea for me. It is my name for an old question, one I have been asking for a long time, long before Meta DAX, the companion or anything else this year: what is it to be human? What does a person bring that nothing else brings? It is the whole reason I am interested in anthropology, which exists to answer exactly that: what it means to be human. Human delta value is the part of the answer that can be kept in view and measured.
+
+What is new is watching it show up in Meta DAX. On 27 September Meta DAX ran end to end for the first time. A model played the teacher and a simulated adult played the learner, so nothing about people was proven that day, and I have said so everywhere the results are published. What caught me when I read the report was not the physics.
 
 It was the teacher's workflow. Twelve stages: know the learner, pick a yardstick, set the destination, draw the map, fence the scope, choose the voice, plan the misconceptions, design the page, build the labs, generate and check, hand over, review and loop. The yardstick was an outcomes rubric, picked from a catalogue, and the catalogue grows every time a teacher publishes one. The lesson plan arrived defaulted. Every one of the teacher's decisions had become a micro-adjustment to something that was already there.
 
-I read that and thought: there it is. The thing I have been calling human delta value since before Meta DAX existed, sitting in the first report, uninvited. For the record, and dated: the term was on the Foundation's [definitions page](https://daxfoundation.org/definitions/#human-delta-value) on 21 September, six days before that run, and it came out of the work on the [cognitive companion](https://www.obsidiandelta.com/blog/cognitive-companion/), not out of learning at all. I recognised it in the report. I did not invent it there.
+I read that and recognised it: the old question, sitting in the first report, uninvited. For the record, and dated: the term was on the Foundation's [definitions page](https://daxfoundation.org/definitions/#human-delta-value) on 21 September, six days before that run. The report did not give me the idea. It showed me where the idea lands in teaching.
 
 ## What it is
 
@@ -26,7 +28,7 @@ The second is what a person and their cognitive companion reach together that ne
 
 Here is what the report showed me about the first half, and why the usual way of measuring it is wrong.
 
-When the lesson plan arrives defaulted and the rubric comes from a catalogue, a great deal of manual cognitive labour has been taken off the teacher. The lazy measure of that is time: hours saved. I refuse to measure it by time, because time saved says nothing about what happened next, and what happened next is the whole point.
+When the lesson plan arrives defaulted and the rubric comes from a catalogue, a great deal of cognitive labour has been taken off the teacher. The lazy measure of that is time: hours saved. I refuse to measure it by time, because time saved says nothing about what happened next, and what happened next is the whole point.
 
 What matters is what the teacher spends the cognition on now that it is theirs again. I call that reclaimed cognition, and it goes on the things that intelligence, in the Foundation's narrow sense of [navigating a constrained possibility space](https://daxfoundation.org/definitions/#intelligence), is not. Noticing that one learner has gone quiet, and deciding what to do about it. Reading the dynamic of a group. Knowing that this particular person needs to be pushed and that one needs to be left alone for a week. Bringing out the best in someone. No model in the room does any of that; the teacher does, if they have the capacity left to do it. The system takes the busywork so that they do.
 

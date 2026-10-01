@@ -2,7 +2,7 @@
 title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-09-29
+updated: 2026-10-01
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -46,7 +46,7 @@ This is what I have been doing. This is what I am about. Here it all is, describ
 
 **[formaddie.com](https://formaddie.com)** — released this year, on my birthday. You talk to it about your life, and it turns what you say into a book in your own voice. There is no blank page, no typing, and no requirement that a life be remarkable before it is worth keeping. It was built with older people in mind first, because that is where the loss happens fastest and is least recoverable. If you have a parent or a grandparent whose stories are going to go with them, this is the thing I made about that.
 
-Underneath Maddie is a **[cognitive companion](https://daxfoundation.org/#cognitive-companion)** — a category I ended up having to define rather than borrow, because none of the existing words fit. It is not a chatbot and it is not an assistant. An assistant is a second party you hand jobs to. A companion is an extension of the person: part of you, the part through which you work with this technology and direct it. Maddie is one of those, pointed at a single subject, which is your own life. The full definition is at that link, and everything below is what it takes to build one of these responsibly.
+Maddie is there to listen, and to ask the question that gets the story rather than the summary. What comes back is a book in your own voice, and it is yours.
 
 ### The rest, in the order that makes sense
 
@@ -488,7 +488,7 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 
 - [The DAX Foundation](https://daxfoundation.org/) — the mission and the constraint. Not incorporated; that is stated where it needs to be.
 - [Obsidian Delta](https://www.obsidiandelta.com) — the company. Builds the cognition.
-- [formaddie.com](https://formaddie.com) — a cognitive companion that turns a life into a memoir by talking.
+- [formaddie.com](https://formaddie.com) — you talk, Maddie listens, and a life becomes a memoir in your own voice.
 
 **The people I quoted, so you can check I have not bent them**
 
