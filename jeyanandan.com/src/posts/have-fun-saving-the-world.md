@@ -66,7 +66,10 @@ Fun was not the opposite of taking it seriously. Fun was the delivery mechanism 
 
 ## One click, one life
 
-![What if with just 1 click, you could save 1 life: two frames from the 1Click1Life intro video, 2021](/figures/have-fun/what-if-1-click.jpg)
+<figure>
+<iframe src="https://www.youtube-nocookie.com/embed/F0-6hYoq8Uc" title="1Click1Life: A Quick Intro (2021)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<figcaption>1Click1Life: A Quick Intro, August 2021. Seventy-five seconds.</figcaption>
+</figure>
 
 *What if with just one click, you could save one life?*
 
@@ -92,7 +95,10 @@ The principle underneath it had a name.
 
 That is the definition as I gave it on video in 2021. In 2016 it had three parties, a win-win-win between corporations, social organisations and the community. By 2021 the media was in it too, and the intro video ended its list with *and you*.
 
-![The parties: corporations, social organisations, the community, the media, and you](/figures/have-fun/the-parties.jpg)
+<figure>
+<iframe src="https://www.youtube-nocookie.com/embed/cpF4J21X_5Q" title="What is Corporate Social Synergy? (2021)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<figcaption>What is Corporate Social Synergy? August 2021.</figcaption>
+</figure>
 
 The difference from corporate social responsibility was deliberate. Corporate social responsibility usually means a company doing something good that also, directly, saves it or makes it money. **Corporate social synergy cut that link on purpose.** A company would promote a cause with no direct connection to its own business, and get back what a company actually wants from that: attention, recognition, and over time loyalty.
 
@@ -135,14 +141,14 @@ The evening this was taken, the snow was starting as I got ready to leave, and t
 
 There were not many people out. I remember two guys in a car, maybe ten years younger than me, who caught sight of a man in a pea coat with a litter picker in a snowstorm, and the look on their faces said *what the fuck*. I looked back and smiled.
 
-Here is the point. I do not give a fuck. If a cause is just, if there is meaning behind what I am doing and I can see it, I really do not care what anybody else takes it as. It is bigger than me.
-
-Five minutes from home, I pointed the phone at myself.
+Five minutes from home, I pointed the phone at myself. I did not have anything profound to say, and I said so. What I said instead was the whole of it: you got to do what's got to be done.
 
 <figure>
-<video controls preload="metadata" playsinline width="240" height="320" poster="/figures/have-fun/picking-up-garbage-poster.jpg" src="/figures/have-fun/picking-up-garbage-in-snow.mp4">Your browser does not play this video. It is sixteen seconds of a man in a snowstorm saying: three bags of garbage, that is not so bad.</video>
-<figcaption>Five minutes from home. Three bags of garbage. Nothing profound to say, which was the point.</figcaption>
+<video controls preload="metadata" playsinline width="240" height="320" poster="/figures/have-fun/picking-up-garbage-poster.jpg" src="/figures/have-fun/picking-up-garbage-in-snow.mp4">Your browser does not play this video. It is sixteen seconds of a man in a snowstorm, five minutes from home with three bags of garbage, saying: you got to do what's got to be done.</video>
+<figcaption>Five minutes from home. Three bags of garbage. "You got to do what's got to be done."</figcaption>
 </figure>
+
+That is the point, and here it is again, less politely. I do not give a fuck. If a cause is just, if there is meaning behind what I am doing and I can see it, I really do not care what anybody else takes it as. It is bigger than me. You got to do what's got to be done.
 
 An aside, because I found it while looking for these pictures. This was my hair in the same period. Real, and no conditioner.
 
@@ -156,11 +162,14 @@ In August 2021 I tried again, out loud.
 
 Over six days I put up eleven short videos on two YouTube channels, one for 1Click1Life and one for AllCharities.org, explaining corporate social synergy, the benefits for each party, the responsibilities of each party, and how the two sites worked together. They are all still up.
 
-![Recording the 1Click1Life videos, August 2021](/figures/have-fun/jason-2021.jpg)
+<figure>
+<iframe src="https://www.youtube-nocookie.com/embed/a0kyZoQa-Sc" title="Corporate Social Synergy Facilitators: 1Click1Life.org and AllCharities.org (2021)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<figcaption>1Click1Life.org and AllCharities.org: why there were two, and how they worked together. August 2021.</figcaption>
+</figure>
 
 In 2021, AllCharities.org was 1Click1Life's sister site: a central place where charities could be promoted on social media, and the place where every clue lived. And the clue was locked.
 
-To unlock it, you had to leave. You went to the charity's own website, found out what they were doing right now, came back, and typed the answer in. In the demo I recorded, the sample post used World Vision Canada as its example, and the question was which country they were helping. The answer was on their front page: Haiti, after the earthquake. Type it in, and the clue appeared: *We the North.* The treasure in the demo was valued at five hundred dollars.
+To unlock it, you had to leave. You went to the charity's own website, found out what they were doing right now, came back, and typed the answer in. In [the demo I recorded](https://www.youtube.com/watch?v=-kI0sGmi74U), the sample post used World Vision Canada as its example, and the question was which country they were helping. The answer was on their front page: Haiti, after the earthquake. Type it in, and the clue appeared: *We the North.* The treasure in the demo was valued at five hundred dollars.
 
 ![How one clue worked: from a business's repost to the charity's own site and back to the treasure](/figures/have-fun/fig-clue-loop.svg)
 
@@ -184,7 +193,7 @@ There were outside things too. It was around the same time I was trying to get O
 
 By January 2024 both were over.
 
-My headline on LinkedIn says *if you're not failing, you're not succeeding*. This was failing, properly.
+My headline on LinkedIn says *if you're not failing at something, you are not succeeding*. This was failing, properly.
 
 But read it the way I read everything I have built: [as a peg](/blog/fuckarian/#pegs-not-stairs). A peg is not a claim that it was right. It is what let me reach the next thing.
 
@@ -222,17 +231,20 @@ The domain changed. The instinct did not.
 
 ## Have fun saving the world
 
-![1 Click 1 Life: have fun saving the world. The last frame of the 2021 intro video](/figures/have-fun/have-fun.jpg)
+<figure>
+<iframe src="https://www.youtube-nocookie.com/embed/A0A5ajXqD_s" title="1Click1Life Benefits: Community (2021)" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<figcaption>The one about apathy. 1Click1Life Benefits: Community, August 2021.</figcaption>
+</figure>
 
 Nearly every one of those videos ends the same way. I said it a little awkwardly, to a camera against a black background, and I meant it every time: *have fun saving the world.*
 
-The treasure hunt never got rolling. The instinct never stopped. The man in the mud and the parents with the bundle are where it started. And the part of me that wanted to bury gold rings around Mississauga so a stranger would learn one true thing about hunger, and walked home through a snowstorm picking up garbage to pay for the ribbons, is the same part that is building the rest of this, with better tools.
+The treasure hunt never got rolling. The instinct never stopped. The man in the mud and the parents with the bundle are where it started. And the part of me that wanted to bury gold rings around Mississauga so a stranger would learn one true thing about hunger, and walked home through a snowstorm picking up garbage to make up for the ribbons, is the same part that is building the rest of this, with better tools.
 
 ---
 
 ## The record
 
-- The 1Click1Life videos, August 2021: [youtube.com/@1click1life32](https://www.youtube.com/@1click1life32/videos), starting with [What is Corporate Social Synergy?](https://www.youtube.com/watch?v=cpF4J21X_5Q) and the 75-second [Quick Intro](https://www.youtube.com/watch?v=F0-6hYoq8Uc).
+- The 1Click1Life videos, August 2021: [youtube.com/@1click1life32](https://www.youtube.com/@1click1life32/videos), starting with [What is Corporate Social Synergy?](https://www.youtube.com/watch?v=cpF4J21X_5Q) and the 75-second [Quick Intro](https://www.youtube.com/watch?v=F0-6hYoq8Uc). Four of them are embedded above.
 - AllCharities.org: [the two sites, and how they fit together](https://www.youtube.com/watch?v=a0kyZoQa-Sc), and [the demo, clue and all](https://www.youtube.com/watch?v=-kI0sGmi74U).
 - The working history, with dates: [LinkedIn](https://www.linkedin.com/in/jasonjeyanandan).
 - Quoted here from my own files: the June 2012 working notes on 1Click1Life, the 2016 write-up of corporate social synergy, and Obsidian Delta's business plan, 2016 to 2021.
