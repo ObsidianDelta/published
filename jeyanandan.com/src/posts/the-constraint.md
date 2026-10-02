@@ -2,7 +2,7 @@
 title: "The Constraint"
 subtitle: "Something Will Go Wrong. Keep the Record."
 date: 2026-09-21
-updated: 2026-09-29
+updated: 2026-10-02
 description: "The hypothetical, the global conversation, the cost that has come with every new power, and why Obsidian Delta built a record instead of a wall."
 draft: false
 ---
@@ -752,4 +752,4 @@ Zuboff, Shoshana. *The Age of Surveillance Capitalism*. PublicAffairs, 2019.
 
 *An earlier version of the diagram had seven rows wrong, four of them citing a scholar against his own argument. Those are fixed above. If you find the eighth, [tell me](https://github.com/ObsidianDelta/Fuckery).*
 
-*The genealogy diagram, the Constraint Protocol specification and the Fuckery framework are all public. Fork them. Break them. If you find a seam that does not hold, that is the most useful thing you could send me.*
+*The genealogy diagram, the [Constraint Protocol specification](https://github.com/daxfoundation/constraint-protocol) and the [Fuckery framework](https://github.com/ObsidianDelta/Fuckery) are all public. The specification and the framework are also on Arweave, where nothing can be edited or taken down: [CP-SPEC v0.5](https://arweave.net/RXWwEt-SQtJ2LHmKhoUZZhBEig6GX1wLUeQMD4IKjaw), its [decision log](https://arweave.net/qln0obhtsQzTb4s64GYih3phgEjRZReo5Fb3WQ4f-Vs), and [Fuckery v0.51](https://arweave.net/PRQVxkJXetepK0bfENaW14zDH4VmdAtJF3UKjIxBJcs). Fork them. Break them. If you find a seam that does not hold, that is the most useful thing you could send me.*

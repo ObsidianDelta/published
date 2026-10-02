@@ -2,7 +2,7 @@
 title: "The Snowflake"
 subtitle: "Fuckari in Action"
 date: 2026-09-16
-updated: 2026-09-26
+updated: 2026-10-02
 description: "On the release of Fuckery v0.51 — a constraint–process–valuation ontology, demonstrated rather than described."
 draft: false
 ---
@@ -931,12 +931,10 @@ Its operating condition, stated in §0.5, is not a placeholder for future certai
 
 ---
 
-## Bothans
+## What came after
 
 This one took a while to get right. Most of what it cost was sleep, and the rest was the patience of people who had to hear about snowflakes for several weeks.
 
-> "Many Bothans died to bring us this information." — Mon Mothma, *Return of the Jedi*
+It was the first of three. [The Constraint](/blog/the-constraint/) is what follows once a structure like this one can act on its own account, and what I built because of it. [The Fuckarian](/blog/fuckarian/) is where the argument came from, which the framework's own rules required me to publish.
 
-If you would like to help with the next one, the page is here: [ko-fi.com/jeyanandan](https://ko-fi.com/jeyanandan). Nothing is bought by giving — the canon stays CC BY 4.0, this essay stays public, and nobody who gives gets anything a reader does not already have.
-
-The framework itself lives at [github.com/ObsidianDelta/Fuckery](https://github.com/ObsidianDelta/Fuckery), and every term used above is defined precisely at [daxfoundation.org/#definitions](https://daxfoundation.org/#definitions).
+The framework itself lives at [github.com/ObsidianDelta/Fuckery](https://github.com/ObsidianDelta/Fuckery), and every term used above is defined precisely at [daxfoundation.org/definitions](https://daxfoundation.org/definitions/). Fuckery v0.51 is also [on Arweave](https://arweave.net/PRQVxkJXetepK0bfENaW14zDH4VmdAtJF3UKjIxBJcs), where nothing can be edited or taken down; the bytes there are the bytes on GitHub.
