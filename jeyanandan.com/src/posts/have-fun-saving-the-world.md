@@ -144,8 +144,8 @@ There were not many people out. I remember two guys in a car, maybe ten years yo
 Five minutes from home, I pointed the phone at myself. I did not have anything profound to say, and I said so. What I said instead was the whole of it: you got to do what's got to be done.
 
 <figure>
-<video controls preload="metadata" playsinline width="240" height="320" poster="/figures/have-fun/picking-up-garbage-poster.jpg" src="/figures/have-fun/picking-up-garbage-in-snow.mp4">Your browser does not play this video. It is sixteen seconds of a man in a snowstorm, five minutes from home with three bags of garbage, saying: you got to do what's got to be done.</video>
-<figcaption>Five minutes from home. Three bags of garbage. "You got to do what's got to be done."</figcaption>
+<video controls preload="metadata" playsinline width="240" height="320" poster="/figures/have-fun/picking-up-garbage-poster.jpg" src="/figures/have-fun/picking-up-garbage-in-snow.mp4">Your browser does not play this video. It is sixteen seconds of a man in a snowstorm, five minutes from home with three bags of garbage, saying: you got to do what’s got to be done.</video>
+<figcaption>Five minutes from home. Three bags of garbage. “You got to do what’s got to be done.”</figcaption>
 </figure>
 
 That is the point, and here it is again, less politely. I do not give a fuck. If a cause is just, if there is meaning behind what I am doing and I can see it, I really do not care what anybody else takes it as. It is bigger than me. You got to do what's got to be done.
