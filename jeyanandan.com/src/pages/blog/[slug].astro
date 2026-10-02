@@ -193,6 +193,10 @@ article{padding-bottom:clamp(2rem,5vw,3rem)}
   color:var(--muted);text-align:center;text-wrap:pretty;max-width:34rem;
 }
 .prose img{display:block;max-width:100%;height:auto;border-radius:8px}
+/* 2026-10-02: a portrait photo is capped at most of the viewport height and
+   keeps its ratio, so a phone-shaped picture does not run the length of the
+   screen on a desktop. Landscape figures never reach the cap. */
+.prose figure img{max-height:min(80vh,860px);width:auto}
 
 /* ---------- embedded video ----------
    A YouTube embed pasted into a post keeps the width/height attributes YouTube
@@ -204,6 +208,17 @@ article{padding-bottom:clamp(2rem,5vw,3rem)}
   display:block;width:100%;height:auto;aspect-ratio:16/9;
   border:0;border-radius:8px;background:var(--bone);
   margin:1.7rem 0;
+}
+
+/* ---------- self-hosted video ----------
+   2026-10-02: /blog/have-fun-saving-the-world/ carries a sixteen-second clip
+   served from /figures/ (media-src 'self' in public/_headers is what allows
+   it). It sits inside a hand-written <figure> in the markdown so it gets the
+   same caption as the images. Portrait and small on purpose: the source is a
+   240x320 phone video and it is shown at its own size, never upscaled. */
+.prose video{
+  display:block;max-width:100%;height:auto;border-radius:8px;
+  background:var(--bone);
 }
 
 .back{font-family:var(--sans);font-size:17px;margin-top:.5rem}
