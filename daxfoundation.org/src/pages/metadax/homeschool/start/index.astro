@@ -303,3 +303,236 @@ const sendTo: string[] = homeschoolData.send_to;
   .pii-sum ul { margin: 0.35rem 0 0; padding-left: 1.2rem; }
   .pii-sum li + li { margin-top: 0.25rem; }
 </style>
+
+<script is:inline>
+(function () {
+  /* PII patterns: email, phone (7+ digits), link, @handle */
+  var PII = [
+    { re: /[^\s@]+@[^\s@]+\.[^\s@]{2,}/, label: 'an email address' },
+    { re: /(?:\+?[\d][\d\s\-\(\)\.]{5,}[\d])/, label: 'a phone number' },
+    { re: /https?:\/\/|www\.|(?:^|[\s(])[a-z0-9\-]{2,}\.[a-z]{2,4}(?:\/|[\s)]|$)/i, label: 'a link' },
+    { re: /@[a-z0-9_]{1,}/i, label: 'a handle (@…)' },
+  ];
+
+  function piiMsg(text) {
+    for (var i = 0; i < PII.length; i++) {
+      var m = text.match(PII[i].re);
+      if (m) {
+        var s = m[0].trim().slice(0, 30);
+        return 'Looks like ' + PII[i].label + ' — please remove it (“' + s + (m[0].length > 30 ? '…' : '') + '”).';
+      }
+    }
+    return null;
+  }
+
+  /* Map input-id -> pii-element-id */
+  var PII_MAP = {
+    'f-called': 'pii-called',
+    'f-stuck': 'pii-stuck',
+    'f-wrong': 'pii-wrong',
+    'f-loves': 'pii-loves',
+    'f-ahead': 'pii-ahead',
+    'f-tried': 'pii-tried',
+    'f-learns-more': 'pii-learns-more',
+    'f-region': 'pii-region',
+    'f-subject-other': 'pii-subject-other',
+    'f-lang-other': 'pii-lang-other',
+  };
+
+  function checkPII(id) {
+    var wid = PII_MAP[id];
+    if (!wid) return;
+    var el = document.getElementById(id);
+    var warn = document.getElementById(wid);
+    if (!el || !warn) return;
+    var msg = piiMsg(el.value);
+    if (msg) { warn.textContent = msg; warn.hidden = false; }
+    else { warn.textContent = ''; warn.hidden = true; }
+  }
+
+  Object.keys(PII_MAP).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) el.addEventListener('input', function () { checkPII(id); });
+  });
+
+  /* "Other" toggles for subject and lang */
+  var subjectSel = document.getElementById('f-subject');
+  var subjectWrap = document.getElementById('subject-other-wrap');
+  if (subjectSel && subjectWrap) {
+    subjectSel.addEventListener('change', function () {
+      subjectWrap.hidden = this.value !== 'Other';
+    });
+  }
+  var langSel = document.getElementById('f-lang');
+  var langWrap = document.getElementById('lang-other-wrap');
+  if (langSel && langWrap) {
+    langSel.addEventListener('change', function () {
+      langWrap.hidden = this.value !== 'Other';
+    });
+  }
+
+  /* Ref: HS- + 4 chars from safe alphabet */
+  var ALPHA = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
+  function makeRef() {
+    var arr = new Uint8Array(4);
+    crypto.getRandomValues(arr);
+    return 'HS-' + Array.prototype.map.call(arr, function (b) {
+      return ALPHA[b % ALPHA.length];
+    }).join('');
+  }
+
+  /* Helpers */
+  function val(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+  function checks(name) {
+    return Array.prototype.slice.call(
+      document.querySelectorAll('input[name="' + name + '"]:checked')
+    ).map(function (e) { return e.value; });
+  }
+  function radio(name) {
+    var el = document.querySelector('input[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+  /* Flatten multi-line input to one line, trim to 300 chars */
+  function oneLine(s) {
+    return s.replace(/[\r\n]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 300);
+  }
+
+  /* Collect all PII warnings for the summary */
+  function allPiiWarnings() {
+    var out = [];
+    Object.keys(PII_MAP).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el || !el.value.trim()) return;
+      var msg = piiMsg(el.value);
+      if (msg) out.push(msg);
+    });
+    return out;
+  }
+
+  /* Build the note lines */
+  function buildNote(ref) {
+    var lines = ['MetaDAX intake v1', 'Ref: ' + ref, '-- Learner'];
+
+    var called = val('f-called');
+    if (called) lines.push('Called: ' + oneLine(called));
+
+    lines.push('Age: ' + val('f-age'));
+
+    var subject = val('f-subject');
+    if (subject === 'Other') subject = oneLine(val('f-subject-other')) || 'Other';
+    lines.push('Subject: ' + oneLine(subject));
+
+    lines.push('Stuck on: ' + oneLine(val('f-stuck')));
+
+    var wrong = val('f-wrong');
+    if (wrong) lines.push('A real wrong answer: ' + oneLine(wrong));
+
+    lines.push('Loves: ' + oneLine(val('f-loves')));
+
+    var ahead = val('f-ahead');
+    if (ahead) lines.push('Knows more than me about: ' + oneLine(ahead));
+
+    var tried = val('f-tried');
+    if (tried) lines.push('Already tried: ' + oneLine(tried));
+
+    var learns = checks('learns');
+    if (learns.length) lines.push('Learns best: ' + learns.join('; '));
+
+    var learnMore = val('f-learns-more');
+    if (learnMore) lines.push('Also: ' + oneLine(learnMore));
+
+    var sessions = val('f-sessions');
+    if (sessions) lines.push('Sessions: ' + sessions);
+
+    var device = checks('device');
+    if (device.length) lines.push('Uses the page on: ' + device.join('; '));
+
+    lines.push('-- Guide');
+
+    var comfort = val('f-comfort');
+    if (comfort) lines.push('This subject for me: ' + comfort);
+
+    var explain = checks('explain');
+    if (explain.length) lines.push('Explain things to me: ' + explain.join('; '));
+
+    var lang = val('f-lang');
+    if (lang === 'Other') lang = oneLine(val('f-lang-other')) || 'Other';
+    if (lang) lines.push('Language: ' + oneLine(lang));
+
+    var region = val('f-region');
+    if (region) lines.push('Region: ' + oneLine(region));
+
+    lines.push('-- Permissions');
+    lines.push('Keep this note to improve MetaDAX: ' + radio('keep'));
+    lines.push('Use my page as a public sample: ' + (radio('sample') || 'No'));
+
+    return lines.join('\n');
+  }
+
+  /* Make my note */
+  document.getElementById('make-note').addEventListener('click', function () {
+    var errors = [];
+    if (!val('f-age')) errors.push('Please choose an age.');
+    if (!val('f-subject')) errors.push('Please choose a subject.');
+    if (!val('f-stuck')) errors.push('Please describe where they get stuck.');
+    if (!val('f-loves')) errors.push('Please tell us what they love.');
+    if (!radio('keep')) errors.push('Please answer the “May we keep your note” question.');
+
+    var errBox = document.getElementById('form-errors');
+    if (errors.length) {
+      errBox.innerHTML = '<ul>' + errors.map(function (e) {
+        return '<li>' + e + '</li>';
+      }).join('') + '</ul>';
+      errBox.hidden = false;
+      errBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+    errBox.hidden = true;
+
+    var ref = makeRef();
+    var note = buildNote(ref);
+    document.getElementById('note-text').value = note;
+
+    var warnings = allPiiWarnings();
+    var piiSum = document.getElementById('pii-summary');
+    if (warnings.length) {
+      piiSum.innerHTML = '<strong>Note:</strong> Some fields may contain personal information. The note is still ready to send — you decide.<ul>' +
+        warnings.map(function (w) { return '<li>' + w + '</li>'; }).join('') + '</ul>';
+      piiSum.hidden = false;
+    } else {
+      piiSum.hidden = true;
+    }
+
+    var out = document.getElementById('note-output');
+    out.hidden = false;
+    out.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* Copy button: clipboard API with select-all fallback */
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var text = document.getElementById('note-text').value;
+    var ok = document.getElementById('copy-ok');
+
+    function showOK() {
+      ok.hidden = false;
+      setTimeout(function () { ok.hidden = true; }, 2200);
+    }
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(showOK).catch(fallback);
+    } else {
+      fallback();
+    }
+
+    function fallback() {
+      var ta = document.getElementById('note-text');
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      try { document.execCommand('copy'); showOK(); } catch (e) { /* ignore */ }
+    }
+  });
+})();
+</script>
