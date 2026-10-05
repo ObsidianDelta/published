@@ -1,0 +1,305 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import homeschoolData from '../../../../data/homeschool.json';
+const sendTo: string[] = homeschoolData.send_to;
+---
+<Base title="Tell us where your child is stuck — Meta DAX" description="About a dozen short questions. Nothing is saved or sent anywhere. At the end you get a short note to copy and send to Jason.">
+  <section class="page-head">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/homeschool/">Homeschooling</a></p>
+    <h1>Tell us where your child is stuck</h1>
+    <p class="intro">About a dozen short questions. Nothing on this page is saved or sent anywhere. At the end you get a short note to copy and send to Jason. That note is everything he gets. Please leave out names, schools, towns and health details.</p>
+  </section>
+
+  <form id="intake-form" class="form" novalidate>
+    <fieldset class="group">
+      <legend class="group-label">The learner (your child)</legend>
+
+      <div class="field">
+        <label class="label" for="f-called">What should the page call your child?</label>
+        <input class="input" type="text" id="f-called" name="called" autocomplete="off" maxlength="300">
+        <p class="help">A nickname or a made-up name, not their real name. Leave it empty and the page just says "you".</p>
+        <p class="warn-pii" id="pii-called" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-age">How old are they? <span class="req" aria-label="required">*</span></label>
+        <select class="input" id="f-age" name="age" required>
+          <option value="">Choose an age</option>
+          <option>4</option><option>5</option><option>6</option><option>7</option><option>8</option>
+          <option>9</option><option>10</option><option>11</option><option>12</option><option>13</option>
+          <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-subject">Which subject? <span class="req" aria-label="required">*</span></label>
+        <select class="input" id="f-subject" name="subject" required>
+          <option value="">Choose a subject</option>
+          <option>Math</option><option>Reading</option><option>Writing</option>
+          <option>Spelling</option><option>Science</option><option>French</option>
+          <option>Another language</option><option>History or social studies</option>
+          <option value="Other">Other</option>
+        </select>
+        <div id="subject-other-wrap" hidden>
+          <label class="sr-only" for="f-subject-other">Subject (describe it)</label>
+          <input class="input mt-s" type="text" id="f-subject-other" name="subject_other" placeholder="Which subject?" maxlength="300">
+          <p class="warn-pii" id="pii-subject-other" hidden aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-stuck">Where exactly do they get stuck? <span class="req" aria-label="required">*</span></label>
+        <textarea class="input" id="f-stuck" name="stuck" required rows="3" maxlength="600"></textarea>
+        <p class="help">The more exact the better. Example: "adding fractions with different bottom numbers".</p>
+        <p class="warn-pii" id="pii-stuck" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-wrong">A real wrong answer they gave, if you have one</label>
+        <input class="input" type="text" id="f-wrong" name="wrong" maxlength="300">
+        <p class="help">Example: "1/2 + 1/3 = 2/5". This tells us more than anything else.</p>
+        <p class="warn-pii" id="pii-wrong" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-loves">What do they love? <span class="req" aria-label="required">*</span></label>
+        <input class="input" type="text" id="f-loves" name="loves" required maxlength="300">
+        <p class="help">This is what the page gets built through. Example: "Minecraft, horses, hockey cards".</p>
+        <p class="warn-pii" id="pii-loves" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-ahead">Something they know more about than you</label>
+        <input class="input" type="text" id="f-ahead" name="ahead" maxlength="300">
+        <p class="help">A game, a sport, a show, a skill. On their page they get to teach you this.</p>
+        <p class="warn-pii" id="pii-ahead" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-tried">What have you already tried?</label>
+        <textarea class="input" id="f-tried" name="tried" rows="3" maxlength="600"></textarea>
+        <p class="warn-pii" id="pii-tried" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <p class="label" id="learns-label">How do they learn best?</p>
+        <div class="checks" role="group" aria-labelledby="learns-label">
+          <label class="check-item"><input type="checkbox" name="learns" value="Likes games and challenges"> Likes games and challenges</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Hates worksheets"> Hates worksheets</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Goes quiet when wrong"> Goes quiet when wrong</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Needs to move around"> Needs to move around</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Likes to teach someone else"> Likes to teach someone else</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Short bursts work best"> Short bursts work best</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Likes to read it themselves"> Likes to read it themselves</label>
+          <label class="check-item"><input type="checkbox" name="learns" value="Likes it read aloud"> Likes it read aloud</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-learns-more">Anything else about how they learn?</label>
+        <input class="input" type="text" id="f-learns-more" name="learns_more" maxlength="300">
+        <p class="help">Describe what you see, not a diagnosis. Example: "gives up after two misses".</p>
+        <p class="warn-pii" id="pii-learns-more" hidden aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-sessions">How long does a session usually run?</label>
+        <select class="input" id="f-sessions" name="sessions">
+          <option value="">Choose one</option>
+          <option>About 10 to 15 minutes</option>
+          <option>About 20 to 30 minutes</option>
+          <option>45 minutes or more</option>
+          <option>It varies</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <p class="label" id="device-label">Where will they use their page?</p>
+        <div class="checks" role="group" aria-labelledby="device-label">
+          <label class="check-item"><input type="checkbox" name="device" value="Phone"> Phone</label>
+          <label class="check-item"><input type="checkbox" name="device" value="Tablet"> Tablet</label>
+          <label class="check-item"><input type="checkbox" name="device" value="Computer"> Computer</label>
+          <label class="check-item"><input type="checkbox" name="device" value="Printed on paper"> Printed on paper</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="group-label">You (the guide)</legend>
+
+      <div class="field">
+        <label class="label" for="f-comfort">How do you feel about this subject yourself?</label>
+        <select class="input" id="f-comfort" name="comfort">
+          <option value="">Choose one</option>
+          <option>It's a weak spot for me</option>
+          <option>I'm rusty</option>
+          <option>I'm comfortable</option>
+          <option>I know it well</option>
+        </select>
+        <p class="help">There's no wrong answer. Your page is written for where you are.</p>
+      </div>
+
+      <div class="field">
+        <p class="label" id="explain-label">How do you like things explained?</p>
+        <div class="checks" role="group" aria-labelledby="explain-label">
+          <label class="check-item"><input type="checkbox" name="explain" value="Short and plain"> Short and plain</label>
+          <label class="check-item"><input type="checkbox" name="explain" value="Step by step"> Step by step</label>
+          <label class="check-item"><input type="checkbox" name="explain" value="With the why behind it"> With the why behind it</label>
+          <label class="check-item"><input type="checkbox" name="explain" value="With everyday examples"> With everyday examples</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-lang">Which language for the pages?</label>
+        <select class="input" id="f-lang" name="lang">
+          <option value="">Choose one</option>
+          <option>English</option>
+          <option>French</option>
+          <option>Both</option>
+          <option value="Other">Other</option>
+        </select>
+        <div id="lang-other-wrap" hidden>
+          <label class="sr-only" for="f-lang-other">Language (describe it)</label>
+          <input class="input mt-s" type="text" id="f-lang-other" name="lang_other" placeholder="Which language?" maxlength="300">
+          <p class="warn-pii" id="pii-lang-other" hidden aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="f-region">Roughly where are you?</label>
+        <input class="input" type="text" id="f-region" name="region" maxlength="300">
+        <p class="help">Country, or province or state. No town. We use it for local examples (loonies or quarters, hockey or baseball).</p>
+        <p class="warn-pii" id="pii-region" hidden aria-live="polite"></p>
+      </div>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend class="group-label">Permissions</legend>
+
+      <div class="field">
+        <p class="label" id="keep-label">May we keep your note, with nothing identifying in it, to make MetaDAX better? <span class="req" aria-label="required">*</span></p>
+        <div class="radios" role="group" aria-labelledby="keep-label">
+          <label class="radio-item"><input type="radio" name="keep" value="Yes"> Yes</label>
+          <label class="radio-item"><input type="radio" name="keep" value="No"> No, delete it after my page is made</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <p class="label" id="sample-label">May we use your page, with nothing identifying, as a public sample?</p>
+        <div class="radios" role="group" aria-labelledby="sample-label">
+          <label class="radio-item"><input type="radio" name="sample" value="No" checked> No</label>
+          <label class="radio-item"><input type="radio" name="sample" value="Yes"> Yes</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <div id="form-errors" class="err-box" hidden aria-live="polite"></div>
+    <button class="btn" type="button" id="make-note">Make my note</button>
+  </form>
+
+  <section id="note-output" class="note-out" hidden aria-labelledby="note-head">
+    <div id="pii-summary" class="pii-sum" hidden aria-live="polite"></div>
+    <h2 id="note-head" class="section-label">Your note</h2>
+    <textarea class="note-box" id="note-text" readonly aria-label="Your intake note" rows="22"></textarea>
+    <div class="note-row">
+      <button class="btn" type="button" id="copy-btn">Copy</button>
+      <span class="copy-ok" id="copy-ok" hidden aria-live="polite">Copied.</span>
+    </div>
+    <p class="send-line">This is everything Jason gets. {sendTo.join(' ')}</p>
+  </section>
+</Base>
+
+<style>
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f9f9f7;
+      --fg: #1a1a1a;
+      --muted: #555555;
+      --faint: #888888;
+      --line: #dedede;
+      color-scheme: light;
+    }
+  }
+
+  :root {
+    --input-bg: #141414;
+    --input-border: #2e2e2e;
+    --input-focus: #555;
+    --warn-col: #e07840;
+    --err-col: #e07840;
+    --good-col: #5a9e6f;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --input-bg: #ffffff;
+      --input-border: #cccccc;
+      --input-focus: #888888;
+      --warn-col: #c0392b;
+      --err-col: #c0392b;
+      --good-col: #2e7d52;
+    }
+  }
+
+  .page-head { padding-block: 2.5rem 1.5rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1rem; font-size: clamp(1.6rem, 1.2rem + 2vw, 2.25rem); font-weight: 400; line-height: 1.25; letter-spacing: -0.01em; text-wrap: balance; }
+  .intro { margin: 0; color: #cfcfcf; max-width: 40em; }
+  @media (prefers-color-scheme: light) { .intro { color: #444; } }
+
+  .form { padding-block: 2rem; }
+  .group { border: 0; margin: 0 0 2.5rem; padding: 0; }
+  .group-label {
+    display: block; width: 100%; margin: 0 0 1.5rem;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--line);
+    font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .field { margin-bottom: 1.5rem; }
+  .label { display: block; margin-bottom: 0.4rem; font-size: 0.9375rem; color: var(--fg); }
+  p.label { margin: 0 0 0.4rem; }
+  .req { color: var(--warn-col); margin-left: 0.15em; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  .input {
+    display: block; width: 100%;
+    padding: 0.55rem 0.75rem;
+    background: var(--input-bg);
+    color: var(--fg);
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    font-family: inherit; font-size: 1rem; line-height: 1.5;
+    appearance: none; -webkit-appearance: none;
+  }
+  .input:focus { outline: none; border-color: var(--input-focus); box-shadow: 0 0 0 2px var(--input-focus); }
+  select.input { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238c8c8c' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.75rem center; padding-right: 2.25rem; cursor: pointer; }
+  textarea.input { resize: vertical; }
+  .mt-s { margin-top: 0.5rem; }
+  .help { margin: 0.35rem 0 0; font-size: 0.8625rem; color: var(--muted); }
+
+  .checks, .radios { display: flex; flex-direction: column; gap: 0.5rem; }
+  .check-item, .radio-item { display: flex; align-items: baseline; gap: 0.55rem; font-size: 0.9375rem; cursor: pointer; }
+  .check-item input, .radio-item input { flex-shrink: 0; margin: 0; accent-color: var(--fg); width: 1rem; height: 1rem; }
+
+  .warn-pii { margin: 0.35rem 0 0; font-size: 0.8625rem; color: var(--warn-col); }
+  .err-box { margin: 1rem 0; padding: 0.75rem 1rem; background: color-mix(in srgb, var(--err-col) 12%, transparent); border: 1px solid color-mix(in srgb, var(--err-col) 40%, transparent); border-radius: 6px; color: var(--err-col); font-size: 0.9rem; }
+  .err-box ul { margin: 0; padding-left: 1.2rem; }
+  .err-box li + li { margin-top: 0.3rem; }
+
+  .btn { display: inline-flex; align-items: center; padding: 0.6rem 1.4rem; background: var(--fg); color: var(--bg); border: 0; border-radius: 6px; font-family: inherit; font-size: 1rem; font-weight: 500; cursor: pointer; line-height: 1.4; }
+  .btn:hover { opacity: 0.85; }
+  .btn:focus-visible { outline: 2px solid var(--fg); outline-offset: 3px; }
+  #make-note { margin-top: 0.5rem; }
+
+  .note-out { padding-block: 2.5rem 3rem; border-top: 1px solid var(--line); }
+  .section-label { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .note-box { display: block; width: 100%; min-height: 22rem; padding: 0.875rem; background: var(--input-bg); color: var(--fg); border: 1px solid var(--input-border); border-radius: 6px; font-family: 'Courier New', Courier, monospace; font-size: 0.875rem; line-height: 1.6; resize: vertical; }
+  .note-row { display: flex; align-items: center; gap: 1rem; margin-top: 0.75rem; }
+  .copy-ok { font-size: 0.875rem; color: var(--good-col); }
+  .send-line { margin: 1rem 0 0; font-size: 0.9375rem; color: #cfcfcf; }
+  @media (prefers-color-scheme: light) { .send-line { color: #444; } }
+  .pii-sum { margin-bottom: 1rem; padding: 0.75rem 1rem; background: color-mix(in srgb, var(--warn-col) 10%, transparent); border: 1px solid color-mix(in srgb, var(--warn-col) 35%, transparent); border-radius: 6px; color: var(--warn-col); font-size: 0.875rem; }
+  .pii-sum ul { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+  .pii-sum li + li { margin-top: 0.25rem; }
+</style>
