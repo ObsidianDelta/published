@@ -1,0 +1,193 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { byId } from '../_showcase.js';
+
+// /metadax/homeschool/ -- for parents who homeschool, 2026-10-05. The page
+// Jason points homeschooling groups at. Plain words throughout. The Megan and
+// Liam sample is embedded live (same origin, so no CSP work), with a link to
+// open it on its own. The offer at the foot is the one that matters this
+// week: send a real, generic scenario; a sample comes back, free.
+//
+// Rules on this page: a child under eighteen uses their side with the parent
+// beside them; nothing invites a child to chat with an AI; the pages store
+// nothing about anyone; "guide" and "learner"; never "the way".
+
+const s = byId['01-megan-liam'];
+const url = `/metadax/showcase/${s.id}/`;
+---
+<Base title="Meta DAX for homeschooling" description="You know your child. That is the part no system can do. Meta DAX does the rest of the preparing and hands you the next session. Tell us where your child is stuck and we will build you one, free." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Homeschooling</p>
+    <h1>You know your child. That is the part no system can do.</h1>
+    <p class="lede-text">
+      The rest of the preparing, Meta DAX does: what to do next, what you need,
+      what to say and what to skip, the slips that are normal, and a page for
+      your child with something to do in it. After each session you tell it how
+      it went, in a few lines, and the next one comes back shaped by it.
+    </p>
+    <p class="cta"><a href="#offer">Tell us where your child is stuck and we will build you one, free &darr;</a></p>
+  </section>
+
+  <section class="block" aria-labelledby="h-sample">
+    <h2 id="h-sample">A sample: {s.guide} and {s.learner}</h2>
+    <p class="big">{s.guide} homeschools {s.learner}, eleven, who knows his baseball stats cold and wrote 1/2 + 1/3 = 2/5.</p>
+    <p class="body">
+      An inning has six outs, so half an inning is three outs, a third is two,
+      and a half plus a third is five outs out of six. By the end of session one
+      he said &ldquo;oh, it&rsquo;s just outs.&rdquo; This is the page Meta DAX
+      hands them for session four. The first tab is for {s.guide}. The second is
+      for {s.learner}, and it is a game. Try it. Everyone in it is made up.
+    </p>
+    <div class="frame-wrap">
+      <iframe src={url} title={`Sample: ${s.title}, for ${s.guide} and ${s.learner}`} loading="lazy"></iframe>
+    </div>
+    <p class="out">
+      <a href={url}>Open it on its own page &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/showcase/">The other five samples</a>
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-you">
+    <h2 id="h-you">What you get</h2>
+    <div class="cols">
+      <div>
+        <h3>Your side</h3>
+        <ul>
+          <li><strong>Up next.</strong> The plan for the session: what you need (paper, a pencil, bottle caps, twenty minutes), how it goes step by step, what to say, what to skip. One line of <em>why</em> under each step, so it becomes yours.</li>
+          <li><strong>What we&rsquo;ve learned.</strong> About your child, and about you, session by session. &ldquo;Guessing frustrated you. So: guessing became part of the game.&rdquo;</li>
+          <li><strong>When it&rsquo;s tricky.</strong> If he goes quiet after a wrong answer. If you lose track yourself. If the little sister wants in.</li>
+          <li><strong>Tell us and ask.</strong> A note to fill in after the session and send back, and a prompt you can paste into your own AI chat when you want to think it through. You ask. Your child never does.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Your child&rsquo;s side</h3>
+        <ul>
+          <li>A page that looks like their world, not a worksheet: for {s.learner}, a ballpark with a scoreboard.</li>
+          <li>A game with no AI in it. They choose first, then see. Every wrong answer is matched to the exact mistake behind it, with its own explanation. It gets harder after a streak and easier after a miss.</li>
+          <li>The questions they might ask next, answered two levels deep, so you are not caught out by &ldquo;but why?&rdquo;</li>
+          <li><strong>Your turn to lead.</strong> One moment in every session where your child is a step ahead of you on something and teaches you. {s.learner} knew what 5.2 innings meant before his mom did. Session four, he leads the first ten minutes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-why">
+    <h2 id="h-why">Why it is built this way</h2>
+    <p class="big">Everyone is a learner. Whoever is a step ahead, right now, on this, is the guide.</p>
+    <p class="body">
+      You are the guide on your child, on your home, on patience at the end of a
+      long day. Your child is the guide on box scores, or horses, or whatever
+      they know cold, and the page is built through that. The lead swings back
+      and forth on purpose. Learning happens just past what a person can do
+      alone, and not further; the page is there to put the next step within
+      reach for both of you, and then get out of your way.
+    </p>
+    <p class="body">
+      Every time it takes the preparing off you, it hands you back the twenty
+      minutes you would have spent on it, and one question comes with them:
+      what is it that only you can do here? Notice when he goes quiet. Decide
+      whether to push on or stop. Explain it in your own words. That is the
+      measure we build to, and it has a name: <a href="/metadax/#human-delta-value">human
+      delta value</a>, what a person brings. A page that leaves you nothing to
+      bring is a page we got wrong.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-safe">
+    <h2 id="h-safe">What we will not do</h2>
+    <ul class="plain">
+      <li>Nothing invites your child to chat with an AI. Their page is a game and a set of answered questions; they use it with you beside them.</li>
+      <li>No accounts, no sign-up, nothing stored about your child or you on our side. The page keeps a game badge in your own browser and nothing else.</li>
+      <li>No names and nothing that identifies anyone in what you send us, and none in what comes back.</li>
+      <li>The page never leads. It offers one way; it never says &ldquo;this is the way.&rdquo; You decide what to use.</li>
+      <li>You read it before your child does. It was written with help from AI and read in full by a person before it went out, and you are the last check.</li>
+    </ul>
+  </section>
+
+  <section class="block" id="offer" aria-labelledby="h-offer">
+    <h2 id="h-offer">The offer</h2>
+    <p class="big">Tell us where your child is stuck. We will build you a page like this one, free.</p>
+    <p class="body">Send a few lines. No names, nothing that identifies anyone.</p>
+    <ol class="plain">
+      <li>Your child&rsquo;s age, and that you homeschool.</li>
+      <li>The subject, and the exact spot where it keeps going wrong. &ldquo;Fractions with different bottom numbers. He wrote 1/2 + 1/3 = 2/5.&rdquo;</li>
+      <li>What they love. Baseball, horses, Minecraft, baking, the lake. That is what the page gets built through.</li>
+      <li>What you have tried, and what happened.</li>
+      <li>Anything about how they learn: hates worksheets, thinks best standing up, goes quiet when wrong, twenty minutes and then done.</li>
+    </ol>
+    <p class="body">
+      Reply where you found this, or write to Jason on
+      <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>. What
+      comes back is a page like the one above: one side for you, one for your
+      child. Then tell us how session one went, and session two comes back
+      shaped by it. Your scenario, with nothing identifying in it, may become
+      one of the samples here, so that the next parent with the same stuck
+      spot gets a head start.
+    </p>
+    <p class="body">
+      Meta DAX is open and it is free, not freemium, not free-for-some, and it
+      is being built by one person out of his own pocket. If a page helps you,
+      and you can, his note and where to <a href="/#founder">buy him a
+      coffee</a> are on the front page. It goes to him personally, not the
+      Foundation and not the company.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-honest">
+    <h2 id="h-honest">Where this is, honestly</h2>
+    <p class="body">
+      Meta DAX is a research project of the DAX Foundation, open on
+      <a href="https://github.com/daxfoundation/metadax">GitHub</a>. The
+      long-term aim is universal learning: every human being, any subject,
+      free, forever, designed first for someone with five minutes of
+      connectivity a day. The samples here are built one at a time, with help
+      from AI, from what a parent tells us; the system that will one day write a
+      whole course from one sentence has so far only run with a model in both
+      chairs. One of its first planned experiments is exactly this: the records
+      a homeschooling parent would want to keep. Your scenarios are how it
+      starts. <a href="/metadax/">Everything Meta DAX &rarr;</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .cta { margin: 1.5rem 0 0; font-size: 1.05rem; }
+  .cta a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--muted); }
+  .cta a:hover, .cta a:focus-visible { border-bottom-color: currentColor; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  h3 { margin: 0 0 0.5rem; font-size: 1.05rem; font-weight: 500; }
+  .big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; max-width: 30em; }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body, .body + .plain, .plain + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  .plain { margin: 0; padding-left: 1.25rem; max-width: 40em; color: #cfcfcf; }
+  .plain li + li { margin-top: 0.5rem; }
+
+  /* The live sample, embedded. Same origin; the page inside has its own look. */
+  .frame-wrap { margin: 1.5rem 0 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #eef3ea; }
+  .frame-wrap iframe { display: block; width: 100%; height: min(78vh, 760px); border: 0; }
+  .out { margin: 1rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
+  .cols ul { margin: 0; padding-left: 1.1rem; color: #cfcfcf; font-size: 0.9875rem; }
+  .cols li + li { margin-top: 0.5rem; }
+
+  @media (max-width: 40rem) {
+    .cols { grid-template-columns: 1fr; }
+    .frame-wrap iframe { height: 70vh; }
+  }
+</style>

@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Everyone in the Room: a sample page from Meta DAX for Renée, a people-and-culture lead, and Marcus, a new engineering manager, on meetings where everyone is heard. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/04-renee-marcus/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="Everyone in the Room">
+<meta property="og:description" content="Everyone in the Room: a sample page from Meta DAX for Renée, a people-and-culture lead, and Marcus, a new engineering manager, on meetings where everyone is heard. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/04-renee-marcus/">
+<title>Everyone in the Room</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --r-bg:#f4f2f8;--r-surface:#ece8f5;--r-border:#c8bee8;
+  --r-indigo:#5a65b2;--r-indigo-dk:#3d4a90;--r-lilac:#9e8fd0;
+  --r-grey:#8c8699;--r-text:#1e1b2e;--r-text2:#5a5470;
+  --r-card:#fff;--r-tab-act-bg:#5a65b2;--r-tab-act-fg:#fff;
+  --r-tab-in-bg:#ece8f5;--r-tab-in-fg:#5a65b2;
+  --r-badge:#7c70c4;--r-hint:#e8e3f5;--r-hint-bdr:#a897d8;
+  --m-bg:#f0f4f8;--m-surface:#e2ecf5;--m-border:#b5cce0;
+  --m-slate:#3d5a78;--m-slate-dk:#2a3f58;
+  --m-coral:#e8604a;--m-coral-lt:#fdecea;
+  --m-text:#1a2733;--m-text2:#4a6070;--m-card:#fff;
+  --m-tab-act-bg:#3d5a78;--m-tab-act-fg:#fff;
+  --m-tab-in-bg:#e2ecf5;--m-tab-in-fg:#3d5a78;
+  --m-mono:'JetBrains Mono','Courier New',monospace;
+  --m-ok:#d4edda;--m-ok-bdr:#5cb85c;
+  --m-no:#fdecea;--m-no-bdr:#e8604a;
+  --m-mid:#fff8e6;--m-mid-bdr:#d4a820;
+  --m-neutral:#e8f0f8;--m-neutral-bdr:#b5cce0;
+  --radius-s:6px;--radius-m:10px;--radius-l:16px;
+  --shadow-card:0 1px 4px rgba(0,0,0,.06);
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --r-bg:#1a1826;--r-surface:#252236;--r-border:#3d3660;
+    --r-indigo:#8a94d8;--r-indigo-dk:#a8b0e6;--r-lilac:#b8a8e0;
+    --r-grey:#8a849a;--r-text:#f0eeff;--r-text2:#c0b8d8;
+    --r-card:#2a2640;--r-tab-act-bg:#5a65b2;--r-tab-act-fg:#fff;
+    --r-tab-in-bg:#252236;--r-tab-in-fg:#8a94d8;
+    --r-badge:#7c70c4;--r-hint:#2e2850;--r-hint-bdr:#6a5db0;
+    --m-bg:#141e28;--m-surface:#1e2c3a;--m-border:#2e4460;
+    --m-slate:#7aa0c4;--m-slate-dk:#9cbcdc;
+    --m-coral:#f07060;--m-coral-lt:#2a1f1e;
+    --m-text:#e8f2fa;--m-text2:#8aaccc;--m-card:#1e2c3a;
+    --m-tab-act-bg:#3d5a78;--m-tab-act-fg:#fff;
+    --m-tab-in-bg:#1e2c3a;--m-tab-in-fg:#7aa0c4;
+    --m-ok:#1a2e1a;--m-ok-bdr:#5cb85c;
+    --m-no:#2e1a18;--m-no-bdr:#e8604a;
+    --m-mid:#2a2410;--m-mid-bdr:#d4a820;
+    --m-neutral:#1e2c3a;--m-neutral-bdr:#2e4460;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --r-bg:#1a1826;--r-surface:#252236;--r-border:#3d3660;
+  --r-indigo:#8a94d8;--r-indigo-dk:#a8b0e6;--r-lilac:#b8a8e0;
+  --r-grey:#8a849a;--r-text:#f0eeff;--r-text2:#c0b8d8;
+  --r-card:#2a2640;--r-tab-act-bg:#5a65b2;--r-tab-act-fg:#fff;
+  --r-tab-in-bg:#252236;--r-tab-in-fg:#8a94d8;
+  --r-badge:#7c70c4;--r-hint:#2e2850;--r-hint-bdr:#6a5db0;
+  --m-bg:#141e28;--m-surface:#1e2c3a;--m-border:#2e4460;
+  --m-slate:#7aa0c4;--m-slate-dk:#9cbcdc;
+  --m-coral:#f07060;--m-coral-lt:#2a1f1e;
+  --m-text:#e8f2fa;--m-text2:#8aaccc;--m-card:#1e2c3a;
+  --m-tab-act-bg:#3d5a78;--m-tab-act-fg:#fff;
+  --m-tab-in-bg:#1e2c3a;--m-tab-in-fg:#7aa0c4;
+  --m-ok:#1a2e1a;--m-ok-bdr:#5cb85c;
+  --m-no:#2e1a18;--m-no-bdr:#e8604a;
+  --m-mid:#2a2410;--m-mid-bdr:#d4a820;
+  --m-neutral:#1e2c3a;--m-neutral-bdr:#2e4460;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{background:var(--r-bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--r-text);min-height:100vh}
+body.view-marcus{background:var(--m-bg);color:var(--m-text);font-family:'Inter',system-ui,sans-serif}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+.wrap{max-width:820px;margin:0 auto;padding:0 16px 48px}
+.banner{text-align:center;padding:10px 16px;font-size:.8rem;color:var(--r-text2);background:var(--r-surface);border-bottom:1px solid var(--r-border)}
+body.view-marcus .banner{color:var(--m-text2);background:var(--m-surface);border-bottom-color:var(--m-border)}
+.main-tabs{display:flex;justify-content:center;gap:8px;padding:16px 16px 0}
+.mtab{flex:1;max-width:220px;padding:12px 20px;border:none;border-radius:var(--radius-m) var(--radius-m) 0 0;cursor:pointer;font-size:1rem;font-weight:600;transition:background .2s,color .2s}
+.mtab:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+.mtab.mtr{background:var(--r-tab-in-bg);color:var(--r-tab-in-fg);font-family:'DM Sans',system-ui,sans-serif}
+.mtab.mtr[aria-selected="true"]{background:var(--r-tab-act-bg);color:var(--r-tab-act-fg)}
+.mtab.mtm{background:var(--m-tab-in-bg);color:var(--m-tab-in-fg);font-family:'Inter',system-ui,sans-serif}
+.mtab.mtm[aria-selected="true"]{background:var(--m-tab-act-bg);color:var(--m-tab-act-fg)}
+.mpanel{border:1px solid var(--r-border);border-radius:0 0 var(--radius-l) var(--radius-l);background:var(--r-surface)}
+#panel-marcus{background:var(--m-surface);border-color:var(--m-border)}
+.r-stabs{display:flex;flex-wrap:wrap;gap:4px;padding:16px 16px 0;border-bottom:1px solid var(--r-border)}
+.r-stab{padding:8px 14px;border:1px solid var(--r-border);border-bottom:none;border-radius:var(--radius-s) var(--radius-s) 0 0;background:var(--r-surface);color:var(--r-text2);font-family:'DM Sans',system-ui,sans-serif;font-size:.875rem;font-weight:500;cursor:pointer;transition:background .15s}
+.r-stab:hover{background:var(--r-hint)}
+.r-stab[aria-selected="true"]{background:var(--r-card);color:var(--r-indigo);border-color:var(--r-indigo);font-weight:600}
+.r-stab:focus-visible{outline:3px solid var(--r-indigo);outline-offset:2px}
+.rpan{padding:24px 20px 20px}
+.rpan h2{font-size:1.2rem;color:var(--r-indigo);margin-bottom:16px}
+.rpan h3{font-size:1rem;color:var(--r-text);margin:16px 0 8px;font-weight:600}
+.rc{background:var(--r-card);border:1px solid var(--r-border);border-radius:var(--radius-m);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-card)}
+.rc p,.rc li{font-size:.9rem;line-height:1.6;color:var(--r-text)}
+.rc ul{padding-left:18px}
+.rc li{margin-bottom:4px}
+.rlbl{font-size:.75rem;font-weight:700;color:var(--r-lilac);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:6px}
+.rbadge{display:inline-block;background:var(--r-badge);color:#fff;font-size:.72rem;font-weight:700;border-radius:20px;padding:2px 10px;margin-right:6px;vertical-align:middle}
+.rso{background:var(--r-hint);border-left:3px solid var(--r-lilac);border-radius:0 var(--radius-s) var(--radius-s) 0;padding:8px 12px;margin-top:8px;font-size:.875rem;color:var(--r-text2);line-height:1.5}
+.rif{background:var(--r-card);border:1px solid var(--r-border);border-radius:var(--radius-m);padding:14px 16px;margin-bottom:10px}
+.rif .iff{font-size:.78rem;font-weight:700;color:var(--r-grey);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.rif .then{font-size:.9rem;color:var(--r-text);line-height:1.5}
+.swing{background:linear-gradient(135deg,var(--r-hint) 0%,var(--r-surface) 100%);border:1px solid var(--r-lilac);border-radius:var(--radius-m);padding:16px;margin:16px 0}
+.swing .sw-lbl{font-size:.78rem;font-weight:700;color:var(--r-lilac);text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+.swing p{font-size:.9rem;color:var(--r-text);line-height:1.5}
+.m-stabs{display:flex;flex-wrap:wrap;gap:4px;padding:16px 16px 0;border-bottom:1px solid var(--m-border)}
+.m-stab{padding:8px 14px;border:1px solid var(--m-border);border-bottom:none;border-radius:var(--radius-s) var(--radius-s) 0 0;background:var(--m-surface);color:var(--m-text2);font-family:'Inter',system-ui,sans-serif;font-size:.875rem;font-weight:500;cursor:pointer;transition:background .15s}
+.m-stab:hover{background:var(--m-neutral)}
+.m-stab[aria-selected="true"]{background:var(--m-card);color:var(--m-coral);border-color:var(--m-coral);font-weight:600}
+.m-stab:focus-visible{outline:3px solid var(--m-coral);outline-offset:2px}
+.mpan{padding:24px 20px 20px}
+.mpan h2{font-size:1.2rem;color:var(--m-slate);margin-bottom:16px;font-family:'Inter',system-ui,sans-serif}
+.mpan h3{font-size:.95rem;color:var(--m-text);margin:16px 0 8px;font-weight:600}
+.mc{background:var(--m-card);border:1px solid var(--m-border);border-radius:var(--radius-m);padding:16px;margin-bottom:12px;box-shadow:var(--shadow-card)}
+.mc p,.mc li{font-size:.9rem;line-height:1.6;color:var(--m-text)}
+.mc ul{padding-left:18px}
+.mc li{margin-bottom:4px}
+.mlbl{font-family:var(--m-mono);font-size:.7rem;font-weight:500;color:var(--m-slate);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+.mclbl{font-family:var(--m-mono);font-size:.7rem;font-weight:500;color:var(--m-coral);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:6px}
+.mbadge{display:inline-block;background:var(--m-slate);color:#fff;font-family:var(--m-mono);font-size:.68rem;font-weight:500;border-radius:4px;padding:2px 8px;margin-right:6px}
+.sim{border:1px solid var(--m-border);border-radius:var(--radius-m);overflow:hidden}
+.sim-head{background:var(--m-slate);color:#fff;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+.sim-head h3{font-size:.95rem;font-weight:600;color:#fff;font-family:'Inter',system-ui,sans-serif;margin:0}
+.sim-lv{font-family:var(--m-mono);font-size:.68rem;background:rgba(255,255,255,.2);border-radius:3px;padding:2px 8px}
+.sim-body{padding:16px;background:var(--m-card)}
+.sim-sit{font-size:.925rem;line-height:1.55;color:var(--m-text);margin-bottom:14px;font-style:italic}
+.sim-hint{background:var(--m-neutral);border:1px solid var(--m-neutral-bdr);border-radius:var(--radius-s);padding:8px 12px;font-size:.82rem;color:var(--m-text2);margin-bottom:12px}
+.sim-choices{display:flex;flex-direction:column;gap:8px}
+.sim-ch{padding:10px 14px;border:1.5px solid var(--m-border);border-radius:var(--radius-s);background:var(--m-card);color:var(--m-text);font-size:.875rem;text-align:left;cursor:pointer;transition:border-color .15s,background .15s;font-family:'Inter',system-ui,sans-serif;line-height:1.4}
+.sim-ch:hover:not([disabled]){border-color:var(--m-coral);background:var(--m-coral-lt)}
+.sim-ch:focus-visible{outline:3px solid var(--m-coral);outline-offset:2px}
+.sim-ch.ok{border-color:var(--m-ok-bdr);background:var(--m-ok)}
+.sim-ch.no{border-color:var(--m-no-bdr);background:var(--m-no)}
+.sim-ch.mid{border-color:var(--m-mid-bdr);background:var(--m-mid)}
+.sim-fb{margin-top:12px;padding:12px;border-radius:var(--radius-s);font-size:.875rem;line-height:1.5}
+.sim-fb.ok{background:var(--m-ok);border:1px solid var(--m-ok-bdr);color:var(--m-text)}
+.sim-fb.no{background:var(--m-no);border:1px solid var(--m-no-bdr);color:var(--m-text)}
+.sim-fb.mid{background:var(--m-mid);border:1px solid var(--m-mid-bdr);color:var(--m-text)}
+.sim-next{margin-top:12px;padding:10px 20px;background:var(--m-slate);color:#fff;border:none;border-radius:var(--radius-s);font-family:'Inter',system-ui,sans-serif;font-size:.875rem;font-weight:600;cursor:pointer}
+.sim-next:hover{background:var(--m-slate-dk)}
+.sim-next:focus-visible{outline:3px solid var(--m-coral);outline-offset:2px}
+.sim-score{padding:20px;background:var(--m-surface);text-align:center}
+.sim-score p{font-size:.9rem;color:var(--m-text2);margin-bottom:8px}
+.sim-score strong{font-size:1.5rem;color:var(--m-coral);font-family:var(--m-mono)}
+.sim-restart{margin-top:12px;padding:8px 18px;background:var(--m-coral);color:#fff;border:none;border-radius:var(--radius-s);font-family:'Inter',system-ui,sans-serif;font-size:.875rem;cursor:pointer}
+.sim-restart:focus-visible{outline:3px solid var(--m-slate);outline-offset:2px}
+.ck-list{list-style:none;padding:0}
+.ck-list li{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid var(--m-border)}
+.ck-list li:last-child{border-bottom:none}
+.ck-list input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--m-coral);cursor:pointer;flex-shrink:0}
+.ck-lbl{font-size:.9rem;color:var(--m-text);line-height:1.5;cursor:pointer}
+.ck-mono{font-family:var(--m-mono);font-size:.72rem;color:var(--m-text2);display:block;margin-top:2px}
+.ck-list input:checked+div .ck-lbl{text-decoration:line-through;color:var(--m-text2)}
+.joy-pan{background:linear-gradient(135deg,var(--m-neutral) 0%,var(--m-card) 100%);border:2px solid var(--m-coral);border-radius:var(--radius-m);padding:20px;margin-top:8px}
+.joy-pan h3{color:var(--m-coral);margin-bottom:8px;font-family:'Inter',system-ui,sans-serif}
+.joy-pan p{font-size:.9rem;line-height:1.6;color:var(--m-text);margin-bottom:10px}
+.qa{list-style:none;padding:0}
+.qa details{border:1px solid var(--m-border);border-radius:var(--radius-s);margin-bottom:6px;background:var(--m-card)}
+.qa summary{padding:12px 14px;cursor:pointer;font-size:.9rem;font-weight:500;color:var(--m-slate);list-style:none}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::before{content:'+ ';font-family:var(--m-mono);color:var(--m-coral)}
+.qa details[open]>summary::before{content:'- '}
+.qa summary:focus-visible{outline:3px solid var(--m-coral);outline-offset:2px}
+.qa .qa-body{padding:10px 14px 12px;font-size:.875rem;line-height:1.6;color:var(--m-text);border-top:1px solid var(--m-border)}
+.qa details details{border-color:var(--m-border);background:var(--m-surface);margin-top:8px}
+.qa details details summary{font-size:.85rem;color:var(--m-text2)}
+.r-nb{background:var(--r-card);border:1px solid var(--r-border);border-radius:var(--radius-m);padding:16px;margin-bottom:16px}
+.r-pre{font-family:'DM Sans',system-ui,sans-serif;font-size:.875rem;line-height:1.6;color:var(--r-text);white-space:pre-wrap;border:1px solid var(--r-border);border-radius:var(--radius-s);padding:12px;background:var(--r-hint);margin-bottom:10px;overflow-x:auto}
+.r-cpbtn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;background:var(--r-indigo);color:#fff;border:none;border-radius:var(--radius-s);font-family:'DM Sans',system-ui,sans-serif;font-size:.875rem;cursor:pointer}
+.r-cpbtn:hover{background:var(--r-indigo-dk)}
+.r-cpbtn:focus-visible{outline:3px solid var(--r-lilac);outline-offset:2px}
+.r-cpmsg{font-size:.8rem;color:var(--r-text2);margin-left:8px;opacity:0;transition:opacity .3s}
+.r-cpmsg.show{opacity:1}
+.rfb-row{display:flex;gap:10px;margin-top:12px}
+.rfb-btn{flex:1;padding:10px;border:1px solid var(--r-border);border-radius:var(--radius-s);background:var(--r-surface);color:var(--r-text);font-family:'DM Sans',system-ui,sans-serif;font-size:.875rem;cursor:pointer}
+.rfb-btn:hover{background:var(--r-hint)}
+.rfb-btn.sel{background:var(--r-indigo);color:#fff;border-color:var(--r-indigo)}
+.rfb-btn:focus-visible{outline:3px solid var(--r-indigo);outline-offset:2px}
+.rfb-resp{margin-top:10px;padding:10px 12px;background:var(--r-hint);border-radius:var(--radius-s);font-size:.875rem;color:var(--r-text2);display:none}
+.rfb-resp.show{display:block}
+.t2{color:var(--r-text2);font-size:.875rem}
+.mt2{color:var(--m-text2);font-size:.875rem}
+footer{text-align:center;padding:20px 16px;font-size:.78rem;color:var(--r-text2)}
+body.view-marcus footer{color:var(--m-text2)}
+@media(max-width:500px){
+  .r-stabs,.m-stabs{gap:2px}
+  .r-stab,.m-stab{padding:7px 10px;font-size:.8rem}
+  .mtab{font-size:.9rem;padding:10px 14px}
+  .rpan,.mpan{padding:16px 14px}
+}
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<div class="banner">Sample &middot; made-up people &middot; after three check-ins with MetaDAX</div>
+<div class="wrap">
+<div class="main-tabs" role="tablist" aria-label="Guide and learner views">
+  <button role="tab" aria-selected="true" aria-controls="panel-renee" id="tab-renee" class="mtab mtr">For Ren&eacute;e</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-marcus" id="tab-marcus" class="mtab mtm">For Marcus</button>
+</div>
+<div id="panel-renee" role="tabpanel" aria-labelledby="tab-renee" class="mpanel">
+  <div class="r-stabs" role="tablist" aria-label="Ren&eacute;e sections">
+    <button role="tab" aria-selected="true" aria-controls="r-upnext" id="rt-upnext" class="r-stab">Up next</button>
+    <button role="tab" aria-selected="false" aria-controls="r-learned" id="rt-learned" class="r-stab">What we've learned</button>
+    <button role="tab" aria-selected="false" aria-controls="r-steps" id="rt-steps" class="r-stab">The steps</button>
+    <button role="tab" aria-selected="false" aria-controls="r-tricky" id="rt-tricky" class="r-stab">When it's tricky</button>
+    <button role="tab" aria-selected="false" aria-controls="r-tellus" id="rt-tellus" class="r-stab">Tell us &amp; ask</button>
+  </div>
+  <div id="r-upnext" role="tabpanel" aria-labelledby="rt-upnext" class="rpan">
+    <h2>Check-in 4: build the playbook together</h2>
+    <div class="rc">
+      <span class="rlbl">What you need before you meet</span>
+      <p>A shared doc open and ready to edit together. Tell Marcus: "We are going to co-write this; I am just the thinking partner."</p>
+    </div>
+    <div class="rc">
+      <span class="rlbl">How the conversation goes</span>
+      <ul>
+        <li>Start with one question: "What would make this team's meetings feel safe to everyone?" Let Marcus answer first.</li>
+        <li>Introduce the "how I like to raise things" round: each team member states their own preference, in their own words. Suggest Marcus frame it as a question to the team, not a form to fill in.</li>
+        <li>Rotating times: ask Marcus to look at where the late slot has landed so far, then ask: "What would fair rotation look like?" He will figure it out.</li>
+        <li>Decision log: pull up check-in 2. Tunde said meetings rarely decided anything. A one-line entry at the end of each meeting doc is all it takes.</li>
+        <li>Pre-meeting ask: connect it to what Joy told you. Marcus can draft a short message he would send the day before to anyone he wants to present something.</li>
+      </ul>
+    </div>
+    <div class="rc">
+      <span class="rlbl">What to say</span>
+      <p>"You noticed the pattern with Joy. Now you are designing the fix with the team. That is the difference between a rule you make for people and a norm they own."</p>
+    </div>
+    <div class="rc">
+      <span class="rlbl">What not to say</span>
+      <p>Don't say "this is the right way to run meetings." It forecloses the team's voice. Ask questions and let the playbook come from their answers.</p>
+    </div>
+    <div class="swing">
+      <div class="sw-lbl">Your turn to lead</div>
+      <p>Joy is going to run the next retrospective using the async retro format she used at her previous company. Marcus is the learner in that meeting. Help him say to the team: <em>"I haven't done it this way before -- Joy's going to take us through it."</em> That sentence, said out loud, changes what the team sees.</p>
+    </div>
+    <div class="rc">
+      <span class="rlbl">Coaching Marcus without taking over</span>
+      <p>Ask, don't tell. When Marcus gets stuck, try "What do you think is holding this back?" before offering your own view. Amy Edmondson's term for what you are building here is <strong>psychological safety</strong>: the team's belief that they can raise a concern or take a risk without being penalised. Marcus does not need to use that phrase; he needs to act it into existence.</p>
+    </div>
+  </div>
+  <div id="r-learned" role="tabpanel" aria-labelledby="rt-learned" class="rpan" hidden>
+    <h2>What we've learned -- three check-ins in</h2>
+    <h3>About Marcus</h3>
+    <div class="rc">
+      <span class="rbadge">Check-in 1</span>
+      <p style="margin-top:8px">Marcus described the Manila silence as a team-wide pattern: "Manila never speaks up." He had not yet connected it to meeting timing.</p>
+      <div class="rso"><strong>So:</strong> Marcus learns fastest when cause and effect are made visible. Show him the connection, then let him draw the conclusion.</div>
+    </div>
+    <div class="rc">
+      <span class="rbadge">Check-in 2</span>
+      <p style="margin-top:8px">Written updates doubled participation. Marcus was pleased. Tunde's note that meetings rarely decided anything was a signal he hadn't expected.</p>
+      <div class="rso"><strong>So:</strong> Marcus responds to concrete evidence. When something works, name why. When a gap surfaces, treat it as data, not failure.</div>
+    </div>
+    <div class="rc">
+      <span class="rbadge">Check-in 3</span>
+      <p style="margin-top:8px">Marcus called on Joy without warning. He was a little defensive when you raised it. When you asked Joy what would work for her, she gave a clear answer.</p>
+      <div class="rso"><strong>So:</strong> Marcus doesn't always see the impact of small moves. He can accept feedback when it comes with a path forward. What worked: ask the person, not about them.</div>
+    </div>
+    <h3>About you as guide</h3>
+    <div class="rc">
+      <span class="rbadge">Check-in 3</span>
+      <p style="margin-top:8px">You went to Joy directly rather than guessing what was best for her. That kept Marcus's trust and gave Joy agency.</p>
+      <div class="rso"><strong>So:</strong> Keep asking the person. You are already doing the thing Marcus needs to learn -- name it when you do.</div>
+    </div>
+  </div>
+  <div id="r-steps" role="tabpanel" aria-labelledby="rt-steps" class="rpan" hidden>
+    <h2>The steps</h2>
+    <div class="rc">
+      <span class="rbadge">Check-in 1</span><span style="font-size:.9rem;font-weight:600"> Done</span>
+      <p style="margin-top:8px;font-size:.9rem">Named the timing problem. Introduced: agenda a day ahead, written input counts as speaking.</p>
+    </div>
+    <div class="rc">
+      <span class="rbadge">Check-in 2</span><span style="font-size:.9rem;font-weight:600"> Done</span>
+      <p style="margin-top:8px;font-size:.9rem">Written updates doubled participation. Added: every meeting ends with a written decision summary.</p>
+    </div>
+    <div class="rc">
+      <span class="rbadge">Check-in 3</span><span style="font-size:.9rem;font-weight:600"> Done</span>
+      <p style="margin-top:8px;font-size:.9rem">Joy felt put on the spot. Ren&eacute;e asked Joy directly. Joy stated her preference. Added: ask before the meeting, not during it.</p>
+    </div>
+    <div class="rc" style="border-color:var(--r-indigo)">
+      <span class="rbadge" style="background:var(--r-indigo)">Check-in 4</span><span style="font-size:.9rem;font-weight:600;color:var(--r-indigo)"> Next -- this page</span>
+      <p style="margin-top:8px;font-size:.9rem">Team playbook: "how I like to raise things" round, rotating times, decision log, pre-meeting ask. Joy leads the next retro; Marcus is the learner.</p>
+    </div>
+    <div class="rc" style="opacity:.6">
+      <span class="rbadge" style="background:var(--r-grey)">Later</span><span style="font-size:.9rem;font-weight:600;color:var(--r-grey)"> Where this could go</span>
+      <p style="margin-top:8px;font-size:.9rem">Marcus runs a check-in for another new manager at the company, sharing what the team built together.</p>
+    </div>
+  </div>
+  <div id="r-tricky" role="tabpanel" aria-labelledby="rt-tricky" class="rpan" hidden>
+    <h2>When it's tricky</h2>
+    <div class="rif">
+      <div class="iff">If Marcus says</div>
+      <p style="font-style:italic;font-size:.9rem;margin:4px 0 8px">"I already tried asking for input and nobody responded."</p>
+      <div class="then"><strong>Then:</strong> Ask when he sent the ask and what form it took. Usually the gap is timing or channel. A one-line post in a busy shared channel gets ignored; a direct note the day before with a specific question gets a reply. Suggest he try both and compare.</div>
+    </div>
+    <div class="rif">
+      <div class="iff">If Marcus gets defensive about the Joy incident</div>
+      <div class="then"><strong>Then:</strong> Don't debate what happened. Say: "I know you wanted to include her. The good news is she told us exactly what works for her -- most managers never get that." That reframes the moment as useful data.</div>
+    </div>
+    <div class="rif">
+      <div class="iff">If the team pushes back on the playbook</div>
+      <div class="then"><strong>Then:</strong> That is actually the right sign. If they are pushing back, they are engaged. Help Marcus hear objections as input, not resistance: "What would make this work for you?"</div>
+    </div>
+    <div class="rif">
+      <div class="iff">If Marcus wants to write the whole playbook himself</div>
+      <div class="then"><strong>Then:</strong> He can draft it -- but he needs to share it as a starting point, not a finished document. Suggest subject line: "Draft for our input round -- please tell me what I got wrong."</div>
+    </div>
+    <div class="rif">
+      <div class="iff">If you feel stuck as the guide</div>
+      <div class="then"><strong>Then:</strong> That is often a sign you are ahead of Marcus. Come back one step. Ask him where he is, not where you think he should be. Use the "Tell us &amp; ask" tab to get a thinking-partner prompt.</div>
+    </div>
+    <div class="rif">
+      <div class="iff">If Joy's retro idea meets resistance from the team</div>
+      <div class="then"><strong>Then:</strong> Help Marcus stay the learner. His job in that meeting is to follow Joy's lead and say so. If the team resists the format, that is a retro outcome -- worth naming in the decision log.</div>
+    </div>
+  </div>
+  <div id="r-tellus" role="tabpanel" aria-labelledby="rt-tellus" class="rpan" hidden>
+    <h2>Tell us how check-in 4 goes</h2>
+    <div class="r-nb">
+      <span class="rlbl">Sample note to copy and send back to MetaDAX</span>
+      <pre id="rnote" class="r-pre">Check-in 4 done.
+
+What worked: 
+What surprised me:
+What Marcus found hardest:
+Joy's reaction when Marcus said she would lead the retro:
+One thing I would do differently:</pre>
+      <button class="r-cpbtn" id="cp-note">Copy note</button>
+      <span class="r-cpmsg" id="cp-note-msg">Copied</span>
+    </div>
+    <div class="r-nb">
+      <span class="rlbl">Prompt for your own AI -- paste into any chat</span>
+      <pre id="raiprompt" class="r-pre">I am coaching a new engineering manager (Marcus) on running inclusive meetings across three time zones. We have had three sessions. In the last one he called on a team member (Joy) without warning; she later said it felt like being put on the spot. For the next session we are co-writing a team playbook: a "how I like to raise things" round, rotating meeting times, a decision log, and a practice of asking people before the meeting if they want to present something. Joy is going to lead the next retrospective and Marcus has agreed to be the learner in that meeting.
+
+My question: [type your question here]</pre>
+      <button class="r-cpbtn" id="cp-ai">Copy prompt</button>
+      <span class="r-cpmsg" id="cp-ai-msg">Copied</span>
+    </div>
+    <p class="t2" style="margin-bottom:10px">Did the plan for check-in 4 help?</p>
+    <div class="rfb-row">
+      <button class="rfb-btn" id="rfb-yes">Yes</button>
+      <button class="rfb-btn" id="rfb-notyet">Not yet</button>
+    </div>
+    <div class="rfb-resp" id="rfb-resp"></div>
+  </div>
+</div>
+<div id="panel-marcus" role="tabpanel" aria-labelledby="tab-marcus" class="mpanel" hidden>
+  <div class="m-stabs" role="tablist" aria-label="Marcus sections">
+    <button role="tab" aria-selected="true" aria-controls="m-ci4" id="mt-ci4" class="m-stab">Check-in 4</button>
+    <button role="tab" aria-selected="false" aria-controls="m-sim" id="mt-sim" class="m-stab">Meeting Sim</button>
+    <button role="tab" aria-selected="false" aria-controls="m-pb" id="mt-pb" class="m-stab">Your Playbook</button>
+    <button role="tab" aria-selected="false" aria-controls="m-joy" id="mt-joy" class="m-stab">Joy Leads</button>
+  </div>
+  <div id="m-ci4" role="tabpanel" aria-labelledby="mt-ci4" class="mpan">
+    <h2>Check-in 4: you write it with them</h2>
+    <div class="mc">
+      <span class="mclbl">What is happening</span>
+      <p>You and Ren&eacute;e are building a team playbook together. Not a policy -- a living doc the team owns. Four things go in it.</p>
+    </div>
+    <div class="mc">
+      <span class="mlbl">Item 1 -- how I like to raise things</span>
+      <p>Send one question to the team: <em>"When you have a concern or an idea, what is the best way to bring it up with me?"</em> Collect their answers. Put them in the doc, one line per person, their words, not yours.</p>
+      <p style="margin-top:8px;font-size:.85rem;color:var(--m-text2)">What Joy told you: "Ask me before the meeting if I'm okay to present it, and I'll come ready." That goes in the doc verbatim, with her name on it.</p>
+    </div>
+    <div class="mc">
+      <span class="mlbl">Item 2 -- rotating meeting time</span>
+      <p>Look at the last two months of standups. Who has held the late slot? Rotate it. No one should always hold the inconvenient time. Document the rotation so the whole team can see it.</p>
+    </div>
+    <div class="mc">
+      <span class="mlbl">Item 3 -- decision log</span>
+      <p>One line at the end of every meeting doc: <strong>Decision:</strong> [what was decided] &nbsp;&nbsp; <strong>Owner:</strong> [who acts on it] &nbsp;&nbsp; <strong>By:</strong> [timeframe]. Tunde said decisions were not landing. This fixes it.</p>
+    </div>
+    <div class="mc">
+      <span class="mlbl">Item 4 -- pre-meeting ask</span>
+      <p>Before any meeting where you want someone to present: send a direct message the day before. "Hey -- in tomorrow's call I'd like to bring up [topic]. Would you be comfortable presenting your side? No pressure if not." If the answer is no, you present it and name them in the notes.</p>
+    </div>
+    <div class="joy-pan">
+      <span class="mclbl">Your turn to learn</span>
+      <h3>Joy runs the next retro</h3>
+      <p>Joy has run async retrospectives before. She is going to lead the team's next one. Your job in that meeting: follow her format, ask questions as a participant, and tell the team you are learning.</p>
+      <p>Say it out loud: <em>"I haven't run it this way before -- Joy's going to walk us through it."</em></p>
+      <p style="font-size:.85rem;color:var(--m-text2)">What changes when you say it: the team sees that you credit people, that you can be the learner too, and that Joy's expertise matters. Three things land in one sentence.</p>
+    </div>
+  </div>
+  <div id="m-sim" role="tabpanel" aria-labelledby="mt-sim" class="mpan" hidden>
+    <h2>Meeting Simulator</h2>
+    <p class="mt2" style="margin-bottom:16px">A situation comes up. Pick your move. See what happens and why. Difficulty adjusts as you go.</p>
+    <div class="sim">
+      <div class="sim-head">
+        <h3 id="sim-title">Loading...</h3>
+        <span class="sim-lv" id="sim-lv">Level 1</span>
+      </div>
+      <div class="sim-body" id="sim-body">
+        <p class="sim-sit" id="sim-sit"></p>
+        <div class="sim-hint" id="sim-hint" hidden></div>
+        <div class="sim-choices" id="sim-choices"></div>
+        <div class="sim-fb" id="sim-fb" hidden></div>
+        <button class="sim-next" id="sim-next" hidden>Next situation</button>
+      </div>
+      <div class="sim-score" id="sim-score" hidden>
+        <p>You worked through all the situations.</p>
+        <strong id="sim-score-n"></strong>
+        <p id="sim-score-msg" style="margin-top:8px"></p>
+        <button class="sim-restart" id="sim-restart">Try again</button>
+      </div>
+    </div>
+  </div>
+  <div id="m-pb" role="tabpanel" aria-labelledby="mt-pb" class="mpan" hidden>
+    <h2>Your Playbook Checklist</h2>
+    <p class="mt2" style="margin-bottom:16px">Tick these off as you build. Progress saves in this browser.</p>
+    <ul class="ck-list" id="pb-list">
+      <li>
+        <input type="checkbox" id="pb1" data-k="pb1">
+        <div><label class="ck-lbl" for="pb1">Ask the team: "When you have a concern or idea, what is the best way to bring it up with me?"</label><span class="ck-mono">how-i-like-to-raise-things</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb2" data-k="pb2">
+        <div><label class="ck-lbl" for="pb2">Collect each person's answer in their own words and put it in the team doc.</label><span class="ck-mono">preference-doc</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb3" data-k="pb3">
+        <div><label class="ck-lbl" for="pb3">Review the last two months of standups -- who held the late slot? Set up a rotation.</label><span class="ck-mono">rotating-times</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb4" data-k="pb4">
+        <div><label class="ck-lbl" for="pb4">Add a decision log template to your meeting doc: Decision / Owner / Timeframe.</label><span class="ck-mono">decision-log</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb5" data-k="pb5">
+        <div><label class="ck-lbl" for="pb5">Before the next meeting where someone presents: send a direct message the day before to ask.</label><span class="ck-mono">pre-meeting-ask</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb6" data-k="pb6">
+        <div><label class="ck-lbl" for="pb6">Tell the team Joy is leading the retro and that you are learning the format from her.</label><span class="ck-mono">joy-leads-retro</span></div>
+      </li>
+      <li>
+        <input type="checkbox" id="pb7" data-k="pb7">
+        <div><label class="ck-lbl" for="pb7">After the retro: add any new preferences or formats the team agrees on to the playbook.</label><span class="ck-mono">update-after-retro</span></div>
+      </li>
+    </ul>
+  </div>
+  <div id="m-joy" role="tabpanel" aria-labelledby="mt-joy" class="mpan" hidden>
+    <h2>Joy Leads: async retro</h2>
+    <div class="mc">
+      <span class="mclbl">What Joy is doing</span>
+      <p>Joy ran async retrospectives at her previous company. Everyone writes their notes before the meeting; Joy groups them; the meeting is spent discussing patterns, not reading updates aloud.</p>
+      <p style="margin-top:8px;font-size:.85rem;color:var(--m-text2)">Why it works well for a distributed team: people in different time zones contribute their full thinking before the call. The call itself is more substantive.</p>
+    </div>
+    <div class="mc">
+      <span class="mlbl">Your part in that meeting</span>
+      <ul>
+        <li>Follow Joy's instructions. She is the facilitator.</li>
+        <li>Ask questions as a participant, not as a manager checking the format.</li>
+        <li>If you want to redirect something, ask Joy first: "Should I weigh in here, or do you want to handle it?"</li>
+        <li>Say at the start: "I haven't done it this way before -- Joy's going to walk us through it."</li>
+      </ul>
+    </div>
+    <div class="mc" style="margin-bottom:6px"><span class="mlbl">Questions you might have</span></div>
+    <ul class="qa">
+      <li>
+        <details>
+          <summary>What if the team keeps directing questions to me during the retro?</summary>
+          <div class="qa-body">
+            <p>Answer questions about the team's work -- that is still your domain. But if the question is about the retro format, redirect: "That is Joy's call." Maintaining that boundary keeps her authority intact.</p>
+            <details>
+              <summary>What if they keep doing it even after I redirect?</summary>
+              <div class="qa-body"><p>Name it directly: "I notice questions keep coming to me -- I want to make sure Joy has the floor here." That one sentence usually resets the dynamic. If it persists, check in with Joy after the meeting: did she feel supported?</p></div>
+            </details>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>What if the async format feels slow or awkward?</summary>
+          <div class="qa-body">
+            <p>Async formats often feel different the first time -- that is normal. Wait until after the retro to form a view. Joy has run this before; your job is to run it once before judging it.</p>
+            <details>
+              <summary>What if the team says they prefer the old way?</summary>
+              <div class="qa-body"><p>That is a legitimate outcome. Add it to the decision log and discuss it openly. Joy's expertise is respected whether the team adopts the format or not.</p></div>
+            </details>
+          </div>
+        </details>
+      </li>
+      <li>
+        <details>
+          <summary>What if I feel like I should step in to fix something?</summary>
+          <div class="qa-body">
+            <p>Pause and ask: is this a safety issue, or is it just uncomfortable? If it is uncomfortable -- silence, disagreement, a slow pace -- that is Joy's retro to manage. Nine times out of ten it is discomfort, not danger.</p>
+            <details>
+              <summary>How do I tell the difference in the moment?</summary>
+              <div class="qa-body"><p>Ask yourself: "If I say nothing for 90 more seconds, will someone be harmed?" If no, wait. Joy has run this before. Give her the 90 seconds.</p></div>
+            </details>
+          </div>
+        </details>
+      </li>
+    </ul>
+  </div>
+</div>
+<footer>A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</footer>
+</div>
+<script>
+(function(){
+'use strict';
+var mainTabs=document.querySelectorAll('.mtab');
+var mainPanels=document.querySelectorAll('.mpanel');
+mainTabs.forEach(function(tab){
+  tab.addEventListener('click',function(){
+    mainTabs.forEach(function(t){t.setAttribute('aria-selected','false');});
+    mainPanels.forEach(function(p){p.hidden=true;});
+    tab.setAttribute('aria-selected','true');
+    document.getElementById(tab.getAttribute('aria-controls')).hidden=false;
+    if(tab.id==='tab-marcus') document.body.classList.add('view-marcus');
+    else document.body.classList.remove('view-marcus');
+  });
+});
+function initSubTabs(groupEl){
+  var tabs=groupEl.querySelectorAll('[role="tab"]');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){t.setAttribute('aria-selected','false');});
+      var parent=groupEl.parentElement;
+      parent.querySelectorAll(':scope>[role="tabpanel"]').forEach(function(p){p.hidden=true;});
+      tab.setAttribute('aria-selected','true');
+      document.getElementById(tab.getAttribute('aria-controls')).hidden=false;
+    });
+  });
+}
+initSubTabs(document.querySelector('.r-stabs'));
+initSubTabs(document.querySelector('.m-stabs'));
+function setupCopy(btnId,srcId,msgId){
+  var btn=document.getElementById(btnId);
+  if(!btn) return;
+  btn.addEventListener('click',function(){
+    var text=document.getElementById(srcId).textContent;
+    var msg=document.getElementById(msgId);
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        msg.classList.add('show');
+        setTimeout(function(){msg.classList.remove('show');},2500);
+      }).catch(function(){fallbackCopy(srcId,msg);});
+    } else { fallbackCopy(srcId,msg); }
+  });
+}
+function fallbackCopy(srcId,msg){
+  var el=document.getElementById(srcId);
+  var sel=window.getSelection();
+  var range=document.createRange();
+  range.selectNodeContents(el);
+  sel.removeAllRanges();
+  sel.addRange(range);
+  msg.textContent='Select and copy (Ctrl+C / Cmd+C)';
+  msg.classList.add('show');
+}
+setupCopy('cp-note','rnote','cp-note-msg');
+setupCopy('cp-ai','raiprompt','cp-ai-msg');
+var fbYes=document.getElementById('rfb-yes');
+var fbNo=document.getElementById('rfb-notyet');
+var fbResp=document.getElementById('rfb-resp');
+if(fbYes){
+  fbYes.addEventListener('click',function(){
+    fbYes.classList.add('sel');fbNo.classList.remove('sel');
+    fbResp.textContent='Glad it helped. Send your note after check-in 4 and we will update what we know about Marcus.';
+    fbResp.classList.add('show');
+  });
+}
+if(fbNo){
+  fbNo.addEventListener('click',function(){
+    fbNo.classList.add('sel');fbYes.classList.remove('sel');
+    fbResp.textContent='Use the prompt in your own AI chat to dig into what feels off. Then tell us in your note -- the more specific the better.';
+    fbResp.classList.add('show');
+  });
+}
+document.querySelectorAll('#pb-list input[type="checkbox"]').forEach(function(cb){
+  var k='mdx-04-'+cb.dataset.k;
+  try{if(localStorage.getItem(k)==='1') cb.checked=true;}catch(e){}
+  cb.addEventListener('change',function(){
+    try{localStorage.setItem(k,cb.checked?'1':'0');}catch(e){}
+  });
+});
+var SITS=[
+  {id:'silence',diff:1,title:'The pause',
+   text:'You ask "Any thoughts on this?" in the standup. Long pause. No one speaks.',
+   hint:'Hint: Written input counts as speaking. What did you introduce in check-in 1?',
+   choices:[
+    {text:'Move on: "Okay, let\'s go to the next item."',result:'no',fb:'Closing on silence cuts off input, especially from people joining at an off hour. You will not know whether people agree or simply had no time to speak.'},
+    {text:'Open async: "I\'ll leave this open in the meeting doc until tomorrow -- written thoughts count."',result:'ok',fb:'That works. Async space includes the whole team, not just people in a convenient time slot. This is what you introduced in check-in 1.'},
+    {text:'Call on Joy: "Joy, what do you think?"',result:'no',fb:'Joy asked to be asked before the meeting, not during it. Calling on her without a heads-up is the same pattern she flagged after check-in 3.'},
+    {text:'Go around the room: "Let\'s hear from each person."',result:'mid',fb:'Going around can surface voices, but without a pre-ask it can feel sudden. If you want to try this, send a heads-up before the meeting.'}
+  ]},
+  {id:'dominate',diff:1,title:'One voice filling the room',
+   text:'One team member has spoken for the last four minutes. Others have gone quiet. Two people have turned off their cameras.',
+   hint:'Hint: You can redirect without naming anyone. Validate what was said, then open the floor.',
+   choices:[
+    {text:'Wait -- they will wrap up.',result:'no',fb:'Waiting reinforces the pattern. Once cameras are off you have lost those people for this call.'},
+    {text:'"That is useful context -- let me capture it in the notes and hear from others."',result:'ok',fb:'You validate the speaker and open the floor without embarrassing anyone. Naming the notes signals you are tracking what was said.'},
+    {text:'"Let me stop you there -- others need a turn."',result:'no',fb:'Publicly cutting someone off creates friction that can last past this call. A softer redirect works and causes less damage.'},
+    {text:'"Let\'s take that thread into the doc -- who else has thoughts on the main question?"',result:'ok',fb:'Offering async continuation and opening the floor at the same time works well. Make sure the doc is actually linked and open.'}
+  ]},
+  {id:'lateslot',diff:2,title:'Running long in the late slot',
+   text:'Tunde has held the late slot three standups in a row. The meeting ran long. You are now in his late evening. One agenda item is left.',
+   hint:'Hint: Fair rotation is in your playbook. Can this item close async?',
+   choices:[
+    {text:'"Can everyone stay 10 more minutes?"',result:'no',fb:'Ten minutes is a large ask for someone already in a late slot. And the rotation problem is the real issue: Tunde always gets the late time.'},
+    {text:'"I\'ll table this item -- we will decide it async. I\'ll post the summary in the doc before end of day."',result:'ok',fb:'You protect Tunde\'s time and commit to following through in writing. Decisions do not have to happen in the room -- they have to happen.'},
+    {text:'"Tunde, do you mind staying? Just one more item."',result:'no',fb:'Asking him to stay puts him in a spot where saying no feels awkward. Do not make the late-slot person the one who has to push back.'},
+    {text:'"Note for next time: Tunde has had the late slot three times. Let\'s fix the rotation."',result:'mid',fb:'Naming the pattern is right. But this item still hangs open. Combine this with tabling it and committing to an async close -- then actually send the summary.'}
+  ]},
+  {id:'chat',diff:2,title:'Concern in the chat',
+   text:'While you present a timeline, Joy posts three messages in the group chat: a question, a concern about the estimate, and "this feels rushed." The verbal discussion has not touched any of it.',
+   hint:'Hint: Written input counts as speaking. What happens if you ignore it?',
+   choices:[
+    {text:'Continue verbally. Address the chat after.',result:'no',fb:'People who contribute in chat and are then talked over learn the chat is not a real channel. Joy already hesitates to speak verbally -- if written input is also ignored, you lose her input entirely.'},
+    {text:'"I\'m seeing some important notes in the chat -- let me read them out."',result:'ok',fb:'Reading the chat aloud brings Joy\'s voice into the room. It tells the whole team that written input is real input, not background noise.'},
+    {text:'"Joy, can you summarise your chat messages for us?"',result:'no',fb:'This asks Joy to do the work of being heard verbally, without warning. It is a smaller version of the check-in 3 pattern.'},
+    {text:'"Let\'s pause and everyone catch up on the chat."',result:'mid',fb:'Pausing is better than ignoring. But reading the notes yourself is more reliable -- you control the pacing and ensure each concern is named.'}
+  ]},
+  {id:'drift',diff:3,title:'Agreement without a decision',
+   text:'Twenty minutes of good discussion about a new deployment process. Broad agreement in the room. No one has stated the decision. Five minutes left.',
+   hint:'Hint: Decision log -- Decision / Owner / Timeframe. Write it before the call ends.',
+   choices:[
+    {text:'Close the meeting -- people know what was decided.',result:'no',fb:'They do not. Three people will remember three slightly different things. Tunde said in check-in 2 that meetings rarely decided anything -- this is exactly that pattern.'},
+    {text:'"Let me write this in the doc right now -- [reads it back]. Does that capture it?"',result:'ok',fb:'Writing it in the room and reading it back surfaces any remaining disagreement before people leave. Decision / Owner / Timeframe. You have five minutes -- use two of them.'},
+    {text:'"We\'re agreed. I\'ll send a summary later."',result:'no',fb:'"Later" often means the summary arrives after people have acted on different assumptions. Write it before the meeting ends.'},
+    {text:'"Let\'s vote to confirm, then move on."',result:'mid',fb:'A vote closes the question but without writing it down the outcome still drifts. Vote and write -- in that order, before the call ends.'}
+  ]},
+  {id:'preask',diff:3,title:'The presentation ask',
+   text:"You want Joy to walk the team through the QA findings in tomorrow's standup. The meeting is in 18 hours.",
+   hint:"Hint: Joy's exact words: \"Ask me before the meeting if I'm okay to present it, and I'll come ready.\"",
+   choices:[
+    {text:'Ask in tomorrow\'s standup: "Joy, can you walk us through QA?"',result:'no',fb:'Joy said: "Ask me before the meeting." Asking in the meeting is the pattern she flagged. She will present -- but without the prep time she asked for.'},
+    {text:'Send Joy a direct message now: "Tomorrow I\'d like to include QA findings -- would you be okay to walk the team through them? No pressure if not."',result:'ok',fb:'This is exactly what Joy asked for. She gets to say yes with time to prepare, or say no without it being awkward. Both answers are fine -- and you said so.'},
+    {text:'Put it in the agenda doc and assume she will see it.',result:'no',fb:'The agenda is a public signal, not a direct ask. Joy asked for a personal message before the meeting -- an agenda item does not give her the opt-out she asked for.'},
+    {text:'Ask in the group chat: "Anyone able to present QA tomorrow?"',result:'no',fb:'Group asks put pressure on everyone at once. Joy may feel unable to say no in front of the group even if she is not ready. Direct ask, private channel.'}
+  ]}
+];
+var simStreak=0,simLevel=1,simPlayed=new Set(),simCorrect=0,simTotal=0;
+function getNextSit(){
+  var allowed=simLevel===1?[1]:simLevel===2?[1,2]:[1,2,3];
+  var cands=SITS.filter(function(s){return !simPlayed.has(s.id)&&allowed.indexOf(s.diff)>=0;});
+  if(!cands.length) cands=SITS.filter(function(s){return !simPlayed.has(s.id);});
+  return cands.length?cands[0]:null;
+}
+function renderSit(sit){
+  document.getElementById('sim-title').textContent=sit.title;
+  document.getElementById('sim-sit').textContent=sit.text;
+  document.getElementById('sim-lv').textContent='Level '+simLevel;
+  var hintEl=document.getElementById('sim-hint');
+  if(simLevel===1){hintEl.textContent=sit.hint;hintEl.hidden=false;}
+  else hintEl.hidden=true;
+  var choicesEl=document.getElementById('sim-choices');
+  choicesEl.innerHTML='';
+  sit.choices.forEach(function(c,i){
+    var btn=document.createElement('button');
+    btn.className='sim-ch';
+    btn.textContent=c.text;
+    (function(idx){btn.addEventListener('click',function(){handleChoice(sit,idx);});})(i);
+    choicesEl.appendChild(btn);
+  });
+  document.getElementById('sim-fb').hidden=true;
+  document.getElementById('sim-next').hidden=true;
+  document.getElementById('sim-body').style.display='';
+  document.getElementById('sim-score').hidden=true;
+}
+function handleChoice(sit,idx){
+  var choice=sit.choices[idx];
+  simTotal++;
+  document.querySelectorAll('.sim-ch').forEach(function(el,i){
+    el.disabled=true;
+    el.classList.add(sit.choices[i].result);
+  });
+  var fbEl=document.getElementById('sim-fb');
+  fbEl.hidden=false;
+  fbEl.className='sim-fb '+choice.result;
+  fbEl.textContent=choice.fb;
+  if(choice.result==='ok'){
+    simCorrect++;simStreak++;
+    if(simStreak>=2){simLevel=Math.min(3,simLevel+1);simStreak=0;}
+  } else {
+    simStreak=0;
+    if(choice.result==='no') simLevel=Math.max(1,simLevel-1);
+  }
+  simPlayed.add(sit.id);
+  document.getElementById('sim-next').hidden=false;
+}
+function resetSim(){
+  simStreak=0;simLevel=1;simPlayed=new Set();simCorrect=0;simTotal=0;
+  var sit=getNextSit();
+  if(sit) renderSit(sit);
+}
+document.getElementById('sim-next').addEventListener('click',function(){
+  var next=getNextSit();
+  if(next){
+    renderSit(next);
+  } else {
+    document.getElementById('sim-body').style.display='none';
+    document.getElementById('sim-score').hidden=false;
+    var pct=simTotal>0?Math.round(simCorrect/simTotal*100):0;
+    document.getElementById('sim-score-n').textContent=simCorrect+' / '+simTotal+' correct';
+    var msg=pct>=80?'Strong. You are applying what the team built together.':pct>=60?'Good progress. The harder situations are worth revisiting.':'These patterns take practice. Try again and see what shifts.';
+    document.getElementById('sim-score-msg').textContent=msg;
+  }
+});
+document.getElementById('sim-restart').addEventListener('click',resetSim);
+resetSim();
+})();
+</script>
+
+</body>
+</html>

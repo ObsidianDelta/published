@@ -1,0 +1,1087 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The Six-Out Inning: a sample page from Meta DAX for Megan, who homeschools, and Liam, 11, on adding fractions with different bottom numbers, through baseball. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/01-megan-liam/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="The Six-Out Inning">
+<meta property="og:description" content="The Six-Out Inning: a sample page from Meta DAX for Megan, who homeschools, and Liam, 11, on adding fractions with different bottom numbers, through baseball. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/01-megan-liam/">
+<title>The Six-Out Inning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&family=Lilita+One&display=swap" rel="stylesheet">
+<style>
+:root {
+  color-scheme: light;
+  --bg: #eef3ea;
+  --surface: #ffffff;
+  --surface2: #edf2ed;
+  --text: #2c3428;
+  --text-muted: #5c6b56;
+  --accent: #4a7a53;
+  --accent2: #b87e2a;
+  --border: #c6d4be;
+  --tab-active: #4a7a53;
+  --tab-active-text: #ffffff;
+  --card-shadow: 0 2px 8px rgba(74,122,83,0.10);
+  --radius: 12px;
+  --font-head: 'Lora', Georgia, serif;
+  --font-body: 'Nunito', 'Arial Rounded MT Bold', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #1b2419;
+    --surface: #242e22;
+    --surface2: #1e2a1c;
+    --text: #dce6d4;
+    --text-muted: #8aa480;
+    --accent: #78b880;
+    --accent2: #d4a040;
+    --border: #384e34;
+    --tab-active: #78b880;
+    --tab-active-text: #1b2419;
+    --card-shadow: 0 2px 8px rgba(0,0,0,0.35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1b2419;
+  --surface: #242e22;
+  --surface2: #1e2a1c;
+  --text: #dce6d4;
+  --text-muted: #8aa480;
+  --accent: #78b880;
+  --accent2: #d4a040;
+  --border: #384e34;
+  --tab-active: #78b880;
+  --tab-active-text: #1b2419;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+
+body.liam-active {
+  --bg: #e6f3fc;
+  --surface: #ffffff;
+  --surface2: #cce8f8;
+  --text: #0d2137;
+  --text-muted: #2a5a7a;
+  --accent: #1878c0;
+  --accent2: #d49000;
+  --accent3: #2a8650;
+  --border: #a8d4f0;
+  --tab-active: #1878c0;
+  --tab-active-text: #ffffff;
+  --card-shadow: 4px 4px 0 rgba(0,0,0,0.14);
+  --radius: 8px;
+  --font-head: 'Lilita One', 'Arial Black', Arial, sans-serif;
+  --font-body: 'Nunito', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  body.liam-active:not([data-theme="light"]) {
+    --bg: #091827;
+    --surface: #0d2137;
+    --surface2: #0f2a47;
+    --text: #e0f2fc;
+    --text-muted: #70b4dc;
+    --accent: #36aadc;
+    --accent2: #f0c020;
+    --accent3: #48c070;
+    --border: #183c5e;
+    --tab-active: #36aadc;
+    --tab-active-text: #091827;
+    --card-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+  }
+}
+body.liam-active[data-theme="dark"] {
+  --bg: #091827;
+  --surface: #0d2137;
+  --surface2: #0f2a47;
+  --text: #e0f2fc;
+  --text-muted: #70b4dc;
+  --accent: #36aadc;
+  --accent2: #f0c020;
+  --accent3: #48c070;
+  --border: #183c5e;
+  --tab-active: #36aadc;
+  --tab-active-text: #091827;
+  --card-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background 0.18s, color 0.18s;
+}
+.sample-bar {
+  background: var(--surface2);
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  text-align: center;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: 0.02em;
+}
+.wrap { max-width: 700px; margin: 0 auto; padding: 0 16px; }
+
+.main-tablist {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  padding: 16px 16px 0;
+  max-width: 700px;
+  margin: 0 auto;
+  gap: 4px;
+}
+.main-tab-btn {
+  padding: 10px 22px;
+  border: none;
+  background: none;
+  font-family: var(--font-head);
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-radius: 8px 8px 0 0;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.main-tab-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.main-tab-btn[aria-selected="true"] {
+  color: var(--tab-active);
+  border-bottom-color: var(--tab-active);
+  font-weight: 600;
+}
+.tab-panel { padding: 4px 0 40px; }
+
+.sub-tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 0 12px;
+}
+.sub-tab-btn {
+  padding: 6px 15px;
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text-muted);
+  border-radius: 20px;
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  cursor: pointer;
+  transition: all 0.14s;
+}
+.sub-tab-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sub-tab-btn[aria-selected="true"] {
+  background: var(--tab-active);
+  color: var(--tab-active-text);
+  border-color: var(--tab-active);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: var(--card-shadow);
+}
+h2 { font-family: var(--font-head); font-size: 1.35rem; color: var(--accent); margin-bottom: 8px; }
+h3 { font-family: var(--font-head); font-size: 1.05rem; color: var(--text); margin-bottom: 6px; }
+h4 { font-size: 0.93rem; font-weight: 800; color: var(--accent2); margin-bottom: 3px; }
+p { margin-bottom: 10px; }
+p:last-child { margin-bottom: 0; }
+ul,ol { padding-left: 20px; margin-bottom: 10px; }
+li { margin-bottom: 3px; }
+.muted { color: var(--text-muted); font-size: 0.88rem; }
+
+.leads-callout {
+  background: var(--surface);
+  border: 2px solid var(--accent2);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--card-shadow);
+}
+body.liam-active .leads-callout { box-shadow: 4px 4px 0 var(--accent2); }
+.leads-callout h3 { color: var(--accent2); margin-bottom: 4px; }
+
+.steps { display: flex; flex-direction: column; gap: 14px; }
+.step { display: flex; gap: 12px; align-items: flex-start; }
+.step-num {
+  min-width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--tab-active-text);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 0.82rem; flex-shrink: 0;
+}
+.step-num.done { opacity: 0.5; }
+.step-num.next { background: var(--accent2); opacity: 1; }
+.step-num.future { background: var(--border); color: var(--text-muted); }
+.step-body h4 { margin-bottom: 2px; }
+.step-body p { font-size: 0.91rem; margin-bottom: 4px; }
+
+.ifthen {
+  background: var(--surface2);
+  border-left: 4px solid var(--accent2);
+  padding: 12px 16px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 10px;
+}
+.ifthen .if-label {
+  font-size: 0.76rem; font-weight: 800;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--accent2); margin-bottom: 4px;
+}
+
+.copy-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  font-size: 0.89rem;
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+  line-height: 1.55;
+  font-family: var(--font-body);
+}
+.copy-btn {
+  background: var(--accent);
+  color: var(--tab-active-text);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.copy-btn:focus-visible { outline: 3px solid var(--accent2); outline-offset: 2px; }
+
+.feedback-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.fb-btn {
+  padding: 7px 20px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  transition: all 0.14s;
+}
+.fb-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.fb-btn.picked { background: var(--accent); color: var(--tab-active-text); border-color: var(--accent); }
+
+details { margin-bottom: 8px; }
+summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 8px 0;
+  list-style: none;
+  display: flex; align-items: center; gap: 6px;
+}
+summary::before { content: '▶'; font-size: 0.68em; transition: transform 0.18s; display: inline-block; }
+details[open] > summary::before { transform: rotate(90deg); }
+summary:focus-visible { outline: 3px solid var(--accent); border-radius: 4px; outline-offset: 2px; }
+.det-body { padding: 4px 0 10px 22px; font-size: 0.91rem; }
+.det-body p { margin-bottom: 6px; }
+
+/* ---- LIAM SPECIFIC ---- */
+body.liam-active h2 {
+  font-family: 'Lilita One', 'Arial Black', Arial, sans-serif;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+body.liam-active h3 {
+  font-family: 'Lilita One', 'Arial Black', Arial, sans-serif;
+  color: var(--accent2);
+}
+body.liam-active .card {
+  border: 2px solid var(--border);
+}
+
+.scoreboard {
+  background: #0a1929;
+  color: #e0f2fc;
+  border: 2px solid var(--accent2);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  font-family: 'Lilita One', 'Arial Black', Arial, sans-serif;
+}
+.sb-row { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+.sb-cell { font-size: 0.78rem; opacity: 0.75; }
+.sb-cell strong { display: block; font-size: 1.4rem; opacity: 1; color: #f0c020; }
+.out-lights { display: flex; gap: 7px; margin-top: 4px; align-items: center; }
+.out-light {
+  width: 13px; height: 13px; border-radius: 50%;
+  background: #1e3a52; border: 2px solid #2a5070;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+.out-light.on { background: #f0c020; border-color: #f0c020; box-shadow: 0 0 8px #f0c020; }
+
+.pitcher-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+.p-card {
+  background: var(--surface2);
+  border: 2px solid var(--accent);
+  border-radius: 8px;
+  padding: 7px 13px;
+  font-family: 'Lilita One', 'Arial Black', Arial, sans-serif;
+  font-size: 1.05rem;
+  box-shadow: 3px 3px 0 var(--accent);
+  color: var(--text);
+}
+.p-card small { display: block; font-family: var(--font-body); font-size: 0.72rem; font-weight: 400; opacity: 0.7; }
+
+.q-choices { display: flex; flex-direction: column; gap: 8px; margin: 12px 0; }
+.q-btn {
+  background: var(--surface);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 11px 15px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.93rem;
+  color: var(--text);
+  transition: border-color 0.14s, background 0.14s;
+}
+.q-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.q-btn:not(:disabled):hover { border-color: var(--accent); background: var(--surface2); }
+.q-btn.hit { border-color: #2a8650; background: #d4f0dc; color: #1a4a2c; }
+.q-btn.miss { border-color: #c03030; background: #fce8e8; color: #7a1414; }
+body.liam-active .q-btn.hit { background: #0e3020; border-color: #48c070; color: #a0e8b8; }
+body.liam-active .q-btn.miss { background: #360808; border-color: #e04040; color: #ffa8a8; }
+
+.q-feedback {
+  border-left: 4px solid var(--accent2);
+  background: var(--surface2);
+  padding: 10px 14px;
+  border-radius: 0 8px 8px 0;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  display: none;
+}
+.q-feedback.show { display: block; }
+
+.helper-toggle {
+  background: none;
+  border: 1.5px dashed var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+  padding: 5px 14px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  margin-bottom: 8px;
+}
+.helper-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.helper-box {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 9px 13px;
+  font-family: monospace;
+  font-size: 0.87rem;
+  margin-bottom: 10px;
+  display: none;
+  white-space: pre-wrap;
+}
+.helper-box.show { display: block; }
+
+.next-q {
+  background: var(--accent);
+  color: var(--tab-active-text);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-family: var(--font-body);
+  font-weight: 800;
+  cursor: pointer;
+  font-size: 0.93rem;
+  display: none;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.18);
+}
+.next-q.show { display: inline-block; }
+.next-q:focus-visible { outline: 3px solid var(--accent2); outline-offset: 2px; }
+
+.streak-dots { display: flex; gap: 5px; align-items: center; margin-bottom: 12px; }
+.s-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--border);
+  transition: background 0.2s;
+}
+.s-dot.filled { background: var(--accent2); }
+
+.script-block {
+  background: var(--surface2);
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin-bottom: 14px;
+  box-shadow: var(--card-shadow);
+}
+body.liam-active .script-block { box-shadow: 4px 4px 0 var(--accent); }
+.you-say { font-size: 1.02rem; line-height: 1.55; }
+.say-label { font-size: 0.73rem; font-weight: 800; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+
+.badges { display: flex; flex-wrap: wrap; gap: 12px; }
+.badge {
+  background: var(--surface2);
+  border: 2px solid var(--border);
+  border-radius: 50%;
+  width: 76px; height: 76px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  font-size: 0.62rem; text-align: center;
+  color: var(--text-muted); font-weight: 700;
+  text-transform: uppercase; padding: 8px;
+  line-height: 1.2;
+}
+.badge.earned {
+  border-color: var(--accent2);
+  background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+  color: #fff;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+}
+.b-icon { font-size: 1.4rem; display: block; margin-bottom: 2px; }
+
+footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  padding: 20px 16px;
+  border-top: 1px solid var(--border);
+  margin-top: 16px;
+}
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<p class="sample-bar">Sample · made-up people · after three sessions with MetaDAX</p>
+
+<div class="main-tablist" role="tablist" aria-label="Choose your view">
+  <button role="tab" id="mtab-megan" aria-selected="true" aria-controls="mpanel-megan" class="main-tab-btn" onclick="switchMain('megan')">For Megan</button>
+  <button role="tab" id="mtab-liam" aria-selected="false" aria-controls="mpanel-liam" class="main-tab-btn" onclick="switchMain('liam')">For Liam</button>
+</div>
+
+<!-- ===== MEGAN PANEL ===== -->
+<div id="mpanel-megan" role="tabpanel" aria-labelledby="mtab-megan" class="tab-panel">
+  <div class="wrap">
+    <div role="tablist" class="sub-tablist" aria-label="Megan sections">
+      <button role="tab" id="mst1" aria-selected="true" aria-controls="msp1" class="sub-tab-btn" onclick="switchSub(this)">Up next</button>
+      <button role="tab" id="mst2" aria-selected="false" aria-controls="msp2" class="sub-tab-btn" onclick="switchSub(this)">What we've learned</button>
+      <button role="tab" id="mst3" aria-selected="false" aria-controls="msp3" class="sub-tab-btn" onclick="switchSub(this)">The steps</button>
+      <button role="tab" id="mst4" aria-selected="false" aria-controls="msp4" class="sub-tab-btn" onclick="switchSub(this)">When it's tricky</button>
+      <button role="tab" id="mst5" aria-selected="false" aria-controls="msp5" class="sub-tab-btn" onclick="switchSub(this)">Tell us &amp; ask</button>
+    </div>
+
+    <div id="msp1" role="tabpanel" aria-labelledby="mst1">
+      <div class="leads-callout">
+        <h3>Your turn to learn — first ten minutes</h3>
+        <p>Liam already knows what box scores mean. You don't, yet. Say it plainly: <strong>"Liam, teach me what 5.2 means."</strong> He leads this part. You listen, you ask questions, you get things wrong on purpose. This is not a trick — you genuinely don't know and he genuinely does.</p>
+      </div>
+
+      <div class="card">
+        <h2>Session 4: The Box Score</h2>
+        <p>Today's big idea: a pitcher's whole inning is 3 outs — just his half. That's different from session 1's 6-out inning. If Liam notices that difference himself, stop everything and celebrate it.</p>
+
+        <h3 style="margin-top:14px">What you need</h3>
+        <ul>
+          <li>Paper and a pencil</li>
+          <li>About 20 minutes</li>
+          <li>Emma if she wants the umpire job</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>How it goes</h3>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num next">1</div>
+            <div class="step-body">
+              <h4>Liam leads (10 min)</h4>
+              <p>Ask: "What does 5.2 mean?" Let him explain in full. Then: "Could there ever be a 1.3?" When he says the pitcher's whole is 3 outs, not 6, ask: "So the whole changed from last time?" That question is yours to sit with.</p>
+              <p class="muted">Why this works: he cements the concept by explaining it, not by watching you explain it.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num next">2</div>
+            <div class="step-body">
+              <h4>Write the Jays game</h4>
+              <p>Write four lines: <strong>Starter 5.2 · Reliever 1.2 · Reliever 1.1 · Closer 0.1</strong>. Ask: "What's the total?"</p>
+              <p class="muted">Why this works: putting it on paper gives him something to point at while he thinks.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num next">3</div>
+            <div class="step-body">
+              <h4>The decimal trap, together</h4>
+              <p>Add them the wrong way, out loud: 5.2 + 1.2 + 1.1 + 0.1 = 7.6. Write it down. Then: "Does 7.6 innings make sense? How many outs would .6 be?" Let that sit before moving on.</p>
+              <p class="muted">Why this works: finding the wrong answer first makes the right one stick.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num next">4</div>
+            <div class="step-body">
+              <h4>Count the outs</h4>
+              <p>Count each pitcher's outs: 5×3+2=17, 1×3+2=5, 1×3+1=4, 0×3+1=1. Add them: 17+5+4+1=27. Ask: "How many innings is 27 outs?" He knows. Write 9.</p>
+              <p class="muted">Why this works: outs are his anchor from session 1. This connects new notation to something he already owns.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num next">5</div>
+            <div class="step-body">
+              <h4>If he's still going (optional)</h4>
+              <p>Try: 6.1 + 1.2 + 0.2 — answer is 8 and 2/3 innings, written 8.2. Then subtraction: starter went 5.2, full game is 9 innings, how much did the bullpen pitch? Answer: 3 and 1/3 innings, written 3.1.</p>
+              <p class="muted">Why this works: same move, different numbers — that's how a skill becomes a habit.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>What to say</h3>
+        <ul>
+          <li>"Liam, teach me what 5.2 means."</li>
+          <li>"Could there ever be a 1.3 in a box score? Why not?"</li>
+          <li>"Does 7.6 innings make sense?"</li>
+          <li>"Count the outs for the starter. What do you get?"</li>
+        </ul>
+        <h3 style="margin-top:14px">What to skip</h3>
+        <ul>
+          <li>Don't say "denominator" — just "bottom number".</li>
+          <li>Don't correct his explanation in step 1. Ask questions instead.</li>
+          <li>Don't push past 20 minutes if focus drops.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div id="msp2" role="tabpanel" aria-labelledby="mst2" hidden>
+      <div class="card">
+        <h2>What we've learned</h2>
+
+        <h3>About Liam</h3>
+        <div class="ifthen">
+          <div class="if-label">After session 1</div>
+          <p>He got 5/6 with bottle caps and said "oh, it's just outs" — he doesn't need to be eased in slowly, he needs the right hook. So: outs are the anchor for every new idea.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">After session 2</div>
+          <p>He slipped once (wrote 2/3 + 1/6 = 3/9) and went quiet. Emma calling "Out!" reset him without embarrassment. So: Emma keeps her umpire job — it lets him recover without an audience.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">After session 3</div>
+          <p>He found the 12-slice whole himself and said "it's like finding the outs." He's making his own connections now. So: mixed numbers are ready to go — let him say the pattern first, don't beat him to it.</p>
+        </div>
+
+        <h3 style="margin-top:20px">About you</h3>
+        <div class="ifthen">
+          <div class="if-label">After session 1</div>
+          <p>Guessing frustrated you. So: guessing became part of the game — guess first, then check with the caps. There's no wrong guess when the game expects one.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">After session 2</div>
+          <p>You worried you were "doing it wrong" when he slipped. So: each plan now names the normal slips. A slip on paper after three in a row is normal, not a sign the session failed.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">After session 3</div>
+          <p>You explained "slices that fit both" in your own words without the page, then asked if that was okay. It was — and it's yours now. So: less script, more of the why. You don't need word-for-word prompts anymore.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="msp3" role="tabpanel" aria-labelledby="mst3" hidden>
+      <div class="card">
+        <h2>The steps</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num done">1</div>
+            <div class="step-body">
+              <h4>Session 1 — The six-out inning</h4>
+              <p>Bottle caps on a drawn inning. Liam got 5/6 and said "oh, it's just outs." The anchor stuck first try.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num done">2</div>
+            <div class="step-body">
+              <h4>Session 2 — Caps to paper</h4>
+              <p>Tea-towel trick: cover caps, draw them, then numbers only. Solid on paper; one slip (2/3 + 1/6 = 3/9). Emma as umpire called him back.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num done">3</div>
+            <div class="step-body">
+              <h4>Session 3 — Pie and loonies</h4>
+              <p>Found 12 slices himself for 1/4 + 1/3 = 7/12. Said "it's like finding the outs." Half a loonie plus a fifth = 7/10. He's making his own connections.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num next">4</div>
+            <div class="step-body">
+              <h4>Session 4 — The box score (today)</h4>
+              <p>Innings pitched notation. A new whole: 3 outs per pitcher. The decimal trap. Liam leads the first ten minutes.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num future">5+</div>
+            <div class="step-body">
+              <h4>Where this could go</h4>
+              <p>Batting averages as fractions (.300 = 3 hits in 10 at-bats). A show-off day where Liam builds a full box score and explains it to Grandma.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="msp4" role="tabpanel" aria-labelledby="mst4" hidden>
+      <div class="card">
+        <h2>When it's tricky</h2>
+        <div class="ifthen">
+          <div class="if-label">If he adds .2 and .2 and writes .4</div>
+          <p>Don't correct it — ask it: "Can there be 4 outs in an inning?" He'll catch it himself. If not: "Count the outs out loud. What does .2 mean?"</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">If he gets 7.6 and thinks that's right</div>
+          <p>Good — that's the trap working. Ask: "Seven-point-six innings. Does that make sense? How many outs is .6?" Don't give the answer. Give him time.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">If he goes quiet after a wrong answer</div>
+          <p>Don't wait for him to explain himself. Move straight to counting outs. Give him something to do with his hands. Emma can call each out as you count.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">If you lose track of the outs yourself</div>
+          <p>Say it out loud: "Let me count these too." Do it together. You working through it beside him is more useful than having it figured out ahead of time.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">If Emma wants in</div>
+          <p>Give her the umpire job: she counts and calls each out aloud as you go. Keep her busy so Liam stays the scorer.</p>
+        </div>
+        <div class="ifthen">
+          <div class="if-label">If focus drops after 15 minutes</div>
+          <p>Stop before the optional problems. The main puzzle — 27 outs = 9 innings — is the win for today. The extra problems can open session 5.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="msp5" role="tabpanel" aria-labelledby="mst5" hidden>
+      <div class="card">
+        <h2>After the session</h2>
+        <p>Copy this note, fill in the blanks, and send it back. It helps MetaDAX plan session 5.</p>
+        <div class="copy-box" id="megan-note">Session 4 done. He [got it right away / needed a few tries / got stuck on ___]. The "does 7.6 make sense?" moment [landed / went over his head]. Liam leading first [worked great / felt awkward — ___]. Emma [joined as umpire / wasn't around]. One thing I noticed: ___.</div>
+        <button class="copy-btn" onclick="doCopy('megan-note', this)">Copy note</button>
+      </div>
+
+      <div class="card">
+        <h3>For your own AI chat</h3>
+        <p>Use this in any AI assistant when you want to think through what happened. This is for you — Liam isn't part of it.</p>
+        <div class="copy-box" id="megan-ai">I'm helping my 11-year-old son learn to add fractions with different bottom numbers. We use baseball outs as the anchor — he loves the Blue Jays. Today we worked on box-score notation: 5.2 means 5 innings and 2 outs, not 5.2 regular innings. He [describe what happened]. Can you help me think through [what I want to understand]? Plain language please — we say "bottom number," not "denominator."</div>
+        <button class="copy-btn" onclick="doCopy('megan-ai', this)">Copy prompt</button>
+      </div>
+
+      <div class="card">
+        <p class="muted">Did this page help?</p>
+        <div class="feedback-row">
+          <button class="fb-btn" onclick="pickFb(this,'yes')">Yes</button>
+          <button class="fb-btn" onclick="pickFb(this,'notyet')">Not yet</button>
+        </div>
+        <p id="fb-msg" style="margin-top:8px;font-size:0.86rem;color:var(--text-muted);display:none"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== LIAM PANEL ===== -->
+<div id="mpanel-liam" role="tabpanel" aria-labelledby="mtab-liam" class="tab-panel" hidden>
+  <div class="wrap">
+    <div role="tablist" class="sub-tablist" aria-label="Liam sections">
+      <button role="tab" id="lst1" aria-selected="true" aria-controls="lsp1" class="sub-tab-btn" onclick="switchSub(this)">Box Score Boss</button>
+      <button role="tab" id="lst2" aria-selected="false" aria-controls="lsp2" class="sub-tab-btn" onclick="switchSub(this)">Teach Mom</button>
+      <button role="tab" id="lst3" aria-selected="false" aria-controls="lsp3" class="sub-tab-btn" onclick="switchSub(this)">Trophy Case</button>
+    </div>
+
+    <div id="lsp1" role="tabpanel" aria-labelledby="lst1">
+      <div class="scoreboard" role="region" aria-label="Scoreboard">
+        <div class="sb-row">
+          <div class="sb-cell">right this game<br><strong id="sb-right">0</strong></div>
+          <div class="sb-cell">level<br><strong id="sb-level">Warmup</strong></div>
+          <div class="sb-cell">streak
+            <div class="out-lights" aria-label="Streak lights">
+              <div class="out-light" id="ol0"></div>
+              <div class="out-light" id="ol1"></div>
+              <div class="out-light" id="ol2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="quiz-card">
+        <div id="quiz-inner">Loading...</div>
+      </div>
+
+      <div class="card" style="margin-top:8px">
+        <h3>Questions you might have</h3>
+        <details>
+          <summary>Why can't the number after the dot be 3 or higher?</summary>
+          <div class="det-body">
+            <p>Because three outs ends an inning. A pitcher pitching "1.3" innings would mean he got 3 outs — but as soon as he got that third out, the inning was over. So 1.3 = 2.0. There's no .3 in a box score.</p>
+            <details>
+              <summary>What if a pitcher gets exactly 3 outs and starts a new inning?</summary>
+              <div class="det-body"><p>That counts as one full inning: 1.0. The .0 just means zero extra outs. You'll see "1.0" a lot for relievers who come in, get three outs, and leave.</p></div>
+            </details>
+          </div>
+        </details>
+        <details>
+          <summary>Why do we count outs instead of just adding the numbers?</summary>
+          <div class="det-body">
+            <p>Because the numbers after the dot aren't regular decimals — they mean outs (0, 1, or 2). When you add them like regular decimals you get things like .4 or .5 that don't exist. Counting outs and then dividing by 3 always gives the right answer.</p>
+            <details>
+              <summary>Is there a faster way once you get good?</summary>
+              <div class="det-body"><p>Yes. You can add the whole innings first, then add up just the outs, and convert: every 3 outs = 1 inning. Scorers who do this every day do it in their heads in about two seconds.</p></div>
+            </details>
+          </div>
+        </details>
+        <details>
+          <summary>How is this different from the six-out inning in session 1?</summary>
+          <div class="det-body">
+            <p>In session 1 the "whole" was a full inning — both halves, 6 outs. When a pitcher is on the mound, he only pitches one half: 3 outs. So the same word "inning" means something different depending on what you're counting. That's the hardest part, and you already noticed it.</p>
+            <details>
+              <summary>Does that mean fractions can have different wholes?</summary>
+              <div class="det-body"><p>Exactly. Half a loonie and half a game are both "half," but one is 50 cents and one is 3 outs. The bottom number only makes sense when you know what the whole is. That's true for every fraction, everywhere.</p></div>
+            </details>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div id="lsp2" role="tabpanel" aria-labelledby="lst2" hidden>
+      <div class="leads-callout">
+        <h3>Your turn to lead</h3>
+        <p>You know box scores. Mom doesn't yet. At the start of session 4, you run the first ten minutes. Read this script to her.</p>
+      </div>
+
+      <div class="script-block">
+        <div class="say-label">You say:</div>
+        <p class="you-say">"Mom, look at this. See 5.2? That means the starter pitched 5 full innings and then got 2 more outs. It does NOT mean five-point-two innings like a regular decimal."</p>
+      </div>
+
+      <div class="script-block">
+        <div class="say-label">She'll ask: "So what's the most the dot number can be?"</div>
+        <p class="you-say">You say: "Only 0, 1, or 2. Three outs and you're done. There's no .3."</p>
+      </div>
+
+      <div class="script-block">
+        <div class="say-label">Then ask her:</div>
+        <p class="you-say">"What does 1.2 mean?" Wait. If she says "one-point-two innings," say "nope" and explain it again yourself.</p>
+      </div>
+
+      <div class="script-block">
+        <div class="say-label">You tell her:</div>
+        <p class="you-say">"One inning and 2 outs. Each out is one third of an inning. So 1.2 is one and two-thirds innings."</p>
+      </div>
+
+      <div class="card">
+        <h3>Then show her the Jays game</h3>
+        <p>Write this out and hand her the pencil:</p>
+        <div class="copy-box" style="font-family:monospace;font-size:0.97rem">Starter:    5.2
+Reliever:   1.2
+Reliever:   1.1
+Closer:     0.1</div>
+        <p style="margin-top:10px">Ask: "What's the total innings?" She'll probably add them as decimals and say 7.6. Tell her: "That's the trap. Count the outs instead." Show her: 17 + 5 + 4 + 1 = 27 outs = 9 innings. Full game.</p>
+      </div>
+
+      <div class="card">
+        <h3>What this is</h3>
+        <p>You knew something before she did. You explained it. That's not just knowing box scores — that's knowing how thirds work. Keep that.</p>
+      </div>
+    </div>
+
+    <div id="lsp3" role="tabpanel" aria-labelledby="lst3" hidden>
+      <div class="card">
+        <h2>Trophy Case</h2>
+        <p class="muted" style="margin-bottom:16px">Earn these in Box Score Boss.</p>
+        <div class="badges">
+          <div class="badge" id="badge-first">
+            <span class="b-icon">1st</span>First Box Score
+          </div>
+          <div class="badge" id="badge-dodger">
+            <span class="b-icon">.X</span>Decimal Dodger
+          </div>
+          <div class="badge" id="badge-full">
+            <span class="b-icon">9</span>Full Game
+          </div>
+          <div class="badge" id="badge-scorer">
+            <span class="b-icon">IP</span>Official Scorer
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</footer>
+
+<script>
+(function() {
+
+// ===== QUESTIONS =====
+var QS = [
+  { id:'a', level:1,
+    text:'Add up the innings pitched:',
+    pitchers:[{n:'Starter',ip:'6.2'},{n:'Closer',ip:'2.1'}],
+    choices:[
+      {label:'9 innings — full game',correct:true,correctMsg:'Full game! 20 + 7 = 27 outs = 9 innings.'},
+      {label:'8.3 innings',trap:true,feedback:'8.3 means 8 innings and 3 outs — but 3 outs finishes an inning, so .3 never appears in a box score. Add the outs: 2+1=3, which is one full inning. 6+2 = 8, +1 more = 9.'},
+      {label:'8 innings',feedback:'Close! You nailed the full innings but the leftover outs add up. 2+1 = 3 outs = one full inning. 8+1 = 9.'}
+    ],
+    helper:'Starter: 6×3+2 = 20 outs\nCloser: 2×3+1 = 7 outs\nTotal: 20+7 = 27 ÷ 3 = 9 innings'
+  },
+  { id:'b', level:1,
+    text:'Add up the innings pitched:',
+    pitchers:[{n:'Starter',ip:'7.1'},{n:'Reliever',ip:'1.2'}],
+    choices:[
+      {label:'9 innings — full game',correct:true,correctMsg:'22 + 5 = 27 outs. 9 innings. Full game again.'},
+      {label:'8.3 innings',trap:true,feedback:'.3 doesn\'t exist: the dot means outs only (0, 1, or 2). Add outs: 1+2=3 = one full inning. 7+1=8, +1=9.'},
+      {label:'8 innings',feedback:'Close! You added the full innings (7+1=8) but the outs add up too: 1+2=3 outs = one more inning. 8+1=9.'}
+    ],
+    helper:'Starter: 7×3+1 = 22 outs\nReliever: 1×3+2 = 5 outs\nTotal: 27 ÷ 3 = 9 innings'
+  },
+  { id:'c', level:2,
+    text:'Add up the innings pitched:',
+    pitchers:[{n:'Starter',ip:'6.1'},{n:'Setup',ip:'1.2'},{n:'Reliever',ip:'0.2'}],
+    choices:[
+      {label:'8.2 (eight and two-thirds innings)',correct:true,correctMsg:'8.2! Twenty-six outs. Eight innings and two-thirds.'},
+      {label:'7.5 innings',trap:true,feedback:'That\'s the decimal trap. Add outs: 1+2+2=5. Five outs = 1 full inning plus 2 left over. Whole innings: 6+1+0=7, +1=8. Two outs remaining = 8.2.'},
+      {label:'8.0 (eight full innings)',feedback:'The full innings are right but the leftover outs vanished. 1+2+2=5 outs = 1 inning plus 2 outs. 7+1=8, with 2 outs still left = 8.2.'}
+    ],
+    helper:'Starter: 6×3+1 = 19 outs\nSetup: 1×3+2 = 5 outs\nReliever: 0×3+2 = 2 outs\nTotal: 26 outs = 8 innings + 2 outs = 8.2'
+  },
+  { id:'d', level:2,
+    text:'The main Jays game — add them all up:',
+    pitchers:[{n:'Starter',ip:'5.2'},{n:'Reliever',ip:'1.2'},{n:'Reliever',ip:'1.1'},{n:'Closer',ip:'0.1'}],
+    choices:[
+      {label:'9 innings — full game!',correct:true,correctMsg:'27 outs. 9 innings. The whole game. You got the big one.'},
+      {label:'7.6 innings',trap:true,feedback:'Classic decimal trap — 5.2+1.2+1.1+0.1 = 7.6 if you treat them as regular decimals, but .6 doesn\'t exist. Count outs: 2+2+1+1=6 = 2 full innings. Whole innings: 5+1+1+0=7, +2=9.'},
+      {label:'8.2 innings',feedback:'Check the outs again: 2+2+1+1=6. Six outs = 2 full innings (every 3 outs = 1 inning). 5+1+1+0=7, +2=9.'}
+    ],
+    helper:'5×3+2 = 17 outs\n1×3+2 = 5 outs\n1×3+1 = 4 outs\n0×3+1 = 1 out\n17+5+4+1 = 27 outs = 9 innings'
+  },
+  { id:'e', level:3,
+    text:'Starter went 5.2 in a 9-inning game. How many innings did the bullpen pitch?',
+    pitchers:[],
+    choices:[
+      {label:'3.1 (three and one-third innings)',correct:true,correctMsg:'Ten outs. Three and one-third innings. That\'s 3.1.'},
+      {label:'3.8 innings',trap:true,feedback:'9.0 minus 5.2 = 3.8 as regular decimals — but 3.8 innings doesn\'t exist. Use outs: 9 innings = 27 outs. Starter: 5×3+2=17. Bullpen: 27−17=10 outs. 10÷3 = 3 full innings plus 1 out = 3.1.'},
+      {label:'4.1 innings',feedback:'Almost on the thirds! Bullpen outs: 27−17=10. Ten outs = 3 full innings plus 1 left over = 3.1, not 4.1.'}
+    ],
+    helper:'9 innings = 27 outs\nStarter: 5×3+2 = 17 outs\nBullpen: 27−17 = 10 outs\n10 ÷ 3 = 3 full + 1 out = 3.1'
+  }
+];
+
+var state = { idx:0, streak:0, right:0, level:1, answered:false, queueId:0 };
+var LEVELS = {1:'Warmup',2:'Regular Season',3:'Playoffs'};
+
+function pickQ() {
+  var pool = QS.filter(function(q){ return q.level <= state.level; });
+  if (!pool.length) pool = QS;
+  return pool[state.queueId % pool.length];
+}
+
+function render() {
+  var q = pickQ();
+  state.answered = false;
+  state.curQ = q;
+
+  var ph = '';
+  if (q.pitchers && q.pitchers.length) {
+    ph = '<div class="pitcher-row">' +
+      q.pitchers.map(function(p){
+        return '<div class="p-card"><small>'+p.n+'</small>'+p.ip+'</div>';
+      }).join('') + '</div>';
+  }
+
+  var ch = q.choices.map(function(c,i){
+    return '<button class="q-btn" onclick="pick('+i+')" id="qc'+i+'">'+c.label+'</button>';
+  }).join('');
+
+  var dots = [0,1,2].map(function(i){
+    return '<div class="s-dot'+(state.streak>i?' filled':'')+'"></div>';
+  }).join('');
+
+  document.getElementById('quiz-inner').innerHTML =
+    '<div class="streak-dots" aria-label="Streak: '+state.streak+' in a row">'+dots+
+    '<span style="font-size:0.82rem;color:var(--text-muted)">'+(state.streak>0?state.streak+' in a row':'Start your streak')+'</span></div>'+
+    '<p style="font-weight:700;margin-bottom:10px">'+q.text+'</p>'+
+    ph+
+    '<div class="q-choices">'+ch+'</div>'+
+    '<div class="q-feedback" id="qfb"></div>'+
+    '<button class="helper-toggle" onclick="togHelper()" id="hbtn">Count the outs</button>'+
+    '<div class="helper-box" id="hbox">'+q.helper+'</div>'+
+    '<button class="next-q" id="nxtq" onclick="nextQ()">Next pitch</button>';
+
+  updateSB();
+  updateLights();
+}
+
+window.pick = function(i) {
+  if (state.answered) return;
+  state.answered = true;
+  var q = state.curQ;
+  var c = q.choices[i];
+  var ok = c.correct === true;
+
+  for (var j=0;j<q.choices.length;j++){
+    var b=document.getElementById('qc'+j);
+    if(b) b.disabled=true;
+  }
+  var btn = document.getElementById('qc'+i);
+  var fb = document.getElementById('qfb');
+  var nxt = document.getElementById('nxtq');
+
+  if (ok) {
+    btn.classList.add('hit');
+    state.streak++;
+    state.right++;
+    fb.textContent = c.correctMsg;
+    fb.style.borderLeftColor = 'var(--accent3, var(--accent))';
+    fb.classList.add('show');
+    if (state.streak >= 2 && state.level < 3) { state.level++; state.streak=0; }
+    awardBadge('first');
+    if (q.id==='d') awardBadge('full');
+    if (state.right >= 4) awardBadge('scorer');
+  } else {
+    btn.classList.add('miss');
+    state.streak = 0;
+    if (state.level > 1) state.level--;
+    var prefix = c.trap ? '<strong>Decimal trap!</strong> ' : '<strong>Not quite.</strong> ';
+    fb.innerHTML = prefix + (c.feedback||'');
+    fb.classList.add('show');
+    if (c.trap) awardBadge('dodger');
+  }
+  nxt.classList.add('show');
+  updateSB();
+  updateLights();
+};
+
+window.nextQ = function() {
+  state.queueId++;
+  render();
+};
+
+window.togHelper = function() {
+  var box = document.getElementById('hbox');
+  var btn = document.getElementById('hbtn');
+  var on = box.classList.toggle('show');
+  btn.textContent = on ? 'Hide outs' : 'Count the outs';
+};
+
+function updateSB() {
+  var r=document.getElementById('sb-right');
+  var lv=document.getElementById('sb-level');
+  if(r) r.textContent=state.right;
+  if(lv) lv.textContent=LEVELS[state.level]||'Warmup';
+}
+
+function updateLights() {
+  for(var i=0;i<3;i++){
+    var l=document.getElementById('ol'+i);
+    if(l) l.classList.toggle('on', i<Math.min(state.streak,3));
+  }
+}
+
+// ===== BADGES =====
+function loadBadges() {
+  try {
+    var saved=JSON.parse(localStorage.getItem('mdx-badges-01')||'[]');
+    saved.forEach(function(id){
+      var el=document.getElementById('badge-'+id);
+      if(el) el.classList.add('earned');
+    });
+  } catch(e){}
+}
+
+function awardBadge(id) {
+  try {
+    var el=document.getElementById('badge-'+id);
+    if(!el||el.classList.contains('earned')) return;
+    el.classList.add('earned');
+    var saved=JSON.parse(localStorage.getItem('mdx-badges-01')||'[]');
+    if(saved.indexOf(id)<0){ saved.push(id); localStorage.setItem('mdx-badges-01',JSON.stringify(saved)); }
+  } catch(e){}
+}
+
+// ===== TABS =====
+window.switchMain = function(id) {
+  ['megan','liam'].forEach(function(t){
+    var btn=document.getElementById('mtab-'+t);
+    var pnl=document.getElementById('mpanel-'+t);
+    var on=(t===id);
+    btn.setAttribute('aria-selected',on?'true':'false');
+    if(on) pnl.removeAttribute('hidden');
+    else pnl.setAttribute('hidden','');
+  });
+  if(id==='liam') document.body.classList.add('liam-active');
+  else document.body.classList.remove('liam-active');
+};
+
+window.switchSub = function(btn) {
+  var tl=btn.closest('[role="tablist"]');
+  tl.querySelectorAll('[role="tab"]').forEach(function(b){
+    var pnl=document.getElementById(b.getAttribute('aria-controls'));
+    var on=(b===btn);
+    b.setAttribute('aria-selected',on?'true':'false');
+    if(pnl){ if(on) pnl.removeAttribute('hidden'); else pnl.setAttribute('hidden',''); }
+  });
+};
+
+// ===== CLIPBOARD =====
+window.doCopy = function(id,btn) {
+  var el=document.getElementById(id);
+  var txt=el.textContent;
+  (navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+    var orig=btn.textContent;
+    btn.textContent='Copied!';
+    setTimeout(function(){ btn.textContent=orig; },1800);
+  }).catch(function(){
+    var r=document.createRange();
+    r.selectNodeContents(el);
+    var s=window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+    btn.textContent='Select the text above and copy manually';
+    setTimeout(function(){ btn.textContent='Copy'; },3000);
+  });
+};
+
+// ===== FEEDBACK =====
+window.pickFb = function(btn,val) {
+  document.querySelectorAll('.fb-btn').forEach(function(b){ b.classList.remove('picked'); });
+  btn.classList.add('picked');
+  var m=document.getElementById('fb-msg');
+  m.style.display='block';
+  m.textContent=val==='yes'?'Thanks — that helps MetaDAX build session 5.':'Got it. Add a note in the copy box above if you want.';
+};
+
+// ===== INIT =====
+render();
+loadBadges();
+
+})();
+</script>
+
+</body>
+</html>

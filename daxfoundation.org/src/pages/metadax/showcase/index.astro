@@ -1,0 +1,133 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { samples } from '../_showcase.js';
+
+// /metadax/showcase/ -- the six samples, 2026-10-05. The pages themselves are
+// static files under public/metadax/showcase/<id>/ (see _showcase.js for how
+// they got there). This index says what each side gets and how they were made.
+---
+<Base title="Meta DAX: six samples" description="What Meta DAX hands a guide and a learner, three steps in. Six samples, made-up people, one side for the guide and one made for the learner." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Showcase</p>
+    <h1>What it hands a guide and a learner, three steps in.</h1>
+    <p class="lede-text">
+      Three iterations have happened. After each one the guide told Meta DAX
+      how it went, and it learned something about the learner and something
+      about the guide. Each page is what it hands them now: the plan for step
+      four, with steps one to three visible as history. Two big tabs, one for
+      each person, each in its own voice and its own look. Everyone here is
+      made up.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-list">
+    <h2 id="h-list">The six</h2>
+    <ol class="list">
+      {samples.map((s) => (
+        <li class="item" id={s.id}>
+          <a class="head" href={`/metadax/showcase/${s.id}/`}>
+            <span class="swatch" aria-hidden="true">{s.swatch.map((c) => <i style={`background:${c}`}></i>)}</span>
+            <span class="title">{s.title}</span>
+            <span class="pair">{s.pair}</span>
+          </a>
+          <p class="topic"><strong>{s.topic[0].toUpperCase() + s.topic.slice(1)}.</strong> Counted in {s.word}s.</p>
+          <p class="scene">{s.scene}</p>
+          <dl class="sides">
+            <div><dt>For {s.guide}</dt><dd>{s.forGuide}</dd></div>
+            <div><dt>For {s.learner}</dt><dd>{s.forLearner}</dd></div>
+          </dl>
+          <p class="open"><a href={`/metadax/showcase/${s.id}/`}>Open the page &rarr;</a></p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="h-every">
+    <h2 id="h-every">What every page has</h2>
+    <div class="cols">
+      <div>
+        <h3>The guide&rsquo;s side</h3>
+        <ul>
+          <li><strong>Up next:</strong> the plan for step four, concrete. What you need, how it goes, what to say, what not to say.</li>
+          <li><strong>What we&rsquo;ve learned:</strong> about the learner and about the guide, step by step, each with what changed because of it.</li>
+          <li><strong>The steps:</strong> one to three done, four next, five sketched lightly.</li>
+          <li><strong>When it&rsquo;s tricky:</strong> if-then cards, including what to do when the guide feels stuck.</li>
+          <li><strong>Tell us and ask:</strong> a pre-filled note to send back after the step, and a prompt the guide can paste into their own AI chat. The guide asks; a child never does.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>The learner&rsquo;s side</h3>
+        <ul>
+          <li>A completely different look, made for them: a ballpark, a futsal court, a chalkboard, a dashboard, a console, large print in two languages.</li>
+          <li>At least one thing to do that uses no AI: predict or choose first, then see. Every wrong option is mapped to the specific mistake behind it, with its own feedback. It gets harder after a streak and easier after a miss.</li>
+          <li>The questions they might ask next, answered two levels deep.</li>
+          <li><strong>Your turn to lead:</strong> the moment the learner is a step ahead of the guide on something, and leads.</li>
+          <li>A learner under eighteen uses their side with the guide beside them. Nothing invites a child to chat with an AI.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-made">
+    <h2 id="h-made">How they were made, honestly</h2>
+    <p class="body">
+      Each sample was written with help from AI from a short brief: two living
+      profiles that grow as we learn about each person, what happened in steps
+      one to three, and what step four is for. Every page was read in full by a
+      person before it went up, and fixed where it was wrong: a number that did
+      not add up, a claim of adaptivity the game did not have, a word we do not
+      use. The pages store nothing and send nothing about anyone. They show what
+      Meta DAX is aiming to hand people; the automated pipeline that writes a
+      whole course from one sentence has so far had
+      <a href="/metadax/#how-it-works">automated runs only</a>.
+    </p>
+    <p class="body">
+      The set grows. Profiles are kept and enriched; each scenario is extended
+      one iteration at a time; and the next ones will be built from real
+      scenarios people send us. <a href="/metadax/#ask">Send one &rarr;</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.4rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 22em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  h3 { margin: 0 0 0.5rem; font-size: 1.05rem; font-weight: 500; }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+
+  .list { list-style: none; margin: 0; padding: 0; counter-reset: s; }
+  .item { padding-block: 1.5rem; scroll-margin-top: 1.5rem; }
+  .item + .item { border-top: 1px solid var(--line); }
+  .head { display: block; text-decoration: none; color: inherit; }
+  .swatch { display: flex; gap: 3px; margin-bottom: 0.6rem; }
+  .swatch i { display: block; width: 14px; height: 14px; border-radius: 3px; }
+  .title { display: block; font-size: 1.35rem; font-weight: 500; line-height: 1.25; }
+  .head:hover .title, .head:focus-visible .title { text-decoration: underline; text-decoration-color: var(--faint); text-underline-offset: 0.2em; }
+  .pair { display: block; color: #bdbdbd; margin-top: 0.2rem; }
+  .topic { margin: 0.9rem 0 0; color: #cfcfcf; }
+  .scene { margin: 0.6rem 0 0; max-width: 44em; color: #cfcfcf; }
+  .sides { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.5rem; margin: 1rem 0 0; max-width: 44em; }
+  .sides dt { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .sides dd { margin: 0.2rem 0 0; color: #bdbdbd; font-size: 0.9375rem; }
+  .open { margin: 1rem 0 0; font-size: 0.9375rem; }
+  .open a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .open a:hover, .open a:focus-visible { border-bottom-color: currentColor; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
+  .cols ul { margin: 0; padding-left: 1.1rem; color: #cfcfcf; font-size: 0.9875rem; }
+  .cols li + li { margin-top: 0.5rem; }
+
+  @media (max-width: 40rem) {
+    .cols, .sides { grid-template-columns: 1fr; }
+  }
+</style>

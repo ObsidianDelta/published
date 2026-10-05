@@ -2,10 +2,12 @@
 interface Props {
   title?: string;
   description?: string;
+  wide?: boolean;
 }
 const {
   title = 'DAX Foundation',
   description = 'DAX: preservation and expansion of life, humanity, and consciousness.',
+  wide = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 
@@ -26,6 +28,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 // 2026-10-01: /writing/ is new (the Foundation's own pieces), so the masthead
 // carries a second link. The footer links the public record and the one page
 // that explains how everything here is published, Jason's "How I Publish".
+//
+// 2026-10-05: Meta DAX has its own section of the site (/metadax/, with the
+// showcase and the page for parents who homeschool), so the masthead leads
+// with it. Pages may pass `wide` for a slightly wider column.
 ---
 <!doctype html>
 <html lang="en">
@@ -47,11 +53,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="wrap top">
       <a class="mark" href="/">DAX Foundation</a>
       <nav class="nav" aria-label="Site">
+        <a class="mark" href="/metadax/">Meta DAX</a>
         <a class="mark" href="/definitions/">Definitions</a>
         <a class="mark" href="/writing/">Writing</a>
       </nav>
     </header>
-    <main class="wrap">
+    <main class:list={['wrap', { wide }]}>
       <slot />
     </main>
     <footer class="wrap foot">
@@ -95,6 +102,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     margin: 0 auto;
     padding-inline: 1.5rem;
   }
+  .wrap.wide { max-width: 52rem; }
   .top {
     padding-block: 2rem;
     display: flex;
@@ -110,7 +118,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     color: var(--muted);
   }
   .mark:hover, .mark:focus-visible { color: var(--fg); }
-  .nav { display: flex; gap: 1.25rem; }
+  .nav { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; justify-content: flex-end; }
+  @media (max-width: 26rem) { .top { flex-wrap: wrap; } .nav { gap: 0.5rem 0.9rem; } }
   .foot {
     display: flex;
     flex-wrap: wrap;
