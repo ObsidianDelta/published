@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://daxfoundation.org/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/01-megan-liam/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/02-priya-mateus/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/03-dinah-jordan/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/04-renee-marcus/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/05-dave-aisha/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/showcase/06-theo-lucille/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/homeschool/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://daxfoundation.org/metadax/homeschool/start/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://daxfoundation.org/definitions/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://daxfoundation.org/writing/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://daxfoundation.org/writing/human-delta-value/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>
