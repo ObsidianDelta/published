@@ -1,6 +1,16 @@
 ---
 const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.props;
 
+// 2026-10-08: the page carried a title and description but no canonical, no
+// Open Graph and no Twitter card, so a shared link -- the home page included --
+// unfurled as a bare URL with no image. Added here, on every page: a
+// self-referential canonical, the OG/Twitter set, and an absolute /og.png
+// (1200x630, the wordmark on paper with the coda line, in the site's own
+// palette). Astro.site is https://jeyanandan.com. No new copy: og:image:alt is
+// the name, the share text is each page's own title and description.
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+
 // 2026-09-08: the Blog link is off the masthead and the footer at Jason's
 // request. The /blog/ routes still build and still resolve, they are simply
 // unlinked from the chrome; the home page links into them twice.
@@ -36,8 +46,22 @@ const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.prop
 <title>{title}</title>
 <meta name="description" content={description} />
 {noindex && <meta name="robots" content="noindex, nofollow" />}
+<link rel="canonical" href={canonical} />
 <meta name="theme-color" content="#FAF4E8" />
-<link rel="icon" href="data:," />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Jason Jeyanandan" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Jason Jeyanandan" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
 <style is:global>
 /* ---------------------------------------------------------------------------
    Palette is the Obsidian Delta light system: paper #FAF4E8, card #EFE5CE,
