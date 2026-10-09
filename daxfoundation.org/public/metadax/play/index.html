@@ -191,6 +191,20 @@
     out.appendChild(tabs);
     Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
 
+    // Print this: a paper-first render of the learner side, same package, same link scheme.
+    var pr = el("p"); var pb = el("button",null,"Print this"); pb.style.background="transparent"; pb.style.color="var(--accent)"; pb.style.border="1px solid var(--accent)";
+    pb.onclick = function(){
+      function open(url){ window.open(url, "_blank"); }
+      if (window.MetaDAXCheck && MetaDAXCheck.encodePackage) {
+        MetaDAXCheck.encodePackage(pkg).then(function(s){ open("print.html#p="+s); })
+          .catch(function(){ try{ localStorage.setItem("metadax:print", JSON.stringify(pkg)); }catch(e){} open("print.html"); });
+      } else {
+        try{ localStorage.setItem("metadax:print", JSON.stringify(pkg)); }catch(e){}
+        open("print.html");
+      }
+    };
+    pr.appendChild(pb); out.appendChild(pr);
+
     // session end: offer to save this session to a learning record (download only)
     if (window.MetaDAXRecord) window.MetaDAXRecord.offer(pkg);
   }
