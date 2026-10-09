@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play a MetaDAX package</title>
+<style>
+  :root { color-scheme: light dark; --bg:#fbfaf7; --fg:#1a1a1a; --muted:#555; --line:#e2ddd3; --surface:#fff; --accent:#3a6a2a; --chip:#eef3e8; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14160f; --fg:#eceadf; --muted:#9a9a8c; --line:#2a2c22; --surface:#1c1e16; --accent:#8ec96e; --chip:#23281d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+  .way { margin:0 0 1rem; padding:.5rem .8rem; border:1px dashed var(--accent); border-radius:8px; color:var(--muted); font-size:.85rem; }
+  h1 { font-weight:500; font-size:1.5rem; margin:.2rem 0 1rem; }
+  textarea { width:100%; min-height:7rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.8rem; padding:.6rem; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--fg); }
+  button { font:inherit; padding:.5rem 1.1rem; border:0; border-radius:7px; background:var(--accent); color:#fff; cursor:pointer; }
+  .tabs { display:flex; gap:.4rem; margin:1.25rem 0 1rem; border-bottom:1px solid var(--line); }
+  .tabs button { background:none; color:var(--muted); border-bottom:2px solid transparent; border-radius:0; padding:.5rem .9rem; }
+  .tabs button[aria-selected="true"] { color:var(--fg); border-bottom-color:var(--accent); }
+  .sec { margin:1.5rem 0; }
+  .sec > .label { font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; }
+  .blk { margin:.75rem 0; }
+  .card { border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:6px; padding:.6rem .8rem; background:var(--surface); }
+  .step { border-left:3px solid var(--accent); padding:.3rem 0 .3rem .8rem; }
+  .step .say { font-style:italic; color:var(--muted); }
+  .q { font-weight:500; margin:.4rem 0 .2rem; }
+  .choice { padding:.15rem 0 .15rem 1rem; color:var(--muted); }
+  .choice.correct { color:var(--accent); }
+  .choice.correct::before { content:"✓ "; }
+  .roster { display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 1rem; }
+  .who { display:inline-block; font-size:.72rem; background:var(--chip); color:var(--accent); border-radius:999px; padding:.1rem .6rem; margin:.15rem .3rem .15rem 0; white-space:nowrap; }
+  .lvl { border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem; margin:.6rem 0; background:var(--surface); }
+  .err { border:1px solid #c0392b; background:#c0392b14; color:#c0392b; padding:.6rem .8rem; border-radius:8px; margin:1rem 0; }
+  .warn { border:1px solid #c7951f; background:#c7951f14; color:#9a7414; padding:.6rem .8rem; border-radius:8px; margin:1rem 0; font-size:.85rem; }
+  .muted { color:var(--muted); }
+  ul { margin:.3rem 0; padding-left:1.3rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="way">This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
+  <h1>Play a MetaDAX package</h1>
+  <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
+  <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
+  <p><button id="play">Play</button></p>
+  <div id="report"></div>
+  <div id="out"></div>
+</div>
+
+<script src="package-check.js"></script>
+<script>
+(function(){
+  var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
+  function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+  function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+
+  // Resolve a who/for_age tag into a human chip: "<nickname> · ages <band>".
+  // This is the read-only render of the split: which learner does which part.
+  function jobChip(parent, o, learnersByName){
+    if (o.who === undefined && o.for_age === undefined) return;
+    var who = o.who;
+    var band = o.for_age || (who && learnersByName[who] && learnersByName[who].age_band) || "";
+    var label;
+    if (who === "all" || (!who && band)) label = "Everyone" + (band ? " · ages " + band : "");
+    else if (who) label = who + (band ? " · ages " + band : "");
+    else label = "ages " + band;
+    parent.appendChild(el("span","who", label));
+  }
+
+  function renderBlocks(container, blocks, learnersByName){
+    (blocks||[]).forEach(function(b){
+      var wrap = el("div","blk");
+      // job chip first so the split reads before the content
+      jobChip(wrap, b, learnersByName);
+      switch(b.type){
+        case "h": wrap.appendChild(el("h3",null,inline(b.text))); break;
+        case "p": wrap.appendChild(el("p",null,inline(b.text))); break;
+        case "so": wrap.appendChild(el("p",null,inline(b.text))); break;
+        case "list": {
+          var ul = el(b.ordered?"ol":"ul");
+          (b.items||[]).forEach(function(i){ ul.appendChild(el("li",null,inline(i))); });
+          wrap.appendChild(ul); break; }
+        case "card": {
+          var c = el("div","card");
+          if(b.title) c.appendChild(el("strong",null,inline(b.title)));
+          c.appendChild(el("p",null,inline(b.body))); wrap.appendChild(c); break; }
+        case "step": {
+          var s = el("div","step");
+          s.appendChild(el("strong",null,(b.n?b.n+". ":"")+inline(b.do)));
+          if(b.say) s.appendChild(el("p","say","“"+inline(b.say)+"”"));
+          if(b.why) s.appendChild(el("p","muted",inline(b.why))); wrap.appendChild(s); break; }
+        case "ifthen": {
+          var it = el("div","card");
+          it.appendChild(el("strong",null,"If "+inline(b.if)));
+          it.appendChild(el("p",null,"Then "+inline(b.then))); wrap.appendChild(it); break; }
+        case "human": {
+          var h = el("div","card");
+          h.appendChild(el("strong",null,inline(b.title||"What only you can do")));
+          var hu=el("ul"); (b.items||[]).forEach(function(i){hu.appendChild(el("li",null,inline(i)));}); h.appendChild(hu); wrap.appendChild(h); break; }
+        case "lead": {
+          var l = el("div","card");
+          l.appendChild(el("strong",null,inline(b.title||"A step ahead")));
+          l.appendChild(el("p",null,inline(b.body)));
+          if(b.prompt) l.appendChild(el("p","say","“"+inline(b.prompt)+"”")); wrap.appendChild(l); break; }
+        case "copy": {
+          var cp = el("div","card");
+          cp.appendChild(el("strong",null,inline(b.title||"Copy")));
+          cp.appendChild(el("p","muted",inline(b.text))); wrap.appendChild(cp); break; }
+        case "check": {
+          var ck = el("div","card");
+          ck.appendChild(el("strong",null,inline(b.title||"Checklist")));
+          var cu=el("ul"); (b.items||[]).forEach(function(i){cu.appendChild(el("li",null,"☐ "+inline(i)));}); ck.appendChild(cu); wrap.appendChild(ck); break; }
+        case "faq": { renderFaq(wrap, b, 0); break; }
+        case "quiz": { renderQuiz(wrap, b, learnersByName); break; }
+        case "sort": case "sequence": case "build": {
+          var g = el("div","card");
+          g.appendChild(el("strong",null,inline(b.title||b.type)));
+          if(b.intro) g.appendChild(el("p","muted",inline(b.intro)));
+          g.appendChild(el("p","muted","(game: "+b.type+" — play it live in the player)")); wrap.appendChild(g); break; }
+        default: wrap.appendChild(el("p","muted","["+b.type+"]"));
+      }
+      container.appendChild(wrap);
+    });
+  }
+
+  function renderFaq(container, b, depth){
+    var d = el("div", depth?"":"card");
+    d.appendChild(el("strong",null,inline(b.q)));
+    d.appendChild(el("p",null,inline(b.a)));
+    (b.more||[]).forEach(function(m){ var sub=el("div","blk"); sub.style.marginLeft="1rem"; renderFaq(sub,m,depth+1); d.appendChild(sub); });
+    container.appendChild(d);
+  }
+
+  function renderQuiz(container, b, learnersByName){
+    var q = el("div","blk");
+    q.appendChild(el("strong",null,inline(b.title||"Game")));
+    if(b.intro) q.appendChild(el("p","muted",inline(b.intro)));
+    (b.levels||[]).forEach(function(lv){
+      var box = el("div","lvl");
+      var head = el("div");
+      head.appendChild(el("strong",null,"Level "+lv.level+(lv.label?" — "+inline(lv.label):"")));
+      jobChip(head, lv, learnersByName);
+      box.appendChild(head);
+      (lv.items||[]).forEach(function(it){
+        var iw = el("div","blk");
+        jobChip(iw, it, learnersByName);
+        iw.appendChild(el("div","q",inline(it.q)));
+        if(it.visual) iw.appendChild(el("pre","muted",it.visual));
+        (it.choices||[]).forEach(function(c){ iw.appendChild(el("div","choice"+(c.correct?" correct":""),inline(c.text))); });
+        if(it.explain) iw.appendChild(el("p","muted",inline(it.explain)));
+        box.appendChild(iw);
+      });
+      q.appendChild(box);
+    });
+    container.appendChild(q);
+  }
+
+  function renderPackage(pkg){
+    var out = document.getElementById("out"); out.innerHTML="";
+    out.appendChild(el("h2",null,inline(pkg.title||"Package")));
+    out.appendChild(el("p","muted",(pkg.word||"session")+" "+(pkg.session||1)));
+
+    var learnersByName = {};
+    if (Array.isArray(pkg.learners) && pkg.learners.length){
+      (pkg.learners||[]).forEach(function(l){ if(l&&l.nickname) learnersByName[l.nickname]=l; });
+      var roster = el("div","sec");
+      roster.appendChild(el("div","label","Who this is for"));
+      var r = el("div","roster");
+      pkg.learners.forEach(function(l){ r.appendChild(el("span","who",(l.nickname||"?")+(l.age_band?" · ages "+l.age_band:""))); });
+      roster.appendChild(r);
+      roster.appendChild(el("p","muted","Each part below shows who does it. Everyone can be in the room; the chip says who leads or whose level it is."));
+      out.appendChild(roster);
+    }
+
+    // tabs
+    var tabs = el("div","tabs"); var panes = {};
+    [["guide",pkg.guide&&pkg.guide.tab||"For you"],["learner",pkg.learner&&pkg.learner.tab||"For the learner"]].forEach(function(t,i){
+      var btn = el("button",null,t[1]); btn.setAttribute("aria-selected", i===0?"true":"false");
+      btn.onclick = function(){ Object.keys(panes).forEach(function(k){panes[k].style.display="none";}); panes[t[0]].style.display="block";
+        [].forEach.call(tabs.children,function(c){c.setAttribute("aria-selected","false");}); btn.setAttribute("aria-selected","true"); };
+      tabs.appendChild(btn);
+      var pane = el("div"); pane.style.display = i===0?"block":"none"; panes[t[0]]=pane;
+      var side = pkg[t[0]]||{};
+      (side.sections||[]).forEach(function(sec){
+        var sc = el("div","sec"); sc.appendChild(el("div","label",inline(sec.label||sec.id)));
+        renderBlocks(sc, sec.blocks, learnersByName); pane.appendChild(sc);
+      });
+    });
+    out.appendChild(tabs);
+    Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
+  }
+
+  function play(){
+    var rep = document.getElementById("report"); rep.innerHTML="";
+    var pkg;
+    try { pkg = JSON.parse(document.getElementById("src").value); }
+    catch(e){ rep.appendChild(el("div","err","Not valid JSON: "+e.message)); return; }
+    var res = (window.MetaDAXCheck && window.MetaDAXCheck.checkPackage) ? window.MetaDAXCheck.checkPackage(pkg, window.CHECK_LISTS||{}) : {errors:[],warnings:[]};
+    if (res.warnings && res.warnings.length){
+      var w = el("div","warn"); w.appendChild(el("strong",null,"Warnings (the builder decides): "));
+      var wu=el("ul"); res.warnings.forEach(function(x){wu.appendChild(el("li",null,x.path+" — "+x.msg));}); w.appendChild(wu); rep.appendChild(w);
+    }
+    if (res.errors && res.errors.length){
+      var e2 = el("div","err"); e2.appendChild(el("strong",null,"This package has errors and does not go out:"));
+      var eu=el("ul"); res.errors.forEach(function(x){eu.appendChild(el("li",null,x.path+" — "+x.msg));}); e2.appendChild(eu); rep.appendChild(e2);
+      document.getElementById("out").innerHTML=""; return;
+    }
+    renderPackage(pkg);
+  }
+
+  document.getElementById("play").addEventListener("click", play);
+  // optional: load check-lists.json so warnings match the gate
+  fetch("check-lists.json").then(function(r){return r.json();}).then(function(j){window.CHECK_LISTS=j;}).catch(function(){});
+})();
+</script>
+</body>
+</html>

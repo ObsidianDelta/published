@@ -15,6 +15,25 @@ const sendTo: string[] = homeschoolData.send_to;
       <legend class="group-label">The learner (your child)</legend>
 
       <div class="field">
+        <label class="label" for="f-count">How many children learn this together?</label>
+        <select class="input" id="f-count" name="count">
+          <option value="1">Just one</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <p class="help">Several children doing the same lesson together? Answer once for the group — a nickname and age for each child below.</p>
+      </div>
+
+      <div id="multi-learner" hidden>
+        <p class="label">Each child (a nickname, not a real name, and a rough age)</p>
+        <div id="learner-rows"></div>
+        <p class="help">Ages set each child's band, so the page can say who reads a part and who does the hands-on part.</p>
+      </div>
+
+      <div id="single-learner">
+      <div class="field">
         <label class="label" for="f-called">What should the page call your child?</label>
         <input class="input" type="text" id="f-called" name="called" autocomplete="off" maxlength="300">
         <p class="help">A nickname or a made-up name, not their real name. Leave it empty and the page just says "you".</p>
@@ -30,6 +49,7 @@ const sendTo: string[] = homeschoolData.send_to;
           <option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
         </select>
       </div>
+      </div><!-- /#single-learner -->
 
       <div class="field">
         <label class="label" for="f-subject">Which subject? <span class="req" aria-label="required">*</span></label>
@@ -371,6 +391,42 @@ const sendTo: string[] = homeschoolData.send_to;
     });
   }
 
+  /* Multiple children: render N nickname+age rows and toggle the single/multi UI */
+  var countSel = document.getElementById('f-count');
+  var multiWrap = document.getElementById('multi-learner');
+  var singleWrap = document.getElementById('single-learner');
+  var rowsBox = document.getElementById('learner-rows');
+  function ageOptions() {
+    var o = '<option value="">Choose an age</option>';
+    for (var a = 4; a <= 18; a++) o += '<option>' + a + '</option>';
+    return o;
+  }
+  function renderRows(n) {
+    rowsBox.innerHTML = '';
+    for (var i = 0; i < n; i++) {
+      var f = document.createElement('div');
+      f.className = 'field';
+      f.innerHTML =
+        '<label class="label" for="lc-' + i + '">Child ' + (i + 1) + ' — nickname</label>' +
+        '<input class="input" type="text" id="lc-' + i + '" autocomplete="off" maxlength="60" placeholder="e.g. the big kid">' +
+        '<label class="label mt-s" for="la-' + i + '">Child ' + (i + 1) + ' — age</label>' +
+        '<select class="input" id="la-' + i + '">' + ageOptions() + '</select>';
+      rowsBox.appendChild(f);
+    }
+  }
+  function learnerRows() {
+    return Array.prototype.slice.call(rowsBox.querySelectorAll('.field')).map(function (f) {
+      return { nick: oneLine(f.querySelector('input').value), age: f.querySelector('select').value };
+    });
+  }
+  if (countSel) {
+    countSel.addEventListener('change', function () {
+      var n = parseInt(this.value, 10) || 1;
+      if (n > 1) { renderRows(n); multiWrap.hidden = false; singleWrap.hidden = true; }
+      else { multiWrap.hidden = true; singleWrap.hidden = false; rowsBox.innerHTML = ''; }
+    });
+  }
+
   /* Ref: HS- + 4 chars from safe alphabet */
   var ALPHA = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789';
   function makeRef() {
@@ -414,12 +470,22 @@ const sendTo: string[] = homeschoolData.send_to;
 
   /* Build the note lines */
   function buildNote(ref) {
-    var lines = ['MetaDAX intake v1', 'Ref: ' + ref, '-- Learner'];
+    var count = parseInt(val('f-count'), 10) || 1;
+    var lines = ['MetaDAX intake v1', 'Ref: ' + ref];
 
-    var called = val('f-called');
-    if (called) lines.push('Called: ' + oneLine(called));
-
-    lines.push('Age: ' + val('f-age'));
+    if (count > 1) {
+      lines.push('-- Learners');
+      lines.push('How many: ' + count);
+      learnerRows().forEach(function (r, i) {
+        lines.push('Learner: ' + (r.nick || ('child ' + (i + 1))) + ', age ' + (r.age || '?'));
+      });
+      lines.push('-- Learner');
+    } else {
+      lines.push('-- Learner');
+      var called = val('f-called');
+      if (called) lines.push('Called: ' + oneLine(called));
+      lines.push('Age: ' + val('f-age'));
+    }
 
     var subject = val('f-subject');
     if (subject === 'Other') subject = oneLine(val('f-subject-other')) || 'Other';
@@ -475,7 +541,14 @@ const sendTo: string[] = homeschoolData.send_to;
   /* Make my note */
   document.getElementById('make-note').addEventListener('click', function () {
     var errors = [];
-    if (!val('f-age')) errors.push('Please choose an age.');
+    var count = parseInt(val('f-count'), 10) || 1;
+    if (count > 1) {
+      var rows = learnerRows();
+      if (rows.some(function (r) { return !r.age; })) errors.push('Please choose an age for each child.');
+      if (rows.some(function (r) { return !r.nick; })) errors.push('Please give each child a nickname.');
+    } else if (!val('f-age')) {
+      errors.push('Please choose an age.');
+    }
     if (!val('f-subject')) errors.push('Please choose a subject.');
     if (!val('f-stuck')) errors.push('Please describe where they get stuck.');
     if (!val('f-loves')) errors.push('Please tell us what they love.');
