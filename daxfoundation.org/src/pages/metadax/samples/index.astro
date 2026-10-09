@@ -1,0 +1,117 @@
+---
+import Base from '../../../layouts/Base.astro';
+import data from '../../../data/metadax-samples.json';
+
+// /metadax/samples/ -- the public homeschool sample library. Reads the sample
+// index at build time (src/data/metadax-samples.json, mirrored from the public
+// metadax repo's samples/index.json plus each sample's body). Everyone here is
+// made up; no family data. Filters are client-side (subject, age band).
+const samples = data.samples || [];
+const subjects = Array.from(new Set(samples.map((s) => s.subject))).sort();
+const ageBands = Array.from(new Set(samples.map((s) => s.age_band))).sort();
+const repo = 'https://github.com/daxfoundation/metadax/blob/main';
+---
+<Base title="Meta DAX: homeschool samples" description="Generic homeschool samples built from parents' descriptions: made-up names, nothing identifying. One page for the guide, one for the child. A way, never the way." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/homeschool/">Homeschool</a> &rsaquo; Samples</p>
+    <h1>Homeschool samples</h1>
+    <p class="lede-text">
+      Generic versions of packages built for real families, shared with their
+      agreement. Made-up names, nothing identifying. Each one shows where a child
+      was stuck, the way in built through what they love, and what only a person
+      can do. A way, never the way. Everyone here is made up.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-filters">
+    <h2 id="h-filters" class="sr-only">Filter</h2>
+    <div class="filters" role="group" aria-label="Filter samples">
+      <label>Subject
+        <select id="f-subject">
+          <option value="">All</option>
+          {subjects.map((s) => <option value={s}>{s}</option>)}
+        </select>
+      </label>
+      <label>Age band
+        <select id="f-age">
+          <option value="">All</option>
+          {ageBands.map((a) => <option value={a}>{a}</option>)}
+        </select>
+      </label>
+      <p class="count"><span id="shown">{samples.length}</span> of {samples.length} shown</p>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="h-list">
+    <h2 id="h-list" class="sr-only">Samples</h2>
+    <ol class="list" id="list">
+      {samples.map((s) => (
+        <li class="item" id={s.id} data-subject={s.subject} data-age={s.age_band}>
+          <p class="tags"><span class="tag">{s.subject}</span><span class="tag">Ages {s.age_band}</span></p>
+          <h3 class="title">{s.title || s.id}</h3>
+          <p class="stuck"><strong>Stuck:</strong> {s.stuck}</p>
+          <p class="meta"><strong>Loves:</strong> {s.loves} &nbsp;&middot;&nbsp; <strong>Approach:</strong> {s.approach}</p>
+          <details>
+            <summary>Read the sample</summary>
+            <div class="body" set:html={s.html} />
+            <p class="src"><a href={`${repo}/${s.path}`}>View the source markdown &rarr;</a></p>
+          </details>
+        </li>
+      ))}
+    </ol>
+    <p id="empty" class="empty" hidden>No samples match that filter.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-share">
+    <h2 id="h-share">Share one</h2>
+    <p>
+      These come from parents who ran the <a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-homeschool">homeschool skill</a>
+      on their own and offered a generic version through a
+      <a href="https://github.com/daxfoundation/metadax/issues/new?template=share-a-sample.yml">&ldquo;Share a sample&rdquo; issue</a>.
+      A person reviews each one before it appears here. No upload, no account.
+    </p>
+  </section>
+
+  <script type="module">
+    const subj = document.getElementById('f-subject');
+    const age = document.getElementById('f-age');
+    const items = Array.from(document.querySelectorAll('#list .item'));
+    const shown = document.getElementById('shown');
+    const empty = document.getElementById('empty');
+    function apply() {
+      let n = 0;
+      for (const el of items) {
+        const ok = (!subj.value || el.dataset.subject === subj.value) &&
+                   (!age.value || el.dataset.age === age.value);
+        el.hidden = !ok;
+        if (ok) n++;
+      }
+      shown.textContent = String(n);
+      empty.hidden = n !== 0;
+    }
+    subj.addEventListener('change', apply);
+    age.addEventListener('change', apply);
+  </script>
+
+  <style>
+    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
+    .filters { display:flex; gap:1.25rem; align-items:end; flex-wrap:wrap; }
+    .filters label { display:flex; flex-direction:column; gap:.25rem; font-weight:600; font-size:.9rem; }
+    .filters select { font:inherit; padding:.4rem .5rem; min-width:10rem; }
+    .filters .count { margin:0 0 .2rem auto; opacity:.7; font-size:.9rem; }
+    .list { list-style:none; padding:0; margin:0; display:grid; gap:1rem; }
+    .item { border:1px solid rgba(128,128,128,.3); border-radius:10px; padding:1rem 1.15rem; }
+    .item[hidden] { display:none; }
+    .tags { margin:0 0 .4rem; display:flex; gap:.5rem; }
+    .tag { font-size:.75rem; text-transform:uppercase; letter-spacing:.04em; border:1px solid rgba(128,128,128,.4); border-radius:999px; padding:.1rem .6rem; opacity:.85; }
+    .item .title { margin:.1rem 0 .5rem; }
+    .item .stuck, .item .meta { margin:.2rem 0; }
+    .item .meta { opacity:.85; font-size:.95rem; }
+    .item details { margin-top:.6rem; }
+    .item summary { cursor:pointer; font-weight:600; }
+    .item .body { margin-top:.75rem; }
+    .item .body :global(h2) { font-size:1.05rem; margin:1rem 0 .3rem; }
+    .item .src { margin-top:.5rem; font-size:.9rem; }
+    .empty { opacity:.7; }
+  </style>
+</Base>
