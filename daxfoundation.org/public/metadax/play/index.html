@@ -42,6 +42,16 @@
   .gnotes .gn-item { margin:.5rem 0; }
   .gnotes .gn-k { font-weight:600; }
   .gnotes .gn-sub { color:var(--muted); font-size:.9rem; }
+  .scene { border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:6px; padding:.6rem .8rem; background:var(--surface); }
+  .scene .stages { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0; }
+  .scene .stage { position:relative; width:220px; max-width:100%; aspect-ratio:1/1; background:var(--chip); border-radius:8px; overflow:hidden; }
+  .scene .stage svg { width:100%; height:100%; display:block; }
+  .scene .ans { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:.4rem 0; }
+  .scene input[type=text] { font:inherit; padding:.35rem .5rem; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); }
+  .scene button.chk { padding:.35rem .9rem; }
+  .scene .fb { font-size:.9rem; margin:.3rem 0 0; }
+  .scene .fb.ok { color:var(--accent); }
+  .scene .lvl-tag { font-size:.72rem; color:var(--muted); }
 </style>
 </head>
 <body>
@@ -68,6 +78,32 @@
   var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
   function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
   function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+
+  // ---- scenes (optional 3D) ---------------------------------------------
+  // three.js + the scene registry are imported ONLY when a package carries a
+  // scene block, so a scene-free package pulls in no 3D code and renders
+  // byte-for-byte as before (the "scene" case below is simply never reached).
+  var SceneLib = null, THREEMod = null, SceneLoadFailed = false;
+  function packageHasScene(pkg){
+    var hit = false;
+    (function walk(o){
+      if (hit || !o || typeof o !== "object") return;
+      if (Array.isArray(o)) { for (var i=0;i<o.length;i++) walk(o[i]); return; }
+      if (o.type === "scene") { hit = true; return; }
+      for (var k in o) if (Object.prototype.hasOwnProperty.call(o,k)) walk(o[k]);
+    })(pkg);
+    return hit;
+  }
+  function loadSceneLibs(){
+    if (SceneLib || SceneLoadFailed) return Promise.resolve();
+    return import("./vendor/three.module.min.js")
+      .then(function(T){ THREEMod = T; return import("./scenes/scenes.js"); })
+      .then(function(M){ SceneLib = M; })
+      .catch(function(){ SceneLoadFailed = true; });
+  }
+  function clampLevel(n){ n = Math.round(Number(n)); return isFinite(n) ? Math.max(1,Math.min(3,n)) : 1; }
+  function normAnswer(s){ return String(s==null?"":s).trim().toLowerCase().replace(/\s+/g," "); }
+  function prefersReducedMotion(){ try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch(e){ return false; } }
 
   // ---- companion.json sidecar (optional) --------------------------------
   // Pure checks copied inline from companion/validate-companion.mjs, the same
@@ -208,6 +244,7 @@
           g.appendChild(el("strong",null,inline(b.title||b.type)));
           if(b.intro) g.appendChild(el("p","muted",inline(b.intro)));
           g.appendChild(el("p","muted","(game: "+b.type+" — play it live in the player)")); wrap.appendChild(g); break; }
+        case "scene": { renderScene(wrap, b); break; }
         default: wrap.appendChild(el("p","muted","["+b.type+"]"));
       }
       container.appendChild(wrap);
@@ -244,6 +281,82 @@
       q.appendChild(box);
     });
     container.appendChild(q);
+  }
+
+  // A scene block: mount the live 3D scene (or a static SVG fallback), ask the
+  // learner question, and check the typed answer. Same streak/miss idea as the
+  // other game items — a miss drops the level by one within the item, revealing
+  // more scaffolding. answer/why come straight off the item, like spoken-sound.
+  function renderScene(wrap, b){
+    var box = el("div","scene");
+    if (b.title) box.appendChild(el("strong",null,inline(b.title)));
+    var level = clampLevel(b.level);
+    var reduce = prefersReducedMotion();
+    // the one or more scene units to show (compose = up to 3 side by side)
+    var units = Array.isArray(b.compose) ? b.compose.slice(0,3)
+      : (b.scene ? [{ scene: b.scene, params: b.params, theme: b.theme, level: b.level }] : []);
+    var stages = el("div","stages");
+    box.appendChild(stages);
+    var handles = [];
+    function mountAll(lvl){
+      handles.forEach(function(h){ try { h.dispose(); } catch(e){} });
+      handles = [];
+      stages.innerHTML = "";
+      units.forEach(function(u){
+        var stage = el("div","stage");
+        stages.appendChild(stage);
+        var theme = u.theme || b.theme || "plain";
+        var ulvl = u.level != null ? clampLevel(u.level) : lvl;
+        if (SceneLib && THREEMod && !SceneLoadFailed){
+          try {
+            var def = SceneLib.getScene(u.scene);
+            if (def){
+              stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
+              var h = def.mount(THREEMod, stage, u.params, { reducedMotion: reduce, theme: theme, level: ulvl });
+              handles.push(h);
+              return;
+            }
+          } catch(e){ /* fall through to SVG */ }
+        }
+        // Fallback: static SVG + alt (no WebGL, or load failed).
+        if (SceneLib && SceneLib.svgFor){
+          stage.innerHTML = SceneLib.svgFor(u.scene, u.params, theme, ulvl);
+          stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
+        } else {
+          stage.appendChild(el("p","muted","A diagram goes here. Open the printable sheet to see it."));
+        }
+      });
+    }
+    mountAll(level);
+
+    if (b.ask_learner) box.appendChild(el("p","q",inline(b.ask_learner)));
+    var streak = 0;
+    if (b.answer !== undefined && b.answer !== null && b.answer !== ""){
+      var row = el("div","ans");
+      var inp = el("input"); inp.type = "text"; inp.setAttribute("aria-label","Your answer"); inp.placeholder = "Your answer";
+      var btn = el("button","chk","Check");
+      var tag = el("span","lvl-tag","Level "+level);
+      row.appendChild(inp); row.appendChild(btn); row.appendChild(tag);
+      box.appendChild(row);
+      var fb = el("p","fb"); box.appendChild(fb);
+      function check(){
+        if (normAnswer(inp.value) === normAnswer(b.answer)){
+          streak++;
+          fb.textContent = "That’s it." + (b.why ? " " + inline(b.why) : "");
+          fb.className = "fb ok";
+        } else {
+          streak = 0;
+          if (level > 1){ level--; mountAll(level); tag.textContent = "Level "+level; }
+          fb.textContent = "Not quite — have another go.";
+          fb.className = "fb";
+        }
+      }
+      btn.addEventListener("click", check);
+      inp.addEventListener("keydown", function(e){ if (e.key === "Enter"){ check(); e.preventDefault(); } });
+    } else if (b.why){
+      box.appendChild(el("p","muted",inline(b.why)));
+    }
+    wrap.appendChild(box);
   }
 
   function renderPackage(pkg, companion){
@@ -305,7 +418,7 @@
     if (window.MetaDAXRecord) window.MetaDAXRecord.offer(pkg);
   }
 
-  function play(){
+  async function play(){
     var rep = document.getElementById("report"); rep.innerHTML="";
     document.getElementById("record").innerHTML="";
     var pkg;
@@ -335,6 +448,10 @@
       if (cErr) companionNote(rep, "The companion notes don’t match the companion shape (" + cErr + "), so this plays without them.");
       else companion = candidate;
     }
+
+    // Lazy-load the 3D libs only when this package actually uses a scene, so a
+    // scene-free package renders exactly as before.
+    if (packageHasScene(pkg)) await loadSceneLibs();
 
     renderPackage(pkg, companion);
   }

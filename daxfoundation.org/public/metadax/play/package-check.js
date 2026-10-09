@@ -40,6 +40,85 @@
     }
   }
 
+  // ── Scene specs (mirror of play/scenes/scenes.js, kept compact) ───────────
+  // The checker is a zero-dependency IIFE that runs in Node and the browser, so
+  // it can't import the ESM registry. This table is the validation contract:
+  // known scene ids, each scene's param schema, the theme enum, and the level
+  // range. Keep it in step with scenes.js when scenes are added.
+  var SCENE_SPECS = {
+    "fraction-bars": {
+      params: {
+        denominators: { type: "int-array", min: 1, max: 12, maxLen: 3 },
+        shaded: { type: "int-array", min: 0, max: 12, maxLen: 3 },
+      },
+    },
+    "clock": {
+      params: {
+        hour: { type: "int", min: 0, max: 12 },
+        minute: { type: "int", min: 0, max: 59 },
+        draggable: { type: "bool" },
+      },
+    },
+  };
+  var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1 };
+
+  // Validate one { scene, params, theme?, level? } unit; push errors under `p`.
+  function checkSceneUnit(unit, p, errors) {
+    if (!unit || typeof unit !== "object") { errors.push({ path: p, msg: "scene entry must be an object" }); return; }
+    var spec = SCENE_SPECS[unit.scene];
+    if (!spec) { errors.push({ path: p + ".scene", msg: "unknown scene id: " + unit.scene }); return; }
+    var schema = spec.params || {};
+    var params = unit.params || {};
+    Object.keys(schema).forEach(function (k) {
+      if (!(k in params)) return; // params are optional; missing → scene default
+      var s = schema[k], v = params[k], pp = p + ".params." + k;
+      if (s.type === "int") {
+        if (typeof v !== "number" || !isFinite(v) || Math.round(v) !== v) errors.push({ path: pp, msg: "must be an integer" });
+        else if (v < s.min || v > s.max) errors.push({ path: pp, msg: "out of range " + s.min + ".." + s.max + ": " + v });
+      } else if (s.type === "bool") {
+        if (typeof v !== "boolean") errors.push({ path: pp, msg: "must be a boolean" });
+      } else if (s.type === "int-array") {
+        if (!Array.isArray(v)) { errors.push({ path: pp, msg: "must be an array" }); return; }
+        if (v.length > s.maxLen) errors.push({ path: pp, msg: "more than " + s.maxLen + " entries" });
+        for (var i = 0; i < v.length; i++) {
+          var n = v[i];
+          if (typeof n !== "number" || !isFinite(n) || Math.round(n) !== n) errors.push({ path: pp + "[" + i + "]", msg: "must be an integer" });
+          else if (n < s.min || n > s.max) errors.push({ path: pp + "[" + i + "]", msg: "out of range " + s.min + ".." + s.max + ": " + n });
+        }
+      }
+    });
+    if (unit.theme !== undefined && !SCENE_THEMES[unit.theme]) errors.push({ path: p + ".theme", msg: "theme not in enum (plain|unicorn|hockey|dinosaur|space): " + unit.theme });
+    if (unit.level !== undefined) {
+      if (typeof unit.level !== "number" || Math.round(unit.level) !== unit.level || unit.level < 1 || unit.level > 3)
+        errors.push({ path: p + ".level", msg: "level must be an integer 1..3: " + unit.level });
+    }
+  }
+
+  // Validate every scene / compose block across a side's sections.
+  function checkScenes(sections, errors, sideLabel) {
+    for (var si = 0; si < (sections || []).length; si++) {
+      var sec = sections[si], blks = sec.blocks || [];
+      for (var bi = 0; bi < blks.length; bi++) {
+        var b = blks[bi];
+        if (b.type !== "scene") continue;
+        var bp = sideLabel + ".sections[" + sec.id + "].scene[" + (b.id != null ? b.id : bi) + "]";
+        var hasScene = b.scene !== undefined, hasCompose = b.compose !== undefined;
+        if (hasScene && hasCompose) { errors.push({ path: bp, msg: "block has both scene and compose; use one" }); }
+        if (hasCompose) {
+          if (!Array.isArray(b.compose)) errors.push({ path: bp + ".compose", msg: "compose must be an array" });
+          else {
+            if (b.compose.length > 3) errors.push({ path: bp + ".compose", msg: "compose has more than 3 scenes" });
+            for (var ci = 0; ci < b.compose.length; ci++) checkSceneUnit(b.compose[ci], bp + ".compose[" + ci + "]", errors);
+          }
+        } else if (hasScene) {
+          checkSceneUnit(b, bp, errors);
+        } else {
+          errors.push({ path: bp, msg: "scene block needs a scene id or a compose array" });
+        }
+      }
+    }
+  }
+
   // ── Block / section helpers ───────────────────────────────────────────────
   var GAME_TYPES = { quiz: 1, sort: 1, sequence: 1, build: 1, "spoken-sound": 1 };
   var GUIDE_ORDER = ["upnext", "learned", "steps", "tricky", "tellus"];
@@ -250,6 +329,10 @@
     // game choice validity
     checkChoiceErrors(gs, errors, "guide");
     checkChoiceErrors(ls, errors, "learner");
+
+    // scene / compose blocks (optional; a package with none is untouched)
+    checkScenes(gs, errors, "guide");
+    checkScenes(ls, errors, "learner");
 
     // required block types
     if (!hasType(gs, "human")) errors.push({ path: "guide.sections", msg: "no human block on guide side" });

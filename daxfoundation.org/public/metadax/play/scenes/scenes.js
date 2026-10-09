@@ -1,19 +1,33 @@
 // Meta DAX scene registry — a small library of parameterized, low-poly 3D
-// components. Mix-and-match = the same scene id with different params.
+// components. Three separate inputs drive every scene (see "Layers" below):
 //
-// three.js is NOT imported here. The host (player or demo page) loads the
-// vendored three.module.min.js lazily and passes `THREE` into mount(), so a
-// package with no `scene` block pulls in no 3D code at all. Keeping three out
-// of this module also means it parses with `node --check` unchanged.
+//   params  — the MECHANICS (denominators + shaded; hour + minute + draggable).
+//             Validated per scene, same as always.
+//   theme   — the SKIN: one of plain | unicorn | hockey | dinosaur | space.
+//             Changes palette + a procedural prop + optional flavour words.
+//             NEVER changes the mechanics or the answer. No image downloads,
+//             no licensed characters — props are drawn from geometry.
+//   level   — an integer 1..3 that changes difficulty / affordances WITHIN the
+//             mechanics. fraction-bars: 1 shaded bars w/ labels, 2 no labels,
+//             3 compare two fractions. clock: 1 hour only, 2 half/quarter hours,
+//             3 five-minute steps with drag.
+//
+// three.js is NOT imported here. The host (player, print, or demo page) loads
+// the vendored three.module.min.js lazily and passes `THREE` into mount(), so a
+// package with no `scene` block pulls in no 3D code at all. Keeping three out of
+// this module also means it parses with `node --check` unchanged, and the SVG
+// renderer below needs no WebGL — print and the no-WebGL fallback use it.
 //
 // A scene definition is:
 //   {
-//     title,                      // short human label
-//     params,                     // { name: {type, ...bounds, default} } — used by the checker and for defaults
-//     alt(params) -> string,      // alt-text generated from params (no WebGL needed)
+//     title,                               // short human label
+//     params,                              // schema — used by the checker and for defaults
+//     levels,                              // [1,2,3] — the levels this scene supports
+//     alt(params, theme, level) -> string, // alt-text, no WebGL needed
+//     svg(params, theme, level) -> string, // static <svg> string, grayscale-safe, no WebGL
 //     mount(THREE, el, params, opts) -> { dispose(), setReducedMotion(bool) }
 //   }
-// opts: { reducedMotion?: bool }. mount() owns one <canvas> inside `el`.
+// opts: { reducedMotion?, theme?, level? }. mount() owns one <canvas> inside `el`.
 
 // ---- small shared helpers ---------------------------------------------------
 
@@ -44,6 +58,69 @@ export function normalizeParams(sceneId, params) {
   return out;
 }
 
+// ---- themes (the skin layer) ------------------------------------------------
+// A theme is palette + a procedural prop id + a flavour word. It is pure data;
+// it never touches mechanics. `plain` is the default and adds no prop.
+export var THEMES = {
+  plain:    { label: "Plain",    shadeOn: 0x3b7dd8, shadeOff: 0xdfe6f0, ink: 0x1b2a44, accent: 0x3b7dd8, face: 0xf5f7fb, prop: null,  word: "" },
+  unicorn:  { label: "Unicorn",  shadeOn: 0xc45fd0, shadeOff: 0xf3e0f7, ink: 0x5a2a6b, accent: 0xff7ec8, face: 0xfdf1fb, prop: "star", word: "magic" },
+  hockey:   { label: "Hockey",   shadeOn: 0x1f6fb2, shadeOff: 0xdbe6ef, ink: 0x11324d, accent: 0xd8462f, face: 0xeef4fb, prop: "puck", word: "rink" },
+  dinosaur: { label: "Dinosaur", shadeOn: 0x4b8f3a, shadeOff: 0xe2ecd8, ink: 0x24401c, accent: 0xcf8a3a, face: 0xf1f7ea, prop: "leaf", word: "dino" },
+  space:    { label: "Space",    shadeOn: 0x5a6bff, shadeOff: 0xe0e2f6, ink: 0x1a2150, accent: 0x9d6bff, face: 0xedeffb, prop: "star", word: "orbit" },
+};
+
+export function normalizeTheme(theme) { return THEMES[theme] ? theme : "plain"; }
+export function normalizeLevel(level) {
+  var n = Math.round(Number(level));
+  return Number.isFinite(n) ? Math.max(1, Math.min(3, n)) : 1;
+}
+function themeOf(theme) { return THEMES[normalizeTheme(theme)]; }
+
+// ---- colour helpers ---------------------------------------------------------
+function hex2(n) { n = Math.max(0, Math.min(255, Math.round(n))); return (n < 16 ? "0" : "") + n.toString(16); }
+function toHex(rgbInt) { return "#" + hex2((rgbInt >> 16) & 255) + hex2((rgbInt >> 8) & 255) + hex2(rgbInt & 255); }
+// Luminance-based grey for a colour, clamped into [lo,hi] so print stays legible
+// in black and white. Derived from the theme palette, never a flat grey.
+function grayHex(rgbInt, lo, hi) {
+  var r = (rgbInt >> 16) & 255, g = (rgbInt >> 8) & 255, b = rgbInt & 255;
+  var lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  var v = Math.max(lo, Math.min(hi, lum));
+  return "#" + hex2(v) + hex2(v) + hex2(v);
+}
+// A grayscale-safe pair derived from a theme: dark for "on", pale for "off".
+function printTones(t) {
+  return { on: grayHex(t.shadeOn, 0x33, 0x7a), off: grayHex(t.shadeOff, 0xd2, 0xf4), ink: grayHex(t.ink, 0x11, 0x44) };
+}
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+// A small procedural prop glyph as an SVG <path>/<polygon>, drawn in `fill`.
+function propSvg(prop, cx, cy, r, fill) {
+  if (!prop) return "";
+  if (prop === "star") {
+    var pts = [], i;
+    for (i = 0; i < 10; i++) {
+      var ang = -Math.PI / 2 + i * Math.PI / 5;
+      var rad = i % 2 ? r * 0.42 : r;
+      pts.push((cx + Math.cos(ang) * rad).toFixed(1) + "," + (cy + Math.sin(ang) * rad).toFixed(1));
+    }
+    return '<polygon points="' + pts.join(" ") + '" fill="' + fill + '"/>';
+  }
+  if (prop === "puck") return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + r + '" ry="' + (r * 0.45).toFixed(1) + '" fill="' + fill + '"/>';
+  if (prop === "leaf") return '<path d="M' + cx + ' ' + (cy - r) + ' C' + (cx + r) + ' ' + (cy - r) + ' ' + (cx + r) + ' ' + (cy + r) + ' ' + cx + ' ' + (cy + r) + ' C' + (cx - r) + ' ' + (cy + r) + ' ' + (cx - r) + ' ' + (cy - r) + ' ' + cx + ' ' + (cy - r) + ' Z" fill="' + fill + '"/>';
+  return "";
+}
+
+// A tiny low-poly prop Mesh for the 3D stage (null for the plain theme).
+function makeProp(THREE, prop, accent) {
+  if (!prop) return null;
+  var mat = new THREE.MeshLambertMaterial({ color: accent });
+  var m;
+  if (prop === "puck") m = new THREE.Mesh(new THREE.CylinderGeometry(0.09, 0.09, 0.05, 16), mat);
+  else if (prop === "leaf") m = new THREE.Mesh(new THREE.ConeGeometry(0.09, 0.2, 8), mat);
+  else m = new THREE.Mesh(new THREE.TetrahedronGeometry(0.11), mat); // star-ish facet for star/default
+  return m;
+}
+
 // Standard renderer + scene + ortho camera sized to `el`. Low-poly, flat light.
 function makeStage(THREE, el) {
   var w = el.clientWidth || 320, h = el.clientHeight || 320;
@@ -62,53 +139,120 @@ function makeStage(THREE, el) {
   return { renderer: renderer, scene: scene, cam: cam, w: w, h: h, aspect: aspect };
 }
 
+// Overlay a small HTML label into the stage element (used for fraction labels at
+// level 1). No font files; uses the host page font. Returned nodes are removed
+// on dispose.
+function addLabel(el, text, xFrac, yFrac, color) {
+  var d = el.ownerDocument.createElement("div");
+  d.textContent = text;
+  d.setAttribute("aria-hidden", "true");
+  d.style.cssText = "position:absolute;transform:translate(-50%,-50%);font:600 12px system-ui,sans-serif;pointer-events:none;color:" + color + ";left:" + (xFrac * 100).toFixed(1) + "%;top:" + (yFrac * 100).toFixed(1) + "%;";
+  el.appendChild(d);
+  return d;
+}
+
 // ---- scene: fraction-bars ---------------------------------------------------
 
 var fractionBars = {
   title: "Fraction bars",
+  levels: [1, 2, 3],
   params: {
     denominators: { type: "int-array", min: 1, max: 12, maxLen: 3, default: [2, 4] },
     shaded: { type: "int-array", min: 0, max: 12, maxLen: 3, default: [1, 1] },
   },
-  alt: function (p) {
-    var parts = p.denominators.map(function (d, i) {
+  // How many bars this level shows: level 3 compares exactly two fractions.
+  _rows: function (p, level) {
+    var n = p.denominators.length;
+    return level >= 3 ? Math.min(2, n) : n;
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var rows = fractionBars._rows(p, level);
+    var parts = [];
+    for (var i = 0; i < rows; i++) {
       var s = p.shaded[i] != null ? p.shaded[i] : 0;
-      return s + " of " + d + (d === 1 ? " part" : " parts") + " shaded";
-    });
-    return "Fraction bars, one above the other: " + parts.join("; ") + ".";
+      var d = p.denominators[i];
+      parts.push(s + " of " + d + (d === 1 ? " part" : " parts") + " shaded");
+    }
+    var lead = level >= 3 ? "Two fraction bars to compare" : "Fraction bars, one above the other";
+    var tail = level === 1 ? " Each bar is labelled with its fraction." : "";
+    return lead + ": " + parts.join("; ") + "." + tail;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("fraction-bars", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var rows = fractionBars._rows(p, level);
+    var W = 240, H = 240, pad = 20, barH = 34, gap = 24;
+    var top = (H - (rows * barH + (rows - 1) * gap)) / 2;
+    var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(fractionBars.alt(p, theme, level)) + '">';
+    out += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+    for (var r = 0; r < rows; r++) {
+      var den = p.denominators[r], shaded = p.shaded[r] != null ? p.shaded[r] : 0;
+      var y = top + r * (barH + gap), fullW = W - pad * 2, segW = fullW / den;
+      for (var i = 0; i < den; i++) {
+        var x = pad + i * segW;
+        out += '<rect x="' + x.toFixed(1) + '" y="' + y + '" width="' + (segW - 2).toFixed(1) + '" height="' + barH +
+          '" fill="' + (i < shaded ? tone.on : tone.off) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+      }
+      if (level === 1) out += '<text x="' + (W - pad) + '" y="' + (y + barH + 15) + '" text-anchor="end" font-family="Georgia,serif" font-size="14" fill="' + tone.ink + '">' + shaded + '/' + den + '</text>';
+    }
+    out += propSvg(t.prop, W - 22, 20, 12, tone.ink);
+    out += '</svg>';
+    return out;
   },
   mount: function (THREE, el, params, opts) {
     var p = normalizeParams("fraction-bars", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
     var st = makeStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
-    var n = p.denominators.length;
+    var labels = [];
+    var rows = fractionBars._rows(p, level);
     var barH = 0.34, gap = 0.12;
-    var totalH = n * barH + (n - 1) * gap;
-    p.denominators.forEach(function (den, row) {
+    var totalH = rows * barH + (rows - 1) * gap;
+    for (var row = 0; row < rows; row++) {
+      var den = p.denominators[row];
       var shaded = p.shaded[row] != null ? p.shaded[row] : 0;
       var fullW = 1.7, segW = fullW / den;
       var y = totalH / 2 - barH / 2 - row * (barH + gap);
       for (var i = 0; i < den; i++) {
         var geo = new THREE.BoxGeometry(segW * 0.94, barH, 0.1);
-        var col = i < shaded ? 0x3b7dd8 : 0xdfe6f0;
+        var col = i < shaded ? t.shadeOn : t.shadeOff;
         var mesh = new THREE.Mesh(geo, new THREE.MeshLambertMaterial({ color: col }));
         mesh.position.set(-fullW / 2 + segW * (i + 0.5), y, 0);
         group.add(mesh);
       }
-    });
+      if (level === 1) {
+        // label each bar with its fraction (level-1 affordance)
+        var xFrac = 0.5, yFrac = 0.5 - (y) / 2.2; // map world y (~[-0.5,0.5]) to the stage
+        labels.push(addLabel(el, shaded + "/" + den, 0.92, yFrac, toHex(t.ink)));
+      }
+    }
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
     var reduced = !!(opts && opts.reducedMotion), raf = 0;
     function render() { st.renderer.render(st.scene, st.cam); }
     function loop() {
       if (reduced) { render(); return; }
       group.rotation.y = Math.sin(performance.now() / 1400) * 0.12;
+      if (prop) prop.rotation.z += 0.02;
       render();
       raf = requestAnimationFrame(loop);
     }
+    el.setAttribute("aria-label", fractionBars.alt(p, opts && opts.theme, level));
     loop();
     return {
       setReducedMotion: function (b) { reduced = b; if (b && raf) { cancelAnimationFrame(raf); raf = 0; } else if (!b && !raf) loop(); },
-      dispose: function () { if (raf) cancelAnimationFrame(raf); st.renderer.dispose(); if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement); },
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
     };
   },
 };
@@ -117,77 +261,114 @@ var fractionBars = {
 
 var clock = {
   title: "Analog clock",
+  levels: [1, 2, 3],
   params: {
     hour: { type: "int", min: 0, max: 12, default: 3 },
     minute: { type: "int", min: 0, max: 59, default: 0 },
     draggable: { type: "bool", default: true },
   },
-  alt: function (p) {
+  // Minute-snap per level; level 1 shows the hour only and is not draggable.
+  _snap: function (level) { return level >= 3 ? 5 : level === 2 ? 15 : 0; },
+  _draggable: function (p, level) { return !!p.draggable && level >= 2; },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var mm = level === 1 ? 0 : p.minute;
     var hh = ((p.hour % 12) || 12);
-    var mm = (p.minute < 10 ? "0" : "") + p.minute;
-    return "An analog clock showing " + hh + ":" + mm +
-      (p.draggable ? ". The hands can be moved." : ".");
+    var m2 = (mm < 10 ? "0" : "") + mm;
+    var drag = clock._draggable(p, level) ? " The hands can be moved." : "";
+    return "An analog clock showing " + hh + ":" + m2 + "." + drag;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("clock", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var mm = level === 1 ? 0 : p.minute;
+    var hh = p.hour % 12;
+    var cx = 120, cy = 120, R = 92;
+    var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="' + esc(clock.alt(p, theme, level)) + '">';
+    out += '<rect width="240" height="240" fill="#fff"/>';
+    out += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="3"/>';
+    for (var k = 0; k < 12; k++) {
+      var a = k / 12 * Math.PI * 2;
+      var x1 = cx + Math.sin(a) * (R - 10), y1 = cy - Math.cos(a) * (R - 10);
+      var x2 = cx + Math.sin(a) * (R - 2), y2 = cy - Math.cos(a) * (R - 2);
+      out += '<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    }
+    var ma = mm / 60 * Math.PI * 2, ha = (hh + mm / 60) / 12 * Math.PI * 2;
+    out += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + Math.sin(ha) * R * 0.5).toFixed(1) + '" y2="' + (cy - Math.cos(ha) * R * 0.5).toFixed(1) + '" stroke="' + tone.ink + '" stroke-width="6" stroke-linecap="round"/>';
+    if (level > 1)
+      out += '<line x1="' + cx + '" y1="' + cy + '" x2="' + (cx + Math.sin(ma) * R * 0.78).toFixed(1) + '" y2="' + (cy - Math.cos(ma) * R * 0.78).toFixed(1) + '" stroke="' + tone.on + '" stroke-width="4" stroke-linecap="round"/>';
+    out += '<circle cx="' + cx + '" cy="' + cy + '" r="5" fill="' + tone.ink + '"/>';
+    out += propSvg(t.prop, 24, 24, 12, tone.ink);
+    out += '</svg>';
+    return out;
   },
   mount: function (THREE, el, params, opts) {
     var p = normalizeParams("clock", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    var snap = clock._snap(level), draggable = clock._draggable(p, level);
     var st = makeStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
-    // face
-    var face = new THREE.Mesh(new THREE.CircleGeometry(0.85, 48), new THREE.MeshLambertMaterial({ color: 0xf5f7fb }));
+    var face = new THREE.Mesh(new THREE.CircleGeometry(0.85, 48), new THREE.MeshLambertMaterial({ color: t.face }));
     group.add(face);
-    var ring = new THREE.Mesh(new THREE.RingGeometry(0.85, 0.92, 48), new THREE.MeshBasicMaterial({ color: 0x33415c }));
+    var ring = new THREE.Mesh(new THREE.RingGeometry(0.85, 0.92, 48), new THREE.MeshBasicMaterial({ color: t.ink }));
     group.add(ring);
-    for (var t = 0; t < 12; t++) {
-      var a = (t / 12) * Math.PI * 2;
-      var tick = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.1, 0.02), new THREE.MeshBasicMaterial({ color: 0x33415c }));
+    for (var tk = 0; tk < 12; tk++) {
+      var a = (tk / 12) * Math.PI * 2;
+      var tick = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.1, 0.02), new THREE.MeshBasicMaterial({ color: t.ink }));
       tick.position.set(Math.sin(a) * 0.74, Math.cos(a) * 0.74, 0.02);
       tick.rotation.z = -a;
       group.add(tick);
     }
     function makeHand(len, wid, col) {
       var m = new THREE.Mesh(new THREE.BoxGeometry(wid, len, 0.02), new THREE.MeshBasicMaterial({ color: col }));
-      m.geometry.translate(0, len / 2, 0); // pivot at base
+      m.geometry.translate(0, len / 2, 0);
       m.position.z = 0.03;
       group.add(m);
       return m;
     }
-    var hourHand = makeHand(0.42, 0.045, 0x1b2a44);
-    var minHand = makeHand(0.66, 0.03, 0x3b7dd8);
-    var state = { hour: p.hour % 12, minute: p.minute };
+    var hourHand = makeHand(0.42, 0.045, t.ink);
+    var minHand = makeHand(0.66, 0.03, t.accent);
+    if (level === 1) minHand.visible = false; // hour only
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(-st.aspect + 0.16, 0.8, 0.2); group.add(prop); }
+
+    var state = { hour: p.hour % 12, minute: level === 1 ? 0 : p.minute };
     function place() {
       var ma = (state.minute / 60) * Math.PI * 2;
       var ha = ((state.hour + state.minute / 60) / 12) * Math.PI * 2;
       minHand.rotation.z = -ma;
       hourHand.rotation.z = -ha;
-      el.setAttribute("aria-label", clock.alt({ hour: state.hour, minute: state.minute, draggable: p.draggable }));
+      el.setAttribute("aria-label", clock.alt({ hour: state.hour, minute: state.minute, draggable: draggable }, opts && opts.theme, level));
     }
     place();
     var reduced = !!(opts && opts.reducedMotion);
     function render() { st.renderer.render(st.scene, st.cam); }
     render();
 
-    // pointer + keyboard control of the minute hand
     var cleanup = [];
-    if (p.draggable) {
+    if (draggable) {
       el.tabIndex = 0;
       var dragging = false;
+      function snapMin(m) { m = (m + 60) % 60; return snap ? Math.round(m / snap) * snap % 60 : m; }
       function setFromClient(cx, cy) {
         var r = st.renderer.domElement.getBoundingClientRect();
         var x = (cx - r.left) / r.width * 2 - 1;
         var y = -((cy - r.top) / r.height * 2 - 1);
-        var ang = Math.atan2(x, y); // 0 at top, clockwise
+        var ang = Math.atan2(x, y);
         if (ang < 0) ang += Math.PI * 2;
-        state.minute = Math.round(ang / (Math.PI * 2) * 60) % 60;
+        state.minute = snapMin(Math.round(ang / (Math.PI * 2) * 60));
         place(); render();
       }
       var onDown = function (e) { dragging = true; setFromClient(e.clientX, e.clientY); e.preventDefault(); };
       var onMove = function (e) { if (dragging) setFromClient(e.clientX, e.clientY); };
       var onUp = function () { dragging = false; };
       var onKey = function (e) {
-        var step = e.key === "ArrowUp" || e.key === "ArrowRight" ? 1 : (e.key === "ArrowDown" || e.key === "ArrowLeft" ? -1 : 0);
-        if (!step) return;
-        state.minute = (state.minute + step + 60) % 60;
+        var dir = e.key === "ArrowUp" || e.key === "ArrowRight" ? 1 : (e.key === "ArrowDown" || e.key === "ArrowLeft" ? -1 : 0);
+        if (!dir) return;
+        state.minute = snapMin(state.minute + dir * (snap || 1));
         place(); render(); e.preventDefault();
       };
       st.renderer.domElement.addEventListener("pointerdown", onDown);
@@ -203,6 +384,7 @@ var clock = {
     }
     return {
       setReducedMotion: function (b) { reduced = b; render(); },
+      getState: function () { return { hour: state.hour, minute: state.minute }; },
       dispose: function () { cleanup.forEach(function (fn) { fn(); }); st.renderer.dispose(); if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement); },
     };
   },
@@ -217,7 +399,11 @@ export var SCENES = {
 
 export function getScene(id) { return SCENES[id] || null; }
 export function sceneIds() { return Object.keys(SCENES); }
-export function altFor(id, params) {
+export function altFor(id, params, theme, level) {
   var def = SCENES[id];
-  return def ? def.alt(normalizeParams(id, params)) : "";
+  return def ? def.alt(normalizeParams(id, params), normalizeTheme(theme), normalizeLevel(level)) : "";
+}
+export function svgFor(id, params, theme, level) {
+  var def = SCENES[id];
+  return def && def.svg ? def.svg(normalizeParams(id, params), normalizeTheme(theme), normalizeLevel(level)) : "";
 }

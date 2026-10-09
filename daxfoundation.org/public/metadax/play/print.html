@@ -95,6 +95,51 @@
   // Collects quiz questions in reading order so the guide key can mirror them.
   var keyEntries = [];
 
+  // The scene registry is imported only when a package carries a scene block;
+  // a scene-free sheet never touches it. print draws a static SVG (no WebGL).
+  var SCENES_MOD = null;
+  function packageHasScene(pkg){
+    var hit = false;
+    (function walk(o){
+      if (hit || !o || typeof o !== "object") return;
+      if (Array.isArray(o)) { for (var i=0;i<o.length;i++) walk(o[i]); return; }
+      if (o.type === "scene") { hit = true; return; }
+      for (var k in o) if (Object.prototype.hasOwnProperty.call(o,k)) walk(o[k]);
+    })(pkg);
+    return hit;
+  }
+
+  // A scene block, on paper: the theme's palette in grayscale-safe tones, the
+  // learner question, and room to answer. The answer + why go to the guide key.
+  function renderScene(container, b){
+    var wrap = el("div","qitem");
+    if (b.title) wrap.appendChild(el("h3", null, inline(b.title)));
+    var units = Array.isArray(b.compose) ? b.compose.slice(0,3)
+      : (b.scene ? [{ scene: b.scene, params: b.params, theme: b.theme, level: b.level }] : []);
+    units.forEach(function(u){
+      var holder = el("div","visual");
+      holder.style.maxWidth = "16rem";
+      var theme = u.theme || b.theme || "plain";
+      var level = u.level != null ? u.level : b.level;
+      if (SCENES_MOD && SCENES_MOD.svgFor) holder.innerHTML = SCENES_MOD.svgFor(u.scene, u.params, theme, level);
+      else holder.appendChild(el("p","sub","[diagram]"));
+      wrap.appendChild(holder);
+    });
+    if (b.ask_learner){
+      var hasAns = b.answer !== undefined && b.answer !== null && b.answer !== "";
+      var label = inline(b.ask_learner);
+      if (hasAns){
+        keyEntries.push({ quiz: inline(b.title || "Scene"),
+          item: { q: label, choices: [{ text: b.answer, correct: true }], explain: b.why } });
+        label = keyEntries.length + ". " + label;
+      }
+      wrap.appendChild(el("div","qn", label));
+      wrap.appendChild(el("div","answerline","Your answer:"));
+      wrap.appendChild(el("div","writeline"));
+    }
+    container.appendChild(wrap);
+  }
+
   function renderQuiz(container, b, learnersByName){
     var wrap = el("div");
     wrap.appendChild(el("h3", null, inline(b.title || "Game")));
@@ -223,6 +268,7 @@
         case "quiz": renderQuiz(container, b, learnersByName); break;
         case "spoken-sound": renderSpokenSound(container, b, learnersByName); break;
         case "sort": case "sequence": case "build": renderGame(container, b); break;
+        case "scene": renderScene(container, b); break;
         default: if (b.text) container.appendChild(el("p", null, inline(b.text)));
       }
     });
@@ -243,6 +289,15 @@
     });
     sec.appendChild(dl);
     container.appendChild(sec);
+  }
+
+  // Import the scene registry if (and only if) this package uses a scene, then
+  // render. A scene-free sheet never imports it and prints exactly as before.
+  async function renderWithScenes(pkg){
+    if (packageHasScene(pkg) && !SCENES_MOD){
+      try { SCENES_MOD = await import("./scenes/scenes.js"); } catch(e){ SCENES_MOD = null; }
+    }
+    render(pkg);
   }
 
   function render(pkg){
@@ -291,8 +346,8 @@
     d.appendChild(el("p", null, "Paste a metadax-package JSON, then press Render."));
     var ta = el("textarea"); ta.id = "pastebox"; d.appendChild(ta);
     var btn = el("button", null, "Render"); btn.style.marginTop = ".5rem";
-    btn.onclick = function(){
-      try { render(JSON.parse(ta.value)); d.remove(); document.getElementById("bar").style.display=""; }
+    btn.onclick = async function(){
+      try { await renderWithScenes(JSON.parse(ta.value)); d.remove(); document.getElementById("bar").style.display=""; }
       catch(e){ alert("Not valid JSON: " + e.message); }
     };
     d.appendChild(btn);
@@ -312,14 +367,14 @@
       try { stored = window.localStorage && localStorage.getItem("metadax:print"); } catch(e){}
       if (hash.indexOf("#p=") === 0){
         if (!(window.MetaDAXCheck && MetaDAXCheck.decodePackage)) return fail("Cannot decode this link in this browser.");
-        render(await MetaDAXCheck.decodePackage(hash.slice(3)));
+        await renderWithScenes(await MetaDAXCheck.decodePackage(hash.slice(3)));
       } else if (src){
         var r = await fetch(src);
         if (!r.ok) return fail("Could not load package from " + src + " (" + r.status + ").");
-        render(await r.json());
+        await renderWithScenes(await r.json());
       } else if (stored){
         localStorage.removeItem("metadax:print");
-        render(JSON.parse(stored));
+        await renderWithScenes(JSON.parse(stored));
       } else {
         document.getElementById("bar").style.display = "none";
         showPaste();
