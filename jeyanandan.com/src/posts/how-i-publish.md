@@ -2,6 +2,7 @@
 title: "How I Publish"
 subtitle: "Thought Records, Not Pronouncements"
 date: 2026-10-01
+updated: 2026-10-09
 description: "Everything public on my surfaces is a versioned working log, published by me through my cognitive companion, and this is the page that explains how to read it."
 draft: false
 ---
@@ -18,7 +19,7 @@ Why publish this way? Because there is no way I can communicate every nuance of 
 
 ## The companion
 
-I started building it in 2021. By the end of March this year it was substantially done, after I switched a great deal of my own stack out for OpenClaw, an open-source core, which I have [said before](https://www.obsidiandelta.com/blog/cognitive-companion/). It gives me a great deal of capability. I am proud of it, and I will keep the pride to one sentence.
+I started building it in 2021. By the end of March this year it was substantially done, after I switched a great deal of my own stack out for an open-source core, which I have [said before](https://www.obsidiandelta.com/blog/cognitive-companion/). It gives me a great deal of capability. I am proud of it, and I will keep the pride to one sentence.
 
 It is grounded on everything I have ever written in my life. All my journals, all my content. It is an extension of me, not a second party I hand jobs to, which is why there is no "and" in the byline: what lands under my name is mine, however it was produced. And it is not a simple RAG or graph-RAG implementation of that material. It is more complex than that. That is all I am going to say about how it works.
 
