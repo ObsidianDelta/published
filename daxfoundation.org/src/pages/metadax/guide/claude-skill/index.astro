@@ -1,0 +1,109 @@
+---
+import Base from '../../../../layouts/Base.astro';
+
+// /metadax/guide/claude-skill/ -- install the skill, step by step. Steps are
+// taken from the skill's own SKILL.md and the repository README. Where Claude's
+// UI is uncertain we do not invent menu names: we say "add the skill folder
+// (see Claude's help for Skills)" and link support.claude.com.
+---
+<Base title="Install the Meta DAX skill in Claude" description="Step by step: add the metadax-homeschool skill folder to Claude, then the exact first message to type to build your first lesson." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/guide/">Help</a> &rsaquo; Claude skill</p>
+    <h1>Install the skill in Claude</h1>
+    <p class="lede-text">
+      A skill is a small folder Claude reads so it knows one job well. This one,
+      <code>metadax-homeschool</code>, interviews you and builds your child&rsquo;s
+      lesson. Add it once; use it whenever you like. It runs on your own Claude
+      subscription and costs this project nothing.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-get">
+    <h2 id="h-get">1. Get the skill folder</h2>
+    <p class="body">
+      The skill lives in the open repository, in the folder
+      <code>skills/metadax-homeschool</code>. Download or copy that whole folder to
+      your computer:
+    </p>
+    <p class="out"><a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-homeschool">skills/metadax-homeschool on GitHub &rarr;</a></p>
+    <p class="body">
+      Keep the folder together &mdash; the <code>SKILL.md</code> file and its
+      <code>templates</code> and <code>tools</code> folders all belong with it.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-add">
+    <h2 id="h-add">2. Add the skill folder to Claude</h2>
+    <p class="body">
+      In Claude, add the skill folder (see Claude&rsquo;s help for Skills). The
+      exact steps depend on which Claude you use, and Claude&rsquo;s own help is
+      kept current:
+    </p>
+    <p class="out"><a href="https://support.claude.com">Claude help &amp; support &rarr;</a></p>
+    <p class="body">
+      If you use an assistant that reads a <code>SKILL.md</code> from a project
+      folder (for example a coding assistant), copy
+      <code>skills/metadax-homeschool</code> into that assistant&rsquo;s skills
+      folder and it will be picked up.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-first">
+    <h2 id="h-first">3. Type the first message</h2>
+    <p class="body">Start a new chat with Claude and type, more or less:</p>
+    <blockquote class="said">Use the metadax-homeschool skill &mdash; I homeschool and my child is stuck on something.</blockquote>
+    <p class="body">
+      From there it asks you about a dozen short questions, a few at a time, in
+      plain words: a nickname for your child (never a real name), a rough age, the
+      subject, the exact spot where it keeps going wrong, a real wrong answer if
+      you have one, and &mdash; the important one &mdash; what they love. It builds
+      the lesson through that.
+    </p>
+    <p class="body">
+      When it is done it writes <code>family-package.json</code> and checks it. If
+      you typed anything identifying &mdash; an email, a phone number, a real name
+      &mdash; it tells you and leaves it out.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-next">
+    <h2 id="h-next">4. Open what it built</h2>
+    <p class="body">
+      The package is yours and private; the skill never uploads it. Open it in the
+      player, paste in the JSON, and press Play &mdash; or print it for paper.
+    </p>
+    <p class="out">
+      <a href="/metadax/guide/play-and-print/">Open it and print it &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/any-ai/">Prefer a different AI? Use the plain prompt</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/">Back to the guide</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body, .body + .out, .out + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+
+  .said { margin: 1rem 0 0; padding: 0.9rem 1.1rem; max-width: 40em; border: 1px solid var(--line); border-left: 3px solid var(--muted); border-radius: 8px; color: var(--fg); font-style: italic; }
+
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, var(--fg) 8%, transparent); padding: 0.1em 0.35em; border-radius: 4px; }
+
+  .out { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

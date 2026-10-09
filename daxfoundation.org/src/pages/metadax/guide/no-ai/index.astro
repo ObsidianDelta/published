@@ -1,0 +1,89 @@
+---
+import Base from '../../../../layouts/Base.astro';
+
+// /metadax/guide/no-ai/ -- the web questionnaire route. The form itself lives at
+// /metadax/homeschool/start/. It saves and sends nothing; it builds a short note
+// you copy and send. A page comes back, free. No package is produced here.
+---
+<Base title="No AI? Use the Meta DAX questionnaire" description="Answer about a dozen short questions on the web, copy the note it makes, and send it. A lesson page comes back, free. Nothing is saved or sent from the page itself." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/guide/">Help</a> &rsaquo; No AI</p>
+    <h1>No AI? Use the questionnaire</h1>
+    <p class="lede-text">
+      You do not need an AI subscription, or any AI at all. Fill in a short web
+      form, copy the note it makes, and send it. A lesson page is built for you and
+      comes back, free.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-open">
+    <h2 id="h-open">1. Open the questionnaire</h2>
+    <p class="body">It is one page on this site:</p>
+    <p class="out"><a href="/metadax/homeschool/start/">Tell us where your child is stuck &rarr;</a></p>
+  </section>
+
+  <section class="block" aria-labelledby="h-fill">
+    <h2 id="h-fill">2. Answer about a dozen questions</h2>
+    <p class="body">
+      Plain words, no sign-up: a nickname for your child (or leave it blank and the
+      page just says &ldquo;you&rdquo;), a rough age, the subject, the exact spot
+      where it keeps going wrong, a real wrong answer if you have one, and what they
+      love. Please leave out names, schools, towns and health details; the page
+      warns you if something looks like a name, email or phone number.
+    </p>
+    <p class="body">
+      Teaching more than one child the same lesson? Say how many, and give each a
+      nickname and a rough age in one go.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-send">
+    <h2 id="h-send">3. Copy the note and send it</h2>
+    <p class="body">
+      Press <strong>Make my note</strong> and the page builds a short, plain note
+      from your answers. Copy it and send it back where you found Meta DAX, or to
+      Jason on <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>.
+      That note is everything that gets sent &mdash; the page itself saves nothing
+      and sends nothing on its own.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-back">
+    <h2 id="h-back">4. A page comes back</h2>
+    <p class="body">
+      You are sent a lesson page like the samples on the site: one side for you, one
+      side made for your child, built through what they love. You read it before
+      your child does. Then tell us how it went, and the next one comes back shaped
+      by it.
+    </p>
+    <p class="out">
+      <a href="/metadax/homeschool/">See a sample first &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/claude-skill/">Rather build it yourself? Use the Claude skill</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/">Back to the guide</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body, .body + .out, .out + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+
+  .out { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

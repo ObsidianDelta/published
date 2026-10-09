@@ -1,0 +1,89 @@
+---
+import Base from '../../../../layouts/Base.astro';
+
+// /metadax/guide/share/ -- share a generic sample through the "Share a sample"
+// issue template. Names out first; a person reviews before anything appears.
+// Tracks the skill's Step 3 and .github/ISSUE_TEMPLATE/share-a-sample.yml.
+---
+<Base title="Share a Meta DAX sample" description="Offer a generic version of your lesson — made-up names, nothing identifying — to help the next family. A person reviews each one before it appears in the library." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/guide/">Help</a> &rsaquo; Share a sample</p>
+    <h1>Share a sample</h1>
+    <p class="lede-text">
+      If a lesson helped you, a generic version of it can help the next family with
+      the same stuck spot. Sharing is your choice, it is never automatic, and a
+      person reviews every one before it appears.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-make">
+    <h2 id="h-make">1. Make the generic version</h2>
+    <p class="body">
+      Ask the skill (or your AI chat) to make a generic version you could share. It
+      writes two small files: <code>sample.md</code> (the lesson written for another
+      guide) and <code>entry.json</code> (one line for the library index). It
+      invents fresh, made-up names &mdash; not the nickname you used &mdash; and
+      strips every identifying detail, keeping only the teaching.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-names">
+    <h2 id="h-names">2. Take the names out first</h2>
+    <p class="body">
+      Before you post anything, read it through and confirm:
+    </p>
+    <ul class="plain">
+      <li>made-up names only &mdash; no real name, school, town, birth date, email, phone or photo;</li>
+      <li>no diagnosis or condition named anywhere &mdash; the stuck point is described as behaviour;</li>
+      <li>the &ldquo;a way, never the way&rdquo; line is present.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-post">
+    <h2 id="h-post">3. Post it with the form</h2>
+    <p class="body">
+      Open the <strong>&ldquo;Share a sample&rdquo;</strong> form and paste
+      <code>sample.md</code> and <code>entry.json</code> into the two boxes, then
+      tick the three confirmations. There is no upload and no account.
+    </p>
+    <p class="out"><a href="https://github.com/daxfoundation/metadax/issues/new?template=share-a-sample.yml">Open the &ldquo;Share a sample&rdquo; form &rarr;</a></p>
+    <p class="body">
+      A reviewer reads it, and if it is clear of anything identifying, publishes it
+      into the library and adds the index line. Then the next parent with the same
+      stuck spot gets a head start.
+    </p>
+    <p class="out">
+      <a href="/metadax/samples/">Browse the sample library &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/faq/">Questions and answers</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/">Back to the guide</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body, .body + .out, .out + .body, .body + .plain, .plain + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  .plain { margin: 0; padding-left: 1.25rem; max-width: 42em; color: #cfcfcf; }
+  .plain li + li { margin-top: 0.5rem; }
+
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, var(--fg) 8%, transparent); padding: 0.1em 0.35em; border-radius: 4px; }
+
+  .out { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

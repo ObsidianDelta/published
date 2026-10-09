@@ -1,0 +1,93 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+// /metadax/guide/ -- the how-to index for parents. Plain words throughout.
+// "guide" and "learner"; "a way, never the way"; never a diagnosis; no AI
+// vendor named; the DAX Foundation, in the open. Every claim here is checked
+// against the skill, the prompt, the player and the pages it links to.
+
+const pages = [
+  ['/metadax/guide/claude-skill/', 'Install the skill in Claude', 'Add the skill folder to your assistant, then type one message to begin.'],
+  ['/metadax/guide/any-ai/', 'Use any AI chat', 'Paste one plain prompt into whatever assistant you already pay for.'],
+  ['/metadax/guide/no-ai/', 'No AI? Use the questionnaire', 'Answer about a dozen questions on the web and someone builds it for you, free.'],
+  ['/metadax/guide/play-and-print/', 'Open it and print it', 'Open your package in the player, and print the learner page and the guide key.'],
+  ['/metadax/guide/next-session/', 'Session two, and several kids', 'Run the next session from the note the page leaves, keep a learning record, teach more than one child.'],
+  ['/metadax/guide/share/', 'Share a sample', 'Offer a generic version, with nothing identifying, to help the next family.'],
+  ['/metadax/guide/faq/', 'Questions and answers', 'Is it free? Does it save anything? Ages? Does it replace a curriculum?'],
+];
+---
+<Base title="How to use Meta DAX — a guide for parents" description="Make your first lesson in about ten minutes. Plain, step-by-step help: install the skill in Claude, use any AI chat, or fill in the web questionnaire; then open it, print it, and run the next session." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Help</p>
+    <h1>Make your first lesson in about ten minutes.</h1>
+    <p class="lede-text">
+      You teach your own child. Meta DAX helps you build them one lesson for the
+      exact spot where they are stuck, through the thing they love. This is the
+      plain-language help: pick a route, run it, open what it builds, and go.
+      It is a way in for one child today &mdash; a way, never the way.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-first">
+    <h2 id="h-first">Your first lesson, start to finish</h2>
+    <ol class="steps">
+      <li><strong>Get it, by whichever route suits you.</strong> The Claude skill, a plain prompt for any AI chat, or a web questionnaire if you would rather not use an AI at all. Pick one below.</li>
+      <li><strong>Answer its questions.</strong> About a dozen, in plain words &mdash; a nickname (never a real name), a rough age, the subject, the exact spot where it keeps going wrong, and what your child loves. Nothing identifying.</li>
+      <li><strong>Open what it builds.</strong> You get a two-page package: a page for you and a page for your child, with a game built through what they love. Open it in the player, or print it.</li>
+      <li><strong>Run the session, then come back.</strong> The page leaves a short note for next time; the next session is built straight from it.</li>
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="h-pages">
+    <h2 id="h-pages">The pages in this guide</h2>
+    <ul class="card-links">
+      {pages.map(([href, t, d]) => (
+        <li><a href={href}><span class="t">{t}</span><span class="d">{d}</span></a></li>
+      ))}
+    </ul>
+    <p class="out">
+      <a href="/metadax/homeschool/">What Meta DAX is, for parents who homeschool &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/samples/">Browse the sample library</a>
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-know">
+    <h2 id="h-know">A few things to know first</h2>
+    <ul class="plain">
+      <li>It is free, and it stays free. It runs on an AI subscription you already pay for, or on the web questionnaire, which costs nothing.</li>
+      <li>It describes what your child <em>does</em>. It never names a condition or a diagnosis, on any page, ever.</li>
+      <li>Your child&rsquo;s side is a game and a set of answered questions, used with you beside them. There is no AI on your child&rsquo;s side.</li>
+      <li>Nothing is stored about you or your child unless you choose to share a generic version, and a person reviews that before it ever appears.</li>
+    </ul>
+    <p class="out"><a href="/metadax/guide/faq/">More questions answered &rarr;</a></p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  strong { font-weight: 600; color: var(--fg); }
+  .steps, .plain { margin: 0; padding-left: 1.25rem; max-width: 42em; color: #cfcfcf; }
+  .steps li + li, .plain li + li { margin-top: 0.6rem; }
+
+  .card-links { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+  .card-links a { display: flex; flex-direction: column; gap: 0.3rem; height: 100%; padding: 1rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: inherit; transition: border-color 0.15s ease; }
+  .card-links a:hover, .card-links a:focus-visible { border-color: var(--muted); }
+  .card-links .t { font-weight: 500; font-size: 1.05rem; }
+  .card-links .d { font-size: 0.875rem; color: var(--muted); }
+
+  .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+
+  @media (max-width: 40rem) { .card-links { grid-template-columns: 1fr; } }
+</style>
