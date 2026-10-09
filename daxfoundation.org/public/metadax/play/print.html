@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Print a MetaDAX package</title>
+<style>
+  /* Paper-first. No colour carries meaning: everything reads in black and white. */
+  :root { --fg:#111; --muted:#444; --line:#999; --rule:#ccc; }
+  * { box-sizing: border-box; }
+  html, body { background:#fff; color:var(--fg); }
+  body { margin:0; font:13pt/1.5 Georgia, "Times New Roman", serif; }
+  .sheet { max-width: 46rem; margin: 0 auto; padding: 1.5rem 1.25rem 7rem; }
+  h1 { font-size:1.7rem; font-weight:600; margin:.2rem 0 .1rem; }
+  h2 { font-size:1.25rem; font-weight:600; margin:1.6rem 0 .5rem; border-bottom:1px solid var(--rule); padding-bottom:.2rem; }
+  h3 { font-size:1.05rem; font-weight:600; margin:1.1rem 0 .4rem; }
+  p { margin:.5rem 0; }
+  ul, ol { margin:.4rem 0; padding-left:1.4rem; }
+  pre { font-family:ui-monospace,"Courier New",monospace; font-size:.9rem; white-space:pre-wrap; background:none; border:1px solid var(--rule); padding:.4rem .6rem; border-radius:4px; }
+  .sub { color:var(--muted); font-size:.95rem; margin:.1rem 0 .6rem; }
+  .card { border:1px solid var(--line); border-radius:5px; padding:.5rem .8rem; margin:.7rem 0; }
+  .card .ct { font-weight:600; display:block; margin-bottom:.15rem; }
+  .lead { border:1px solid var(--line); border-left:4px solid var(--fg); border-radius:5px; padding:.5rem .8rem; margin:.7rem 0; }
+  .say { font-style:italic; color:var(--muted); }
+  .roster { margin:.3rem 0 .8rem; }
+  .who { display:inline-block; border:1px solid var(--line); border-radius:999px; padding:.05rem .6rem; margin:.1rem .3rem .1rem 0; font-size:.85rem; }
+  .qitem { margin:1rem 0; padding-top:.3rem; }
+  .qn { font-weight:600; }
+  .visual { margin:.4rem 0; }
+  .opts { list-style:none; padding-left:0; margin:.4rem 0; }
+  .opts li { margin:.25rem 0; }
+  .optbox { display:inline-block; width:1rem; height:1rem; border:1px solid var(--fg); border-radius:3px; margin-right:.5rem; vertical-align:-2px; }
+  .optlabel { font-weight:600; margin-right:.3rem; }
+  .answerline { margin:.5rem 0 .2rem; color:var(--muted); }
+  .writeline { border-bottom:1px solid var(--line); height:1.4rem; margin:.35rem 0; }
+  .key dt { font-weight:600; margin-top:.6rem; }
+  .key dd { margin:.1rem 0 .1rem 0; }
+  .key .why { color:var(--muted); }
+  .footer { border-top:1px solid var(--rule); color:var(--muted); font-size:.85rem; text-align:center; padding:.6rem 1rem; }
+  .footer span { white-space:nowrap; }
+  .footer span + span::before { content:"•"; margin:0 .5rem; }
+  /* On-screen controls only — never printed. */
+  .bar { background:#f3f1ec; border-bottom:1px solid var(--rule); padding:.6rem 1rem; font-family:system-ui,sans-serif; font-size:.9rem; color:var(--muted); }
+  .bar button { font:inherit; padding:.35rem .9rem; border:1px solid var(--line); border-radius:6px; background:#fff; cursor:pointer; margin-left:.4rem; }
+  .paste { font-family:system-ui,sans-serif; max-width:46rem; margin:1.5rem auto; padding:0 1.25rem; }
+  .paste textarea { width:100%; min-height:8rem; font-family:ui-monospace,monospace; font-size:.8rem; padding:.6rem; border:1px solid var(--line); border-radius:6px; }
+  .err { font-family:system-ui,sans-serif; max-width:46rem; margin:1.5rem auto; padding:.7rem 1rem; border:1px solid #b00; border-radius:6px; color:#b00; }
+
+  @page { margin: 18mm 15mm 24mm; }
+  @media print {
+    .noprint { display:none !important; }
+    .sheet { max-width:none; margin:0; padding:0 0 2rem; }
+    /* repeat the two lines at the foot of every printed sheet */
+    .footer { position:fixed; bottom:0; left:0; right:0; border-top:1px solid var(--rule); background:#fff; }
+    .guidekey { break-before: page; page-break-before: always; }
+    .qitem { break-inside: avoid; page-break-inside: avoid; }
+    .lead, .card { break-inside: avoid; page-break-inside: avoid; }
+    h2, h3 { break-after: avoid; page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="bar noprint" id="bar">
+  <span id="barmsg">Loading package…</span>
+  <button id="printbtn" style="display:none">Print</button>
+</div>
+
+<div id="root"></div>
+
+<!-- The two lines, plain words, no names. Printed at the foot of every sheet. -->
+<div class="footer" id="footer">
+  <span>behaviour never diagnoses</span><span>a way, never the way</span>
+</div>
+
+<!-- Only the shared codec: decode the #p= link the player hands off, same scheme as delivery. No game engine, no validation. -->
+<script src="package-check.js"></script>
+<script>
+(function(){
+  "use strict";
+  function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+  // strip the small markdown the format allows, same as the player
+  function inline(s){ return String(s==null?"":s).replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+  var LETTERS = "ABCDEFGHIJKLMNOP";
+
+  // Resolve a who/for_age tag into a plain label (no colour, no chip styling in print).
+  function jobLabel(o, learnersByName){
+    if (!o || (o.who === undefined && o.for_age === undefined)) return "";
+    var who = o.who;
+    var band = o.for_age || (who && learnersByName[who] && learnersByName[who].age_band) || "";
+    if (who === "all" || (!who && band)) return "Everyone" + (band ? " · ages " + band : "");
+    if (who) return who + (band ? " · ages " + band : "");
+    return "ages " + band;
+  }
+
+  // Collects quiz questions in reading order so the guide key can mirror them.
+  var keyEntries = [];
+
+  function renderQuiz(container, b, learnersByName){
+    var wrap = el("div");
+    wrap.appendChild(el("h3", null, inline(b.title || "Game")));
+    if (b.intro) wrap.appendChild(el("p","sub", inline(b.intro)));
+    (b.levels||[]).forEach(function(lv){
+      if (lv.label || lv.level != null)
+        wrap.appendChild(el("p","sub", "Level " + (lv.level!=null?lv.level:"") + (lv.label? " — " + inline(lv.label) : "")));
+      (lv.items||[]).forEach(function(it){
+        keyEntries.push({ quiz: inline(b.title||"Game"), item: it });
+        var n = keyEntries.length;
+        var q = el("div","qitem");
+        var head = el("div");
+        var job = jobLabel(it, learnersByName);
+        head.appendChild(el("span","qn", n + ". " + inline(it.q) + (job? "  (" + job + ")" : "")));
+        q.appendChild(head);
+        if (it.visual){ var pre = el("pre","visual"); pre.textContent = it.visual; q.appendChild(pre); }
+        // choices printed as plain options — no answer marked here
+        var ol = el("ul","opts");
+        (it.choices||[]).forEach(function(c, i){
+          var li = el("li");
+          li.appendChild(el("span","optbox"));
+          li.appendChild(el("span","optlabel", (LETTERS[i]||"?") + "."));
+          li.appendChild(document.createTextNode(inline(c.text)));
+          ol.appendChild(li);
+        });
+        q.appendChild(ol);
+        // room to answer
+        q.appendChild(el("div","answerline","Your answer:"));
+        q.appendChild(el("div","writeline"));
+        wrap.appendChild(q);
+      });
+    });
+    container.appendChild(wrap);
+  }
+
+  // A non-quiz game (sort/sequence/build): print the prompt and leave working room.
+  function renderGame(container, b){
+    var wrap = el("div","qitem");
+    wrap.appendChild(el("h3", null, inline(b.title || b.type)));
+    if (b.intro) wrap.appendChild(el("p","sub", inline(b.intro)));
+    wrap.appendChild(el("p","sub","Work this one through on paper."));
+    wrap.appendChild(el("div","writeline"));
+    wrap.appendChild(el("div","writeline"));
+    wrap.appendChild(el("div","writeline"));
+    container.appendChild(wrap);
+  }
+
+  function renderFaq(container, b, depth){
+    var d = el("div", depth ? null : "card");
+    if (depth) d.style.marginLeft = "1rem";
+    d.appendChild(el("p", null, inline(b.q)));
+    var a = el("p","sub", inline(b.a)); d.appendChild(a);
+    (b.more||[]).forEach(function(m){ renderFaq(d, m, depth+1); });
+    container.appendChild(d);
+  }
+
+  function renderBlocks(container, blocks, learnersByName){
+    (blocks||[]).forEach(function(b){
+      var job = jobLabel(b, learnersByName);
+      switch(b.type){
+        case "h": container.appendChild(el("h3", null, inline(b.text))); break;
+        case "p": case "so": {
+          var p = el("p", null, inline(b.text));
+          if (job) p.insertBefore(el("span","who", job), p.firstChild);
+          container.appendChild(p); break; }
+        case "list": {
+          var ul = el(b.ordered ? "ol" : "ul");
+          (b.items||[]).forEach(function(i){ ul.appendChild(el("li",null,inline(i))); });
+          container.appendChild(ul); break; }
+        case "card": {
+          var c = el("div","card");
+          if (b.title) c.appendChild(el("span","ct", inline(b.title)));
+          c.appendChild(document.createTextNode(inline(b.body))); container.appendChild(c); break; }
+        case "step": {
+          var s = el("div","card");
+          s.appendChild(el("span","ct", (b.n?b.n+". ":"") + inline(b.do)));
+          if (b.say) s.appendChild(el("p","say","“"+inline(b.say)+"”"));
+          if (b.why) s.appendChild(el("p","sub", inline(b.why))); container.appendChild(s); break; }
+        case "ifthen": {
+          var it = el("div","card");
+          it.appendChild(el("span","ct","If " + inline(b.if)));
+          it.appendChild(document.createTextNode("Then " + inline(b.then))); container.appendChild(it); break; }
+        case "lead": {
+          var l = el("div","lead");
+          l.appendChild(el("span","ct", inline(b.title || "A step ahead")));
+          l.appendChild(el("p", null, inline(b.body)));
+          if (b.prompt) l.appendChild(el("p","say","“"+inline(b.prompt)+"”")); container.appendChild(l); break; }
+        case "human": {
+          var h = el("div","card");
+          h.appendChild(el("span","ct", inline(b.title || "What only you can do")));
+          var hu = el("ul"); (b.items||[]).forEach(function(i){ hu.appendChild(el("li",null,inline(i))); }); h.appendChild(hu);
+          container.appendChild(h); break; }
+        case "copy": {
+          var cp = el("div","card");
+          cp.appendChild(el("span","ct", inline(b.title || "Copy")));
+          cp.appendChild(document.createTextNode(inline(b.text))); container.appendChild(cp); break; }
+        case "check": {
+          var ck = el("div","card");
+          ck.appendChild(el("span","ct", inline(b.title || "Checklist")));
+          var cu = el("ul","opts"); (b.items||[]).forEach(function(i){ var li=el("li"); li.appendChild(el("span","optbox")); li.appendChild(document.createTextNode(inline(i))); cu.appendChild(li); }); ck.appendChild(cu);
+          container.appendChild(ck); break; }
+        case "faq": renderFaq(container, b, 0); break;
+        case "quiz": renderQuiz(container, b, learnersByName); break;
+        case "sort": case "sequence": case "build": renderGame(container, b); break;
+        default: if (b.text) container.appendChild(el("p", null, inline(b.text)));
+      }
+    });
+  }
+
+  function renderGuideKey(container){
+    if (!keyEntries.length) return;
+    var sec = el("div","guidekey");
+    sec.appendChild(el("h2", null, "Guide key"));
+    sec.appendChild(el("p","sub","For the adult. The answer to each question and one line of why. Keep this page; the learner page above has none of it."));
+    var dl = el("dl","key");
+    keyEntries.forEach(function(e, i){
+      var correct = (e.item.choices||[]).filter(function(c){ return c.correct; })[0];
+      var ans = correct ? inline(correct.text) : "—";
+      dl.appendChild(el("dt", null, (i+1) + ". " + inline(e.item.q)));
+      dl.appendChild(el("dd", null, "Answer: " + ans));
+      if (e.item.explain) dl.appendChild(el("dd","why", inline(e.item.explain)));
+    });
+    sec.appendChild(dl);
+    container.appendChild(sec);
+  }
+
+  function render(pkg){
+    keyEntries = [];
+    var root = document.getElementById("root"); root.innerHTML = "";
+    var sheet = el("div","sheet");
+
+    sheet.appendChild(el("h1", null, inline(pkg.title || "Package")));
+    sheet.appendChild(el("p","sub", (pkg.word || "session") + " " + (pkg.session || 1)));
+
+    var learnersByName = {};
+    if (Array.isArray(pkg.learners) && pkg.learners.length){
+      pkg.learners.forEach(function(l){ if (l && l.nickname) learnersByName[l.nickname] = l; });
+      var r = el("div","roster");
+      pkg.learners.forEach(function(l){ r.appendChild(el("span","who", (l.nickname||"?") + (l.age_band? " · ages " + l.age_band : ""))); });
+      sheet.appendChild(r);
+    }
+
+    // LEARNER side only — the paper the learner works from.
+    var side = pkg.learner || {};
+    (side.sections||[]).forEach(function(sec){
+      sheet.appendChild(el("h2", null, inline(sec.label || sec.id)));
+      renderBlocks(sheet, sec.blocks, learnersByName);
+    });
+
+    // Answers + the one-line why, on their own page at the end.
+    renderGuideKey(sheet);
+
+    root.appendChild(sheet);
+    document.title = inline(pkg.title || "MetaDAX package");
+    var bar = document.getElementById("bar");
+    document.getElementById("barmsg").textContent = "Ready to print.";
+    document.getElementById("printbtn").style.display = "";
+    document.getElementById("printbtn").onclick = function(){ window.print(); };
+  }
+
+  function fail(msg){
+    document.getElementById("bar").style.display = "none";
+    var e = el("div","err", msg);
+    document.getElementById("root").appendChild(e);
+    showPaste();
+  }
+
+  function showPaste(){
+    var d = el("div","paste noprint");
+    d.appendChild(el("p", null, "Paste a metadax-package JSON, then press Render."));
+    var ta = el("textarea"); ta.id = "pastebox"; d.appendChild(ta);
+    var btn = el("button", null, "Render"); btn.style.marginTop = ".5rem";
+    btn.onclick = function(){
+      try { render(JSON.parse(ta.value)); d.remove(); document.getElementById("bar").style.display=""; }
+      catch(e){ alert("Not valid JSON: " + e.message); }
+    };
+    d.appendChild(btn);
+    document.getElementById("root").appendChild(d);
+  }
+
+  // Load order mirrors the player's delivery scheme (FORMAT section 3):
+  //   #p=<base64url deflate-raw JSON>   — the link the player hands to "Print this"
+  //   ?src=<url>                        — fetch a package JSON directly
+  //   localStorage "metadax:print"      — handoff for a pasted (unlinked) package
+  //   otherwise                         — paste box
+  async function load(){
+    try {
+      var hash = location.hash || "";
+      var src = new URL(location.href).searchParams.get("src");
+      var stored = null;
+      try { stored = window.localStorage && localStorage.getItem("metadax:print"); } catch(e){}
+      if (hash.indexOf("#p=") === 0){
+        if (!(window.MetaDAXCheck && MetaDAXCheck.decodePackage)) return fail("Cannot decode this link in this browser.");
+        render(await MetaDAXCheck.decodePackage(hash.slice(3)));
+      } else if (src){
+        var r = await fetch(src);
+        if (!r.ok) return fail("Could not load package from " + src + " (" + r.status + ").");
+        render(await r.json());
+      } else if (stored){
+        localStorage.removeItem("metadax:print");
+        render(JSON.parse(stored));
+      } else {
+        document.getElementById("bar").style.display = "none";
+        showPaste();
+      }
+    } catch(e){ fail("Could not load the package: " + e.message); }
+  }
+
+  load();
+})();
+</script>
+</body>
+</html>
