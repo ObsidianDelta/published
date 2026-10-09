@@ -1,0 +1,139 @@
+{
+  "format": "metadax-package",
+  "v": 1,
+  "title": "Fractions of a lap on the running track",
+  "word": "session",
+  "session": 1,
+  "guide": {
+    "tab": "For you",
+    "sections": [
+      {
+        "id": "upnext",
+        "label": "Up next",
+        "blocks": [
+          { "type": "p", "text": "Today you and the learner put fractions on a running track. A runner stops part way round, and the lap is cut into equal parts." }
+        ]
+      },
+      {
+        "id": "learned",
+        "label": "What came before",
+        "blocks": [
+          { "type": "p", "text": "The learner has met halves, thirds and quarters as equal parts of one whole." }
+        ]
+      },
+      {
+        "id": "steps",
+        "label": "How to run it",
+        "blocks": [
+          { "type": "step", "n": 1, "do": "Show the oval track cut into equal parts.", "say": "The whole lap is one. Each mark cuts it into equal parts.", "why": "Seeing the lap split makes the bottom number of the fraction concrete." },
+          { "type": "step", "n": 2, "do": "Point to where the runner stops.", "say": "The runner has gone this many parts out of the whole lap.", "why": "The runner's spot is the top number of the fraction." },
+          { "type": "human", "title": "What only you can do", "items": [ "Watch whether the learner counts the parts or guesses by distance.", "Ask them to trace the runner's path with a finger first." ] },
+          { "type": "lead", "title": "A step ahead", "body": "If this feels easy, ask what one more part would make.", "prompt": "How far round is the runner, as a fraction of the lap?" }
+        ]
+      },
+      {
+        "id": "tricky",
+        "label": "If it gets tricky",
+        "blocks": [
+          {
+            "type": "faq",
+            "q": "What if they count the marks, not the parts between them?",
+            "a": "Count the gaps the runner crosses, not the lines.",
+            "more": [
+              {
+                "q": "What if two runners confuse them?",
+                "a": "Cover one lane and read the other on its own first.",
+                "more": [
+                  { "q": "What if they still are not sure?", "a": "Drop back to one runner on one lane and count parts out loud." }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tellus",
+        "label": "Tell us",
+        "blocks": [
+          { "type": "p", "text": "Note whether counting parts or comparing distance worked better for this learner." }
+        ]
+      }
+    ]
+  },
+  "learner": {
+    "tab": "For the learner",
+    "sections": [
+      {
+        "id": "play",
+        "label": "Have a go",
+        "blocks": [
+          { "type": "lead", "title": "A step ahead", "body": "After you read the lap, try adding one more part in your head." },
+          {
+            "type": "scene",
+            "id": "s1",
+            "title": "A lap on the track",
+            "scene": "track",
+            "params": { "numerators": [3, 2], "denominators": [4, 4] },
+            "theme": "running",
+            "level": 1,
+            "ask_learner": "Which runner has gone further round the lap?",
+            "answer": "first",
+            "why": "Three quarters is further round than two quarters, so the first runner leads."
+          },
+          {
+            "type": "scene",
+            "id": "s2",
+            "title": "Adding two parts of a lap",
+            "scene": "track",
+            "params": { "numerators": [3, 2], "denominators": [4, 3] },
+            "theme": "football",
+            "level": 3,
+            "ask_learner": "Does the runner finish before or past one full lap?",
+            "answer": "past",
+            "why": "Three quarters plus two thirds is more than one, so the runner passes the finish into a second lap."
+          },
+          {
+            "type": "quiz",
+            "id": "q1",
+            "title": "Quick check",
+            "mistakes": {
+              "count-lines": "Counts the marks instead of the parts between them.",
+              "far-wins": "Thinks the lane drawn on the outside is always further."
+            },
+            "levels": [
+              {
+                "level": 1,
+                "label": "Warm up",
+                "items": [
+                  {
+                    "q": "A lap is cut into four equal parts and the runner is on the third mark. How far round is that?",
+                    "choices": [
+                      { "text": "Three quarters of the lap.", "correct": true },
+                      { "text": "Four quarters of the lap.", "mistake": "count-lines" },
+                      { "text": "Whichever lane is on the outside.", "mistake": "far-wins" }
+                    ],
+                    "explain": "Three parts out of four equal parts is three quarters."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "faq",
+            "q": "How do I read a runner on the track?",
+            "a": "Count how many equal parts the runner has passed out of the whole lap.",
+            "more": [
+              {
+                "q": "What if two runners are close?",
+                "a": "Read each lane on its own, then compare the two fractions.",
+                "more": [
+                  { "q": "What if I am still stuck?", "a": "Count the parts on one lane out loud from the start line." }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

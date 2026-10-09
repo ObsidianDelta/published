@@ -59,8 +59,14 @@
         draggable: { type: "bool" },
       },
     },
+    "track": {
+      params: {
+        numerators: { type: "int-array", min: 0, max: 24, maxLen: 2 },
+        denominators: { type: "int-array", min: 1, max: 24, maxLen: 2 },
+      },
+    },
   };
-  var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1 };
+  var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1, football: 1, running: 1 };
 
   // Validate one { scene, params, theme?, level? } unit; push errors under `p`.
   function checkSceneUnit(unit, p, errors) {
@@ -87,7 +93,7 @@
         }
       }
     });
-    if (unit.theme !== undefined && !SCENE_THEMES[unit.theme]) errors.push({ path: p + ".theme", msg: "theme not in enum (plain|unicorn|hockey|dinosaur|space): " + unit.theme });
+    if (unit.theme !== undefined && !SCENE_THEMES[unit.theme]) errors.push({ path: p + ".theme", msg: "theme not in enum (plain|unicorn|hockey|dinosaur|space|football|running): " + unit.theme });
     if (unit.level !== undefined) {
       if (typeof unit.level !== "number" || Math.round(unit.level) !== unit.level || unit.level < 1 || unit.level > 3)
         errors.push({ path: p + ".level", msg: "level must be an integer 1..3: " + unit.level });
