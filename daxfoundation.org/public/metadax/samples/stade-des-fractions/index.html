@@ -1,0 +1,2325 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Un parcours en français pour comprendre les fractions avec le football et la course, à faire avec un parent. Exemple MetaDAX.">
+<title>Le Stade des Fractions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Big+Shoulders+Display:wght@700;800&display=swap">
+<style>/* Layout: stadium broadcast — live 3D stadium on the left (top on phones), the match sheet on the right, scoreboard bar on top. */
+:root {
+  --bg: #eaf1e6;
+  --surface: #ffffff;
+  --surface-2: #f4f8f1;
+  --ink: #12211a;
+  --muted: #4b5f55;
+  --line: #d0dacb;
+  --pitch: #1f6e39;
+  --pitch-ink: #ffffff;
+  --track: #b44a26;
+  --gold: #f2b705;
+  --gold-ink: #1c1500;
+  --red: #c32d27;
+  --blue: #2659c0;
+  --good: #187d43;
+  --violet: #6f45d0;
+  --stage-bg: #a8d8f2;
+  --font-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius: 10px;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: 2.3rem;
+  --step-4: 3.3rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #09120e; --surface: #101c16; --surface-2: #15241c; --ink: #ecf3ed; --muted: #a2b5a9; --line: #253629;
+    --pitch: #2b8a48; --pitch-ink: #ffffff; --track: #d36a42; --gold: #f5c02a; --gold-ink: #1c1500;
+    --red: #f0625a; --blue: #6c9cf3; --good: #45c27a; --violet: #a989f4; --stage-bg: #081324;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #09120e; --surface: #101c16; --surface-2: #15241c; --ink: #ecf3ed; --muted: #a2b5a9; --line: #253629;
+  --pitch: #2b8a48; --pitch-ink: #ffffff; --track: #d36a42; --gold: #f5c02a; --gold-ink: #1c1500;
+  --red: #f0625a; --blue: #6c9cf3; --good: #45c27a; --violet: #a989f4; --stage-bg: #081324;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.5; margin: 0; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.01em; text-wrap: balance; margin: 0; line-height: 1.05; }
+
+/* ── barre du haut ── */
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--pitch); color: var(--pitch-ink); border-bottom: 4px solid var(--gold); }
+.brand { display: flex; align-items: center; gap: 10px; background: none; border: 0; padding: 0; color: inherit; text-align: left; }
+.brand-mark { width: 30px; height: 30px; flex: none; }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.45rem; letter-spacing: 0.03em; text-transform: uppercase; line-height: 1; }
+.top-nav { display: flex; gap: 6px; margin-left: auto; }
+.top-nav button { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.35); color: inherit; border-radius: 999px; padding: 5px 14px; font-weight: 700; font-size: 0.95rem; }
+.top-nav button[aria-current="page"] { background: var(--gold); color: var(--gold-ink); border-color: var(--gold); }
+.score { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; letter-spacing: 0.04em; text-transform: uppercase; background: #0b1410; color: #f2b705; padding: 4px 12px; border-radius: 6px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ── programme ── */
+.program-wrap { overflow-x: auto; background: var(--surface); border-bottom: 1px solid var(--line); }
+.program { display: flex; gap: 6px; padding: 10px 16px; margin: 0; list-style: none; min-width: max-content; }
+.program li { list-style: none; }
+.program button { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 6px 14px 6px 6px; font-weight: 700; font-size: 0.95rem; }
+.program .num { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--line); color: var(--ink); font-family: var(--font-display); font-size: 1.05rem; font-weight: 800; }
+.program button[aria-current="step"] { border-color: var(--pitch); background: var(--pitch); color: var(--pitch-ink); }
+.program button[aria-current="step"] .num { background: var(--gold); color: var(--gold-ink); }
+.program .done .num { background: var(--good); color: #fff; }
+.program .tick { font-size: 0.8rem; color: var(--muted); font-weight: 400; }
+.program button[aria-current="step"] .tick { color: inherit; opacity: 0.85; }
+
+/* ── mise en page ── */
+.layout { display: grid; grid-template-columns: 1fr; gap: 0; }
+.stage-wrap { position: relative; background: var(--stage-bg); }
+.stage { height: 44vh; min-height: 260px; max-height: 520px; width: 100%; position: relative; }
+.stage .nogl { position: absolute; inset: 16px; display: grid; place-items: center; text-align: center; background: var(--surface); color: var(--ink); border-radius: var(--radius); padding: 16px; }
+.caption { position: absolute; left: 12px; bottom: 12px; right: 12px; margin: 0; pointer-events: none; display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-end; }
+.caption span { background: rgba(9,18,14,0.82); color: #f4f7f2; padding: 4px 10px; border-radius: 6px; font-size: 0.9rem; max-width: 100%; }
+.hint-3d { position: absolute; top: 10px; right: 12px; margin: 0; background: rgba(9,18,14,0.7); color: #f4f7f2; font-size: 0.78rem; padding: 3px 8px; border-radius: 6px; pointer-events: none; }
+.panel { padding: 20px 16px 48px; min-width: 0; }
+.panel-inner { max-width: 680px; margin: 0 auto; display: grid; gap: 18px; }
+@media (min-width: 960px) {
+  .layout { grid-template-columns: minmax(0, 1.25fr) minmax(380px, 1fr); align-items: start; }
+  .stage-wrap { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 58px); height: calc(100vh - 58px - 56px); }
+  .stage { height: 100%; max-height: none; }
+  .panel { padding: 24px 28px 64px; }
+}
+
+/* ── panneau ── */
+.eyebrow { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--track); font-size: 1rem; margin: 0; }
+.title { font-size: var(--step-3); }
+.lede { color: var(--muted); margin: 0; font-size: var(--step-0); max-width: 62ch; }
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--line); flex-wrap: wrap; }
+.tabs button { border: 0; background: none; padding: 10px 14px 8px; font-weight: 700; color: var(--muted); border-bottom: 4px solid transparent; margin-bottom: -2px; font-size: 1.02rem; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); background: var(--surface); padding: 7px 12px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; }
+.chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.say { background: var(--surface); border: 1px solid var(--line); border-left: 6px solid var(--gold); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 10px; }
+.say .count { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-size: 0.95rem; }
+.say p { margin: 0; font-size: var(--step-1); line-height: 1.45; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { border: 2px solid var(--ink); background: var(--surface); color: var(--ink); padding: 9px 16px; border-radius: 8px; font-weight: 700; }
+.btn.primary { background: var(--pitch); border-color: var(--pitch); color: var(--pitch-ink); }
+.btn.gold { background: var(--gold); border-color: var(--gold); color: var(--gold-ink); }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.free { background: var(--surface-2); border: 1px dashed var(--line); border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 10px; }
+.free p { margin: 0; }
+.stepper { display: inline-flex; align-items: center; gap: 8px; }
+.stepper button { width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--ink); background: var(--surface); font-size: 1.3rem; font-weight: 700; line-height: 1; }
+.stepper output { font-family: var(--font-display); font-weight: 800; font-size: 1.8rem; min-width: 2ch; text-align: center; font-variant-numeric: tabular-nums; }
+.bigfrac { font-size: 2.2rem; }
+.why { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.why li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 16px; font-size: var(--step-0); }
+
+/* fractions empilées */
+.fr { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; line-height: 1; font-family: var(--font-display); font-weight: 800; font-size: 1.12em; margin: 0 0.12em; font-variant-numeric: tabular-nums; }
+.fr .n { padding: 0 0.15em 0.08em; border-bottom: 0.09em solid currentColor; }
+.fr .d { padding: 0.08em 0.15em 0; }
+
+/* ── questions ── */
+.qhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.dots { display: flex; gap: 6px; }
+.dot { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line); background: var(--surface); }
+.dot.now { border-color: var(--ink); }
+.dot.first { background: var(--good); border-color: var(--good); }
+.dot.second { background: var(--gold); border-color: var(--gold); }
+.dot.shown { background: var(--red); border-color: var(--red); }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; gap: 16px; }
+.qtext { font-size: var(--step-1); margin: 0; line-height: 1.45; }
+.answer { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.frac-in { display: inline-grid; grid-template-rows: auto 6px auto; justify-items: center; gap: 4px; }
+.frac-in input { width: 4.6ch; text-align: center; font-family: var(--font-display); font-size: 2rem; font-weight: 800; padding: 2px 4px; border: 2px solid var(--line); border-radius: 8px; background: var(--surface-2); }
+.frac-in .bar { width: 100%; height: 5px; background: var(--ink); border-radius: 3px; }
+.num-in { display: inline-flex; align-items: center; gap: 8px; }
+.num-in input { width: 7ch; font-family: var(--font-display); font-size: 2rem; font-weight: 800; padding: 2px 8px; border: 2px solid var(--line); border-radius: 8px; background: var(--surface-2); text-align: center; }
+.num-in .unit { font-weight: 700; color: var(--muted); }
+.cmp { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; font-size: 1.6rem; }
+.cmp .slot { width: 56px; height: 56px; border: 3px dashed var(--line); border-radius: 10px; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: 2rem; }
+.opts { display: flex; gap: 10px; flex-wrap: wrap; }
+.opts .btn { min-width: 64px; font-size: 1.2rem; }
+.feedback { border-radius: var(--radius); padding: 14px 16px; display: grid; gap: 6px; }
+.feedback p { margin: 0; }
+.feedback.ok { background: color-mix(in srgb, var(--good) 14%, var(--surface)); border: 2px solid var(--good); }
+.feedback.no { background: color-mix(in srgb, var(--gold) 16%, var(--surface)); border: 2px solid var(--gold); }
+.feedback.show { background: color-mix(in srgb, var(--red) 10%, var(--surface)); border: 2px solid var(--red); }
+.feedback strong { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.02em; }
+.done-card { background: var(--pitch); color: var(--pitch-ink); border-radius: var(--radius); padding: 20px; display: grid; gap: 10px; }
+.done-card h3 { font-size: var(--step-2); }
+
+/* ── guide et bilan ── */
+.doc { display: grid; gap: 14px; }
+.doc h2 { font-size: var(--step-2); }
+.doc h3 { font-size: var(--step-1); }
+.doc p, .doc li { max-width: 66ch; }
+.doc > p, .gblock > p { margin: 0; }
+.doc ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.gblock { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 10px; }
+.gblock .meta { color: var(--muted); font-size: 0.95rem; }
+.label { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.95rem; color: var(--track); margin: 4px 0 0; }
+.key { margin: 0; padding-left: 1.4em; display: grid; gap: 8px; }
+table.res { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.table-wrap { overflow-x: auto; }
+table.res th, table.res td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+table.res th { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.95rem; color: var(--muted); }
+.note { width: 100%; min-height: 260px; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: 0.9rem; line-height: 1.5; padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); color: var(--ink); resize: vertical; }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 700; }
+.field input { padding: 9px 12px; border: 2px solid var(--line); border-radius: 8px; background: var(--surface); max-width: 320px; }
+.hero { display: grid; gap: 12px; }
+.hero h1 { font-size: var(--step-4); text-transform: uppercase; letter-spacing: 0.02em; }
+.hero .stripe { height: 8px; width: 140px; background: linear-gradient(90deg, var(--pitch) 0 33%, var(--gold) 33% 66%, var(--track) 66%); border-radius: 4px; }
+.plan { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.plan li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: center; }
+.plan .num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--surface); border: 2px solid var(--line); font-family: var(--font-display); font-weight: 800; }
+.muted { color: var(--muted); }
+.confirm { background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; display: grid; gap: 10px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.print-only { display: none; }
+.mobile-only { display: none; }
+@media (max-width: 959px) {
+  .stage-wrap { position: sticky; top: calc(env(safe-area-inset-top, 0px) + var(--bar-h, 56px)); z-index: 10; box-shadow: 0 6px 14px rgba(0,0,0,0.18); }
+  .stage { height: 38vh; min-height: 220px; max-height: 420px; }
+  .program-wrap { position: relative; }
+}
+@media (max-width: 640px) {
+  .top-nav { display: none; }
+  .mobile-only { display: list-item; }
+  .score { margin-left: auto; }
+}
+
+@media (max-width: 520px) {
+  .brand-name { font-size: 1.05rem; white-space: nowrap; }
+  .brand-mark { width: 26px; height: 26px; }
+  .top-nav button { padding: 4px 10px; font-size: 0.88rem; }
+  .score { font-size: 1.05rem; padding: 3px 8px; }
+  .title { font-size: 2rem; }
+  .hero h1 { font-size: 2.5rem; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+
+@media print {
+  .bar, .program-wrap, .stage-wrap, .tabs, .btn, .no-print { display: none !important; }
+  .layout { display: block; }
+  .panel { padding: 0; }
+  body { background: #fff; color: #000; font-size: 12pt; }
+  .gblock, .qcard { break-inside: avoid; border-color: #999; }
+  .print-only { display: block; }
+}
+</style>
+</head>
+<body>
+<header class="bar">
+  <button class="brand" data-go="accueil" aria-label="Accueil — Le Stade des Fractions">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#ffffff"/><path d="M16 2a14 14 0 0 1 0 28" fill="#f2b705"/><line x1="16" y1="2" x2="16" y2="30" stroke="#12211a" stroke-width="2"/><circle cx="16" cy="16" r="14" fill="none" stroke="#12211a" stroke-width="2"/></svg>
+    <span class="brand-name">Le Stade des Fractions</span>
+  </button>
+  <nav class="top-nav" aria-label="Pages">
+    <button data-go="guide">Guide</button>
+    <button data-go="bilan">Bilan</button>
+  </nav>
+  <div class="score" aria-live="polite"><span id="who">Toi</span> · <span id="goals">0 but</span></div>
+</header>
+<div class="program-wrap"><ol class="program" id="program" aria-label="Le programme du match"></ol></div>
+<main class="layout">
+  <section class="stage-wrap" id="stage-wrap" aria-label="Le stade en 3D">
+    <div class="stage" id="stage"></div>
+    <p class="hint-3d" id="hint3d" hidden>Glisse pour tourner · pince pour zoomer</p>
+    <p class="caption" id="caption"></p>
+  </section>
+  <section class="panel" id="panel" aria-live="off"></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>/* Le Stade des Fractions — contenu (français).
+   Rôles : « le guide » (le parent qui accompagne, vouvoyé) et « l'apprenant » (tutoyé).
+   Toute fraction écrite a/b dans un texte est affichée empilée à l'écran. */
+
+const COURSE = {
+  title: "Le Stade des Fractions",
+  learner: "Pour un apprenant de 11 ans qui aime le football et la course, accompagné par un parent.",
+  stations: [
+  /* ───────────────────────── 0 ───────────────────────── */
+  {
+    id: 0, short: "Échauffement", title: "Une fraction, c'est quoi ?", scene: "pitch",
+    intro: "Avant de jouer avec les fractions, il faut savoir ce qu'elles veulent dire. Le terrain de foot va nous servir de « tout ».",
+    presets: [
+      { label: "La moitié du terrain", steps: [
+        { say: "Voici le terrain entier. C'est notre « tout ».", s: { d: 1, n: 0 } },
+        { say: "On le coupe en 2 parts égales, par la ligne du milieu.", s: { d: 2, n: 0 } },
+        { say: "On prend 1 part sur 2. C'est 1/2 du terrain : la moitié. Le bas (2) dit en combien de parts égales on coupe. Le haut (1) dit combien de parts on prend.", s: { d: 2, n: 1 } }
+      ]},
+      { label: "Trois quarts", steps: [
+        { say: "On coupe le terrain en 4 parts égales. Chaque part est un quart.", s: { d: 4, n: 0 } },
+        { say: "On prend 1 part : 1/4.", s: { d: 4, n: 1 } },
+        { say: "On en prend 3 : c'est 3/4 du terrain. Il reste 1/4 sans couleur.", s: { d: 4, n: 3 } }
+      ]},
+      { label: "Deux cinquièmes", steps: [
+        { say: "5 parts égales : chaque part est un cinquième.", s: { d: 5, n: 0 } },
+        { say: "On en prend 2 : 2/5. Attention, on ne compare pas 2 avec 3 (les parts restantes). On compare 2 avec 5 (toutes les parts).", s: { d: 5, n: 2 } }
+      ]},
+      { label: "Le terrain entier", steps: [
+        { say: "8 parts égales : des huitièmes. Elles sont plus petites que des quarts, parce qu'on a coupé plus de fois.", s: { d: 8, n: 0 } },
+        { say: "On prend les 8 parts : 8/8. C'est le terrain entier, donc 8/8 = 1.", s: { d: 8, n: 8 } }
+      ]},
+      { label: "Piège : des parts pas égales", steps: [
+        { say: "Ici aussi le terrain est coupé en 3 parts…", s: { unequal: true, n: 0 } },
+        { say: "…mais les parts n'ont pas la même taille. Ce ne sont donc PAS des tiers. Une fraction, c'est toujours des parts égales.", s: { unequal: true, n: 1 } }
+      ]}
+    ],
+    play: "Joue toi-même : choisis le nombre de parts avec − et +, puis touche les parts du terrain pour les colorier.",
+    why: [
+      "Une fraction décrit une partie d'un tout. Le tout est coupé en parts ÉGALES.",
+      "Le nombre du bas s'appelle le dénominateur. Il dit en combien de parts égales on a coupé le tout.",
+      "Le nombre du haut s'appelle le numérateur. Il dit combien de ces parts on prend.",
+      "Plus on coupe, plus les parts sont petites : un huitième de terrain est plus petit qu'un quart de terrain.",
+      "Quand on prend toutes les parts, on a le tout : 4/4 = 8/8 = 1.",
+      "Dans un match de 90 minutes, la mi-temps arrive après 45 minutes : c'est 1/2 du match, parce que le match est coupé en 2 périodes égales."
+    ],
+    questions: [
+      { t: "frac", q: "Le terrain est coupé en 5 parts égales. 2 parts sont coloriées. Quelle fraction du terrain est coloriée ?", a: [2,5], scene: { d: 5, n: 2 },
+        hint: "Compte toutes les parts (en bas), puis les parts coloriées (en haut).",
+        why: "5 parts égales en tout, 2 coloriées : 2/5.",
+        traps: [ { a: [2,3], note: "a comparé les parts coloriées aux parts NON coloriées (2 et 3) au lieu de toutes les parts (5)." } ] },
+      { t: "num", q: "En combien de parts égales faut-il couper le terrain pour avoir des quarts ?", a: 4, unit: "parts", scene: { d: 4, n: 0 },
+        hint: "Un quart, c'est une part quand le tout est coupé en… ?",
+        why: "Des quarts : le tout est coupé en 4 parts égales." },
+      { t: "frac", q: "Un match dure 90 minutes. À la mi-temps, quelle fraction du match a été jouée ?", a: [1,2], scene: { d: 2, n: 1 },
+        hint: "Le match a deux périodes de même durée.",
+        why: "2 périodes égales de 45 minutes, une est jouée : 1/2." },
+      { t: "choice", q: "Regarde le terrain. Il est coupé en 3 parts. Est-ce que chaque part est un tiers ?", options: ["Oui", "Non"], a: 1, scene: { unequal: true, n: 0 },
+        hint: "Regarde la taille de chaque part.",
+        why: "Non : les parts ne sont pas égales. Un tiers, c'est une part sur 3 parts ÉGALES.",
+        traps: [ { a: 0, note: "a compté 3 parts sans vérifier qu'elles étaient égales." } ] },
+      { t: "frac", q: "Le terrain est coupé en 6 parts égales et les 6 sont coloriées. Écris la fraction.", a: [6,6], exact: true, scene: { d: 6, n: 6 },
+        hint: "Combien de parts en tout ? Combien de coloriées ?",
+        why: "6/6 : toutes les parts. C'est le terrain entier, donc 6/6 = 1." }
+    ],
+    guide: {
+      goal: "Comprendre qu'une fraction décrit des parts ÉGALES d'un tout, et savoir ce que disent le nombre du haut et le nombre du bas.",
+      say: [
+        "« Montre-moi le tout. En combien de parts égales est-il coupé ? »",
+        "« Combien de parts as-tu prises ? Où vois-tu ce nombre dans la fraction ? »"
+      ],
+      ask: [
+        "Pourquoi les parts doivent-elles être égales ?",
+        "Qu'est-ce qui est plus grand : un quart de terrain ou un huitième de terrain ? Pourquoi ?"
+      ],
+      watch: [
+        "S'il écrit 2/3 au lieu de 2/5, il compare les parts coloriées aux parts restantes. Demandez-lui de compter TOUTES les parts.",
+        "S'il pense qu'un huitième est plus grand qu'un quart « parce que 8 est plus grand que 4 », revenez au terrain : plus on coupe, plus les parts sont petites."
+      ],
+      offscreen: "Sans écran : dessinez un terrain dans le sable ou sur une feuille. Pliez une feuille en 2, puis en 4, puis en 8. À chaque pliage, demandez combien de parts égales il y a, et comment s'appelle une part.",
+      time: "15 à 20 minutes"
+    }
+  },
+  /* ───────────────────────── 1 ───────────────────────── */
+  {
+    id: 1, short: "Comparer", title: "Qui est devant ?", scene: "track",
+    intro: "Deux coureurs partent de la ligne. Chacun s'arrête après une fraction du tour de piste. Qui est allé le plus loin ?",
+    presets: [
+      { label: "Même dénominateur", steps: [
+        { say: "Rouge court 3/8 du tour. Bleu court 5/8 du tour.", s: { mode: "compare", A: [3,8], B: [5,8], ticks: 8, run: false } },
+        { say: "Départ ! Les deux tours sont coupés en huitièmes : les parts ont la même taille.", s: { mode: "compare", A: [3,8], B: [5,8], ticks: 8, run: true } },
+        { say: "5 huitièmes, c'est plus que 3 huitièmes. Bleu est devant : 3/8 < 5/8.", s: { mode: "compare", A: [3,8], B: [5,8], ticks: 8, run: true, done: true } }
+      ]},
+      { label: "Même numérateur", steps: [
+        { say: "Rouge court 1/4 du tour. Bleu court 1/8 du tour. 8 est plus grand que 4… mais attention !", s: { mode: "compare", A: [1,4], B: [1,8], ticks: 0, run: false } },
+        { say: "Départ ! Un quart de tour, c'est 100 m. Un huitième de tour, c'est 50 m.", s: { mode: "compare", A: [1,4], B: [1,8], ticks: 8, run: true } },
+        { say: "Rouge est devant. Plus le dénominateur est grand, plus les parts sont petites : 1/4 > 1/8.", s: { mode: "compare", A: [1,4], B: [1,8], ticks: 8, run: true, done: true } }
+      ]},
+      { label: "Tout est différent", steps: [
+        { say: "Rouge court 3/4 du tour. Bleu court 2/3 du tour. Les parts n'ont pas la même taille : difficile de comparer.", s: { mode: "compare", A: [3,4], B: [2,3], ticks: 0, run: true } },
+        { say: "Astuce : on recoupe le tour en 12 parts égales. 3/4 = 9/12 et 2/3 = 8/12.", s: { mode: "compare", A: [3,4], B: [2,3], ticks: 12, run: true } },
+        { say: "9 douzièmes contre 8 douzièmes : Rouge est devant. 3/4 > 2/3.", s: { mode: "compare", A: [3,4], B: [2,3], ticks: 12, run: true, done: true } }
+      ]},
+      { label: "Au même endroit", steps: [
+        { say: "Rouge court 2/4 du tour. Bleu court 1/2 du tour.", s: { mode: "compare", A: [2,4], B: [1,2], ticks: 0, run: false } },
+        { say: "Départ !", s: { mode: "compare", A: [2,4], B: [1,2], ticks: 4, run: true } },
+        { say: "Ils s'arrêtent au même endroit. 2/4 = 1/2 : ce sont des fractions égales, écrites autrement.", s: { mode: "compare", A: [2,4], B: [1,2], ticks: 4, run: true, done: true } }
+      ]}
+    ],
+    why: [
+      "Même dénominateur : les parts ont la même taille. On compare les numérateurs. 3/8 < 5/8.",
+      "Même numérateur : on prend le même nombre de parts, mais plus le dénominateur est grand, plus chaque part est petite. 1/8 < 1/4.",
+      "Tout est différent : on recoupe le tout en parts de la même taille. Pour des quarts et des tiers, on coupe en 12 (4 × 3). 3/4 = 9/12 et 2/3 = 8/12, donc 3/4 > 2/3.",
+      "Deux fractions peuvent dire la même chose : 2/4 = 1/2 = 4/8. On les appelle des fractions égales.",
+      "Sur la piste, la fraction la plus grande est celle du coureur qui est allé le plus loin."
+    ],
+    questions: [
+      { t: "cmp", q: "Compare.", l: [2,5], r: [4,5], a: "<", scene: { mode: "compare", A: [2,5], B: [4,5], ticks: 5, run: true },
+        hint: "Les dénominateurs sont les mêmes : les parts ont la même taille.",
+        why: "Même taille de parts : 2 parts, c'est moins que 4 parts. 2/5 < 4/5." },
+      { t: "cmp", q: "Compare.", l: [1,3], r: [1,6], a: ">", scene: { mode: "compare", A: [1,3], B: [1,6], ticks: 6, run: true },
+        hint: "Une seule part chacun. Quelle part est la plus grosse : un tiers ou un sixième ?",
+        why: "Un sixième est plus petit qu'un tiers (on a coupé plus de fois). 1/3 > 1/6.",
+        traps: [ { a: "<", note: "a pensé que le plus grand dénominateur donne la plus grande fraction (6 > 3)." } ] },
+      { t: "cmp", q: "Compare.", l: [3,4], r: [5,8], a: ">", scene: { mode: "compare", A: [3,4], B: [5,8], ticks: 8, run: true },
+        hint: "Recoupe les quarts en huitièmes : 3/4 = ?/8.",
+        why: "3/4 = 6/8, et 6/8 > 5/8." },
+      { t: "cmp", q: "Compare.", l: [2,3], r: [4,6], a: "=", scene: { mode: "compare", A: [2,3], B: [4,6], ticks: 6, run: true },
+        hint: "Recoupe les tiers en sixièmes.",
+        why: "2/3 = 4/6 : les deux coureurs s'arrêtent au même endroit." },
+      { t: "choice", q: "Sèna court 5/6 du tour. Koffi court 7/8 du tour. Qui est allé le plus loin ?", options: ["Sèna", "Koffi", "Égalité"], a: 1, scene: { mode: "compare", A: [5,6], B: [7,8], ticks: 0, run: true, names: ["Sèna", "Koffi"] },
+        hint: "Recoupe le tour en 24 parts : 5/6 = ?/24 et 7/8 = ?/24.",
+        why: "5/6 = 20/24 et 7/8 = 21/24. Koffi est un tout petit peu devant. Autre façon de voir : il manque 1/6 à Sèna et seulement 1/8 à Koffi, et 1/8 est plus petit." }
+    ],
+    guide: {
+      goal: "Comparer deux fractions en sachant pourquoi : même taille de parts, même nombre de parts, ou recouper.",
+      say: [
+        "« Avant de calculer : à ton avis, qui est devant ? Pourquoi ? »",
+        "« Est-ce que les parts ont la même taille ? »"
+      ],
+      ask: [
+        "Pourquoi 1/8 est-il plus petit que 1/4 alors que 8 est plus grand que 4 ?",
+        "Comment peut-on couper le tour pour comparer des quarts et des tiers ?"
+      ],
+      watch: [
+        "Le piège le plus courant : « 1/8 est plus grand que 1/4 parce que 8 > 4 ». Faites-lui couper une galette en 4 puis en 8 : quelle part est la plus grosse ?",
+        "Pour 3/4 et 2/3, s'il compare seulement les numérateurs (3 > 2), demandez si les parts ont la même taille."
+      ],
+      offscreen: "Sans écran : faites un tour de piste avec une ficelle posée en rond au sol. Deux bouchons de couleur sont les coureurs. Pliez la ficelle en 4, en 8, en 12 pour marquer les parts.",
+      time: "20 minutes"
+    }
+  },
+  /* ───────────────────────── 2 ───────────────────────── */
+  {
+    id: 2, short: "Additionner", title: "Les tours s'ajoutent", scene: "track",
+    intro: "Le coureur fait un premier morceau du tour, puis un deuxième. Quelle distance a-t-il faite en tout ?",
+    presets: [
+      { label: "Mêmes parts", steps: [
+        { say: "Le coureur fait 1/4 du tour…", s: { mode: "add", A: [1,4], B: [2,4], ticks: 4, phase: 1 } },
+        { say: "…puis encore 2/4 du tour.", s: { mode: "add", A: [1,4], B: [2,4], ticks: 4, phase: 2 } },
+        { say: "Des quarts plus des quarts, ce sont des quarts : 1 + 2 = 3. En tout 3/4 du tour. Le dénominateur ne change pas, il donne la taille des parts.", s: { mode: "add", A: [1,4], B: [2,4], ticks: 4, phase: 3 } }
+      ]},
+      { label: "Parts différentes", steps: [
+        { say: "1/2 tour, puis 1/4 de tour. Des demis et des quarts : les parts n'ont pas la même taille.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 0, phase: 2 } },
+        { say: "On recoupe en quarts : 1/2 = 2/4.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 4, phase: 2 } },
+        { say: "2/4 + 1/4 = 3/4. On n'additionne que des parts de même taille.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 4, phase: 3 } }
+      ]},
+      { label: "Piège : 1/2 + 1/4 = 2/6 ?", steps: [
+        { say: "Certains additionnent le haut ET le bas : 1/2 + 1/4 = 2/6. Vérifions sur la piste.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 0, phase: 3 } },
+        { say: "Voici 2/6 du tour (en violet). C'est PLUS PETIT que la moitié toute seule ! En ajoutant une distance, on ne peut pas aller moins loin. Donc 2/6 est faux.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 6, phase: 3, ghost: [2,6] } },
+        { say: "La bonne réponse est 3/4 : on recoupe d'abord, puis on additionne les parts.", s: { mode: "add", A: [1,2], B: [1,4], ticks: 4, phase: 3 } }
+      ]},
+      { label: "Plus d'un tour !", steps: [
+        { say: "2/3 du tour, puis 1/2 tour.", s: { mode: "add", A: [2,3], B: [1,2], ticks: 0, phase: 2 } },
+        { say: "On recoupe en sixièmes : 2/3 = 4/6 et 1/2 = 3/6.", s: { mode: "add", A: [2,3], B: [1,2], ticks: 6, phase: 2 } },
+        { say: "4/6 + 3/6 = 7/6. C'est plus qu'un tour : 1 tour entier (6/6) et encore 1/6.", s: { mode: "add", A: [2,3], B: [1,2], ticks: 6, phase: 3 } }
+      ]}
+    ],
+    why: [
+      "Le dénominateur dit la TAILLE des parts. On ne peut additionner que des parts de même taille, comme on ne peut pas additionner des mètres et des kilomètres sans les convertir.",
+      "Mêmes dénominateurs : on additionne les numérateurs et on garde le dénominateur. 1/4 + 2/4 = 3/4.",
+      "Dénominateurs différents : on recoupe d'abord pour avoir des parts de même taille. 1/2 + 1/4 = 2/4 + 1/4 = 3/4.",
+      "On n'additionne jamais les dénominateurs : 1/2 + 1/4 ne fait pas 2/6, car 2/6 est plus petit que 1/2.",
+      "On peut dépasser 1 : 7/6, c'est un tour entier et encore 1/6."
+    ],
+    questions: [
+      { t: "frac", q: "Calcule : 2/7 + 3/7", a: [5,7], scene: { mode: "add", A: [2,7], B: [3,7], ticks: 7, phase: 2 },
+        hint: "Mêmes parts (des septièmes) : additionne les numérateurs.",
+        why: "2 septièmes + 3 septièmes = 5 septièmes : 5/7.",
+        traps: [ { a: [5,14], note: "a additionné aussi les dénominateurs (7 + 7)." } ] },
+      { t: "frac", q: "Calcule : 1/2 + 1/4", a: [3,4], scene: { mode: "add", A: [1,2], B: [1,4], ticks: 4, phase: 2 },
+        hint: "Recoupe la moitié en quarts : 1/2 = ?/4.",
+        why: "1/2 = 2/4, et 2/4 + 1/4 = 3/4.",
+        traps: [ { a: [2,6], note: "a additionné les numérateurs et les dénominateurs (1/2 + 1/4 = 2/6)." } ] },
+      { t: "frac", q: "Calcule : 1/3 + 1/6", a: [1,2], scene: { mode: "add", A: [1,3], B: [1,6], ticks: 6, phase: 2 },
+        hint: "Recoupe les tiers en sixièmes.",
+        why: "1/3 = 2/6, et 2/6 + 1/6 = 3/6 = 1/2.",
+        traps: [ { a: [2,9], note: "a additionné les numérateurs et les dénominateurs (1/3 + 1/6 = 2/9)." } ] },
+      { t: "frac", q: "Afi court 3/8 du tour, puis encore 1/4 du tour. Quelle fraction du tour a-t-elle courue en tout ?", a: [5,8], scene: { mode: "add", A: [3,8], B: [1,4], ticks: 8, phase: 2 },
+        hint: "1/4 = ?/8.",
+        why: "1/4 = 2/8, et 3/8 + 2/8 = 5/8.",
+        traps: [ { a: [4,12], note: "a additionné les numérateurs et les dénominateurs (3/8 + 1/4 = 4/12)." } ] },
+      { t: "frac", q: "Calcule : 2/3 + 1/2. (La réponse peut dépasser 1.)", a: [7,6], scene: { mode: "add", A: [2,3], B: [1,2], ticks: 6, phase: 2 },
+        hint: "Recoupe en sixièmes : 2/3 = ?/6 et 1/2 = ?/6.",
+        why: "4/6 + 3/6 = 7/6, c'est-à-dire 1 tour et 1/6.",
+        traps: [ { a: [3,5], note: "a additionné les numérateurs et les dénominateurs (2/3 + 1/2 = 3/5)." } ] }
+    ],
+    guide: {
+      goal: "Additionner des fractions en comprenant pourquoi il faut des parts de même taille.",
+      say: [
+        "« Avant de calculer : la réponse sera-t-elle plus grande ou plus petite que chaque morceau ? »",
+        "« Est-ce que ce sont les mêmes parts ? Sinon, comment les rendre pareilles ? »"
+      ],
+      ask: [
+        "Pourquoi garde-t-on le même dénominateur quand on additionne des quarts ?",
+        "Est-ce que 2/6 peut être la réponse de 1/2 + 1/4 ? Comment le savoir sans calculer ?"
+      ],
+      watch: [
+        "S'il additionne les dénominateurs (1/2 + 1/4 = 2/6), ne dites pas « faux » tout de suite. Demandez : « 2/6, c'est plus grand ou plus petit que 1/2 ? Alors est-ce possible ? » Puis montrez le piège sur la piste.",
+        "Quand la réponse dépasse 1 (7/6), rassurez-le : c'est normal, le coureur a fait plus d'un tour."
+      ],
+      offscreen: "Sans écran : découpez des bandes de papier de même longueur. Pliez-en une en 2, une en 4, une en 8. Posez les morceaux bout à bout pour additionner.",
+      time: "20 à 25 minutes"
+    }
+  },
+  /* ───────────────────────── 3 ───────────────────────── */
+  {
+    id: 3, short: "Soustraire", title: "Combien reste-t-il ?", scene: "track",
+    intro: "Le coureur doit faire une distance. Il en a déjà fait une partie. Combien lui reste-t-il à courir ?",
+    presets: [
+      { label: "Il reste combien du tour ?", steps: [
+        { say: "Le tour entier, c'est 1. En huitièmes : 1 = 8/8.", s: { mode: "sub", W: [8,8], M: [3,8], ticks: 8, phase: 1 } },
+        { say: "Le coureur a déjà fait 3/8 du tour.", s: { mode: "sub", W: [8,8], M: [3,8], ticks: 8, phase: 2 } },
+        { say: "Il reste 8/8 − 3/8 = 5/8 du tour (en vert).", s: { mode: "sub", W: [8,8], M: [3,8], ticks: 8, phase: 3 } }
+      ]},
+      { label: "Mêmes parts", steps: [
+        { say: "Il doit courir 5/6 du tour.", s: { mode: "sub", W: [5,6], M: [2,6], ticks: 6, phase: 1 } },
+        { say: "Il en a fait 2/6.", s: { mode: "sub", W: [5,6], M: [2,6], ticks: 6, phase: 2 } },
+        { say: "Il reste 5/6 − 2/6 = 3/6, c'est-à-dire 1/2 tour.", s: { mode: "sub", W: [5,6], M: [2,6], ticks: 6, phase: 3 } }
+      ]},
+      { label: "Parts différentes", steps: [
+        { say: "Il doit courir 3/4 du tour. Il en a fait 1/3. Quarts et tiers : il faut recouper.", s: { mode: "sub", W: [3,4], M: [1,3], ticks: 0, phase: 2 } },
+        { say: "On recoupe en douzièmes : 3/4 = 9/12 et 1/3 = 4/12.", s: { mode: "sub", W: [3,4], M: [1,3], ticks: 12, phase: 2 } },
+        { say: "9/12 − 4/12 = 5/12. Il lui reste 5/12 du tour.", s: { mode: "sub", W: [3,4], M: [1,3], ticks: 12, phase: 3 } }
+      ]}
+    ],
+    why: [
+      "Soustraire, c'est enlever des parts. Comme pour additionner, les parts doivent avoir la même taille.",
+      "Mêmes dénominateurs : on soustrait les numérateurs et on garde le dénominateur. 5/6 − 2/6 = 3/6.",
+      "Le tout, c'est 1, et 1 s'écrit avec n'importe quel dénominateur : 1 = 2/2 = 4/4 = 8/8. Donc 1 − 3/8 = 8/8 − 3/8 = 5/8.",
+      "Dénominateurs différents : on recoupe d'abord. 3/4 − 1/3 = 9/12 − 4/12 = 5/12.",
+      "Pour vérifier, on additionne : ce qu'on a fait + ce qui reste = le total."
+    ],
+    questions: [
+      { t: "frac", q: "Calcule : 7/9 − 4/9", a: [3,9], scene: { mode: "sub", W: [7,9], M: [4,9], ticks: 9, phase: 2 },
+        hint: "Mêmes parts : soustrais les numérateurs.",
+        why: "7 neuvièmes − 4 neuvièmes = 3 neuvièmes : 3/9, qui vaut aussi 1/3.",
+        traps: [ { a: [3,0], note: "a soustrait aussi les dénominateurs (9 − 9 = 0)." } ] },
+      { t: "frac", q: "Calcule : 1 − 2/5", a: [3,5], scene: { mode: "sub", W: [5,5], M: [2,5], ticks: 5, phase: 2 },
+        hint: "Écris 1 en cinquièmes : 1 = ?/5.",
+        why: "1 = 5/5, et 5/5 − 2/5 = 3/5." },
+      { t: "frac", q: "Calcule : 3/4 − 1/2", a: [1,4], scene: { mode: "sub", W: [3,4], M: [1,2], ticks: 4, phase: 2 },
+        hint: "1/2 = ?/4.",
+        why: "1/2 = 2/4, et 3/4 − 2/4 = 1/4.",
+        traps: [ { a: [2,2], note: "a soustrait les numérateurs et les dénominateurs (3 − 1 et 4 − 2)." } ] },
+      { t: "frac", q: "Un match dure 90 minutes. Les 2/3 du match sont joués. Quelle fraction du match reste-t-il ?", a: [1,3], scene: { mode: "sub", W: [3,3], M: [2,3], ticks: 3, phase: 2 },
+        hint: "Le match entier, c'est 1 = 3/3.",
+        why: "3/3 − 2/3 = 1/3. (Et 1/3 de 90 minutes, c'est 30 minutes.)" },
+      { t: "frac", q: "Calcule : 5/6 − 1/4", a: [7,12], scene: { mode: "sub", W: [5,6], M: [1,4], ticks: 12, phase: 2 },
+        hint: "Recoupe en douzièmes : 5/6 = ?/12 et 1/4 = ?/12.",
+        why: "5/6 = 10/12 et 1/4 = 3/12. 10/12 − 3/12 = 7/12.",
+        traps: [ { a: [4,2], note: "a soustrait les numérateurs et les dénominateurs (5 − 1 et 6 − 4)." } ] }
+    ],
+    guide: {
+      goal: "Soustraire des fractions et savoir écrire 1 comme une fraction (4/4, 8/8…).",
+      say: [
+        "« Il doit courir combien ? Il a déjà fait combien ? Alors, il reste… »",
+        "« Peux-tu vérifier ta réponse en additionnant ? »"
+      ],
+      ask: [
+        "Pourquoi peut-on écrire 1 = 8/8 ?",
+        "Si on soustrait aussi les dénominateurs, est-ce que la réponse a du sens ?"
+      ],
+      watch: [
+        "S'il soustrait les dénominateurs (3/4 − 1/2 = 2/2), faites-lui remarquer que 2/2 = 1 tour entier : peut-il rester plus que ce qu'il devait courir ?",
+        "Pour « 1 − 2/5 », il peut bloquer sur le 1. Montrez le tour entier coupé en 5."
+      ],
+      offscreen: "Sans écran : dans la cour ou la rue, marquez un parcours avec des cailloux tous les 10 pas. Il court une partie, puis dit quelle fraction il lui reste.",
+      time: "20 minutes"
+    }
+  },
+  /* ───────────────────────── 4 ───────────────────────── */
+  {
+    id: 4, short: "Fraction d'un nombre", title: "Les 3/4 de 20", scene: "balls",
+    intro: "L'équipe a un sac de ballons. Combien de ballons font les 3/4 du sac ? On va le voir avec des groupes.",
+    presets: [
+      { label: "3/4 de 20 ballons", steps: [
+        { say: "Voici 20 ballons.", s: { mode: "of", N: 20, d: 4, n: 3, phase: 0 } },
+        { say: "Le dénominateur est 4 : on fait 4 groupes égaux. 20 ÷ 4 = 5 ballons par groupe.", s: { mode: "of", N: 20, d: 4, n: 3, phase: 1 } },
+        { say: "Le numérateur est 3 : on prend 3 groupes. 3 × 5 = 15 ballons. Les 3/4 de 20, c'est 15.", s: { mode: "of", N: 20, d: 4, n: 3, phase: 2 } }
+      ]},
+      { label: "2/5 de 30 ballons", steps: [
+        { say: "30 ballons.", s: { mode: "of", N: 30, d: 5, n: 2, phase: 0 } },
+        { say: "5 groupes égaux : 30 ÷ 5 = 6 ballons par groupe.", s: { mode: "of", N: 30, d: 5, n: 2, phase: 1 } },
+        { say: "On prend 2 groupes : 2 × 6 = 12 ballons.", s: { mode: "of", N: 30, d: 5, n: 2, phase: 2 } }
+      ]},
+      { label: "3/4 d'un tour de 400 m", steps: [
+        { say: "Un tour de piste fait 400 m.", s: { mode: "units", total: 400, unit: "m", d: 4, n: 3, phase: 0 } },
+        { say: "On le coupe en 4 parts égales : 400 ÷ 4 = 100 m par part.", s: { mode: "units", total: 400, unit: "m", d: 4, n: 3, phase: 1 } },
+        { say: "3 parts : 3 × 100 = 300 m. Les 3/4 du tour, c'est 300 m.", s: { mode: "units", total: 400, unit: "m", d: 4, n: 3, phase: 2 } }
+      ]},
+      { label: "2/3 d'un match de 90 minutes", steps: [
+        { say: "Imagine que le tour de piste représente le match entier : 90 minutes.", s: { mode: "units", total: 90, unit: "min", d: 3, n: 2, phase: 0 } },
+        { say: "3 parts égales : 90 ÷ 3 = 30 minutes par part.", s: { mode: "units", total: 90, unit: "min", d: 3, n: 2, phase: 1 } },
+        { say: "2 parts : 2 × 30 = 60 minutes.", s: { mode: "units", total: 90, unit: "min", d: 3, n: 2, phase: 2 } }
+      ]}
+    ],
+    why: [
+      "Le dénominateur dit en combien de groupes égaux on partage le nombre. Pour 3/4 de 20 : 4 groupes, 20 ÷ 4 = 5.",
+      "Le numérateur dit combien de groupes on prend : 3 groupes de 5, c'est 15.",
+      "Donc : on divise par le nombre du bas, puis on multiplie par le nombre du haut.",
+      "Pourquoi ça marche ? 1/4 de 20, c'est UN des 4 groupes égaux. 3/4, c'est TROIS de ces groupes.",
+      "Ça marche pour tout : des ballons, des mètres, des minutes."
+    ],
+    questions: [
+      { t: "num", q: "Combien font 1/4 de 20 ballons ?", a: 5, unit: "ballons", scene: { mode: "of", N: 20, d: 4, n: 1, phase: 1 },
+        hint: "Partage 20 en 4 groupes égaux.",
+        why: "20 ÷ 4 = 5 : un groupe sur 4, c'est 5 ballons." },
+      { t: "num", q: "Combien font 3/4 de 20 ballons ?", a: 15, unit: "ballons", scene: { mode: "of", N: 20, d: 4, n: 3, phase: 1 },
+        hint: "Un groupe vaut 5. Combien de groupes prends-tu ?",
+        why: "20 ÷ 4 = 5, puis 3 × 5 = 15.",
+        traps: [ { a: 60, note: "a multiplié 20 par 3 sans diviser par 4." }, { a: 5, note: "a trouvé 1/4 de 20 sans prendre les 3 groupes." } ] },
+      { t: "num", q: "Combien font 2/5 de 30 joueurs ?", a: 12, unit: "joueurs", scene: { mode: "of", N: 30, d: 5, n: 2, phase: 1 },
+        hint: "30 ÷ 5 = ? Puis prends 2 groupes.",
+        why: "30 ÷ 5 = 6, puis 2 × 6 = 12.",
+        traps: [ { a: 15, note: "a divisé par le numérateur (30 ÷ 2) au lieu du dénominateur." } ] },
+      { t: "num", q: "Un tour de piste fait 400 m. Combien de mètres font 3/4 du tour ?", a: 300, unit: "m", scene: { mode: "units", total: 400, unit: "m", d: 4, n: 3, phase: 1 },
+        hint: "400 ÷ 4 = ?",
+        why: "400 ÷ 4 = 100 m, puis 3 × 100 = 300 m." },
+      { t: "num", q: "Un match dure 90 minutes. Combien de minutes font les 2/3 du match ?", a: 60, unit: "min", scene: { mode: "units", total: 90, unit: "min", d: 3, n: 2, phase: 1 },
+        hint: "90 ÷ 3 = ?",
+        why: "90 ÷ 3 = 30 minutes, puis 2 × 30 = 60 minutes.",
+        traps: [ { a: 45, note: "a divisé par le numérateur (90 ÷ 2) au lieu du dénominateur." } ] }
+    ],
+    guide: {
+      goal: "Calculer une fraction d'un nombre (3/4 de 20) en comprenant les groupes égaux.",
+      say: [
+        "« En combien de groupes égaux faut-il partager ? Quel nombre te le dit ? »",
+        "« Combien y a-t-il dans un groupe ? Combien de groupes prends-tu ? »"
+      ],
+      ask: [
+        "Pourquoi divise-t-on par le nombre du bas ?",
+        "Est-ce que 3/4 de 20 peut être plus grand que 20 ? Pourquoi ?"
+      ],
+      watch: [
+        "S'il fait 20 × 3 = 60, demandez : « Les 3/4 du sac, c'est plus ou moins que le sac entier ? »",
+        "S'il divise par le numérateur (20 ÷ 3), revenez aux groupes : le nombre du bas dit combien de groupes."
+      ],
+      offscreen: "Sans écran : prenez 20 bouchons, cailloux ou haricots. Faites 4 tas égaux, puis prenez 3 tas et comptez. Recommencez avec 12 (1/3, 2/3) et 30 (2/5).",
+      time: "20 minutes"
+    }
+  },
+  /* ───────────────────────── 5 ───────────────────────── */
+  {
+    id: 5, short: "Retrouver le tout", title: "15 ballons, c'est les 3/4 du sac", scene: "balls",
+    intro: "Cette fois on connaît une PARTIE et sa fraction. Combien y a-t-il dans le tout ? C'est le chemin inverse.",
+    presets: [
+      { label: "15 = 3/4 du sac", steps: [
+        { say: "On voit 15 ballons. On sait que c'est les 3/4 du sac. Combien de ballons dans le sac entier ?", s: { mode: "whole", k: 5, d: 4, n: 3, phase: 0 } },
+        { say: "Le numérateur est 3 : ces 15 ballons font 3 groupes égaux. 15 ÷ 3 = 5 ballons par groupe.", s: { mode: "whole", k: 5, d: 4, n: 3, phase: 1 } },
+        { say: "Le dénominateur est 4 : le sac entier, c'est 4 groupes. 4 × 5 = 20 ballons.", s: { mode: "whole", k: 5, d: 4, n: 3, phase: 2 } },
+        { say: "On vérifie : 3/4 de 20 = 15. Bravo !", s: { mode: "whole", k: 5, d: 4, n: 3, phase: 3 } }
+      ]},
+      { label: "12 = 2/3 de l'équipe", steps: [
+        { say: "12 joueurs, c'est 2/3 de l'équipe.", s: { mode: "whole", k: 6, d: 3, n: 2, phase: 0 } },
+        { say: "2 groupes égaux : 12 ÷ 2 = 6 par groupe.", s: { mode: "whole", k: 6, d: 3, n: 2, phase: 1 } },
+        { say: "L'équipe entière : 3 groupes, 3 × 6 = 18 joueurs.", s: { mode: "whole", k: 6, d: 3, n: 2, phase: 2 } }
+      ]},
+      { label: "600 m = 3/4 de la course", steps: [
+        { say: "Il a couru 600 m. C'est 3/4 de sa course. Quelle est la longueur de la course ?", s: { mode: "units-whole", part: 600, unit: "m", d: 4, n: 3, phase: 0 } },
+        { say: "600 m, ce sont 3 parts : 600 ÷ 3 = 200 m par part.", s: { mode: "units-whole", part: 600, unit: "m", d: 4, n: 3, phase: 1 } },
+        { say: "La course entière : 4 parts, 4 × 200 = 800 m.", s: { mode: "units-whole", part: 600, unit: "m", d: 4, n: 3, phase: 2 } }
+      ]}
+    ],
+    why: [
+      "On connaît une partie et sa fraction. Le numérateur dit combien de groupes on voit : 15 ballons = 3 groupes, donc un groupe = 15 ÷ 3 = 5.",
+      "Le dénominateur dit combien de groupes il y a dans le tout : 4 groupes de 5 = 20.",
+      "C'est le chemin inverse : on divise par le nombre du haut, puis on multiplie par le nombre du bas.",
+      "Le tout est toujours plus grand que la partie (quand la fraction est plus petite que 1). Si on trouve un nombre plus petit, il y a une erreur.",
+      "On vérifie toujours : 3/4 de 20 = 15. ✓"
+    ],
+    questions: [
+      { t: "num", q: "6 ballons, c'est 1/4 du sac. Combien de ballons y a-t-il dans le sac ?", a: 24, unit: "ballons", scene: { mode: "whole", k: 6, d: 4, n: 1, phase: 0 },
+        hint: "6 ballons, c'est UN groupe. Le sac a combien de groupes ?",
+        why: "Un groupe = 6. Le sac = 4 groupes : 4 × 6 = 24." },
+      { t: "num", q: "15 ballons, c'est 3/4 du sac. Combien de ballons y a-t-il dans le sac ?", a: 20, unit: "ballons", scene: { mode: "whole", k: 5, d: 4, n: 3, phase: 0 },
+        hint: "15 ballons, ce sont 3 groupes. Un groupe = ?",
+        why: "15 ÷ 3 = 5, puis 4 × 5 = 20.",
+        traps: [ { a: 11.25, note: "a calculé 3/4 de 15 au lieu de retrouver le tout." }, { a: 60, note: "a multiplié 15 par 4 sans diviser par 3." } ] },
+      { t: "num", q: "12 joueurs, c'est 2/3 de l'équipe. Combien de joueurs dans l'équipe ?", a: 18, unit: "joueurs", scene: { mode: "whole", k: 6, d: 3, n: 2, phase: 0 },
+        hint: "12 ÷ 2 = ? Puis multiplie par 3.",
+        why: "12 ÷ 2 = 6, puis 3 × 6 = 18.",
+        traps: [ { a: 8, note: "a calculé 2/3 de 12 au lieu de retrouver le tout." } ] },
+      { t: "num", q: "Koffi a couru 600 m. C'est 3/4 de sa course. Combien de mètres fait la course entière ?", a: 800, unit: "m", scene: { mode: "units-whole", part: 600, unit: "m", d: 4, n: 3, phase: 0 },
+        hint: "600 m, ce sont 3 parts. Une part = ?",
+        why: "600 ÷ 3 = 200 m, puis 4 × 200 = 800 m.",
+        traps: [ { a: 450, note: "a calculé 3/4 de 600 au lieu de retrouver le tout." } ] },
+      { t: "num", q: "30 minutes, c'est 1/3 du match. Combien de minutes dure le match ?", a: 90, unit: "min", scene: { mode: "units-whole", part: 30, unit: "min", d: 3, n: 1, phase: 0 },
+        hint: "30 minutes, c'est UNE part. Le match a combien de parts ?",
+        why: "Une part = 30 minutes. Le match = 3 parts : 3 × 30 = 90 minutes.",
+        traps: [ { a: 10, note: "a calculé 1/3 de 30 au lieu de retrouver le tout." } ] }
+    ],
+    guide: {
+      goal: "Retrouver le tout quand on connaît une partie et sa fraction (le chemin inverse).",
+      say: [
+        "« Ce que tu vois, c'est une partie ou le tout ? »",
+        "« Le tout sera-t-il plus grand ou plus petit que ce que tu vois ? »"
+      ],
+      ask: [
+        "Pourquoi divise-t-on par le nombre du haut cette fois ?",
+        "Comment peux-tu vérifier ta réponse ?"
+      ],
+      watch: [
+        "La confusion la plus fréquente : il calcule 3/4 de 15 (l'étape d'avant) au lieu de retrouver le tout. Demandez : « Le sac entier peut-il contenir moins de ballons que ce que tu vois ? »",
+        "Encouragez la vérification : 3/4 de sa réponse doit redonner 15."
+      ],
+      offscreen: "Sans écran : cachez une partie des cailloux sous un tissu. Montrez 3 tas égaux et dites « c'est les 3/4 ». Il doit deviner combien il y a en tout, puis soulever le tissu.",
+      time: "20 minutes"
+    }
+  },
+  /* ───────────────────────── 6 ───────────────────────── */
+  {
+    id: 6, short: "Grand match", title: "Le Grand Match", scene: "goal",
+    intro: "Dix penaltys. Chaque bonne réponse est un but. Montre tout ce que tu as appris !",
+    why: [
+      "Une fraction : des parts égales d'un tout. En bas, combien de parts ; en haut, combien on en prend.",
+      "Comparer : mêmes parts → on compare le haut ; sinon on recoupe.",
+      "Additionner et soustraire : seulement des parts de même taille. On ne touche jamais au dénominateur une fois les parts pareilles.",
+      "Fraction d'un nombre : diviser par le bas, multiplier par le haut.",
+      "Retrouver le tout : diviser par le haut, multiplier par le bas. Et toujours vérifier."
+    ],
+    questions: [
+      { t: "frac", q: "Le terrain est coupé en 8 parts égales. On en colorie 3. Quelle fraction ?", a: [3,8],
+        hint: "Toutes les parts en bas, les parts prises en haut.", why: "8 parts égales, 3 prises : 3/8.",
+        traps: [ { a: [3,5], note: "a comparé les parts coloriées aux parts restantes." } ] },
+      { t: "cmp", q: "Compare.", l: [3,5], r: [3,8], a: ">",
+        hint: "Même nombre de parts : lesquelles sont les plus grosses ?", why: "Les cinquièmes sont plus grands que les huitièmes. 3/5 > 3/8.",
+        traps: [ { a: "<", note: "a pensé que le plus grand dénominateur donne la plus grande fraction." } ] },
+      { t: "frac", q: "Calcule : 1/4 + 1/2", a: [3,4],
+        hint: "1/2 = ?/4", why: "1/4 + 2/4 = 3/4.",
+        traps: [ { a: [2,6], note: "a additionné les numérateurs et les dénominateurs." } ] },
+      { t: "frac", q: "Calcule : 1 − 5/8", a: [3,8],
+        hint: "1 = 8/8", why: "8/8 − 5/8 = 3/8." },
+      { t: "num", q: "Combien font 2/3 de 18 ballons ?", a: 12, unit: "ballons",
+        hint: "18 ÷ 3 = ?", why: "18 ÷ 3 = 6, puis 2 × 6 = 12.",
+        traps: [ { a: 9, note: "a divisé par le numérateur au lieu du dénominateur." } ] },
+      { t: "num", q: "20 joueurs, c'est 4/5 du groupe. Combien de joueurs dans le groupe ?", a: 25, unit: "joueurs",
+        hint: "20 ÷ 4 = ? Puis multiplie par 5.", why: "20 ÷ 4 = 5, puis 5 × 5 = 25.",
+        traps: [ { a: 16, note: "a calculé 4/5 de 20 au lieu de retrouver le tout." } ] },
+      { t: "cmp", q: "Compare.", l: [5,6], r: [2,3], a: ">",
+        hint: "2/3 = ?/6", why: "2/3 = 4/6, et 5/6 > 4/6." },
+      { t: "frac", q: "Calcule : 3/10 + 2/5", a: [7,10],
+        hint: "2/5 = ?/10", why: "2/5 = 4/10, et 3/10 + 4/10 = 7/10.",
+        traps: [ { a: [5,15], note: "a additionné les numérateurs et les dénominateurs." } ] },
+      { t: "num", q: "Un tour fait 400 m. Combien de mètres font 5/8 du tour ?", a: 250, unit: "m",
+        hint: "400 ÷ 8 = ?", why: "400 ÷ 8 = 50 m, puis 5 × 50 = 250 m." },
+      { t: "num", q: "45 minutes, c'est 1/2 du match. Combien de minutes dure le match ?", a: 90, unit: "min",
+        hint: "45 minutes, c'est une des 2 parts.", why: "2 × 45 = 90 minutes.",
+        traps: [ { a: 22.5, note: "a calculé 1/2 de 45 au lieu de retrouver le tout." } ] }
+    ],
+    guide: {
+      goal: "Mélanger les cinq savoir-faire. C'est un bilan, pas un examen : on peut s'arrêter, revenir à une étape, puis reprendre.",
+      say: [
+        "« Lis la question à voix haute. C'est quelle étape ? »",
+        "« Explique-moi comment tu as trouvé, même si c'est juste. »"
+      ],
+      ask: [
+        "Quelle question était la plus facile ? La plus difficile ? Pourquoi ?",
+        "Peux-tu inventer une question de foot ou de course avec une fraction pour moi ?"
+      ],
+      watch: [
+        "Notez les questions manquées : la page « Bilan » les reprend pour la prochaine séance.",
+        "S'il rate un tir, laissez-le d'abord expliquer son raisonnement avant de montrer l'indice."
+      ],
+      offscreen: "Sans écran : inversez les rôles. Il invente 3 questions de fractions (un match, une course, des ballons) et c'est vous qui répondez. Il corrige en expliquant pourquoi.",
+      time: "20 à 30 minutes"
+    }
+  }
+  ],
+  guideIntro: [
+    "Ce parcours apprend les fractions en partant de zéro, avec le football et la course. Il est fait pour être suivi à deux : l'apprenant manipule, vous l'accompagnez.",
+    "Vous n'avez pas besoin d'être fort en mathématiques. Les réponses et leurs explications sont dans chaque étape (onglet « Guide ») et dans le corrigé plus bas. Votre rôle est de poser des questions et de lui demander « pourquoi ? ».",
+    "Comptez une étape par séance de 20 minutes environ, dans l'ordre : Échauffement, Comparer, Additionner, Soustraire, Fraction d'un nombre, Retrouver le tout, puis le Grand Match. On peut refaire une étape autant de fois qu'on veut.",
+    "Dans chaque étape : « Regarde » montre l'idée pas à pas, « Pourquoi ? » l'explique, « À toi ! » propose 5 questions. Après deux essais, la réponse et son explication s'affichent.",
+    "Une erreur est une information, pas un échec. Quand il se trompe, demandez-lui d'expliquer comment il a fait : l'erreur montre presque toujours une idée à corriger. La page « Bilan » note ce qui a été fait et ce qui a posé problème, pour la prochaine séance.",
+    "Il est curieux et veut comprendre : laissez-le prendre son temps sur « Pourquoi ? ». Chaque étape propose aussi une activité sans écran, avec des bouchons, des cailloux, une ficelle ou du papier.",
+    "C'est une façon de faire, pas LA façon. Vous connaissez votre enfant : gardez ce qui l'aide, laissez le reste."
+  ]
+};
+
+/* Le Stade des Fractions — moteur 3D (three.js r128).
+   Un seul stade : terrain 105 × 68 m, piste de 400 m (6 couloirs), tribunes, public.
+   Chaque station ajoute une couche (overlay) : bandes du terrain, coureurs, ballons, penalty. */
+const Stage = (() => {
+  "use strict";
+  const T = window.THREE;
+  const PL = 105, PW = 68;                          // terrain
+  const STR = 84.39, R0 = 36.5, LW = 1.22, NL = 6;   // piste
+  const ROUT = R0 + LW * NL;                         // bord extérieur de la piste
+  const RIB_W = 3.0;
+  const LANE = { a: R0 + 1.6, mid: R0 + 3.66, b: R0 + 5.7 };
+  const COL = {
+    gold: 0xf2b705, red: 0xd2372c, blue: 0x2f6fd8, green: 0x23a55a, violet: 0x8b5cf6,
+    chalk: 0xf6f8f2, pale: 0xe9efe6, dim: 0x7b8a80
+  };
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let renderer = null, scene, camera, host, ok = false, dark = false;
+  let overlay, ctrl = null, clickables = [], onPick = null;
+  const tweens = [];
+  const W = {};                                     // objets permanents
+  const orbit = { target: new T.Vector3(0, 0, 0), r: 175, theta: 0.9, phi: 0.95, auto: true, user: false };
+  let last = performance.now(), visible = true;
+  const perf = { acc: 0, n: 0, max: Math.min(window.devicePixelRatio || 1, 2) };
+
+  /* ───────── utilitaires ───────── */
+  const ease = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+  const easeOut = (k) => 1 - Math.pow(1 - k, 3);
+  function tween(dur, fn, done, delay) {
+    const tw = { t: -(delay || 0), dur: reduce ? 0.001 : dur, fn, done, dead: false };
+    tweens.push(tw);
+    return tw;
+  }
+  function killTweens() { tweens.forEach((t) => (t.dead = true)); tweens.length = 0; }
+  function mat(c, o) { return new T.MeshLambertMaterial(Object.assign({ color: c }, o || {})); }
+  function basic(c, o) { return new T.MeshBasicMaterial(Object.assign({ color: c }, o || {})); }
+  function disposeTree(o) {
+    o.traverse((n) => {
+      if (n.geometry && !(n.geometry.userData && n.geometry.userData.shared)) n.geometry.dispose();
+      if (n.material) {
+        (Array.isArray(n.material) ? n.material : [n.material]).forEach((m) => {
+          if (m.userData && m.userData.shared) return;
+          if (m.map && !m.map.__shared) m.map.dispose();
+          m.dispose();
+        });
+      }
+    });
+  }
+
+  /* Position sur un couloir. t ∈ [0,1) = fraction du tour depuis la ligne de départ. */
+  function lanePos(t, r) {
+    const h = STR / 2, Lc = Math.PI * r, L = 2 * STR + 2 * Lc;
+    let s = (((t % 1) + 1) % 1) * L;
+    if (t >= 1 && s < 1e-9) s = L;            // t = 1 exactement : fin du tour
+    if (s <= STR) return new T.Vector3(-h + s, 0, r);
+    s -= STR;
+    if (s <= Lc) { const a = s / r; return new T.Vector3(h + r * Math.sin(a), 0, r * Math.cos(a)); }
+    s -= Lc;
+    if (s <= STR) return new T.Vector3(h - s, 0, -r);
+    s -= STR;
+    const a = s / r; return new T.Vector3(-h - r * Math.sin(a), 0, -r * Math.cos(a));
+  }
+  function laneTan(t, r) {
+    const a = lanePos(t, r), b = lanePos(t + 0.0007, r);
+    return b.sub(a).normalize();
+  }
+  function stadiumShape(r) {
+    const h = STR / 2, s = new T.Shape();
+    s.moveTo(-h, -r); s.lineTo(h, -r);
+    s.absarc(h, 0, r, -Math.PI / 2, Math.PI / 2, false);
+    s.lineTo(-h, r);
+    s.absarc(-h, 0, r, Math.PI / 2, Math.PI * 1.5, false);
+    return s;
+  }
+  function stadiumPath(r) {
+    const h = STR / 2, p = new T.Path();
+    p.moveTo(-h, -r); p.lineTo(h, -r);
+    p.absarc(h, 0, r, -Math.PI / 2, Math.PI / 2, false);
+    p.lineTo(-h, r);
+    p.absarc(-h, 0, r, Math.PI / 2, Math.PI * 1.5, false);
+    return p;
+  }
+
+  /* Ruban le long d'un couloir, de t0 à t1 (t1 peut dépasser 1 : plus d'un tour). */
+  function ribbon(t0, t1, r, color, opts) {
+    opts = opts || {};
+    const w = opts.w || RIB_W, y = opts.y || 0.05;
+    const n = Math.max(2, Math.ceil(Math.abs(t1 - t0) * 360));
+    const pos = [], idx = [];
+    for (let i = 0; i <= n; i++) {
+      const t = t0 + (t1 - t0) * (i / n);
+      const p = lanePos(t, r), tg = laneTan(t, r);
+      const nx = -tg.z, nz = tg.x;
+      pos.push(p.x + nx * w / 2, y, p.z + nz * w / 2, p.x - nx * w / 2, y, p.z - nz * w / 2);
+      if (i < n) { const k = i * 2; idx.push(k, k + 1, k + 2, k + 1, k + 3, k + 2); }
+    }
+    const g = new T.BufferGeometry();
+    g.setAttribute("position", new T.Float32BufferAttribute(pos, 3));
+    g.setIndex(idx);
+    const m = basic(color, { transparent: true, opacity: opts.opacity == null ? 0.92 : opts.opacity, side: T.DoubleSide, depthWrite: false });
+    const mesh = new T.Mesh(g, m);
+    mesh.renderOrder = opts.order || 2;
+    mesh.userData.total = idx.length;
+    if (opts.grow) mesh.geometry.setDrawRange(0, 0);
+    return mesh;
+  }
+  function growRibbon(mesh, dur, delay, done) {
+    const total = mesh.userData.total;
+    mesh.geometry.setDrawRange(0, 0);
+    return tween(dur, (k) => mesh.geometry.setDrawRange(0, Math.floor((total / 6) * k) * 6), () => { mesh.geometry.setDrawRange(0, total); done && done(); }, delay);
+  }
+
+  /* Étiquettes (sprites) : texte simple ou fraction empilée. */
+  function label(text, o) {
+    o = o || {};
+    const cv = document.createElement("canvas"), dpr = 2;
+    const ctx = cv.getContext("2d");
+    const big = o.size || 64;
+    const frac = /^(\d+)\/(\d+)$/.exec(text);
+    const font = `700 ${big}px "Big Shoulders Display", "Arial Narrow", Arial, sans-serif`;
+    ctx.font = font;
+    let w, h;
+    if (frac) { w = Math.max(ctx.measureText(frac[1]).width, ctx.measureText(frac[2]).width) + big * 0.9; h = big * 2.5; }
+    else { w = ctx.measureText(text).width + big * 0.9; h = big * 1.45; }
+    cv.width = Math.ceil(w * dpr); cv.height = Math.ceil(h * dpr);
+    ctx.scale(dpr, dpr);
+    const bg = o.bg || "rgba(12,24,18,0.86)", fg = o.fg || "#ffffff";
+    const rad = Math.min(18, h / 3);
+    ctx.fillStyle = bg;
+    ctx.beginPath();
+    ctx.moveTo(rad, 0); ctx.lineTo(w - rad, 0); ctx.quadraticCurveTo(w, 0, w, rad);
+    ctx.lineTo(w, h - rad); ctx.quadraticCurveTo(w, h, w - rad, h); ctx.lineTo(rad, h);
+    ctx.quadraticCurveTo(0, h, 0, h - rad); ctx.lineTo(0, rad); ctx.quadraticCurveTo(0, 0, rad, 0);
+    ctx.fill();
+    if (o.ring) { ctx.strokeStyle = o.ring; ctx.lineWidth = 5; ctx.stroke(); }
+    ctx.fillStyle = fg; ctx.font = font; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    if (frac) {
+      ctx.fillText(frac[1], w / 2, h * 0.27);
+      ctx.fillRect(w * 0.22, h / 2 - big * 0.05, w * 0.56, big * 0.1);
+      ctx.fillText(frac[2], w / 2, h * 0.75);
+    } else ctx.fillText(text, w / 2, h / 2 + big * 0.04);
+    const tex = new T.CanvasTexture(cv);
+    tex.encoding = T.sRGBEncoding;
+    tex.anisotropy = 4;
+    const sm = new T.SpriteMaterial({ map: tex, depthTest: false, transparent: true });
+    const sp = new T.Sprite(sm);
+    const scale = o.scale || 6;
+    sp.scale.set(scale * (w / h), scale, 1);
+    sp.renderOrder = 10;
+    return sp;
+  }
+  const hex = (c) => "#" + c.toString(16).padStart(6, "0");
+
+  /* ───────── textures ───────── */
+  function pitchTexture() {
+    const s = 20, cv = document.createElement("canvas");
+    cv.width = PL * s; cv.height = PW * s;
+    const c = cv.getContext("2d");
+    const bands = 14;
+    for (let i = 0; i < bands; i++) {
+      c.fillStyle = i % 2 ? "#2b7f41" : "#318d49";
+      c.fillRect((i * cv.width) / bands, 0, cv.width / bands + 1, cv.height);
+    }
+    c.strokeStyle = "#f4f7f1"; c.lineWidth = 0.14 * s * 1.6;
+    const m = (x) => x * s, X = (x) => m(x + PL / 2), Y = (y) => m(y + PW / 2);
+    c.strokeRect(m(0.2), m(0.2), cv.width - m(0.4), cv.height - m(0.4));
+    c.beginPath(); c.moveTo(X(0), Y(-PW / 2)); c.lineTo(X(0), Y(PW / 2)); c.stroke();
+    c.beginPath(); c.arc(X(0), Y(0), m(9.15), 0, Math.PI * 2); c.stroke();
+    c.fillStyle = "#f4f7f1";
+    [[0, 0], [-PL / 2 + 11, 0], [PL / 2 - 11, 0]].forEach(([x, y]) => { c.beginPath(); c.arc(X(x), Y(y), m(0.25), 0, Math.PI * 2); c.fill(); });
+    [-1, 1].forEach((sd) => {
+      const gx = sd * PL / 2;
+      c.strokeRect(Math.min(X(gx), X(gx - sd * 16.5)), Y(-20.16), m(16.5), m(40.32));
+      c.strokeRect(Math.min(X(gx), X(gx - sd * 5.5)), Y(-9.16), m(5.5), m(18.32));
+      c.beginPath();
+      const a0 = sd > 0 ? Math.PI - 0.93 : -0.93, a1 = sd > 0 ? Math.PI + 0.93 : 0.93;
+      c.arc(X(gx - sd * 11), Y(0), m(9.15), a0, a1); c.stroke();
+    });
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([a, b]) => { c.beginPath(); c.arc(X(a * PL / 2), Y(b * PW / 2), m(1), 0, Math.PI * 2); c.stroke(); });
+    const t = new T.CanvasTexture(cv);
+    t.encoding = T.sRGBEncoding;
+    t.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    return t;
+  }
+  function ballTexture() {
+    const cv = document.createElement("canvas"); cv.width = 512; cv.height = 256;
+    const c = cv.getContext("2d");
+    c.fillStyle = "#f8f8f4"; c.fillRect(0, 0, 512, 256);
+    c.fillStyle = "#161616";
+    const spots = [[64, 128], [192, 128], [320, 128], [448, 128], [0, 40], [128, 40], [256, 40], [384, 40], [512, 40], [0, 216], [128, 216], [256, 216], [384, 216], [512, 216]];
+    spots.forEach(([x, y]) => {
+      c.beginPath();
+      for (let i = 0; i < 5; i++) {
+        const a = -Math.PI / 2 + (i * 2 * Math.PI) / 5;
+        const rx = y === 128 ? 30 : 44, ry = 26;
+        c.lineTo(x + rx * Math.cos(a), y + ry * Math.sin(a));
+      }
+      c.closePath(); c.fill();
+    });
+    const t = new T.CanvasTexture(cv); t.encoding = T.sRGBEncoding;
+    t.__shared = true;
+    return t;
+  }
+
+  /* ───────── figures ───────── */
+  function makeRunner(color, num) {
+    const g = new T.Group();
+    const skin = mat(0x6b4226), jersey = mat(color), shorts = mat(0x1d2430), shoe = mat(0xf2f2f2);
+    const torso = new T.Mesh(new T.CylinderGeometry(0.26, 0.22, 0.62, 10), jersey); torso.position.y = 1.18; g.add(torso);
+    const head = new T.Mesh(new T.SphereGeometry(0.16, 14, 10), skin); head.position.y = 1.66; g.add(head);
+    const hips = new T.Mesh(new T.CylinderGeometry(0.23, 0.23, 0.2, 10), shorts); hips.position.y = 0.84; g.add(hips);
+    const limb = (len, rad, m) => { const p = new T.Group(); const l = new T.Mesh(new T.CylinderGeometry(rad, rad * 0.85, len, 8), m); l.position.y = -len / 2; p.add(l); return p; };
+    const legL = limb(0.78, 0.085, skin), legR = limb(0.78, 0.085, skin);
+    legL.position.set(0.11, 0.8, 0); legR.position.set(-0.11, 0.8, 0);
+    [legL, legR].forEach((L) => { const s = new T.Mesh(new T.BoxGeometry(0.13, 0.08, 0.26), shoe); s.position.set(0, -0.8, 0.05); L.add(s); g.add(L); });
+    const armL = limb(0.56, 0.065, skin), armR = limb(0.56, 0.065, skin);
+    armL.position.set(0.31, 1.44, 0); armR.position.set(-0.31, 1.44, 0);
+    g.add(armL, armR);
+    if (num != null) {
+      const tag = label(String(num), { size: 48, bg: "rgba(0,0,0,0)", fg: "#ffffff", scale: 0.42 });
+      tag.position.set(0, 1.22, -0.27); tag.material.depthTest = true; g.add(tag);
+    }
+    g.userData = { legL, legR, armL, armR, phase: Math.random() * 6, running: false };
+    return g;
+  }
+  function animateRunner(rn, dt, speed) {
+    const u = rn.userData;
+    if (!u.running) { u.legL.rotation.x *= 0.85; u.legR.rotation.x *= 0.85; u.armL.rotation.x *= 0.85; u.armR.rotation.x *= 0.85; return; }
+    u.phase += dt * (speed || 9);
+    const s = Math.sin(u.phase);
+    u.legL.rotation.x = s * 0.9; u.legR.rotation.x = -s * 0.9;
+    u.armL.rotation.x = -s * 0.8; u.armR.rotation.x = s * 0.8;
+  }
+  function placeOnLane(obj, t, r, y) {
+    const p = lanePos(t, r), tg = laneTan(t, r);
+    obj.position.set(p.x, y || 0, p.z);
+    obj.rotation.y = Math.atan2(tg.x, tg.z);
+  }
+
+  /* ───────── le stade ───────── */
+  function buildStadium() {
+    const ground = new T.Mesh(new T.PlaneGeometry(1400, 1400), mat(0x5b6b54));
+    ground.rotation.x = -Math.PI / 2; ground.position.y = -0.06; scene.add(ground); W.ground = ground;
+
+    const apron = new T.Mesh(new T.ShapeGeometry(stadiumShape(ROUT + 3.2), 64), mat(0x8c9a86));
+    apron.rotation.x = -Math.PI / 2; apron.position.y = -0.03; scene.add(apron); W.apron = apron;
+
+    const tShape = stadiumShape(ROUT); tShape.holes.push(stadiumPath(R0));
+    const track = new T.Mesh(new T.ShapeGeometry(tShape, 96), mat(0xb9502b));
+    track.rotation.x = -Math.PI / 2; track.position.y = 0.0; scene.add(track); W.track = track;
+
+    const infield = new T.Mesh(new T.ShapeGeometry(stadiumShape(R0 - 0.05), 96), mat(0x2a7a3e));
+    infield.rotation.x = -Math.PI / 2; infield.position.y = 0.005; scene.add(infield);
+
+    const pitch = new T.Mesh(new T.PlaneGeometry(PL, PW), new T.MeshLambertMaterial({ map: pitchTexture() }));
+    pitch.rotation.x = -Math.PI / 2; pitch.position.y = 0.02; scene.add(pitch); W.pitch = pitch;
+
+    // lignes de couloir
+    const lineMat = new T.LineBasicMaterial({ color: 0xf3efe6, transparent: true, opacity: 0.85 });
+    for (let k = 0; k <= NL; k++) {
+      const r = R0 + k * LW, pts = [];
+      for (let i = 0; i <= 360; i++) { const p = lanePos(i / 360, r); pts.push(new T.Vector3(p.x, 0.025, p.z)); }
+      scene.add(new T.Line(new T.BufferGeometry().setFromPoints(pts), lineMat));
+    }
+    // ligne de départ / arrivée
+    const start = new T.Mesh(new T.BoxGeometry(0.5, 0.02, LW * NL), basic(0xffffff));
+    const sp = lanePos(0, R0 + (LW * NL) / 2); start.position.set(sp.x, 0.04, sp.z); scene.add(start);
+    const dep = label("DÉPART", { size: 44, scale: 3.4, bg: "rgba(255,255,255,0.92)", fg: "#13221a" });
+    dep.position.set(sp.x, 4.5, ROUT + 4); scene.add(dep); W.depart = dep;
+
+    // buts
+    W.goals = [];
+    [-1, 1].forEach((sd) => {
+      const g = new T.Group(), white = mat(0xffffff);
+      const post = new T.CylinderGeometry(0.06, 0.06, 2.44, 10);
+      [-3.66, 3.66].forEach((z) => { const p = new T.Mesh(post, white); p.position.set(0, 1.22, z); g.add(p); });
+      const bar = new T.Mesh(new T.CylinderGeometry(0.06, 0.06, 7.32, 10), white); bar.rotation.x = Math.PI / 2; bar.position.y = 2.44; g.add(bar);
+      const net = new T.Mesh(new T.BoxGeometry(2, 2.44, 7.32, 6, 6, 18), new T.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.35 }));
+      net.position.set(sd * 1.0, 1.22, 0); g.add(net);
+      g.position.set(sd * PL / 2, 0, 0);
+      g.userData.net = net;
+      scene.add(g); W.goals.push(g);
+    });
+
+    // tribunes (instances) et public
+    const rows = 14, box = new T.BoxGeometry(1, 1, 1);
+    const segs = [];
+    for (let k = 0; k < rows; k++) {
+      const R = ROUT + 5 + k * 1.55, y = 0.7 + k * 0.78;
+      const L = 2 * STR + 2 * Math.PI * R, n = Math.round(L / 6);
+      for (let i = 0; i < n; i++) {
+        const ta = i / n, tb = (i + 1) / n;
+        if ((ta > 0.235 && ta < 0.265) || (ta > 0.735 && ta < 0.765)) continue; // entrées
+        const a = lanePos(ta, R), b = lanePos(tb, R);
+        segs.push({ a, b, y, k });
+      }
+    }
+    const stands = new T.InstancedMesh(box, mat(0xffffff), segs.length);
+    const m4 = new T.Matrix4(), q = new T.Quaternion(), sc = new T.Vector3(), ps = new T.Vector3(), up = new T.Vector3(0, 1, 0);
+    const cA = new T.Color(0x9fb0bb), cB = new T.Color(0x7f919e), cC = new T.Color(0xd9b44a);
+    segs.forEach((s, i) => {
+      const len = s.a.distanceTo(s.b) + 0.15;
+      ps.set((s.a.x + s.b.x) / 2, s.y / 2, (s.a.z + s.b.z) / 2);
+      q.setFromAxisAngle(up, -Math.atan2(s.b.z - s.a.z, s.b.x - s.a.x));
+      sc.set(len, s.y, 1.6);
+      m4.compose(ps, q, sc); stands.setMatrixAt(i, m4);
+      stands.setColorAt(i, s.k === 6 ? cC : s.k % 2 ? cA : cB);
+    });
+    scene.add(stands); W.stands = stands;
+
+    const fans = [];
+    const palette = [0xd2372c, 0xf2b705, 0x23a55a, 0x2f6fd8, 0xffffff, 0xe86a1c, 0x111111, 0x8b5cf6, 0xf06292];
+    segs.forEach((s) => {
+      const per = 7;
+      for (let j = 0; j < per; j++) {
+        if (Math.random() < 0.28) continue;
+        const f = (j + 0.5) / per;
+        fans.push({ x: s.a.x + (s.b.x - s.a.x) * f, z: s.a.z + (s.b.z - s.a.z) * f, y: s.y + 0.45, c: palette[(Math.random() * palette.length) | 0], k: s.k });
+      }
+    });
+    const crowd = new T.InstancedMesh(new T.BoxGeometry(0.55, 0.9, 0.45), mat(0xffffff), fans.length);
+    fans.forEach((f, i) => {
+      ps.set(f.x, f.y, f.z); q.identity(); sc.set(1, 1, 1);
+      m4.compose(ps, q, sc); crowd.setMatrixAt(i, m4);
+      crowd.setColorAt(i, new T.Color(f.c));
+    });
+    scene.add(crowd); W.crowd = crowd; W.crowdBaseY = 0;
+
+    // projecteurs
+    W.lamps = [];
+    [[-1, -1], [-1, 1], [1, -1], [1, 1]].forEach(([a, b]) => {
+      const x = a * (STR / 2 + 62), z = b * 72;
+      const pole = new T.Mesh(new T.CylinderGeometry(0.7, 1.1, 46, 8), mat(0x6f7a80)); pole.position.set(x, 23, z); scene.add(pole);
+      const panel = new T.Mesh(new T.BoxGeometry(10, 6, 1), new T.MeshLambertMaterial({ color: 0xe9eef2, emissive: 0x000000 }));
+      panel.position.set(x, 47, z); panel.lookAt(0, 0, 0); scene.add(panel);
+      const glow = new T.Sprite(new T.SpriteMaterial({ map: glowTexture(), color: 0xfff6d8, transparent: true, depthWrite: false, blending: T.AdditiveBlending }));
+      glow.scale.set(20, 20, 1); glow.position.copy(panel.position); glow.visible = false; scene.add(glow);
+      W.lamps.push({ panel, glow });
+    });
+
+    // écran géant
+    W.board = makeBoard();
+    W.board.position.set(-(STR / 2 + ROUT + 30), 22, 0);
+    W.board.rotation.y = Math.PI / 2;
+    scene.add(W.board);
+
+    // étoiles (la nuit)
+    const sg = new T.BufferGeometry(), sp2 = [];
+    for (let i = 0; i < 700; i++) {
+      const a = Math.random() * Math.PI * 2, e = 0.15 + Math.random() * 1.2, R = 650;
+      sp2.push(R * Math.cos(e) * Math.cos(a), R * Math.sin(e), R * Math.cos(e) * Math.sin(a));
+    }
+    sg.setAttribute("position", new T.Float32BufferAttribute(sp2, 3));
+    W.stars = new T.Points(sg, new T.PointsMaterial({ color: 0xffffff, size: 1.6, sizeAttenuation: false, fog: false }));
+    scene.add(W.stars);
+
+    // coureur d'ambiance + ballon au centre
+    W.jogger = makeRunner(COL.gold, 10); W.jogger.scale.setScalar(2.6); W.jogger.userData.running = true; W.jogger.userData.t = 0.1;
+    scene.add(W.jogger);
+    W.centerBall = new T.Mesh(new T.SphereGeometry(0.9, 24, 16), new T.MeshLambertMaterial({ map: SHARED.ballTex }));
+    W.centerBall.position.set(0, 0.9, 0); scene.add(W.centerBall);
+  }
+  function glowTexture() {
+    if (SHARED.glow) return SHARED.glow;
+    const cv = document.createElement("canvas"); cv.width = cv.height = 128;
+    const c = cv.getContext("2d"), g = c.createRadialGradient(64, 64, 0, 64, 64, 64);
+    g.addColorStop(0, "rgba(255,255,255,1)"); g.addColorStop(0.25, "rgba(255,248,220,0.55)"); g.addColorStop(1, "rgba(255,240,200,0)");
+    c.fillStyle = g; c.fillRect(0, 0, 128, 128);
+    SHARED.glow = new T.CanvasTexture(cv); SHARED.glow.__shared = true;
+    return SHARED.glow;
+  }
+  const SHARED = {};
+  const board = { name: "TOI", score: 0, against: 0, title: "LE STADE DES FRACTIONS" };
+  function drawBoard() {
+    const c = board.cv.getContext("2d"), w = board.cv.width, h = board.cv.height;
+    c.fillStyle = "#0b1410"; c.fillRect(0, 0, w, h);
+    c.fillStyle = "#f2b705"; c.fillRect(0, 0, w, 12); c.fillRect(0, h - 12, w, 12);
+    c.fillStyle = "#e9efe6"; c.textAlign = "center"; c.textBaseline = "middle";
+    c.font = '800 64px "Big Shoulders Display", "Arial Narrow", Arial, sans-serif';
+    c.fillText(board.title, w / 2, 76);
+    c.font = '800 120px "Big Shoulders Display", "Arial Narrow", Arial, sans-serif';
+    c.fillStyle = "#f2b705";
+    const nm = (board.name || "TOI").toUpperCase().slice(0, 12);
+    c.fillText(`${nm}  ${board.score} – ${board.against}  FRACTIONS`, w / 2, 214);
+    board.tex.needsUpdate = true;
+  }
+  function makeBoard() {
+    board.cv = document.createElement("canvas"); board.cv.width = 1400; board.cv.height = 300;
+    board.tex = new T.CanvasTexture(board.cv); board.tex.encoding = T.sRGBEncoding;
+    drawBoard();
+    const g = new T.Group();
+    const frame = new T.Mesh(new T.BoxGeometry(50, 12, 1.2), mat(0x1c2420)); g.add(frame);
+    const screen = new T.Mesh(new T.PlaneGeometry(48, 10.3), new T.MeshBasicMaterial({ map: board.tex }));
+    screen.position.z = 0.65; g.add(screen);
+    [-18, 18].forEach((x) => { const leg = new T.Mesh(new T.BoxGeometry(1.4, 18, 1.4), mat(0x3a4440)); leg.position.set(x, -14, 0); g.add(leg); });
+    return g;
+  }
+
+  /* ───────── lumière et thème ───────── */
+  function buildLights() {
+    W.hemi = new T.HemisphereLight(0xdff1ff, 0x3b5a2e, 0.85); scene.add(W.hemi);
+    W.sun = new T.DirectionalLight(0xffffff, 0.9); W.sun.position.set(-120, 200, 90); scene.add(W.sun);
+    W.fill = new T.DirectionalLight(0xffffff, 0.25); W.fill.position.set(140, 90, -120); scene.add(W.fill);
+  }
+  function setTheme(isDark) {
+    dark = !!isDark;
+    if (!ok) return;
+    const sky = dark ? 0x081324 : 0xa8d8f2;
+    scene.background = new T.Color(sky);
+    scene.fog = new T.Fog(sky, dark ? 300 : 420, dark ? 1000 : 1400);
+    W.hemi.intensity = dark ? 0.55 : 0.85;
+    W.hemi.color.set(dark ? 0xbfd2ff : 0xdff1ff);
+    W.sun.intensity = dark ? 0.55 : 0.9;
+    W.sun.color.set(dark ? 0xfff2d6 : 0xffffff);
+    W.sun.position.set(dark ? 0 : -120, 220, dark ? 0 : 90);
+    W.stars.visible = dark;
+    W.lamps.forEach((l) => { l.glow.visible = dark; l.panel.material.emissive.set(dark ? 0xfff3cc : 0x000000); });
+    W.ground.material.color.set(dark ? 0x26302a : 0x6f8c5c);
+  }
+
+  /* ───────── caméra ───────── */
+  const VIEWS = {
+    home:  { target: [0, 0, 0], r: 185, theta: 0.85, phi: 0.98, auto: true, fit: 260 },
+    pitch: { target: [0, 0, 6], r: 112, theta: 0, phi: 0.6, fit: 118 },
+    track: { target: [0, 0, 4], r: 150, theta: 0, phi: 0.7, fit: 186 },
+    balls: { target: [0, 0, 0], r: 34, theta: 0, phi: 0.82, fit: 34 },
+    goal:  { target: [52.5, 1.2, 0], r: 14.2, theta: -Math.PI / 2, phi: 1.37, fit: 0 }
+  };
+  let viewName = "home";
+  function fitRadius(v) {
+    if (!v.fit) return v.r;
+    const asp = camera.aspect, vf = (camera.fov * Math.PI) / 180;
+    const hf = 2 * Math.atan(Math.tan(vf / 2) * asp);
+    const need = v.fit / 2 / Math.tan(hf / 2);
+    return Math.max(v.r, need * 1.02);
+  }
+  function applyOrbit() {
+    const o = orbit;
+    const sp = Math.sin(o.phi);
+    camera.position.set(o.target.x + o.r * sp * Math.sin(o.theta), o.target.y + o.r * Math.cos(o.phi), o.target.z + o.r * sp * Math.cos(o.theta));
+    camera.lookAt(o.target);
+  }
+  function view(name, instant) {
+    const v = VIEWS[name] || VIEWS.home;
+    viewName = name;
+    const from = { x: orbit.target.x, y: orbit.target.y, z: orbit.target.z, r: orbit.r, theta: orbit.theta, phi: orbit.phi };
+    let tTheta = v.theta;
+    while (tTheta - from.theta > Math.PI) tTheta -= Math.PI * 2;
+    while (tTheta - from.theta < -Math.PI) tTheta += Math.PI * 2;
+    const to = { x: v.target[0], y: v.target[1], z: v.target[2], r: fitRadius(v), theta: tTheta, phi: v.phi };
+    orbit.auto = !!v.auto; orbit.user = false;
+    if (instant || reduce) { Object.assign(orbit, { r: to.r, theta: to.theta, phi: to.phi }); orbit.target.set(to.x, to.y, to.z); applyOrbit(); return; }
+    tween(1.6, (k) => {
+      const e = ease(k);
+      orbit.target.set(from.x + (to.x - from.x) * e, from.y + (to.y - from.y) * e, from.z + (to.z - from.z) * e);
+      orbit.r = from.r + (to.r - from.r) * e;
+      orbit.theta = from.theta + (to.theta - from.theta) * e;
+      orbit.phi = from.phi + (to.phi - from.phi) * e;
+      applyOrbit();
+    });
+  }
+
+  /* ───────── contrôles (glisser, pincer, molette, toucher) ───────── */
+  function bindControls(cv) {
+    const pts = new Map(); let downAt = null, moved = 0, pinch0 = 0, r0 = 0;
+    cv.addEventListener("pointerdown", (e) => {
+      cv.setPointerCapture(e.pointerId);
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      downAt = { x: e.clientX, y: e.clientY }; moved = 0;
+      if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch0 = Math.hypot(a.x - b.x, a.y - b.y); r0 = orbit.r; }
+    });
+    cv.addEventListener("pointermove", (e) => {
+      if (!pts.has(e.pointerId)) return;
+      const p = pts.get(e.pointerId), dx = e.clientX - p.x, dy = e.clientY - p.y;
+      pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      moved += Math.abs(dx) + Math.abs(dy);
+      if (pts.size === 2) {
+        const [a, b] = [...pts.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (pinch0 > 0) orbit.r = clampR(r0 * (pinch0 / d));
+      } else if (moved > 6) {
+        orbit.theta -= dx * 0.006; orbit.phi = Math.min(1.45, Math.max(0.12, orbit.phi - dy * 0.005));
+        orbit.auto = false; orbit.user = true;
+      }
+      applyOrbit();
+    });
+    const up = (e) => {
+      if (pts.size === 1 && moved < 7 && downAt) pick(e);
+      pts.delete(e.pointerId);
+      if (pts.size < 2) pinch0 = 0;
+    };
+    cv.addEventListener("pointerup", up);
+    cv.addEventListener("pointercancel", (e) => pts.delete(e.pointerId));
+    cv.addEventListener("wheel", (e) => { e.preventDefault(); orbit.r = clampR(orbit.r * (1 + Math.sign(e.deltaY) * 0.08)); orbit.auto = false; applyOrbit(); }, { passive: false });
+  }
+  function clampR(r) { return Math.min(420, Math.max(6, r)); }
+  const ray = new T.Raycaster(), ndc = new T.Vector2();
+  function pick(e) {
+    if (!clickables.length || !onPick) return;
+    const rect = renderer.domElement.getBoundingClientRect();
+    ndc.set(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const hit = ray.intersectObjects(clickables, false)[0];
+    if (hit) onPick(hit.object.userData);
+  }
+
+  /* ───────── couches des stations ───────── */
+  function clearOverlay() {
+    killTweens();
+    if (overlay) { scene.remove(overlay); disposeTree(overlay); }
+    overlay = new T.Group(); scene.add(overlay);
+    clickables = []; ctrl = null;
+    W.jogger.visible = false; W.centerBall.visible = false;
+  }
+
+  /* — Terrain coupé en parts — */
+  function pitchCtrl() {
+    const c = { key: "pitch", strips: [], group: new T.Group(), label: null, state: {} };
+    overlay.add(c.group);
+    c.set = (s) => {
+      const prev = c.state; c.state = Object.assign({}, s);
+      const widths = s.unequal ? [0.5, 0.3, 0.2] : Array.from({ length: Math.max(1, s.d || 1) }, () => 1 / Math.max(1, s.d || 1));
+      const sameCut = prev.unequal === s.unequal && prev.d === s.d && c.strips.length;
+      if (!sameCut) {
+        c.group.children.slice().forEach((ch) => { c.group.remove(ch); disposeTree(ch); });
+        c.strips = []; clickables = [];
+        let x = -PL / 2;
+        widths.forEach((wf, i) => {
+          const w = wf * PL;
+          const m = new T.Mesh(new T.PlaneGeometry(w, PW), basic(0xffffff, { transparent: true, opacity: 0.0, depthWrite: false }));
+          m.rotation.x = -Math.PI / 2; m.position.set(x + w / 2, 0.06, 0); m.renderOrder = 3;
+          m.userData = { strip: i };
+          c.group.add(m); c.strips.push(m); clickables.push(m);
+          if (i > 0) {
+            const div = new T.Mesh(new T.BoxGeometry(0.7, 0.12, PW + 1.2), basic(0xffffff));
+            div.position.set(x, 0.1, 0); div.scale.y = reduce ? 1 : 0.01;
+            c.group.add(div);
+            if (!reduce) tween(0.5, (k) => (div.scale.y = 0.01 + easeOut(k)), null, i * 0.06);
+          }
+          x += w;
+        });
+      }
+      const n = s.n || 0;
+      const sel = s.sel || c.strips.map((_, i) => i < n);
+      c.state.sel = sel;
+      c.strips.forEach((m, i) => {
+        const target = sel[i] ? 0.62 : 0.0;
+        const from = m.material.opacity;
+        m.material.color.set(sel[i] ? COL.gold : 0xffffff);
+        tween(0.45, (k) => (m.material.opacity = from + (target - from) * easeOut(k)), null, sameCut ? 0 : 0.25 + i * 0.05);
+      });
+      if (c.label) { c.group.remove(c.label); disposeTree(c.label); c.label = null; }
+      const taken = sel.filter(Boolean).length;
+      const txt = s.unequal ? "3 parts… égales ?" : (s.d || 1) === 1 ? "Le tout" : `${taken}/${s.d}`;
+      c.label = label(txt, { size: 72, scale: s.unequal ? 9 : 13, bg: s.unequal ? "rgba(139,92,246,0.92)" : "rgba(12,24,18,0.88)", ring: s.unequal ? null : "#f2b705" });
+      c.label.position.set(0, 16, -PW / 2 - 4);
+      c.group.add(c.label);
+    };
+    c.toggle = (i) => { const sel = c.state.sel.slice(); sel[i] = !sel[i]; c.set(Object.assign({}, c.state, { sel, n: sel.filter(Boolean).length })); return sel.filter(Boolean).length; };
+    return c;
+  }
+
+  /* — Piste : comparer, additionner, soustraire, unités — */
+  function ticksGroup(d, opts) {
+    opts = opts || {};
+    const g = new T.Group();
+    if (!d) return g;
+    for (let k = 0; k <= d; k++) {
+      const t = k / d;
+      const p = lanePos(t, R0 + (LW * NL) / 2), tg = laneTan(t, R0 + (LW * NL) / 2);
+      const bar = new T.Mesh(new T.BoxGeometry(0.55, 0.06, LW * NL + 0.6), basic(0xffffff));
+      bar.position.set(p.x, 0.09, p.z); bar.rotation.y = Math.atan2(tg.x, tg.z) + Math.PI / 2; bar.renderOrder = 4;
+      g.add(bar);
+      if (k > 0 && k < d && d <= 12 && !opts.noLabels) {
+        const lp = lanePos(t, ROUT + 9);
+        const lb = label(opts.fmt ? opts.fmt(k) : `${k}/${d}`, { size: 52, scale: d > 8 ? 6.5 : 8, bg: "rgba(255,255,255,0.92)", fg: "#13221a" });
+        lb.position.set(lp.x, 5, lp.z); g.add(lb);
+      }
+    }
+    return g;
+  }
+  function trackCtrl() {
+    const c = { key: "track", group: new T.Group(), tickG: null, state: {}, runners: [] };
+    overlay.add(c.group);
+    const clear = () => { c.group.children.slice().forEach((ch) => { c.group.remove(ch); disposeTree(ch); }); c.runners = []; c.tickG = null; };
+    const setTicks = (d, opts) => {
+      if (c.tickG) { c.group.remove(c.tickG); disposeTree(c.tickG); }
+      c.tickG = ticksGroup(d, opts); c.group.add(c.tickG);
+    };
+    const runBetween = (rn, f0, f1, r, dur, delay, after) => {
+      tween(dur, (k) => { rn.userData.running = k < 1; placeOnLane(rn, f0 + (f1 - f0) * easeOut(k), r); }, () => { rn.userData.running = false; after && after(); }, delay);
+    };
+    const runTo = (rn, f, r, dur, delay, after) => runBetween(rn, 0, f, r, dur, delay, after);
+    const flag = (txt, t, r, color) => {
+      const lp = lanePos(t, r);
+      const lb = label(txt, { size: 60, scale: 10, bg: hex(color), fg: "#ffffff" });
+      lb.position.set(lp.x, 16, lp.z); c.group.add(lb);
+      return lb;
+    };
+    c.set = (s) => {
+      const prev = c.state; c.state = Object.assign({}, s);
+      const same = prev.mode === s.mode && JSON.stringify([prev.A, prev.B, prev.W, prev.M, prev.total, prev.part, prev.d, prev.n]) === JSON.stringify([s.A, s.B, s.W, s.M, s.total, s.part, s.d, s.n]);
+      if (!same) clear();
+      const fmtU = (v) => `${+v.toFixed(2)} ${s.unit}`;
+      if (s.mode === "compare") {
+        const fa = s.A[0] / s.A[1], fb = s.B[0] / s.B[1];
+        const names = s.names || ["Rouge", "Bleu"];
+        if (!same) {
+          const ra = makeRunner(COL.red, 7), rb = makeRunner(COL.blue, 9);
+          [ra, rb].forEach((r) => r.scale.setScalar(5));
+          placeOnLane(ra, 0, LANE.a); placeOnLane(rb, 0, LANE.b);
+          c.group.add(ra, rb); c.runners = [ra, rb];
+          c.ribA = ribbon(0, fa, LANE.a, COL.red, { grow: true });
+          c.ribB = ribbon(0, fb, LANE.b, COL.blue, { grow: true });
+          c.group.add(c.ribA, c.ribB);
+          c.ran = false;
+        }
+        setTicks(s.ticks);
+        if (s.run && !c.ran) {
+          c.ran = true;
+          const dA = 2.2 + fa * 2.2, dB = 2.2 + fb * 2.2;
+          runTo(c.runners[0], fa, LANE.a, dA, 0.2, () => { c.fA = flag(`${names[0]} ${s.A[0]}/${s.A[1]}`, fa, LANE.a - 8, COL.red); });
+          runTo(c.runners[1], fb, LANE.b, dB, 0.2, () => { c.fB = flag(`${names[1]} ${s.B[0]}/${s.B[1]}`, fb, LANE.b + 9, COL.blue); });
+          growRibbon(c.ribA, dA, 0.2); growRibbon(c.ribB, dB, 0.2);
+        } else if (!s.run) {
+          c.ribA.geometry.setDrawRange(0, 0); c.ribB.geometry.setDrawRange(0, 0);
+        }
+        if (s.done && c.runners.length) {
+          const win = Math.abs(fa - fb) < 1e-9 ? -1 : fa > fb ? 0 : 1;
+          c.runners.forEach((r, i) => { if (win === -1 || i === win) tween(0.9, (k) => (r.position.y = Math.sin(k * Math.PI * 2) * 1.4 * (1 - k)), null, 0.1); });
+        }
+      } else if (s.mode === "add") {
+        const fa = s.A[0] / s.A[1], fb = s.B[0] / s.B[1];
+        if (!same) {
+          const rn = makeRunner(COL.gold, 10); rn.scale.setScalar(5); placeOnLane(rn, 0, LANE.mid);
+          c.group.add(rn); c.runners = [rn];
+          c.ribA = ribbon(0, fa, LANE.mid, COL.gold, { grow: true });
+          c.ribB = ribbon(fa, fa + fb, fa + fb > 1 ? LANE.b + 0.2 : LANE.mid, COL.green, { grow: true });
+          c.group.add(c.ribA, c.ribB); c.phase = 0;
+          c.sumLbl = null; c.ghost = null;
+        }
+        setTicks(s.ticks);
+        const ph = s.phase || 0, st = c.phase, rn = c.runners[0];
+        const flagA = () => flag(`${s.A[0]}/${s.A[1]}`, fa / 2, LANE.mid - 9, 0xb98a00);
+        const flagB = () => flag(`${s.B[0]}/${s.B[1]}`, fa + fb / 2, LANE.mid + 9, COL.green);
+        if (ph >= 3 && st < 1) {
+          c.ribA.geometry.setDrawRange(0, c.ribA.userData.total); c.ribB.geometry.setDrawRange(0, c.ribB.userData.total);
+          placeOnLane(rn, fa + fb, LANE.mid); flagA(); flagB();
+        } else {
+          if (ph >= 1 && st < 1) { growRibbon(c.ribA, 1.8, 0.1); runBetween(rn, 0, fa, LANE.mid, 1.8, 0.1); flagA(); }
+          if (ph >= 2 && st < 2) { const del = st < 1 ? 2.0 : 0.1; growRibbon(c.ribB, 1.8, del); runBetween(rn, fa, fa + fb, LANE.mid, 1.8, del); flagB(); }
+        }
+        if (ph >= 3 && !c.sumLbl) {
+          const L = lcm(s.A[1], s.B[1]);
+          const num = (s.A[0] * L) / s.A[1] + (s.B[0] * L) / s.B[1];
+          c.sumLbl = label(`${num}/${L}`, { size: 80, scale: 16, bg: "rgba(12,24,18,0.9)", ring: "#f2b705" });
+          c.sumLbl.position.set(0, 14, 4); c.group.add(c.sumLbl);
+        }
+        if (s.ghost && !c.ghost) {
+          const fg = s.ghost[0] / s.ghost[1];
+          c.ghost = ribbon(0, fg, LANE.b + 0.6, COL.violet, { grow: true, opacity: 0.95 });
+          c.group.add(c.ghost); growRibbon(c.ghost, 1.6, 0.1);
+          flag(`${s.ghost[0]}/${s.ghost[1]} ?`, fg / 2, LANE.b + 11, COL.violet);
+        }
+        if (!s.ghost && c.ghost) { c.group.remove(c.ghost); disposeTree(c.ghost); c.ghost = null; }
+        c.phase = Math.max(c.phase, ph);
+      } else if (s.mode === "sub") {
+        const fw = s.W[0] / s.W[1], fm = s.M[0] / s.M[1];
+        if (!same) {
+          c.ribW = ribbon(0, fw, LANE.mid, 0xffffff, { grow: true, opacity: 0.55 });
+          c.ribM = ribbon(0, fm, LANE.mid, COL.red, { grow: true, order: 3 });
+          c.ribR = ribbon(fm, fw, LANE.mid, COL.green, { grow: true, order: 3 });
+          c.group.add(c.ribW, c.ribM, c.ribR);
+          const rn = makeRunner(COL.red, 4); rn.scale.setScalar(5); placeOnLane(rn, 0, LANE.mid);
+          c.group.add(rn); c.runners = [rn]; c.phase = 0;
+        }
+        setTicks(s.ticks);
+        const ph = s.phase || 0, st = c.phase, rn = c.runners[0];
+        const flagW = () => flag(fw === 1 ? "1 tour" : `${s.W[0]}/${s.W[1]}`, fw / 2, ROUT + 16, 0x5c6b62);
+        const flagM = () => flag(`− ${s.M[0]}/${s.M[1]}`, fm / 2, LANE.mid - 10, COL.red);
+        if (ph >= 3 && st < 2) {
+          c.ribW.geometry.setDrawRange(0, c.ribW.userData.total); c.ribM.geometry.setDrawRange(0, c.ribM.userData.total);
+          placeOnLane(rn, fm, LANE.mid); if (st < 1) flagW(); flagM();
+        } else {
+          if (ph >= 1 && st < 1) { growRibbon(c.ribW, 1.4, 0.1); flagW(); }
+          if (ph >= 2 && st < 2) { const del = st < 1 ? 1.4 : 0.1; growRibbon(c.ribM, 1.8, del); runBetween(rn, 0, fm, LANE.mid, 1.8, del); flagM(); }
+        }
+        if (ph >= 3 && st < 3) {
+          growRibbon(c.ribR, 1.4, 0.1);
+          const L = lcm(s.W[1], s.M[1]);
+          const num = (s.W[0] * L) / s.W[1] - (s.M[0] * L) / s.M[1];
+          const lb = label(`${num}/${L}`, { size: 80, scale: 16, bg: "rgba(20,110,60,0.95)", ring: "#ffffff" });
+          lb.position.set(0, 14, 4); c.group.add(lb);
+        }
+        c.phase = Math.max(c.phase, ph);
+      } else if (s.mode === "units" || s.mode === "units-whole") {
+        const whole = s.mode === "units-whole";
+        const total = whole ? (s.part / s.n) * s.d : s.total;
+        const per = total / s.d;
+        if (!same) {
+          c.parts = [];
+          for (let i = 0; i < s.d; i++) {
+            const known = whole ? i < s.n : true;
+            const rb = ribbon(i / s.d + 0.002, (i + 1) / s.d - 0.002, LANE.mid, known ? 0xffffff : COL.violet, { opacity: known ? 0.5 : 0.0 });
+            c.group.add(rb); c.parts.push(rb);
+          }
+          c.phase = -1; c.lbls = [];
+        }
+        const ph = s.phase || 0;
+        if (ph !== c.phase) {
+          c.lbls.forEach((l) => { c.group.remove(l); disposeTree(l); }); c.lbls = [];
+          if (whole) {
+            c.parts.forEach((rb, i) => {
+              const known = i < s.n;
+              const reveal = !known && ph >= 2;
+              rb.material.color.set(known ? COL.gold : reveal ? COL.green : COL.violet);
+              const target = known ? 0.92 : reveal ? 0.9 : 0.28;
+              const from = rb.material.opacity;
+              tween(0.6, (k) => (rb.material.opacity = from + (target - from) * easeOut(k)), null, reveal ? 0.15 * (i - s.n) : 0);
+            });
+            setTicks(s.d, { fmt: () => "", noLabels: true });
+            const knownLbl = label(`On connaît : ${s.part} ${s.unit}`, { size: 60, scale: 11, bg: hex(0xb98a00) });
+            knownLbl.position.set(0, 14, -12);
+            c.group.add(knownLbl); c.lbls.push(knownLbl);
+            const fr = label(`${s.n}/${s.d}`, { size: 60, scale: 14, bg: "rgba(12,24,18,0.9)", ring: "#f2b705" });
+            fr.position.set(-30, 12, 0); c.group.add(fr); c.lbls.push(fr);
+            if (ph >= 1) {
+              for (let i = 0; i < s.d; i++) {
+                if (i >= s.n && ph < 2) continue;
+                const lp = lanePos((i + 0.5) / s.d, ROUT + 10);
+                const lb = label(fmtU(per), { size: 50, scale: 6.5, bg: "rgba(255,255,255,0.94)", fg: "#13221a" });
+                lb.position.set(lp.x, 6, lp.z); c.group.add(lb); c.lbls.push(lb);
+              }
+            }
+            if (ph < 2) {
+              for (let i = s.n; i < s.d; i++) {
+                const lp = lanePos((i + 0.5) / s.d, ROUT + 10);
+                const lb = label("?", { size: 60, scale: 7, bg: hex(COL.violet) });
+                lb.position.set(lp.x, 6, lp.z); c.group.add(lb); c.lbls.push(lb);
+              }
+            } else {
+              const lb = label(`Total : ${fmtU(total)}`, { size: 70, scale: 13, bg: "rgba(20,110,60,0.95)", ring: "#ffffff" });
+              lb.position.set(0, 14, 8); c.group.add(lb); c.lbls.push(lb);
+            }
+          } else {
+            c.parts.forEach((rb, i) => {
+              const take = ph >= 2 && i < s.n;
+              rb.material.color.set(take ? COL.gold : 0xffffff);
+              const from = rb.material.opacity, target = take ? 0.95 : 0.5;
+              tween(0.6, (k) => (rb.material.opacity = from + (target - from) * easeOut(k)), null, take ? i * 0.18 : 0);
+            });
+            setTicks(ph >= 1 ? s.d : 0, { noLabels: true });
+            const tl = label(`Le tour = ${fmtU(total)}`, { size: 64, scale: 11, bg: "rgba(12,24,18,0.9)" });
+            tl.position.set(0, 14, -12); c.group.add(tl); c.lbls.push(tl);
+            if (ph >= 1) {
+              for (let i = 0; i < s.d; i++) {
+                const lp = lanePos((i + 0.5) / s.d, ROUT + 10);
+                const lb = label(fmtU(per), { size: 50, scale: 6.5, bg: "rgba(255,255,255,0.94)", fg: "#13221a" });
+                lb.position.set(lp.x, 6, lp.z); c.group.add(lb); c.lbls.push(lb);
+              }
+            }
+            if (ph >= 2) {
+              const lb = label(`${s.n} × ${fmtU(per)} = ${fmtU(per * s.n)}`, { size: 76, scale: 13, bg: hex(0xb98a00), ring: "#ffffff" });
+              lb.position.set(0, 14, 10); c.group.add(lb); c.lbls.push(lb);
+            }
+          }
+          c.phase = ph;
+        }
+      }
+    };
+    return c;
+  }
+
+  /* — Ballons en groupes — */
+  function ballsCtrl() {
+    const c = { key: "balls", group: new T.Group(), state: {}, balls: [], hoops: [], lbls: [] };
+    overlay.add(c.group);
+    const geo = SHARED.ballGeo || (SHARED.ballGeo = new T.SphereGeometry(0.55, 22, 16));
+    geo.userData.shared = true;
+    const ballMat = SHARED.ballMat || (SHARED.ballMat = new T.MeshLambertMaterial({ map: SHARED.ballTex }));
+    ballMat.userData.shared = true;
+    const ghostMat = SHARED.ghostMat || (SHARED.ghostMat = new T.MeshBasicMaterial({ color: COL.violet, wireframe: true, transparent: true, opacity: 0.55 }));
+    ghostMat.userData.shared = true;
+    const layout = (d, k) => {
+      const Rh = 1.1 + Math.sqrt(k) * 0.72, gap = 1.3;
+      const perRow = d <= 4 ? d : Math.ceil(d / 2);
+      const rowsN = Math.ceil(d / perRow);
+      const cells = [];
+      for (let i = 0; i < d; i++) {
+        const row = Math.floor(i / perRow), col = i % perRow;
+        const inRow = row === rowsN - 1 ? d - row * perRow : perRow;
+        const x = (col - (inRow - 1) / 2) * (2 * Rh + gap);
+        const z = (row - (rowsN - 1) / 2) * (2 * Rh + gap) + 1.2;
+        cells.push({ x, z, R: Rh });
+      }
+      return cells;
+    };
+    const slot = (cell, j, k) => {
+      if (k === 1) return [cell.x, cell.z];
+      const inner = k > 7 ? Math.min(3, Math.floor(k / 3)) : 0;
+      if (inner && j < inner) { const a = (j / inner) * Math.PI * 2; return [cell.x + 0.5 * Math.cos(a), cell.z + 0.5 * Math.sin(a)]; }
+      const m = k - inner, jj = j - inner, a = (jj / m) * Math.PI * 2 + 0.3;
+      const rr = cell.R - 0.7;
+      return [cell.x + rr * Math.cos(a), cell.z + rr * Math.sin(a)];
+    };
+    const clear = () => { c.group.children.slice().forEach((ch) => { c.group.remove(ch); disposeTree(ch); }); c.balls = []; c.hoops = []; c.lbls = []; };
+    const clearLbls = () => { c.lbls.forEach((l) => { c.group.remove(l); disposeTree(l); }); c.lbls = []; };
+    const addLbl = (txt, x, y, z, o) => { const l = label(txt, o); l.position.set(x, y, z); c.group.add(l); c.lbls.push(l); return l; };
+    const hoopColors = [0x2f6fd8, 0xd2372c, 0x23a55a, 0xe86a1c, 0x8b5cf6, 0x0e9aa7];
+    c.set = (s) => {
+      const prev = c.state; c.state = Object.assign({}, s);
+      const whole = s.mode === "whole";
+      const k = whole ? s.k : s.N / s.d;
+      const N = whole ? s.k * s.d : s.N;
+      const same = prev.mode === s.mode && prev.d === s.d && prev.n === s.n && (whole ? prev.k === s.k : prev.N === s.N) && c.balls.length;
+      const cells = layout(s.d, k);
+      if (!same) {
+        clear();
+        cells.forEach((cell, i) => {
+          const ghost = whole && i >= s.n;
+          const h = new T.Mesh(new T.TorusGeometry(cell.R, 0.11, 8, 48), basic(ghost ? COL.violet : hoopColors[i % hoopColors.length], { transparent: true, opacity: ghost ? 0.6 : 0.95 }));
+          h.rotation.x = -Math.PI / 2; h.position.set(cell.x, 0.14, cell.z);
+          c.group.add(h); c.hoops.push(h);
+        });
+        for (let i = 0; i < N; i++) {
+          const g = Math.floor(i / k), j = i % k;
+          const ghost = whole && g >= s.n;
+          const b = new T.Mesh(geo, ghost ? ghostMat : ballMat);
+          const [sx, sz] = slot(cells[g], j, k);
+          b.userData = { g, j, slot: [sx, sz], ghost };
+          if (!whole) { const a = Math.random() * Math.PI * 2, r = Math.sqrt(Math.random()) * Math.min(4.8, 1 + Math.sqrt(N) * 0.75); b.position.set(r * Math.cos(a), 0.55 + Math.random() * 0.06, -cells[0].R - 4.2 + r * Math.sin(a) * 0.6); }
+          else b.position.set(sx, 0.55, sz);
+          b.rotation.set(Math.random() * 6, Math.random() * 6, 0);
+          c.group.add(b); c.balls.push(b);
+        }
+        c.phase = -1;
+      }
+      const ph = s.phase || 0;
+      if (ph === c.phase) return;
+      clearLbls();
+      if (!whole) {
+        if (ph === 0) {
+          c.hoops.forEach((h) => (h.material.opacity = 0.35));
+          addLbl(`${N} ballons`, 0, 4.8, -cells[0].R - 4.2, { size: 64, scale: 1.9 });
+        }
+        if (ph >= 1) {
+          c.balls.forEach((b, i) => {
+            const from = b.position.clone(), [tx, tz] = b.userData.slot;
+            if (c.phase < 1) tween(0.8, (q) => { const e = ease(q); b.position.set(from.x + (tx - from.x) * e, 0.55 + Math.sin(q * Math.PI) * 2.2, from.z + (tz - from.z) * e); b.rotation.x += 0.15; }, () => b.position.set(tx, 0.55, tz), i * 0.035);
+            else b.position.set(tx, 0.55, tz);
+          });
+          c.hoops.forEach((h) => (h.material.opacity = 0.95));
+          cells.forEach((cell) => addLbl(String(k), cell.x, 2.6, cell.z - cell.R - 0.2, { size: 60, scale: 1.25, bg: "rgba(255,255,255,0.92)", fg: "#13221a" }));
+          addLbl(`${N} ÷ ${s.d} = ${k}`, 0, 5.4, Math.min(...cells.map((x) => x.z)) - cells[0].R - 1.8, { size: 64, scale: 1.7 });
+        }
+        if (ph >= 2) {
+          const delay = c.phase < 1 ? N * 0.035 + 0.9 : 0.1;
+          c.hoops.forEach((h, i) => {
+            const take = i < s.n;
+            tween(0.5, () => { h.material.color.set(take ? COL.gold : 0x9aa59e); h.material.opacity = take ? 1 : 0.4; }, null, delay + i * 0.15);
+          });
+          c.balls.forEach((b) => {
+            if (b.userData.g < s.n) tween(0.7, (q) => (b.position.y = 0.55 + Math.sin(q * Math.PI) * 1.2), null, delay + b.userData.g * 0.15 + b.userData.j * 0.02);
+            else tween(0.4, (q) => b.scale.setScalar(1 - 0.25 * q), null, delay);
+          });
+          const top = Math.max(...cells.map((x) => x.z)) + cells[0].R + 2.6;
+          addLbl(`${s.n} × ${k} = ${s.n * k}`, 0, 0.9, top + 2, { size: 70, scale: 1.9, bg: "rgba(185,138,0,0.96)", ring: "#ffffff" });
+        }
+      } else {
+        const top = Math.max(...cells.map((x) => x.z)) + cells[0].R + 2.6;
+        const bottom = Math.min(...cells.map((x) => x.z)) - cells[0].R - 1.8;
+        c.balls.forEach((b) => { if (b.userData.ghost) b.scale.setScalar(ph >= 2 ? 1 : 0.85); });
+        addLbl(`${s.n * s.k} = ${s.n}/${s.d}`.replace(/ = \d+\/\d+$/, "") + " ballons", 0, 5.2, bottom, { size: 64, scale: 1.7 });
+        addLbl(`${s.n}/${s.d}`, -Math.abs(cells[0].x) - cells[0].R - 2.6, 2.6, cells[0].z, { size: 64, scale: 2.4, ring: "#f2b705" });
+        if (ph < 2) cells.forEach((cell, i) => { if (i >= s.n) addLbl("?", cell.x, 2.4, cell.z, { size: 64, scale: 1.4, bg: hex(COL.violet) }); });
+        if (ph >= 1) cells.forEach((cell, i) => { if (i < s.n || ph >= 2) addLbl(String(s.k), cell.x, 2.6, cell.z - cell.R - 0.2, { size: 60, scale: 1.25, bg: "rgba(255,255,255,0.92)", fg: "#13221a" }); });
+        if (ph >= 1 && ph < 2) addLbl(`${s.n * s.k} ÷ ${s.n} = ${s.k}`, 0, 0.9, top + 2, { size: 66, scale: 1.8, bg: "rgba(185,138,0,0.96)" });
+        if (ph >= 2) {
+          if (c.phase < 2) {
+            let i = 0;
+            c.balls.forEach((b) => {
+              if (!b.userData.ghost) return;
+              b.material = ballMat; b.scale.setScalar(0.01);
+              tween(0.5, (q) => b.scale.setScalar(0.01 + 0.99 * easeOut(q)), null, 0.05 * i++);
+            });
+            c.hoops.forEach((h, idx) => { if (idx >= s.n) h.material.color.set(COL.green); });
+          }
+          addLbl(`${s.d} × ${s.k} = ${s.d * s.k}`, 0, 0.9, top + 2, { size: 70, scale: 1.9, bg: "rgba(20,110,60,0.96)", ring: "#ffffff" });
+        }
+        if (ph >= 3) {
+          c.hoops.forEach((h, i) => { if (i < s.n) tween(0.4, () => h.material.color.set(COL.gold), null, i * 0.15); });
+        }
+      }
+      c.phase = ph;
+    };
+    return c;
+  }
+
+  /* — Penalty — */
+  function goalCtrl() {
+    const c = { key: "goal", group: new T.Group(), state: {} };
+    overlay.add(c.group);
+    const spot = new T.Vector3(PL / 2 - 11, 0.24, 0);
+    const ball = new T.Mesh(new T.SphereGeometry(0.24, 22, 16), new T.MeshLambertMaterial({ map: SHARED.ballTex }));
+    ball.position.copy(spot); c.group.add(ball);
+    const keeper = makeRunner(0xf2b705, 1); keeper.position.set(PL / 2 - 0.4, 0, 0); keeper.rotation.y = -Math.PI / 2;
+    c.group.add(keeper);
+    const kicker = makeRunner(COL.green, board.num || 10); kicker.position.set(spot.x - 2.4, 0, -0.9); kicker.rotation.y = Math.PI / 2 - 0.3;
+    c.group.add(kicker);
+    c.ball = ball; c.keeper = keeper; c.kicker = kicker;
+    const reset = () => {
+      ball.position.copy(spot); keeper.position.set(PL / 2 - 0.4, 0, 0); keeper.rotation.set(0, -Math.PI / 2, 0);
+      kicker.position.set(spot.x - 2.4, 0, -0.9);
+      W.goals[1].userData.net.scale.set(1, 1, 1);
+    };
+    c.set = (s) => { if (s && s.reset) reset(); };
+    c.shoot = (scored, cb) => {
+      reset();
+      const zT = (Math.random() < 0.5 ? -1 : 1) * (1.8 + Math.random() * 1.4);
+      const yT = 0.5 + Math.random() * 1.5;
+      const dive = scored ? -Math.sign(zT) : Math.sign(zT);
+      kicker.userData.running = true;
+      tween(0.45, (k) => kicker.position.set(spot.x - 2.4 + 2.0 * k, 0, -0.9 + 0.7 * k), () => (kicker.userData.running = false));
+      tween(0.55, (k) => {
+        const e = easeOut(k);
+        keeper.position.z = dive * 2.4 * e; keeper.position.y = Math.sin(k * Math.PI) * 0.8;
+        keeper.rotation.x = dive * 1.25 * e;
+      }, null, 0.42);
+      const p0 = spot.clone(), p1 = scored ? new T.Vector3(PL / 2 + 0.6, yT, zT) : new T.Vector3(PL / 2, 1.3, Math.sign(zT) * 3.62);
+      tween(scored ? 0.6 : 0.5, (k) => {
+        ball.position.set(p0.x + (p1.x - p0.x) * k, p0.y + (p1.y - p0.y) * k + Math.sin(k * Math.PI) * 0.9, p0.z + (p1.z - p0.z) * k);
+        ball.rotation.z -= 0.4;
+      }, () => {
+        if (scored) {
+          const net = W.goals[1].userData.net;
+          tween(0.5, (k) => { net.scale.x = 1 + Math.sin(k * Math.PI) * 0.35; ball.position.x = p1.x + 0.8 * k; ball.position.y = Math.max(0.24, p1.y * (1 - k)); });
+          confetti(new T.Vector3(PL / 2 - 2, 3, 0));
+          cheer();
+        } else {
+          tween(0.8, (k) => { ball.position.set(p1.x - 9 * k, 0.24 + Math.sin(k * Math.PI) * 2.2 + (1 - k) * 0.5, p1.z + Math.sign(zT) * 4 * k); });
+        }
+        setTimeout(() => cb && cb(), reduce ? 50 : 900);
+      }, 0.42);
+    };
+    return c;
+  }
+  function confetti(at) {
+    if (reduce) return;
+    const n = 260, pos = new Float32Array(n * 3), col = new Float32Array(n * 3), vel = [];
+    const pal = [0xf2b705, 0xd2372c, 0x23a55a, 0x2f6fd8, 0xffffff];
+    for (let i = 0; i < n; i++) {
+      pos.set([at.x, at.y, at.z], i * 3);
+      const cc = new T.Color(pal[i % pal.length]); col.set([cc.r, cc.g, cc.b], i * 3);
+      vel.push(new T.Vector3((Math.random() - 0.7) * 9, 4 + Math.random() * 9, (Math.random() - 0.5) * 12));
+    }
+    const g = new T.BufferGeometry();
+    g.setAttribute("position", new T.BufferAttribute(pos, 3));
+    g.setAttribute("color", new T.BufferAttribute(col, 3));
+    const pts = new T.Points(g, new T.PointsMaterial({ size: 0.22, vertexColors: true }));
+    overlay.add(pts);
+    tween(2.4, (k) => {
+      const a = g.attributes.position.array, dt = 1 / 60;
+      for (let i = 0; i < n; i++) {
+        vel[i].y -= 9.8 * dt * 0.6;
+        a[i * 3] += vel[i].x * dt; a[i * 3 + 1] = Math.max(0.05, a[i * 3 + 1] + vel[i].y * dt); a[i * 3 + 2] += vel[i].z * dt;
+      }
+      g.attributes.position.needsUpdate = true;
+      pts.material.opacity = 1 - k; pts.material.transparent = true;
+    }, () => { overlay.remove(pts); g.dispose(); pts.material.dispose(); });
+  }
+  function cheer() {
+    if (reduce) return;
+    tween(1.6, (k) => (W.crowd.position.y = Math.abs(Math.sin(k * Math.PI * 6)) * 0.6 * (1 - k)), () => (W.crowd.position.y = 0));
+  }
+
+  const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
+  const lcm = (a, b) => (a * b) / gcd(a, b);
+
+  /* ───────── API ───────── */
+  function show(type, s) {
+    if (!ok) return;
+    if (type === "home") {
+      clearOverlay(); W.jogger.visible = true; W.centerBall.visible = true; view("home"); return;
+    }
+    const want = type === "pitch" ? "pitch" : type === "track" ? "track" : type === "balls" ? "balls" : "goal";
+    const needView = !ctrl || ctrl.key !== want;
+    // une scène « unités » se dessine sur la piste même dans une station « ballons »
+    const isUnits = s && (s.mode === "units" || s.mode === "units-whole");
+    const realKey = isUnits ? "track" : want;
+    if (s && s.fresh) ctrl = null;
+    if (!ctrl || ctrl.key !== realKey) {
+      clearOverlay();
+      ctrl = realKey === "pitch" ? pitchCtrl() : realKey === "track" ? trackCtrl() : realKey === "balls" ? ballsCtrl() : goalCtrl();
+      if (realKey === "pitch") onPick = (u) => { if (u.strip != null && ctrl && ctrl.toggle) { const n = ctrl.toggle(u.strip); api.onStrip && api.onStrip(n, ctrl.state.d, ctrl.state.sel.slice()); } };
+      view(realKey === "track" ? "track" : realKey, false);
+    } else if (needView && !isUnits) view(want);
+    ctrl.set(s || {});
+  }
+  function shoot(scored, cb) { if (!ok) { cb && cb(); return; } if (!ctrl || ctrl.key !== "goal") show("goal", {}); ctrl.shoot(scored, cb); }
+  function setScore(name, score, against, num) {
+    if (!ok) return;
+    board.name = name || "TOI"; board.score = score; board.against = against; board.num = num;
+    drawBoard();
+  }
+  function loop(now) {
+    requestAnimationFrame(loop);
+    if (!visible) { last = now; return; }
+    const real = (now - last) / 1000; last = now;
+    const dt = Math.min(0.25, real);
+    // résolution adaptative : un téléphone lent garde une animation fluide
+    perf.acc += real; perf.n++;
+    if (perf.acc > 1.5) {
+      const avg = perf.acc / perf.n; perf.acc = 0; perf.n = 0;
+      const pr = renderer.getPixelRatio();
+      if (avg > 0.045 && pr > 0.75) { renderer.setPixelRatio(Math.max(0.75, pr - 0.5)); resize(); }
+      else if (avg < 0.02 && pr < perf.max) { renderer.setPixelRatio(Math.min(perf.max, pr + 0.25)); resize(); }
+    }
+    for (let i = tweens.length - 1; i >= 0; i--) {
+      const tw = tweens[i];
+      if (tw.dead) { tweens.splice(i, 1); continue; }
+      tw.t += dt;
+      if (tw.t < 0) continue;
+      const k = Math.min(1, tw.t / tw.dur);
+      tw.fn && tw.fn(k);
+      if (k >= 1) { tweens.splice(i, 1); tw.done && tw.done(); }
+    }
+    if (orbit.auto && !orbit.user && !reduce) { orbit.theta += dt * 0.05; applyOrbit(); }
+    if (W.jogger && W.jogger.visible) {
+      W.jogger.userData.t = (W.jogger.userData.t + dt * 0.012) % 1;
+      placeOnLane(W.jogger, W.jogger.userData.t, LANE.a);
+      W.jogger.userData.running = true; animateRunner(W.jogger, dt, 10);
+    }
+    if (W.centerBall && W.centerBall.visible && !reduce) W.centerBall.rotation.y += dt * 0.6;
+    if (overlay) overlay.traverse((o) => { if (o.userData && o.userData.legL) animateRunner(o, dt, 11); });
+    renderer.render(scene, camera);
+  }
+  function resize() {
+    if (!ok) return;
+    const w = host.clientWidth, h = host.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+    const v = VIEWS[viewName];
+    if (v && v.fit && !orbit.user) { orbit.r = fitRadius(v); applyOrbit(); }
+  }
+  function init(el, isDark) {
+    host = el;
+    if (!T) return false;
+    try {
+      renderer = new T.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+      if (!renderer.getContext()) throw new Error("no gl");
+    } catch (e) { renderer = null; return false; }
+    ok = true;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = T.sRGBEncoding;
+    const cv = renderer.domElement;
+    cv.setAttribute("aria-hidden", "true");
+    cv.style.width = "100%"; cv.style.height = "100%"; cv.style.display = "block"; cv.style.touchAction = "none";
+    host.appendChild(cv);
+    scene = new T.Scene();
+    camera = new T.PerspectiveCamera(42, 1, 0.5, 2400);
+    SHARED.ballTex = ballTexture();
+    buildLights(); buildStadium();
+    overlay = new T.Group(); scene.add(overlay);
+    setTheme(isDark);
+    applyOrbit();
+    bindControls(cv);
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(host); else window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", () => (visible = !document.hidden));
+    resize();
+    requestAnimationFrame(loop);
+    return true;
+  }
+  const api = { init, show, view, setTheme, shoot, setScore, get ok() { return ok; }, onStrip: null, _dbg: () => ({ ctrl, tweens, overlay }) };
+  return api;
+})();
+
+/* Le Stade des Fractions — interface. */
+(() => {
+  "use strict";
+  const S = COURSE.stations;
+  const KEY = "stade-fractions-v1";
+  const $ = (sel, el) => (el || document).querySelector(sel);
+  const state = {
+    view: "accueil", station: 0, tab: "regarde", preset: 0, step: 0,
+    prenom: "", maillot: 10,
+    res: {},          // res[stationId][qi] = { tries: [..], status: "first"|"second"|"shown" }
+    qi: {},           // question courante par station
+    against: 0,
+    free: { d: 4, n: 0, sel: null },
+    confirmReset: false
+  };
+  const canPrint = (() => { try { return window.self === window.top; } catch (e) { return false; } })();
+
+  /* ── stockage (facultatif) ── */
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY); if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d && typeof d === "object") {
+        state.prenom = d.prenom || ""; state.maillot = d.maillot || 10;
+        state.res = d.res || {}; state.qi = d.qi || {}; state.against = d.against || 0;
+      }
+    } catch (e) { /* stockage indisponible : on continue sans */ }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify({ prenom: state.prenom, maillot: state.maillot, res: state.res, qi: state.qi, against: state.against })); } catch (e) { /* rien */ }
+  }
+
+  /* ── texte : échappement, espaces fines françaises, fractions empilées ── */
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  function fr(s) {
+    let h = esc(s).replace(/ ([?!:;])/g, " $1").replace(/« /g, "« ").replace(/ »/g, " »");
+    return h.replace(/(\d+)\/(\d+)/g, (m, a, b) => `<span class="fr" role="img" aria-label="${a} sur ${b}"><span class="n">${a}</span><span class="d">${b}</span></span>`);
+  }
+  const plain = (s) => String(s).replace(/ ([?!:;])/g, " $1");
+
+  /* ── maths ── */
+  const gcd = (a, b) => (b ? gcd(b, a % b) : Math.abs(a));
+  const simp = ([n, d]) => { const g = gcd(n, d) || 1; return [n / g, d / g]; };
+  const eqFrac = (a, b) => a[0] * b[1] === a[1] * b[0];
+  const cmpSign = (l, r) => { const x = l[0] * r[1] - r[0] * l[1]; return x > 0 ? ">" : x < 0 ? "<" : "="; };
+  function mixed([n, d]) { if (n <= d || d === 0) return ""; const w = Math.floor(n / d), r = n % d; return r ? ` = ${w} et ${r}/${d}` : ` = ${w}`; }
+
+  /* ── résultats ── */
+  const R = (sid) => (state.res[sid] = state.res[sid] || {});
+  function stationStats(sid) {
+    const r = state.res[sid] || {}, q = S[sid].questions.length;
+    let first = 0, second = 0, shown = 0;
+    Object.values(r).forEach((x) => { if (x.status === "first") first++; else if (x.status === "second") second++; else if (x.status === "shown") shown++; });
+    return { q, first, second, shown, done: first + second + shown };
+  }
+  const goals = () => (state.res[6] ? Object.values(state.res[6]).filter((x) => x.status === "first" || x.status === "second").length : 0);
+
+  /* ── scène 3D ── */
+  const isDark = () => {
+    const t = document.documentElement.getAttribute("data-theme");
+    if (t === "dark") return true; if (t === "light") return false;
+    return !!(window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches);
+  };
+  let gl = false;
+  function sceneFor(st, s, fresh) {
+    if (!gl) return;
+    Stage.show(st.scene, Object.assign({}, s || {}, fresh ? { fresh: true } : {}));
+  }
+  function caption(parts) {
+    const el = $("#caption");
+    el.innerHTML = (parts || []).filter(Boolean).map((p) => `<span>${fr(p)}</span>`).join("");
+  }
+
+  /* ── rendu ── */
+  function render() {
+    renderTop();
+    const p = $("#panel");
+    if (state.view === "accueil") p.innerHTML = viewHome();
+    else if (state.view === "guide") p.innerHTML = viewGuide();
+    else if (state.view === "bilan") p.innerHTML = viewBilan();
+    else p.innerHTML = viewStation();
+    bindPanel();
+  }
+  function renderTop() {
+    $("#who").textContent = state.prenom || "Toi";
+    const gN = goals(); $("#goals").textContent = `${gN} ${gN > 1 ? "buts" : "but"}`;
+    document.querySelectorAll(".top-nav button").forEach((b) => { if (b.dataset.go === state.view) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+    const prog = $("#program");
+    prog.innerHTML = S.map((st) => {
+      const x = stationStats(st.id);
+      const cur = state.view === "station" && state.station === st.id;
+      const done = x.done === x.q;
+      return `<li><button data-station="${st.id}" class="${done ? "done" : ""}" ${cur ? 'aria-current="step"' : ""}><span class="num">${st.id === 6 ? "★" : st.id}</span><span>${esc(st.short)}</span><span class="tick">${x.done ? `${x.first + x.second} sur ${x.q}` : ""}</span></button></li>`;
+    }).join("") + `<li class="mobile-only"><button data-go="guide" ${state.view === "guide" ? 'aria-current="step"' : ""}><span class="num">G</span><span>Guide</span></button></li><li class="mobile-only"><button data-go="bilan" ${state.view === "bilan" ? 'aria-current="step"' : ""}><span class="num">B</span><span>Bilan</span></button></li>`;
+    if (gl) Stage.setScore(state.prenom || "Toi", goals(), state.against, state.maillot);
+  }
+
+  function viewHome() {
+    caption(["Le stade : un terrain de 105 m sur 68 m et une piste de 400 m.", "Fais glisser pour tourner autour."]);
+    if (gl) Stage.show("home");
+    const plan = S.map((st) => `<li><span class="num">${st.id === 6 ? "★" : st.id}</span><span><b>${esc(st.short)}</b> — ${fr(st.title)}</span></li>`).join("");
+    return `<div class="panel-inner">
+      <div class="hero">
+        <div class="stripe" aria-hidden="true"></div>
+        <h1>Le Stade des Fractions</h1>
+        <p class="lede">${fr("Sept étapes pour comprendre les fractions avec le football et la course : ce qu'est une fraction, comparer, additionner, soustraire, prendre une fraction d'un nombre, et retrouver le tout.")}</p>
+      </div>
+      <div class="gblock">
+        <div class="field"><label for="prenom">Ton prénom (il s'affichera sur le tableau du stade)</label><input id="prenom" autocomplete="off" maxlength="16" value="${esc(state.prenom)}" placeholder="Ton prénom"></div>
+        <div class="field"><label for="maillot">Ton numéro de maillot</label><input id="maillot" inputmode="numeric" maxlength="2" value="${esc(state.maillot)}" style="max-width:110px"></div>
+        <div class="row"><button class="btn primary" data-station="0">Commencer l'échauffement ▶</button><button class="btn" data-go="guide">Pour le guide (le parent)</button></div>
+      </div>
+      <div class="doc">
+        <h2>Le programme du match</h2>
+        <ol class="plan">${plan}</ol>
+        <p class="muted">${fr("Chaque étape a trois parties : « Regarde » (l'idée en images), « Pourquoi ? » (l'explication) et « À toi ! » (5 questions). Une étape par séance de 20 minutes environ.")}</p>
+      </div>
+    </div>`;
+  }
+
+  function viewStation() {
+    const st = S[state.station];
+    const tabs = [["regarde", "Regarde"], ["pourquoi", "Pourquoi ?"], ["atoi", st.id === 6 ? "Le match" : "À toi !"], ["guide", "Guide"]];
+    let body = "";
+    if (state.tab === "regarde") body = st.id === 6 ? tabMatchIntro(st) : tabRegarde(st);
+    else if (state.tab === "pourquoi") body = tabPourquoi(st);
+    else if (state.tab === "atoi") body = tabQuestions(st);
+    else body = tabGuide(st);
+    return `<div class="panel-inner">
+      <div><p class="eyebrow">${st.id === 6 ? "Finale" : "Étape " + st.id} · ${esc(st.short)}</p><h2 class="title">${fr(st.title)}</h2></div>
+      <p class="lede">${fr(st.intro)}</p>
+      <div class="tabs" role="tablist">${tabs.map(([k, l]) => `<button role="tab" data-tab="${k}" aria-selected="${state.tab === k}">${fr(l)}</button>`).join("")}</div>
+      <div role="tabpanel">${body}</div>
+    </div>`;
+  }
+
+  function tabRegarde(st) {
+    const pr = st.presets[state.preset] || st.presets[0];
+    const step = pr.steps[Math.min(state.step, pr.steps.length - 1)];
+    if (st.id === 0 && state.free.active) { sceneFor(st, { d: state.free.d, n: state.free.n, sel: state.free.sel }, false); caption([`${state.free.n}/${state.free.d} du terrain`]); }
+    else { sceneFor(st, step.s, false); caption([pr.label]); }
+    const chips = st.presets.map((p, i) => `<button class="chip" data-preset="${i}" aria-pressed="${i === state.preset}">${fr(p.label)}</button>`).join("");
+    let free = "";
+    if (st.id === 0) {
+      free = `<div class="free">
+        <p><b>${fr("Joue toi-même")}</b> — ${fr("choisis le nombre de parts égales, puis touche les parts sur le terrain.")}</p>
+        <div class="row"><span>Parts égales :</span><span class="stepper"><button data-free="-1" aria-label="Moins de parts">−</button><output id="freeD">${state.free.d}</output><button data-free="1" aria-label="Plus de parts">+</button></span>
+        <button class="btn" data-free="go">Montrer sur le terrain</button></div>
+        <p id="freeOut" aria-live="polite" class="bigfrac">${state.free.active ? fr(`${state.free.n}/${state.free.d}`) : ""}</p>
+      </div>`;
+    }
+    return `<div class="doc" style="gap:16px">
+      <div class="chips" role="group" aria-label="Exemples">${chips}</div>
+      <div class="say" aria-live="polite">
+        <span class="count">Étape ${state.step + 1} / ${pr.steps.length}</span>
+        <p>${fr(step.say)}</p>
+        <div class="row">
+          <button class="btn" data-step="-1" ${state.step === 0 ? "disabled" : ""}>◀ Précédent</button>
+          ${state.step < pr.steps.length - 1 ? `<button class="btn primary" data-step="1">Suivant ▶</button>` : `<button class="btn gold" data-tab="atoi">À toi de jouer ▶</button>`}
+          <button class="btn" data-replay="1">Rejouer</button>
+        </div>
+      </div>
+      ${free}
+    </div>`;
+  }
+  function tabMatchIntro(st) {
+    if (gl) Stage.show("goal", {});
+    caption(["Point de penalty, 11 m du but."]);
+    return `<div class="doc">
+      <div class="say"><span class="count">Avant le match</span><p>${fr("Dix penaltys. Une bonne réponse, c'est un but. Une erreur, le gardien arrête le tir et tu as droit à un deuxième essai avec un indice.")}</p>
+      <div class="row"><button class="btn gold" data-tab="atoi">Entrer sur le terrain ▶</button><button class="btn" data-shot="1">Tir d'essai</button></div></div>
+      <h3>Les cinq règles à retenir</h3>
+      <ul class="why">${st.why.map((w) => `<li>${fr(w)}</li>`).join("")}</ul>
+    </div>`;
+  }
+  function tabPourquoi(st) {
+    const pr = st.presets ? st.presets[state.preset] || st.presets[0] : null;
+    if (pr) { const step = pr.steps[pr.steps.length - 1]; sceneFor(st, step.s, false); caption([pr.label]); }
+    return `<div class="doc"><ul class="why">${st.why.map((w) => `<li>${fr(w)}</li>`).join("")}</ul>
+      <div class="row"><button class="btn gold" data-tab="atoi">${st.id === 6 ? "Au match ▶" : "À toi de jouer ▶"}</button></div></div>`;
+  }
+
+  /* ── questions ── */
+  let qstate = { tries: 0, answered: false, msg: null };
+  let lastQKey = "";
+  function curQ(st) { const i = state.qi[st.id] || 0; return [i, st.questions[i]]; }
+  function tabQuestions(st) {
+    const [i, q] = curQ(st);
+    const r = R(st.id);
+    const total = st.questions.length;
+    const dots = st.questions.map((_, k) => `<span class="dot ${r[k] ? r[k].status : ""} ${k === i ? "now" : ""}" title="Question ${k + 1}"></span>`).join("");
+    if (i >= total) return endCard(st);
+    const qkey = `${st.id}:${i}`, freshQ = qkey !== lastQKey; lastQKey = qkey;
+    if (freshQ) qstate.help = false;
+    const helpable = q.scene && st.scene !== "pitch" && !(q.scene.mode === "whole" || q.scene.mode === "units-whole");
+    if (q.scene) {
+      const quiet = helpable && !qstate.help ? Object.assign({}, q.scene, q.scene.mode === "compare" ? { run: false } : { phase: 0 }) : q.scene;
+      sceneFor(st, quiet, freshQ);
+      caption([`Question ${i + 1}`, helpable && !qstate.help ? "Aide disponible : « Montrer sur le stade »" : null]);
+    }
+    else if (st.id === 6) { if (gl) Stage.show("goal", { reset: freshQ }); caption([`Penalty ${i + 1} sur ${total}`]); }
+    const ans = r[i];
+    const locked = !!(ans && ans.status) || qstate.answered;
+    let input = "";
+    const lastTry = ans && ans.tries && ans.tries.length ? ans.tries[ans.tries.length - 1] : null;
+    const shownVal = ans && ans.status === "shown" ? (q.t === "frac" ? q.a : q.a) : lastTry;
+    const vN = locked && Array.isArray(shownVal) ? ` value="${shownVal[0]}"` : "", vD = locked && Array.isArray(shownVal) ? ` value="${shownVal[1]}"` : "";
+    const vV = locked && shownVal != null && !Array.isArray(shownVal) ? ` value="${esc(String(shownVal).replace(".", ","))}"` : "";
+    if (q.t === "frac") input = `<div class="frac-in"><input id="an" inputmode="numeric" maxlength="3" aria-label="Nombre du haut (numérateur)"${vN} ${locked ? "disabled" : ""}><span class="bar"></span><input id="ad" inputmode="numeric" maxlength="3" aria-label="Nombre du bas (dénominateur)"${vD} ${locked ? "disabled" : ""}></div>`;
+    else if (q.t === "num") input = `<div class="num-in"><input id="av" inputmode="decimal" maxlength="7" aria-label="Ta réponse"${vV} ${locked ? "disabled" : ""}><span class="unit">${esc(q.unit || "")}</span></div>`;
+    else if (q.t === "cmp") input = `<div class="cmp"><span>${fr(`${q.l[0]}/${q.l[1]}`)}</span><span class="slot" id="cmpSlot">${locked && shownVal ? esc(ans && ans.status === "shown" ? q.a : shownVal) : "?"}</span><span>${fr(`${q.r[0]}/${q.r[1]}`)}</span></div><div class="opts" role="group" aria-label="Choisis le signe">${["<", "=", ">"].map((x) => `<button class="btn" data-pick="${esc(x)}" ${locked ? "disabled" : ""} aria-label="${x === "<" ? "plus petit que" : x === ">" ? "plus grand que" : "égal à"}">${esc(x)}</button>`).join("")}</div>`;
+    else if (q.t === "choice") input = `<div class="opts">${q.options.map((o, k) => `<button class="btn" data-pick="${k}" ${locked ? "disabled" : ""}>${esc(o)}</button>`).join("")}</div>`;
+    const showValidate = (q.t === "frac" || q.t === "num") && !locked;
+    const fb = qstate.msg ? `<div class="feedback ${qstate.msg.kind}" aria-live="polite">${qstate.msg.html}</div>` : "";
+    const next = locked ? `<button class="btn primary" data-next="1">${i + 1 < total ? (st.id === 6 ? "Penalty suivant ▶" : "Question suivante ▶") : "Terminer ▶"}</button>` : "";
+    const reveal = !locked && qstate.tries >= 2 ? `<button class="btn" data-reveal="1">Voir la réponse</button>` : "";
+    return `<div class="doc" style="gap:14px">
+      <div class="qhead"><span class="eyebrow" style="color:var(--muted)">${st.id === 6 ? "Penalty" : "Question"} ${i + 1} / ${total}</span><span class="dots" aria-hidden="true">${dots}</span></div>
+      <div class="qcard">
+        <p class="qtext">${fr(q.q)}</p>
+        <div class="answer">${input}${showValidate ? `<button class="btn primary" data-check="1">Valider</button>` : ""}</div>
+        ${fb}
+        <div class="row">${helpable && !qstate.help ? `<button class="btn" data-help="1">Montrer sur le stade (aide)</button>` : ""}${reveal}${next}</div>
+      </div>
+      <p class="muted" style="margin:0">${fr("Indice : demande à ton guide, ou relis l'onglet « Pourquoi ? ». Après deux essais, la réponse s'affiche.")}</p>
+    </div>`;
+  }
+  function endCard(st) {
+    const x = stationStats(st.id);
+    const nxt = S[st.id + 1];
+    if (st.id === 6) {
+      if (gl) Stage.show("home");
+      caption(["Coup de sifflet final !"]);
+      return `<div class="done-card"><h3>Coup de sifflet final</h3><p>${esc(state.prenom || "Toi")} ${goals()} – ${state.against} Les Fractions.</p>
+        <p>${x.first} buts du premier coup, ${x.second} au deuxième essai.</p>
+        <div class="row"><button class="btn gold" data-go="bilan">Voir le bilan et la note pour la prochaine fois ▶</button><button class="btn" data-restart="6">Rejouer le match</button></div></div>`;
+    }
+    return `<div class="done-card"><h3>Étape terminée !</h3>
+      <p>${x.first} sur ${x.q} du premier coup${x.second ? `, ${x.second} au deuxième essai` : ""}${x.shown ? `, ${x.shown} avec la réponse montrée` : ""}.</p>
+      <div class="row">${nxt ? `<button class="btn gold" data-station="${nxt.id}">Étape suivante : ${esc(nxt.short)} ▶</button>` : ""}<button class="btn" data-restart="${st.id}">Refaire les questions</button></div></div>`;
+  }
+  function trapFor(q, given) {
+    if (!q.traps) return null;
+    return q.traps.find((t) => (Array.isArray(t.a) && Array.isArray(given) ? t.a[0] === given[0] && t.a[1] === given[1] : t.a === given)) || null;
+  }
+  const cheers = ["But !", "Bien joué !", "Exact !", "Superbe frappe !", "En pleine lucarne !"];
+  function check(st, given) {
+    const [i, q] = curQ(st);
+    let ok = false, extra = "";
+    if (q.t === "frac") {
+      if (!given || given[1] === 0) { qstate.msg = { kind: "no", html: `<p>${fr("Le nombre du bas ne peut pas être 0 : on ne peut pas couper en 0 parts.")}</p>` }; render(); return; }
+      ok = eqFrac(given, q.a);
+      if (ok) {
+        const s2 = simp(q.a);
+        if (given[0] !== q.a[0] || given[1] !== q.a[1]) extra = ` On peut aussi l'écrire ${q.a[0]}/${q.a[1]}.`;
+        if (s2[0] !== q.a[0] && !(given[0] === s2[0] && given[1] === s2[1])) extra += ` En plus simple : ${s2[0]}/${s2[1]}.`;
+        if (mixed(q.a)) extra += ` ${q.a[0]}/${q.a[1]}${mixed(q.a)}.`;
+      }
+    } else if (q.t === "num") ok = Math.abs(given - q.a) < 1e-9;
+    else if (q.t === "cmp") ok = given === q.a;
+    else if (q.t === "choice") ok = given === q.a;
+    const r = R(st.id); r[i] = r[i] || { tries: [] };
+    r[i].tries.push(given);
+    qstate.tries++;
+    if (q.t === "cmp") { const sl = $("#cmpSlot"); if (sl) sl.textContent = given; }
+    if (ok) {
+      r[i].status = qstate.tries === 1 ? "first" : "second";
+      qstate.answered = true;
+      qstate.msg = { kind: "ok", html: `<strong>${cheers[(i + qstate.tries) % cheers.length]}</strong><p>${fr(q.why + extra)}</p>` };
+      save();
+      if (st.id === 6 && gl) { render(); Stage.shoot(true, () => {}); return; }
+    } else {
+      const trap = trapFor(q, given);
+      const hint = q.hint;
+      if (qstate.tries >= 2) {
+        r[i].status = "shown"; qstate.answered = true;
+        if (st.id === 6) state.against++;
+        qstate.msg = { kind: "show", html: `<p><b>Pas cette fois.</b> ${fr("La réponse : " + answerText(q) + ".")}</p><p>${fr(q.why)}</p>` };
+      } else {
+        qstate.msg = { kind: "no", html: `<p><b>${st.id === 6 ? "Arrêté par le gardien !" : "Pas encore."}</b> ${fr(trap ? learnerTrap(trap) : "Essaie encore.")}</p><p>${fr("Indice : " + hint)}</p>` };
+      }
+      save();
+      if (st.id === 6 && gl) { render(); Stage.shoot(false, () => {}); return; }
+    }
+    render();
+  }
+  function learnerTrap(t) {
+    const n = t.note;
+    if (/additionné les numérateurs et les dénominateurs|additionné aussi les dénominateurs/.test(n)) return "On n'additionne pas les nombres du bas : ils donnent la taille des parts.";
+    if (/soustrait (aussi )?les (numérateurs et les )?dénominateurs|soustrait aussi/.test(n)) return "On ne soustrait pas les nombres du bas : ils donnent la taille des parts.";
+    if (/plus grand dénominateur/.test(n)) return "Attention : plus on coupe, plus les parts sont petites.";
+    if (/au lieu de retrouver le tout/.test(n)) return "Ici on connaît une partie. Le tout doit être plus grand.";
+    if (/divisé par le numérateur/.test(n)) return "Le nombre du bas dit en combien de groupes on partage.";
+    if (/multiplié .* sans diviser/.test(n)) return "Une fraction d'un nombre est plus petite que le nombre entier (si la fraction est plus petite que 1).";
+    if (/NON coloriées|parts restantes/.test(n)) return "En bas, on compte TOUTES les parts.";
+    if (/sans vérifier/.test(n)) return "Regarde bien la taille de chaque part.";
+    if (/sans prendre les 3 groupes/.test(n)) return "Ça, c'est un seul groupe. Combien de groupes faut-il prendre ?";
+    return "Essaie encore.";
+  }
+  function answerText(q) {
+    if (q.t === "frac") return `${q.a[0]}/${q.a[1]}`;
+    if (q.t === "num") return `${String(q.a).replace(".", ",")} ${q.unit || ""}`.trim();
+    if (q.t === "cmp") return `${q.l[0]}/${q.l[1]} ${q.a} ${q.r[0]}/${q.r[1]}`;
+    if (q.t === "choice") return q.options[q.a];
+    return "";
+  }
+
+  /* ── guide ── */
+  function guideBlock(st) {
+    const g = st.guide;
+    return `<div class="gblock">
+      <p class="meta">${st.id === 6 ? "Finale" : "Étape " + st.id} · ${esc(g.time)}</p>
+      <h3>${fr(st.short + " — " + st.title)}</h3>
+      <p><b>Objectif :</b> ${fr(g.goal)}</p>
+      <p class="label">Ce que vous pouvez dire</p><ul>${g.say.map((x) => `<li>${fr(x)}</li>`).join("")}</ul>
+      <p class="label">Questions à lui poser</p><ul>${g.ask.map((x) => `<li>${fr(x)}</li>`).join("")}</ul>
+      <p class="label">À surveiller</p><ul>${g.watch.map((x) => `<li>${fr(x)}</li>`).join("")}</ul>
+      <p class="label">Sans écran</p><p>${fr(g.offscreen)}</p>
+      <p class="label">Corrigé</p><ol class="key">${st.questions.map((q) => `<li>${fr(q.q)} <b>→ ${fr(answerText(q))}</b>. ${fr(q.why)}</li>`).join("")}</ol>
+    </div>`;
+  }
+  function tabGuide(st) {
+    return `<div class="doc"><p class="muted">${fr("Cet onglet est pour vous, le guide. Les réponses sont en bas.")}</p>${guideBlock(st)}</div>`;
+  }
+  function viewGuide() {
+    if (gl) Stage.show("home");
+    caption(["Le guide : tout le parcours sur une page."]);
+    const sheet = S.map((st) => `<div class="gblock"><h3>${fr((st.id === 6 ? "Grand match" : "Étape " + st.id) + " — " + st.title)}</h3><ol class="key">${st.questions.map((q) => `<li>${fr(q.t === "cmp" ? `Compare ${q.l[0]}/${q.l[1]} et ${q.r[0]}/${q.r[1]} (<, = ou >).` : q.q)} ${q.t === "choice" ? "(" + q.options.join(" / ") + ")" : ""} ……………</li>`).join("")}</ol></div>`).join("");
+    return `<div class="panel-inner doc">
+      <div><p class="eyebrow">Pour le guide</p><h2 class="title">Comment accompagner le parcours</h2></div>
+      ${COURSE.guideIntro.map((p) => `<p>${fr(p)}</p>`).join("")}
+      ${canPrint ? `<div class="row no-print"><button class="btn primary" data-print="1">Imprimer le guide et la fiche</button></div>` : ""}
+      <h2>Étape par étape</h2>
+      ${S.map(guideBlock).join("")}
+      <h2>Fiche de l'apprenant (questions sans réponses)</h2>
+      <p class="muted">${fr("À recopier dans un cahier, ou à imprimer, pour travailler sans écran.")}</p>
+      ${sheet}
+    </div>`;
+  }
+
+  /* ── bilan et note pour la prochaine fois ── */
+  function buildNote() {
+    const name = state.prenom || "L'apprenant";
+    const today = new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
+    const lines = [];
+    lines.push(`NOTE POUR LA PROCHAINE FOIS — Le Stade des Fractions`);
+    lines.push(`Date : ${today}`);
+    lines.push(`Apprenant : ${name}, 11 ans. Thèmes qui l'aident : football et course.`);
+    lines.push("");
+    lines.push("Ce qui a été fait :");
+    let any = false;
+    S.forEach((st) => {
+      const x = stationStats(st.id);
+      if (!x.done) return; any = true;
+      lines.push(`- ${st.id === 6 ? "Grand match" : "Étape " + st.id + " (" + st.short + ")"} : ${x.first} sur ${x.q} du premier coup, ${x.second} au deuxième essai, ${x.shown} réponse(s) montrée(s).`);
+    });
+    if (!any) lines.push("- Rien pour l'instant.");
+    lines.push("");
+    const hard = [], good = [];
+    S.forEach((st) => {
+      const r = state.res[st.id] || {};
+      st.questions.forEach((q, i) => {
+        const a = r[i]; if (!a || !a.status) return;
+        if (a.status === "first") { good.push(`${st.short} : ${q.q}`); return; }
+        const firstWrong = a.tries[0];
+        const t = trapFor(q, firstWrong);
+        const shown = Array.isArray(firstWrong) ? `${firstWrong[0]}/${firstWrong[1]}` : String(firstWrong);
+        hard.push(`- ${st.short} — « ${q.q} » Première réponse : ${shown}${t ? ` (${name} ${t.note.replace(/\.$/, "")})` : ""}. Bonne réponse : ${answerText(q)}.`);
+      });
+    });
+    lines.push("Ce qui a posé problème :");
+    lines.push(...(hard.length ? hard : ["- Rien de particulier."]));
+    lines.push("");
+    lines.push(`Réussi du premier coup : ${good.length} question(s).`);
+    lines.push("");
+    const weak = S.find((st) => { const x = stationStats(st.id); return x.done === x.q && x.first < x.q - 1; });
+    const notDone = S.find((st) => stationStats(st.id).done < st.questions.length);
+    lines.push("Prochaine séance :");
+    if (weak) lines.push(`- Reprendre l'étape ${weak.id} (${weak.short}) : revoir « Pourquoi ? », puis refaire les questions.`);
+    if (notDone) lines.push(`- Continuer avec ${notDone.id === 6 ? "le Grand match" : "l'étape " + notDone.id + " (" + notDone.short + ")"}.`);
+    if (!weak && !notDone) lines.push("- Tout le parcours est fait. Idée : inventer ensemble des problèmes de fractions sur un vrai match ou une vraie course, puis passer aux fractions et aux nombres décimaux (1/2 = 0,5 ; 1/4 = 0,25).");
+    lines.push("");
+    lines.push("Pour reprendre : gardez cette note dans le cahier. Si vous utilisez un assistant IA, collez-la au début de la prochaine séance pour qu'il reparte d'ici.");
+    return lines.map(plain).join("\n");
+  }
+  function viewBilan() {
+    if (gl) Stage.show("home");
+    caption(["Bilan du parcours"]);
+    const rows = S.map((st) => { const x = stationStats(st.id); return `<tr><td>${st.id === 6 ? "★" : st.id} ${esc(st.short)}</td><td>${x.done}/${x.q}</td><td>${x.first}</td><td>${x.second}</td><td>${x.shown}</td></tr>`; }).join("");
+    const conf = state.confirmReset
+      ? `<div class="confirm"><p style="margin:0">Effacer toutes les réponses enregistrées sur cet appareil ?</p><div class="row"><button class="btn" data-reset="yes">Oui, tout effacer</button><button class="btn primary" data-reset="no">Non, garder</button></div></div>`
+      : `<button class="btn" data-reset="ask">Effacer la progression</button>`;
+    return `<div class="panel-inner doc">
+      <div><p class="eyebrow">Bilan</p><h2 class="title">Où en est ${esc(state.prenom || "l'apprenant")}</h2></div>
+      <div class="table-wrap"><table class="res"><thead><tr><th>Étape</th><th>Faites</th><th>1er coup</th><th>2e essai</th><th>Montrées</th></tr></thead><tbody>${rows}</tbody></table></div>
+      <h3>Note pour la prochaine fois</h3>
+      <p class="muted">${fr("Elle décrit ce qui s'est passé, sans juger. Gardez-la dans le cahier, ou collez-la au début de la prochaine séance.")}</p>
+      <textarea class="note" id="note" readonly aria-label="Note pour la prochaine fois">${esc(buildNote())}</textarea>
+      <div class="row"><button class="btn primary" data-copy="1">Copier la note</button><span id="copied" class="muted" aria-live="polite"></span></div>
+      <div class="row no-print">${conf}</div>
+    </div>`;
+  }
+
+  /* ── événements ── */
+  function go(view, extra) {
+    Object.assign(state, { view }, extra || {});
+    qstate = { tries: 0, answered: false, msg: null };
+    render();
+    if (window.innerWidth < 960 && state.view === "station") { const pTop = $("#panel").getBoundingClientRect().top + window.scrollY - $(".bar").offsetHeight - $("#stage-wrap").offsetHeight; if (window.scrollY > pTop + 40) window.scrollTo({ top: Math.max(0, pTop), behavior: "smooth" }); }
+  }
+  function bindPanel() {
+    const p = $("#panel");
+    const pren = $("#prenom", p), mai = $("#maillot", p);
+    if (pren) pren.addEventListener("input", () => { state.prenom = pren.value.trim().slice(0, 16); save(); renderTop(); });
+    if (mai) mai.addEventListener("input", () => { const v = parseInt(mai.value, 10); state.maillot = isNaN(v) ? 10 : Math.max(1, Math.min(99, v)); save(); renderTop(); });
+    p.querySelectorAll("input#an, input#ad, input#av").forEach((el) => el.addEventListener("keydown", (e) => { if (e.key === "Enter") { e.preventDefault(); const b = $("[data-check]", p); b && b.click(); } }));
+    const first = $("input#an, input#av", p); if (first && !first.disabled && state.view === "station") first.focus({ preventScroll: true });
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("button"); if (!b) return;
+    const d = b.dataset;
+    if (d.go) { go(d.go); return; }
+    if (d.station != null) { const id = +d.station; go("station", { station: id, tab: "regarde", preset: 0, step: 0 }); return; }
+    if (d.tab) { state.tab = d.tab; qstate = { tries: 0, answered: false, msg: null }; render(); return; }
+    const st = S[state.station];
+    if (d.preset != null) { state.free.active = false; state.preset = +d.preset; state.step = 0; const s0 = st.presets[state.preset].steps[0].s; sceneFor(st, s0, true); render(); return; }
+    if (d.step) { state.free.active = false; const pr = st.presets[state.preset]; state.step = Math.max(0, Math.min(pr.steps.length - 1, state.step + +d.step)); render(); return; }
+    if (d.replay) {
+      state.free.active = false;
+      const pr = st.presets[state.preset];
+      state.step = 0; sceneFor(st, pr.steps[0].s, true);
+      let k = 0;
+      const adv = () => { if (state.view !== "station" || state.tab !== "regarde" || S[state.station] !== st || state.preset !== st.presets.indexOf(pr)) return; if (k < pr.steps.length - 1) { k++; state.step = k; render(); setTimeout(adv, 3600); } };
+      render(); setTimeout(adv, 3200);
+      return;
+    }
+    if (d.free) {
+      if (d.free !== "go") state.free.d = Math.max(1, Math.min(12, state.free.d + +d.free));
+      state.free.active = true; state.free.n = 0; state.free.sel = null;
+      sceneFor(st, { d: state.free.d, n: 0 }, true);
+      render(); return;
+    }
+    if (d.check) {
+      const [, q] = curQ(st);
+      if (q.t === "frac") {
+        const n = parseInt($("#an").value, 10), dd = parseInt($("#ad").value, 10);
+        if (isNaN(n) || isNaN(dd)) { qstate.msg = { kind: "no", html: `<p>${fr("Écris un nombre en haut et un nombre en bas.")}</p>` }; render(); return; }
+        check(st, [n, dd]);
+      } else {
+        const v = parseFloat(String($("#av").value).replace(",", ".").replace(/\s/g, ""));
+        if (isNaN(v)) { qstate.msg = { kind: "no", html: `<p>Écris un nombre.</p>` }; render(); return; }
+        check(st, v);
+      }
+      return;
+    }
+    if (d.pick != null) { const [, q] = curQ(st); check(st, q.t === "choice" ? +d.pick : d.pick); return; }
+    if (d.reveal) {
+      const [i, q] = curQ(st); const r = R(st.id); r[i] = r[i] || { tries: [] }; r[i].status = "shown"; qstate.answered = true;
+      if (st.id === 6) state.against++;
+      qstate.msg = { kind: "show", html: `<p><b>La réponse :</b> ${fr(answerText(q))}.</p><p>${fr(q.why)}</p>` }; save(); render(); return;
+    }
+    if (d.next) { state.qi[st.id] = (state.qi[st.id] || 0) + 1; qstate = { tries: 0, answered: false, msg: null }; save(); render(); return; }
+    if (d.restart != null) { const id = +d.restart; state.res[id] = {}; state.qi[id] = 0; if (id === 6) state.against = 0; qstate = { tries: 0, answered: false, msg: null }; save(); render(); return; }
+    if (d.help) { qstate.help = true; const [, q] = curQ(st); sceneFor(st, q.scene, true); lastQKey = `${st.id}:${state.qi[st.id] || 0}`; render(); return; }
+    if (d.shot) { if (gl) Stage.shoot(true, () => {}); return; }
+    if (d.copy) {
+      const ta = $("#note"), txt = ta.value, out = $("#copied");
+      const fallback = () => { ta.focus(); ta.select(); out.textContent = "Sélectionné : copiez avec Ctrl+C (ou appui long)."; };
+      try { navigator.clipboard.writeText(txt).then(() => (out.textContent = "Note copiée."), fallback); } catch (err) { fallback(); }
+      return;
+    }
+    if (d.reset) {
+      if (d.reset === "ask") state.confirmReset = true;
+      else if (d.reset === "yes") { state.res = {}; state.qi = {}; state.against = 0; state.confirmReset = false; save(); }
+      else state.confirmReset = false;
+      render(); return;
+    }
+    if (d.print) { try { window.print(); } catch (err) { /* rien */ } return; }
+  });
+
+  /* ── démarrage ── */
+  function start() {
+    const setBar = () => { const b = $(".bar"); if (b) document.documentElement.style.setProperty("--bar-h", b.offsetHeight + "px"); };
+    setBar(); window.addEventListener("resize", setBar);
+    try { document.documentElement.lang = "fr"; } catch (e) { /* rien */ }
+    load();
+    const host = $("#stage");
+    gl = !!(window.THREE && Stage.init(host, isDark()));
+    if (!gl) host.innerHTML = `<div class="nogl"><p>La vue 3D ne s'affiche pas sur cet appareil. Toutes les explications, les questions et le guide marchent quand même.</p></div>`;
+    else {
+      $("#hint3d").hidden = false;
+      Stage.onStrip = (n, dd, sel) => {
+        state.free.active = true; state.free.n = n; state.free.d = dd || state.free.d; state.free.sel = sel || null;
+        const o = $("#freeOut"); if (o) o.innerHTML = fr(`${n}/${state.free.d}`);
+        caption([`${n}/${state.free.d} du terrain`]);
+      };
+      const mq = window.matchMedia && matchMedia("(prefers-color-scheme: dark)");
+      const upd = () => Stage.setTheme(isDark());
+      if (mq && mq.addEventListener) mq.addEventListener("change", upd);
+      new MutationObserver(upd).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    }
+    render();
+  }
+  const fontsReady = document.fonts && document.fonts.ready ? Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 1500))]) : Promise.resolve();
+  fontsReady.then(start);
+})();
+</script>
+</body>
+</html>

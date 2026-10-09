@@ -24,6 +24,10 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
     </p>
   </section>
 
+  <section class="block featured-new">
+    <p class="featured-line">Nouveau&#160;: <a href="/metadax/samples/stade-des-fractions/">Le Stade des Fractions, un parcours 3D en français</a></p>
+  </section>
+
   <section class="block" aria-labelledby="h-filters">
     <h2 id="h-filters" class="sr-only">Filter</h2>
     <div class="filters" role="group" aria-label="Filter samples">
@@ -57,6 +61,9 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
           )}
           {s.companion && (
             <p class="record"><a href={s.companion}>Play with companion notes &rarr;</a> <span class="note">guide-facing sidecar notes, shown only to the guide</span></p>
+          )}
+          {s.link && (
+            <p class="record"><a href={s.link}>Ouvrir le stade (3D) &rarr;</a></p>
           )}
           <details>
             <summary>Read the sample</summary>
@@ -101,6 +108,8 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
   </script>
 
   <style>
+    .featured-new { padding:.6rem 0; }
+    .featured-line { margin:0; font-weight:600; }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
     .filters { display:flex; gap:1.25rem; align-items:end; flex-wrap:wrap; }
     .filters label { display:flex; flex-direction:column; gap:.25rem; font-weight:600; font-size:.9rem; }
