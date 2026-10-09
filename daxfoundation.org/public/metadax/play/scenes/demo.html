@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Scenes spike (unlinked) — Meta DAX</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; padding: 1.25rem; background: #0f1420; color: #e7ecf5; }
+  h1 { font-size: 1.2rem; } h2 { font-size: 1rem; margin: 0 0 .4rem; }
+  p.note { color: #9fb0c9; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+  .card { background: #182134; border: 1px solid #263349; border-radius: 10px; padding: .75rem; }
+  .stage { width: 100%; aspect-ratio: 1 / 1; background: #0b0f19; border-radius: 8px; overflow: hidden; }
+  .alt { color: #9fb0c9; font-size: .8rem; margin: .5rem 0 0; }
+  code { color: #8fc7ff; }
+  .controls { margin: .5rem 0 1rem; }
+  label { font-size: .85rem; }
+  #err { color: #ff9a9a; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h1>Scenes spike <span style="color:#9fb0c9;font-weight:normal">(unlinked demo — not in navigation)</span></h1>
+<p class="note">Two registry scenes, two param sets each. three.js is loaded lazily from the self-hosted
+<code>../vendor/three.module.min.js</code> — nothing is fetched from a CDN. This page is not wired into the player.</p>
+<div class="controls">
+  <label><input type="checkbox" id="rm"> Reduced motion</label>
+</div>
+<div class="grid" id="grid"></div>
+<pre id="err"></pre>
+
+<script type="module">
+const CASES = [
+  { scene: "fraction-bars", title: "Fraction bars — halves & quarters", params: { denominators: [2, 4], shaded: [1, 1] } },
+  { scene: "fraction-bars", title: "Fraction bars — thirds & sixths", params: { denominators: [3, 6], shaded: [2, 5] } },
+  { scene: "clock", title: "Clock — 3:00, draggable", params: { hour: 3, minute: 0, draggable: true } },
+  { scene: "clock", title: "Clock — 10:40, draggable", params: { hour: 10, minute: 40, draggable: true } },
+];
+
+const errEl = document.getElementById("err");
+try {
+  // Lazy: three + the registry are only imported because this page has scenes.
+  const THREE = await import("../vendor/three.module.min.js");
+  const { getScene, altFor } = await import("./scenes.js");
+
+  const grid = document.getElementById("grid");
+  const rm = document.getElementById("rm");
+  const handles = [];
+
+  CASES.forEach((c) => {
+    const card = document.createElement("div");
+    card.className = "card";
+    const h = document.createElement("h2");
+    h.textContent = c.title;
+    const stage = document.createElement("div");
+    stage.className = "stage";
+    const alt = document.createElement("p");
+    alt.className = "alt";
+    alt.textContent = "Alt: " + altFor(c.scene, c.params);
+    card.append(h, stage, alt);
+    grid.appendChild(card);
+
+    const def = getScene(c.scene);
+    const handle = def.mount(THREE, stage, c.params, { reducedMotion: rm.checked });
+    handles.push(handle);
+  });
+
+  rm.addEventListener("change", () => handles.forEach((h) => h.setReducedMotion(rm.checked)));
+} catch (e) {
+  errEl.textContent = "Scene spike failed to load:\n" + (e && e.stack ? e.stack : e);
+}
+</script>
+</body>
+</html>
