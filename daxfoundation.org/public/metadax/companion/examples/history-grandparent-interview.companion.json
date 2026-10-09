@@ -1,0 +1,116 @@
+{
+  "format": "metadax-companion",
+  "v": 1,
+  "ref": "sample-history-grandparent-interview",
+  "session": 1,
+  "pairs_with": {
+    "package": "metadax-package",
+    "sample_id": "history-grandparent-interview"
+  },
+  "next_step": {
+    "guide": "Before the interview, help the learner turn his three questions into open ones, and agree a quiet signal for “ask the next one” so you can sit in without taking over.",
+    "learner": "Write your three questions and pick the one whose answer you most want to hear."
+  },
+  "reach": {
+    "alone": "Ask a prepared question and write the answer down in his own words.",
+    "with_help": "With a guide nearby, follow a live thread the grandparent opens instead of rushing to the next question.",
+    "not_yet": "Running a long unscripted interview and shaping a full local history in one sitting — keep it to three questions today."
+  },
+  "signals": [
+    {
+      "watch": "whether he follows a thread the grandparent opens",
+      "looks_like": "he pauses his list and asks “what was that like?”",
+      "not": "a judgement that he is or is not “a natural interviewer”",
+      "then": { "action": "surface_to_guide", "note": "let the guide decide whether to nudge the live thread" }
+    },
+    {
+      "watch": "whether a question drew a story or a number",
+      "looks_like": "“how many shops” got a count; “what did the street look like” got a scene",
+      "not": "a verdict that a question the learner wrote is “wrong”",
+      "then": { "action": "offer", "note": "offer an open rephrasing as one way" }
+    },
+    {
+      "watch": "source handling in the game",
+      "looks_like": "he marks a told-to-them memory as firsthand",
+      "not": "a conclusion that he “can’t tell sources apart” as a trait",
+      "then": { "action": "log_only" }
+    }
+  ],
+  "interventions": {
+    "companion_may": [
+      {
+        "move": "offer an open rephrasing of a question the learner wrote",
+        "ceiling": "suggest wording only; the learner keeps or changes it, and the companion never asks the question for him"
+      },
+      {
+        "move": "surface to the guide when a thread opens mid-interview",
+        "ceiling": "raise it quietly to the guide; never interrupt the grandparent or redirect the learner"
+      }
+    ],
+    "guide_only": [
+      {
+        "reserved": "reading the room during the interview — letting a silence run when a memory wants more",
+        "why": "only a person present can feel when to wait, and that judgement is the heart of the session"
+      },
+      {
+        "reserved": "deciding which memories are the family’s to share and which to leave",
+        "why": "a consent and care judgement no file or service should make for a family"
+      },
+      {
+        "reserved": "choosing which plain spoken line to keep exactly as it was said",
+        "why": "hearing the one vivid line and building the passage around it is a human ear’s work"
+      }
+    ]
+  },
+  "techniques": [
+    {
+      "move": "turn one session into a real interview the learner conducts, then shape the answers into a first page of local history",
+      "concept": "history as a real person’s firsthand account, handled like a source",
+      "stuck_signature": "treats history as dates and names and cannot see it as something that happened to actual people",
+      "provenance": "guide",
+      "status": "pending_review",
+      "one_way": true
+    }
+  ],
+  "services": [
+    {
+      "capability": "speech-to-text transcription",
+      "for": "turning the recorded interview into rough notes the learner can shape",
+      "boundary": "transcribes only on request and keeps no copy of the audio or the text",
+      "offline_fallback": "the learner takes written notes by hand during the interview"
+    },
+    {
+      "capability": "timeline layout",
+      "for": "placing one remembered change on a before-and-after line in level three",
+      "boundary": "renders only what the learner enters; makes no inference about the person",
+      "offline_fallback": "draw the before-and-after line on paper"
+    }
+  ],
+  "cadence": {
+    "authored_for": "once-a-day bundle",
+    "bundle": {
+      "does": "carries the whole session — the three questions, the source-sorting game, and the guide’s reserved work — in one file a person reads in full",
+      "cannot": "cannot hear the interview as it happens or feel the silence that means a memory wants more; that catch stays with the guide"
+    },
+    "continuous": {
+      "unlocks": "could offer an open rephrasing in the moment a closed question lands flat",
+      "still_guide_only": "reading the room and choosing which line to keep stay with the guide no matter the connection"
+    }
+  },
+  "record_hooks": [
+    {
+      "on": "session end",
+      "writes": "which source types the learner sorted confidently and which he rephrased, as behaviour",
+      "event": "summary",
+      "consent": "guide",
+      "visibility": "guide"
+    },
+    {
+      "on": "a missed source-sort in the game",
+      "writes": "the specific source-handling slip, never a trait",
+      "event": "note",
+      "consent": "standing",
+      "visibility": "guide"
+    }
+  ]
+}

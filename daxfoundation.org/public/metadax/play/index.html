@@ -34,6 +34,14 @@
   .warn { border:1px solid #c7951f; background:#c7951f14; color:#9a7414; padding:.6rem .8rem; border-radius:8px; margin:1rem 0; font-size:.85rem; }
   .muted { color:var(--muted); }
   ul { margin:.3rem 0; padding-left:1.3rem; }
+  details#companion-box { margin:.6rem 0 0; }
+  details#companion-box summary { cursor:pointer; color:var(--muted); font-size:.9rem; padding:.2rem 0; }
+  details#companion-box .cnote { font-size:.82rem; margin:.5rem 0; }
+  .gnotes { border:1px solid var(--accent); border-radius:8px; padding:.7rem .9rem; margin:0 0 1rem; background:var(--chip); }
+  .gnotes h3 { margin:.1rem 0 .5rem; font-size:1rem; }
+  .gnotes .gn-item { margin:.5rem 0; }
+  .gnotes .gn-k { font-weight:600; }
+  .gnotes .gn-sub { color:var(--muted); font-size:.9rem; }
 </style>
 </head>
 <body>
@@ -42,6 +50,11 @@
   <h1>Play a MetaDAX package</h1>
   <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
   <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
+  <details id="companion-box">
+    <summary>Companion notes (optional)</summary>
+    <p class="muted cnote">Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.</p>
+    <textarea id="companion-src" placeholder='{ "format": "metadax-companion", ... }' aria-label="Companion notes JSON (optional)"></textarea>
+  </details>
   <p><button id="play">Play</button></p>
   <div id="report"></div>
   <div id="out"></div>
@@ -55,6 +68,73 @@
   var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
   function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
   function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+
+  // ---- companion.json sidecar (optional) --------------------------------
+  // Pure checks copied inline from companion/validate-companion.mjs, the same
+  // way package-check.js sits beside this player: the structural keys plus the
+  // invariants JSON Schema can't express (every signal names its "not", the
+  // guide-only work is non-empty, a technique is offered as one way). Returns
+  // null when the sidecar is good, or one short reason it is not. A sidecar
+  // that fails any check is simply dropped — the package plays without it.
+  var THEN_ACTIONS = { offer:1, surface_to_guide:1, pause:1, log_only:1 };
+  function checkCompanion(c){
+    if (c === null || typeof c !== "object" || Array.isArray(c)) return "it is not an object";
+    if (c.format !== "metadax-companion") return 'its format is not "metadax-companion"';
+    if (!c.pairs_with || typeof c.pairs_with.sample_id !== "string" || !c.pairs_with.sample_id) return "it does not say which package it pairs with";
+    if (!c.next_step || typeof c.next_step.guide !== "string" || typeof c.next_step.learner !== "string") return "next_step needs a single guide and learner line";
+    if (!c.reach || typeof c.reach.with_help !== "string" || !c.reach.with_help) return "reach.with_help is missing";
+    if (!Array.isArray(c.signals) || c.signals.length < 1) return "it carries no signals";
+    for (var i=0;i<c.signals.length;i++){ var s=c.signals[i]||{};
+      if (typeof s.not !== "string" || !s.not) return "a signal is missing its “not” (the inference it must never become)";
+      if (!s.then || !THEN_ACTIONS[s.then.action]) return "a signal has an action a companion may not take";
+    }
+    var go = c.interventions && c.interventions.guide_only;
+    if (!Array.isArray(go) || go.length < 1) return "it leaves the human guide nothing reserved";
+    for (var j=0;j<go.length;j++){ if(!go[j] || typeof go[j].reserved!=="string" || !go[j].reserved) return "a reserved guide item is empty"; }
+    if (c.techniques !== undefined){
+      if (!Array.isArray(c.techniques)) return "techniques is not a list";
+      for (var k=0;k<c.techniques.length;k++){ var t=c.techniques[k]||{};
+        if (t.provenance !== "guide") return "a technique must come from the guide";
+        if (t.one_way !== true) return "a technique must be offered as one way";
+      }
+    }
+    return null;
+  }
+
+  // Build the guide-facing notes block from the sidecar. Only guide-designated
+  // keys are read (next_step.guide, reach, signals, interventions.guide_only,
+  // techniques); the learner line and any learner-facing field are never shown.
+  function buildGuideNotes(c){
+    var box = el("div","gnotes");
+    box.appendChild(el("h3",null,"Notes for the guide"));
+    function item(k, v, sub){
+      var d = el("div","gn-item");
+      d.appendChild(el("span","gn-k", k + ": "));
+      d.appendChild(document.createTextNode(v));
+      if (sub){ var p = el("div","gn-sub", sub); d.appendChild(p); }
+      box.appendChild(d);
+    }
+    if (c.next_step && c.next_step.guide) item("Your next step", c.next_step.guide);
+    if (c.reach && c.reach.with_help) item("Where to aim", "with help — " + c.reach.with_help, c.reach.not_yet ? ("Not yet: " + c.reach.not_yet) : null);
+    (c.signals||[]).forEach(function(s){ item("Watch", s.watch + (s.looks_like?(" — looks like: "+s.looks_like):""), "Never conclude: " + s.not); });
+    ((c.interventions&&c.interventions.guide_only)||[]).forEach(function(g){ item("Reserved for you", g.reserved, g.why ? ("Why: "+g.why) : null); });
+    (c.techniques||[]).forEach(function(t){ item("A move on record (one way)", t.move, t.concept ? ("For: "+t.concept) : null); });
+    return box;
+  }
+
+  // ?companion=<url> — fetch a same-origin sidecar so the library can link
+  // "play with companion notes". Cross-origin URLs are ignored.
+  var urlCompanion = null;
+  function sameOrigin(u){ try { var r = new URL(u, location.href); return r.origin === location.origin ? r.href : null; } catch(e){ return null; } }
+  (function loadCompanionFromQuery(){
+    var cu = new URLSearchParams(location.search).get("companion");
+    if (!cu) return;
+    var safe = sameOrigin(cu);
+    if (!safe) return;
+    fetch(safe).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) urlCompanion = j; })
+      .catch(function(){});
+  })();
 
   // Resolve a who/for_age tag into a human chip: "<nickname> · ages <band>".
   // This is the read-only render of the split: which learner does which part.
@@ -166,7 +246,7 @@
     container.appendChild(q);
   }
 
-  function renderPackage(pkg){
+  function renderPackage(pkg, companion){
     var out = document.getElementById("out"); out.innerHTML="";
     out.appendChild(el("h2",null,inline(pkg.title||"Package")));
     out.appendChild(el("p","muted",(pkg.word||"session")+" "+(pkg.session||1)));
@@ -199,6 +279,13 @@
     });
     out.appendChild(tabs);
     Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
+
+    // Optional companion sidecar: its guide-facing notes go at the top of the
+    // guide pane only. Gated on `companion`, so a package with no sidecar
+    // renders exactly as before — this branch never runs.
+    if (companion && panes.guide){
+      panes.guide.insertBefore(buildGuideNotes(companion), panes.guide.firstChild);
+    }
 
     // Print this: a paper-first render of the learner side, same package, same link scheme.
     var pr = el("p"); var pb = el("button",null,"Print this"); pb.style.background="transparent"; pb.style.color="var(--accent)"; pb.style.border="1px solid var(--accent)";
@@ -234,8 +321,25 @@
       var eu=el("ul"); res.errors.forEach(function(x){eu.appendChild(el("li",null,x.path+" — "+x.msg));}); e2.appendChild(eu); rep.appendChild(e2);
       document.getElementById("out").innerHTML=""; return;
     }
-    renderPackage(pkg);
+
+    // Optional companion sidecar, from the paste box or a ?companion= fetch.
+    // If it is present but does not match the shape, say so in one plain
+    // sentence and play without it.
+    var companion = null, candidate = null;
+    var cRaw = (document.getElementById("companion-src")||{}).value;
+    cRaw = cRaw ? cRaw.trim() : "";
+    if (cRaw){ try { candidate = JSON.parse(cRaw); } catch(e){ companionNote(rep, "The companion notes are not valid JSON, so this plays without them."); } }
+    else if (urlCompanion){ candidate = urlCompanion; }
+    if (candidate){
+      var cErr = checkCompanion(candidate);
+      if (cErr) companionNote(rep, "The companion notes don’t match the companion shape (" + cErr + "), so this plays without them.");
+      else companion = candidate;
+    }
+
+    renderPackage(pkg, companion);
   }
+
+  function companionNote(rep, msg){ rep.appendChild(el("div","warn", msg)); }
 
   document.getElementById("play").addEventListener("click", play);
   // optional: load check-lists.json so warnings match the gate

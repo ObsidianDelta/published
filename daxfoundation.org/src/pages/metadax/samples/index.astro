@@ -54,6 +54,9 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
           {s.record && (
             <p class="record"><a href={s.record}>See a learning record from this package &rarr;</a> <span class="note">published by the learner or guide</span></p>
           )}
+          {s.companion && (
+            <p class="record"><a href={s.companion}>Play with companion notes &rarr;</a> <span class="note">guide-facing sidecar notes, shown only to the guide</span></p>
+          )}
           <details>
             <summary>Read the sample</summary>
             <div class="body" set:html={s.html} />
