@@ -130,6 +130,29 @@
     container.appendChild(wrap);
   }
 
+  // A spoken-sound item: the guide reads the prompt aloud, the learner circles the
+  // option they hear. The answer stays off this page and goes to the guide key.
+  function renderSpokenSound(container, b, learnersByName){
+    keyEntries.push({ quiz: inline(b.title || "Say and find"),
+      item: { q: inline(b.prompt_for_guide), choices: [{ text: b.answer, correct: true }], explain: b.why } });
+    var n = keyEntries.length;
+    var q = el("div","qitem");
+    var job = jobLabel(b, learnersByName);
+    q.appendChild(el("div","qn", n + ". Guide, say this aloud" + (job ? "  (" + job + ")" : "")));
+    q.appendChild(el("p","say","“"+inline(b.prompt_for_guide)+"”"));
+    var ol = el("ul","opts");
+    (b.options||[]).forEach(function(o, i){
+      var li = el("li");
+      li.appendChild(el("span","optbox"));
+      li.appendChild(el("span","optlabel", (LETTERS[i]||"?") + "."));
+      li.appendChild(document.createTextNode(inline(o)));
+      ol.appendChild(li);
+    });
+    q.appendChild(ol);
+    q.appendChild(el("div","answerline","Circle the one you hear."));
+    container.appendChild(q);
+  }
+
   // A non-quiz game (sort/sequence/build): print the prompt and leave working room.
   function renderGame(container, b){
     var wrap = el("div","qitem");
@@ -198,6 +221,7 @@
           container.appendChild(ck); break; }
         case "faq": renderFaq(container, b, 0); break;
         case "quiz": renderQuiz(container, b, learnersByName); break;
+        case "spoken-sound": renderSpokenSound(container, b, learnersByName); break;
         case "sort": case "sequence": case "build": renderGame(container, b); break;
         default: if (b.text) container.appendChild(el("p", null, inline(b.text)));
       }

@@ -114,6 +114,15 @@
           var cu=el("ul"); (b.items||[]).forEach(function(i){cu.appendChild(el("li",null,"☐ "+inline(i)));}); ck.appendChild(cu); wrap.appendChild(ck); break; }
         case "faq": { renderFaq(wrap, b, 0); break; }
         case "quiz": { renderQuiz(wrap, b, learnersByName); break; }
+        case "spoken-sound": {
+          // Guide reads the prompt aloud; the learner taps the matching option.
+          // The page speaks nothing. The answer is marked here (a preview); the
+          // printed learner page hides it and keeps it in the guide key.
+          var ss = el("div","blk");
+          ss.appendChild(el("p","muted","Say aloud (guide): “"+inline(b.prompt_for_guide)+"”"));
+          (b.options||[]).forEach(function(o){ ss.appendChild(el("div","choice"+(o===b.answer?" correct":""),inline(o))); });
+          if(b.why) ss.appendChild(el("p","muted",inline(b.why)));
+          wrap.appendChild(ss); break; }
         case "sort": case "sequence": case "build": {
           var g = el("div","card");
           g.appendChild(el("strong",null,inline(b.title||b.type)));
