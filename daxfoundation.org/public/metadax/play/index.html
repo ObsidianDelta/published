@@ -45,9 +45,11 @@
   <p><button id="play">Play</button></p>
   <div id="report"></div>
   <div id="out"></div>
+  <div id="record"></div>
 </div>
 
 <script src="package-check.js"></script>
+<script src="record.js"></script>
 <script>
 (function(){
   var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
@@ -188,10 +190,14 @@
     });
     out.appendChild(tabs);
     Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
+
+    // session end: offer to save this session to a learning record (download only)
+    if (window.MetaDAXRecord) window.MetaDAXRecord.offer(pkg);
   }
 
   function play(){
     var rep = document.getElementById("report"); rep.innerHTML="";
+    document.getElementById("record").innerHTML="";
     var pkg;
     try { pkg = JSON.parse(document.getElementById("src").value); }
     catch(e){ rep.appendChild(el("div","err","Not valid JSON: "+e.message)); return; }

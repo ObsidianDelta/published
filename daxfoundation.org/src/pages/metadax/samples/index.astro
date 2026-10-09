@@ -51,6 +51,9 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
           <h3 class="title">{s.title || s.id}</h3>
           <p class="stuck"><strong>Stuck:</strong> {s.stuck}</p>
           <p class="meta"><strong>Loves:</strong> {s.loves} &nbsp;&middot;&nbsp; <strong>Approach:</strong> {s.approach}</p>
+          {s.record && (
+            <p class="record"><a href={s.record}>See a learning record from this package &rarr;</a> <span class="note">published by the learner or guide</span></p>
+          )}
           <details>
             <summary>Read the sample</summary>
             <div class="body" set:html={s.html} />
@@ -111,6 +114,8 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
     .item summary { cursor:pointer; font-weight:600; }
     .item .body { margin-top:.75rem; }
     .item .body :global(h2) { font-size:1.05rem; margin:1rem 0 .3rem; }
+    .item .record { margin:.4rem 0; font-size:.95rem; }
+    .item .record .note { opacity:.7; font-size:.85rem; }
     .item .src { margin-top:.5rem; font-size:.9rem; }
     .empty { opacity:.7; }
   </style>
