@@ -13,7 +13,7 @@
     "path": "/metadax/play/?sample=stade",
     "width": 390,
     "height": 844,
-    "scrollY": 0,
+    "scrollY": 600,
     "fullPage": false,
     "waitFor": ".q"
   },
