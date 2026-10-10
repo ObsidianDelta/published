@@ -1,0 +1,1353 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A five-day staff onboarding course for a fictional small bakery. Model-generated MetaDAX showcase; not certification.">
+<title>First Week at the Bakery — staff onboarding (MetaDAX showcase)</title>
+<style>/* First Week at the Bakery — warm, low-bandwidth, system fonts only (no web-font fetch).
+   Plain HTML/CSS/SVG everywhere; the only optional heavy asset is three.js r128 for one hero. */
+:root {
+  --bg: #f4ece0;
+  --surface: #fffaf3;
+  --surface-2: #f6ecdd;
+  --ink: #2a2017;
+  --muted: #6d5c49;
+  --line: #e2d3bd;
+  --crust: #8a5a2b;
+  --crust-2: #6e4621;
+  --wheat: #e8a33d;
+  --wheat-ink: #2a1a05;
+  --good: #2e7d4f;
+  --good-bg: #e4f2e8;
+  --bad: #b53a2b;
+  --bad-bg: #f8e4e0;
+  --warn: #b7791f;
+  --accent: #b4532a;
+  --focus: #1d6fb8;
+  --radius: 12px;
+  --tap: 44px;
+  --font-body: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --step-0: 1rem;
+  --step-1: 1.15rem;
+  --step-2: 1.45rem;
+  --step-3: 1.9rem;
+  --step-4: 2.4rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17120c; --surface: #211913; --surface-2: #2a2017; --ink: #f1e7d8; --muted: #b7a48d;
+    --line: #3a2d20; --crust: #d79a5c; --crust-2: #c08346; --wheat: #f0b45a; --wheat-ink: #2a1a05;
+    --good: #5fc488; --good-bg: #173322; --bad: #f08a7a; --bad-bg: #351a16; --warn: #e3b35a;
+    --accent: #e98a5c; --focus: #6cb6f0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17120c; --surface: #211913; --surface-2: #2a2017; --ink: #f1e7d8; --muted: #b7a48d;
+  --line: #3a2d20; --crust: #d79a5c; --crust-2: #c08346; --wheat: #f0b45a; --wheat-ink: #2a1a05;
+  --good: #5fc488; --good-bg: #173322; --bad: #f08a7a; --bad-bg: #351a16; --warn: #e3b35a;
+  --accent: #e98a5c; --focus: #6cb6f0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.5;
+}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+.skip {
+  position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--bg);
+  padding: 10px 14px; z-index: 50; border-radius: 0 0 8px 0;
+}
+.skip:focus { left: 0; }
+
+/* Header */
+.bar {
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  padding: 10px 16px; background: var(--surface); border-bottom: 2px solid var(--line);
+  position: sticky; top: 0; z-index: 20;
+}
+.brand { display: flex; align-items: center; gap: 10px; background: none; border: 0; cursor: pointer; color: inherit; padding: 4px; }
+.brand-mark { width: 34px; height: 34px; flex: 0 0 auto; }
+.brand-name { font-family: var(--font-display); font-weight: 700; font-size: var(--step-2); color: var(--crust-2); }
+.brand-sub { font-size: .8rem; color: var(--muted); }
+.bar-spacer { flex: 1 1 auto; }
+.bar button.ghost {
+  min-height: var(--tap); padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--surface-2); color: var(--ink); cursor: pointer; font-size: .95rem;
+}
+.bar button.ghost:hover { border-color: var(--crust); }
+
+/* Day rail */
+.rail-wrap { background: var(--surface-2); border-bottom: 1px solid var(--line); overflow-x: auto; }
+.rail {
+  display: flex; gap: 8px; list-style: none; margin: 0; padding: 10px 16px; min-width: max-content;
+}
+.rail button {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px;
+  min-width: 150px; min-height: var(--tap); padding: 8px 12px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink);
+  text-align: left;
+}
+.rail button[aria-current="true"] { border-color: var(--crust); box-shadow: inset 0 0 0 2px var(--crust); }
+.rail .day-tag { font-size: .75rem; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.rail .day-name { font-weight: 600; font-size: .98rem; }
+.rail .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line); display: inline-block; }
+.rail .dot.done { background: var(--good); }
+
+/* Layout */
+.layout { max-width: 940px; margin: 0 auto; padding: 18px 16px 40px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; margin-bottom: 18px; }
+.day-head h1 { margin: 0 0 4px; font-size: var(--step-3); color: var(--crust-2); }
+.day-head .meta { color: var(--muted); font-size: .92rem; margin: 0 0 4px; }
+
+/* Tabs */
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 2px solid var(--line); margin: 14px 0 0; }
+.tabs button {
+  min-height: var(--tap); padding: 8px 14px; cursor: pointer; border: 1px solid var(--line);
+  border-bottom: none; border-radius: 10px 10px 0 0; background: var(--surface-2); color: var(--muted);
+  font-size: .98rem; font-weight: 600;
+}
+.tabs button[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: inset 0 3px 0 var(--wheat); margin-bottom: -2px; }
+.panel { padding: 16px 2px 2px; }
+.panel h2 { font-size: var(--step-2); margin: 0 0 6px; }
+.panel h3 { font-size: var(--step-1); margin: 16px 0 4px; }
+.panel p { margin: 6px 0; }
+.read-section { border-left: 3px solid var(--wheat); padding-left: 12px; margin: 14px 0; }
+.read-section h3 { margin-top: 0; }
+.keybox { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 14px 0; }
+.keybox ul { margin: 6px 0 0; padding-left: 20px; }
+.keybox li { margin: 3px 0; }
+
+/* Buttons / controls */
+.btn {
+  min-height: var(--tap); padding: 10px 16px; cursor: pointer; border-radius: 10px; font-size: 1rem;
+  border: 1px solid var(--crust); background: var(--crust); color: #fff; font-weight: 600;
+}
+.btn.secondary { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.btn:hover { filter: brightness(1.05); }
+.btn[disabled] { opacity: .5; cursor: default; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 12px 0; }
+
+/* Checks (quiz) */
+.q { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; margin: 12px 0; background: var(--surface); }
+.q .qtext { font-weight: 600; margin: 0 0 8px; }
+.q .opts { display: grid; gap: 8px; }
+.q .opt {
+  display: flex; gap: 10px; align-items: flex-start; min-height: var(--tap); padding: 8px 12px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); text-align: left; color: inherit; font-size: 1rem;
+}
+.q .opt:hover { border-color: var(--crust); }
+.q .opt[aria-pressed="true"] { border-color: var(--crust); box-shadow: inset 0 0 0 2px var(--crust); }
+.q .opt.correct { background: var(--good-bg); border-color: var(--good); }
+.q .opt.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.q .why { margin: 8px 0 0; font-size: .92rem; color: var(--muted); }
+.q .why.show { color: var(--ink); }
+.result { font-weight: 700; margin: 10px 0; }
+.result.pass { color: var(--good); }
+
+/* Manager note */
+.mnote ul { padding-left: 20px; }
+.mnote .signoff {
+  margin-top: 16px; padding: 14px; border: 1px dashed var(--crust); border-radius: 10px; background: var(--surface-2);
+}
+.sign-line { border-bottom: 1px solid var(--ink); display: inline-block; min-width: 180px; height: 1.4em; margin: 0 6px; }
+
+/* Activities */
+.activity-intro { color: var(--muted); margin-bottom: 10px; }
+.stage-wrap { position: relative; }
+.floor {
+  width: 100%; aspect-ratio: 16 / 10; background: var(--surface-2); border: 1px solid var(--line);
+  border-radius: 10px; display: block;
+}
+#floor3d { width: 100%; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; display: none; background: #0d1117; }
+.zone-info { margin-top: 10px; padding: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; min-height: 64px; }
+.floor-hotspot { cursor: pointer; }
+.floor-hotspot:focus-visible rect, .floor-hotspot:focus-visible circle { outline: none; }
+
+/* drag-order checklist */
+.orderlist { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 8px; }
+.orderlist li {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; min-height: var(--tap);
+  border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); cursor: grab; touch-action: manipulation;
+}
+.orderlist li.dragging { opacity: .5; }
+.orderlist li.over { border-color: var(--crust); box-shadow: inset 0 0 0 2px var(--crust); }
+.orderlist li.right { background: var(--good-bg); border-color: var(--good); }
+.orderlist li.wrong { background: var(--bad-bg); border-color: var(--bad); }
+.orderlist .num { font-weight: 700; color: var(--crust); min-width: 1.4em; }
+.orderlist .move { margin-left: auto; display: flex; gap: 4px; }
+.orderlist .move button { min-width: 36px; min-height: 36px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; font-size: 1.1rem; }
+
+/* allergen matcher */
+.match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bin { border: 2px dashed var(--line); border-radius: 10px; padding: 10px; min-height: 90px; background: var(--surface-2); }
+.bin.over { border-color: var(--crust); }
+.bin h4 { margin: 0 0 8px; font-size: 1rem; }
+.cards { display: flex; flex-wrap: wrap; gap: 8px; }
+.pcard {
+  padding: 8px 10px; min-height: var(--tap); border: 1px solid var(--line); border-radius: 8px; background: var(--surface);
+  cursor: grab; display: flex; align-items: center; gap: 8px; font-size: .95rem;
+}
+.pcard.placed { opacity: .9; }
+.pcard.right { border-color: var(--good); background: var(--good-bg); }
+.pcard.wrong { border-color: var(--bad); background: var(--bad-bg); }
+.pcard .emoji { font-size: 1.2rem; }
+
+/* spot the hazard */
+.hazard-scene { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface-2); display: block; }
+.hz { cursor: pointer; }
+.hz-hit { fill: transparent; stroke: transparent; }
+.hz.found .hz-hit { stroke: var(--good); stroke-width: 3; fill: rgba(46,125,79,.12); }
+.hz-label { font-size: 12px; fill: var(--ink); }
+
+/* scenario */
+.scene { background: var(--surface-2); border: 1px solid var(--line); border-radius: 10px; padding: 14px; margin: 10px 0; }
+.scene .say { font-style: italic; }
+.choices { display: grid; gap: 8px; margin-top: 10px; }
+.consequence { margin-top: 10px; padding: 12px; border-radius: 10px; }
+.consequence.good { background: var(--good-bg); border: 1px solid var(--good); }
+.consequence.meh { background: var(--surface); border: 1px solid var(--warn); }
+.consequence.bad { background: var(--bad-bg); border: 1px solid var(--bad); }
+
+/* Make it yours */
+.makeyours { background: linear-gradient(180deg, var(--surface), var(--surface-2)); border: 2px solid var(--wheat); }
+.makeyours h2 { color: var(--crust-2); }
+.brief-template { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; overflow-x: auto; }
+.brief-template pre { margin: 0; white-space: pre-wrap; font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; font-size: .9rem; line-height: 1.45; }
+
+/* footer */
+.foot { max-width: 940px; margin: 0 auto; padding: 18px 16px 60px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); }
+.badge { display: inline-block; font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+
+/* Print job aids (hidden on screen) */
+.print-only { display: none; }
+
+@media (max-width: 560px) {
+  :root { --step-3: 1.6rem; --step-2: 1.3rem; }
+  .match-grid { grid-template-columns: 1fr; }
+  .layout { padding: 12px 10px 32px; }
+  .card { padding: 14px; }
+  .brand-name { font-size: var(--step-1); }
+}
+
+@media print {
+  .bar, .rail-wrap, .tabs, .makeyours, .foot, .no-print, #floor3d, .row .btn { display: none !important; }
+  body { background: #fff; color: #000; font-size: 11pt; }
+  .layout, .screen-only { display: none !important; }
+  .print-only { display: block; }
+  .job-aid {
+    page-break-after: always; break-after: page; padding: 0; border: none;
+  }
+  .job-aid:last-child { page-break-after: auto; }
+  .job-aid h1 { font-size: 20pt; margin: 0 0 2mm; border-bottom: 2px solid #000; padding-bottom: 1mm; }
+  .job-aid h2 { font-size: 12pt; margin: 3mm 0 1mm; }
+  .job-aid ul, .job-aid ol { margin: 1mm 0; padding-left: 7mm; }
+  .job-aid li { margin: 0.6mm 0; }
+  .job-aid .signoff { border: 1px solid #000; padding: 2mm 3mm; margin-top: 3mm; }
+  .job-aid .foot-note { font-size: 8pt; color: #333; margin-top: 3mm; }
+  .sign-line { border-bottom: 1px solid #000; min-width: 40mm; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="bar">
+  <button class="brand" data-go="day1" aria-label="First Week at the Bakery — go to Day 1">
+    <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M6 24c0-7 6-12 14-12s14 5 14 12c0 3-2 5-5 5H11c-3 0-5-2-5-5z" fill="#e8a33d" stroke="#6e4621" stroke-width="2"/>
+      <path d="M13 17c0 3 0 7 0 10M20 15c0 4 0 9 0 12M27 17c0 3 0 7 0 10" stroke="#6e4621" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span>
+      <span class="brand-name" id="biz-name">First Week at the Bakery</span><br>
+      <span class="brand-sub" id="biz-sub">Staff onboarding · a MetaDAX showcase</span>
+    </span>
+  </button>
+  <span class="bar-spacer"></span>
+  <button class="ghost no-print" data-action="print" aria-label="Print the one-page job aids">Print job aids</button>
+  <button class="ghost no-print" data-action="theme" aria-label="Switch light or dark theme">Theme</button>
+</header>
+
+<nav class="rail-wrap" aria-label="The five-day path">
+  <ol class="rail" id="rail"></ol>
+</nav>
+
+<main id="main" class="layout screen-only" tabindex="-1">
+  <article class="card" id="day-card" aria-live="polite"></article>
+
+  <section class="card makeyours" id="makeyours" aria-labelledby="my-h">
+    <h2 id="my-h">Make this for your business</h2>
+    <p>Everything you just read — the bakery's name, its hours, the rules, the opening and
+      closing steps, the allergens on the shelf, who to tell — comes from a <strong>one-page
+      brief</strong>. Fill the brief in for your shop, café, kitchen or store, and the same
+      five-day course is rebuilt around <em>your</em> details. Nothing here is specific to
+      baking: swap "proving drawer" for "walk-in fridge" and the shape holds.</p>
+    <p>Here is the whole brief. One page is all it takes.</p>
+    <div class="brief-template" id="brief-template" aria-label="The one-page brief template"></div>
+    <p class="activity-intro">This showcase was generated from the filled-in brief below using the
+      MetaDAX course factory (MP-11 → MP-02 → MP-04). See <code>DRY-RUN.md</code> and
+      <code>BRIEF-TEMPLATE.md</code> in this folder.</p>
+  </section>
+</main>
+
+<!-- Print view: one job aid per day, each a single page. Built by app.js. -->
+<div class="print-only" id="print-aids" aria-hidden="true"></div>
+
+<footer class="foot">
+  <p><span class="badge">Example</span> &nbsp;<strong id="foot-biz">First Week at the Bakery</strong>
+    is a model-generated example for a fictional business; not legal or food-safety certification;
+    follow your local regulations.</p>
+  <p>No standard, scheme or authority is named or implied. Replace every rule with your own before use.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<script>/* content.js — all the words, questions and data for the five-day path.
+ * This is the part a one-page brief fills in. Everything identifying is fictional.
+ * Keep it audience-neutral and plain; the modifier is low-bandwidth, so text carries every
+ * objective and the only heavy asset (three.js) is optional. */
+
+const BIZ = {
+  name: "The Corner Loaf",
+  kind: "bakery",
+  sub: "A small neighbourhood bakery · 8 staff",
+  hours: "Open 7:00–17:00, Tuesday to Sunday. Staff arrive 6:00 for the morning bake.",
+  values: "We are friendly, tidy and honest. We look after each other and tell someone early when something is wrong.",
+  // "who to tell" chain — generic roles only, no real names
+  tellWho: "your shift lead first; if they are not in, the manager; for anything urgent, whoever is most senior on the floor",
+  firstAidAt: "the red box on the wall by the wash station",
+};
+
+/* Allergen set used by the matcher (the 14 commonly declared in many regions — illustrative only). */
+const ALLERGENS = ["gluten", "milk", "egg", "nuts", "peanuts", "soya", "sesame", "sulphites"];
+
+const DAYS = [
+  /* ---------------------------------------------------------------- DAY 1 */
+  {
+    n: 1, id: "day1", tag: "Day 1",
+    title: "Welcome — who we are and how we work",
+    objectiveId: "first-week-bakery/L01.M01.O01",
+    minutes: 2,
+    read: [
+      { h: "Welcome to the team",
+        p: `You are one of eight people who make ${BIZ.name} run. Today is about the place and
+            the people, not the recipes. By the end you will know where everything is, how a day
+            flows, and how we treat each other.` },
+      { h: "How a day flows",
+        p: `${BIZ.hours} The early shift bakes and sets the counter; the later shift serves,
+            restocks and closes. Shifts overlap for a handover: five minutes to say what is low,
+            what is broken and what the next shift should watch.` },
+      { h: "How we work",
+        p: `${BIZ.values} Be ready to start on time. Clean as you go — a tidy bench is a safe
+            bench. If you are unsure, ask; nobody minds a question, and a guess with food can hurt
+            someone.` },
+      { h: "Who to ask",
+        p: `When something is wrong — a spill, a broken till, a customer you cannot help — tell
+            ${BIZ.tellWho}. Telling someone early is always the right move. The first-aid kit is at
+            ${BIZ.firstAidAt}.` },
+    ],
+    activity: {
+      type: "floor3d",
+      title: "Walk the shop floor",
+      intro: `Tap each part of the shop to learn what happens there. Works as a simple plan on any phone; if your connection allows, you can switch to a 3D view.`,
+      zones: [
+        { id: "counter", name: "Front counter & till", x: 70, y: 150, w: 180, h: 70, color: "#e8a33d",
+          info: "Where we greet customers, take orders and handle payment. Keep it clean and the display stocked. Wash hands before serving after any other task." },
+        { id: "display", name: "Display case", x: 70, y: 70, w: 180, h: 60, color: "#d79a5c",
+          info: "Fresh bread and pastries on show. Every item has an allergen label. Use tongs or tissue — never bare hands on food for a customer." },
+        { id: "prep", name: "Prep bench", x: 300, y: 70, w: 150, h: 90, color: "#c08346",
+          info: "Dough, fillings and decorating. Separate boards and tools for allergen-heavy jobs. Clean down between tasks." },
+        { id: "ovens", name: "Ovens & racks", x: 300, y: 180, w: 150, h: 90, color: "#b4532a",
+          info: "The hot zone. Mitts on, call “hot behind” when you pass with a tray, and let trays cool on the rack, not the floor." },
+        { id: "wash", name: "Wash station", x: 480, y: 70, w: 110, h: 90, color: "#2e7d4f",
+          info: "Handwash sink (soap, warm water, paper towels) and the first-aid kit. This sink is for hands only — not for mopping or dishes." },
+        { id: "store", name: "Back store & fridge", x: 480, y: 180, w: 110, h: 90, color: "#6e4621",
+          info: "Dry store and the fridge. Fridge stays cold (about 1–5°C). Oldest stock in front, newest behind. Nothing on the floor." },
+      ],
+    },
+    check: [
+      { q: "Something spills on the floor during a busy morning. What is the right first move?",
+        opts: ["Finish your task, then mention it at the end of the shift",
+               "Tell someone early and deal with it now",
+               "Leave it — someone else will see it"],
+        a: 1, why: "Telling someone early and acting now stops a slip. Problems raised early are easy to fix." },
+      { q: "A customer asks a question you cannot answer about an order. You should:",
+        opts: ["Guess so they are not kept waiting",
+               "Say you are not sure and ask your shift lead or the manager",
+               "Tell them to come back tomorrow"],
+        a: 1, why: "A guess about food can hurt someone. Ask the right person — that is how we work here." },
+      { q: "Why do the shifts overlap for a few minutes?",
+        opts: ["To hand over what is low, broken or needs watching",
+               "So the till is counted twice",
+               "There is no real reason"],
+        a: 0, why: "The handover passes on what the next shift needs to know. Five minutes saves an hour." },
+    ],
+    manager: {
+      show: [
+        "Walk them round the floor in person: counter, display, prep, ovens, wash station, back store.",
+        "Introduce the team by role and point out who the shift lead is today.",
+        "Show the staff area, lockers, break arrangements and the rota.",
+        "Point out the first-aid kit, the fire exits and the handover notebook.",
+      ],
+      signoff: "I have walked {name} round the shop floor and introduced the team.",
+    },
+    aid: {
+      lead: "Know the place and the people. Start on time, clean as you go, ask when unsure.",
+      points: [
+        "Shifts: early bakes & sets up; late serves & closes. Overlap = handover.",
+        "Clean as you go. A tidy bench is a safe bench.",
+        "Unsure? Ask — never guess with food.",
+        `Tell someone early: ${BIZ.tellWho}.`,
+        `First-aid kit: ${BIZ.firstAidAt}.`,
+      ],
+    },
+  },
+
+  /* ---------------------------------------------------------------- DAY 2 */
+  {
+    n: 2, id: "day2", tag: "Day 2",
+    title: "Food-safety basics — hands, allergens, temperatures",
+    objectiveId: "first-week-bakery/L02.M01.O01",
+    minutes: 2,
+    read: [
+      { h: "Wash your hands — properly, and often",
+        p: `Wash when you arrive, after the toilet, after touching your face, bins, money or raw
+            items, and between different jobs. How: wet with warm water, soap, rub all over for
+            about 20 seconds (hum a tune), rinse, and dry with a paper towel. Dry hands matter —
+            wet hands spread more.` },
+      { h: "Allergens — never guess",
+        p: `Some people become very ill from a tiny trace of an ingredient. Common ones here are
+            gluten, milk, egg, nuts, peanuts, soya, sesame and sulphites. If a customer asks what
+            is in something, do not guess: check the allergen card or folder, and if you are still
+            unsure, say you will check with someone who knows. "Cross-contact" means an allergen
+            moving where it should not — a crumb, a shared knife, flour dust — so use clean tools
+            for allergen-aware orders.` },
+      { h: "Temperatures — cold stays cold, hot stays hot",
+        p: `The fridge keeps chilled fillings cold (about 1–5°C). Do not leave cream, custard or
+            anything with egg or milk sitting out in the warm. Food that has been baked and needs
+            chilling should be cooled and covered, then put away, not left on the side "for later".
+            When in doubt, put it away or ask.` },
+    ],
+    activity: {
+      type: "allergen-match",
+      title: "Allergen card matcher",
+      intro: "Drag each product to the allergens it contains, or tap a product then tap an allergen. Check your answers at the end. On a real counter you would read the card, not your memory.",
+      products: [
+        { id: "p1", name: "Plain white loaf", emoji: "🍞", has: ["gluten"] },
+        { id: "p2", name: "Butter croissant", emoji: "🥐", has: ["gluten", "milk"] },
+        { id: "p3", name: "Almond tart", emoji: "🧁", has: ["gluten", "milk", "egg", "nuts"] },
+        { id: "p4", name: "Sesame bagel", emoji: "🥯", has: ["gluten", "sesame"] },
+      ],
+      note: "This is an example list for a fictional shop. Your real products and labels are the source of truth.",
+    },
+    check: [
+      { q: "How long should you rub your hands with soap?",
+        opts: ["A quick splash is fine", "About 20 seconds, all over, then dry", "Only if they look dirty"],
+        a: 1, why: "About 20 seconds all over, then dry with a paper towel. Dry hands spread fewer germs." },
+      { q: "A customer asks whether a cake contains nuts and you are not sure. You should:",
+        opts: ["Say it is probably fine", "Check the allergen card, and if still unsure, ask someone who knows",
+               "Say all cakes might contain nuts, to be safe"],
+        a: 1, why: "Never guess with allergens. Check the card; if unsure, say you will check. A wrong guess can seriously harm someone." },
+      { q: "You have a tray of custard tarts cooling. The right move is:",
+        opts: ["Leave them on the side all afternoon", "Cool, cover and refrigerate; do not leave dairy and egg sitting warm",
+               "Put them straight in the display, still hot"],
+        a: 1, why: "Egg and dairy fillings must not sit in the warm. Cool, cover and chill (about 1–5°C)." },
+    ],
+    manager: {
+      show: [
+        "Show the handwash sink, soap and paper towels, and watch one proper wash.",
+        "Open the allergen folder/cards and show how to look a product up.",
+        "Show the fridge thermometer and where chilled items live.",
+        "Explain what to do the moment an allergy is mentioned at the counter.",
+      ],
+      signoff: "I have shown {name} handwashing, the allergen folder and the chilled storage, and watched them do each once.",
+    },
+    aid: {
+      lead: "Clean hands, no guessing on allergens, cold stays cold.",
+      points: [
+        "Wash: warm water, soap, 20s all over, dry with paper. Wash often and between jobs.",
+        "Allergens: gluten, milk, egg, nuts, peanuts, soya, sesame, sulphites. Check the card — never guess.",
+        "Cross-contact = a trace moving where it should not. Clean tools for allergen-aware orders.",
+        "Fridge about 1–5°C. Cool, cover and chill egg/dairy fillings; nothing warm left out.",
+      ],
+    },
+  },
+
+  /* ---------------------------------------------------------------- DAY 3 */
+  {
+    n: 3, id: "day3", tag: "Day 3",
+    title: "The opening and closing checklist",
+    objectiveId: "first-week-bakery/L03.M01.O01",
+    minutes: 2,
+    read: [
+      { h: "Why we use a checklist",
+        p: `Mornings are busy and memory is unreliable at 6 a.m. A checklist means nothing
+            important is missed — the lights, the fridge temperature, clean hands before the first
+            tray. Everyone follows the same steps, so any shift can open or close.` },
+      { h: "Opening, in order",
+        p: `Unlock and turn on the lights. Wash your hands. Check the fridge is still cold and
+            note the temperature. Turn on the ovens to warm up. Set out the display with labels.
+            Check the till float. Unlock the door at opening time.` },
+      { h: "Closing, in order, and when a step cannot be done",
+        p: `Serve the last customer and lock the door. Put away or correctly dispose of unsold
+            food. Clean the benches and the floor. Turn off the ovens. Count the till. Check the
+            fridge door is shut. Set the alarm and lock up. If any step cannot be done — a fridge
+            reading too warm, an oven that will not turn off — do not ignore it: write it in the
+            handover notebook and tell ${BIZ.tellWho}.` },
+    ],
+    activity: {
+      type: "drag-order",
+      title: "Put the steps in order",
+      intro: "Drag the steps into the right order (or use the up/down buttons on a phone). Then check.",
+      lists: [
+        { id: "open", title: "Opening", steps: [
+          "Unlock and turn on the lights",
+          "Wash your hands",
+          "Check the fridge is cold and note the temperature",
+          "Turn on the ovens to warm up",
+          "Set out the display with allergen labels",
+          "Check the till float",
+          "Unlock the door at opening time",
+        ] },
+        { id: "close", title: "Closing", steps: [
+          "Lock the door after the last customer",
+          "Put away or dispose of unsold food",
+          "Clean the benches and the floor",
+          "Turn off the ovens",
+          "Count the till",
+          "Set the alarm and lock up",
+        ] },
+      ],
+    },
+    check: [
+      { q: "Why do we open and close from a written checklist?",
+        opts: ["So nothing important is missed and any shift can do it", "To make the shift longer", "Only new staff need it"],
+        a: 0, why: "A checklist catches what a tired memory drops, and lets anyone open or close the same way." },
+      { q: "On opening, when do you wash your hands?",
+        opts: ["After setting out the display", "Early — before handling any food or the first tray", "Only at lunchtime"],
+        a: 1, why: "Hands get washed early, before you touch food or trays. It is near the top of the list for a reason." },
+      { q: "At closing the fridge reads too warm. You should:",
+        opts: ["Leave it; the morning shift will see", "Write it in the handover notebook and tell someone", "Turn the fridge off"],
+        a: 1, why: "A step you cannot complete is never ignored — record it and tell the right person so the food stays safe." },
+    ],
+    manager: {
+      show: [
+        "Do the first opening together, step by step, from the written list.",
+        "Do the first closing together, including counting the till and setting the alarm.",
+        "Show the handover notebook and how to log a step that could not be completed.",
+        "Point out the fridge thermometer log and where readings are written.",
+      ],
+      signoff: "I have opened and closed with {name} at least once each, using the written checklist.",
+    },
+    aid: {
+      lead: "Open and close from the list. A step you cannot do gets written down and told.",
+      points: [
+        "Open: lights → wash hands → check fridge → ovens on → display + labels → till float → unlock.",
+        "Close: lock → put away food → clean → ovens off → count till → alarm & lock.",
+        "Any step you cannot complete: write it in the handover notebook and tell someone.",
+      ],
+    },
+  },
+
+  /* ---------------------------------------------------------------- DAY 4 */
+  {
+    n: 4, id: "day4", tag: "Day 4",
+    title: "Customer service and handling a complaint",
+    objectiveId: "first-week-bakery/L04.M01.O01",
+    minutes: 2,
+    read: [
+      { h: "The everyday welcome",
+        p: `Most of serving is simple: make eye contact, greet warmly, listen, and be honest about
+            what we have. If something has sold out, say so and offer the nearest thing. A friendly
+            "good morning" is most of the job.` },
+      { h: "When someone complains",
+        p: `A complaint is a chance to put things right, not an attack. Stay calm. Listen fully
+            without interrupting. Say sorry for the trouble — that is not admitting fault, it is
+            being kind. Then fix it if you can (replace or refund within what you are allowed) or
+            fetch help if you cannot. Thank them for telling us. A simple order: listen, say sorry,
+            put it right or fetch help, thank them.` },
+      { h: "When to call the manager",
+        p: `Call ${BIZ.tellWho} straight away if the complaint is about feeling unwell or an
+            allergic reaction, if someone is angry or unsafe, if they want more than you are
+            allowed to give, or if you are simply unsure. Handing it on is not failing — it is the
+            right call.` },
+    ],
+    activity: {
+      type: "scenario",
+      title: "A complaint at the counter",
+      intro: "Read what happens and choose. You will see what each choice leads to. There is often more than one okay answer — but some are clearly better.",
+      scene: {
+        say: "“I bought this loaf an hour ago and it’s not baked in the middle. I’m not happy.”",
+        choices: [
+          { t: "Listen, say sorry for the trouble, offer a fresh loaf or a refund, and thank them.",
+            tone: "good", r: "The customer relaxes. You stayed calm, put it right within what you are allowed, and thanked them for telling us. This is exactly the order to follow." },
+          { t: "Tell them the bread looked fine to you and they probably stored it wrong.",
+            tone: "bad", r: "This argues with the customer and blames them. The complaint gets worse. Never argue — listen and put it right." },
+          { t: "Say nothing you can do and walk away to serve the next person.",
+            tone: "bad", r: "Ignoring a complaint loses a customer and breaks trust. At the very least, listen and fetch someone who can help." },
+          { t: "It mentions a possible allergic reaction — handle it quietly yourself without telling anyone.",
+            tone: "meh", r: "Anything about feeling unwell or an allergic reaction goes to the manager straight away. This is one to hand on, not handle alone." },
+        ],
+      },
+    },
+    check: [
+      { q: "A good simple order for handling a complaint is:",
+        opts: ["Argue, defend, dismiss", "Listen, say sorry, put it right or fetch help, thank them", "Refund everything, always"],
+        a: 1, why: "Listen, apologise for the trouble, fix it or fetch help, and thank them. Calm and kind." },
+      { q: "Saying “I’m sorry for the trouble” means:",
+        opts: ["You are admitting the bakery broke the law", "You are being kind about their bad experience", "You must give a full refund"],
+        a: 1, why: "An apology for the trouble is kindness, not a legal admission. It calms the moment." },
+      { q: "A customer says a cake made them feel unwell. You should:",
+        opts: ["Deal with it yourself quietly", "Call the manager straight away", "Tell them to see a doctor and move on"],
+        a: 1, why: "Anything about feeling unwell or an allergic reaction goes to the manager immediately." },
+    ],
+    manager: {
+      show: [
+        "Role-play one calm complaint together, then swap roles.",
+        "Explain exactly what a new starter is allowed to offer (replace, refund limit) before fetching help.",
+        "Be clear which situations must come to you straight away (health, allergy, anger, safety).",
+        "Show where refunds and incidents get recorded.",
+      ],
+      signoff: "I have role-played a complaint with {name} and set out what they can offer and when to call me.",
+    },
+    aid: {
+      lead: "Listen, say sorry, put it right or fetch help, thank them. Hand on anything about health or safety.",
+      points: [
+        "Greet warmly, listen, be honest about what we have.",
+        "Complaint order: listen → apologise for the trouble → fix or fetch help → thank.",
+        "Sorry for the trouble = kindness, not fault.",
+        `Call ${BIZ.tellWho} for: feeling unwell / allergy, anger or safety, requests beyond your limit, or if unsure.`,
+      ],
+    },
+  },
+
+  /* ---------------------------------------------------------------- DAY 5 */
+  {
+    n: 5, id: "day5", tag: "Day 5",
+    title: "Safety — knives, ovens, slips, and who to tell",
+    objectiveId: "first-week-bakery/L05.M01.O01",
+    minutes: 2,
+    read: [
+      { h: "Knives",
+        p: `A sharp knife is safer than a blunt one — it does not slip. Cut on a board, away from
+            your body, with fingertips tucked back. Carry a knife point-down at your side, never
+            waving it. Never try to catch a falling knife: step back and let it drop. Wash and
+            store knives straight away — never leave one in the sink or on a counter edge.` },
+      { h: "Ovens and hot trays",
+        p: `Use dry oven mitts — a wet cloth carries heat straight to your hand. Say "hot behind"
+            when you pass someone with a hot tray so nobody turns into it. Put trays on the cooling
+            rack, never on the floor or a walkway. Assume metal near the oven is hot until you
+            know otherwise.` },
+      { h: "Slips, and who to tell",
+        p: `Clean spills the moment you see them and put out a wet-floor sign while the floor
+            dries. Wear flat, closed, non-slip shoes. Keep walkways and exits clear. Report every
+            injury and every near-miss (the slip that almost happened) to ${BIZ.tellWho} — near-misses
+            are how we fix a hazard before it hurts someone. The first-aid kit is at ${BIZ.firstAidAt}.` },
+    ],
+    activity: {
+      type: "spot-hazard",
+      title: "Spot the hazard",
+      intro: "Tap every hazard you can find in the kitchen scene. There are five. On a phone, tap the picture.",
+      count: 5,
+      hazards: [
+        { id: "h1", label: "Wet floor, no sign", x: 62, y: 282, w: 150, h: 42 },
+        { id: "h2", label: "Knife on the counter edge", x: 240, y: 102, w: 98, h: 26 },
+        { id: "h3", label: "Oven door left open", x: 412, y: 172, w: 126, h: 86 },
+        { id: "h4", label: "Tray cooling on the floor", x: 298, y: 252, w: 98, h: 52 },
+        { id: "h5", label: "Boxes blocking the exit", x: 542, y: 58, w: 76, h: 114 },
+      ],
+    },
+    check: [
+      { q: "Why is a sharp knife safer than a blunt one?",
+        opts: ["It looks more professional", "It does not slip, so you need less force", "It is not — blunt is always safer"],
+        a: 1, why: "A sharp blade cuts where you aim with little force; a blunt one slips and needs shoving." },
+      { q: "A knife slips off the bench towards your foot. You should:",
+        opts: ["Try to catch it", "Step back and let it fall", "Kick it away"],
+        a: 1, why: "Never catch a falling knife. Step back, let it drop, then pick it up safely." },
+      { q: "You slip on a wet patch but you are fine — nothing hurt. You should:",
+        opts: ["Say nothing, no harm done", "Tell someone — a near-miss is reported so the hazard gets fixed", "Only report it if you fall next time"],
+        a: 1, why: "Near-misses are reported so a hazard is fixed before it injures someone. Tell the right person." },
+    ],
+    manager: {
+      show: [
+        "Show safe knife carrying, cutting and storage at the bench.",
+        "Show the oven mitts, the “hot behind” habit and the cooling rack.",
+        "Show the wet-floor sign, the mop store and the spill routine.",
+        "Show the first-aid kit, the fire extinguisher and every exit, and how to report an injury or near-miss.",
+      ],
+      signoff: "I have shown {name} safe knife, oven and spill handling, the first-aid kit and exits, and how to report a near-miss.",
+    },
+    aid: {
+      lead: "Sharp knives cut down and away; call hot behind; clean spills now; report every injury and near-miss.",
+      points: [
+        "Knives: cut away from you, carry point-down, never catch a falling one, store at once.",
+        "Ovens: dry mitts, say “hot behind”, trays on the rack not the floor.",
+        "Slips: clean spills now + wet-floor sign; flat non-slip shoes; keep exits clear.",
+        `Tell ${BIZ.tellWho} about every injury and near-miss. First-aid kit: ${BIZ.firstAidAt}.`,
+      ],
+    },
+  },
+];
+
+/* The one-page brief, shown verbatim in the "Make this for your business" block and mirrored in BRIEF-TEMPLATE.md. */
+const BRIEF_TEMPLATE = `ONE-PAGE BRIEF  —  "First Week" staff course
+(fill this in for your business; the course is rebuilt from it)
+
+1. Business
+   Name:                 e.g. The Corner Loaf
+   Kind:                 bakery / cafe / kitchen / shop / ...
+   Staff count:          e.g. 8
+   Hours & shifts:       opening hours; when staff arrive; how shifts hand over
+
+2. How we work (3-5 lines)
+   Our values / tone:    e.g. friendly, tidy, honest; tell someone early
+   Who to tell:          the chain for problems (shift lead -> manager -> ...)
+   First-aid kit is at:  location
+
+3. Food-safety basics (edit to your rules)
+   Handwashing when:     arrival, after the toilet, between jobs, ...
+   Allergens we carry:   list the ones on your shelves
+   Temperatures:         fridge range; what must stay cold; cooling rule
+
+4. Opening & closing (your real steps, in order)
+   Opening steps:        1) ... 2) ... 3) ...
+   Closing steps:        1) ... 2) ... 3) ...
+   If a step can't be done: where to record it and who to tell
+
+5. Customer service
+   Everyday welcome:     how you greet and help
+   Complaint order:      e.g. listen, sorry, put right or fetch help, thank
+   Call the manager when: health/allergy, anger/safety, beyond-limit, unsure
+   A new starter may offer: replace / refund up to ...
+
+6. Safety (your equipment)
+   Knives:               carrying, cutting, storage rules
+   Hot equipment:        ovens / fryers / ...; the "hot behind" habit
+   Slips & housekeeping:  spill routine; footwear; keep exits clear
+   Report:               every injury and near-miss, to whom
+
+7. Honesty & scope
+   This is staff training, not certification. We follow our local regulations.
+   Replace every rule above with our own before use.`;
+
+/* activities.js — the light interactions. Plain DOM + SVG; no framework, no network.
+ * Drag works with pointer; every drag also has a tap/keyboard path for cheap phones. */
+
+/* tiny DOM helper */
+function el(tag, props, kids) {
+  const n = document.createElement(tag);
+  if (props) for (const k in props) {
+    if (k === "class") n.className = props[k];
+    else if (k === "html") n.innerHTML = props[k];
+    else if (k === "text") n.textContent = props[k];
+    else if (k.startsWith("on") && typeof props[k] === "function") n.addEventListener(k.slice(2), props[k]);
+    else if (props[k] != null) n.setAttribute(k, props[k]);
+  }
+  if (kids != null) (Array.isArray(kids) ? kids : [kids]).forEach(c => {
+    if (c == null) return;
+    n.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+  });
+  return n;
+}
+function clear(node) { while (node.firstChild) node.removeChild(node.firstChild); }
+
+/* ---- Checks (3-question knowledge check) ---------------------------------- */
+function renderChecks(day, mount, onPass) {
+  clear(mount);
+  mount.appendChild(el("p", { class: "activity-intro", text: "Three quick questions. Pick an answer to see why." }));
+  const state = day.check.map(() => null);
+  const result = el("p", { class: "result", "aria-live": "polite" });
+
+  day.check.forEach((item, qi) => {
+    const q = el("fieldset", { class: "q" });
+    q.appendChild(el("legend", { class: "qtext", text: `${qi + 1}. ${item.q}` }));
+    const opts = el("div", { class: "opts" });
+    const why = el("p", { class: "why", role: "status" });
+    item.opts.forEach((opt, oi) => {
+      const b = el("button", {
+        class: "opt", type: "button", "aria-pressed": "false",
+        onclick: () => {
+          if (state[qi] != null) return; // lock after first answer
+          state[qi] = oi;
+          [...opts.children].forEach((c, ci) => {
+            c.setAttribute("aria-pressed", ci === oi ? "true" : "false");
+            if (ci === item.a) c.classList.add("correct");
+            if (ci === oi && oi !== item.a) c.classList.add("wrong");
+            c.disabled = true;
+          });
+          why.textContent = (oi === item.a ? "Correct. " : "Not quite. ") + item.why;
+          why.classList.add("show");
+          const done = state.filter(s => s != null).length;
+          const got = state.filter((s, i) => s === day.check[i].a).length;
+          if (done === day.check.length) {
+            result.textContent = `You scored ${got} of ${day.check.length}.` + (got === day.check.length ? " Nicely done." : " Re-read the parts you missed.");
+            result.classList.toggle("pass", got === day.check.length);
+            if (typeof onPass === "function") onPass(got === day.check.length);
+          }
+        },
+      }, opt);
+      opts.appendChild(b);
+    });
+    q.appendChild(opts);
+    q.appendChild(why);
+    mount.appendChild(q);
+  });
+  mount.appendChild(result);
+}
+
+/* ---- dispatch ------------------------------------------------------------- */
+function renderActivity(day, mount) {
+  clear(mount);
+  const a = day.activity;
+  mount.appendChild(el("h2", { text: a.title }));
+  mount.appendChild(el("p", { class: "activity-intro", text: a.intro }));
+  ({
+    "floor3d": actFloor,
+    "allergen-match": actAllergen,
+    "drag-order": actOrder,
+    "scenario": actScenario,
+    "spot-hazard": actHazard,
+  })[a.type](a, mount);
+}
+
+/* ---- Day 1: shop-floor walk-through (SVG base, optional 3D) ---------------- */
+function actFloor(a, mount) {
+  const info = el("div", { class: "zone-info", "aria-live": "polite", text: "Tap a part of the shop to see what happens there." });
+
+  // SVG plan — always available, low-bandwidth
+  const NS = "http://www.w3.org/2000/svg";
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 640 300");
+  svg.setAttribute("class", "floor");
+  svg.setAttribute("role", "group");
+  svg.setAttribute("aria-label", "Shop floor plan. Each labelled area is a button.");
+  const frame = document.createElementNS(NS, "rect");
+  frame.setAttribute("x", 4); frame.setAttribute("y", 4); frame.setAttribute("width", 632); frame.setAttribute("height", 292);
+  frame.setAttribute("rx", 10); frame.setAttribute("fill", "none"); frame.setAttribute("stroke", "#e2d3bd"); frame.setAttribute("stroke-width", 2);
+  svg.appendChild(frame);
+
+  a.zones.forEach(z => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "floor-hotspot");
+    g.setAttribute("tabindex", "0");
+    g.setAttribute("role", "button");
+    g.setAttribute("aria-label", z.name);
+    const r = document.createElementNS(NS, "rect");
+    r.setAttribute("x", z.x); r.setAttribute("y", z.y); r.setAttribute("width", z.w); r.setAttribute("height", z.h);
+    r.setAttribute("rx", 8); r.setAttribute("fill", z.color); r.setAttribute("fill-opacity", ".85");
+    r.setAttribute("stroke", "#2a2017"); r.setAttribute("stroke-opacity", ".35"); r.setAttribute("stroke-width", 1.5);
+    const t = document.createElementNS(NS, "text");
+    t.setAttribute("x", z.x + z.w / 2); t.setAttribute("y", z.y + z.h / 2 + 4);
+    t.setAttribute("text-anchor", "middle"); t.setAttribute("font-size", "14"); t.setAttribute("fill", "#fff"); t.setAttribute("font-weight", "600");
+    t.textContent = z.name.split(" & ")[0].split(" (")[0];
+    const show = () => { info.innerHTML = "<strong>" + z.name + "</strong><br>" + z.info; };
+    g.addEventListener("click", show);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); show(); } });
+    g.appendChild(r); g.appendChild(t);
+    svg.appendChild(g);
+  });
+
+  const wrap = el("div", { class: "stage-wrap" });
+  wrap.appendChild(svg);
+  const mount3d = el("div", { id: "floor3d", role: "img", "aria-label": "3D view of the shop floor (optional)" });
+  wrap.appendChild(mount3d);
+  mount.appendChild(wrap);
+  mount.appendChild(info);
+
+  // Optional 3D hero — only if three.js loaded (low-bandwidth: never required)
+  if (typeof THREE !== "undefined" && typeof Bakery3D !== "undefined") {
+    const btn3d = el("button", { class: "btn secondary no-print", type: "button" }, "Switch to 3D view");
+    let on = false;
+    btn3d.addEventListener("click", () => {
+      on = !on;
+      if (on) { svg.style.display = "none"; mount3d.style.display = "block"; btn3d.textContent = "Switch to plan view"; Bakery3D.start(mount3d, a.zones, info); }
+      else { svg.style.display = "block"; mount3d.style.display = "none"; btn3d.textContent = "Switch to 3D view"; Bakery3D.stop(); }
+    });
+    mount.insertBefore(el("div", { class: "row" }, btn3d), wrap);
+  }
+}
+
+/* ---- Day 2: allergen matcher ---------------------------------------------- */
+function actAllergen(a, mount) {
+  let selected = null; // tap-to-place path
+  const placements = {}; // productId -> Set of allergen ids
+  a.products.forEach(p => (placements[p.id] = new Set()));
+
+  const tray = el("div", { class: "cards", "aria-label": "Products" });
+  const chosen = el("div", { class: "zone-info", text: "Tap a product, then tap each allergen it contains. Or drag a product onto an allergen." });
+
+  function makeCard(p) {
+    const c = el("button", { class: "pcard", type: "button", draggable: "true", id: "card-" + p.id,
+      "aria-label": p.name }, [el("span", { class: "emoji", "aria-hidden": "true", text: p.emoji }), p.name]);
+    c.addEventListener("click", () => {
+      selected = selected === p.id ? null : p.id;
+      [...tray.children].forEach(ch => ch.setAttribute("aria-pressed", ch.id === "card-" + selected ? "true" : "false"));
+      chosen.textContent = selected ? `Selected: ${p.name}. Now tap each allergen it contains.` : "Tap a product to select it.";
+    });
+    c.addEventListener("dragstart", e => { selected = p.id; e.dataTransfer.setData("text/plain", p.id); });
+    return c;
+  }
+  a.products.forEach(p => tray.appendChild(makeCard(p)));
+
+  const bins = el("div", { class: "match-grid" });
+  ALLERGENS.forEach(al => {
+    const bin = el("div", { class: "bin" }, el("h4", { text: al }));
+    const list = el("div", { class: "cards", id: "bin-" + al });
+    bin.appendChild(list);
+    const drop = pid => {
+      if (!pid) return;
+      if (placements[pid].has(al)) return;
+      placements[pid].add(al);
+      const p = a.products.find(x => x.id === pid);
+      const tag = el("span", { class: "pcard placed", id: "placed-" + pid + "-" + al },
+        [el("span", { class: "emoji", "aria-hidden": "true", text: p.emoji }), p.name]);
+      tag.addEventListener("click", () => { placements[pid].delete(al); tag.remove(); });
+      list.appendChild(tag);
+    };
+    bin.addEventListener("click", () => { if (selected) drop(selected); });
+    bin.addEventListener("dragover", e => { e.preventDefault(); bin.classList.add("over"); });
+    bin.addEventListener("dragleave", () => bin.classList.remove("over"));
+    bin.addEventListener("drop", e => { e.preventDefault(); bin.classList.remove("over"); drop(e.dataTransfer.getData("text/plain")); });
+    bins.appendChild(bin);
+  });
+
+  const feedback = el("p", { class: "result", "aria-live": "polite" });
+  const check = el("button", { class: "btn", type: "button" }, "Check my answers");
+  check.addEventListener("click", () => {
+    let right = 0, total = 0, mistakes = 0;
+    a.products.forEach(p => {
+      p.has.forEach(al => {
+        total++;
+        const tag = document.getElementById("placed-" + p.id + "-" + al);
+        if (tag) { tag.classList.add("right"); right++; }
+      });
+      [...placements[p.id]].forEach(al => { if (!p.has.includes(al)) { mistakes++; const t = document.getElementById("placed-" + p.id + "-" + al); if (t) t.classList.add("wrong"); } });
+    });
+    feedback.textContent = `Found ${right} of ${total} correct allergen matches` + (mistakes ? `, with ${mistakes} that do not belong.` : ". No wrong matches — well read.");
+    feedback.classList.toggle("pass", right === total && mistakes === 0);
+  });
+
+  mount.appendChild(chosen);
+  mount.appendChild(tray);
+  mount.appendChild(el("h3", { text: "Allergens" }));
+  mount.appendChild(bins);
+  mount.appendChild(el("div", { class: "row no-print" }, check));
+  mount.appendChild(feedback);
+  mount.appendChild(el("p", { class: "activity-intro", text: a.note }));
+}
+
+/* ---- Day 3: drag-to-order checklists -------------------------------------- */
+function actOrder(a, mount) {
+  a.lists.forEach(list => {
+    mount.appendChild(el("h3", { text: list.title }));
+    // shuffle deterministically by rotating, so there is no Math.random dependency
+    const order = list.steps.map((s, i) => ({ s, i }));
+    const rot = (list.id.length % (order.length - 1)) + 1;
+    const shown = order.slice(rot).concat(order.slice(0, rot));
+
+    const ol = el("ol", { class: "orderlist", "aria-label": list.title + " steps — reorder them" });
+    function renumber() { [...ol.children].forEach((li, i) => (li.querySelector(".num").textContent = i + 1)); }
+    function makeLi(item) {
+      const li = el("li", { draggable: "true", "data-i": item.i });
+      li.appendChild(el("span", { class: "num" }));
+      li.appendChild(el("span", { class: "step", text: item.s }));
+      const move = el("span", { class: "move no-print" });
+      const up = el("button", { type: "button", "aria-label": "Move up", title: "Move up" }, "↑");
+      const down = el("button", { type: "button", "aria-label": "Move down", title: "Move down" }, "↓");
+      up.addEventListener("click", () => { if (li.previousElementSibling) ol.insertBefore(li, li.previousElementSibling); renumber(); });
+      down.addEventListener("click", () => { if (li.nextElementSibling) ol.insertBefore(li.nextElementSibling, li); renumber(); });
+      move.appendChild(up); move.appendChild(down);
+      li.appendChild(move);
+      li.addEventListener("dragstart", () => li.classList.add("dragging"));
+      li.addEventListener("dragend", () => { li.classList.remove("dragging"); renumber(); });
+      li.addEventListener("dragover", e => {
+        e.preventDefault();
+        const dragging = ol.querySelector(".dragging");
+        if (!dragging || dragging === li) return;
+        const r = li.getBoundingClientRect();
+        const after = e.clientY > r.top + r.height / 2;
+        ol.insertBefore(dragging, after ? li.nextElementSibling : li);
+      });
+      return li;
+    }
+    shown.forEach(item => ol.appendChild(makeLi(item)));
+    renumber();
+    mount.appendChild(ol);
+
+    const fb = el("p", { class: "result", "aria-live": "polite" });
+    const check = el("button", { class: "btn", type: "button" }, "Check the order");
+    check.addEventListener("click", () => {
+      const got = [...ol.children].map(li => +li.getAttribute("data-i"));
+      let ok = true;
+      [...ol.children].forEach((li, i) => {
+        li.classList.remove("right", "wrong");
+        if (got[i] === i) li.classList.add("right"); else { li.classList.add("wrong"); ok = false; }
+      });
+      fb.textContent = ok ? "Perfect order." : "Some steps are out of order — the green ones are right.";
+      fb.classList.toggle("pass", ok);
+    });
+    mount.appendChild(el("div", { class: "row no-print" }, check));
+    mount.appendChild(fb);
+  });
+}
+
+/* ---- Day 4: scenario with choices ----------------------------------------- */
+function actScenario(a, mount) {
+  const s = a.scene;
+  const scene = el("div", { class: "scene" });
+  scene.appendChild(el("p", { class: "say", text: s.say }));
+  const choices = el("div", { class: "choices" });
+  const out = el("div", { "aria-live": "polite" });
+  s.choices.forEach(c => {
+    const b = el("button", { class: "btn secondary", type: "button", style: "text-align:left" }, c.t);
+    b.addEventListener("click", () => {
+      [...choices.children].forEach(x => (x.disabled = false));
+      clear(out);
+      out.appendChild(el("div", { class: "consequence " + c.tone },
+        [el("strong", { text: c.tone === "good" ? "Good call. " : c.tone === "meh" ? "Careful. " : "That backfires. " }), c.r]));
+    });
+    choices.appendChild(b);
+  });
+  scene.appendChild(choices);
+  mount.appendChild(scene);
+  mount.appendChild(out);
+}
+
+/* ---- Day 5: spot the hazard (SVG) ----------------------------------------- */
+function actHazard(a, mount) {
+  const NS = "http://www.w3.org/2000/svg";
+  const found = new Set();
+  const counter = el("p", { class: "result", "aria-live": "polite", text: `Found 0 of ${a.count}.` });
+
+  const svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("viewBox", "0 0 680 340");
+  svg.setAttribute("class", "hazard-scene");
+  svg.setAttribute("role", "group");
+  svg.setAttribute("aria-label", "A bakery kitchen scene. Tap each hazard. " + a.count + " to find.");
+  svg.innerHTML =
+    '<rect x="0" y="0" width="680" height="340" fill="#f6ecdd"/>' +
+    '<rect x="0" y="300" width="680" height="40" fill="#e2d3bd"/>' +            /* floor strip */
+    '<rect x="40" y="120" width="260" height="20" fill="#c08346"/>' +           /* prep bench top */
+    '<rect x="40" y="140" width="260" height="90" fill="#8a5a2b"/>' +           /* prep bench body */
+    '<rect x="400" y="110" width="150" height="150" rx="8" fill="#6e4621"/>' +  /* oven body */
+    '<rect x="415" y="175" width="120" height="80" rx="4" fill="#2a2017"/>' +   /* oven cavity (open) */
+    '<rect x="540" y="40" width="100" height="150" fill="#d79a5c"/>' +          /* doorway/exit */
+    '<text x="590" y="30" text-anchor="middle" font-size="13" fill="#2a2017">EXIT</text>' +
+    '<ellipse cx="135" cy="305" rx="70" ry="16" fill="#9fc7e8" opacity="0.7"/>' + /* wet patch */
+    '<rect x="248" y="112" width="82" height="8" fill="#b0b0b0"/>' +            /* knife on edge */
+    '<rect x="243" y="108" width="20" height="5" fill="#8a5a2b"/>' +            /* knife handle */
+    '<rect x="300" y="256" width="92" height="44" rx="4" fill="#b4532a"/>' +    /* tray on floor */
+    '<rect x="545" y="60" width="70" height="110" fill="#a07a4a" stroke="#6e4621"/>'; /* boxes at exit */
+
+  a.hazards.forEach(h => {
+    const g = document.createElementNS(NS, "g");
+    g.setAttribute("class", "hz"); g.setAttribute("tabindex", "0"); g.setAttribute("role", "button"); g.setAttribute("aria-label", "Possible hazard");
+    const hit = document.createElementNS(NS, "rect");
+    hit.setAttribute("class", "hz-hit");
+    hit.setAttribute("x", h.x); hit.setAttribute("y", h.y); hit.setAttribute("width", h.w); hit.setAttribute("height", h.h);
+    hit.setAttribute("rx", 6);
+    const label = document.createElementNS(NS, "text");
+    label.setAttribute("class", "hz-label");
+    label.setAttribute("x", h.x + h.w / 2); label.setAttribute("y", h.y - 4); label.setAttribute("text-anchor", "middle");
+    label.style.display = "none"; label.textContent = h.label;
+    const hitIt = () => {
+      if (found.has(h.id)) return;
+      found.add(h.id);
+      g.classList.add("found");
+      label.style.display = "block";
+      g.setAttribute("aria-label", "Hazard found: " + h.label);
+      counter.textContent = `Found ${found.size} of ${a.count}.` + (found.size === a.count ? " You spotted them all." : "");
+      counter.classList.toggle("pass", found.size === a.count);
+    };
+    g.addEventListener("click", hitIt);
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hitIt(); } });
+    g.appendChild(hit); g.appendChild(label);
+    svg.appendChild(g);
+  });
+
+  mount.appendChild(svg);
+  mount.appendChild(counter);
+  const reveal = el("button", { class: "btn secondary no-print", type: "button" }, "Show the answers");
+  const ul = el("ul");
+  reveal.addEventListener("click", () => { clear(ul); a.hazards.forEach(h => ul.appendChild(el("li", { text: h.label }))); });
+  mount.appendChild(el("div", { class: "row no-print" }, reveal));
+  mount.appendChild(ul);
+}
+
+/* shopfloor3d.js — the ONE optional hero moment: a simple-blocks 3D walk of the shop floor.
+ * three.js r128 only. Everything here is optional: if three.js did not load, or WebGL is
+ * unavailable, the SVG plan in activities.js is the whole experience (low-bandwidth first).
+ * No OrbitControls dependency — a tiny pointer-drag orbit, and raycast picking for zone info. */
+var Bakery3D = (function () {
+  var R = null; // running state
+
+  function start(mount, zones, info) {
+    if (typeof THREE === "undefined") return false;
+    try {
+      stop();
+      var w = mount.clientWidth || 600, h = Math.round(w * 10 / 16);
+      mount.style.height = h + "px";
+
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0d1117);
+      var cam = new THREE.PerspectiveCamera(50, w / h, 0.1, 100);
+      var renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(w, h);
+      mount.appendChild(renderer.domElement);
+
+      scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+      var key = new THREE.DirectionalLight(0xffffff, 0.8);
+      key.position.set(6, 10, 6); scene.add(key);
+
+      // floor
+      var floor = new THREE.Mesh(new THREE.PlaneGeometry(16, 10), new THREE.MeshStandardMaterial({ color: 0xf0e2cc }));
+      floor.rotation.x = -Math.PI / 2; scene.add(floor);
+
+      // zones -> boxes. plan is 640 x 300; map to a 16 x 10 floor centred at origin.
+      var pickables = [];
+      zones.forEach(function (z) {
+        var bw = z.w / 640 * 16, bd = z.h / 300 * 10;
+        var bh = 0.6 + bw * 0.25;
+        var geo = new THREE.BoxGeometry(bw * 0.9, bh, bd * 0.9);
+        var mat = new THREE.MeshStandardMaterial({ color: new THREE.Color(z.color) });
+        var box = new THREE.Mesh(geo, mat);
+        box.position.x = (z.x + z.w / 2) / 640 * 16 - 8;
+        box.position.z = (z.y + z.h / 2) / 300 * 10 - 5;
+        box.position.y = bh / 2;
+        box.userData.zone = z;
+        scene.add(box);
+        pickables.push(box);
+      });
+
+      var ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+      function pick(ev) {
+        var r = renderer.domElement.getBoundingClientRect();
+        var cx = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
+        var cy = (ev.touches ? ev.touches[0].clientY : ev.clientY) - r.top;
+        ndc.x = (cx / r.width) * 2 - 1; ndc.y = -(cy / r.height) * 2 + 1;
+        ray.setFromCamera(ndc, cam);
+        var hit = ray.intersectObjects(pickables)[0];
+        if (hit) { var z = hit.object.userData.zone; info.innerHTML = "<strong>" + z.name + "</strong><br>" + z.info; }
+      }
+
+      // tiny orbit
+      var angle = 0.7, tilt = 0.9, dist = 15, dragging = false, px = 0, py = 0, auto = true;
+      function place() {
+        cam.position.set(Math.sin(angle) * dist * Math.cos(tilt), dist * Math.sin(tilt) + 2, Math.cos(angle) * dist * Math.cos(tilt));
+        cam.lookAt(0, 0.5, 0);
+      }
+      var cvs = renderer.domElement;
+      function down(e) { dragging = true; auto = false; px = (e.touches ? e.touches[0].clientX : e.clientX); py = (e.touches ? e.touches[0].clientY : e.clientY); }
+      function move(e) {
+        if (!dragging) return;
+        var x = (e.touches ? e.touches[0].clientX : e.clientX), y = (e.touches ? e.touches[0].clientY : e.clientY);
+        angle -= (x - px) * 0.01; tilt = Math.max(0.3, Math.min(1.3, tilt - (y - py) * 0.005)); px = x; py = y;
+      }
+      function up(e) { if (dragging && e.changedTouches) {} dragging = false; }
+      cvs.addEventListener("mousedown", down); window.addEventListener("mousemove", move); window.addEventListener("mouseup", up);
+      cvs.addEventListener("touchstart", function (e) { down(e); }, { passive: true });
+      cvs.addEventListener("touchmove", function (e) { move(e); }, { passive: true });
+      cvs.addEventListener("touchend", up);
+      cvs.addEventListener("click", pick);
+
+      var raf = 0;
+      function loop() {
+        if (auto) angle += 0.0035;
+        place();
+        renderer.render(scene, cam);
+        raf = requestAnimationFrame(loop);
+      }
+      place(); loop();
+
+      function onResize() {
+        var nw = mount.clientWidth || w, nh = Math.round(nw * 10 / 16);
+        mount.style.height = nh + "px"; renderer.setSize(nw, nh); cam.aspect = nw / nh; cam.updateProjectionMatrix();
+      }
+      window.addEventListener("resize", onResize);
+
+      R = { renderer: renderer, raf: function () { return raf; }, cancel: function () { cancelAnimationFrame(raf); },
+            cleanup: function () {
+              window.removeEventListener("mousemove", move); window.removeEventListener("mouseup", up);
+              window.removeEventListener("resize", onResize);
+              scene.traverse(function (o) { if (o.geometry) o.geometry.dispose(); if (o.material) o.material.dispose(); });
+              renderer.dispose();
+              if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
+            } };
+      return true;
+    } catch (err) {
+      // WebGL unavailable or any failure: silently fall back to the SVG plan.
+      stop();
+      return false;
+    }
+  }
+
+  function stop() { if (R) { R.cancel(); R.cleanup(); R = null; } }
+
+  return { start: start, stop: stop };
+})();
+
+/* app.js — the shell: brand, the five-day rail, the four tabs, print job aids, theme.
+ * Vanilla DOM. State (which checks passed) is kept in localStorage when available, else in memory. */
+(function () {
+  var store = (function () {
+    var mem = {};
+    try { var t = "__t"; localStorage.setItem(t, t); localStorage.removeItem(t);
+      return { get: function (k) { return localStorage.getItem(k); }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
+    } catch (e) { return { get: function (k) { return mem[k]; }, set: function (k, v) { mem[k] = v; } }; }
+  })();
+
+  var done = {};
+  try { done = JSON.parse(store.get("firstweek-done") || "{}") || {}; } catch (e) { done = {}; }
+  function markDone(id) { done[id] = true; store.set("firstweek-done", JSON.stringify(done)); renderRail(); }
+
+  // Brand + footer from the (fictional) business
+  document.getElementById("biz-name").textContent = BIZ.name;
+  document.getElementById("biz-sub").textContent = "Staff onboarding · a MetaDAX showcase";
+  document.getElementById("foot-biz").textContent = BIZ.name;
+  document.title = BIZ.name + " — First Week";
+
+  // Brief template text
+  var bt = document.getElementById("brief-template");
+  bt.appendChild(el("pre", { text: BRIEF_TEMPLATE }));
+
+  var current = null;
+
+  function renderRail() {
+    var rail = document.getElementById("rail");
+    clear(rail);
+    DAYS.forEach(function (d) {
+      var li = el("li");
+      var b = el("button", { type: "button", "aria-current": String(d.id === current) });
+      b.appendChild(el("span", { class: "day-tag", text: d.tag }));
+      b.appendChild(el("span", { class: "day-name", text: d.title.split(" — ")[1] || d.title }));
+      b.appendChild(el("span", { class: "dot " + (done[d.id] ? "done" : ""), "aria-hidden": "true", title: done[d.id] ? "Check passed" : "" }));
+      b.addEventListener("click", function () { go(d.id); });
+      li.appendChild(b);
+      rail.appendChild(li);
+    });
+  }
+
+  function renderDay(d) {
+    var card = document.getElementById("day-card");
+    clear(card);
+    var head = el("div", { class: "day-head" });
+    head.appendChild(el("h1", { text: d.tag + " — " + (d.title.split(" — ")[1] || d.title) }));
+    head.appendChild(el("p", { class: "meta", text: "About a " + d.minutes + "-minute read · one activity · a 3-question check · a manager's note" }));
+    card.appendChild(head);
+
+    var tabs = el("div", { class: "tabs", role: "tablist", "aria-label": d.tag + " sections" });
+    var panel = el("div", { class: "panel", role: "tabpanel", tabindex: "0" });
+    var defs = [
+      { id: "learn", label: "Learn", render: function (m) { renderRead(d, m); } },
+      { id: "do", label: "Do the activity", render: function (m) { renderActivity(d, m); } },
+      { id: "check", label: "Check (3 Q)", render: function (m) { renderChecks(d, m, function (pass) { if (pass) markDone(d.id); }); } },
+      { id: "manager", label: "Manager's note", render: function (m) { renderManager(d, m); } },
+    ];
+    defs.forEach(function (t, i) {
+      var b = el("button", { type: "button", role: "tab", id: "tab-" + t.id, "aria-selected": String(i === 0) }, t.label);
+      b.addEventListener("click", function () {
+        [].forEach.call(tabs.children, function (c) { c.setAttribute("aria-selected", "false"); });
+        b.setAttribute("aria-selected", "true");
+        clear(panel); t.render(panel);
+      });
+      tabs.appendChild(b);
+    });
+    card.appendChild(tabs);
+    card.appendChild(panel);
+    defs[0].render(panel);
+  }
+
+  function renderRead(d, m) {
+    m.appendChild(el("h2", { text: "What to know" }));
+    d.read.forEach(function (sec) {
+      var s = el("div", { class: "read-section" });
+      s.appendChild(el("h3", { text: sec.h }));
+      s.appendChild(el("p", { text: sec.p.replace(/\s+/g, " ").trim() }));
+      m.appendChild(s);
+    });
+    var kb = el("div", { class: "keybox" });
+    kb.appendChild(el("strong", { text: "In one line" }));
+    kb.appendChild(el("p", { text: d.aid.lead }));
+    m.appendChild(kb);
+  }
+
+  function renderManager(d, m) {
+    m.appendChild(el("h2", { text: "Manager's note" }));
+    m.appendChild(el("p", { class: "activity-intro", text: "What to show the new starter in person, then sign off together." }));
+    var box = el("div", { class: "mnote" });
+    var ul = el("ul");
+    d.manager.show.forEach(function (x) { ul.appendChild(el("li", { text: x })); });
+    box.appendChild(ul);
+    var so = el("div", { class: "signoff" });
+    so.appendChild(el("p", { html: "<strong>Sign-off:</strong> " + d.manager.signoff.replace("{name}", "<span class='sign-line' aria-label='new starter name'></span>") }));
+    so.appendChild(el("p", { html: "Shown by <span class='sign-line'></span> &nbsp; Date <span class='sign-line' style='min-width:120px'></span>" }));
+    box.appendChild(so);
+    m.appendChild(box);
+  }
+
+  // Print job aids: one page per day
+  function buildPrintAids() {
+    var root = document.getElementById("print-aids");
+    clear(root);
+    DAYS.forEach(function (d) {
+      var aid = el("div", { class: "job-aid" });
+      aid.appendChild(el("h1", { text: BIZ.name + " — " + d.tag + " job aid" }));
+      aid.appendChild(el("p", { html: "<em>" + d.title.replace(/</g, "&lt;") + "</em>" }));
+      aid.appendChild(el("h2", { text: "Remember" }));
+      var ul = el("ul");
+      d.aid.points.forEach(function (p) { ul.appendChild(el("li", { text: p })); });
+      aid.appendChild(ul);
+      // include the check questions as a quick self-test on paper
+      aid.appendChild(el("h2", { text: "Quick check" }));
+      var ol = el("ol");
+      d.check.forEach(function (c) { ol.appendChild(el("li", { text: c.q })); });
+      aid.appendChild(ol);
+      var so = el("div", { class: "signoff" });
+      so.innerHTML = "<strong>Manager sign-off:</strong> " + d.manager.signoff.replace("{name}", "____________________") +
+        "<br>Shown by ____________________ &nbsp; Date ____________";
+      aid.appendChild(so);
+      aid.appendChild(el("p", { class: "foot-note", text: BIZ.name + " is a model-generated example for a fictional business; not legal or food-safety certification; follow your local regulations." }));
+      root.appendChild(aid);
+    });
+  }
+
+  function go(id) {
+    var d = DAYS.filter(function (x) { return x.id === id; })[0] || DAYS[0];
+    current = d.id;
+    if (location.hash !== "#" + d.id) history.replaceState(null, "", "#" + d.id);
+    renderRail();
+    renderDay(d);
+    document.getElementById("main").focus();
+    window.scrollTo(0, 0);
+  }
+
+  // Header actions
+  document.querySelector('[data-action="print"]').addEventListener("click", function () { window.print(); });
+  var themeBtn = document.querySelector('[data-action="theme"]');
+  (function () { var t = store.get("firstweek-theme"); if (t) document.documentElement.setAttribute("data-theme", t); })();
+  themeBtn.addEventListener("click", function () {
+    var cur = document.documentElement.getAttribute("data-theme");
+    var next = cur === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next); store.set("firstweek-theme", next);
+  });
+  document.querySelector(".brand").addEventListener("click", function () { go("day1"); });
+
+  // Boot
+  buildPrintAids();
+  var start = (location.hash || "#day1").slice(1);
+  go(DAYS.some(function (d) { return d.id === start; }) ? start : "day1");
+})();
+</script>
+</body>
+</html>

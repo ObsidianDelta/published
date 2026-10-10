@@ -28,6 +28,23 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
     <p class="featured-line">Nouveau&#160;: <a href="/metadax/samples/stade-des-fractions/">Le Stade des Fractions, un parcours 3D en français</a></p>
   </section>
 
+  <section class="block showcases" aria-labelledby="h-showcases">
+    <h2 id="h-showcases">Showcases for every guide</h2>
+    <div class="showcase-cards">
+      <article class="showcase-card">
+        <p class="tags"><span class="tag">Families</span></p>
+        <h3 class="title"><a href="/metadax/samples/stade-des-fractions/">Le Stade des Fractions</a></h3>
+        <p>A 3D French fractions pack for one 11-year-old, parent-guided.</p>
+      </article>
+      <article class="showcase-card">
+        <p class="tags"><span class="tag">Small business</span></p>
+        <h3 class="title"><a href="/metadax/showcases/first-week-at-the-bakery/">First Week at the Bakery</a></h3>
+        <p>A staff onboarding module made from a one-page brief.</p>
+      </article>
+    </div>
+    <p class="showcase-note">Each showcase was made by the MetaDAX course factory from a short brief. Model-generated; reviewed for safety, not certified.</p>
+  </section>
+
   <section class="block" aria-labelledby="h-filters">
     <h2 id="h-filters" class="sr-only">Filter</h2>
     <div class="filters" role="group" aria-label="Filter samples">
@@ -110,6 +127,12 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
   <style>
     .featured-new { padding:.6rem 0; }
     .featured-line { margin:0; font-weight:600; }
+    .showcases h2 { margin:0 0 .75rem; }
+    .showcase-cards { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
+    .showcase-card { border:1px solid rgba(128,128,128,.3); border-radius:10px; padding:1rem 1.15rem; }
+    .showcase-card .title { margin:.3rem 0 .4rem; }
+    .showcase-card p { margin:.2rem 0; }
+    .showcase-note { margin:.85rem 0 0; opacity:.75; font-size:.9rem; }
     .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
     .filters { display:flex; gap:1.25rem; align-items:end; flex-wrap:wrap; }
     .filters label { display:flex; flex-direction:column; gap:.25rem; font-weight:600; font-size:.9rem; }
