@@ -2,7 +2,9 @@
    (/metadax/<chair>/walkthrough/), first published 2026-10-10. Loaded only on
    pages that import it, so the generic selectors below touch nothing else.
    A numbered step sequence, styled chat transcripts for the chat steps, and
-   dashed figures carrying data-shot for the live-page screens the brain fills. */
+   dashed figures carrying data-shot for the live-page screens the brain fills.
+   2026-10-10 (later): a figure may carry a .screen-link card (tap through to
+   the live screen) until a PNG lands; the card and the PNG share the figure. */
 
 .wt .lede { padding-block: 3rem 1.5rem; }
 .wt .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
@@ -50,8 +52,15 @@
 .wt .shot { margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d0d0d; }
 .wt .shot img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
 .wt .shot figcaption { padding: 0.85rem 1rem; font-size: 0.875rem; color: #bdbdbd; line-height: 1.55; }
-.wt .shot[data-shot]:not(:has(img)) { border-style: dashed; }
-.wt .shot[data-shot]:not(:has(img)) figcaption::before { content: "Screen: "; color: var(--faint); }
+.wt .shot[data-shot]:not(:has(img, .screen-link)) { border-style: dashed; }
+.wt .shot[data-shot]:not(:has(img, .screen-link)) figcaption::before { content: "Screen: "; color: var(--faint); }
+
+/* link card: the live screen as a tap-through card, in the figure's image slot */
+.wt .screen-link { display: block; padding: 0.9rem 1.1rem 1rem; background: #141414; color: var(--fg); font-size: 1.05rem; line-height: 1.4; text-decoration: none; border-bottom: 1px solid var(--line); }
+.wt .screen-link::after { content: "\00a0\2192"; color: var(--muted); }
+.wt .screen-link:hover, .wt .screen-link:focus-visible { background: #1a1a1a; }
+.wt .screen-link:hover::after, .wt .screen-link:focus-visible::after { color: var(--fg); }
+.wt .sl-k { display: block; margin-bottom: 0.2rem; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
 
 .wt .out { margin: 1.75rem 0 0; font-size: 0.9375rem; }
 .wt .out span { color: var(--faint); margin-inline: 0.5rem; }
