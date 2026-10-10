@@ -93,6 +93,13 @@ a{color:inherit}
 .shell{max-width:1080px;margin:0 auto;padding:0 var(--gutter)}
 .narrow{max-width:calc(680px + 2 * var(--gutter))}
 
+/* ---------- uniform ecosystem top bar (adapted to this palette) ---------- */
+.ecobar{border-bottom:1px solid var(--steel)}
+.ecobar .shell{display:flex;flex-wrap:wrap;gap:.25rem 1rem;padding-top:9px;padding-bottom:9px}
+.ecobar a{font-family:var(--font-mono);font-size:11px;letter-spacing:.14em;text-transform:lowercase;color:var(--ash);text-decoration:none;white-space:nowrap}
+.ecobar a:hover,.ecobar a:focus-visible{color:var(--orange)}
+.ecobar a[aria-current="page"]{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+
 /* ---------- masthead ---------- */
 .strip{border-bottom:1px solid var(--steel)}
 .strip .shell{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding-top:18px;padding-bottom:18px}
@@ -131,12 +138,19 @@ h1{
 </style>
 </head>
 <body>
+  <nav class="ecobar" aria-label="DAX ecosystem"><div class="shell">
+    <a href="https://jeyanandan.com/">jeyanandan.com</a>
+    <a href="https://daxfoundation.org/">daxfoundation.org</a>
+    <a href="https://www.obsidiandelta.com/" aria-current="page">obsidiandelta.com</a>
+    <a href="https://formaddie.com/">formaddie.com</a>
+  </div></nav>
+
   <header class="strip"><div class="shell">
     <a class="brand" href="/"><img src="/logo-flat.png" alt="" width="28" height="28" /><span>Obsidian Delta</span></a>
     <nav class="nav" aria-label="Site">
-      <a href="/">Home</a>
-      <a href="/blog/" aria-current={Astro.url.pathname.startsWith('/blog') ? 'page' : undefined}>Blog</a>
-      <a href="/learning/" aria-current={Astro.url.pathname.startsWith('/learning') ? 'page' : undefined}>Learning</a>
+      <a href="/blog/" aria-current={Astro.url.pathname.startsWith('/blog') && !Astro.url.pathname.startsWith('/blog/cognitive-companion') ? 'page' : undefined}>blog</a>
+      <a href="/learning/" aria-current={Astro.url.pathname.startsWith('/learning') ? 'page' : undefined}>learning</a>
+      <a href="/blog/cognitive-companion/" aria-current={Astro.url.pathname.startsWith('/blog/cognitive-companion') ? 'page' : undefined}>the cognitive companion</a>
     </nav>
   </div></header>
 

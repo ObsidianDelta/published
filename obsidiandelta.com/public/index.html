@@ -48,6 +48,20 @@
 
   .container { max-width: 880px; margin: 0 auto; padding: 0 32px; }
 
+  /* Uniform ecosystem top bar — same component as /blog/ and /learning/,
+     and as the other three domains, adapted to this palette. */
+  .ecobar { border-bottom: 1px solid var(--steel); }
+  .ecobar__inner {
+    max-width: 1080px; margin: 0 auto; padding: 9px 32px;
+    display: flex; flex-wrap: wrap; gap: 4px 16px;
+  }
+  .ecobar a {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
+    text-transform: lowercase; color: var(--ash); text-decoration: none; white-space: nowrap;
+  }
+  .ecobar a:hover, .ecobar a:focus-visible { color: var(--orange); }
+  .ecobar a[aria-current="page"] { color: var(--white); text-decoration: underline; text-underline-offset: 3px; }
+
   /* HERO — just the logo + name, nothing else */
   .hero {
     min-height: 100vh;
@@ -342,6 +356,13 @@
 </style>
 </head>
 <body>
+
+<nav class="ecobar" aria-label="DAX ecosystem"><div class="ecobar__inner">
+  <a href="https://jeyanandan.com/">jeyanandan.com</a>
+  <a href="https://daxfoundation.org/">daxfoundation.org</a>
+  <a href="https://www.obsidiandelta.com/" aria-current="page">obsidiandelta.com</a>
+  <a href="https://formaddie.com/">formaddie.com</a>
+</div></nav>
 
 <section class="hero">
   <div class="hero__logo" id="heroLogo" role="button" tabindex="0" aria-label="Obsidian Delta — hover to bring the mark to life">

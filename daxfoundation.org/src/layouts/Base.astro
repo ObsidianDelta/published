@@ -61,6 +61,17 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
+    {/* Uniform ecosystem top bar — same markup and CSS on all four domains,
+        adapted to each palette. The current site is marked aria-current and
+        underlined. One line; wraps on narrow screens. */}
+    <nav class="ecobar" aria-label="DAX ecosystem">
+      <div class="wrap ecobar-row">
+        <a href="https://jeyanandan.com/">jeyanandan.com</a>
+        <a href="https://daxfoundation.org/" aria-current="page">daxfoundation.org</a>
+        <a href="https://www.obsidiandelta.com/">obsidiandelta.com</a>
+        <a href="https://formaddie.com/">formaddie.com</a>
+      </div>
+    </nav>
     <header class="wrap top">
       <a class="mark" href="/">DAX Foundation</a>
       <nav class="nav" aria-label="Site">
@@ -108,6 +119,27 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
   }
   main { flex: 1; }
   a { color: inherit; }
+  /* Uniform ecosystem top bar (adapted to this palette). */
+  .ecobar { border-bottom: 1px solid var(--line); }
+  .ecobar-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.1rem;
+    padding-block: 0.6rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .ecobar-row a {
+    color: var(--faint);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .ecobar-row a:hover, .ecobar-row a:focus-visible { color: var(--fg); }
+  .ecobar-row a[aria-current="page"] {
+    color: var(--fg);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .wrap {
     width: 100%;
     max-width: 44rem;

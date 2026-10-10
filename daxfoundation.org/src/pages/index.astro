@@ -1,40 +1,33 @@
 ---
 import Base from '../layouts/Base.astro';
-import { home as homeSamples } from './metadax/_showcase.js';
 
-// daxfoundation.org home, rebuilt 2026-10-05 at Jason's request: Meta DAX front
-// and centre, then the Constraint Protocol, then what is coming, then the ask.
+// daxfoundation.org home, refocused 2026-10-10 (uniform-home) at Jason's
+// request: "a lot of stuff needs to be rearranged, more focused, continuity
+// between the GitHub README and the front page." The home now mirrors the
+// metadax README's wording and leads with the five chairs.
 //
-//   1. The DAX line, alone, as it always was.
-//   2. Meta DAX, featured: what it is, the benchmark, three doors (see what it
-//      hands a guide and a learner; homeschooling, start here; the measure
-//      under all of it), the tree, where it is going, and the way into
-//      /metadax/, where everything Meta DAX now lives on this site.
-//   3. The Constraint Protocol, second: the ground everything stands on, one
-//      picture, the specification, and the line that ties it to Meta DAX.
-//   4. Coming soon: Skippy DAX and Nova DAX, by name only.
-//   5. Definitions and Reading, kept short.
-//   6. The ask, at the foot: the note from the founder (his words, unchanged
-//      from 2026-10-01), with his personal Ko-fi. The disclosure sentence
-//      beside that link is a deploy gate: the Foundation is not incorporated
-//      and takes no money; what is given there goes to Jason. It keeps
-//      id="founder" so the old #founder links still land. Above it, the one
-//      ask that matters this week: a guide, a real scenario, a sample built
-//      for them (/metadax/#ask).
+//   1. The DAX line, alone, as the H1.
+//   2. Meta DAX: the README's first paragraph (shortened), the FIVE DOORS
+//      (the same five chairs as /metadax/, same one-liners), "See it" (the
+//      five showcases in one row with the universal line), and the sponsor
+//      sentence.
+//   3. The research: one short paragraph with the benchmark, all-bandwidths
+//      and the X13/X14 runs, linking /metadax/research/ and the findings.
+//   4. The Constraint Protocol, trimmed to one paragraph and its links
+//      (id="cp" kept -- external links point at daxfoundation.org/#cp).
+//   5. Coming: Skippy DAX, Nova DAX.
+//   6. Definitions and reading, compact.
+//   7. The ask: the CTA now points at the five doors.
+//   8. A note from the founder, VERBATIM, id="founder" kept.
 //
-// Earlier history of this page (2026-09-29, 2026-10-01) is in the public
-// record: github.com/ObsidianDelta/published/commits/main/daxfoundation.org.
+// Earlier history of this page (2026-09-29, 2026-10-01, 2026-10-05) is in the
+// public record: github.com/ObsidianDelta/published/commits/main/daxfoundation.org.
 //
 // Accuracy rules that bind every word here (state/initiatives/
 // content-publishing.md): never describe the Foundation as a non-profit,
 // charity, registered or incorporated body; the Constraint Protocol has run in
 // full once -- say so, and never imply it runs across anyone's traffic today;
-// Meta DAX results come from automated runs, and the repository says which;
-// the showcase samples are made-up people, built with help from AI and read in
-// full by a person before they went up; "guide" and "learner", never "role".
-//
-// Figures are self-hosted under /figures/ and drawn in this site's palette
-// (no accent colour).
+// "guide" and "learner", never "role"; no AI vendor named in guide-facing copy.
 //
 // Comments in the markup below are {/* ... */}, never <!-- ... -->.
 
@@ -47,12 +40,31 @@ const moved = [
   'cognitive-companion', 'human-delta-value', 'ai-as-substrate',
 ];
 
-const coming = [
-  { name: 'Skippy DAX', status: 'Coming soon' },
-  { name: 'Nova DAX', status: 'Coming soon' },
+// The five chairs, the same one-liners as /metadax/ so the two pages read as
+// one. Each door links its own page.
+const doors = [
+  { href: '/metadax/homeschool/', kicker: 'Parent', title: 'You homeschool',
+    text: 'You know your child. Meta DAX does the rest of the preparing and hands you the next session, built through what they love.' },
+  { href: '/metadax/tutor/', kicker: 'Tutor', title: 'You tutor',
+    text: 'One learner, one stuck spot, one evening. Rough notes in, a plan for the next session and a parent-ready report out.' },
+  { href: '/metadax/teacher/', kicker: 'Teacher', title: 'You teach a class',
+    text: 'A class that nods and then fails the exit task. A hinge question, every wrong answer planned for, and the cognition handed back to you.' },
+  { href: '/metadax/trainer/', kicker: 'Trainer', title: 'You train at work',
+    text: 'A new hire, a first week, a process only you hold. A module built from a one-page brief, so the next hire starts a step ahead.' },
+  { href: '/metadax/research/', kicker: 'Researcher', title: 'You want the evidence',
+    text: 'The benchmark, the measure, how it works underneath, the experiments with their results, the Constraint Protocol, and the ask.' },
 ];
 
-const first = homeSamples[0];
+// The five showcases, in one row: the ceiling of what the recipe builds.
+const showcases = [
+  { href: '/metadax/samples/stade-des-fractions/', name: 'Le Stade des Fractions', note: 'French fractions in a 3D stadium' },
+  { href: '/metadax/showcases/first-week-at-the-bakery/', name: 'First Week at the Bakery', note: 'a staff onboarding module' },
+  { href: '/metadax/showcases/proton-mill/', name: 'The Proton Mill', note: 'a 3D Biology 101 lesson' },
+  { href: '/metadax/showcases/tutors-desk/', name: "The Tutor's Desk", note: "one tutor's week" },
+  { href: '/metadax/showcases/grade-6-science-year/', name: 'The Year on the Wall', note: 'a whole Grade 6 science year' },
+];
+
+const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 ---
 <Base>
   <section class="lede" aria-labelledby="dax">
@@ -62,102 +74,84 @@ const first = homeSamples[0];
   <section class="block feature" id="learning" aria-labelledby="metadax">
     <h2 id="metadax">Meta DAX</h2>
     <p class="kicker">Our initiative of universal learning.</p>
-    <p class="big">Every human being. Any subject. Any domain. Free, forever.</p>
     <p class="body">
-      Anyone who is a step ahead can be a guide. Everyone is a learner. Meta DAX
-      hands the two of them what they need for the next step together: for the
-      guide, what to do, what to say and what to skip; for the learner, a page
-      made for them, with something to do in it. After each step the guide says
-      how it went, and the next page comes back shaped by it.
+      Meta DAX is a bet on one benchmark: take a person who can communicate, and
+      bring them to the equivalent of a master&rsquo;s degree from an Ivy League
+      university &mdash; on five minutes of connectivity a day. The learning
+      cannot live on the network, so it does not: a bundle is generated for the
+      particular learner, comes down whole, and is worked through offline. Any
+      domain means any domain. It is built to be enterprise grade, and it stays
+      free &mdash; not freemium, not free-for-some, not free-until-funded.
     </p>
-    <p class="body">
-      Held to a benchmark with the audacity built in: <em>take a person who can
-      communicate, and get them to the equivalent of a master&rsquo;s degree from
-      an Ivy League university &mdash; on five minutes of connectivity a
-      day.</em> <strong>We are developing this for all bandwidths!</strong> Five
-      minutes a day is where it starts.
-    </p>
-
-    <ul class="doors">
-      <li>
-        <a href="/metadax/showcase/">
-          <span class="door-kicker">See it</span>
-          <span class="door-title">What it hands a guide and a learner</span>
-          <span class="door-text">Six samples, three steps in: a mom and her eleven-year-old on fractions, a teacher and a newcomer, a grandson and his grandmother, a new manager, a first on-call shift, a teacher of teachers. Open the pages. Everyone in them is made up.</span>
-        </a>
-      </li>
-      <li>
-        <a href="/metadax/homeschool/">
-          <span class="door-kicker">Homeschooling?</span>
-          <span class="door-title">Start here</span>
-          <span class="door-text">You know your child. That is the part no system can do. The rest of the preparing, Meta DAX does, and hands you the next session. Tell us where your child is stuck and we will build you one.</span>
-        </a>
-      </li>
-      <li>
-        <a href="/metadax/#human-delta-value">
-          <span class="door-kicker">The measure</span>
-          <span class="door-title">Human delta value</span>
-          <span class="door-text">Every time the system takes cognitive labour off a guide, one question is left, and it is the whole point: what is it that only you can do here, and how do we help you do it as well as you can?</span>
-        </a>
-      </li>
-    </ul>
 
     <p class="chairs-lead">Pick your chair:</p>
-    <nav class="chairs" aria-label="Meta DAX doors">
-      <a href="/metadax/homeschool/">Parent</a>
-      <a href="/metadax/tutor/">Tutor</a>
-      <a href="/metadax/teacher/">Teacher</a>
-      <a href="/metadax/trainer/">Trainer</a>
-      <a href="/metadax/research/">Researcher</a>
-    </nav>
+    <ul class="doors">
+      {doors.map((d) => (
+        <li>
+          <a href={d.href}>
+            <span class="door-kicker">{d.kicker}</span>
+            <span class="door-title">{d.title}</span>
+            <span class="door-text">{d.text}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
 
-    <figure class="fig">
-      <img src="/figures/meta-dax-tree.svg" width="1200" height="840" alt="Learning drawn as the tree of life upside down: every path from the first question is kept, the dead ends are kept, one learner's question answers another's, and the negative space nobody has explored yet is marked. There is never the way. There is always a way." loading="lazy" />
-    </figure>
+    <div class="see-it">
+      <p class="big">The same recipe built every one of these.</p>
+      <nav class="showcases" aria-label="Showcases">
+        {showcases.map((s) => (
+          <a href={s.href}>
+            <span class="sc-name">{s.name}</span>
+            <span class="sc-note">{s.note}</span>
+          </a>
+        ))}
+      </nav>
+      <p class="out"><a href="/metadax/samples/">See it &mdash; every showcase and sample &rarr;</a></p>
+    </div>
 
-    <p class="body after-fig">
-      Fourteen small experiments first; two have run, with a model in both
-      chairs. Then the legwork. Then the twelve we can already picture, written
-      as scenes: a guide&rsquo;s move made once in Indonesian and offered in
-      Spanish to a stranger who shares nothing with the first learner but kites;
-      every contribution on a record nobody can quietly edit; one person on a
-      phone going from five minutes a day to a master&rsquo;s.
-      The small ones are how we earn the big ones.
+    <p class="sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="research">
+    <h2 id="research">The research</h2>
+    <p class="body">
+      The benchmark &mdash; a person who can communicate to a master&rsquo;s on
+      five minutes a day &mdash; is audacious on purpose.
+      <strong>We are developing this for all bandwidths!</strong> It rests on
+      fourteen small experiments first; X13 and X14 have run, with a model in
+      both chairs. The small ones are how we earn the big ones.
     </p>
     <p class="out">
-      <a href="/metadax/">Everything Meta DAX &rarr;</a>
+      <a href="/metadax/research/">The research, the measure and the experiments &rarr;</a>
       <span aria-hidden="true">&middot;</span>
-      <a href="/metadax/#experiments">The experiments</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://github.com/daxfoundation/metadax">The repository, on GitHub</a>
+      <a href={findings}>The X13 / X14 findings</a>
     </p>
   </section>
 
   <section class="block feature" aria-labelledby="cp">
     <h2 id="cp">Constraint Protocol</h2>
+    {/* #constraint-protocol is kept as a second landing point for the section. */}
+    <span id="constraint-protocol" aria-hidden="true"></span>
     <p class="big">The ground everything here stands on.</p>
     <p class="body">
       A way for parties &mdash; people, companies or software &mdash; to declare
       in advance what they will not do, and then be checked against it. It keeps
       a signed record nobody can quietly edit, keeps witnessing and judging
-      separate, lets a declared constraint hold up named work and records every
-      attempt to get round it, and lets anyone dispute any record. It is neutral
-      to the constraint and to the kind of entity that holds it. DAX is one
-      constraint built on it.
+      separate, and lets anyone dispute any record. DAX is one constraint built
+      on it, and Meta DAX is built to run on it, so that what one person works
+      out compounds for everyone after them. A public working draft, run in full
+      once so far.
     </p>
-    <figure class="fig">
-      <img src="/figures/constraint-protocol.svg" width="1000" height="640" alt="The Constraint Protocol in one picture: declare what you will not do, act, witness every event onto a signed record nobody can quietly edit, judge separately; attempts to get round a constraint are refused and recorded; anyone can dispute any record." loading="lazy" />
-    </figure>
-    <p class="body after-fig">
-      Meta DAX is built to run on it. Every guide&rsquo;s move, every
-      learner&rsquo;s question that becomes part of a course, every review, on a
-      record nobody can quietly edit, so that what one person works out compounds
-      for everyone after them. <a href="/metadax/#constraint-protocol">What that
-      looks like, scene by scene &rarr;</a>
-    </p>
-    <p class="note-line">A public working draft, run in full once so far.</p>
     <p class="out">
-      <a href="https://github.com/daxfoundation/constraint-protocol">Read the specification &mdash; CP-SPEC v0.5, on GitHub</a>
+      <a href="/metadax/research/#constraint-protocol">What that looks like, scene by scene &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="https://github.com/daxfoundation/constraint-protocol">The specification &mdash; CP-SPEC v0.5</a>
       <span aria-hidden="true">&middot;</span>
       <a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a>
     </p>
@@ -166,12 +160,8 @@ const first = homeSamples[0];
   <section class="block" aria-labelledby="coming">
     <h2 id="coming">Coming</h2>
     <ul class="rows">
-      {coming.map((i) => (
-        <li class="row">
-          <span class="name">{i.name}</span>
-          <span class="status">{i.status}</span>
-        </li>
-      ))}
+      <li class="row"><span class="name">Skippy DAX</span><span class="status">Coming soon</span></li>
+      <li class="row"><span class="name">Nova DAX</span><span class="status">Coming soon</span></li>
     </ul>
   </section>
 
@@ -184,8 +174,7 @@ const first = homeSamples[0];
           The normative definitions used across the DAX ecosystem:
           <a href="/definitions/#cognitive-companion">cognitive companion</a>,
           <a href="/definitions/#human-delta-value">human delta value</a>,
-          constraint, knowledge, intelligence, wisdom, consciousness and the
-          rest. Other documents reference them rather than restating them.
+          constraint, knowledge, intelligence, wisdom, consciousness and the rest.
         </span>
       </li>
       <li class="row">
@@ -201,10 +190,8 @@ const first = homeSamples[0];
           The long-form work behind all of this, by Jason Jeyanandan, who set
           this Foundation up:
           <a href="https://jeyanandan.com/blog/meta-dax/">Meta DAX: An Introduction</a>,
-          <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>,
-          <a href="https://jeyanandan.com/blog/snowflake-fuckari-in-action/">The Snowflake</a>,
-          <a href="https://jeyanandan.com/blog/fuckarian/">The Fuckarian</a>, and
-          the framework itself, <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>,
+          <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>, and
+          <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>,
           published in full with its dead ends left in.
         </span>
       </li>
@@ -216,13 +203,21 @@ const first = homeSamples[0];
     <p class="big">Give us a real scenario. We will build you a sample.</p>
     <p class="body">
       A parent who homeschools, a teacher, a mentor, a manager, a nurse training
-      the next nurse: anyone who is a step ahead of someone on something. Tell us
-      where the two of you are stuck, in a few lines, with no names and nothing
-      that identifies anyone, and we will hand you back a page like the
-      <a href={`/metadax/showcase/${first.id}/`}>one for {first.guide} and {first.learner}</a>:
-      one side for you, one for them. Free. You read it before you use it.
-      <a href="/metadax/#ask">How to send it &rarr;</a>
+      the next nurse: anyone who is a step ahead of someone on something. Pick
+      your chair, then tell us where the two of you are stuck, in a few lines,
+      with no names and nothing that identifies anyone, and we will hand you back
+      a page like the showcases above: one side for you, one for them. Free. You
+      read it before you use it.
     </p>
+    <p class="chairs-lead">Pick your chair:</p>
+    <nav class="chairs" aria-label="Meta DAX doors">
+      <a href="/metadax/homeschool/">Parent</a>
+      <a href="/metadax/tutor/">Tutor</a>
+      <a href="/metadax/teacher/">Teacher</a>
+      <a href="/metadax/trainer/">Trainer</a>
+      <a href="/metadax/research/">Researcher</a>
+    </nav>
+    <p class="out"><a href="/metadax/">Everything Meta DAX &rarr;</a></p>
 
     <div class="note" id="founder">
       <p class="note-head">A note from the founder</p>
@@ -261,7 +256,7 @@ const first = homeSamples[0];
     text-wrap: balance;
   }
   .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
-  .block[id] { scroll-margin-top: 1.5rem; }
+  .block[id], .block [id] { scroll-margin-top: 1.5rem; }
   h2 {
     margin: 0 0 1.25rem;
     font-size: 0.8125rem;
@@ -290,7 +285,6 @@ const first = homeSamples[0];
   }
   .body { margin: 0; max-width: 36em; color: #cfcfcf; }
   .body + .body { margin-top: 1rem; }
-  .after-fig { margin-top: 1.5rem; }
 
   /* One line that carries the weight of a section. */
   .big {
@@ -305,12 +299,12 @@ const first = homeSamples[0];
 
   /* The two featured sections: Meta DAX and the Constraint Protocol. */
   .feature { padding-block: 3rem 2.75rem; }
-  .note-line { margin: 1rem 0 0; font-size: 0.875rem; color: var(--faint); }
 
-  /* Three doors into Meta DAX. */
+  /* Five doors into Meta DAX. */
+  .chairs-lead { margin: 1.5rem 0 0.5rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
   .doors {
     list-style: none;
-    margin: 1.75rem 0 0;
+    margin: 0.25rem 0 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -338,27 +332,41 @@ const first = homeSamples[0];
   .door-title { font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
   .door-text { font-size: 0.9rem; line-height: 1.5; color: #bdbdbd; }
 
-  /* Five short links: one per chair. */
-  .chairs-lead { margin: 1.5rem 0 0.5rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  /* See it: the five showcases in one row. */
+  .see-it { margin-top: 2rem; }
+  .showcases {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .showcases a {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+  }
+  .showcases a:hover, .showcases a:focus-visible { border-color: var(--muted); }
+  .sc-name { font-weight: 500; font-size: 0.9rem; line-height: 1.25; }
+  .sc-note { font-size: 0.75rem; color: var(--faint); }
+
+  .sponsor { margin: 2rem 0 0; max-width: 36em; color: #bdbdbd; }
+
+  /* Five short links: one per chair, under the ask. */
   .chairs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9375rem; }
   .chairs a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .chairs a:hover, .chairs a:focus-visible { border-bottom-color: currentColor; }
-
-  /* Figures: drawn in this palette, full width of the column. */
-  .fig { margin: 1.75rem 0 0; }
-  .fig img {
-    display: block;
-    width: 100%;
-    height: auto;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-  }
 
   /* Outbound links sit below the block they belong to, in a quiet register.
      Underlined rather than coloured: this palette has no accent. */
   .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
   .out span { color: var(--faint); margin-inline: 0.5rem; }
-  .out a, .rows a, .body a, .note a {
+  .out a, .rows a, .body a, .note a, .sponsor a {
     color: inherit;
     text-decoration: none;
     border-bottom: 1px solid var(--faint);
@@ -366,6 +374,7 @@ const first = homeSamples[0];
   .out a:hover, .out a:focus-visible,
   .rows a:hover, .rows a:focus-visible,
   .body a:hover, .body a:focus-visible,
+  .sponsor a:hover, .sponsor a:focus-visible,
   .note a:hover, .note a:focus-visible { border-bottom-color: currentColor; }
 
   /* #founder: Jason's own words, set as a short letter at the foot. */
@@ -385,10 +394,9 @@ const first = homeSamples[0];
 
   @media (max-width: 40rem) {
     .doors { grid-template-columns: 1fr; }
+    .showcases { grid-template-columns: 1fr 1fr; }
   }
   @media (max-width: 34rem) {
-    .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .fig img { width: 640px; max-width: none; }
     .lede { padding-block: 3rem 3rem; }
     .row { grid-template-columns: 1fr; }
   }
