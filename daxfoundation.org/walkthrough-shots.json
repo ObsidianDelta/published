@@ -10,30 +10,30 @@
   },
   {
     "file": "metadax/walkthroughs/homeschool/02.png",
-    "path": "/metadax/play/",
+    "path": "/metadax/play/?sample=stade",
     "width": 390,
     "height": 844,
     "scrollY": 0,
     "fullPage": false,
-    "waitFor": "h1"
+    "waitFor": ".q"
   },
   {
     "file": "metadax/walkthroughs/homeschool/03.png",
-    "path": "/metadax/play/print.html",
+    "path": "/metadax/play/print.html?sample=stade",
     "width": 390,
     "height": 844,
     "scrollY": 0,
     "fullPage": false,
-    "waitFor": "#footer"
+    "waitFor": "#root h1"
   },
   {
     "file": "metadax/walkthroughs/teacher/01.png",
-    "path": "/metadax/play/print.html",
+    "path": "/metadax/play/print.html?sample=stade",
     "width": 390,
     "height": 844,
     "scrollY": 0,
     "fullPage": false,
-    "waitFor": "#footer"
+    "waitFor": "#root h1"
   },
   {
     "file": "metadax/walkthroughs/teacher/02.png",
