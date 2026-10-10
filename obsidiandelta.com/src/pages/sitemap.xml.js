@@ -2,8 +2,9 @@
 // exactly one dependency and `npm ci` against the committed lockfile stays
 // valid.
 //
-// WHAT GOES IN IT. The home page, the blog index, and indexablePosts from
-// src/pages/_posts.js: listed and never a draft, even in a review build.
+// WHAT GOES IN IT. The home page, the blog index, the /learning/ page, and
+// indexablePosts from src/pages/_posts.js: listed and never a draft, even in a
+// review build.
 //
 // WHAT STAYS OUT, on purpose:
 //   /mp/     the accounting area. It carries its own noindex meta and is not
@@ -16,7 +17,7 @@ import { indexablePosts } from './_posts.js';
 
 const SITE = 'https://www.obsidiandelta.com';
 
-const STATIC_ROUTES = ['/', '/blog/'];
+const STATIC_ROUTES = ['/', '/blog/', '/learning/'];
 
 const day = (value) => {
   const d = new Date(value);

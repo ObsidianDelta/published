@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDate } from '../_posts.js';
+
+// /learning/ -- the paid, done-for-you side of the MetaDAX work. One page, four
+// offers in the same order as the doors. This is the company's commercial page:
+// Obsidian Delta sells; the DAX Foundation is the open project, never a charity
+// or a registered body. No AI vendor is named, no email address appears -- a
+// contact goes through the site form or the "message Jason on LinkedIn" link.
+//
+// First published and updated are rendered by hand here (this is a page, not a
+// post in src/posts/), formatted with the same helper the blog uses so the two
+// surfaces read the dates the same way.
+const PUBLISHED = '2026-10-10';
+const UPDATED = '2026-10-10';
+const LINKEDIN = 'https://www.linkedin.com/in/jasonjeyanandan';
+---
+<Base
+  title="Learning, done for you — Obsidian Delta"
+  description="The open MetaDAX recipe, built for you: tutor session reports, custom learner packs, and a course for your team in about a week. Done-for-you services from Obsidian Delta.">
+  <section class="hero"><div class="shell narrow">
+    <p class="eyebrow">First published {formatDate(PUBLISHED)} <span aria-hidden="true">·</span> Updated {formatDate(UPDATED)}</p>
+    <h1>Learning, done for you.</h1>
+    <p class="deck">The MetaDAX recipe is open and free. If you would rather have it built for you &mdash; a tutor report, a pack for one child, a course for your team &mdash; this is the page for that.</p>
+    <div class="rule"></div>
+  </div></section>
+
+  <div class="shell narrow">
+
+    <!-- 1. Tutor session reports -->
+    <section class="offer" aria-labelledby="o1">
+      <p class="offer__kicker">01 · For tutors</p>
+      <h2 id="o1">Tutor session reports</h2>
+      <p class="offer__price"><strong>$12 a month</strong> for up to 20 reports, or <strong>$1 a report</strong>. The first three are free.</p>
+      <p>You send your rough notes after a session. What comes back is a clean, parent-ready report in your own voice &mdash; what happened, what worked, the misconception you saw, and one clear next step. Every report is read by Jason before it goes back to you. Turnaround is same day, usually within hours.</p>
+      <p class="cta-row">
+        <a class="cta" data-pay="tutor-monthly" href="#" hidden>Pay with Stripe</a>
+        <a class="cta" data-pay="tutor-single" href="#" hidden>Pay with Stripe</a>
+        <a class="cta" data-cta="fallback" href={LINKEDIN} rel="noopener">Message Jason to start</a>
+      </p>
+      <p class="offer__note">No tutor has run this as a paid service yet, so there are no testimonials or numbers &mdash; the first three free are how you judge it.</p>
+    </section>
+
+    <!-- 2. Custom learner pack -->
+    <section class="offer" aria-labelledby="o2">
+      <p class="offer__kicker">02 · For parents</p>
+      <h2 id="o2">A custom learner pack</h2>
+      <p class="offer__price"><strong>Printable $29</strong> · <strong>interactive $59</strong> · <strong>signature 3D (Stade-class) $149</strong>. The first three are free for a testimonial.</p>
+      <p>A pack built around one child, through whatever they love: a page for the guide and a page for the child, with a game that hardens on a streak and eases after a miss. Built to order and read in full by a person before it reaches you. If you prefer, there is no AI on the child's side &mdash; they work through it with you beside them.</p>
+      <p>See the ceiling: <a href="https://daxfoundation.org/metadax/samples/stade-des-fractions/" rel="noopener">Le Stade des Fractions</a>, a full French-fractions course set in a 3D stadium.</p>
+      <p class="cta-row"><a class="cta" data-cta="fallback" href={LINKEDIN} rel="noopener">Message Jason to start</a></p>
+      <p class="offer__note">No family has bought one yet &mdash; no testimonials, no numbers. The first three are free in exchange for an honest testimonial.</p>
+    </section>
+
+    <!-- 3. Course-in-a-week for a team -->
+    <section class="offer" aria-labelledby="o3">
+      <p class="offer__kicker">03 · For teams</p>
+      <h2 id="o3">A course in a week</h2>
+      <p class="offer__price"><strong>$750 per module</strong> ($490 founding). One organisation gets the first module free.</p>
+      <p>Send your own material &mdash; the handbook, the slides, the how-we-do-it knowledge &mdash; and we build a full course from it: lessons, content, and practice, in order, delivered ready to run as files you own, in about a week for a first scoped module.</p>
+      <p>See two we built: <a href="https://daxfoundation.org/metadax/showcases/first-week-at-the-bakery/" rel="noopener">First Week at the Bakery</a> and <a href="https://daxfoundation.org/metadax/showcases/proton-mill/" rel="noopener">The Proton Mill</a>.</p>
+      <p class="cta-row"><a class="cta" data-cta="fallback" href={LINKEDIN} rel="noopener">Message Jason to start</a></p>
+      <p class="offer__note">This is training built from your material, not legal or compliance certification. No organisation has run it yet, so the first one is a free or discounted pilot.</p>
+    </section>
+
+    <!-- 4. formaddie Founding Gift -->
+    <section class="offer" aria-labelledby="o4">
+      <p class="offer__kicker">04 · Coming</p>
+      <h2 id="o4">A Founding Gift for formaddie</h2>
+      <p class="offer__price"><strong>November.</strong> $99 for a year; $79 on Black Friday.</p>
+      <p>A Founding Gift for formaddie arrives in November.</p>
+    </section>
+
+    <!-- how it works -->
+    <section class="plain" aria-labelledby="how">
+      <h2 id="how">How it works</h2>
+      <ol class="steps">
+        <li>You send a brief.</li>
+        <li>It is built with the open MetaDAX recipe.</li>
+        <li>Jason reads it.</li>
+        <li>You get files you own. Every pack can be shared back to the commons de-identified &mdash; your choice.</li>
+      </ol>
+    </section>
+
+    <!-- who you're buying from -->
+    <section class="plain" aria-labelledby="who">
+      <h2 id="who">Who you're buying from</h2>
+      <p>Obsidian Delta Corp, since 2015. The paid builds above are the company's done-for-you services. The DAX Foundation is the open project behind MetaDAX &mdash; separate, and not for sale.</p>
+      <p class="free">The recipe is free at <a href="https://daxfoundation.org/metadax/" rel="noopener">daxfoundation.org/metadax/</a>. This page is for guides who would rather have it done.</p>
+      <p class="ecosystem">One body of work: <a href="https://jeyanandan.com" rel="noopener">jeyanandan.com</a> (the writing) · <a href="https://daxfoundation.org/metadax/" rel="noopener">daxfoundation.org</a> (MetaDAX, the open commons) · <a href="https://www.obsidiandelta.com/learning/">obsidiandelta.com</a> (the company: done-for-you services) · <a href="https://formaddie.com" rel="noopener">formaddie.com</a> (Maddie)</p>
+    </section>
+
+  </div>
+</Base>
+
+<style is:global>
+/* The /learning/ page in the Obsidian Delta dark system: white headings, bone
+   body, orange as the single accent. Measures follow the blog (680px). */
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(28px,6vw,40px)}
+.deck{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(20px,3vw,26px);line-height:1.3;letter-spacing:-.01em;
+  color:var(--ash);margin-top:16px;text-wrap:balance;
+}
+
+.offer{border-top:1px solid var(--steel);padding:clamp(32px,6vw,48px) 0}
+.plain{border-top:1px solid var(--steel);padding:clamp(32px,6vw,48px) 0}
+.offer__kicker{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;
+}
+.offer h2,.plain h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(26px,3.8vw,38px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--white);margin:0 0 .5em;text-wrap:balance;
+}
+.offer p,.plain p{color:var(--bone);font-size:16px;line-height:1.7;margin:0 0 1rem;max-width:680px}
+.offer p:last-child,.plain p:last-child{margin-bottom:0}
+.offer__price{color:var(--white)!important}
+.offer__price strong{color:var(--orange);font-weight:500}
+.offer strong,.plain strong{color:var(--white);font-weight:500}
+.offer a,.plain a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.offer a:hover,.plain a:hover{color:var(--white);border-color:var(--white)}
+.offer__note{color:var(--ash)!important;font-size:14px!important;margin-top:1rem}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:1.25rem 0 .5rem}
+.cta{
+  display:inline-block;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--black)!important;background:var(--orange);
+  padding:12px 22px;border:1px solid var(--orange)!important;border-radius:2px;
+  text-decoration:none!important;transition:background .2s,color .2s;
+}
+.cta:hover{background:transparent;color:var(--orange)!important}
+.cta[hidden]{display:none!important}
+
+.steps{margin:0;padding-left:1.3rem;color:var(--bone);font-size:16px;line-height:1.7;max-width:680px}
+.steps li{margin:0 0 .5em}
+.steps li::marker{color:var(--orange)}
+
+.free{color:var(--white)!important}
+.ecosystem{font-size:14px!important;color:var(--ash)!important;margin-top:1.5rem!important;max-width:720px!important}
+</style>
