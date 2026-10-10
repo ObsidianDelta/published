@@ -102,6 +102,15 @@ const first = homeSamples[0];
       </li>
     </ul>
 
+    <p class="chairs-lead">Pick your chair:</p>
+    <nav class="chairs" aria-label="Meta DAX doors">
+      <a href="/metadax/homeschool/">Parent</a>
+      <a href="/metadax/tutor/">Tutor</a>
+      <a href="/metadax/teacher/">Teacher</a>
+      <a href="/metadax/trainer/">Trainer</a>
+      <a href="/metadax/research/">Researcher</a>
+    </nav>
+
     <figure class="fig">
       <img src="/figures/meta-dax-tree.svg" width="1200" height="840" alt="Learning drawn as the tree of life upside down: every path from the first question is kept, the dead ends are kept, one learner's question answers another's, and the negative space nobody has explored yet is marked. There is never the way. There is always a way." loading="lazy" />
     </figure>
@@ -328,6 +337,12 @@ const first = homeSamples[0];
   }
   .door-title { font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
   .door-text { font-size: 0.9rem; line-height: 1.5; color: #bdbdbd; }
+
+  /* Five short links: one per chair. */
+  .chairs-lead { margin: 1.5rem 0 0.5rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .chairs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9375rem; }
+  .chairs a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .chairs a:hover, .chairs a:focus-visible { border-bottom-color: currentColor; }
 
   /* Figures: drawn in this palette, full width of the column. */
   .fig { margin: 1.75rem 0 0; }

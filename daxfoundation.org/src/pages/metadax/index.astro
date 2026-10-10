@@ -1,533 +1,156 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { samples } from './_showcase.js';
-import samplesData from '../../data/metadax-samples.json';
-const sampleCount = (samplesData.samples || samplesData).length;
 
-// /metadax/ -- everything Meta DAX on this site, 2026-10-05.
+// /metadax/ -- "pick your chair", 2026-10-10 (five-chairs-doors).
 //
-// Order, as Jason set it: what it is and who it is for (guides and learners,
-// a step ahead, swinging leads); see it (the six samples); the measure under
-// all of it, human delta value, with reclaimed cognition at the centre; how
-// the system works and what has actually run; the experiments, small first,
-// then the legwork, then the twelve scenes; what it becomes on the Constraint
-// Protocol, with compounding knowledge and intelligence, told through the
-// scenes; honest limits; the ask.
+// The hub used to carry every long section (the benchmark, guides and
+// learners, the measure, how it works, underneath, the experiments, the
+// Constraint Protocol, the ask). Those MOVED, unchanged in substance, to
+// /metadax/research/. This page is now a short claim and five doors: Parent,
+// Tutor, Teacher, Trainer, Researcher. Each door is one page in that guide's
+// own words. "See it" points at the samples with the universal line; then the
+// sponsor sentence.
 //
-// Accuracy: Meta DAX results come from automated runs (a model in both chairs)
-// and the repository says which; the twelve scenes are planned, not run; the
-// Constraint Protocol has run in full once; the samples are made-up people,
-// written with help from AI from a short brief, read in full by a person
-// before they went up; no AI vendor is named; "guide" and "learner", never
-// "role"; never "the way", always "a way"; "cognitive labour" is never
-// qualified with "manual".
+// NO-LOSS: every old #anchor on this page still answers. The ones that moved
+// forward to the matching anchor on /metadax/research/ (the script at the
+// foot); #see-it still exists here.
+//
+// Rules: "guide" and "learner", never "role"; "a way, never the way"; no AI
+// vendor named; "cognitive labour" is never qualified with "manual"; the
+// Foundation is never a non-profit, charity, registered or incorporated body.
 
-const first14 = [
-  ['E01', 'A guide creates a course into a repository from a one-line description', 'done, first cut'],
-  ['E02', 'The same from a chat client that cannot write files, with a commit packet', 'not started'],
-  ['E03', 'A learner session: read, three follow-up levels, quiz, save', 'done, first cut'],
-  ['E04', 'Do the prompts pass on two different model vendors?', 'built, not run'],
-  ['E05', 'Does the follow-up engine reuse correctly from a registry?', 'built, not run'],
-  ['E06', 'Does the weekly bundle loop close at 50 kbps?', 'not started'],
-  ['E07', 'Can a unit be grounded on an open curriculum with real citations?', 'not started'],
-  ['E08', 'Generated interactive assets: pass rate against oracle tests', 'not started'],
-  ['E09', 'Records a homeschooling parent would file', 'not started'],
-  ['E10', 'A small on-device model running the quiz', 'not started'],
-  ['E11', 'A learner record ingested by a cognitive companion (isolated copy)', 'not started'],
-  ['E12', 'Provenance plus signed commits, verified later as a chain', 'not started'],
-  ['E13', 'A teaching-method variant, generated and certified', 'not started'],
-  ['E14', 'Does the age wall bite in practice? (observe only)', 'not started'],
+const doors = [
+  {
+    href: '/metadax/homeschool/',
+    kicker: 'Parent',
+    title: 'You homeschool',
+    text: 'You know your child. Meta DAX does the rest of the preparing and hands you the next session, built through what they love.',
+  },
+  {
+    href: '/metadax/tutor/',
+    kicker: 'Tutor',
+    title: 'You tutor',
+    text: 'One learner, one stuck spot, one evening. Rough notes in, a plan for the next session and a parent-ready report out.',
+  },
+  {
+    href: '/metadax/teacher/',
+    kicker: 'Teacher',
+    title: 'You teach a class',
+    text: 'A class that nods and then fails the exit task. A hinge question, every wrong answer planned for, and the cognition handed back to you.',
+  },
+  {
+    href: '/metadax/trainer/',
+    kicker: 'Trainer',
+    title: 'You train at work',
+    text: 'A new hire, a first week, a process only you hold. A module built from a one-page brief, so the next hire starts a step ahead.',
+  },
+  {
+    href: '/metadax/research/',
+    kicker: 'Researcher',
+    title: 'You want the evidence',
+    text: 'The benchmark, the measure, how it works underneath, the experiments with their results, the Constraint Protocol, and the ask.',
+  },
 ];
 
-const twelve = [
-  ['X01', 'One thread, two worlds', 'A guide’s move, made once in Indonesian for a kite flyer stuck on the third law, captured as a technique and offered in Spanish to a kite flyer in Guatemala who shares nothing else with him. The floor rises for everyone after.'],
-  ['X02', 'Many hands, one course', 'A beekeeping course forked across four languages, learners asking at once, until its curriculum is mostly promoted follow-ups.'],
-  ['X03', 'The nurse’s walkthrough', 'A walkthrough that first asks what a guide brings, and gives a charge nurse only the stages she cannot do herself.'],
-  ['X04', 'The dead-end atlas', 'Where learners get lost, shared as shapes and never as records, mapped per module and re-taught at the spot.'],
-  ['X05', 'Flagged by the learner', 'Steering measured two ways: by learners who flag it, and by an evaluator blind to them.'],
-  ['X06', 'Same course, every bandwidth', 'One course for a five-minute-a-day learner, a patchy commuter and an always-on companion, and what the bundle must carry.'],
-  ['X07', 'The pocket model', 'A small model on a phone holding the conversation while the bundle holds the teaching.'],
-  ['X08', 'Behind the company wall', 'The same infrastructure on a company’s own git, learner records still the learner’s, one technique sent back out through a gate.'],
-  ['X09', 'Nothing quietly edited', 'Every contribution on a live Constraint Protocol record, and whether knowledge and intelligence compound when nothing can be erased.'],
-  ['X10', 'One record, many years', 'One learner’s private record across eleven courses and six years, carried into her cognitive companion, with every carry-over hers to refuse.'],
-  ['X11', 'The negative space', 'The unexplored parts of a subject shaded on the tree and offered, not pushed, with the regions nobody takes recorded too.'],
-  ['X12', 'Five minutes to master’s', 'The long one. A phone, five minutes a day, a blind-graded external yardstick agreed in advance, and the result published either way.'],
-];
-
-const legwork = [
-  ['Identifiers and schemas that hold at a million nodes', 'Today’s ids encode ancestry and registries are per module. Both have to be shown to hold, or be redesigned, at a scale no fixture reaches.'],
-  ['A registry at scale', 'Reuse decisions against fifty planted nodes are one thing; against every course in a language, with duplicates arriving from many guides at once, is another.'],
-  ['Reuse across languages, without copying', 'A core rendered into a second language is a shared asset; a hobby rendering stays personal. The rule exists; the machinery does not.'],
-  ['The five-minute bundle', 'The weekly loop at 50 kbps, then the bundle that carries enough teaching for a week offline, with nothing in it the learner did not need.'],
-  ['Certification', 'A prompt is certified for a named model set by evals, not by reputation. No certification exists yet; the harness does.'],
-  ['The constraint fields, null today, made live', 'Every node has a provenance file with fields reserved for a constraint and signing layer. They are null. A live Constraint Protocol record under every contribution is the destination.'],
-  ['The learner’s privacy, at scale and across years', 'Pseudonyms and a private repository work for one learner and one course; eleven courses and six years is a different problem.'],
-  ['Reclaimed cognition, recorded', 'A place in the session record for the person’s own account of what was taken off them and what they spent it on, written as they gave it. No experiment with a person runs without it.'],
+// Old anchors that now live on the research door. A link to any of them
+// forwards there, so nothing that pointed at /metadax/#... is lost.
+const moved = [
+  'guides-and-learners', 'human-delta-value', 'how-it-works', 'underneath',
+  'experiments', 'constraint-protocol', 'honest', 'ask', 'top',
 ];
 ---
-<Base title="Meta DAX" description="Our initiative of universal learning. Every human being. Any subject. Any domain. Free, forever. What it hands a guide and a learner, the measure under all of it, the experiments, and the ask." wide>
-  <section class="lede" id="top">
+<Base title="Meta DAX: pick your chair" description="Our initiative of universal learning. Every human being. Any subject. Any domain. Free, forever. Pick your chair: parent, tutor, teacher, trainer, researcher." wide>
+  <section class="lede" id="see-it-top">
     <p class="eyebrow">Meta DAX</p>
     <h1>Every human being. Any subject. Any domain. Free, forever.</h1>
     <p class="lede-text">
-      Our initiative of universal learning. Held to a benchmark with the
-      audacity built in: <em>take a person who can communicate, and get them to
-      the equivalent of a master&rsquo;s degree from an Ivy League university
-      &mdash; on five minutes of connectivity a day.</em>
-      <strong>We are developing this for all bandwidths!</strong> Five minutes a
-      day is where it starts.
-    </p>
-    <nav class="jump" aria-label="On this page">
-      <a href="#guides-and-learners">Guides and learners</a>
-      <a href="#see-it">See it</a>
-      <a href="#human-delta-value">The measure</a>
-      <a href="#how-it-works">How it works</a>
-      <a href="#experiments">The experiments</a>
-      <a href="#constraint-protocol">On the Constraint Protocol</a>
-      <a href="#ask">The ask</a>
-    </nav>
-    <p class="start"><a href="/metadax/homeschool/">Homeschooling? Start here &rarr;</a></p>
-    <p class="start"><a href="/metadax/guide/">How to use Meta DAX: a step-by-step guide &rarr;</a></p>
-  </section>
-
-  <section class="block" id="guides-and-learners" aria-labelledby="h-gl">
-    <h2 id="h-gl">Guides and learners</h2>
-    <p class="big">Everyone is a learner. Whoever is a step ahead, right now, on this, is the guide.</p>
-    <p class="body">
-      A parent, a teacher, a mentor, a manager, a grandson with a phone, a nurse
-      training the next nurse: the guide is whoever is a step ahead on the thing
-      in front of the two of you. The gap is small, it is temporary, and it moves.
-      In every sample below there is a moment where the learner is a step ahead
-      of the guide on something and leads. We call that swinging leads, after
-      climbing partners who swap the lead as they go up.
-    </p>
-    <p class="body">
-      Learning happens within reach: just past what a person can do alone, and
-      not further. Meta DAX exists to put the next step within reach for both of
-      them, and then get out of the way.
+      Our initiative of universal learning. Anyone a step ahead can be a guide;
+      everyone is a learner. Meta DAX hands the two of you what you need for the
+      next step together, built through what the learner already loves, and then
+      gets out of the way. One recipe, five chairs. Pick yours.
     </p>
   </section>
 
-  <section class="block" id="see-it" aria-labelledby="h-see">
-    <h2 id="h-see">See it: {sampleCount} samples</h2>
-    <p class="big">What Meta DAX hands a guide and a learner, three steps in.</p>
-    <p class="body">
-      It runs on the AI subscription you already have. In one sitting it makes a
-      two-page package: a guide page and a learner page.
-    </p>
-    <p class="body">
-      Three iterations have happened. After each one the guide said how it went,
-      and Meta DAX learned something about the learner and something about the
-      guide. Each page is what it hands them now: the plan for step four, with
-      steps one to three visible as history, one side for the guide and one side
-      made for the learner. Open any of them. Everyone in them is made up.
-    </p>
-    <ul class="cards">
-      {samples.map((s) => (
-        <li class="card">
-          <a href={`/metadax/showcase/${s.id}/`}>
-            <span class="swatch" aria-hidden="true">
-              {s.swatch.map((c) => <i style={`background:${c}`}></i>)}
-            </span>
-            <span class="card-title">{s.title}</span>
-            <span class="card-pair">{s.pair}</span>
-            <span class="card-topic">{s.topic}</span>
+  <section class="block" aria-labelledby="h-doors">
+    <h2 id="h-doors">Pick your chair</h2>
+    <ul class="doors">
+      {doors.map((d) => (
+        <li>
+          <a href={d.href}>
+            <span class="door-kicker">{d.kicker}</span>
+            <span class="door-title">{d.title}</span>
+            <span class="door-text">{d.text}</span>
           </a>
         </li>
       ))}
     </ul>
-    <p class="out">
-      <a href="/metadax/samples/">All {sampleCount} samples &rarr;</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="/metadax/showcase/">The showcase (six deep packages)</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="/metadax/homeschool/">For parents who homeschool</a>
-    </p>
   </section>
 
-  <section class="block" id="human-delta-value" aria-labelledby="h-hdv">
-    <h2 id="h-hdv">The measure under all of it</h2>
-    <p class="big">Human delta value: what a person brings. Reclaimed cognition: what they do with what they get back.</p>
+  <section class="block" id="see-it" aria-labelledby="h-see">
+    <h2 id="h-see">See it</h2>
+    <p class="big">The same recipe built every one of these.</p>
     <p class="body">
-      Every time Meta DAX takes cognitive labour off a guide &mdash; the
-      sequencing, the worked examples, the quiz, the record of what happened
-      last time &mdash; one question is left, and it is the whole point:
-      <strong>what is it that only you can do here, and how do we help you do
-      it as well as you can?</strong>
+      Four deep showcases, nine sample packages, and six family pages three
+      steps in: a mom and her eleven-year-old on fractions, a teacher and a
+      newcomer, a grandson and his grandmother, a new manager, a first on-call
+      shift, a teacher of teachers. Open any of them. Everyone in them is made up.
     </p>
-    <p class="body">
-      Look at the guide&rsquo;s side of any sample. Megan is not handed a
-      lesson to deliver; she is handed what to say, what to skip, which slips
-      are normal, and one line of why under each step, because by session three
-      she was explaining it in her own words and asking if that was allowed. It
-      was. The page got out of her way so she could watch Liam. Dave is told how
-      to coach without grabbing the keyboard. Dinah gets an observation lens for
-      her next visit and a note on where Jordan sits in his own zone of proximal
-      development as a teacher. Ren&eacute;e gets one line on how to coach
-      Marcus without taking over. The preparing is off them. The noticing is
-      theirs.
-    </p>
-    <p class="body">
-      That is reclaimed cognition. Now that the guide has it back, they have the
-      chance to learn the part no system can do: how to bring out the best in
-      the learner. Meta DAX is built to invert the ratio of learners to guides,
-      and to hand the guide back the cognition the busywork took, on purpose, for
-      the problems they could previously only dream about. Human delta value has
-      two halves, and both count: what only a human being can currently do, and
-      what a person and their <a href="/definitions/#cognitive-companion">cognitive
-      companion</a> reach together that neither would alone. It is the thread
-      through everything here, not a one-off measurement, and it is close to the
-      point.
-    </p>
-    <p class="body">
-      It comes with a demand. A person and their companion are one unit, and the
-      unit is only as strong as the human&rsquo;s best in the moment. However
-      good the companion becomes, a person who cannot bring their best gets
-      less from it, not more. We hold that as a hypothesis with a kill line, and
-      Meta DAX is where we intend to test it, in the open, with the result
-      published either way. Everybody needs to step up.
-    </p>
-    <p class="body">
-      Operationally: at the end of a session the guide says, in their own words,
-      what was taken off them and what they spent their attention on instead. It
-      is recorded as they said it. Never inferred from logs, never reconstructed
-      by a model, never reduced to minutes. A system that cannot say what the
-      human brought has stopped extending people and started replacing them.
-    </p>
-    <p class="out">
-      <a href="/definitions/#human-delta-value">The definition</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="/writing/human-delta-value/">Human delta value: the measure</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://jeyanandan.com/blog/human-delta-value/">Where it came from</a>
-    </p>
+    <p class="out"><a href="/metadax/samples/">See it &rarr;</a></p>
   </section>
 
-  <section class="block" id="how-it-works" aria-labelledby="h-how">
-    <h2 id="h-how">How it works</h2>
-    <p class="big">One sentence from a guide becomes a course. A learner can ask why as many times as they like.</p>
-    <div class="cols">
-      <div>
-        <h3>For the guide</h3>
-        <p>Describe a course in one sentence and Meta DAX writes it: the lessons, the pages, the ideas each page depends on, and the mistakes learners are likely to make, written down before a single page exists. Every page can be shaped to the person reading it, the same physics told through baking for a baker or through cycling for a cyclist, without cloning the course. After each step the guide says how it went, and the next page comes back shaped by it.</p>
-      </div>
-      <div>
-        <h3>For the learner</h3>
-        <p>They read, and they ask why. Each answer knows the questions that led to it, a follow-up of a follow-up of a follow-up, as deep as they like. They are quizzed in steps that climb from remembering to applying, walked out of wrong ideas without being handed the answer, and they keep their own private record of what they learned. Nothing invites a child to chat with an AI; a learner under eighteen uses their page with the guide beside them.</p>
-      </div>
-      <div>
-        <h3>Underneath</h3>
-        <p>There is no server, no database and no app to install. The system is a suite of meta prompts, a set of schemas, a few small tools, and things people already have: a chat model, git, and a place to keep repositories. Courses and learner records are files in the person&rsquo;s own repositories, append-only. Knowledge is shared and presentation is personal: a page stores one neutral core and renders it per learner, so another learner with the same question is pointed at the existing answer instead of a duplicate.</p>
-      </div>
-      <div>
-        <h3>It compounds</h3>
-        <p>A course a guide publishes is open for anyone to teach from, fork and improve. A question a learner chooses to share can, once a guide reviews it, become part of the course for the next learner. Every path anyone takes is kept, and so are the dead ends, recorded as carefully as the arrivals, and so is the negative space: the parts of a subject nobody has explored yet. There is never <em>the</em> way. There is always <em>a</em> way, and the system is built not to lead.</p>
-      </div>
-    </div>
-    <figure class="fig">
-      <img src="/figures/meta-dax-tree.svg" width="1200" height="840" alt="Learning drawn as the tree of life upside down: every path from the first question is kept, the dead ends are kept, one learner's question answers another's, and the negative space nobody has explored yet is marked. There is never the way. There is always a way." loading="lazy" />
-    </figure>
-    <h3 class="sub">What has actually run</h3>
-    <p class="body">
-      Two of the first fourteen experiments, first cut, both automated: a model
-      played the guide, and in the learner runs a simulated adult played the
-      learner. In the guide run, an empty repository became a course with seven
-      objectives, the first page at about eight minutes; a second run produced
-      <em>Newton&rsquo;s Laws of Motion</em>, three lessons, seven modules,
-      twenty-one objectives, every page validated. In the learner run on that
-      course, six follow-up questions to a depth of four, a quiz, a saved record,
-      and three bugs found, two fixed with regression tests. None of it is a
-      pilot with a person. Every number, and what each run does not show, is in
-      the repository with the date on it.
+  <section class="block" aria-labelledby="h-support">
+    <h2 id="h-support">Keep it going</h2>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
     </p>
     <p class="out">
-      <a href="https://github.com/daxfoundation/metadax#what-has-actually-run">The runs, in the repository</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://github.com/daxfoundation/metadax/blob/main/docs/CONCEPTS.md">Sixteen concepts, one at a time</a>
-    </p>
-  </section>
-
-  <section class="block" id="experiments" aria-labelledby="h-exp">
-    <h2 id="h-exp">The experiments</h2>
-    <p class="big">Fourteen small ones first. Then the legwork. Then the twelve we can already picture.</p>
-    <p class="body">
-      The small ones are how we earn the big ones: nothing in the third tier can
-      run honestly until the first two have. A result appears only when an
-      actual run produced it, dated, whichever way it went.
-    </p>
-    <figure class="fig">
-      <img src="/figures/meta-dax-bridge.svg" width="1200" height="590" alt="The bridge: on the left, what has run, one guide run and one learner run with a model in both chairs; across the span, the legwork, identifiers and schemas at scale, a registry of millions, reuse across languages, the five-minute bundle, certification, the constraint fields made live, the learner's privacy; on the right, the twelve experiments we can already picture, ending at five minutes to master's. The small ones earn the big ones." loading="lazy" />
-    </figure>
-
-    <h3 class="sub">Where we are starting</h3>
-    <table class="exp">
-      <thead><tr><th scope="col">Id</th><th scope="col">Question</th><th scope="col">Status</th></tr></thead>
-      <tbody>
-        {first14.map(([id, q, st]) => (
-          <tr><td class="mono">{id}</td><td>{q}</td><td class={st.startsWith('done') ? 'st done' : st.startsWith('built') ? 'st built' : 'st'}>{st}</td></tr>
-        ))}
-      </tbody>
-    </table>
-
-    <h3 class="sub">The legwork</h3>
-    <p class="body">What has to exist before any of the big ones can run honestly. None of it is glamorous, and all of it is where the scale lives.</p>
-    <dl class="leg">
-      {legwork.map(([t, d]) => (<><dt>{t}</dt><dd>{d}</dd></>))}
-    </dl>
-
-    <h3 class="sub">Where we want to get to</h3>
-    <p class="body">
-      Twelve experiments, each written as a scene first, because an experiment
-      that cannot be pictured as one person on one day cannot be designed. The
-      people are fictional; the places, languages and subjects are real. Planned,
-      not run. Every one of them records human delta value, both halves, and
-      reclaimed cognition in the person&rsquo;s own words.
-    </p>
-    <ol class="scenes">
-      {twelve.map(([id, t, d]) => (
-        <li><span class="mono">{id}</span> <strong>{t}.</strong> {d}</li>
-      ))}
-    </ol>
-    <p class="out">
-      <a href="https://github.com/daxfoundation/metadax/blob/main/docs/NEXT-EXPERIMENTS.md">The twelve scenes in full: the machinery, the question, the measure, the kill line, what compounds</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://github.com/daxfoundation/metadax/blob/main/docs/EXPERIMENTS.md">The first fourteen</a>
-    </p>
-  </section>
-
-  <section class="block" id="constraint-protocol" aria-labelledby="h-cp">
-    <h2 id="h-cp">On the Constraint Protocol</h2>
-    <p class="big">When nothing can be quietly edited, what one person works out compounds for everyone after them.</p>
-    <p class="body">
-      The <a href="/#cp">Constraint Protocol</a> is the ground Meta DAX is built
-      to stand on: every party declares in advance what it will not do, every
-      consequential act is signed and witnessed onto a record nobody can quietly
-      edit, and anyone can dispute any record. Today every node in Meta DAX
-      carries the fields for that record, and they are null. Making them live is
-      on the list above. Here is what it looks like when they are, told the only
-      way we know how to tell it, as scenes. Planned, not run.
-    </p>
-
-    <div class="scene">
-      <h3>Knowledge compounds: a move made once, kept for everyone</h3>
-      <p>Yogyakarta. Ayu teaches physics by day and tutors adults by night. Her learner Bagus, a motorbike courier who flies kites on Sundays, is stuck on the third law: if the kite pulls the line exactly as hard as the line pulls the kite, they cancel, so nothing can ever move. Two of her moves fail. Then she takes two delivery receipts from his bag, writes KITE on one and AIR on the other, and says: every force goes on the receipt of the thing it acts on, and a pair is never on the same receipt. Now add up the kite&rsquo;s receipt only. He is through. The session records the move as hers, and with his consent and her review it becomes a technique in the course: one body, one receipt.</p>
-      <p>Eleven weeks later, in Sumpango, Guatemala, Marisol, who shares nothing with Bagus except kites, hits the same wall in her Spanish rendering. The tutor recognises the shape of her two attempts, finds the technique, and offers it as one way among those on record, never required. She takes it. Through. Knowledge, in the Foundation&rsquo;s sense, is a stabilised representation of which patterns hold. Ayu&rsquo;s move is now one, by content hash, in every language, and her two failed moves are kept too: the next guide is told what did not land.</p>
-    </div>
-
-    <div class="scene">
-      <h3>Intelligence compounds: a shorter path, carried by the learner</h3>
-      <p>Taipei. Mei starts with a physics course on her phone at twenty-six and takes eleven courses over six years, ending with fracture mechanics. Her learner record is one repository, hers: what helps her, every snapshot, her private notes, her dead ends. In year four she begins working through a cognitive companion, the part of her that is wired in, which she directs and answers for. At the first page of the fracture course it can tell her what she already holds and where she got lost in year two. The steward proposes carrying three concepts over as held. She refuses one: she had it then and does not have it now. The refusal is recorded. She, not it, decides what she carries. Intelligence, in the Foundation&rsquo;s sense, is navigating a constrained possibility space, getting from A to B using what is known. Every course she takes makes the next one shorter, and none of it ever leaves her hands.</p>
-    </div>
-
-    <div class="scene">
-      <h3>Nothing quietly edited: the record that lets strangers trust each other</h3>
-      <p>Nairobi and Edinburgh. Wanjiru teaches rainwater harvesting in Swahili and English. A learner&rsquo;s follow-up on tank sizing has become popular; she promotes it into the course. Before she did, she had declared what she would not do: promote a learner&rsquo;s node without a review. The curator model had declared what it would not do: rewrite a core. Callum, who stewards the Foundation&rsquo;s copy, had declared he would accept or reject and never edit. Each declaration is signed; each node&rsquo;s provenance points at the declarations behind it.</p>
-      <p>Fourteen months later a learner in Jaffna, in Tamil, disputes the rule of thumb in that node: wrong for a monsoon climate. Nobody edits anything. The dispute is a record. The correction is a new node, linked, with its own declarations. The old node stays, marked disputed, the chain visible: who asked, who promoted, what the curator did and did not do, who reviewed, when, signed. Anyone can re-judge it. That is wisdom in the Foundation&rsquo;s narrow sense, <em>I could, but I will not</em>, made into something a stranger can check. The question the experiment asks is whether knowledge and intelligence compound across guides, learners and organisations when nothing can be erased, or whether a signed name makes people contribute less. The kill line is written down, and the result will be published either way.</p>
-    </div>
-
-    <p class="body">
-      The Constraint Protocol is a public working draft, run in full once so far.
-      It keeps the record; it prevents nothing. What Meta DAX adds is the reason
-      to keep one: a world where a parent in one country, a tutor in another and
-      a learner in a third can each build on what the others worked out, and
-      see exactly who stood behind every piece of it.
-    </p>
-    <p class="out">
-      <a href="https://github.com/daxfoundation/constraint-protocol">CP-SPEC v0.5, on GitHub</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="/definitions/#knowledge">Knowledge, intelligence and wisdom, as defined here</a>
-    </p>
-  </section>
-
-  <section class="block" id="honest" aria-labelledby="h-honest">
-    <h2 id="h-honest">Honest limits</h2>
-    <p class="body">
-      Meta DAX is a research project of the DAX Foundation: a set of experiments
-      before it is a product. The samples were written with help from AI
-      from a short brief about two made-up people, and read in full by a person
-      before they went up; they show what the system is aiming to hand people,
-      not what the automated pipeline produces today. What has run end to end is
-      a client that works for a guide and a learner with a model in both chairs.
-      It does not yet show what a person experiences or learns, or whether
-      anything compounds between two of them. Nothing here is production, and no
-      element of the architecture is set in stone; several of the experiments
-      will change it, and some will kill parts of it, which is what they are
-      for. When one runs, its result lands in a dated file, whichever way it
-      goes.
-    </p>
-  </section>
-
-  <section class="block" id="ask" aria-labelledby="h-ask">
-    <h2 id="h-ask">The ask</h2>
-    <p class="big">Give us a real scenario. We will build you a sample, free.</p>
-    <p class="body">
-      If you are a step ahead of someone on something and the two of you are
-      stuck, tell us. A parent who homeschools and a child who hates worksheets.
-      A new teacher and a class that nods and then fails the exit task. A
-      grandson and a grandmother with a new phone. Send a few lines:
-    </p>
-    <ul class="list">
-      <li>who the two of you are, in general terms (a mom and her eleven-year-old; a charge nurse and a new hire), with no names and nothing that identifies anyone;</li>
-      <li>the subject, and the exact spot where it keeps going wrong;</li>
-      <li>what the learner loves, because that is what the page gets built through;</li>
-      <li>what you have already tried.</li>
-    </ul>
-    <p class="body">
-      We will hand you back a page like the ones above: one side for you, one
-      side for them. You read it before you use it; nothing on it is stored
-      about anyone; a child uses their side with you beside them. Reply where
-      you found this, or write to Jason on
-      <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>. Then
-      tell us how it went, and the next one comes back shaped by it. That is the
-      whole method, and it is how the real experiments will start.
-    </p>
-    <p class="body">
-      And if any of this is worth something to you, the person building it is
-      doing it out of his own pocket. His note, and where to
-      <a href="/#founder">buy him a coffee</a>, is on the front page. It goes
-      to him personally, not the Foundation and not the company. You can also
-      <a href="https://github.com/sponsors/ObsidianDelta">sponsor Meta DAX on GitHub</a>.
-    </p>
-    <p class="out">
-      <a href="/metadax/homeschool/">For parents who homeschool &rarr;</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="/metadax/samples/">The samples</a>
+      <a href="/metadax/research/">The research, the measure, the experiments &rarr;</a>
       <span aria-hidden="true">&middot;</span>
       <a href="https://github.com/daxfoundation/metadax">The repository</a>
     </p>
   </section>
+
+  <script is:inline define:vars={{ moved }}>
+    (function () {
+      var id = decodeURIComponent(location.hash.slice(1));
+      if (id && moved.indexOf(id) !== -1) {
+        location.replace('/metadax/research/' + (id === 'top' ? '' : '#' + id));
+      }
+    })();
+  </script>
 </Base>
 
 <style>
-  .lede { padding-block: 3.5rem 2.5rem; }
-  .eyebrow {
-    margin: 0 0 1rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  h1 {
-    margin: 0 0 1.25rem;
-    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
-    font-weight: 400;
-    line-height: 1.22;
-    letter-spacing: -0.012em;
-    max-width: 22em;
-    text-wrap: balance;
-  }
+  .lede { padding-block: 3.5rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 22em; text-wrap: balance; }
   .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
-  .jump { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; margin-top: 1.75rem; font-size: 0.875rem; }
-  .jump a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
-  .jump a:hover, .jump a:focus-visible { color: var(--fg); border-bottom-color: currentColor; }
-  .start { margin: 1.5rem 0 0; }
-  .start a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
-  .start a:hover, .start a:focus-visible { border-bottom-color: currentColor; }
 
   .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
-  h2 {
-    margin: 0 0 1.25rem;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  h3 { margin: 0 0 0.5rem; font-size: 1.05rem; font-weight: 500; }
-  h3.sub { margin-top: 2.25rem; margin-bottom: 0.75rem; }
-  .big {
-    margin: 0 0 1rem;
-    font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
-    color: var(--fg);
-    text-wrap: balance;
-    max-width: 30em;
-  }
-  strong { font-weight: 600; color: var(--fg); }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; max-width: 30em; }
   .body { margin: 0; max-width: 40em; color: #cfcfcf; }
-  .body + .body, .body + .list, .list + .body { margin-top: 1rem; }
-  .list { margin: 0; padding-left: 1.25rem; max-width: 40em; color: #cfcfcf; }
-  .list li + li { margin-top: 0.4rem; }
-  .body a, .list a, .cols a, .scene a {
-    color: inherit;
-    text-decoration: none;
-    border-bottom: 1px solid var(--faint);
-  }
-  .body a:hover, .body a:focus-visible, .scene a:hover, .scene a:focus-visible { border-bottom-color: currentColor; }
+  .body + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  .sponsor { color: #bdbdbd; }
 
   .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
   .out span { color: var(--faint); margin-inline: 0.5rem; }
   .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
 
-  /* The six sample cards. */
-  .cards {
-    list-style: none;
-    margin: 1.5rem 0 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-  }
-  .card a {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-    height: 100%;
-    padding: 1rem 1rem 1.1rem;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: border-color 0.15s ease;
-  }
-  .card a:hover, .card a:focus-visible { border-color: var(--muted); }
-  .swatch { display: flex; gap: 3px; margin-bottom: 0.5rem; }
-  .swatch i { display: block; width: 14px; height: 14px; border-radius: 3px; }
-  .card-title { font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
-  .card-pair { font-size: 0.875rem; color: #bdbdbd; }
-  .card-topic { font-size: 0.8125rem; color: var(--muted); }
+  /* Five doors. */
+  .doors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .doors a { display: flex; flex-direction: column; gap: 0.35rem; height: 100%; padding: 1.1rem 1.1rem 1.2rem; border: 1px solid var(--line); border-radius: 10px; text-decoration: none; color: inherit; transition: border-color 0.15s ease; }
+  .doors a:hover, .doors a:focus-visible { border-color: var(--muted); }
+  .door-kicker { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .door-title { font-weight: 500; font-size: 1.05rem; line-height: 1.3; }
+  .door-text { font-size: 0.9rem; line-height: 1.5; color: #bdbdbd; }
 
-  /* How it works: four short columns. */
-  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; margin-top: 1.5rem; }
-  .cols p { margin: 0; color: #cfcfcf; font-size: 0.9875rem; }
-
-  .fig { margin: 2rem 0 0; }
-  .fig img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
-
-  /* The experiments table. */
-  .exp { width: 100%; border-collapse: collapse; font-size: 0.9375rem; margin-top: 0.5rem; }
-  .exp th { text-align: left; font-weight: 500; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.75rem 0.5rem 0; border-bottom: 1px solid var(--line); }
-  .exp td { padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #cfcfcf; }
-  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.875em; color: var(--muted); }
-  .st { white-space: nowrap; color: var(--faint); }
-  .st.done { color: var(--fg); }
-  .st.built { color: #bdbdbd; }
-
-  .leg { margin: 0.5rem 0 0; max-width: 44em; }
-  .leg dt { font-weight: 500; margin-top: 0.9rem; }
-  .leg dd { margin: 0.15rem 0 0; color: #bdbdbd; font-size: 0.9375rem; }
-
-  .scenes { margin: 1rem 0 0; padding-left: 1.25rem; max-width: 44em; color: #cfcfcf; }
-  .scenes li + li { margin-top: 0.6rem; }
-  .scenes .mono { margin-right: 0.25rem; }
-
-  .scene { max-width: 44em; margin-top: 1.75rem; padding: 1.25rem 1.25rem 1.35rem; border: 1px solid var(--line); border-radius: 10px; }
-  .scene p { margin: 0; color: #cfcfcf; }
-  .scene p + p { margin-top: 0.8rem; }
-  .scene + .body { margin-top: 1.75rem; }
-
-  @media (max-width: 44rem) {
-    .cards { grid-template-columns: 1fr 1fr; }
-    .cols { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 34rem) {
-    .cards { grid-template-columns: 1fr; }
-    .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-    .fig img { width: 640px; max-width: none; }
-    .lede { padding-block: 2.5rem 2rem; }
-    .st { white-space: normal; }
-  }
+  @media (max-width: 44rem) { .doors { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 34rem) { .doors { grid-template-columns: 1fr; } .lede { padding-block: 2.5rem 1.5rem; } }
 </style>

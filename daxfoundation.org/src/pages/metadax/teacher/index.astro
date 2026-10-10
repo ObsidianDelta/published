@@ -1,0 +1,96 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+// /metadax/teacher/ -- the teacher's door, 2026-10-10 (five-chairs-doors).
+// One page, four blocks, in the teacher's words. The grade-6-science-year
+// showcase is built by another ask; it is absent at merge time, so it is
+// linked as "coming" (the brain will fix the link). First published 2026-10-10.
+---
+<Base title="Meta DAX for teachers" description="A class that nods and then fails the exit task. A hinge question with every wrong answer planned for, and the cognition handed back to you. Free. A way, never the way." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Teacher</p>
+    <h1>They all nodded. Then half the class failed the exit task.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-thu">
+    <h2 id="h-thu">Your Thursday night</h2>
+    <p class="big">You asked &ldquo;does everyone get it?&rdquo; and every hand went up, and you still cannot see who is lost until the task comes back.</p>
+    <p class="body">
+      You know the fix is a better question and a plan for every wrong answer
+      before the lesson, not after. What you do not have is the evening it takes
+      to build one for every lesson, every week.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-see">
+    <h2 id="h-see">See one</h2>
+    <p class="body">
+      A grade-6 science year, start to finish: <a href="/metadax/showcases/grade-6-science-year/">the
+      teacher showcase</a> (coming &mdash; a full year of lessons with hinge
+      questions and planned misconceptions). In the meantime, see
+      <a href="/metadax/showcases/tutors-desk/">The Tutor&rsquo;s Desk</a> for the
+      same shape on one learner. Everyone in these is made up.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">It runs on the AI subscription you already have. Two ways in:</p>
+    <ul class="plain">
+      <li><a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-teacher">The teacher skill</a> &mdash; drop it into your assistant and it knows the whole flow.</li>
+      <li><a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain prompts</a> &mdash; paste them into any chat, no setup. MP-11 and MP-12 build the course; MP-13 is the guide coach.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-done">
+    <h2 id="h-done">Have it done for you</h2>
+    <p class="body">
+      Want a year built and run for you instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-walk">
+    <h2 id="h-walk">What you&rsquo;ll see</h2>
+    <p class="body"><a href="/metadax/teacher/walkthrough/">Walk through building a lesson, step by step &rarr;</a></p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/">Pick your chair &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/samples/">See it</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/research/">The research</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 1.5rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; color: var(--faint); font-size: 0.875rem; }
+  .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; max-width: 30em; }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .sponsor { color: #bdbdbd; margin-top: 1.5rem; }
+  .body a, .plain a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible, .plain a:hover, .plain a:focus-visible { border-bottom-color: currentColor; }
+  .plain { margin: 1rem 0 0; padding-left: 1.25rem; max-width: 40em; color: #cfcfcf; }
+  .plain li + li { margin-top: 0.5rem; }
+  .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

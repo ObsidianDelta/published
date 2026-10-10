@@ -75,6 +75,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <a href="https://github.com/ObsidianDelta/published/tree/main/daxfoundation.org">Versioned, in public</a>
         <a href="https://jeyanandan.com/blog/how-i-publish/">How this is published</a>
       </span>
+      <p class="ecosystem">One body of work: jeyanandan.com (the writing) · daxfoundation.org (MetaDAX, the open commons) · obsidiandelta.com (the company: done-for-you services) · formaddie.com (Maddie)</p>
     </footer>
   </body>
 </html>
@@ -138,6 +139,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     color: var(--faint);
   }
   .foot-links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; }
+  .ecosystem { flex-basis: 100%; margin: 0.75rem 0 0; color: var(--faint); line-height: 1.6; }
   .foot a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
   .foot a:hover, .foot a:focus-visible { color: var(--fg); }
   :focus-visible { outline: 1px solid var(--fg); outline-offset: 3px; }

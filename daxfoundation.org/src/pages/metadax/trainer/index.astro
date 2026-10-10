@@ -1,0 +1,96 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+// /metadax/trainer/ -- the trainer's door, 2026-10-10 (five-chairs-doors).
+// One page, four blocks, in the trainer's words. Two showcases for this chair:
+// First Week at the Bakery and The Proton Mill. No dedicated skill folder yet,
+// so "run it yourself" points at the plain prompts (MP-11/12/13) and the repo.
+// First published 2026-10-10.
+---
+<Base title="Meta DAX for trainers" description="A new hire, a first week, a process only you hold. A module built from a one-page brief, so the next hire starts a step ahead. Free. A way, never the way." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Trainer</p>
+    <h1>The process is in your head, and a new hire starts Monday.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-thu">
+    <h2 id="h-thu">Your Thursday night</h2>
+    <p class="big">You are the only one who knows how the work really goes, and you cannot be beside every new hire for their whole first week.</p>
+    <p class="body">
+      You need a module that teaches the real thing, not a slide deck, and you
+      need it from what you can already write down in a page. What you do not
+      have is the time to build it while doing the job it is about.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-see">
+    <h2 id="h-see">See one</h2>
+    <p class="body">Two, in fact &mdash; a shop floor and a lab:</p>
+    <ul class="plain">
+      <li><a href="/metadax/showcases/first-week-at-the-bakery/">First Week at the Bakery</a> &mdash; a staff onboarding module built from a one-page brief.</li>
+      <li><a href="/metadax/showcases/proton-mill/">The Proton Mill</a> &mdash; a 3D lesson on how mitochondria make ATP, with instructor notes.</li>
+    </ul>
+    <p class="body">Open either. Everyone in them is made up.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">It runs on the AI subscription you already have.</p>
+    <ul class="plain">
+      <li><a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain prompts</a> &mdash; paste them into any chat, no setup. MP-11 and MP-12 turn your one-page brief into a module; MP-13 is the guide coach.</li>
+      <li><a href="https://github.com/daxfoundation/metadax">The repository</a> &mdash; the whole suite, open, with the schemas and the small tools.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-done">
+    <h2 id="h-done">Have it done for you</h2>
+    <p class="body">
+      Want the module built and run for your team instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-walk">
+    <h2 id="h-walk">What you&rsquo;ll see</h2>
+    <p class="body"><a href="/metadax/trainer/walkthrough/">Walk through building a module from a brief, step by step &rarr;</a></p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/">Pick your chair &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/samples/">See it</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/research/">The research</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 1.5rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; color: var(--faint); font-size: 0.875rem; }
+  .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; max-width: 30em; }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .sponsor { color: #bdbdbd; margin-top: 1.5rem; }
+  .body a, .plain a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible, .plain a:hover, .plain a:focus-visible { border-bottom-color: currentColor; }
+  .plain { margin: 1rem 0 0; padding-left: 1.25rem; max-width: 40em; color: #cfcfcf; }
+  .plain li + li { margin-top: 0.5rem; }
+  .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

@@ -1,0 +1,102 @@
+---
+import Base from '../../../layouts/Base.astro';
+
+// /metadax/tutor/ -- the tutor's door, 2026-10-10 (five-chairs-doors).
+// One page, four blocks, in the tutor's words: Your Thursday night; See one;
+// Run it yourself, free; Have it done for you. Then "What you'll see" (the
+// walkthrough, built by another ask) and the sponsor sentence.
+// First published 2026-10-10. Rules: "guide" and "learner"; a way, never the
+// way; no AI vendor named; no email; no real learner content.
+---
+<Base title="Meta DAX for tutors" description="One learner, one stuck spot, one evening. Rough notes in, a plan for the next session and a parent-ready report out. Free. A way, never the way." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; Tutor</p>
+    <h1>You tutor one learner at a time, and the prep eats your evening.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-thu">
+    <h2 id="h-thu">Your Thursday night</h2>
+    <p class="big">It is nine o&rsquo;clock and you are still writing up today&rsquo;s session and planning the next one.</p>
+    <p class="body">
+      The learner is stuck in the same spot they were stuck last week, the
+      parent wants to know how it is going, and the one thing you are short of is
+      the hour it takes to turn rough notes into a plan and a clear report.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-see">
+    <h2 id="h-see">See one</h2>
+    <p class="body">
+      <a href="/metadax/showcases/tutors-desk/">The Tutor&rsquo;s Desk</a>: one
+      tutor&rsquo;s week, start to finish &mdash; rough notes in, a plan for the
+      next session, a parent-ready report, and the guide coach worked on a real
+      problem. Open it. Everyone in it is made up.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">
+      It runs on the AI subscription you already have. Two ways in:
+    </p>
+    <ul class="plain">
+      <li><a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-tutor">The tutor skill</a> &mdash; drop it into your assistant and it knows the whole flow.</li>
+      <li><a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain prompts</a> &mdash; paste them into any chat, no setup. MP-11 and MP-12 build the course; MP-13 is the guide coach.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-done">
+    <h2 id="h-done">Have it done for you</h2>
+    <p class="body">
+      Want it set up and run for you instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-walk">
+    <h2 id="h-walk">What you&rsquo;ll see</h2>
+    <p class="body">
+      <a href="/metadax/tutor/walkthrough/">Walk through a tutor session, step by
+      step &rarr;</a>
+    </p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/">Pick your chair &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/samples/">See it</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/research/">The research</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 1.5rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; color: var(--faint); font-size: 0.875rem; }
+  .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
+  h2 { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; max-width: 30em; }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .sponsor { color: #bdbdbd; margin-top: 1.5rem; }
+  .body a, .plain a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible, .plain a:hover, .plain a:focus-visible { border-bottom-color: currentColor; }
+  .plain { margin: 1rem 0 0; padding-left: 1.25rem; max-width: 40em; color: #cfcfcf; }
+  .plain li + li { margin-top: 0.5rem; }
+  .out { margin: 1.5rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

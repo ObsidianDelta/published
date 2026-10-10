@@ -1,40 +1,43 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import data from '../../../data/metadax-samples.json';
+import { samples as familySamples } from '../_showcase.js';
 
-// /metadax/samples/ -- the public homeschool sample library. Reads the sample
-// index at build time (src/data/metadax-samples.json, mirrored from the public
-// metadax repo's samples/index.json plus each sample's body). Everyone here is
-// made up; no family data. Filters are client-side (subject, age band).
+// /metadax/samples/ -- "See it", 2026-10-10 (five-chairs-doors). Three things,
+// in order: the four deep showcases (with the universal line), the nine sample
+// packages (filterable), and the six family pages three steps in (linking
+// their existing /metadax/showcase/<slug>/ URLs). The six showcase pages did
+// not move; they are linked here. Everyone here is made up; no family data.
 const samples = data.samples || [];
+const sampleCount = samples.length; // the real samples/ folder: nine packages
 const subjects = Array.from(new Set(samples.map((s) => s.subject))).sort();
 const ageBands = Array.from(new Set(samples.map((s) => s.age_band))).sort();
 const repo = 'https://github.com/daxfoundation/metadax/blob/main';
 ---
-<Base title="Meta DAX: homeschool samples" description="Generic homeschool samples built from parents' descriptions: made-up names, nothing identifying. One page for the guide, one for the child. A way, never the way." wide>
+<Base title="Meta DAX: see it" description="The same recipe built every one of these: four deep showcases, nine sample packages, and six family pages three steps in. Made-up names, nothing identifying. A way, never the way." wide>
   <section class="lede">
-    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/homeschool/">Homeschool</a> &rsaquo; Samples</p>
-    <h1>Homeschool samples</h1>
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; See it</p>
+    <h1>See it</h1>
     <p class="lede-text">
-      These are illustrative examples, each made with a simulated family, to show
-      the shape of a package before you make one for your own learner. Made-up
-      names, nothing identifying. Each one shows where a child was stuck, the way
-      in built through what they love, and what only a person can do. A way, never
-      the way.
+      Every one of these started as one sentence from a guide and what the
+      learner already loves. Made-up names, nothing identifying. A way, never the
+      way.
     </p>
   </section>
 
-  <section class="block featured-new">
-    <p class="featured-line">Nouveau&#160;: <a href="/metadax/samples/stade-des-fractions/">Le Stade des Fractions, un parcours 3D en français</a></p>
-  </section>
-
   <section class="block showcases" aria-labelledby="h-showcases">
-    <h2 id="h-showcases">Showcases for every guide</h2>
+    <h2 id="h-showcases">Showcases</h2>
+    <p class="universal">The same recipe built every one of these.</p>
     <div class="showcase-cards">
       <article class="showcase-card">
-        <p class="tags"><span class="tag">Families</span></p>
-        <h3 class="title"><a href="/metadax/samples/stade-des-fractions/">Le Stade des Fractions</a></h3>
-        <p>A 3D French fractions pack for one 11-year-old, parent-guided.</p>
+        <p class="tags"><span class="tag">For tutors</span></p>
+        <h3 class="title"><a href="/metadax/showcases/tutors-desk/">The Tutor's Desk</a></h3>
+        <p>One tutor's week: rough notes, a parent-ready report, and the guide coach on a real problem.</p>
+      </article>
+      <article class="showcase-card">
+        <p class="tags"><span class="tag">For teachers</span></p>
+        <h3 class="title"><a href="/metadax/showcases/grade-6-science-year/">A Grade-6 Science Year</a> <span class="soon">coming</span></h3>
+        <p>A full year of science lessons with hinge questions and planned misconceptions.</p>
       </article>
       <article class="showcase-card">
         <p class="tags"><span class="tag">Small business</span></p>
@@ -46,17 +49,13 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
         <h3 class="title"><a href="/metadax/showcases/proton-mill/">The Proton Mill</a></h3>
         <p>A 3D Biology 101 lesson on how mitochondria make ATP, with instructor notes.</p>
       </article>
-      <article class="showcase-card">
-        <p class="tags"><span class="tag">For tutors</span></p>
-        <h3 class="title"><a href="/metadax/showcases/tutors-desk/">The Tutor's Desk</a></h3>
-        <p>One tutor's week: rough notes, a parent-ready report, and the guide coach on a real problem.</p>
-      </article>
     </div>
-    <p class="showcase-note">Each showcase was made by the MetaDAX course factory from a short brief. Model-generated; reviewed for safety, not certified.</p>
+    <p class="showcase-note">Each showcase was built by the MetaDAX course factory from a short brief. Model-generated; reviewed for safety, not certified.</p>
   </section>
 
   <section class="block" aria-labelledby="h-filters">
-    <h2 id="h-filters" class="sr-only">Filter</h2>
+    <h2 id="h-filters">Sample packages</h2>
+    <p class="body">{sampleCount} packages built from parents&rsquo; descriptions: one page for the guide, one for the child.</p>
     <div class="filters" role="group" aria-label="Filter samples">
       <label>Subject
         <select id="f-subject">
@@ -70,12 +69,8 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
           {ageBands.map((a) => <option value={a}>{a}</option>)}
         </select>
       </label>
-      <p class="count"><span id="shown">{samples.length}</span> of {samples.length} shown</p>
+      <p class="count"><span id="shown">{sampleCount}</span> of {sampleCount} shown</p>
     </div>
-  </section>
-
-  <section class="block" aria-labelledby="h-list">
-    <h2 id="h-list" class="sr-only">Samples</h2>
     <ol class="list" id="list">
       {samples.map((s) => (
         <li class="item" id={s.id} data-subject={s.subject} data-age={s.age_band}>
@@ -103,9 +98,30 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
     <p id="empty" class="empty" hidden>No samples match that filter.</p>
   </section>
 
+  <section class="block" aria-labelledby="h-three">
+    <h2 id="h-three">Three steps in</h2>
+    <p class="body">
+      Six family pages, three iterations in: the plan for step four, with steps
+      one to three visible as history. One side for the guide, one made for the
+      learner. These six now live here; they used to be the showcase.
+    </p>
+    <ol class="three">
+      {familySamples.map((s) => (
+        <li class="tri" id={s.id}>
+          <a class="head" href={`/metadax/showcase/${s.id}/`}>
+            <span class="swatch" aria-hidden="true">{s.swatch.map((c) => <i style={`background:${c}`}></i>)}</span>
+            <span class="tri-title">{s.title}</span>
+            <span class="tri-pair">{s.pair}</span>
+          </a>
+          <p class="tri-topic">{s.topic[0].toUpperCase() + s.topic.slice(1)}.</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
   <section class="block" aria-labelledby="h-share">
     <h2 id="h-share">Share one</h2>
-    <p>
+    <p class="body">
       These come from parents who ran the <a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-homeschool">homeschool skill</a>
       on their own and offered a generic version through a
       <a href="https://github.com/daxfoundation/metadax/issues/new?template=share-a-sample.yml">&ldquo;Share a sample&rdquo; issue</a>.
@@ -135,20 +151,28 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
   </script>
 
   <style>
-    .featured-new { padding:.6rem 0; }
-    .featured-line { margin:0; font-weight:600; }
-    .showcases h2 { margin:0 0 .75rem; }
+    .lede { padding-block: 3rem 1.5rem; }
+    .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .eyebrow a { color: inherit; text-decoration: none; }
+    .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+    h1 { margin: 0 0 1rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; }
+    .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+    .block { padding-block: 2.25rem; border-top: 1px solid rgba(128,128,128,.2); }
+    h2 { margin: 0 0 .75rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .body { margin: .2rem 0 1rem; max-width: 40em; color: #cfcfcf; }
+    .body a { color: inherit; }
+    .universal { margin: 0 0 1rem; font-size: 1.15rem; color: var(--fg); }
     .showcase-cards { display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); }
     .showcase-card { border:1px solid rgba(128,128,128,.3); border-radius:10px; padding:1rem 1.15rem; }
     .showcase-card .title { margin:.3rem 0 .4rem; }
     .showcase-card p { margin:.2rem 0; }
+    .soon { font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:var(--faint); border:1px solid var(--line); border-radius:999px; padding:.05rem .45rem; vertical-align:middle; }
     .showcase-note { margin:.85rem 0 0; opacity:.75; font-size:.9rem; }
-    .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0; }
     .filters { display:flex; gap:1.25rem; align-items:end; flex-wrap:wrap; }
     .filters label { display:flex; flex-direction:column; gap:.25rem; font-weight:600; font-size:.9rem; }
     .filters select { font:inherit; padding:.4rem .5rem; min-width:10rem; }
     .filters .count { margin:0 0 .2rem auto; opacity:.7; font-size:.9rem; }
-    .list { list-style:none; padding:0; margin:0; display:grid; gap:1rem; }
+    .list { list-style:none; padding:0; margin:1rem 0 0; display:grid; gap:1rem; }
     .item { border:1px solid rgba(128,128,128,.3); border-radius:10px; padding:1rem 1.15rem; }
     .item[hidden] { display:none; }
     .tags { margin:0 0 .4rem; display:flex; gap:.5rem; }
@@ -164,5 +188,14 @@ const repo = 'https://github.com/daxfoundation/metadax/blob/main';
     .item .record .note { opacity:.7; font-size:.85rem; }
     .item .src { margin-top:.5rem; font-size:.9rem; }
     .empty { opacity:.7; }
+
+    .three { list-style:none; padding:0; margin:0; display:grid; gap:1rem; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+    .tri { border:1px solid rgba(128,128,128,.3); border-radius:10px; padding:1rem 1.15rem; }
+    .tri .head { display:block; text-decoration:none; color:inherit; }
+    .swatch { display:flex; gap:3px; margin-bottom:.5rem; }
+    .swatch i { display:block; width:14px; height:14px; border-radius:3px; }
+    .tri-title { display:block; font-weight:600; font-size:1.1rem; }
+    .tri-pair { display:block; color:#bdbdbd; font-size:.9rem; margin-top:.15rem; }
+    .tri-topic { margin:.5rem 0 0; font-size:.9rem; color:#cfcfcf; }
   </style>
 </Base>
