@@ -1,0 +1,147 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import '../../../../styles/walkthrough.css';
+
+// /metadax/tutor/walkthrough/ -- "What you'll see" for the tutor chair, first
+// published 2026-10-10. The tutor skill is being built by another ask; today
+// the true route is the plain prompt MP-13 (the guide coach), so this page
+// walks that. Run with our own model on a fictional tutor: a learner of twelve
+// who can do bare fraction arithmetic but freezes on word problems. Finished
+// example: The Tutor's Desk. Everyone in it is made up.
+//
+// Rules: "guide" and "learner"; a way, never the way; MP-13 never names a
+// condition; no AI vendor named; no real people, no honorifics; nothing
+// identifying. Byline and sponsor sentence like the other chair pages.
+---
+<Base title="What you'll see: a tutor's debrief, step by step" description="Rough notes in, and a plain-language coach turns them into what's going on, moves to try, a next-session plan, a parent-ready report, and a record entry. Free. A way, never the way." wide>
+  <div class="wt">
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/tutor/">Tutor</a> &rsaquo; Walkthrough</p>
+    <h1>What you&rsquo;ll see: a tutor&rsquo;s debrief, from rough notes to a record entry.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+    <p class="body intro">
+      Run once on a made-up learner: twelve, can do <span class="mono">3/4 + 1/8</span>
+      on a worksheet, but freezes the moment a fraction is wrapped in a word
+      problem. A tutor skill is on the way; today the true route is one plain
+      prompt &mdash; <strong>MP-13, the guide coach</strong> &mdash; pasted into the AI
+      subscription you already have. It is built to help the guide, never to
+      label the learner. The finished version of this is
+      <a href="/metadax/showcases/tutors-desk/">The Tutor&rsquo;s Desk</a>. This is
+      one way through; it is never the only way.
+    </p>
+  </section>
+
+  <section class="block">
+    <ol class="steps">
+
+      <li class="step" id="s1">
+        <p class="do"><span class="n">1</span> Paste the guide-coach prompt, then your rough session notes &mdash; the problem you&rsquo;re having with this learner, in your own words.</p>
+        <p class="see">What you see: it reads the prompt and takes your plain-language problem. No account, no setup.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-you"><span class="who">You paste</span>OPERATION: COACH &nbsp;<span class="dim">(MP-13, the guide coach)</span><br>CONFIG: mode coach, guide_type private-tutor, language English<br>INPUT: She&rsquo;s 12 and freezes on fraction word problems. She can do 3/4 + 1/8 on a worksheet, but the moment it&rsquo;s &ldquo;a recipe needs three quarters of a cup&hellip;&rdquo; she stops and says she can&rsquo;t.</p>
+          <p class="t-ai"><span class="who">Your assistant</span>Thanks &mdash; I&rsquo;ll work only from what you can observe, and I won&rsquo;t put any label on her. Here&rsquo;s what I&rsquo;ve got.</p>
+        </div>
+        <p class="note">Two routes, both free: <a href="https://github.com/daxfoundation/metadax/tree/main/prompts">the plain prompts</a> (MP-13 is the guide coach) pasted into any chat, no setup; or <a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-tutor">the tutor skill</a> once it lands.</p>
+      </li>
+
+      <li class="step" id="s2">
+        <p class="do"><span class="n">2</span> Read what&rsquo;s going on &mdash; it restates the problem as something you can watch for, with a one-minute check for each.</p>
+        <p class="see">What you see: the problem said back as behaviour, then two or three plain accounts of what might be happening &mdash; never a diagnosis.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-ai"><span class="who">Your assistant</span><strong>What you described:</strong> she handles bare fraction arithmetic but stops when a fraction is wrapped in a word problem.<br><br><strong>What might be going on &mdash; and how to tell:</strong><br>1. The arithmetic is fine; the hard step is turning the story into a number sentence. <em>Check:</em> read the problem aloud and ask her to tell you the story back before any maths &mdash; does the freeze move or disappear?<br>2. The reading load crowds out the maths. <em>Check:</em> strip the words to a bare sum &mdash; can she do it then?<br>3. A &ldquo;show me now&rdquo; setting makes her freeze, not the maths. <em>Check:</em> let her think aloud while you just listen.</p>
+        </div>
+      </li>
+
+      <li class="step" id="s3">
+        <p class="do"><span class="n">3</span> Take the moves to try into the next session &mdash; each with its &ldquo;why&rdquo; and a plan sized to your minutes.</p>
+        <p class="see">What you see: two or three concrete strategies and a short, run-as-written plan ending with her narrating one problem back.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Moves to try:</strong><br>&bull; <strong>Story first.</strong> Tell the story back before any numbers. <em>Why:</em> it separates understanding the situation from doing the sum.<br>&bull; <strong>Underline the numbers.</strong> Mark the two amounts and what&rsquo;s being asked. <em>Why:</em> it turns a wall of words into a number sentence.<br>&bull; <strong>&ldquo;Think aloud, I&rsquo;ll just listen.&rdquo;</strong> <em>Why:</em> it lowers the stakes that may be causing the freeze.<br><br><strong>Next session (12 min):</strong> 2 min recap of a bare sum she&rsquo;s solid on &rarr; 4 min story-back on one word problem, no maths yet &rarr; 4 min underline-and-write the number sentence together &rarr; 2 min she narrates one problem end to end.<br><br><strong>Watch for:</strong> where exactly the stop happens &mdash; at the reading, the number sentence, or the arithmetic. Record it as one phrase.</p>
+        </div>
+      </li>
+
+      <li class="step" id="s4">
+        <p class="do"><span class="n">4</span> Send the parent-ready report. The same session, in warm plain words, with no label on the child.</p>
+        <p class="see">What you see: a short report you can send as-is &mdash; what you did, what worked, where it&rsquo;s still settling, the one next step. This is Panel&nbsp;2 of the finished example.</p>
+        <div class="transcript mono-block" aria-label="The parent-ready report">
+<pre>Hi &mdash; a quick note on today's session.
+
+We worked on turning word problems into fraction sums. The big win:
+once she told the story back in her own words first, the maths came
+easily &mdash; the sticking point was the story, not the numbers.
+
+Where it's still settling: we're still getting used to spotting which
+two amounts the question is really asking about.
+
+Next time we'll practise underlining the numbers before we write
+anything down.
+
+She explained a recipe problem back to me better than I'd have put it.</pre>
+        </div>
+        <figure class="shot" data-shot="/metadax/showcases/tutors-desk/">
+          <figcaption>The finished version: <a href="/metadax/showcases/tutors-desk/">The Tutor&rsquo;s Desk</a> &mdash; rough notes, the parent-ready report, and the guide coach worked on a real problem, with a pick-a-situation selector for the eleven situations tutors hit most. Everyone in it is made up.</figcaption>
+        </figure>
+      </li>
+
+      <li class="step" id="s5">
+        <p class="do"><span class="n">5</span> Keep the record entry &mdash; the carry-forward note that becomes next week&rsquo;s starting point.</p>
+        <p class="see">What you see: a four-line record in the shape the next session reads back. A nickname only; nothing identifying.</p>
+        <div class="transcript mono-block" aria-label="The record entry">
+<pre>What happened:   Worked on fraction word problems; story-back, then
+                 underline-the-numbers.
+What worked:     Telling the story back first &mdash; the freeze lifted.
+Watch items:     Where the stop lands (reading / number sentence /
+                 arithmetic); confidence on "which two amounts?"
+Next step:       Underline the numbers before writing the sum.</pre>
+        </div>
+      </li>
+
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="h-time">
+    <h2 id="h-time">How long this took</h2>
+    <p class="body">About ten minutes on our run: a minute to paste the prompt and the notes, a moment for the coach to answer, and the rest spent choosing which two moves to actually use. The report and the record entry came out of the same answer &mdash; no second write-up.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-wrong">
+    <h2 id="h-wrong">When it goes wrong</h2>
+    <ul class="plain">
+      <li><strong>You used a label and it came back as a finding.</strong> It shouldn&rsquo;t &mdash; MP-13 is built to strip labels and work from behaviour. If a condition name appears anywhere in the answer, that&rsquo;s a fault; re-run and report it. On our run it thanked us for the word and worked only from &ldquo;freezes on word problems&rdquo;.</li>
+      <li><strong>The advice is generic.</strong> That means the notes were thin. Give one real moment &mdash; the exact sentence she stopped on &mdash; not &ldquo;she&rsquo;s bad at fractions&rdquo;. The coach will say so and ask for the one thing it needs.</li>
+      <li><strong>A name slipped into your notes.</strong> The coach will not echo it &mdash; it writes &ldquo;the learner&rdquo; throughout &mdash; but tidy your own copy before you send the parent report.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">
+      It runs on the AI subscription you already have.
+      <a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain
+      prompts</a> paste into any chat with no setup &mdash; MP-13 is the guide coach;
+      MP-11 and MP-12 build a course. <a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-tutor">The
+      tutor skill</a> wraps the same flow once it lands.
+    </p>
+    <h2 id="h-done" class="done-head">Have it done for you</h2>
+    <p class="body">
+      Want it set up and run for you instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/tutor/">Back to Tutor</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/showcases/tutors-desk/">See the finished example</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/">Pick your chair</a>
+    </p>
+  </section>
+  </div>
+</Base>

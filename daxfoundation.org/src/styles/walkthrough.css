@@ -1,0 +1,59 @@
+/* Shared chrome for the four "What you'll see" walkthrough pages
+   (/metadax/<chair>/walkthrough/), first published 2026-10-10. Loaded only on
+   pages that import it, so the generic selectors below touch nothing else.
+   A numbered step sequence, styled chat transcripts for the chat steps, and
+   dashed figures carrying data-shot for the live-page screens the brain fills. */
+
+.wt .lede { padding-block: 3rem 1.5rem; }
+.wt .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.wt .eyebrow a { color: inherit; text-decoration: none; }
+.wt .eyebrow a:hover, .wt .eyebrow a:focus-visible { color: var(--fg); }
+.wt h1 { margin: 0 0 1rem; font-size: clamp(1.6rem, 1.15rem + 2.3vw, 2.5rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+.wt .lede-text { margin: 0 0 1.25rem; color: var(--faint); font-size: 0.875rem; }
+.wt .intro { color: #cfcfcf; }
+
+.wt .block { padding-block: 2.25rem; border-top: 1px solid var(--line); }
+.wt h2 { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+.wt .done-head { margin-top: 2rem; }
+.wt .body { margin: 0; max-width: 42em; color: #cfcfcf; }
+.wt .body + .body { margin-top: 1rem; }
+.wt strong { font-weight: 600; color: var(--fg); }
+.wt .sponsor { color: #bdbdbd; margin-top: 1.5rem; }
+.wt .body a, .wt .plain a, .wt .note a, .wt figcaption a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+.wt .body a:hover, .wt .plain a:hover, .wt .note a:hover, .wt figcaption a:hover,
+.wt .body a:focus-visible, .wt .plain a:focus-visible, .wt .note a:focus-visible, .wt figcaption a:focus-visible { border-bottom-color: currentColor; }
+.wt .plain { margin: 0; padding-left: 1.25rem; max-width: 42em; color: #cfcfcf; }
+.wt .plain li + li { margin-top: 0.6rem; }
+.wt .mono { font-family: 'Courier New', Courier, monospace; font-size: 0.9em; }
+
+/* steps */
+.wt .steps { list-style: none; margin: 0; padding: 0; }
+.wt .step { padding-block: 1.75rem; }
+.wt .step + .step { border-top: 1px dashed var(--line); }
+.wt .do { margin: 0 0 0.5rem; font-size: 1.1rem; color: var(--fg); max-width: 40em; }
+.wt .n { display: inline-flex; align-items: center; justify-content: center; width: 1.6rem; height: 1.6rem; margin-right: 0.6rem; border: 1px solid var(--muted); border-radius: 50%; font-size: 0.8125rem; color: var(--muted); vertical-align: middle; }
+.wt .see { margin: 0 0 1rem; max-width: 42em; color: var(--muted); font-size: 0.9375rem; }
+.wt .note { margin: 0.9rem 0 0; max-width: 42em; color: var(--faint); font-size: 0.875rem; }
+
+/* chat transcript */
+.wt .transcript { margin: 0; border: 1px solid var(--line); border-radius: 10px; background: #111; padding: 0.4rem; }
+.wt .transcript p { margin: 0; padding: 0.7rem 0.85rem; border-radius: 7px; font-size: 0.9375rem; line-height: 1.5; color: #e2e2e2; }
+.wt .transcript p + p { margin-top: 0.4rem; }
+.wt .t-you { background: #17201b; }
+.wt .t-ai { background: #171a20; }
+.wt .who { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.3rem; }
+.wt .dim { color: var(--faint); font-style: italic; }
+.wt .mono-block { background: #0d0d0d; padding: 0; }
+.wt .transcript pre { margin: 0; padding: 1rem 1.1rem; overflow-x: auto; font-family: 'Courier New', Courier, monospace; font-size: 0.82rem; line-height: 1.6; color: #d6d6d6; white-space: pre; }
+
+/* screen figures */
+.wt .shot { margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: #0d0d0d; }
+.wt .shot img { display: block; width: 100%; height: auto; border-bottom: 1px solid var(--line); }
+.wt .shot figcaption { padding: 0.85rem 1rem; font-size: 0.875rem; color: #bdbdbd; line-height: 1.55; }
+.wt .shot[data-shot]:not(:has(img)) { border-style: dashed; }
+.wt .shot[data-shot]:not(:has(img)) figcaption::before { content: "Screen: "; color: var(--faint); }
+
+.wt .out { margin: 1.75rem 0 0; font-size: 0.9375rem; }
+.wt .out span { color: var(--faint); margin-inline: 0.5rem; }
+.wt .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+.wt .out a:hover, .wt .out a:focus-visible { border-bottom-color: currentColor; }

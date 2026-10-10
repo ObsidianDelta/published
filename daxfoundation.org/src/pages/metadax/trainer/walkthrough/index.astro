@@ -1,0 +1,141 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import '../../../../styles/walkthrough.css';
+
+// /metadax/trainer/walkthrough/ -- "What you'll see" for the trainer chair,
+// first published 2026-10-10. Run with our own model on a fictional
+// one-paragraph brief: a five-day induction for a small bakery. MP-11 designs
+// the strand; MP-12 builds day one. Finished example: First Week at the
+// Bakery; the Proton Mill shown as the same recipe aimed at a university unit.
+// Everyone in it is made up.
+//
+// Rules: "guide" and "learner"; a way, never the way; no AI vendor named; no
+// real people, no honorifics; nothing identifying; the Foundation is never
+// called a non-profit, charity, or incorporated. Byline and sponsor sentence
+// like the other chair pages.
+---
+<Base title="What you'll see: building a course, step by step" description="One paragraph in, and the architect designs the course; the builder makes day one through your own process; and the same recipe scales from a shop floor to a university unit. Free. A way, never the way." wide>
+  <div class="wt">
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/trainer/">Trainer</a> &rsaquo; Walkthrough</p>
+    <h1>What you&rsquo;ll see: building a course, from one paragraph to a finished week.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+    <p class="body intro">
+      Run once on a made-up brief: a five-day induction for a small bakery. Two
+      plain prompts do the work in the AI subscription you already have &mdash;
+      <strong>MP-11, the curriculum architect</strong>, designs the course; <strong>MP-12,
+      the batch builder</strong>, builds it a day at a time, grounded in your own
+      process. The finished version is
+      <a href="/metadax/showcases/first-week-at-the-bakery/">First Week at the
+      Bakery</a>; the very same recipe, aimed higher, is
+      <a href="/metadax/showcases/proton-mill/">The Proton Mill</a>, a university
+      unit. This is one way through; it is never the only way.
+    </p>
+  </section>
+
+  <section class="block">
+    <ol class="steps">
+
+      <li class="step" id="s1">
+        <p class="do"><span class="n">1</span> Write the brief &mdash; one paragraph. What people should be able to do, who they are, and what it must match.</p>
+        <p class="see">What you see: it reads the paragraph back and asks only for what it genuinely needs &mdash; here, the source your course must match.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-you"><span class="who">You paste</span>OPERATION: CURRICULUM &nbsp;<span class="dim">(MP-11, the curriculum architect)</span><br>CONFIG: mode design, size strand, language English, clarify_round 1<br>INPUT: A five-day induction for new floor staff at a small bakery (about 8 staff). By the end they can open and close the shop, handle food-safety basics, and deal with a complaint without a manager. Today new starters skip the closing checklist. One session a day, people on their own devices.</p>
+          <p class="t-ai"><span class="who">Your assistant</span>Reading that back: a five-day induction for new bakery floor staff &mdash; open and close, food-safety basics, and handling a complaint &mdash; one session a day, on their own devices, with a known gap on the closing checklist. One thing I need: is there a closing checklist or food-safety sheet this must teach exactly, word for word? If so, paste or name it and I&rsquo;ll keep those steps verbatim.</p>
+          <p class="t-you"><span class="who">You</span>Yes &mdash; here&rsquo;s the closing checklist and the allergen sheet.</p>
+        </div>
+      </li>
+
+      <li class="step" id="s2">
+        <p class="do"><span class="n">2</span> Read the designed course &mdash; the whole week as five days, each with a clear outcome.</p>
+        <p class="see">What you see: the ordered plan end to end, with the known gap built in as its own day and the parts that must be exact kept verbatim.</p>
+        <div class="transcript mono-block" aria-label="The designed course">
+<pre>first-week-at-the-bakery (strand)  &mdash;  5 days, 1 session each
+  Day 1  Welcome &mdash; who we are and how we work
+  Day 2  Food-safety basics &mdash; hands, allergens, temperatures   [verbatim sheet]
+  Day 3  The opening and closing checklist                        [verbatim list]
+  Day 4  Customer service and handling a complaint
+  Day 5  Safety &mdash; knives, ovens, slips, and who to tell
+
+Each day &rarr; Learn &rarr; Do the activity &rarr; Check &rarr; Manager's note.
+Day 3 carries the closing checklist as a drag-to-order task, because
+that's the step new starters skip.</pre>
+        </div>
+      </li>
+
+      <li class="step" id="s3">
+        <p class="do"><span class="n">3</span> Build one day. The builder plans the day&rsquo;s units and hands you the first to run.</p>
+        <p class="see">What you see: an ordered, resumable build list, then one unit at a time &mdash; built through a realistic shift, not a generic example.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-you"><span class="who">You paste</span>OPERATION: BUILD &nbsp;<span class="dim">(MP-12, the batch builder)</span><br>CONFIG: mode plan, review_gate human<br>INPUT: just Day 3 this run.</p>
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Build plan for Day 3 &mdash; opening and closing:</strong><br>1. the day&rsquo;s tree (done once)<br>2. Learn &mdash; why the order matters<br>3. Do &mdash; drag the closing steps into order (your checklist, verbatim)<br>4. Check &mdash; 3 questions<br>5. Manager&rsquo;s note &mdash; a show-list and a sign-off block<br>Say <span class="mono">next</span> for the first unit. Say <span class="mono">stop</span> any time &mdash; nothing is left half-written.</p>
+          <p class="t-you"><span class="who">You</span>next</p>
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Next unit: the Day 3 activity.</strong> A drag-to-order closing checklist built from your exact steps, a 3-question check, and a manager&rsquo;s sign-off block. Running it now&hellip;</p>
+        </div>
+      </li>
+
+      <li class="step" id="s4">
+        <p class="do"><span class="n">4</span> See the finished course. Five days, each with a hands-on activity and a sign-off.</p>
+        <p class="see">What you see: the whole induction as a working course &mdash; this is what day one of your brief grows into.</p>
+        <figure class="shot" data-shot="/metadax/showcases/first-week-at-the-bakery/">
+          <figcaption>The finished version: <a href="/metadax/showcases/first-week-at-the-bakery/">First Week at the Bakery</a> &mdash; five days, each with Learn, an activity (a shop-floor plan, an allergen matcher, the drag-to-order closing checklist, a complaint scenario, a spot-the-hazard scene), a short check, and a manager&rsquo;s note. Everyone in it is made up.</figcaption>
+        </figure>
+      </li>
+
+      <li class="step" id="s5">
+        <p class="do"><span class="n">5</span> Aim the same recipe higher &mdash; a university unit comes out of the identical two prompts.</p>
+        <p class="see">What you see: nothing about the method changes; only the brief does. A one-paragraph brief for a first-year biology unit builds this.</p>
+        <figure class="shot" data-shot="/metadax/showcases/proton-mill/">
+          <figcaption>The same recipe, aimed higher: <a href="/metadax/showcases/proton-mill/">The Proton Mill</a> &mdash; a first-year university unit on how the mitochondrion makes ATP, five 3D scenes each with Watch, Why, a quiz, and instructor notes. Built from one brief, the same MP-11 and MP-12. Everyone in it is made up.</figcaption>
+        </figure>
+      </li>
+
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="h-time">
+    <h2 id="h-time">How long this took</h2>
+    <p class="body">About thirty minutes on our run: five to brief the architect and read the five-day plan, ten to build and check day three, and the rest comparing it against the bakery showcase to see where a real run lands. The brief is the work; the two prompts do the rest, and the same pair built the university unit from a different paragraph.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-wrong">
+    <h2 id="h-wrong">When it goes wrong</h2>
+    <ul class="plain">
+      <li><strong>It teaches a generic process, not yours.</strong> That means it had no source. Paste the SOP, checklist, or safety sheet and name what must be exact &mdash; those steps are then kept word for word, not paraphrased.</li>
+      <li><strong>The examples feel like a classroom, not a workplace.</strong> Say who the learners are and what a real shift looks like. On our run, &ldquo;floor staff, their own phones, mid-rush&rdquo; turned worksheet questions into a realistic ticket and a complaint at the counter.</li>
+      <li><strong>The course is too long for one sitting.</strong> It is built to be a day at a time. Build one day, stop, and run &ldquo;build next&rdquo; when you&rsquo;re ready &mdash; nothing is left half-written.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">
+      It runs on the AI subscription you already have.
+      <a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain
+      prompts</a> paste into any chat, no setup &mdash; MP-11 designs the course, MP-12
+      builds it a day at a time, and a check reads each unit back before it goes
+      out.
+    </p>
+    <h2 id="h-done" class="done-head">Have it done for you</h2>
+    <p class="body">
+      Want it set up and run for you instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/trainer/">Back to Trainer</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/showcases/first-week-at-the-bakery/">See the finished example</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/">Pick your chair</a>
+    </p>
+  </section>
+  </div>
+</Base>

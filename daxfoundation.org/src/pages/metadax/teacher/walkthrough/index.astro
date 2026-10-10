@@ -1,0 +1,149 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import '../../../../styles/walkthrough.css';
+
+// /metadax/teacher/walkthrough/ -- "What you'll see" for the teacher chair,
+// first published 2026-10-10. Run with our own model on a fictional brief: a
+// Grade 6 science year, two 50-minute periods a week, printed worksheets, no
+// budget. MP-11 designs the year tree; MP-12 builds week one; the lesson
+// prints; MP-09 checks it. Finished example: the grade-6-science-year showcase
+// (being built by another ask; linked). Everyone in it is made up.
+//
+// Rules: "guide" and "learner"; a way, never the way; no AI vendor named; no
+// real people, no honorifics; nothing identifying; the Foundation is never
+// called a non-profit, charity, or incorporated. Byline and sponsor sentence
+// like the other chair pages.
+---
+<Base title="What you'll see: planning a class, step by step" description="One brief in, and the architect designs the whole tree; the builder makes week one lesson by lesson; it prints; and a check reads it back before it reaches your class. Free. A way, never the way." wide>
+  <div class="wt">
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/teacher/">Teacher</a> &rsaquo; Walkthrough</p>
+    <h1>What you&rsquo;ll see: planning a class, from the brief to the printed lesson.</h1>
+    <p class="lede-text">First published 2026-10-10.</p>
+    <p class="body intro">
+      Run once on a made-up brief: a Grade&nbsp;6 science year, two 50-minute
+      periods a week, printed worksheets, no budget. Two plain prompts do the
+      work in the AI subscription you already have &mdash; <strong>MP-11, the
+      curriculum architect</strong>, designs the whole year as a tree; <strong>MP-12,
+      the batch builder</strong>, builds it one week at a time. The finished version
+      of this is the
+      <a href="/metadax/showcases/grade-6-science-year/">Grade&nbsp;6 Science year</a>
+      showcase (being built now). This is one way through; it is never the only way.
+    </p>
+  </section>
+
+  <section class="block">
+    <ol class="steps">
+
+      <li class="step" id="s1">
+        <p class="do"><span class="n">1</span> Give it the brief &mdash; your class, your subject, your calendar, in a few lines.</p>
+        <p class="see">What you see: it asks a handful of short questions, then reads the brief back so you can correct it before any building.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-you"><span class="who">You paste</span>OPERATION: CURRICULUM &nbsp;<span class="dim">(MP-11, the curriculum architect)</span><br>CONFIG: mode design, size term, language English, clarify_round 1<br>INPUT: Grade 6 science. Plan the whole year. Two 50-minute periods a week, about 36 weeks. 28 learners, printed worksheets, no materials budget. They&rsquo;re stuck turning observations into a fair test.</p>
+          <p class="t-ai"><span class="who">Your assistant</span>Reading that back: a full Grade&nbsp;6 science year &mdash; roughly 36 weeks, two 50-minute periods each &mdash; for a class of 28, paper-only, no budget, with a running thread on designing a fair test. One question: should the year follow a strands order (matter, energy, living things, Earth and space), or a single investigation thread? I&rsquo;ll assume strands unless you say otherwise.</p>
+          <p class="t-you"><span class="who">You</span>Strands is right.</p>
+        </div>
+      </li>
+
+      <li class="step" id="s2">
+        <p class="do"><span class="n">2</span> Read the designed tree &mdash; the whole year as courses, lessons, modules and objectives.</p>
+        <p class="see">What you see: an ordered outline you can see end to end before a single lesson is written, each unit with its objectives, order and time budget.</p>
+        <div class="transcript mono-block" aria-label="The designed curriculum tree">
+<pre>grade-6-science (year)  &mdash;  ~36 weeks, 2 periods/week
+&bull; Matter and its changes            (weeks 1&ndash;8)
+    L01  Properties of matter
+    L02  Solids, liquids, gases
+    L03  Heating and cooling
+    ...  Fair test thread: "what changed, what stayed the same?"
+&bull; Energy and forces                  (weeks 9&ndash;18)
+&bull; Living things and systems          (weeks 19&ndash;28)
+&bull; Earth, space and our place in it   (weeks 29&ndash;36)
+
+Each lesson &rarr; 2&ndash;4 modules &rarr; 2&ndash;4 objectives.
+Example objective (L03.M01.O01):
+  "Predict whether a substance will melt or freeze when heated or
+   cooled, and say which variable was changed."  (Apply)</pre>
+        </div>
+        <p class="note">The architect hands each course off to the builder with no edits &mdash; you review the whole shape first and move anything before you spend a minute building.</p>
+      </li>
+
+      <li class="step" id="s3">
+        <p class="do"><span class="n">3</span> Build one week. The batch builder plans the units, then hands you the next one to run.</p>
+        <p class="see">What you see: an ordered, resumable build list for the week, then one unit at a time &mdash; so you can build Monday&rsquo;s lesson tonight and the rest later.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-you"><span class="who">You paste</span>OPERATION: BUILD &nbsp;<span class="dim">(MP-12, the batch builder)</span><br>CONFIG: mode plan, review_gate human<br>INPUT: just Lesson L03 this run.</p>
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Build plan for L03 &mdash; Heating and cooling:</strong><br>1. the lesson&rsquo;s course tree (done once)<br>2. content for O01 &mdash; predict melt/freeze and name the changed variable<br>3. content for O02 &mdash; read a heating graph<br>4. content for O03 &mdash; write up a fair test<br>Order: O01 &rarr; O02 &rarr; O03. Say <span class="mono">next</span> and I&rsquo;ll hand you the first unit to run, with its own prompt and a check after it.</p>
+          <p class="t-you"><span class="who">You</span>next</p>
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Next unit: O01 content.</strong> A 50-minute lesson built through everyday kitchen examples (ice, butter, a cold glass), a worksheet for 28 with no equipment, a 3-question check, and a one-page teacher note. Running it now&hellip;</p>
+        </div>
+      </li>
+
+      <li class="step" id="s4">
+        <p class="do"><span class="n">4</span> Print the lesson. Worksheet, teacher note, and answer key, laid out for paper.</p>
+        <p class="see">What you see: the finished lesson ready for the photocopier &mdash; no devices, no budget, 28 copies.</p>
+        <figure class="shot" data-shot="/metadax/play/print.html">
+          <figcaption>The print page at <a href="/metadax/play/print.html">/metadax/play/print.html</a>: the learner worksheet, the teacher&rsquo;s run-sheet, and the answer key on paper &mdash; the paper version needs nothing but a printer.</figcaption>
+        </figure>
+      </li>
+
+      <li class="step" id="s5">
+        <p class="do"><span class="n">5</span> Run the check &mdash; a second pass reads the lesson back against the objective before it reaches your class.</p>
+        <p class="see">What you see: a short review that accepts the lesson, asks for a change, or flags a gap &mdash; so a weak question is caught before 28 learners meet it.</p>
+        <div class="transcript" aria-label="Chat transcript">
+          <p class="t-ai"><span class="who">Your assistant</span><strong>Check on O01 &mdash; verdict: one change.</strong> The worksheet hits &ldquo;predict melt or freeze&rdquo; well, but only one of three questions asks the learner to <em>name the variable that changed</em>, which is the fair-test thread and the stated objective. Suggested fix: reword question&nbsp;2 to &ldquo;what did you change, and what did you keep the same?&rdquo; Everything else is accepted.</p>
+        </div>
+        <figure class="shot" data-shot="/metadax/showcases/grade-6-science-year/">
+          <figcaption>The finished version: the <a href="/metadax/showcases/grade-6-science-year/">Grade&nbsp;6 Science year</a> showcase &mdash; the whole year as built lessons, being built by another ask and linked here. Everyone in it is made up.</figcaption>
+        </figure>
+      </li>
+
+    </ol>
+  </section>
+
+  <section class="block" aria-labelledby="h-time">
+    <h2 id="h-time">How long this took</h2>
+    <p class="body">About thirty-five minutes on our run: five to brief the architect and read the year tree, ten to build and print the one lesson, and the rest reading the check and making its one change. The year tree is designed once; after that each week is just &ldquo;build next&rdquo; when you have the evening for it.</p>
+  </section>
+
+  <section class="block" aria-labelledby="h-wrong">
+    <h2 id="h-wrong">When it goes wrong</h2>
+    <ul class="plain">
+      <li><strong>The tree is too big to build in one go.</strong> It is meant to be &mdash; design the whole year, then build one lesson at a time. The builder is resumable: stop after any unit and pick up with &ldquo;build next&rdquo; later.</li>
+      <li><strong>The lesson assumes equipment you don&rsquo;t have.</strong> Say so in the brief (&ldquo;paper only, no budget&rdquo;) and it builds around it. On our run, leaving that out produced a lab with beakers; adding it switched to ice and a kitchen.</li>
+      <li><strong>A question drifts off the objective.</strong> That is exactly what the check in step&nbsp;5 catches. Don&rsquo;t skip it &mdash; it is the difference between &ldquo;looks like a lesson&rdquo; and &ldquo;teaches the thing you set out to teach&rdquo;.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="h-run">
+    <h2 id="h-run">Run it yourself, free</h2>
+    <p class="body">
+      It runs on the AI subscription you already have.
+      <a href="https://github.com/daxfoundation/metadax/tree/main/prompts">The plain
+      prompts</a> paste into any chat, no setup &mdash; MP-11 designs the tree, MP-12
+      builds it week by week, and a check reads each lesson back. Or use
+      <a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-teacher">the
+      teacher skill</a>, which wraps the whole flow.
+    </p>
+    <h2 id="h-done" class="done-head">Have it done for you</h2>
+    <p class="body">
+      Want it set up and run for you instead? <a href="https://www.obsidiandelta.com/learning/">Obsidian
+      Delta, the company, sells that</a> &mdash; done-for-you, paid. The
+      Foundation&rsquo;s work stays free; this is the way to have someone else do
+      the work.
+    </p>
+    <p class="body sponsor">
+      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+      keeps it going.
+    </p>
+    <p class="out">
+      <a href="/metadax/teacher/">Back to Teacher</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/showcases/grade-6-science-year/">See the finished example</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/">Pick your chair</a>
+    </p>
+  </section>
+  </div>
+</Base>
