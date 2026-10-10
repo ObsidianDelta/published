@@ -8,11 +8,11 @@ interface Props {
 const {
   title = 'DAX Foundation',
   description = 'DAX: preservation and expansion of life, humanity, and consciousness.',
-  image = 'metadax',
+  image,
   wide = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL(`/og/${image}.png`, Astro.site);
+const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.png', Astro.site);
 
 // 2026-09-20: the footer used to carry "Canadian not-for-profit" in its right
 // corner. It is gone at Jason's request, and nothing has taken its place: the
