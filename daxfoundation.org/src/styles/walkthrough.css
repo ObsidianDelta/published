@@ -62,6 +62,15 @@
 .wt .screen-link:hover::after, .wt .screen-link:focus-visible::after { color: var(--fg); }
 .wt .sl-k { display: block; margin-bottom: 0.2rem; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
 
+/* deploy-time screenshot: the real screen sits above the link card. The PNG is
+   rendered on the deploy runner (never stored in the repo), so on any build
+   where it is missing -- locally, or a deploy where the shot failed -- the
+   img onerror adds .noimg, the shot is hidden, and the card shows alone: the
+   figure then looks exactly as it did before the screenshot existed. */
+.wt .shot .shot-img { display: block; padding: 0.75rem; background: #0d0d0d; border-bottom: 1px solid var(--line); }
+.wt .shot .shot-img img { display: block; width: 100%; max-width: 390px; height: auto; margin-inline: auto; border: 1px solid var(--line); }
+.wt .shot.noimg .shot-img { display: none; }
+
 .wt .out { margin: 1.75rem 0 0; font-size: 0.9375rem; }
 .wt .out span { color: var(--faint); margin-inline: 0.5rem; }
 .wt .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
