@@ -1,0 +1,1180 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An interactive 3D walkthrough of how the mitochondrion makes ATP: the electron transport chain, a proton gradient, and ATP synthase as a rotary motor. A MetaDAX showcase for Biology 101.">
+<title>The Proton Mill — a MetaDAX showcase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Big+Shoulders+Display:wght@700;800&display=swap">
+<style>/* The Proton Mill — styles. Light + dark, accessible, reduced-motion aware.
+   Design language follows the Stade showcase: Atkinson Hyperlegible body,
+   Big Shoulders display, gold accent, high-contrast focus rings. */
+:root {
+  --bg: #e8eef4; --surface: #ffffff; --surface-2: #f1f5fa; --ink: #0f1d2a; --muted: #46586a;
+  --line: #ccd7e2; --accent: #1d6fb8; --accent-ink: #ffffff;
+  --gold: #e0a500; --gold-ink: #1c1500; --good: #157a43; --bad: #c0392b; --heat: #e0591f;
+  --stage-bg: #cfe4f4;
+  --font-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --radius: 10px; --s0: 1.0625rem; --s1: 1.2rem; --s2: 1.55rem; --s3: 2.2rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #081320; --surface: #0f1d2a; --surface-2: #14263a; --ink: #e9f1f8; --muted: #9db1c4;
+    --line: #22384d; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
+    --good: #45c27a; --bad: #f0625a; --heat: #ff7a4d; --stage-bg: #081324;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #081320; --surface: #0f1d2a; --surface-2: #14263a; --ink: #e9f1f8; --muted: #9db1c4;
+  --line: #22384d; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
+  --good: #45c27a; --bad: #f0625a; --heat: #ff7a4d; --stage-bg: #081324;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--s0); line-height: 1.5; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.01em; margin: 0; line-height: 1.08; }
+p { margin: 0; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: absolute; left: -999px; top: 0; z-index: 100; background: var(--gold); color: var(--gold-ink); padding: 10px 16px; font-weight: 700; border-radius: 0 0 8px 0; }
+.skip:focus { left: 0; }
+
+/* header */
+.bar { position: sticky; top: 0; z-index: 20; min-height: 56px; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--surface); color: var(--ink); border-bottom: 3px solid var(--gold); }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { width: 30px; height: 30px; flex: none; }
+.brand-name { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; letter-spacing: 0.03em; text-transform: uppercase; }
+.top-nav { display: flex; gap: 6px; margin-left: auto; }
+.top-nav button { background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 0.95rem; }
+
+/* scene nav */
+.scenes { overflow-x: auto; background: var(--surface); border-bottom: 1px solid var(--line); }
+.scenes ol { display: flex; gap: 6px; padding: 10px 16px; margin: 0; list-style: none; min-width: max-content; }
+.scenes button { display: flex; align-items: center; gap: 8px; border: 1px solid var(--line); background: var(--surface-2); border-radius: 999px; padding: 6px 14px 6px 6px; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.scenes .n { display: grid; place-items: center; width: 27px; height: 27px; border-radius: 50%; background: var(--line); font-family: var(--font-display); font-size: 1.05rem; }
+.scenes button[aria-current="step"] { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); }
+.scenes button[aria-current="step"] .n { background: var(--gold); color: var(--gold-ink); }
+
+/* layout */
+.layout { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 980px) { .layout { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; } .stage-wrap { position: sticky; top: 72px; } }
+.stage-wrap { background: var(--surface); border-bottom: 1px solid var(--line); }
+.stage { height: 42vh; min-height: 260px; max-height: 520px; width: 100%; position: relative; background: var(--stage-bg); }
+.stage .nogl { position: absolute; inset: 16px; display: grid; place-items: center; text-align: center; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+.caption { padding: 10px 16px 0; color: var(--muted); font-size: 0.95rem; min-height: 1.2em; }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; padding: 12px 16px; }
+.orbit-hint { flex-basis: 100%; color: var(--muted); font-size: 0.85rem; margin: 0; }
+.ctl { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.ctl input[type=range] { width: 180px; accent-color: var(--accent); }
+.toggles { display: flex; gap: 8px; flex-wrap: wrap; }
+.tgl { border: 2px solid var(--ink); background: var(--surface); border-radius: 8px; padding: 7px 14px; font-weight: 700; }
+.tgl[aria-pressed="true"] { background: var(--heat); border-color: var(--heat); color: #fff; }
+.tgl.reset { border-color: var(--line); }
+
+/* numbers panel */
+.numbers { padding: 4px 16px 16px; display: grid; gap: 8px; }
+.num { display: grid; grid-template-columns: 9.5em 1fr auto; align-items: center; gap: 10px; }
+.num-k { font-weight: 700; font-size: 0.92rem; }
+.num-bar { height: 12px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.num-bar span { display: block; height: 100%; background: var(--accent); border-radius: 999px; transition: width 0.25s ease; }
+.num:nth-child(4) .num-bar span { background: var(--heat); }
+.num-v { font-variant-numeric: tabular-nums; font-weight: 700; font-size: 0.9rem; color: var(--muted); min-width: 4.5em; text-align: right; }
+.num-note { grid-column: 1 / -1; color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+
+/* panel */
+.panel { padding: 20px 16px 40px; min-width: 0; }
+.panel-inner { max-width: 680px; margin: 0 auto; display: grid; gap: 16px; }
+.eyebrow { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); font-size: 1rem; }
+.title { font-size: var(--s3); }
+.lede { color: var(--muted); max-width: 62ch; }
+.muted-note { color: var(--muted); font-size: 0.95rem; }
+
+/* tabs */
+.tabs { display: flex; gap: 4px; border-bottom: 2px solid var(--line); flex-wrap: wrap; }
+.tabs button { border: 0; background: none; padding: 10px 14px 8px; font-weight: 700; color: var(--muted); border-bottom: 4px solid transparent; margin-bottom: -2px; font-size: 1rem; }
+.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--gold); }
+
+/* watch */
+.say { background: var(--surface-2); border: 1px solid var(--line); border-left: 6px solid var(--gold); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; }
+.say .count { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-size: 0.95rem; }
+.say p { font-size: var(--s1); line-height: 1.45; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { border: 2px solid var(--ink); background: var(--surface); color: var(--ink); padding: 9px 16px; border-radius: 8px; font-weight: 700; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn:disabled { opacity: 0.4; cursor: default; }
+
+/* why */
+.why { margin: 0; padding-left: 1.1em; display: grid; gap: 12px; }
+.why li { line-height: 1.5; }
+
+/* quiz */
+.quiz { display: grid; gap: 12px; }
+.qcount { color: var(--muted); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; }
+.qtext { font-size: var(--s1); font-weight: 700; }
+.opts { display: grid; gap: 8px; }
+.opt { text-align: left; border: 2px solid var(--line); background: var(--surface); border-radius: 8px; padding: 11px 14px; font-weight: 600; }
+.opt:not(:disabled):hover { border-color: var(--accent); }
+.opt.correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 15%, var(--surface)); }
+.opt.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 15%, var(--surface)); }
+.fb { border-radius: var(--radius); padding: 14px 16px; border: 1px solid var(--line); }
+.fb.ok { border-left: 6px solid var(--good); }
+.fb.no { border-left: 6px solid var(--bad); }
+.fb .trap { margin-top: 8px; color: var(--muted); }
+
+/* instructors */
+.teach { display: grid; gap: 14px; }
+.sub { font-size: var(--s1); margin-top: 6px; }
+.sub .mins { font-family: var(--font-body); font-weight: 700; font-size: 0.85rem; color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 2px 8px; vertical-align: middle; }
+.steps, .key { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+
+/* footer + dialog */
+.foot { padding: 20px 16px 40px; text-align: center; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--line); }
+dialog { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--ink); max-width: 520px; padding: 0; }
+dialog::backdrop { background: rgba(4, 12, 20, 0.55); }
+.about-in { padding: 22px 24px; display: grid; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#panel">Skip to the lesson text</a>
+<header class="bar">
+  <div class="brand">
+    <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="14" fill="#101c16" stroke="#f2b705" stroke-width="2"/><circle cx="16" cy="16" r="5" fill="#f2b705"/><g stroke="#f2b705" stroke-width="2"><line x1="16" y1="2" x2="16" y2="7"/><line x1="16" y1="25" x2="16" y2="30"/><line x1="2" y1="16" x2="7" y2="16"/><line x1="25" y1="16" x2="30" y2="16"/></g></svg>
+    <span class="brand-name">The Proton Mill</span>
+  </div>
+  <nav class="top-nav" aria-label="Site">
+    <button id="theme" type="button">Theme</button>
+    <button id="about-btn" type="button">About</button>
+  </nav>
+</header>
+<nav class="scenes" aria-label="Scenes"><ol id="scenes"></ol></nav>
+<main class="layout">
+  <section class="stage-wrap" aria-label="3D scene and controls">
+    <div class="stage" id="stage"></div>
+    <p class="caption" id="caption"></p>
+    <p class="desc visually-hidden" id="desc" aria-live="polite"></p>
+    <div class="controls" id="controls" hidden></div>
+    <div class="numbers" id="numbers" aria-label="Live numbers" aria-live="off"></div>
+  </section>
+  <section class="panel" id="panel" aria-live="off"></section>
+</main>
+<footer class="foot">
+  <p>Model-generated, unreviewed; check against your course text. A MetaDAX showcase — illustrative example, not a course of record.</p>
+</footer>
+<dialog id="about" aria-label="About this page">
+  <div class="about-in">
+    <h2>About The Proton Mill</h2>
+    <p>A self-contained MetaDAX showcase for Biology 101 (cellular energy), aimed at a first-year university student. Five 3D scenes follow how a mitochondrion turns a trickle of electrons into ATP.</p>
+    <p>The biology is standard introductory material, cited as general knowledge; the 3D is a simplified cartoon, not a molecular structure. Numbers are approximate and vary between textbooks.</p>
+    <p><strong>Model-generated and unreviewed.</strong> Use your own course text for anything graded.</p>
+    <p><button class="btn primary" data-close type="button">Close</button></p>
+  </div>
+</dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>/* The Proton Mill — content (English).
+   A MetaDAX showcase for Biology 101 (cellular energy), first-year university.
+   Audience: a curious first-year who has met cells but not the chemistry.
+   Source: the MetaDAX fixture course `cell-biology-obsidian` (lesson L01, module
+   L01.M01 "Mitochondria and ATP"), written through the MP-11 -> MP-02 -> MP-04
+   chain. See ../DRY-RUN.md. Every biology claim is general textbook knowledge;
+   numbers are approximate and vary by source (see the Numbers scene).
+
+   Data shape consumed by app.js / engine.js:
+     scene:  one of "mito" | "membrane" | "synthase" | "break" | "ledger"
+     watch:  ordered steps; each {say, s} where s is a scene-state object the
+             engine renders (see engine.js show()).
+     try:    5 questions; each {q, options, a (index), why, trap:{a, note}}.
+     teach:  { ta:[], activity:{title,minutes,steps[]}, key:[] }  */
+
+const COURSE = {
+  title: "The Proton Mill",
+  tagline: "How a mitochondrion turns a trickle of electrons into ATP.",
+  learner: "A first-year university student in Biology 101. English. No chemistry assumed beyond atoms and charge.",
+  honesty: "This page is model-generated and unreviewed. The biology is standard introductory material; the 3D is a simplified cartoon, not a molecular structure. Numbers are approximate and vary between textbooks — check against your course text.",
+
+  scenes: [
+    /* ───────────────────────── 0 · the mitochondrion ───────────────────────── */
+    {
+      id: 0, short: "Mitochondrion", scene: "mito",
+      eyebrow: "Scene 1 of 5",
+      title: "The mitochondrion",
+      lede: "Where most of a cell's usable energy is made. Orbit the cut-away and find the folded inner membrane — that fold is the whole point.",
+      intro: "Before any chemistry, get the building right. A mitochondrion has two membranes, and the inner one is crumpled into ridges. Those ridges are where the machinery lives.",
+      watch: [
+        { say: "This is one mitochondrion, cut open. The smooth outer bag is the outer membrane. It is porous and fairly featureless.", s: { highlight: "outer", cut: 1 } },
+        { say: "Inside sits a second membrane, folded into ridges called cristae. Folding packs a large surface into a small volume — more surface means more machinery.", s: { highlight: "inner", cut: 1 } },
+        { say: "The two membranes make two spaces: the thin intermembrane space between them, and the matrix inside the inner membrane.", s: { highlight: "spaces", cut: 1 } },
+        { say: "Keep those two spaces in mind. The next scene pushes protons from the matrix out into the intermembrane space — the whole energy story is a difference between these two spaces.", s: { highlight: "matrix", cut: 1 } }
+      ],
+      why: [
+        "The folded inner membrane is not decoration. Every proton pump and every ATP synthase sits in it, so surface area sets the ceiling on output. Cells that burn a lot of energy (heart muscle, flight muscle) have mitochondria crammed with cristae.",
+        "Two membranes mean two compartments. That is what lets the cell store energy as a *difference* across the inner membrane. One membrane could not hold a gradient the same way.",
+        "Common slip: picturing a single-membrane blob. If you forget the inner membrane, nothing later makes sense — there is nowhere to build the gradient."
+      ],
+      try: [
+        { q: "Why is the inner membrane folded into cristae?", options: ["To make the mitochondrion look complex", "To pack more surface area for the energy machinery", "To store ATP in the folds", "To let more oxygen leak in"], a: 1,
+          why: "Folds increase surface area in a fixed volume, and the inner membrane holds the pumps and ATP synthase. More surface, more output.",
+          trap: { a: 2, note: "treated the cristae as storage. ATP is not stockpiled in the folds; the folds hold the machinery that makes it." } },
+        { q: "How many membranes does a mitochondrion have?", options: ["One", "Two", "Three", "None — it is open to the cytoplasm"], a: 1,
+          why: "Two: a smooth outer membrane and a folded inner membrane. The two create the two compartments the energy story depends on.",
+          trap: { a: 0, note: "pictured a single-membrane blob. Without the inner membrane there is nowhere to build a gradient." } },
+        { q: "The space enclosed by the inner membrane is called the:", options: ["Intermembrane space", "Cytoplasm", "Matrix", "Nucleus"], a: 2,
+          why: "The matrix is inside the inner membrane; the intermembrane space is the thin gap between the two membranes.",
+          trap: { a: 1, note: "named the cytoplasm — that is outside the mitochondrion entirely." } },
+        { q: "Is a mitochondrion where food is first broken down?", options: ["Yes, digestion starts here", "No — sugars are first split in the cell fluid, then fragments enter", "Yes, it eats whole food molecules", "No — it only stores fat"], a: 1,
+          why: "Sugars are split in the cytoplasm first; the fragments are then fed into the mitochondrion, where the electron-stripping and ATP-making happen.",
+          trap: { a: 0, note: "put all of digestion inside the mitochondrion. The first split happens outside it." } },
+        { q: "Which cells would you expect to have the most cristae-packed mitochondria?", options: ["Resting skin cells", "Hard-working heart muscle cells", "Dead cells", "Cells that do no work"], a: 1,
+          why: "More energy demand, more machinery, more folded membrane. Heart muscle is a classic high-density example.",
+          trap: { a: 3, note: "ignored the link between energy demand and membrane surface." } }
+      ],
+      teach: {
+        ta: [
+          "The single most common misconception entering this unit is the single-membrane blob. Spend 60 seconds making students point to both membranes and name both spaces before moving on.",
+          "Do not let 'the powerhouse of the cell' stand in for understanding. It is a slogan, not a mechanism — the mechanism is the next three scenes."
+        ],
+        activity: { title: "Two spaces, in the room", minutes: 10, steps: [
+          "Mark a rope loop on the floor as the inner membrane; the area inside is the matrix, the ring just outside is the intermembrane space.",
+          "Give five students beanbags (protons). Have them start in the matrix.",
+          "On your cue, students step out of the loop one at a time ('pumping'). Pause and ask: where is it more crowded now, inside or out? That crowding is the gradient.",
+          "Debrief: nothing was created — the protons just moved. Hold that thought for Scene 2."
+        ] },
+        key: [
+          "Q1 → B (surface area for machinery).",
+          "Q2 → B (two membranes).",
+          "Q3 → C (matrix).",
+          "Q4 → B (sugars split outside first).",
+          "Q5 → B (high-demand muscle)."
+        ]
+      }
+    },
+
+    /* ───────────────────────── 1 · the inner membrane & the pump ───────────────────────── */
+    {
+      id: 1, short: "The pump", scene: "membrane",
+      eyebrow: "Scene 2 of 5",
+      title: "The inner membrane builds a gradient",
+      lede: "The electron transport chain passes electrons down a line of complexes and uses the released energy to pump protons across the membrane. Drive the pump with the slider and watch the gradient build.",
+      intro: "Electrons from food enter at one end of the chain and are handed from complex to complex. Each hand-off releases a little energy, and three complexes spend that energy pumping protons from the matrix into the intermembrane space.",
+      watch: [
+        { say: "Here is a slice of the inner membrane. Protons (yellow) start in the matrix, below. Oxygen waits at the right end of the chain.", s: { pump: 0, run: true } },
+        { say: "High-energy electrons enter at the left and pass complex to complex. Each hand-off releases energy — follow the spark moving right.", s: { pump: 0.5, run: true } },
+        { say: "Three complexes use that energy to pump protons up, from the matrix into the intermembrane space. Protons pile up above the membrane.", s: { pump: 0.8, run: true } },
+        { say: "That pile-up is the gradient: more protons (and more positive charge) on one side than the other. It is stored energy — a battery that is being charged. Push the slider and watch the bar fill.", s: { pump: 1, run: true } },
+        { say: "At the far right the electrons are handed to oxygen, which combines with protons to make water. No oxygen to accept them, and the whole line backs up and stops.", s: { pump: 0.8, run: true, o2: true } }
+      ],
+      why: [
+        "The chain does not make ATP. It makes a *gradient*. That is the hinge of the whole topic: energy from electrons is converted into a proton difference, and only later is that difference cashed in for ATP (Scene 3).",
+        "Pumping works because protons are pushed out faster than they leak back. The build-up is both a concentration difference and a charge difference across the membrane; together these store the energy.",
+        "Oxygen's only job here is to be the final electron acceptor at the end of the line. It does not push anything. But remove it and the line jams — which is why you cannot hold your breath indefinitely.",
+        "The slider is a cartoon of how hard the chain runs: more fuel and more demand, faster pumping. Real cells regulate this tightly; the model just lets you feel the relationship."
+      ],
+      try: [
+        { q: "What does the electron transport chain actually build?", options: ["ATP, directly", "A proton gradient across the inner membrane", "Oxygen", "Sugar"], a: 1,
+          why: "The chain converts electron energy into a proton difference across the membrane. ATP is made later, by a different machine, using that difference.",
+          trap: { a: 0, note: "said the chain makes ATP directly. It does not — it builds the gradient; ATP synthase cashes it in." } },
+        { q: "Where are protons pumped to?", options: ["From the intermembrane space into the matrix", "From the matrix into the intermembrane space", "Out of the cell", "Into the nucleus"], a: 1,
+          why: "Pumping moves protons from the matrix (inside the inner membrane) to the intermembrane space, so they pile up on the outer side.",
+          trap: { a: 0, note: "reversed the direction. Pumping is uphill, out of the matrix; protons leak back the other way through ATP synthase." } },
+        { q: "What is oxygen's role in the chain?", options: ["It pumps protons", "It is the final electron acceptor, forming water", "It makes ATP", "It carries electrons between complexes"], a: 1,
+          why: "Oxygen sits at the end and accepts the spent electrons, combining with protons to form water. Remove it and the chain backs up.",
+          trap: { a: 3, note: "confused oxygen with the mobile carrier. The carrier shuttles between complexes; oxygen is the end of the line." } },
+        { q: "The stored energy of the gradient is best described as:", options: ["A pile of ATP molecules", "A concentration AND charge difference across the membrane", "Heat", "A supply of oxygen"], a: 1,
+          why: "The gradient is both more protons on one side (concentration) and more positive charge on that side (voltage). Together they store energy.",
+          trap: { a: 2, note: "called it heat. Heat is what you get when the gradient leaks uselessly (Scene 4), not the stored form." } },
+        { q: "If protons could cross the inner membrane freely, what would happen to the gradient?", options: ["It would build faster", "It would collapse — there would be no difference to store", "Nothing", "ATP output would rise"], a: 1,
+          why: "A gradient only exists because the membrane is a barrier. Free crossing erases the difference — exactly what an uncoupler does (Scene 4).",
+          trap: { a: 3, note: "assumed free flow helps. Free flow short-circuits the battery; output falls." } }
+      ],
+      teach: {
+        ta: [
+          "Hammer the hinge: the chain makes a gradient, not ATP. If students leave with only one sentence, make it this one.",
+          "Students often think oxygen is consumed to 'release energy'. Reframe: oxygen is the drain at the end that keeps electrons flowing; the energy came from the electrons, not from the oxygen."
+        ],
+        activity: { title: "Pump versus leak", minutes: 10, steps: [
+          "Draw the membrane as a line across the board, matrix below, intermembrane space above.",
+          "In pairs, students label the three pumping complexes and draw arrows for protons going up.",
+          "Now ask: what sets the final gradient height? Elicit 'pump rate minus leak rate'. Write it as a balance.",
+          "Preview: next class we add ATP synthase as the main, useful 'leak' — and then a useless one."
+        ] },
+        key: [
+          "Q1 → B (a proton gradient).",
+          "Q2 → B (matrix → intermembrane space).",
+          "Q3 → B (final electron acceptor, water).",
+          "Q4 → B (concentration + charge).",
+          "Q5 → B (gradient collapses)."
+        ]
+      }
+    },
+
+    /* ───────────────────────── 2 · ATP synthase, the rotary motor ───────────────────────── */
+    {
+      id: 2, short: "ATP synthase", scene: "synthase",
+      eyebrow: "Scene 3 of 5",
+      title: "ATP synthase, a rotary motor",
+      lede: "Protons flow back down the gradient through ATP synthase. The flow spins a rotor, and the spinning head stitches ADP + phosphate into ATP. Change the gradient and the spin follows.",
+      intro: "The gradient from Scene 2 is a charged battery. ATP synthase is the device that discharges it usefully: protons stream back into the matrix through the enzyme, and that flow turns a molecular rotor.",
+      watch: [
+        { say: "This is ATP synthase, spanning the inner membrane. Protons are backed up above; the matrix is below. The rotor is the ring in the membrane.", s: { pump: 0.6, run: true } },
+        { say: "Protons flow down through the rotor, from the crowded side to the empty side. Each proton that passes nudges the rotor around.", s: { pump: 0.7, run: true } },
+        { say: "The rotor turns a stalk inside the head. The head does not spin freely — the turning forces its three active sites through a cycle.", s: { pump: 0.8, run: true } },
+        { say: "At each site, ADP and a phosphate (Pi) are pressed together into ATP, then released. Mechanical turning is converted into a chemical bond.", s: { pump: 0.9, run: true, make: true } },
+        { say: "Now the key link: spin speed follows the gradient. Raise the pump and the rotor speeds up and ATP comes faster; lower it and everything slows. The motor runs on the battery, not the other way round.", s: { pump: 1, run: true, make: true } }
+      ],
+      why: [
+        "ATP synthase does NOT make energy. It converts one form (the proton gradient) into another (the chemical bond in ATP). Nothing is created; energy is transferred and some is always lost as heat.",
+        "It is literally a rotary motor — one of the few true rotating machines in biology. Proton flow is the 'current'; the rotor is the turbine; the head is the workshop.",
+        "The direction is set by the gradient. With a strong gradient it runs forward and makes ATP. Push hard the other way and the same enzyme can run backward and pump protons — which is why the balance in Scene 2 matters.",
+        "Because output tracks the gradient, anything that drains the gradient without passing through the synthase steals from ATP production. That is exactly the failure mode in Scene 4.",
+        "ATP is spent almost as fast as it is made. Cells keep only seconds-to-minutes of supply on hand; the pool is recharged constantly rather than stockpiled."
+      ],
+      try: [
+        { q: "\"ATP synthase makes energy.\" Is this right?", options: ["Yes, it creates energy from nothing", "No — it converts the gradient's energy into ATP; nothing is created", "Yes, it makes energy from oxygen", "No — it destroys energy"], a: 1,
+          why: "Energy is never created. ATP synthase transfers energy from the proton gradient into ATP's chemical bond, losing some as heat. 'Makes energy' is the misconception to kill.",
+          trap: { a: 0, note: "the classic trap: treating the enzyme as an energy source. It is an energy *converter* — the energy came from food, via electrons, via the gradient." } },
+        { q: "What physically drives the rotor to spin?", options: ["Oxygen pushing on it", "Protons flowing down the gradient through the enzyme", "ATP pushing it", "Heat from the matrix"], a: 1,
+          why: "Protons streaming from the crowded side to the empty side pass through the rotor and nudge it around, like water turning a turbine.",
+          trap: { a: 2, note: "reversed cause and effect. ATP is the product of the spin, not its cause." } },
+        { q: "What does the spinning head assemble?", options: ["ADP + Pi into ATP", "ATP into ADP + Pi", "Glucose", "Oxygen into water"], a: 0,
+          why: "The turning forces the active sites through a cycle that presses ADP and phosphate together into ATP, then releases it.",
+          trap: { a: 1, note: "described the enzyme running in reverse (ATP breakdown). Under a strong gradient it runs forward, building ATP." } },
+        { q: "If the proton gradient gets stronger, the rotor…", options: ["Slows down", "Speeds up, and ATP is made faster", "Stops", "Reverses"], a: 1,
+          why: "Spin speed follows the gradient. A bigger difference drives more proton flow, so the rotor turns faster and output rises.",
+          trap: { a: 0, note: "inverted the relationship. A stronger battery drives the motor harder, not softer." } },
+        { q: "Why do cells keep only a small amount of ATP on hand?", options: ["ATP is toxic in bulk", "It is recycled constantly — made and spent in seconds", "It cannot be stored at all", "There is not enough phosphate"], a: 1,
+          why: "ATP is a rechargeable carrier, not a fuel tank. The whole pool turns over very quickly, so a small standing amount is enough.",
+          trap: { a: 2, note: "went too far. ATP can exist briefly; the point is it is recycled fast, not that it cannot be stored for an instant." } }
+      ],
+      teach: {
+        ta: [
+          "The 'ATP synthase makes energy' line will appear on exams. Pre-empt it: write 'converter, not source' on the board and refer back to it.",
+          "Analogy that lands: a hydroelectric dam. Water (protons) behind the dam (gradient) flows through a turbine (rotor) to generate output (ATP). The dam did not create the water's energy; gravity (the gradient) did."
+        ],
+        activity: { title: "Build the motor with your hands", minutes: 10, steps: [
+          "One student is the rotor: they spin slowly in place. Three students stand around them as the active sites.",
+          "A line of students (protons) files past the rotor; each 'push' turns the rotor a notch.",
+          "As the rotor faces each active-site student, that student claps ADP+Pi into an ATP (hold up a card).",
+          "Speed up and slow down the proton line to show output tracking the flow. Then freeze the line (preview oligomycin)."
+        ] },
+        key: [
+          "Q1 → B (converts, does not create).",
+          "Q2 → B (proton flow).",
+          "Q3 → A (ADP + Pi → ATP).",
+          "Q4 → B (speeds up).",
+          "Q5 → B (recycled constantly)."
+        ]
+      }
+    },
+
+    /* ───────────────────────── 3 · break it ───────────────────────── */
+    {
+      id: 3, short: "Break it", scene: "break",
+      eyebrow: "Scene 4 of 5",
+      title: "Break it: uncouplers and oligomycin",
+      lede: "Two ways to jam the mill. An uncoupler lets protons leak back without passing through the synthase — the gradient drains as heat. Oligomycin plugs the synthase — protons cannot flow and the rotor blocks. Toggle each and watch.",
+      intro: "Understanding a machine means knowing how it fails. These two interventions break the mill in opposite ways, and comparing them locks in why the gradient and the rotor are separate things.",
+      watch: [
+        { say: "Start with a healthy mill: the pump builds the gradient, protons flow through the synthase, the rotor spins, ATP is made.", s: { pump: 0.8, run: true, uncoupler: false, oligomycin: false } },
+        { say: "Add an uncoupler. It opens a second path through the membrane, so protons leak straight back without touching the synthase.", s: { pump: 0.8, run: true, uncoupler: true, oligomycin: false } },
+        { say: "The gradient drains. The rotor slows because less flow goes through it, and the escaping energy comes off as heat (the glow). The chain keeps pumping and burning fuel — but little ATP is made.", s: { pump: 0.8, run: true, uncoupler: true, oligomycin: false, settled: true } },
+        { say: "Clear the uncoupler, then add oligomycin. It plugs the synthase's proton channel.", s: { pump: 0.8, run: true, uncoupler: false, oligomycin: true } },
+        { say: "Now protons have nowhere to go: the rotor blocks and the gradient piles up high. Pumping even stalls, because the chain cannot push against a maxed-out gradient. Opposite failure, same lesson — pump and rotor are linked only through the gradient.", s: { pump: 0.8, run: true, uncoupler: false, oligomycin: true, settled: true } }
+      ],
+      why: [
+        "Uncoupler = a hole in the dam wall. The battery drains without turning the turbine, so the energy leaves as heat instead of ATP. This is not science fiction: brown fat warms newborns and hibernators by deliberately uncoupling.",
+        "Oligomycin = a plug in the turbine. Protons cannot pass, so the rotor stops. The gradient climbs until it is so high the pumps can no longer push against it, and electron flow slows too. One block, two knock-on effects.",
+        "The contrast is the point. Uncoupler: gradient LOW, heat HIGH, fuel still burning. Oligomycin: gradient HIGH, rotor STOPPED, fuel burning stalls. If the two machines were the same thing, you could not break them in opposite directions.",
+        "Historically, some uncouplers were sold as diet drugs because they make the body burn fuel for heat. They were abandoned as dangerous — overheating has no off-switch. Mentioned as context, not advice."
+      ],
+      try: [
+        { q: "An uncoupler does what to the inner membrane?", options: ["Plugs ATP synthase", "Lets protons leak back without passing through the synthase", "Stops the pumps", "Adds more oxygen"], a: 1,
+          why: "An uncoupler opens an alternative route across the membrane, short-circuiting the gradient so protons bypass the synthase.",
+          trap: { a: 0, note: "described oligomycin instead. The uncoupler opens a leak; oligomycin plugs the channel." } },
+        { q: "With an uncoupler present, the escaping energy mostly becomes:", options: ["ATP", "Heat", "Oxygen", "Sugar"], a: 1,
+          why: "Energy that bypasses the synthase is not captured as ATP; it is released as heat. This is how brown fat warms the body.",
+          trap: { a: 0, note: "assumed the energy still ends up as ATP. The whole point of an uncoupler is that it does not." } },
+        { q: "Oligomycin plugs ATP synthase. What happens to the gradient?", options: ["It collapses", "It piles up high because protons cannot flow back through", "It stays exactly the same", "It turns into ATP"], a: 1,
+          why: "Block the main return path and protons accumulate, so the gradient rises — until it is high enough to stall the pumps.",
+          trap: { a: 0, note: "confused the two drugs. Collapse is the uncoupler's effect; oligomycin causes a pile-up." } },
+        { q: "Why does oligomycin eventually slow the electron transport chain too?", options: ["It poisons the complexes directly", "The gradient gets so high the pumps cannot push against it", "It removes the oxygen", "It cuts off the fuel"], a: 1,
+          why: "Pumping is uphill. When the gradient is maxed out, the complexes can no longer push protons against it, so electron flow backs up.",
+          trap: { a: 0, note: "assumed a direct poison. Oligomycin acts only on the synthase; the chain slows indirectly, via the gradient." } },
+        { q: "The uncoupler/oligomycin contrast shows that…", options: ["The pump and the rotor are the same machine", "The pump and the rotor are separate, linked only through the gradient", "ATP is made in the chain", "Oxygen drives the rotor"], a: 1,
+          why: "Because the two can be broken in opposite directions (gradient low vs high), the pumping chain and the ATP synthase must be distinct machines coupled only by the shared gradient.",
+          trap: { a: 0, note: "missed the whole lesson. If they were one machine you could not get opposite failures." } }
+      ],
+      teach: {
+        ta: [
+          "This scene is the best diagnostic in the unit. A student who predicts 'gradient high' for oligomycin and 'gradient low' for the uncoupler has understood coupling.",
+          "If a student says the uncoupler 'stops respiration', correct gently: respiration (fuel burning, O2 use) actually continues or rises — it is ATP output that falls. That surprise is worth dwelling on."
+        ],
+        activity: { title: "Predict-then-check", minutes: 10, steps: [
+          "Before touching the toggles, have students write two predictions: gradient and heat for (a) uncoupler, (b) oligomycin.",
+          "Reveal each toggle one at a time and compare to predictions. Count hands for each prediction first.",
+          "Discuss the brown-fat example: a healthy, built-in uncoupler. Why would a body ever want to waste the gradient as heat?",
+          "Close on the contrast table: low/high gradient proves the two machines are separate."
+        ] },
+        key: [
+          "Q1 → B (leak, bypassing synthase).",
+          "Q2 → B (heat).",
+          "Q3 → B (gradient piles up).",
+          "Q4 → B (pumps can't push against a maxed gradient).",
+          "Q5 → B (separate machines, linked by the gradient)."
+        ]
+      }
+    },
+
+    /* ───────────────────────── 4 · the numbers ───────────────────────── */
+    {
+      id: 4, short: "The numbers", scene: "ledger",
+      eyebrow: "Scene 5 of 5",
+      title: "The numbers: how many protons per ATP?",
+      lede: "Count the protons. Roughly 4 protons flow back through the mill to make and export one ATP — but the honest answer is 'about 3 to 4, and it depends'. Here is why the number is fuzzy.",
+      intro: "Now put a number on the mill. The temptation is to memorise one clean value. Resist it: the real figure is a small non-whole number that varies with the organism, the counting convention, and whether you include the cost of exporting ATP.",
+      watch: [
+        { say: "One full turn of the rotor makes three ATP — there are three active sites, each firing once per turn.", s: { perATP: "rotor" } },
+        { say: "But a full turn needs the rotor's whole ring of proton-binding sites to pass. That ring has roughly 8 to 10 or more sites depending on the species, so a turn takes about 8–10 protons.", s: { perATP: "ring" } },
+        { say: "Divide: about 8–10 protons per 3 ATP is roughly 3 protons per ATP from the synthase alone.", s: { perATP: "divide" } },
+        { say: "Then add the hidden cost: moving ATP out of the matrix and fresh ADP and phosphate back in uses about one more proton's worth of gradient per ATP.", s: { perATP: "transport" } },
+        { say: "So a common textbook figure is about 4 protons per ATP, all in. It is approximate, not a law. Different books quote 3, 3.3, or 4 — and they are all defensible depending on what they count.", s: { perATP: "total" } }
+      ],
+      why: [
+        "The ratio is set by machine geometry, not by a tidy rule. The rotor ring has a whole number of binding sites, but the head makes three ATP per turn, and those two whole numbers rarely divide evenly — so protons-per-ATP is usually a fraction like 2.7 or 3.3.",
+        "The ring size varies by species. Different organisms have different numbers of binding sites, so their protons-per-ATP differs. There is no single universal value.",
+        "Counting conventions differ. Some sources count only the protons through the synthase; others add the ~1 proton cost of swapping ATP out for ADP and phosphate. That alone shifts '3' to '4'.",
+        "Why it matters: this is why 'ATP yield per glucose' is quoted as a range (often ~30–32) in modern texts rather than the older fixed '36–38'. The gradient does not pay out in whole ATP per electron.",
+        "Honesty note: the values on this page are rounded, illustrative, and model-generated. Use your course's stated convention for any graded work — do not cite this page."
+      ],
+      try: [
+        { q: "Roughly how many protons flow back per ATP made and exported (a common textbook figure)?", options: ["About 1", "About 4", "About 40", "Exactly 2, always"], a: 1,
+          why: "A frequently quoted all-in figure is about 4 protons per ATP (roughly 3 through the synthase plus about 1 for transport). It is approximate.",
+          trap: { a: 3, note: "picked a fixed exact value. The number is not exact and not universal." } },
+        { q: "Why is protons-per-ATP usually not a whole number?", options: ["Measurement error only", "The ring's binding-site count and the 3 ATP per turn rarely divide evenly", "Protons split in half", "Textbooks are careless"], a: 1,
+          why: "Three ATP come out per turn, but the rotor ring has its own (often non-multiple-of-three) number of sites, so the ratio is typically fractional.",
+          trap: { a: 2, note: "took it literally. Protons are not divided; the fraction comes from two whole numbers that don't divide evenly." } },
+        { q: "Why does the value differ between organisms?", options: ["Different oxygen levels", "Different numbers of rotor binding sites (ring size)", "Different ATP molecules", "It does not differ"], a: 1,
+          why: "Rotor ring size varies by species, changing protons per turn and therefore protons per ATP.",
+          trap: { a: 3, note: "assumed one universal value. Ring size, and thus the ratio, varies." } },
+        { q: "Including the cost of exporting ATP (and importing ADP + Pi) does what to the count?", options: ["Lowers it", "Raises it by about one proton per ATP", "No effect", "Doubles it"], a: 1,
+          why: "The swap of ATP out for ADP and phosphate in uses roughly one extra proton's worth of gradient, nudging the figure from ~3 toward ~4.",
+          trap: { a: 2, note: "forgot the transport cost — a common reason two books disagree." } },
+        { q: "What is the honest takeaway about the exact number?", options: ["Memorise 4 as a law", "It is approximate and convention-dependent; use your course's value", "There is no way to estimate it", "It is always a whole number"], a: 1,
+          why: "The figure is a rounded, convention-dependent estimate. Know the reasoning and use your course's stated value for graded work.",
+          trap: { a: 0, note: "treated an approximation as a law. The reasoning matters more than the digit." } }
+      ],
+      teach: {
+        ta: [
+          "The learning goal here is epistemic, not numeric: students should be comfortable that a real biological number can be a range with reasons, not a single memorised digit.",
+          "If your course uses a specific convention (e.g. 4 H+/ATP including transport), state it explicitly and tell students to use it on exams over anything on this page."
+        ],
+        activity: { title: "Defend a number", minutes: 10, steps: [
+          "Split the class into three camps: '3 per ATP', '3.3 per ATP', '4 per ATP'.",
+          "Each camp gets two minutes to state what they are counting (synthase only? including transport? which ring size?).",
+          "Reveal that all three can be correct under stated assumptions. The disagreement is about conventions, not facts.",
+          "Land it: in science, 'about 3–4, and here is why' beats a memorised digit with no reasoning."
+        ] },
+        key: [
+          "Q1 → B (about 4).",
+          "Q2 → B (sites vs 3-per-turn rarely divide evenly).",
+          "Q3 → B (ring size varies).",
+          "Q4 → B (raises by ~1).",
+          "Q5 → B (approximate, use your course's value)."
+        ]
+      }
+    }
+  ]
+};
+
+window.COURSE = COURSE;
+
+/* The Proton Mill — 3D engine (three.js r128).
+   One reusable "mill": an inner-membrane slab with an electron transport chain
+   (three proton pumps + a terminal complex with oxygen), one ATP synthase drawn
+   as a rotary motor, a proton pool, an uncoupler leak channel and a heat glow.
+   A tiny physical simulation couples them through a single scalar `grad`
+   (the proton gradient, 0..1): pumps raise it, the synthase and leaks lower it,
+   the rotor speed and ATP rate follow it. Scene 1 (mito) is a separate cut-away.
+
+   Public API (see bottom): Stage.init, show, view, setTheme, setControl,
+   onStats, onDesc, describe, get ok.  app.js drives it. */
+const Stage = (() => {
+  "use strict";
+  const T = window.THREE;
+  const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const COL = {
+    gold: 0xf2b705, amber: 0xf59e0b, red: 0xd2372c, blue: 0x2f6fd8,
+    green: 0x23a55a, violet: 0x8b5cf6, cyan: 0x38bdf8, slate: 0x64748b,
+    chalk: 0xf6f8f2, pale: 0xcfe0ee, dim: 0x7b8a80, heat: 0xff5a36
+  };
+
+  let renderer = null, scene, camera, host, ok = false, dark = false;
+  let overlay = null, ctrl = null;
+  const tweens = [];
+  const orbit = { target: new T.Vector3(0, 0, 0), r: 16, theta: 0.7, phi: 1.0, auto: true, user: false };
+  let last = (window.performance && performance.now) ? performance.now() : 0, visible = true;
+  let viewName = "mito";
+  const perf = { acc: 0, n: 0, max: Math.min(window.devicePixelRatio || 1, 2) };
+
+  // the shared simulation state and the external controls that steer it
+  const sim = { grad: 0, rpm: 0, atpRate: 0, heat: 0 };
+  const control = { pump: 0.6, uncoupler: false, oligomycin: false, run: true, make: false };
+  let onStats = null, onDesc = null, lastStatsAt = 0;
+
+  /* ───────── helpers ───────── */
+  const ease = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
+  const lerp = (a, b, t) => a + (b - a) * t;
+  const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+  function tween(dur, fn, done, delay) {
+    const tw = { t: -(delay || 0), dur: reduce ? 0.001 : dur, fn, done, dead: false };
+    tweens.push(tw);
+    return tw;
+  }
+  function killTweens() { tweens.forEach((t) => (t.dead = true)); tweens.length = 0; }
+  function mat(c, o) { return new T.MeshLambertMaterial(Object.assign({ color: c }, o || {})); }
+  function basic(c, o) { return new T.MeshBasicMaterial(Object.assign({ color: c }, o || {})); }
+  function disposeTree(o) {
+    o.traverse((n) => {
+      if (n.geometry) n.geometry.dispose();
+      if (n.material) { const ms = Array.isArray(n.material) ? n.material : [n.material]; ms.forEach((m) => m.dispose()); }
+    });
+  }
+  function clearOverlay() {
+    killTweens();
+    if (overlay) { scene.remove(overlay); disposeTree(overlay); }
+    overlay = new T.Group(); scene.add(overlay);
+    ctrl = null;
+  }
+
+  /* ───────── lights & theme ───────── */
+  const L = {};
+  function buildLights() {
+    L.key = new T.DirectionalLight(0xffffff, 0.9); L.key.position.set(6, 12, 8); scene.add(L.key);
+    L.fill = new T.DirectionalLight(0xbcd4ff, 0.35); L.fill.position.set(-8, 4, -6); scene.add(L.fill);
+    L.amb = new T.AmbientLight(0xffffff, 0.55); scene.add(L.amb);
+  }
+  function setTheme(isDark) {
+    dark = !!isDark;
+    scene.background = new T.Color(dark ? 0x081320 : 0xcfe4f4);
+    if (scene.fog) scene.fog = null;
+    L.amb.intensity = dark ? 0.42 : 0.6;
+    L.fill.intensity = dark ? 0.28 : 0.35;
+  }
+
+  /* ───────── orbit controls (pointer, wheel, pinch, keyboard) ───────── */
+  const clampPhi = (p) => clamp(p, 0.18, Math.PI - 0.18);
+  const clampR = (r) => clamp(r, 4, 60);
+  function applyOrbit() {
+    const o = orbit, sp = Math.sin(o.phi);
+    camera.position.set(
+      o.target.x + o.r * sp * Math.sin(o.theta),
+      o.target.y + o.r * Math.cos(o.phi),
+      o.target.z + o.r * sp * Math.cos(o.theta)
+    );
+    camera.lookAt(o.target);
+  }
+  const VIEWS = {
+    mito:     { target: [0, 0, 0], r: 16, theta: 0.7, phi: 1.0, auto: true },
+    membrane: { target: [-0.5, 0.2, 0], r: 15, theta: 0.15, phi: 1.12, auto: false },
+    synthase: { target: [4, 0.3, 0], r: 9.5, theta: 0.25, phi: 1.08, auto: false },
+    break:    { target: [0.6, 0.2, 0], r: 18, theta: 0.1, phi: 1.12, auto: false },
+    ledger:   { target: [0, 0.4, 0], r: 12, theta: 0.3, phi: 1.0, auto: true }
+  };
+  function view(name, instant) {
+    const v = VIEWS[name] || VIEWS.mito; viewName = name;
+    orbit.auto = !!v.auto && !reduce; orbit.user = false;
+    const to = { r: v.r, theta: v.theta, phi: clampPhi(v.phi), x: v.target[0], y: v.target[1], z: v.target[2] };
+    if (instant || reduce) { orbit.r = to.r; orbit.theta = to.theta; orbit.phi = to.phi; orbit.target.set(to.x, to.y, to.z); applyOrbit(); return; }
+    const f = { r: orbit.r, theta: orbit.theta, phi: orbit.phi, x: orbit.target.x, y: orbit.target.y, z: orbit.target.z };
+    tween(0.7, (k) => {
+      const e = ease(k);
+      orbit.r = lerp(f.r, to.r, e); orbit.theta = lerp(f.theta, to.theta, e); orbit.phi = lerp(f.phi, to.phi, e);
+      orbit.target.set(lerp(f.x, to.x, e), lerp(f.y, to.y, e), lerp(f.z, to.z, e)); applyOrbit();
+    });
+  }
+  function bindControls(cv) {
+    const pts = new Map(); let pinch0 = 0, r0 = 0;
+    cv.addEventListener("pointerdown", (e) => { cv.setPointerCapture(e.pointerId); pts.set(e.pointerId, { x: e.clientX, y: e.clientY }); orbit.user = true; orbit.auto = false; });
+    cv.addEventListener("pointermove", (e) => {
+      if (!pts.has(e.pointerId)) return;
+      const p = pts.get(e.pointerId), dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
+      if (pts.size === 1) { orbit.theta -= dx * 0.008; orbit.phi = clampPhi(orbit.phi - dy * 0.008); applyOrbit(); }
+      else if (pts.size === 2) { const [a, b] = [...pts.values()]; const d = Math.hypot(a.x - b.x, a.y - b.y); if (pinch0 > 0) { orbit.r = clampR(r0 * (pinch0 / d)); applyOrbit(); } }
+      if (pts.size === 2 && pinch0 === 0) { const [a, b] = [...pts.values()]; pinch0 = Math.hypot(a.x - b.x, a.y - b.y); r0 = orbit.r; }
+    });
+    const up = (e) => { pts.delete(e.pointerId); if (pts.size < 2) pinch0 = 0; };
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+    cv.addEventListener("wheel", (e) => { e.preventDefault(); orbit.user = true; orbit.auto = false; orbit.r = clampR(orbit.r * (1 + Math.sign(e.deltaY) * 0.1)); applyOrbit(); }, { passive: false });
+    // keyboard: arrows rotate, +/- zoom, 0 resets auto-orbit
+    cv.setAttribute("tabindex", "0");
+    cv.addEventListener("keydown", (e) => {
+      const k = e.key; let used = true;
+      if (k === "ArrowLeft") orbit.theta -= 0.15;
+      else if (k === "ArrowRight") orbit.theta += 0.15;
+      else if (k === "ArrowUp") orbit.phi = clampPhi(orbit.phi - 0.12);
+      else if (k === "ArrowDown") orbit.phi = clampPhi(orbit.phi + 0.12);
+      else if (k === "+" || k === "=") orbit.r = clampR(orbit.r * 0.9);
+      else if (k === "-" || k === "_") orbit.r = clampR(orbit.r * 1.1);
+      else if (k === "0") { orbit.auto = !reduce; view(viewName, false); return; }
+      else used = false;
+      if (used) { e.preventDefault(); orbit.user = true; orbit.auto = false; applyOrbit(); }
+    });
+  }
+
+  /* ───────── proton pool (shared by the mill scenes) ───────── */
+  const protonGeo = new T.SphereGeometry(0.16, 10, 8);
+  function makeProtons(n, group, parent) {
+    const g = new T.Group();
+    const m = basic(COL.gold);
+    group.protons = [];
+    for (let i = 0; i < n; i++) {
+      const s = new T.Mesh(protonGeo, m.clone());
+      s.position.set(lerp(-5.4, 5.4, i / n), -1.6, (i % 5 - 2) * 0.5);
+      s.userData = { x: s.position.x, z: s.position.z, y: s.position.y, flow: 0 };
+      g.add(s); group.protons.push(s);
+    }
+    parent.add(g); return g;
+  }
+
+  /* ───────── Scene 1: mitochondrion cut-away ───────── */
+  function mitoCtrl() {
+    const g = new T.Group(); overlay.add(g);
+    const parts = {};
+    // outer membrane — an elongated capsule, cut open (half) so the inside shows
+    const outerMat = mat(dark ? 0x3a5d7a : 0x7fa9cc, { transparent: true, opacity: 0.5, side: T.DoubleSide });
+    const outer = new T.Group();
+    const bodyGeo = new T.CylinderGeometry(3.2, 3.2, 7, 36, 1, true, 0, Math.PI);
+    const body = new T.Mesh(bodyGeo, outerMat); body.rotation.z = Math.PI / 2; outer.add(body);
+    [-3.5, 3.5].forEach((x) => { const cap = new T.Mesh(new T.SphereGeometry(3.2, 28, 18, 0, Math.PI), outerMat); cap.rotation.y = x > 0 ? 0 : Math.PI; cap.rotation.z = -Math.PI / 2; cap.position.x = x; outer.add(cap); });
+    parts.outer = outer; g.add(outer);
+    // matrix — translucent fill
+    const matrixMat = mat(dark ? 0x6b4f2a : 0xf0c987, { transparent: true, opacity: 0.32 });
+    const matrix = new T.Mesh(T.CapsuleGeometry ? new T.CapsuleGeometry(2.4, 6, 8, 20) : new T.CylinderGeometry(2.4, 2.4, 6, 24), matrixMat);
+    matrix.rotation.z = Math.PI / 2; parts.matrix = matrix; g.add(matrix);
+    // inner membrane + cristae folds
+    const innerMat = mat(dark ? 0x2f8f54 : 0x2b8a48, { side: T.DoubleSide });
+    const inner = new T.Group();
+    const innerShell = new T.Mesh(new T.CylinderGeometry(2.55, 2.55, 6.4, 30, 1, true, 0, Math.PI), innerMat.clone());
+    innerShell.material.transparent = true; innerShell.material.opacity = 0.55; innerShell.rotation.z = Math.PI / 2; inner.add(innerShell);
+    for (let i = -2; i <= 2; i++) { // cristae ridges reaching inward
+      const ridge = new T.Mesh(new T.TorusGeometry(1.7, 0.28, 8, 24, Math.PI), innerMat.clone());
+      ridge.position.x = i * 1.25; ridge.rotation.y = Math.PI / 2; ridge.rotation.z = -Math.PI / 2; inner.add(ridge);
+    }
+    parts.inner = inner; g.add(inner);
+    // floating label chip (billboarded sprite via canvas)
+    const label = makeLabel(""); label.position.set(0, 4, 0); g.add(label); parts.label = label;
+
+    function highlight(which) {
+      const dim = 0.18;
+      parts.outer.children.forEach((c) => c.material.opacity = which === "outer" || which === "spaces" ? 0.62 : (which ? 0.22 : 0.5));
+      parts.inner.children.forEach((c) => { c.material.emissive && c.material.emissive.setHex(which === "inner" || which === "cristae" ? 0x1d5c34 : 0x000000); });
+      parts.matrix.material.opacity = which === "matrix" ? 0.55 : (which === "spaces" ? 0.4 : 0.3);
+      const txt = { outer: "Outer membrane", inner: "Inner membrane (folded into cristae)", spaces: "Two spaces: intermembrane + matrix", matrix: "Matrix (inside the inner membrane)", cristae: "Cristae — folded inner membrane" }[which] || "Mitochondrion";
+      setLabel(parts.label, txt);
+      setDesc("Scene: a mitochondrion cut open. Highlighted: " + txt + ". Two membranes enclose the matrix.");
+    }
+    return {
+      key: "mito",
+      set(s) { highlight(s && s.highlight); },
+      update(dt) { if (!reduce) g.rotation.y += 0; }
+    };
+  }
+
+  /* ───────── canvas text labels (cheap, no font loader) ───────── */
+  function makeLabel(text) {
+    const cv = document.createElement("canvas"); cv.width = 512; cv.height = 128;
+    const tex = new T.CanvasTexture(cv);
+    const spr = new T.Sprite(new T.SpriteMaterial({ map: tex, transparent: true, depthTest: false }));
+    spr.scale.set(6, 1.5, 1); spr.userData = { cv, tex };
+    setLabel(spr, text); return spr;
+  }
+  function setLabel(spr, text) {
+    const cv = spr.userData.cv, c = cv.getContext("2d");
+    c.clearRect(0, 0, cv.width, cv.height);
+    c.fillStyle = dark ? "rgba(8,20,30,0.88)" : "rgba(255,255,255,0.92)";
+    roundRect(c, 6, 34, 500, 60, 14); c.fill();
+    c.fillStyle = dark ? "#eaf3ff" : "#10243a";
+    c.font = "bold 34px 'Atkinson Hyperlegible', Arial, sans-serif";
+    c.textAlign = "center"; c.textBaseline = "middle";
+    c.fillText(text, 256, 64, 490);
+    spr.userData.tex.needsUpdate = true;
+  }
+  function roundRect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+
+  /* ───────── the shared mill (membrane + chain + synthase + leak + heat) ───────── */
+  function buildMill() {
+    const g = new T.Group(); overlay.add(g);
+    const W = { g };
+    // inner membrane slab (lipid bilayer, cartoon)
+    const memMat = mat(dark ? 0x394b63 : 0xaebfd4, { transparent: true, opacity: 0.6, side: T.DoubleSide });
+    const slab = new T.Mesh(new T.BoxGeometry(12, 0.9, 4), memMat); W.slab = slab; g.add(slab);
+    // side labels: intermembrane space (above) / matrix (below)
+    const top = makeLabel("Intermembrane space (protons pile up)"); top.position.set(-2.2, 3.2, 0); top.scale.set(7, 1.6, 1); g.add(top);
+    const bot = makeLabel("Matrix"); bot.position.set(-4.4, -3.1, 0); bot.scale.set(4, 1.4, 1); g.add(bot);
+    // electron transport chain: 3 pump complexes + terminal complex (O2)
+    const pumpXs = [-4.6, -2.6, -0.6];
+    W.pumps = pumpXs.map((x, i) => {
+      const c = new T.Mesh(new T.BoxGeometry(1.1, 2.0, 1.4), mat([COL.blue, COL.violet, COL.green][i]));
+      c.position.set(x, 0, 0); g.add(c);
+      const lab = makeLabel("Complex " + ["I", "III", "IV"][i]); lab.position.set(x, 1.7, 0); lab.scale.set(2.4, 0.9, 1); g.add(lab);
+      return c;
+    });
+    // terminal: oxygen pocket
+    W.o2 = new T.Mesh(new T.SphereGeometry(0.5, 16, 12), mat(COL.red, { transparent: true, opacity: 0.9 }));
+    W.o2.position.set(1.4, -1.9, 0); g.add(W.o2);
+    const o2lab = makeLabel("O₂ → H₂O"); o2lab.position.set(1.4, -2.9, 0); o2lab.scale.set(2.6, 0.9, 1); g.add(o2lab);
+    // electron spark travelling along the chain
+    W.spark = new T.Mesh(new T.SphereGeometry(0.22, 10, 8), basic(COL.cyan)); W.spark.position.set(-5.2, 0.3, 0.9); g.add(W.spark);
+    // ATP synthase: rotor ring in membrane + stalk + 3-lobe head
+    const syn = new T.Group(); syn.position.set(4, 0, 0); W.syn = syn; g.add(syn);
+    W.rotor = new T.Mesh(new T.CylinderGeometry(0.75, 0.75, 1.0, 20), mat(COL.gold)); W.rotor.position.y = 0; syn.add(W.rotor);
+    // rotor spokes so the spin is visible
+    W.spokes = new T.Group(); for (let i = 0; i < 6; i++) { const sp = new T.Mesh(new T.BoxGeometry(1.5, 0.12, 0.18), mat(COL.amber)); sp.rotation.y = (i / 6) * Math.PI * 2; W.spokes.add(sp); } W.rotor.add(W.spokes);
+    const stalk = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, 1.3, 10), mat(COL.dim)); stalk.position.y = 1.0; syn.add(stalk);
+    W.head = new T.Group(); W.head.position.y = 1.9; syn.add(W.head);
+    W.lobes = []; for (let i = 0; i < 3; i++) { const lobe = new T.Mesh(new T.SphereGeometry(0.55, 14, 12), mat(COL.green)); const a = (i / 3) * Math.PI * 2; lobe.position.set(Math.cos(a) * 0.55, 0, Math.sin(a) * 0.55); W.head.add(lobe); W.lobes.push(lobe); }
+    const synlab = makeLabel("ATP synthase"); synlab.position.set(4, 3.1, 0); synlab.scale.set(3, 1, 1); g.add(synlab);
+    // uncoupler leak channel (hidden until toggled)
+    W.leak = new T.Mesh(new T.CylinderGeometry(0.4, 0.4, 1.3, 14), mat(COL.red, { transparent: true, opacity: 0.85 }));
+    W.leak.position.set(2.7, 0, 1.2); W.leak.visible = false; g.add(W.leak);
+    W.leakLab = makeLabel("Uncoupler leak"); W.leakLab.position.set(2.7, 1.4, 1.2); W.leakLab.scale.set(2.6, 0.9, 1); W.leakLab.visible = false; g.add(W.leakLab);
+    // oligomycin plug (hidden until toggled)
+    W.plug = new T.Mesh(new T.SphereGeometry(0.42, 12, 10), mat(COL.slate)); W.plug.position.set(4, 0.75, 0); W.plug.visible = false; syn.add(W.plug);
+    // heat glow
+    W.glow = new T.Mesh(new T.SphereGeometry(1.4, 16, 12), basic(COL.heat, { transparent: true, opacity: 0 })); W.glow.position.set(2.7, -0.4, 1.2); g.add(W.glow);
+    // ATP tokens released into matrix
+    W.atp = []; const atpMat = mat(COL.gold, { emissive: 0x3a2c00 });
+    for (let i = 0; i < 8; i++) { const a = new T.Mesh(new T.SphereGeometry(0.22, 10, 8), atpMat.clone()); a.visible = false; a.userData = { phase: -1 }; g.add(a); W.atp.push(a); }
+    // protons
+    makeProtons(60, W, g);
+    // movers: a few protons animate up through pumps / down through synthase & leak
+    W.moversUp = W.protons.slice(0, 6); W.moversDownSyn = W.protons.slice(6, 12); W.moversDownLeak = W.protons.slice(12, 16);
+    return W;
+  }
+
+  // position the static protons to express the gradient (count above vs below)
+  function layoutProtons(W) {
+    const movers = new Set([...W.moversUp, ...W.moversDownSyn, ...W.moversDownLeak]);
+    const statics = W.protons.filter((p) => !movers.has(p));
+    const nHi = Math.round(sim.grad * statics.length);
+    statics.forEach((p, i) => {
+      const hi = i < nHi;
+      const ty = hi ? 1.0 + (i % 6) * 0.26 : -1.0 - (i % 6) * 0.22;
+      p.position.y += (ty - p.position.y) * (reduce ? 1 : 0.12);
+      if (!reduce) p.position.x = p.userData.x + Math.sin((last * 0.001) + i) * 0.04;
+    });
+  }
+
+  function millCtrl(key, opts) {
+    opts = opts || {};
+    const W = buildMill();
+    // dim parts not emphasised in this scene
+    if (opts.focus === "synthase") { W.pumps.forEach((p) => p.material.opacity = 1); }
+    function set(s) {
+      s = s || {};
+      if (s.pump != null) control.pump = s.pump;
+      if (s.run != null) control.run = s.run;
+      if (s.make != null) control.make = s.make;
+      if (s.uncoupler != null) control.uncoupler = s.uncoupler;
+      if (s.oligomycin != null) control.oligomycin = s.oligomycin;
+      W.leak.visible = W.leakLab.visible = !!control.uncoupler;
+      W.plug.visible = !!control.oligomycin;
+      W.o2.material.opacity = s.o2 ? 1 : 0.9;
+      if (s.settled) { // jump the sim toward steady state so a static Watch step reads right
+        for (let i = 0; i < 240; i++) step(1 / 60);
+        layoutProtons(W);
+      }
+      pushDesc(key);
+    }
+    function step(dt) {
+      const K = { pump: 0.9, syn: 0.8, unc: 1.3, leak: 0.05 };
+      const drive = control.run ? control.pump : 0;
+      // pumps can't push against a maxed-out gradient
+      const pumpIn = drive * K.pump * Math.max(0, 1 - sim.grad * (control.oligomycin ? 1.02 : 0.98));
+      const through = control.oligomycin ? 0 : sim.grad * K.syn;
+      const uleak = control.uncoupler ? sim.grad * K.unc : 0;
+      const bleak = sim.grad * K.leak;
+      sim.grad = clamp(sim.grad + (pumpIn - through - uleak - bleak) * dt, 0, 1);
+      sim.rpm = lerp(sim.rpm, through * 3.2, clamp(dt * 3, 0, 1));
+      sim.atpRate = control.oligomycin ? 0 : through;
+      sim.heat = clamp(uleak * 0.8 + (control.oligomycin ? 0 : bleak * 0.2), 0, 1.5);
+    }
+    let sparkT = 0, atpT = 0;
+    function update(dt) {
+      step(dt);
+      layoutProtons(W);
+      // rotor spin (frozen under oligomycin; gentle under reduced motion)
+      const spin = reduce ? 0 : sim.rpm;
+      if (!control.oligomycin) W.rotor.rotation.y += spin * dt;
+      W.plug.rotation.y += 0;
+      // head lobe pulse when making ATP
+      const making = control.make && sim.atpRate > 0.05;
+      W.lobes.forEach((lb, i) => { const s = making && !reduce ? 1 + 0.12 * Math.sin(last * 0.006 + i * 2) : 1; lb.scale.setScalar(s); lb.material.emissive && lb.material.emissive.setHex(making ? 0x0f3d20 : 0x000000); });
+      // electron spark travels along the chain while running
+      if (control.run && !reduce) { sparkT = (sparkT + dt * (0.3 + control.pump * 0.7)) % 1; W.spark.visible = true; W.spark.position.x = lerp(-5.2, 1.4, sparkT); W.spark.position.y = 0.3 + Math.sin(sparkT * Math.PI * 3) * 0.3; }
+      else W.spark.visible = control.run;
+      // movers up through a pump
+      moveThrough(W.moversUp, dt, (control.run ? control.pump : 0) * 1.2, true, W.pumps[2].position.x, 1.2);
+      // movers down through synthase
+      moveThrough(W.moversDownSyn, dt, control.oligomycin ? 0 : sim.grad * 1.4, false, 4, 1.2);
+      // movers down through the uncoupler leak
+      moveThrough(W.moversDownLeak, dt, control.uncoupler ? sim.grad * 1.6 : 0, false, 2.7, 1.2);
+      // heat glow
+      W.glow.material.opacity = reduce ? Math.min(0.5, sim.heat * 0.35) : Math.min(0.6, sim.heat * 0.4) * (0.85 + 0.15 * Math.sin(last * 0.008));
+      W.glow.scale.setScalar(0.8 + sim.heat * 0.5);
+      // ATP tokens pop from the head into the matrix
+      if (control.make && sim.atpRate > 0.05 && !reduce) {
+        atpT += dt * sim.atpRate * 3;
+        while (atpT > 1) { atpT -= 1; spawnAtp(W); }
+      }
+      W.atp.forEach((a) => { if (a.userData.phase >= 0) { a.userData.phase += dt * 0.8; const p = a.userData.phase; if (p >= 1) { a.visible = false; a.userData.phase = -1; } else { a.position.y = lerp(1.9, -1.8, p); a.material.opacity = 1 - p; a.visible = true; } } });
+      // stats to the app ~5x/sec
+      if (last - lastStatsAt > 200) { lastStatsAt = last; onStats && onStats(statsObj()); }
+    }
+    function spawnAtp(W) { const a = W.atp.find((x) => x.userData.phase < 0); if (a) { a.userData.phase = 0; a.position.set(4 + (Math.random() - 0.5) * 0.8, 1.9, (Math.random() - 0.5) * 0.8); a.material.transparent = true; } }
+    function moveThrough(arr, dt, rate, up, x, span) {
+      arr.forEach((p, i) => {
+        if (rate <= 0.001) { p.visible = false; return; }
+        p.visible = true;
+        p.userData.flow = (p.userData.flow + dt * (0.4 + rate) + (reduce ? 1 : 0)) % 1;
+        const f = reduce ? ((i + 0.5) / arr.length) : ((p.userData.flow + i / arr.length) % 1);
+        p.position.set(x + (i % 2 - 0.5) * 0.4, up ? lerp(-span, span, f) : lerp(span, -span, f), 0.2 + (i % 2) * 0.3);
+      });
+    }
+    function pushDesc() { setDesc(describeMill(key)); }
+    return { key, set, update, _W: W };
+  }
+
+  function statsObj() { return { grad: sim.grad, rpm: Math.abs(sim.rpm), atpRate: sim.atpRate, heat: sim.heat, pump: control.pump, uncoupler: control.uncoupler, oligomycin: control.oligomycin }; }
+  function describeMill(key) {
+    const pct = Math.round(sim.grad * 100);
+    let s = "Inner-membrane view. Proton gradient about " + pct + "% of full. ";
+    if (control.oligomycin) s += "Oligomycin is plugging ATP synthase: the rotor is stopped and protons pile up. ";
+    else if (control.uncoupler) s += "An uncoupler is leaking protons: the gradient is low, the rotor is slow and heat is rising. ";
+    else s += "The rotor is turning and ATP is being made at a rate that follows the gradient. ";
+    s += "Pump drive is at " + Math.round(control.pump * 100) + "%.";
+    return s;
+  }
+
+  /* ───────── Scene 5: the numbers ledger (illustrative flow) ───────── */
+  function ledgerCtrl() {
+    const g = new T.Group(); overlay.add(g);
+    // a ring of 4 protons feeding one rotor -> one ATP, with a caption that changes
+    const ring = new T.Mesh(new T.CylinderGeometry(1.2, 1.2, 0.7, 24), mat(COL.gold)); g.add(ring);
+    const spokes = new T.Group(); for (let i = 0; i < 8; i++) { const sp = new T.Mesh(new T.BoxGeometry(2.4, 0.12, 0.2), mat(COL.amber)); sp.rotation.y = (i / 8) * Math.PI * 2; spokes.add(sp); } ring.add(spokes); g.ud = { ring };
+    const prot = []; for (let i = 0; i < 4; i++) { const p = new T.Mesh(protonGeo, basic(COL.gold)); const a = (i / 4) * Math.PI * 2; p.position.set(Math.cos(a) * 2.6, 2.2, Math.sin(a) * 2.6); g.add(p); prot.push(p); }
+    const atp = new T.Mesh(new T.SphereGeometry(0.5, 16, 12), mat(COL.green, { emissive: 0x0f3d20 })); atp.position.set(0, -2.2, 0); g.add(atp);
+    const lab = makeLabel("~4 H⁺ per ATP (approx.)"); lab.position.set(0, 3.4, 0); lab.scale.set(7, 1.6, 1); g.add(lab);
+    const states = {
+      rotor: "One turn → 3 ATP (3 sites)", ring: "One turn needs ~8–10 H⁺ (ring sites)",
+      divide: "~8–10 H⁺ ÷ 3 ATP ≈ 3 H⁺/ATP", transport: "+~1 H⁺ to export each ATP", total: "≈ 4 H⁺ per ATP — approximate, varies"
+    };
+    return {
+      key: "ledger",
+      set(s) { const t = states[s && s.perATP] || states.total; setLabel(lab, t); setDesc("Numbers view. " + t + ". Textbook values vary; this is illustrative."); },
+      update(dt) { if (!reduce) { g.ud.ring.rotation.y += dt * 0.8; prot.forEach((p, i) => { p.position.y = 2.2 + Math.sin(last * 0.003 + i) * 0.1; }); } }
+    };
+  }
+
+  /* ───────── scene router ───────── */
+  function show(type, s) {
+    if (!ok) return;
+    if (!ctrl || ctrl.key !== type) {
+      clearOverlay();
+      ctrl = type === "mito" ? mitoCtrl()
+        : type === "ledger" ? ledgerCtrl()
+        : millCtrl(type, { focus: type === "synthase" ? "synthase" : type === "break" ? "break" : "membrane" });
+      view(type, false);
+    }
+    ctrl.set(s || {});
+  }
+
+  function setControl(patch) { // live controls from the app (pump slider, toggles)
+    if (!ctrl) return;
+    ctrl.set(patch);
+  }
+
+  function setDesc(t) { if (onDesc) onDesc(t); }
+  function pushDesc() {}
+  function describe() { return ctrl && ctrl.key !== "mito" && ctrl.key !== "ledger" ? describeMill(ctrl.key) : "3D scene."; }
+
+  /* ───────── render loop ───────── */
+  function loop(now) {
+    requestAnimationFrame(loop);
+    if (!visible || !ok) { last = now; return; }
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    for (let i = tweens.length - 1; i >= 0; i--) { const tw = tweens[i]; if (tw.dead) { tweens.splice(i, 1); continue; } tw.t += dt; const k = tw.dur <= 0 ? 1 : clamp(tw.t / tw.dur, 0, 1); if (tw.t >= 0) tw.fn(k); if (k >= 1) { tw.done && tw.done(); tweens.splice(i, 1); } }
+    if (orbit.auto && !orbit.user && !reduce) { orbit.theta += dt * 0.12; applyOrbit(); }
+    if (ctrl && ctrl.update) ctrl.update(dt);
+    renderer.render(scene, camera);
+    // adaptive pixel ratio: back off if frames get slow on weak hardware
+    perf.acc += dt; perf.n++;
+    if (perf.acc >= 1) { const avg = perf.acc / perf.n; const pr = renderer.getPixelRatio(); if (avg > 0.028 && pr > 0.75) { renderer.setPixelRatio(Math.max(0.75, pr - 0.25)); resize(); } perf.acc = 0; perf.n = 0; }
+  }
+
+  function resize() {
+    if (!renderer || !host) return;
+    const w = host.clientWidth || 1, h = host.clientHeight || 1;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h; camera.updateProjectionMatrix();
+  }
+
+  function init(el, isDark) {
+    host = el;
+    if (!T) return false;
+    try {
+      renderer = new T.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+      if (!renderer.getContext()) throw new Error("no gl");
+    } catch (e) { renderer = null; return false; }
+    ok = true;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputEncoding = T.sRGBEncoding;
+    const cv = renderer.domElement;
+    cv.setAttribute("role", "img");
+    cv.setAttribute("aria-label", "Interactive 3D scene. Use arrow keys to orbit, plus and minus to zoom.");
+    cv.style.width = "100%"; cv.style.height = "100%"; cv.style.display = "block"; cv.style.touchAction = "none"; cv.style.outline = "none";
+    host.appendChild(cv);
+    scene = new T.Scene();
+    camera = new T.PerspectiveCamera(45, 1, 0.1, 400);
+    buildLights();
+    overlay = new T.Group(); scene.add(overlay);
+    setTheme(isDark);
+    applyOrbit();
+    bindControls(cv);
+    if (window.ResizeObserver) new ResizeObserver(resize).observe(host); else window.addEventListener("resize", resize);
+    document.addEventListener("visibilitychange", () => (visible = !document.hidden));
+    resize();
+    requestAnimationFrame(loop);
+    return true;
+  }
+
+  const api = {
+    init, show, view, setTheme, setControl, describe,
+    set onStats(fn) { onStats = fn; }, get onStats() { return onStats; },
+    set onDesc(fn) { onDesc = fn; }, get onDesc() { return onDesc; },
+    get ok() { return ok; }
+  };
+  return api;
+})();
+
+// Expose on window so the app (a separate concatenated script) can find it:
+// top-level `const` makes a script-scoped binding, not a window property, so
+// app.js's `window.Stage` guards would otherwise never see it.
+if (typeof window !== "undefined") window.Stage = Stage;
+
+/* The Proton Mill — interface.
+   Routes between five scenes, each with four tabs (Watch / Why / Try / For
+   instructors), drives the 3D engine, and keeps an accessible live description
+   and a numbers panel in sync. No framework; one render() rebuilds the panel. */
+(() => {
+  "use strict";
+  const $ = (s, el) => (el || document).querySelector(s);
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const C = window.COURSE;
+  const SC = C.scenes;
+  const TABS = [["watch", "Watch"], ["why", "Why"], ["try", "Try"], ["teach", "For instructors"]];
+
+  const KEY = "proton-mill.v1";
+  const state = { scene: 0, tab: "watch", step: 0, qi: {}, ans: {}, theme: null };
+  try { Object.assign(state, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
+  function save() { try { localStorage.setItem(KEY, JSON.stringify({ theme: state.theme })); } catch (e) {} }
+
+  /* theme */
+  function prefersDark() { return window.matchMedia && matchMedia("(prefers-color-scheme: dark)").matches; }
+  function isDark() { return state.theme ? state.theme === "dark" : prefersDark(); }
+  function applyTheme() { if (state.theme) document.documentElement.setAttribute("data-theme", state.theme); else document.documentElement.removeAttribute("data-theme"); if (window.Stage && Stage.ok) Stage.setTheme(isDark()); }
+
+  /* engine boot */
+  let engineOK = false;
+  function boot3D() {
+    const host = $("#stage");
+    if (!window.Stage) return;
+    engineOK = Stage.init(host, isDark());
+    if (!engineOK) { host.innerHTML = '<div class="nogl"><p><strong>3D needs WebGL.</strong><br>The lesson text, questions and instructor notes below work without it.</p></div>'; return; }
+    Stage.onStats = onStats;
+    Stage.onDesc = (t) => { const d = $("#desc"); if (d) d.textContent = t; };
+    drive();
+  }
+
+  /* drive the current scene + watch step into the engine */
+  function curScene() { return SC[state.scene]; }
+  function curStep() { const sc = curScene(); return sc.watch[Math.min(state.step, sc.watch.length - 1)]; }
+  function drive() {
+    if (!engineOK) return;
+    const sc = curScene(), st = curStep();
+    Stage.show(sc.scene, st.s || {});
+    syncControls();
+  }
+
+  /* ───────── numbers panel (fed by the engine ~5x/sec) ───────── */
+  const relMax = { rpm: 2.6, atp: 0.8, heat: 1.0 };
+  function onStats(s) {
+    const n = $("#numbers"); if (!n) return;
+    const bar = (label, v, max, unit) => {
+      const pct = Math.max(0, Math.min(100, (v / max) * 100));
+      return `<div class="num"><span class="num-k">${label}</span><span class="num-bar"><span style="width:${pct.toFixed(0)}%"></span></span><span class="num-v">${unit}</span></div>`;
+    };
+    n.innerHTML =
+      bar("Proton gradient", s.grad, 1, Math.round(s.grad * 100) + "%") +
+      bar("Rotor speed", s.rpm, relMax.rpm, s.oligomycin ? "blocked" : (s.rpm < 0.05 ? "~0" : "spinning")) +
+      bar("ATP output", s.atpRate, relMax.atp, s.oligomycin ? "none" : (s.atpRate < 0.03 ? "low" : "flowing")) +
+      bar("Heat (wasted)", s.heat, relMax.heat, s.heat > 0.15 ? "rising" : "low") +
+      `<p class="num-note">H⁺ per ATP ≈ <strong>4</strong> (about 3 through the synthase + ~1 for transport). Approximate; textbooks vary — see Scene 5.</p>`;
+  }
+
+  /* ───────── scene controls under the stage ───────── */
+  function syncControls() {
+    const sc = curScene(), wrap = $("#controls");
+    const showsMill = sc.scene === "membrane" || sc.scene === "synthase" || sc.scene === "break";
+    const parts = [];
+    parts.push('<p class="orbit-hint">Drag to orbit · scroll to zoom · or focus the scene and use arrow keys / +−</p>');
+    if (showsMill) {
+      const pump = Math.round(((curStep().s && curStep().s.pump) != null ? curStep().s.pump : 0.6) * 100);
+      parts.push(`<label class="ctl"><span>Pump drive</span><input type="range" id="pump" min="0" max="100" value="${pump}" aria-label="Electron transport chain pump drive, percent"></label>`);
+    }
+    if (sc.scene === "break") {
+      parts.push(`<div class="toggles" role="group" aria-label="Break it">
+        <button class="tgl" id="tg-unc" aria-pressed="false">Add uncoupler</button>
+        <button class="tgl" id="tg-olig" aria-pressed="false">Add oligomycin</button>
+        <button class="tgl reset" id="tg-reset">Reset</button></div>`);
+    }
+    wrap.innerHTML = parts.join("");
+    wrap.hidden = false;
+    const pumpEl = $("#pump", wrap);
+    if (pumpEl) pumpEl.addEventListener("input", () => Stage.setControl({ pump: +pumpEl.value / 100 }));
+    const unc = $("#tg-unc", wrap), olig = $("#tg-olig", wrap), rst = $("#tg-reset", wrap);
+    if (unc) unc.addEventListener("click", () => { const on = unc.getAttribute("aria-pressed") !== "true"; unc.setAttribute("aria-pressed", on); Stage.setControl({ uncoupler: on }); });
+    if (olig) olig.addEventListener("click", () => { const on = olig.getAttribute("aria-pressed") !== "true"; olig.setAttribute("aria-pressed", on); Stage.setControl({ oligomycin: on }); });
+    if (rst) rst.addEventListener("click", () => { unc.setAttribute("aria-pressed", "false"); olig.setAttribute("aria-pressed", "false"); Stage.setControl({ uncoupler: false, oligomycin: false }); });
+  }
+
+  /* ───────── top scene nav ───────── */
+  function renderNav() {
+    const ol = $("#scenes");
+    ol.innerHTML = SC.map((sc, i) =>
+      `<li><button data-scene="${i}" ${i === state.scene ? 'aria-current="step"' : ""}><span class="n">${i + 1}</span><span class="t">${esc(sc.short)}</span></button></li>`
+    ).join("");
+  }
+
+  /* ───────── the panel ───────── */
+  function render() {
+    renderNav();
+    const sc = curScene();
+    const tablist = `<div class="tabs" role="tablist" aria-label="Lesson tabs">` +
+      TABS.map(([k, l]) => `<button role="tab" id="tab-${k}" aria-controls="tp" data-tab="${k}" aria-selected="${state.tab === k}" tabindex="${state.tab === k ? 0 : -1}">${esc(l)}</button>`).join("") + `</div>`;
+    let body = "";
+    if (state.tab === "watch") body = tabWatch(sc);
+    else if (state.tab === "why") body = tabWhy(sc);
+    else if (state.tab === "try") body = tabTry(sc);
+    else body = tabTeach(sc);
+    $("#panel").innerHTML =
+      `<div class="panel-inner">
+        <p class="eyebrow">${esc(sc.eyebrow)}</p>
+        <h1 class="title">${esc(sc.title)}</h1>
+        <p class="lede">${esc(sc.lede)}</p>
+        ${tablist}
+        <div id="tp" role="tabpanel" aria-labelledby="tab-${state.tab}" tabindex="0">${body}</div>
+      </div>`;
+    const cap = $("#caption"); if (cap) cap.textContent = state.tab === "watch" ? (curStep().say || "") : "";
+    bindPanel();
+  }
+
+  function tabWatch(sc) {
+    const n = sc.watch.length, i = Math.min(state.step, n - 1);
+    return `<div class="say"><span class="count">Step ${i + 1} of ${n}</span><p>${esc(sc.watch[i].say)}</p></div>
+      <div class="row">
+        <button class="btn" data-step="-1" ${i === 0 ? "disabled" : ""}>‹ Back</button>
+        <button class="btn primary" data-step="1" ${i === n - 1 ? "disabled" : ""}>Next step ›</button>
+        <button class="btn" data-step="0">Replay this step</button>
+      </div>
+      <p class="muted-note">${esc(sc.intro)}</p>`;
+  }
+  function tabWhy(sc) {
+    return `<ul class="why">${sc.why.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>`;
+  }
+  function tabTry(sc) {
+    const i = state.qi[sc.id] || 0, q = sc.try[i], rec = (state.ans[sc.id] || {})[i];
+    const answered = rec && rec.done;
+    const opts = q.options.map((o, oi) => {
+      let cls = "opt";
+      if (answered) { if (oi === q.a) cls += " correct"; else if (oi === rec.pick) cls += " wrong"; }
+      return `<button class="${cls}" data-opt="${oi}" ${answered ? "disabled" : ""} aria-pressed="${answered && oi === rec.pick}">${esc(o)}</button>`;
+    }).join("");
+    let fb = "";
+    if (answered) {
+      const right = rec.pick === q.a;
+      const trap = !right && q.trap && q.trap.a === rec.pick ? `<p class="trap"><strong>Common trap:</strong> this answer ${esc(q.trap.note)}</p>` : "";
+      fb = `<div class="fb ${right ? "ok" : "no"}"><p><strong>${right ? "Correct." : "Not quite."}</strong> ${esc(q.why)}</p>${trap}</div>
+        <div class="row">${i < sc.try.length - 1 ? '<button class="btn primary" data-q="1">Next question ›</button>' : '<p class="muted-note">That is the last question for this scene.</p>'}</div>`;
+    }
+    return `<div class="quiz"><p class="qcount">Question ${i + 1} of ${sc.try.length}</p>
+      <p class="qtext">${esc(q.q)}</p><div class="opts">${opts}</div>${fb}</div>`;
+  }
+  function tabTeach(sc) {
+    const t = sc.teach;
+    return `<div class="teach">
+      <h2 class="sub">TA notes</h2><ul class="why">${t.ta.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+      <h2 class="sub">10-minute in-class activity — ${esc(t.activity.title)} <span class="mins">${t.activity.minutes} min</span></h2>
+      <ol class="steps">${t.activity.steps.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+      <h2 class="sub">Answer key</h2><ul class="key">${t.key.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>
+    </div>`;
+  }
+
+  /* ───────── events ───────── */
+  function bindPanel() {
+    const tabsEl = $(".tabs");
+    if (tabsEl) tabsEl.addEventListener("keydown", (e) => {
+      const btns = [...tabsEl.querySelectorAll("[role=tab]")];
+      const idx = btns.indexOf(document.activeElement);
+      if (idx < 0) return;
+      let ni = idx;
+      if (e.key === "ArrowRight") ni = (idx + 1) % btns.length;
+      else if (e.key === "ArrowLeft") ni = (idx - 1 + btns.length) % btns.length;
+      else return;
+      e.preventDefault(); btns[ni].focus(); go({ tab: btns[ni].dataset.tab });
+    });
+  }
+  function go(patch) { Object.assign(state, patch); render(); if (patch.scene != null || patch.step != null || patch.drive) drive(); }
+
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-scene],[data-tab],[data-step],[data-opt],[data-q],#theme,#about-btn,[data-close]");
+    if (!t) return;
+    if (t.dataset.scene != null) { state.scene = +t.dataset.scene; state.tab = "watch"; state.step = 0; go({ drive: true }); return; }
+    if (t.dataset.tab) { state.tab = t.dataset.tab; render(); return; }
+    if (t.dataset.step != null) { const sc = curScene(); state.step = Math.max(0, Math.min(sc.watch.length - 1, state.step + +t.dataset.step)); go({ drive: true }); return; }
+    if (t.dataset.opt != null) { answer(+t.dataset.opt); return; }
+    if (t.dataset.q != null) { const sc = curScene(); state.qi[sc.id] = Math.min(sc.try.length - 1, (state.qi[sc.id] || 0) + 1); render(); return; }
+    if (t.id === "theme") { state.theme = isDark() ? "light" : "dark"; applyTheme(); save(); render(); return; }
+    if (t.id === "about-btn") { $("#about").showModal ? $("#about").showModal() : ($("#about").open = true); return; }
+    if (t.dataset.close != null) { const d = $("#about"); d.close ? d.close() : (d.open = false); return; }
+  });
+
+  function answer(pick) {
+    const sc = curScene(), i = state.qi[sc.id] || 0;
+    state.ans[sc.id] = state.ans[sc.id] || {};
+    if (state.ans[sc.id][i] && state.ans[sc.id][i].done) return;
+    state.ans[sc.id][i] = { pick, done: true };
+    render();
+  }
+
+  /* ───────── init ───────── */
+  function start() {
+    applyTheme();
+    renderNav();
+    render();
+    boot3D();
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();
+</script>
+</body>
+</html>
