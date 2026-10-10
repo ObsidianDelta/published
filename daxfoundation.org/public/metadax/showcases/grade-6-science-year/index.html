@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A whole Grade 6 science year built from one brief: four terms, 36 weeks, misconceptions named first, one household activity a week, and one week built in full. A MetaDAX showcase for teachers.">
+<title>The Year on the Wall — a MetaDAX showcase</title>
+<style>/* The Year on the Wall — warm, plain, calm. System fonts only, no web-font fetch.
+   Plain HTML/CSS/SVG + a little inline JS; no network, no library. Mobile-first.
+   Palette shares the warm family of the Bakery / Tutor's Desk showcases.
+   Print-first: a @media print block gives a clean one-page lesson handout. */
+:root {
+  --bg: #f4ece0; --surface: #fffaf3; --surface-2: #f6ecdd; --ink: #2a2017; --muted: #6d5c49;
+  --line: #e2d3bd; --crust: #8a5a2b; --crust-2: #6e4621; --wheat: #e8a33d;
+  --good: #2e7d4f; --good-bg: #e4f2e8; --note: #fbf4d9; --note-line: #e8d9a6;
+  --accent: #b4532a; --focus: #1d6fb8; --radius: 12px; --tap: 44px;
+  /* one warm hue per term */
+  --t1: #b4532a; --t1-bg: #f7e3d6; --t2: #a9791b; --t2-bg: #f6ebcf;
+  --t3: #2e7d4f; --t3-bg: #dcefe2; --t4: #3f6ea8; --t4-bg: #dde8f4;
+  --font-body: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+  --font-hand: "Bradley Hand", "Segoe Print", "Comic Sans MS", ui-rounded, cursive;
+  --step-0: 1rem; --step-1: 1.15rem; --step-2: 1.45rem; --step-3: 1.9rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #17120c; --surface: #211913; --surface-2: #2a2017; --ink: #f1e7d8; --muted: #b7a48d;
+    --line: #3a2d20; --crust: #d79a5c; --crust-2: #c08346; --wheat: #f0b45a;
+    --good: #5fc488; --good-bg: #173322; --note: #2b2410; --note-line: #574a22; --accent: #e98a5c; --focus: #6cb6f0;
+    --t1: #e98a5c; --t1-bg: #2e1d12; --t2: #e3b35a; --t2-bg: #2c2410; --t3: #5fc488; --t3-bg: #142a1c; --t4: #7fb0e6; --t4-bg: #15202e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #17120c; --surface: #211913; --surface-2: #2a2017; --ink: #f1e7d8; --muted: #b7a48d;
+  --line: #3a2d20; --crust: #d79a5c; --crust-2: #c08346; --wheat: #f0b45a;
+  --good: #5fc488; --good-bg: #173322; --note: #2b2410; --note-line: #574a22; --accent: #e98a5c; --focus: #6cb6f0;
+  --t1: #e98a5c; --t1-bg: #2e1d12; --t2: #e3b35a; --t2-bg: #2c2410; --t3: #5fc488; --t3-bg: #142a1c; --t4: #7fb0e6; --t4-bg: #15202e;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.55; overflow-x: hidden; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; }
+a { color: var(--accent); }
+img, svg { max-width: 100%; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 6px; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--bg); padding: 10px 14px; z-index: 50; border-radius: 0 0 8px 0; }
+.skip:focus { left: 0; }
+
+/* Header */
+.bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; padding: 10px 16px; background: var(--surface); border-bottom: 2px solid var(--line); position: sticky; top: 0; z-index: 20; }
+.brand { display: flex; align-items: center; gap: 10px; background: none; border: 0; cursor: pointer; color: inherit; padding: 4px; text-align: left; }
+.brand-mark { width: 38px; height: 38px; flex: 0 0 auto; }
+.brand-name { font-family: var(--font-display); font-weight: 700; font-size: var(--step-2); color: var(--crust-2); }
+.brand-sub { font-size: .8rem; color: var(--muted); }
+.bar-spacer { flex: 1 1 auto; }
+.bar button.ghost { min-height: var(--tap); padding: 6px 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); color: var(--ink); cursor: pointer; font-size: .95rem; }
+.bar button.ghost:hover { border-color: var(--crust); }
+
+/* Layout */
+.layout { max-width: 880px; margin: 0 auto; padding: 18px 16px 48px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; margin-bottom: 18px; }
+.card > h2 { margin-top: 0; color: var(--crust-2); }
+.lede h1 { margin: 0 0 8px; font-size: var(--step-3); color: var(--crust-2); }
+.lede .intro { margin: 0 0 12px; font-size: var(--step-1); }
+.cast { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0; }
+.chip { font-size: .82rem; padding: 4px 10px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); }
+.eyebrow { font-size: .8rem; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+
+/* The year as a map */
+.mapwrap { margin-top: 6px; }
+.yearmap { display: grid; grid-template-columns: 2.2rem repeat(4, 1fr); gap: 6px; }
+.yearmap .corner { grid-column: 1; }
+.yearmap .termhead { font-weight: 700; font-family: var(--font-display); font-size: .95rem; text-align: center; padding: 8px 6px; border-radius: 8px; color: #fff; }
+.yearmap .wkno { grid-column: 1; align-self: center; text-align: right; padding-right: 4px; font-size: .72rem; color: var(--muted); }
+.cell { min-width: 0; border: 1px solid var(--line); border-radius: 8px; padding: 6px 7px; font-size: .72rem; line-height: 1.25; overflow-wrap: anywhere; }
+.cell .cw { display: block; font-weight: 700; font-size: .66rem; letter-spacing: .03em; opacity: .75; }
+.cell.built { box-shadow: inset 0 0 0 2px var(--crust); }
+.cell.built .cw::after { content: " · built"; color: var(--crust); }
+.t1h { background: var(--t1); } .t2h { background: var(--t2); } .t3h { background: var(--t3); } .t4h { background: var(--t4); }
+.c1 { background: var(--t1-bg); } .c2 { background: var(--t2-bg); } .c3 { background: var(--t3-bg); } .c4 { background: var(--t4-bg); }
+.maplegend { display: flex; flex-wrap: wrap; gap: 10px 16px; margin: 14px 0 0; font-size: .85rem; color: var(--muted); }
+.maplegend .key { display: inline-flex; align-items: center; gap: 6px; }
+.maplegend .sw { width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--line); display: inline-block; }
+.maplegend .sw.builtkey { background: var(--surface); box-shadow: inset 0 0 0 2px var(--crust); }
+
+/* The designed tree */
+.term { border: 1px solid var(--line); border-radius: 10px; margin: 0 0 12px; overflow: hidden; }
+.term > summary { cursor: pointer; padding: 12px 14px; font-weight: 700; font-family: var(--font-display); font-size: var(--step-1); list-style: none; display: flex; align-items: center; gap: 10px; }
+.term > summary::-webkit-details-marker { display: none; }
+.term > summary::before { content: "▸"; color: var(--muted); }
+.term[open] > summary::before { content: "▾"; }
+.term .tdot { width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; }
+.term .tbody { padding: 0 14px 12px; }
+.unit { border-left: 3px solid var(--wheat); padding: 2px 0 2px 12px; margin: 10px 0; }
+.unit h4 { margin: 0 0 2px; font-size: 1rem; color: var(--crust-2); }
+.unit .uout { margin: 2px 0 6px; color: var(--muted); font-size: .92rem; }
+.unit .weeks { margin: 0; padding-left: 18px; font-size: .92rem; }
+.unit .weeks li { margin: 2px 0; }
+.unit .mis { margin: 6px 0 0; }
+.unit .mis summary { cursor: pointer; color: var(--accent); font-size: .88rem; }
+.unit .mis ul { margin: 6px 0 0; padding-left: 18px; font-size: .9rem; color: var(--ink); }
+
+/* generic sub-lists */
+.matlist { columns: 2; column-gap: 24px; margin: 8px 0 0; padding-left: 18px; }
+.matlist li { margin: 2px 0; break-inside: avoid; }
+.note-inline { background: var(--note); border: 1px solid var(--note-line); border-radius: 8px; padding: 10px 14px; font-size: .92rem; margin: 10px 0 0; }
+
+/* One lesson in full — tabs */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 14px; }
+.tabs button { min-height: var(--tap); padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface-2); color: var(--ink); cursor: pointer; font-size: .95rem; }
+.tabs button[aria-selected="true"] { background: var(--crust); color: #fff; border-color: var(--crust); }
+.pane { display: none; }
+.pane.on { display: block; }
+.lmeta { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.lmeta .chip.obj { background: var(--good-bg); border-color: var(--good); color: var(--ink); }
+.lmeta .chip.mis { background: var(--note); border-color: var(--note-line); }
+
+/* teacher step table */
+.steps2 { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.steps2 li { border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; background: var(--surface-2); }
+.steps2 .mins { font-weight: 700; color: var(--crust); font-size: .85rem; }
+.steps2 .say { margin: 4px 0 0; }
+.steps2 .why { margin: 6px 0 0; color: var(--muted); font-size: .92rem; }
+.steps2 .skip { margin: 6px 0 0; font-size: .92rem; }
+.steps2 .skip b { color: var(--accent); }
+.slips { margin: 14px 0 0; }
+.slips h4 { margin: 0 0 6px; }
+.slips ul { margin: 0; padding-left: 18px; }
+.slips li { margin: 4px 0; }
+
+/* learner printable */
+.printable { background: #fff; color: #1a1a1a; border: 2px dashed var(--crust); border-radius: 10px; padding: 20px; }
+:root[data-theme="dark"] .printable, html:not([data-theme]) .printable { }
+.printable h3 { margin: 0 0 4px; color: #6e4621; }
+.printable .pintro { margin: 0 0 12px; }
+.printable .box { border: 1px solid #c9c0b0; border-radius: 8px; padding: 12px 14px; margin: 10px 0; background: #fcfaf5; }
+.printable .box h4 { margin: 0 0 6px; }
+.printable ol, .printable ul { margin: 6px 0 0; padding-left: 20px; }
+.printable li { margin: 3px 0; }
+.printable .words { display: grid; gap: 6px; margin: 6px 0 0; }
+.printable .words .wd { display: flex; gap: 8px; }
+.printable .words b { flex: 0 0 5.5em; }
+.printable .check { border: 1px solid #6e4621; background: #fff; }
+.printable .starter { font-family: var(--font-hand); border-bottom: 1px solid #999; display: inline-block; min-width: 60%; margin-top: 6px; }
+.printbtn { margin: 12px 0 0; }
+
+/* How it was built */
+.built-cols { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+.built-cols .mp { border: 1px solid var(--line); border-radius: 10px; padding: 14px; background: var(--surface-2); }
+.built-cols .mp h3 { margin: 0 0 6px; color: var(--crust-2); font-size: var(--step-1); }
+.built-cols .mp .op { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .8rem; color: var(--muted); }
+.built-cols .mp ul { margin: 8px 0 0; padding-left: 18px; font-size: .93rem; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 0; }
+.fact { flex: 1 1 140px; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; background: var(--surface); }
+.fact .n { font-family: var(--font-display); font-size: var(--step-2); color: var(--crust); font-weight: 700; }
+.fact .l { font-size: .82rem; color: var(--muted); }
+.change { margin: 14px 0 0; padding-left: 18px; }
+.change li { margin: 4px 0; }
+
+/* Reflective note */
+.reflect { background: linear-gradient(180deg, var(--surface), var(--surface-2)); border: 2px solid var(--wheat); }
+.reflect p { margin: 0 0 12px; }
+.reflect .lead { font-size: var(--step-1); }
+
+/* buttons / footer */
+.btn { min-height: var(--tap); padding: 10px 18px; cursor: pointer; border-radius: 10px; font-size: 1rem; border: 1px solid var(--crust); background: var(--crust); color: #fff; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+.btn.secondary { background: var(--surface-2); color: var(--ink); border-color: var(--line); }
+.btn:hover { filter: brightness(1.06); }
+.foot { max-width: 880px; margin: 0 auto; padding: 18px 16px 60px; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); }
+.foot p { margin: 6px 0; }
+.badge { display: inline-block; font-size: .75rem; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: var(--muted); margin-right: 6px; }
+
+/* Dialog */
+dialog { max-width: 560px; width: calc(100% - 32px); border: 1px solid var(--line); border-radius: var(--radius); padding: 0; background: var(--surface); color: var(--ink); }
+dialog::backdrop { background: rgba(0,0,0,.45); }
+.about-in { padding: 20px; }
+.about-in h2 { margin: 0 0 10px; color: var(--crust-2); }
+.about-in p { margin: 0 0 10px; }
+
+@media (max-width: 620px) {
+  :root { --step-3: 1.55rem; --step-2: 1.28rem; }
+  .layout { padding: 14px 12px 36px; }
+  .card { padding: 16px; }
+  .brand-name { font-size: var(--step-1); }
+  .built-cols { grid-template-columns: 1fr; }
+  .matlist { columns: 1; }
+  /* The year map stacks: each term becomes its own labelled block, weeks listed down.
+     This guarantees no horizontal overflow on a phone. */
+  .yearmap { display: block; }
+  .yearmap .corner, .yearmap .wkno { display: none; }
+  .yearmap .termhead { display: block; margin: 14px 0 6px; }
+  .yearmap .cell { display: flex; gap: 8px; align-items: baseline; font-size: .82rem; margin: 4px 0; }
+  .yearmap .cell .cw { display: inline; font-size: .72rem; flex: 0 0 auto; }
+}
+
+/* PRINT — the learner page is the deliverable; everything else drops away. */
+@media print {
+  .no-print, .bar, .foot, .tabs, .printbtn, nav { display: none !important; }
+  body { background: #fff; color: #000; }
+  .layout { max-width: none; padding: 0; }
+  .card { border: none; box-shadow: none; padding: 0; margin: 0; }
+  .pane { display: none !important; }
+  .pane.printpane { display: block !important; }
+  .printable { border: 1px solid #000; }
+  a[href]::after { content: ""; }
+}
+</style>
+</head>
+<body>
+<header class="bar"><button class="brand" data-go="top" aria-label="The Year on the Wall — back to top"><svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="5" width="32" height="30" rx="3" fill="#fffaf3" stroke="#6e4621" stroke-width="2"/><line x1="4" y1="13" x2="36" y2="13" stroke="#6e4621" stroke-width="1.5"/><line x1="14" y1="13" x2="14" y2="35" stroke="#e2d3bd" stroke-width="1.5"/><line x1="24" y1="13" x2="24" y2="35" stroke="#e2d3bd" stroke-width="1.5"/><rect x="6" y="16" width="6" height="4" rx="1" fill="#b4532a"/><rect x="16" y="22" width="6" height="4" rx="1" fill="#2e7d4f"/><rect x="26" y="28" width="6" height="4" rx="1" fill="#3f6ea8"/></svg><span><span class="brand-name">The Year on the Wall</span><br><span class="brand-sub">A MetaDAX showcase for teachers</span></span></button><span class="bar-spacer"></span><button class="ghost no-print" data-action="about" type="button">About</button><button class="ghost no-print" data-action="theme" type="button">Theme</button></header><main id="main" class="layout" tabindex="-1"><section class="card lede" id="top"><p class="eyebrow">A whole Grade 6 science year, built from one brief</p><h1>The Year on the Wall</h1><p class="intro">A first-year teacher asked for a full year of Grade 6 science: four terms, nine weeks each, one 50-minute period a day, print-first with one photocopier and no devices in class, and a small budget for household materials. Here is the whole year as a wall planner — <b>thirty-six weeks</b> — with the misconceptions named before any lesson was written.</p><div class="mapwrap"><div class="yearmap" role="img" aria-label="The whole year: four terms across, nine weeks down. Term 1 week 1 is built in full; every other week is designed."><div class="corner" aria-hidden="true"></div><div class="termhead t1h">Term 1: Matter and Materials</div><div class="termhead t2h">Term 2: Energy and Electricity</div><div class="termhead t3h">Term 3: Living Systems</div><div class="termhead t4h">Term 4: Earth and Space</div><div class="wkno">wk 1</div><div class="cell c1 built"><span class="cw">Week 1</span>Looking closely at stuff</div><div class="cell c2"><span class="cw">Week 1</span>Where energy comes from and goes</div><div class="cell c3"><span class="cw">Week 1</span>Alive, dead, never alive</div><div class="cell c4"><span class="cw">Week 1</span>Day and night</div><div class="wkno">wk 2</div><div class="cell c1"><span class="cw">Week 2</span>States and changes</div><div class="cell c2"><span class="cw">Week 2</span>Heat moving</div><div class="cell c3"><span class="cw">Week 2</span>What plants need</div><div class="cell c4"><span class="cw">Week 2</span>The year and the seasons</div><div class="wkno">wk 3</div><div class="cell c1"><span class="cw">Week 3</span>Mixing and separating</div><div class="cell c2"><span class="cw">Week 3</span>Light and shadow</div><div class="cell c3"><span class="cw">Week 3</span>What animals need</div><div class="cell c4"><span class="cw">Week 3</span>The Moon and its phases</div><div class="wkno">wk 4</div><div class="cell c1"><span class="cw">Week 4</span>Reversible changes</div><div class="cell c2"><span class="cw">Week 4</span>Make a circuit light up</div><div class="cell c3"><span class="cw">Week 4</span>Eating and digestion</div><div class="cell c4"><span class="cw">Week 4</span>Rocks and how they differ</div><div class="wkno">wk 5</div><div class="cell c1"><span class="cw">Week 5</span>Irreversible changes</div><div class="cell c2"><span class="cw">Week 5</span>What breaks a circuit</div><div class="cell c3"><span class="cw">Week 5</span>Breathing and the heart</div><div class="cell c4"><span class="cw">Week 5</span>Soil and what's in it</div><div class="wkno">wk 6</div><div class="cell c1"><span class="cw">Week 6</span>Is mass lost?</div><div class="cell c2"><span class="cw">Week 6</span>More bulbs, more batteries</div><div class="cell c3"><span class="cw">Week 6</span>Skeleton and muscles</div><div class="cell c4"><span class="cw">Week 6</span>Fossils and very slow change</div><div class="wkno">wk 7</div><div class="cell c1"><span class="cw">Week 7</span>Testing properties</div><div class="cell c2"><span class="cw">Week 7</span>How sound is made</div><div class="cell c3"><span class="cw">Week 7</span>Habitats</div><div class="cell c4"><span class="cw">Week 7</span>Where our water and waste go</div><div class="wkno">wk 8</div><div class="cell c1"><span class="cw">Week 8</span>Which material for which job?</div><div class="cell c2"><span class="cw">Week 8</span>Pitch and volume</div><div class="cell c3"><span class="cw">Week 8</span>Food chains</div><div class="cell c4"><span class="cw">Week 8</span>Measuring our impact</div><div class="wkno">wk 9</div><div class="cell c1"><span class="cw">Week 9</span>Review and make-and-test</div><div class="cell c2"><span class="cw">Week 9</span>Review and make-and-test</div><div class="cell c3"><span class="cw">Week 9</span>Review and local-habitat survey</div><div class="cell c4"><span class="cw">Week 9</span>Year review and science fair</div></div><div class="maplegend"><span class="key"><span class="sw" style="background:var(--t1)"></span>Term 1</span><span class="key"><span class="sw" style="background:var(--t2)"></span>Term 2</span><span class="key"><span class="sw" style="background:var(--t3)"></span>Term 3</span><span class="key"><span class="sw" style="background:var(--t4)"></span>Term 4</span><span class="key"><span class="sw builtkey"></span>built in full</span></div></div><p class="cast"><span class="chip">Mara · the teacher (invented)</span><span class="chip">25 learners, mixed reading level</span><span class="chip">Print-first · household materials</span></p></section><section class="card"><h2>What the teacher gets</h2><p>The whole tree, designed end to end: <b>4 terms → 12 units → 36 weeks → a lesson a day</b>. Every unit lists its weeks and names its misconceptions first. Open a term to look inside.</p><details class="term" open><summary><span class="tdot" style="background:var(--t1)"></span>Term 1 — Matter and Materials</summary><div class="tbody"><p class="uout">What everything is made of: properties, states, changes you can and can't undo, and choosing the right material for a job.</p><div class="unit"><h4>What stuff is made of</h4><p class="uout">The learner can say what matter is and describe a material by observable properties.</p><ul class="weeks"><li>Week 1 — Looking closely at stuff <b>(built in full — 5 lessons)</b></li><li>Week 2 — States and changes</li><li>Week 3 — Mixing and separating</li></ul><details class="mis"><summary>Misconceptions named first (4)</summary><ul><li>Gases (air) aren't matter — 'air is nothing'.</li><li>Heavier always means bigger; big always means heavy.</li><li>The particles themselves are hot, cold or coloured like the material.</li><li>There is air (or 'stuff') in the gaps between particles in a solid.</li></ul></details></div><div class="unit"><h4>Changes you can and can't undo</h4><p class="uout">The learner can tell a reversible change from an irreversible one.</p><ul class="weeks"><li>Week 4 — Reversible changes</li><li>Week 5 — Irreversible changes</li><li>Week 6 — Is mass lost?</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>Dissolving is disappearing — the sugar is 'gone' and so is its mass.</li><li>Melting and dissolving are the same thing.</li><li>Every change can be reversed if you try hard enough.</li></ul></details></div><div class="unit"><h4>Choosing the right material</h4><p class="uout">The learner can test a material property.</p><ul class="weeks"><li>Week 7 — Testing properties</li><li>Week 8 — Which material for which job?</li><li>Week 9 — Review and make-and-test</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>A property (strength, 'waterproofness') belongs to the object, not the material.</li><li>'Strong' is one single thing, not strong-in-tension vs strong-in-squashing.</li><li>All metals are magnetic.</li></ul></details></div></div></details><details class="term"><summary><span class="tdot" style="background:var(--t2)"></span>Term 2 — Energy and Electricity</summary><div class="tbody"><p class="uout">Energy on the move, simple circuits, and sound.</p><div class="unit"><h4>Energy on the move</h4><p class="uout">The learner can trace energy from a source through a change to where it ends up.</p><ul class="weeks"><li>Week 10 — Where energy comes from and goes</li><li>Week 11 — Heat moving</li><li>Week 12 — Light and shadow</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>Energy gets 'used up' and disappears.</li><li>Energy is a fuel or a substance you can hold a jar of.</li><li>Hot and cold are two different things that flow, rather than a difference in energy.</li></ul></details></div><div class="unit"><h4>Simple circuits</h4><p class="uout">The learner can build a working circuit and explain what makes it light.</p><ul class="weeks"><li>Week 13 — Make a circuit light up</li><li>Week 14 — What breaks a circuit</li><li>Week 15 — More bulbs, more batteries</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>A battery stores electricity that pours out of one end and gets used up.</li><li>The bulb uses up the current, so less comes back to the battery.</li><li>One wire from the battery to the bulb is enough.</li></ul></details></div><div class="unit"><h4>Sound and its uses</h4><p class="uout">The learner can link a sound to a vibration and change its pitch or loudness.</p><ul class="weeks"><li>Week 16 — How sound is made</li><li>Week 17 — Pitch and volume</li><li>Week 18 — Review and make-and-test</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>Sound travels better through empty space than through air.</li><li>Louder means higher-pitched.</li><li>The air itself travels from the source to the ear, carrying the sound like a parcel.</li></ul></details></div></div></details><details class="term"><summary><span class="tdot" style="background:var(--t3)"></span>Term 3 — Living Systems</summary><div class="tbody"><p class="uout">What living things need, how bodies work, and living things in their places.</p><div class="unit"><h4>What living things need</h4><p class="uout">The learner can tell living from non-living and say what each living thing needs.</p><ul class="weeks"><li>Week 19 — Alive, dead, never alive</li><li>Week 20 — What plants need</li><li>Week 21 — What animals need</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>Plants get their food from the soil through their roots, the way we eat.</li><li>Things that move (fire, a river, the Sun) are alive.</li><li>A seed is not alive.</li></ul></details></div><div class="unit"><h4>Bodies and how they work</h4><p class="uout">The learner can describe simply how food, air and movement are handled by the body.</p><ul class="weeks"><li>Week 22 — Eating and digestion</li><li>Week 23 — Breathing and the heart</li><li>Week 24 — Skeleton and muscles</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>The heart makes air or oxygen.</li><li>Food goes to one stomach bag and that is the whole of digestion.</li><li>Bones are dry, dead sticks.</li></ul></details></div><div class="unit"><h4>Living things in their places</h4><p class="uout">The learner can describe a habitat and read a food chain.</p><ul class="weeks"><li>Week 25 — Habitats</li><li>Week 26 — Food chains</li><li>Week 27 — Review and local-habitat survey</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>The biggest or 'top' animal is the strongest and eats everything.</li><li>Dead things just vanish.</li><li>A habitat is only the animals, not the conditions (water, light, shelter).</li></ul></details></div></div></details><details class="term"><summary><span class="tdot" style="background:var(--t4)"></span>Term 4 — Earth and Space</summary><div class="tbody"><p class="uout">Day, night and the year; the ground beneath us; and caring for our planet.</p><div class="unit"><h4>Day, night and the year</h4><p class="uout">The learner can model day, night, the year and Moon phases.</p><ul class="weeks"><li>Week 28 — Day and night</li><li>Week 29 — The year and the seasons</li><li>Week 30 — The Moon and its phases</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>The Sun moves round the Earth and 'goes down' behind a hill.</li><li>Summer is hot because the Earth is nearer the Sun.</li><li>The Moon is only ever out at night.</li></ul></details></div><div class="unit"><h4>The ground beneath us</h4><p class="uout">The learner can tell rocks, soil and fossils apart and describe slow change.</p><ul class="weeks"><li>Week 31 — Rocks and how they differ</li><li>Week 32 — Soil and what's in it</li><li>Week 33 — Fossils and very slow change</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>All rocks are hard and basically the same.</li><li>Soil is 'just dirt', not made of anything in particular.</li><li>A fossil is the actual animal or bone, unchanged.</li></ul></details></div><div class="unit"><h4>Caring for our planet</h4><p class="uout">The learner can measure one impact and suggest a change.</p><ul class="weeks"><li>Week 34 — Where our water and waste go</li><li>Week 35 — Measuring our impact</li><li>Week 36 — Year review and science fair</li></ul><details class="mis"><summary>Misconceptions named first (3)</summary><ul><li>'The environment' is somewhere else, not here.</li><li>Rubbish 'goes away' when it leaves the bin.</li><li>One person's or one class's actions are too small to matter or to measure.</li></ul></details></div></div></details><h3 style="color:var(--crust-2)">The misconception list — written before any page</h3><p>37 misconceptions are named across the year, one set per unit, so the teacher knows the wrong idea coming and can plan the moment that overturns it. Term 1's are shown above; the full list ships with the year.</p><h3 style="color:var(--crust-2)">The materials list — all of Term 1</h3><p>Everything Term 1 needs, from the kitchen cupboard and the recycling box:</p><ul class="matlist"><li>a handful of small objects (a marble</li><li>any household scraps the class has used this term</li><li>baking soda</li><li>balloon</li><li>chocolate or butter</li><li>clear jar or measuring jug</li><li>clock</li><li>cloth</li><li>coffee filter or cloth</li><li>coin</li><li>coins</li><li>cork</li><li>cotton ball</li><li>cup</li><li>dropper or spoon</li><li>ice cubes</li><li>identical cups</li><li>kitchen-ruler balance from week 1</li><li>paper</li><li>pencil</li><li>plastic bag</li><li>ruler</li><li>salt</li><li>sand</li><li>saucers</li><li>scraps: foil</li><li>spoon)</li><li>sunny windowsill</li><li>tape</li><li>two identical paper or plastic cups</li><li>two or three paper towel brands or types of paper</li><li>vinegar</li><li>warm and a cold spot</li><li>warm spot and a cold spot</li><li>water</li><li>zip bag</li></ul><p class="note-inline">One hands-on activity per week, each built from this list. The only item a school might have to buy is a battery-and-bulb kit in Term 2 — and that week ships with a no-kit alternative.</p></section><section class="card"><h2>One lesson in full — Which is more stuff? Measuring matter</h2><p>This is the only week built all the way down to daily lessons (five of them). Here is the fifth — the hands-on day for Week 1. Two sides: what the teacher does, and the page the learner gets.</p><div class="lmeta"><span class="chip obj">Objective: The learner can compare the mass and the volume of two objects and explain why big is not the same as heavy.</span><span class="chip mis">Misconception: The bigger object is always the heavier one; mass and size are the same thing.</span></div><div class="tabs no-print" role="tablist"><button data-tab="teacher" role="tab" aria-selected="true">The teacher’s side</button><button data-tab="learner" role="tab" aria-selected="false">The learner’s printable page</button></div><div class="pane" data-pane="teacher"><p class="uout">Start on a question they already have an opinion about, hand them the tools, let the surprise do the teaching, then pin the words on at the end.</p><ol class="steps2"><li><span class="mins">5 min</span> <p class="say">Hold up a cotton ball and a marble. 'Which one is more stuff? Hands up for the cotton ball... for the marble.' Take the vote, don't settle it.</p><p class="why"><b>Why:</b> The split vote is the lesson. They will resolve it themselves with the balance.</p><p class="skip"><b>Skip:</b> Skip defining mass and volume now — the words land better after the activity, not before.</p></li><li><span class="mins">10 min</span> <p class="say">Show how to build the balance: ruler across the pencil, a cup taped at each end, slide until it sits level. 'Level means the two sides are the same. Tip means one side is more stuff.'</p><p class="why"><b>Why:</b> Building it themselves makes the tool trustworthy; a balance they made beats a number they were given.</p><p class="skip"><b>Skip:</b> Don't chase a perfectly level start — 'close enough to see a tip' is the whole requirement.</p></li><li><span class="mins">12 min</span> <p class="say">'Put the cotton ball in one cup, the marble in the other. Which way does it tip?' Then swap in the coin, the cork. 'Write down the winner each time.'</p><p class="why"><b>Why:</b> The marble sinks the balance though it is far smaller — the vote was wrong, and they can see it. That contradiction is what sticks.</p><p class="skip"><b>Skip:</b> You don't need every pairing; three good tips are plenty.</p></li><li><span class="mins">10 min</span> <p class="say">Bring out the jar of water with a masking-tape line at the start level. 'Dunk the marble — mark the new line. Dunk the cotton ball — mark its line.' 'The space a thing takes up is how far the water climbs.'</p><p class="why"><b>Why:</b> Separates 'how much space' (volume) from 'how much stuff' (mass) with two different measurements they can point at.</p><p class="skip"><b>Skip:</b> Skip units and formulas; the climbing line is the measurement today.</p></li><li><span class="mins">8 min</span> <p class="say">Now name it. 'How much stuff = mass, the balance measured that. How much space = volume, the water measured that. Big is about volume. Heavy is about mass. They are not the same — the cotton ball proved it.' Write both words on the board next to the objects.</p><p class="why"><b>Why:</b> The vocabulary is a label for an experience they just had, not a definition to memorise cold.</p><p class="skip"><b>Skip:</b> Resist introducing density — it is Grade 7+; today ends at 'mass and volume are different things'.</p></li><li><span class="mins">5 min</span> <p class="say">Hand out the check (on the learner page). 'Rank the cotton ball, the marble and the cork by how much stuff. Then write how the balance and the dunk test helped you decide.'</p><p class="why"><b>Why:</b> The reasoning sentence is the assessment, not the ranking — the ranking is easy once they trust the tools.</p></li></ol><div class="slips"><h4>Slips that are normal (not errors to mark)</h4><ul><li>Reading the water line from above instead of eye-level, so the climb looks bigger than it is. Normal — model crouching to read it level, don't mark it wrong.</li><li>Saying the marble is 'more stuff because it's heavy and small' — that is actually right thinking, badly worded. Accept it and give them the word: 'yes — lots of mass in a small volume.'</li><li>A group whose balance won't sit level. Normal on day one; tell them a clear tip is all they need, level is a bonus.</li><li>Confusing 'the water went up more' with 'it's heavier'. Gently separate: 'that's space, not stuff — which tool measures stuff?'</li></ul></div><p class="note-inline"><b>If time is short:</b> Do the balance only; set the dunk test as the first five minutes of Week 2. <b>If time to spare:</b> Ask: 'Could something be big and heavy? Small and light? Find one of each on your desk.'</p></div><div class="pane" data-pane="learner"><button class="btn secondary printbtn no-print" data-action="print" type="button">Print this page</button><div class="printable"><h3>Measuring matter — which is more stuff?</h3><p class="pintro">Your group has a balance you built and a jar of water. You will find out which things are more stuff, and which take up more space. They are not always the same thing!</p><div class="box"><h4>What to do</h4><ol><li>Build the balance: lay the ruler across the pencil, tape a cup to each end, slide it until it sits level.</li><li>Put two objects in, one per cup. Draw an arrow for which way it tips. The low side is MORE STUFF.</li><li>Do this for three pairs. Write the winner each time.</li><li>Put a tape line on the jar at the water level. Dunk one object. Mark how high the water climbs.</li><li>Do the same for another object. The one that made the water climb MORE takes up MORE SPACE.</li></ol></div><div class="box"><h4>Words</h4><div class="words"><div class="wd"><b>mass</b><span>how much stuff something is — the balance measures this</span></div><div class="wd"><b>volume</b><span>how much space something takes up — the dunk test measures this</span></div></div></div><div class="box check"><h4>Check — before you leave</h4><p>1. Rank these from LEAST stuff to MOST stuff: a cotton ball, a marble, a cork.</p><p>2. Write one sentence: how did the balance and the dunk test help you decide?</p><p>I know the <span class="starter">&nbsp;</span> is the most stuff because <span class="starter">&nbsp;</span>.</p></div></div></div></section><section class="card"><h2>How it was built</h2><p>Two prompts from the open MetaDAX course factory did the work. No lesson was written by hand; a teacher would still read every one before using it.</p><div class="built-cols"><div class="mp"><h3>1. MP-11 — Curriculum Architect</h3><span class="op">CURRICULUM · design</span><ul><li>Turned the one-paragraph brief into the whole tree: program → 4 terms → 12 units → 36 weeks.</li><li>Named the 36 misconceptions and one household activity per week <i>before</i> any lesson existed.</li><li>Sequenced the terms (matter first; energy, living systems and earth-and-space build on it) and checked the plan fits 36 weeks.</li><li>Wrote a self-contained hand-off for each term so the next step could run unattended.</li></ul></div><div class="mp"><h3>2. MP-12 — Batch Builder</h3><span class="op">BUILD · plan → next</span><ul><li>Planned the full build (180 daily lessons) and ordered it so nothing is built before what it depends on.</li><li>Built <b>Term 1, Week 1</b> in full — five daily lessons, each with a teacher side and a printable learner page.</li><li>Reused Term 1's tree instead of regenerating it (reuse beats regenerate); authored the week's activity once, not per lesson.</li><li>Left the other 35 weeks as the designed plan — titled, with objectives and misconceptions — ready to build next.</li></ul></div></div><div class="facts"><div class="fact"><div class="n">36</div><div class="l">weeks designed</div></div><div class="fact"><div class="n">5</div><div class="l">lessons built in full</div></div><div class="fact"><div class="n">37</div><div class="l">misconceptions named</div></div><div class="fact"><div class="n">36</div><div class="l">weekly activities, household only</div></div></div><h3 style="color:var(--crust-2)">What a teacher would change first</h3><ol class="change"><li>Swap the Week-1 objects for whatever is actually in the cupboard — and the term names for whatever their own scheme calls them.</li><li>Fold Lesson 2 into Lesson 1 for a class that decodes slowly; five new ideas in week one is a lot.</li><li>Add the real misconceptions they hear from the 25 learners in front of them. The named list is a starting point, not the class.</li></ol><p class="note-inline"><b>What is real on this page:</b> the full designed year (every term, unit, week, objective and misconception) and the five built lessons of Term 1 Week 1. <b>What is a plan:</b> the daily lessons of the other 35 weeks — designed, not yet written.</p></section><section class="card reflect"><h2>The part only the teacher can do</h2><p class="lead">A factory can name the misconception. It cannot see which child is holding it.</p><p>When a learner says “I don’t get it,” the page can’t tell you whether they can’t read the question, can’t picture the particles, or just didn’t sleep. The year gives you the moment — the balloon, the beans, the balance — and the wrong idea to watch for. The <i>noticing</i> is yours: whose hand went down, whose answer was right for the wrong reason, which group needs the dunk test again tomorrow.</p><p>That is why every built lesson tells you which slips are normal and what to skip — not to script you, but to free your attention for the one thing no model can do: watch twenty-five real learners and decide, in the moment, who needs what next.</p></section></main><footer class="foot"><p><span class="badge">Example</span> Model-generated and unreviewed by any teacher — a draft to read and change before using. Reviewed for safety, not certified.</p><p>A fictional first-year teacher and an invented class. No real teacher, school or curriculum authority. One way to plan a year; a way, never the way.</p></footer><dialog id="about" aria-label="About this page"><div class="about-in"><h2>About The Year on the Wall</h2><p>A self-contained MetaDAX showcase: a whole Grade 6 science year planned by the open course factory from a single short brief, for a first-year teacher working print-first with household materials.</p><p>The teacher (Mara) and her class are invented. The full year is designed — every term, unit, week, objective and the 36 misconceptions; only Term 1 Week 1 is built down to five daily lessons. Everything else is an honest plan, marked as such.</p><p>It is model-generated and has not been reviewed by a teacher or checked against any curriculum authority. Read it, and change it, before you use it.</p><p><button class="btn" data-close type="button">Close</button></p></div></dialog>
+<script>// The Year on the Wall — behaviours only. No deps, no network.
+// Content is static HTML (generated at build time by build.mjs from the
+// curriculum + lesson JSON the course factory produced). This file just wires
+// the theme toggle, the About dialog, the teacher/learner tabs and print.
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+
+  function setTheme(mode) { if (mode) document.documentElement.setAttribute("data-theme", mode); }
+  function toggleTheme() {
+    var cur = document.documentElement.getAttribute("data-theme");
+    var dark = cur ? cur === "dark" : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    setTheme(dark ? "light" : "dark");
+  }
+
+  function selectTab(name) {
+    Array.prototype.forEach.call(document.querySelectorAll(".tabs button"), function (b) {
+      b.setAttribute("aria-selected", b.getAttribute("data-tab") === name ? "true" : "false");
+    });
+    Array.prototype.forEach.call(document.querySelectorAll(".pane"), function (p) {
+      var on = p.getAttribute("data-pane") === name;
+      p.classList.toggle("on", on);
+      // the learner pane is the one that prints
+      p.classList.toggle("printpane", on && name === "learner");
+    });
+  }
+
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest("[data-action],[data-go],[data-close],[data-tab]") : null;
+    if (!el) return;
+    if (el.hasAttribute("data-tab")) { selectTab(el.getAttribute("data-tab")); }
+    else if (el.hasAttribute("data-go")) { window.scrollTo({ top: 0, behavior: "smooth" }); }
+    else if (el.getAttribute("data-action") === "theme") { toggleTheme(); }
+    else if (el.getAttribute("data-action") === "print") { window.print(); }
+    else if (el.getAttribute("data-action") === "about") { var d = $("#about"); if (d && d.showModal) d.showModal(); }
+    else if (el.hasAttribute("data-close")) { var dd = $("#about"); if (dd && dd.close) dd.close(); }
+  });
+
+  // default tab
+  if (document.querySelector(".tabs")) selectTab("teacher");
+})();
+</script>
+</body>
+</html>
