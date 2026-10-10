@@ -1,0 +1,240 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { formatDate } from '../../_posts.js';
+
+// /learning/sample-report/ -- the deliverable itself, on its own page, so a
+// buyer can see what the tutor report service returns before they pay. Jason,
+// 10 Oct: "we're selling it and we don't have a sample." This is that sample.
+//
+// Two reports, each shown exactly as a tutor receives it (header block + the
+// four sections the kit defines: What we covered / What worked / Where they got
+// stuck / The one next step), followed by the rough notes each was built from so
+// the buyer sees the transformation. First sample reuses the invented pair from
+// the Tutor's Desk showcase (Nadia, maths; Theo, 12) for continuity; the second
+// is a new invented pair in a different subject and a different voice (Priya,
+// reading; Mara). Everyone is invented. No AI vendor named, no email, no
+// diagnosis language. Print shows the reports only (@media print below).
+//
+// First published / updated rendered by hand with the same helper the blog and
+// /learning/ use, so the dates read the same across the site.
+const PUBLISHED = '2026-10-10';
+const UPDATED = '2026-10-10';
+const LINKEDIN = 'https://www.linkedin.com/in/jasonjeyanandan';
+---
+<Base
+  title="A sample tutor report &mdash; Obsidian Delta"
+  description="This is what comes back: a one-page, parent-ready tutor report in the tutor's own voice, shown next to the rough notes it was built from. Two invented samples, maths and reading.">
+  <section class="hero no-print"><div class="shell narrow">
+    <p class="eyebrow">First published {formatDate(PUBLISHED)} <span aria-hidden="true">&middot;</span> Updated {formatDate(UPDATED)}</p>
+    <h1>This is what comes back.</h1>
+    <p class="deck">You send your rough notes after a session. This is the report that comes back &mdash; one page, parent-ready, in your own voice. Below each one are the actual notes it was built from, so you can see the turn.</p>
+    <div class="rule"></div>
+  </div></section>
+
+  <div class="shell narrow">
+
+    <!-- Sample 1 — maths, Nadia & Theo (the Tutor's Desk pair, for continuity) -->
+    <p class="sample-label">Sample 1 &mdash; maths</p>
+    <article class="paper" aria-label="Sample tutor report — maths">
+      <header class="paper__head">
+        <p class="paper__meta"><span class="k">Learner</span> Theo</p>
+        <p class="paper__meta"><span class="k">Subject</span> Maths &mdash; fractions</p>
+        <p class="paper__meta"><span class="k">Session</span> Tuesday 7 October 2026</p>
+        <p class="paper__meta"><span class="k">Tutor</span> Nadia</p>
+      </header>
+
+      <section class="paper__sec">
+        <h2>What we covered</h2>
+        <p>We spent the session on fractions. Theo worked through a full page of sums first &mdash; adding, subtracting and simplifying &mdash; all on his own, no help from me, then we moved to a set of word problems, where the same maths is wrapped inside a short, everyday story.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>What worked</h2>
+        <p>Two things, really. Starting on sums he already knows, so he came into the harder part feeling steady. And reading each word problem aloud together before he picked up his pencil. He stayed calm the whole way through, even on the ones that stopped him, and we finished on a couple he got right by himself. That calm is the thing I most want to build on.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>Where they got stuck</h2>
+        <p>It isn&rsquo;t the arithmetic &mdash; that part is secure, and fast. The moment that stops him is turning the words of a problem into the sum to do. He can add 3/4 and 1/8 without blinking, but &ldquo;a recipe uses 2/3 of a cup and you make half&rdquo; had him put the pen down. The reading and the maths arriving at the same time is the hard part, not the maths itself.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>The one next step</h2>
+        <p>Next time we&rsquo;ll practise just the set-up &mdash; reading a word problem and writing down the sum it needs, without solving it yet. Taking the two jobs apart, so the reading and the calculating don&rsquo;t have to happen in the same moment.</p>
+      </section>
+
+      <p class="paper__sign">&mdash; Nadia</p>
+      <p class="paper__foot">Written from the tutor&rsquo;s notes, read by Jason before it went back. Made with MetaDAX.</p>
+    </article>
+
+    <aside class="notes no-print" aria-label="The rough notes sample 1 was made from">
+      <p class="notes__label">The rough notes it was made from</p>
+      <pre class="notes__body">Theo &mdash; Tue 4pm, 40 min.
+warm-up: 10 mental &divide; , all fine, quick.
+fraction sheet A &mdash; 3/4 + 1/8, 5/6 &minus; 1/3 &hellip; all correct, no help
+then the mixed WORD problems &rarr; total shutdown.
+"a recipe uses 2/3 cup, you make half" &mdash; pen down, "I can't do these".
+read it w/ him, still stuck. NOT the adding &mdash; he can add.
+it's getting from the words &rarr; the sum??
+calm once we dropped it. did 2 bare sums to end on a win.
+NB same thing last wk w/ the pizza one.
+next: word probs but scaffold the set-up somehow.</pre>
+      <p class="notes__turn">Four sections, a header a parent can read, no label stuck on the child &mdash; and the maths he can actually do is named as the win, not the problem.</p>
+    </aside>
+
+    <!-- Sample 2 — reading, a new invented pair in a different voice -->
+    <p class="sample-label">Sample 2 &mdash; reading</p>
+    <article class="paper" aria-label="Sample tutor report — reading">
+      <header class="paper__head">
+        <p class="paper__meta"><span class="k">Learner</span> Mara</p>
+        <p class="paper__meta"><span class="k">Subject</span> Reading &mdash; fluency</p>
+        <p class="paper__meta"><span class="k">Session</span> Thursday 9 October 2026</p>
+        <p class="paper__meta"><span class="k">Tutor</span> Priya</p>
+      </header>
+
+      <section class="paper__sec">
+        <h2>What we covered</h2>
+        <p>We read together for most of the session &mdash; a familiar chapter first, then a brand-new book cold, some sight-word cards, and a short timed read to finish.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>What worked</h2>
+        <p>Echo reading was the real highlight. I read a line aloud, Mara read it straight back, and it came out so much smoother, with genuine expression this time. Going over the same page a few times helped too &mdash; a little quicker and easier with each pass.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>Where they got stuck</h2>
+        <p>Every word is accurate &mdash; that part is solid, and the reading you&rsquo;re doing at home is clearly doing its work. What we&rsquo;re building now is flow. Mara reads one word at a time, quite flat, so a long sentence is hard to hold together all the way to the end. This is stamina, not accuracy, and it builds with mileage.</p>
+      </section>
+
+      <section class="paper__sec">
+        <h2>The one next step</h2>
+        <p>Next time we&rsquo;ll open with echo reading as the warm-up, and carry that smoothness straight into a newer, less familiar page.</p>
+      </section>
+
+      <p class="paper__sign">&mdash; Priya</p>
+      <p class="paper__foot">Written from the tutor&rsquo;s notes, read by Jason before it went back. Made with MetaDAX.</p>
+    </article>
+
+    <aside class="notes no-print" aria-label="The rough notes sample 2 was made from">
+      <p class="notes__label">The rough notes it was made from</p>
+      <pre class="notes__body">Mara &mdash; Thu, 45 min.
+re-read ch.3 (dino book), then cold read new book.
+sight-word cards + 1-min timed read.
+accurate!! every word right. but word-by-word, flat, no phrasing.
+loses thread by end of long sentence &rarr; back to start.
+pace feels same as a month ago (didn't time exactly).
+echo reading = much smoother, some expression
+re-read familiar page x3 &rarr; faster each time.
+tell parent: it's flow not accuracy. nightly reading at home helping, keep it up.
+next: echo reading as warm-up into newer text.</pre>
+      <p class="notes__turn">Same four sections, a different tutor&rsquo;s voice. No timing figure is invented &mdash; the notes never timed it, so the report never claims a number.</p>
+    </aside>
+
+    <!-- CTA -->
+    <section class="cta-block no-print" aria-labelledby="cta-h">
+      <h2 id="cta-h">Want one of your own?</h2>
+      <p>First three free. Send the rough notes from a recent session &mdash; what you covered and where they got stuck &mdash; and the report comes back the same day, read by Jason before it reaches you.</p>
+      <p class="cta-row">
+        <a class="cta" href={LINKEDIN} rel="noopener">Message Jason on LinkedIn</a>
+        <a class="cta cta--ghost" href="/learning/">Back to the offers</a>
+      </p>
+    </section>
+
+  </div>
+</Base>
+
+<style is:global>
+/* The sample-report page in the Obsidian Delta dark system. The reports
+   themselves sit on light "paper" so they read as the document a tutor
+   receives; everything around them is the usual black ground. Measures follow
+   the rest of the site (680px narrow). */
+.sample-label{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--orange);
+  margin:clamp(32px,6vw,48px) 0 14px;
+}
+
+/* The report, as a sheet of paper. */
+.paper{
+  background:#fdfcf8;color:#1a1a1a;
+  border:1px solid var(--steel);border-radius:4px;
+  padding:clamp(20px,5vw,40px);
+  max-width:680px;
+  box-shadow:0 1px 0 rgba(255,255,255,.04);
+  overflow-wrap:break-word;
+}
+.paper__head{
+  border-bottom:1px solid #e3ded2;padding-bottom:14px;margin-bottom:20px;
+  display:grid;gap:4px;
+}
+.paper__meta{margin:0;font-size:15px;line-height:1.5;color:#2a2a2a}
+.paper__meta .k{
+  display:inline-block;min-width:4.5em;
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:#8a8275;
+}
+.paper__sec{margin:0 0 18px}
+.paper__sec h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:16px;letter-spacing:.01em;color:#111;
+  margin:0 0 6px;
+}
+.paper__sec p{margin:0;font-size:16px;line-height:1.65;color:#2a2a2a}
+.paper__sign{margin:22px 0 0;font-size:16px;color:#2a2a2a}
+.paper__foot{
+  margin:18px 0 0;padding-top:14px;border-top:1px solid #e3ded2;
+  font-size:13px;line-height:1.55;color:#6f6a5e;
+}
+
+/* The rough notes the report was made from. */
+.notes{
+  margin:14px 0 8px;max-width:680px;
+  background:var(--ink);border:1px solid var(--steel);border-radius:4px;
+  padding:clamp(16px,4vw,24px);
+}
+.notes__label{
+  font-family:var(--font-mono);font-size:11px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ash);margin:0 0 10px;
+}
+.notes__body{
+  margin:0;font-family:var(--font-mono);font-size:13px;line-height:1.7;
+  color:var(--bone);
+  white-space:pre-wrap;overflow-wrap:break-word;word-break:break-word;
+}
+.notes__turn{margin:12px 0 0;font-size:14px;line-height:1.6;color:var(--ash);max-width:620px}
+
+/* CTA */
+.cta-block{border-top:1px solid var(--steel);margin-top:clamp(40px,8vw,64px);padding-top:clamp(32px,6vw,48px)}
+.cta-block h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(24px,3.4vw,32px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--white);margin:0 0 .6em;
+}
+.cta-block p{color:var(--bone);font-size:16px;line-height:1.7;margin:0 0 1rem;max-width:680px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:1.25rem 0 .5rem}
+.cta{
+  display:inline-block;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--black)!important;background:var(--orange);
+  padding:12px 22px;border:1px solid var(--orange)!important;border-radius:2px;
+  text-decoration:none!important;transition:background .2s,color .2s;
+}
+.cta:hover{background:transparent;color:var(--orange)!important}
+.cta--ghost{color:var(--orange)!important;background:transparent}
+.cta--ghost:hover{color:var(--white)!important;border-color:var(--white)!important}
+
+/* Print: just the report(s). Hide the site chrome, the hero, the rough notes
+   and the CTA, and let the paper sit plain on white. */
+@media print{
+  .strip,.footer,.hero,.notes,.cta-block,.sample-label{display:none!important}
+  body{background:#fff;color:#000}
+  .paper{
+    border:none;border-radius:0;box-shadow:none;
+    max-width:none;padding:0;margin:0 0 2rem;
+    background:#fff;
+  }
+  .paper__head{border-color:#ccc}
+  .paper__foot{border-color:#ccc}
+}
+</style>
