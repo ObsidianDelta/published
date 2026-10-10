@@ -167,7 +167,7 @@ dialog::backdrop { background: rgba(4, 12, 20, 0.55); }
   <section class="panel" id="panel" aria-live="off"></section>
 </main>
 <footer class="foot">
-  <p>Model-generated, unreviewed; check against your course text. A MetaDAX showcase — illustrative example, not a course of record.</p>
+  <p>Model-generated example; reviewed for safety, not certified. A MetaDAX showcase for Biology 101 — check against your course text.</p>
 </footer>
 <dialog id="about" aria-label="About this page">
   <div class="about-in">
@@ -531,6 +531,7 @@ const Stage = (() => {
   let onStats = null, onDesc = null, lastStatsAt = 0;
 
   /* ───────── helpers ───────── */
+  const THIRD_TURN = (Math.PI * 2) / 3; // 120°: one ATP per catalytic site per turn
   const ease = (k) => (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2);
   const lerp = (a, b, t) => a + (b - a) * t;
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -558,16 +559,25 @@ const Stage = (() => {
   /* ───────── lights & theme ───────── */
   const L = {};
   function buildLights() {
-    L.key = new T.DirectionalLight(0xffffff, 0.9); L.key.position.set(6, 12, 8); scene.add(L.key);
-    L.fill = new T.DirectionalLight(0xbcd4ff, 0.35); L.fill.position.set(-8, 4, -6); scene.add(L.fill);
-    L.amb = new T.AmbientLight(0xffffff, 0.55); scene.add(L.amb);
+    // warm key (sun-like), cool fill, a bright rim for edge separation, and a
+    // hemisphere light that fakes soft ambient occlusion (lit from above, shaded
+    // from below) without any post-processing.
+    L.key = new T.DirectionalLight(0xfff0d8, 1.0); L.key.position.set(7, 12, 9); scene.add(L.key);
+    L.fill = new T.DirectionalLight(0xbcd4ff, 0.3); L.fill.position.set(-8, 4, -6); scene.add(L.fill);
+    L.rim = new T.DirectionalLight(0xdfeeff, 0.6); L.rim.position.set(-5, 7, -13); scene.add(L.rim);
+    L.hemi = new T.HemisphereLight(0xffffff, 0x3a4636, 0.5); scene.add(L.hemi);
+    L.amb = new T.AmbientLight(0xffffff, 0.3); scene.add(L.amb);
   }
   function setTheme(isDark) {
     dark = !!isDark;
     scene.background = new T.Color(dark ? 0x081320 : 0xcfe4f4);
     if (scene.fog) scene.fog = null;
-    L.amb.intensity = dark ? 0.42 : 0.6;
-    L.fill.intensity = dark ? 0.28 : 0.35;
+    L.key.intensity = dark ? 0.85 : 1.0;
+    L.amb.intensity = dark ? 0.26 : 0.32;
+    L.fill.intensity = dark ? 0.26 : 0.3;
+    L.rim.intensity = dark ? 0.72 : 0.55;
+    L.hemi.intensity = dark ? 0.34 : 0.5;
+    if (L.hemi.groundColor) L.hemi.groundColor.setHex(dark ? 0x0a1a28 : 0x3a4636);
   }
 
   /* ───────── orbit controls (pointer, wheel, pinch, keyboard) ───────── */
@@ -656,8 +666,8 @@ const Stage = (() => {
     const body = new T.Mesh(bodyGeo, outerMat); body.rotation.z = Math.PI / 2; outer.add(body);
     [-3.5, 3.5].forEach((x) => { const cap = new T.Mesh(new T.SphereGeometry(3.2, 28, 18, 0, Math.PI), outerMat); cap.rotation.y = x > 0 ? 0 : Math.PI; cap.rotation.z = -Math.PI / 2; cap.position.x = x; outer.add(cap); });
     parts.outer = outer; g.add(outer);
-    // matrix — translucent fill
-    const matrixMat = mat(dark ? 0x6b4f2a : 0xf0c987, { transparent: true, opacity: 0.32 });
+    // matrix — translucent fill with a faint warm inner glow so it reads with depth
+    const matrixMat = mat(dark ? 0x6b4f2a : 0xf0c987, { transparent: true, opacity: 0.34, emissive: dark ? 0x241803 : 0x5a3f12, emissiveIntensity: 0.28 });
     const matrix = new T.Mesh(T.CapsuleGeometry ? new T.CapsuleGeometry(2.4, 6, 8, 20) : new T.CylinderGeometry(2.4, 2.4, 6, 24), matrixMat);
     matrix.rotation.z = Math.PI / 2; parts.matrix = matrix; g.add(matrix);
     // inner membrane + cristae folds
@@ -685,7 +695,12 @@ const Stage = (() => {
     return {
       key: "mito",
       set(s) { highlight(s && s.highlight); },
-      update(dt) { if (!reduce) g.rotation.y += 0; }
+      update(dt) {
+        if (reduce) return;
+        // gentle idle: a slow breathing bob so the organelle feels alive
+        g.position.y = Math.sin(last * 0.0012) * 0.06;
+        g.scale.setScalar(1 + Math.sin(last * 0.0016) * 0.006);
+      }
     };
   }
 
@@ -700,12 +715,13 @@ const Stage = (() => {
   function setLabel(spr, text) {
     const cv = spr.userData.cv, c = cv.getContext("2d");
     c.clearRect(0, 0, cv.width, cv.height);
-    c.fillStyle = dark ? "rgba(8,20,30,0.88)" : "rgba(255,255,255,0.92)";
-    roundRect(c, 6, 34, 500, 60, 14); c.fill();
+    c.fillStyle = dark ? "rgba(8,20,30,0.92)" : "rgba(255,255,255,0.95)";
+    roundRect(c, 4, 28, 504, 72, 16); c.fill();
+    c.strokeStyle = dark ? "rgba(120,160,200,0.45)" : "rgba(40,70,110,0.28)"; c.lineWidth = 2; c.stroke();
     c.fillStyle = dark ? "#eaf3ff" : "#10243a";
-    c.font = "bold 34px 'Atkinson Hyperlegible', Arial, sans-serif";
+    c.font = "bold 40px 'Atkinson Hyperlegible', Arial, sans-serif";
     c.textAlign = "center"; c.textBaseline = "middle";
-    c.fillText(text, 256, 64, 490);
+    c.fillText(text, 256, 64, 492);
     spr.userData.tex.needsUpdate = true;
   }
   function roundRect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
@@ -734,15 +750,24 @@ const Stage = (() => {
     const o2lab = makeLabel("O₂ → H₂O"); o2lab.position.set(1.4, -2.9, 0); o2lab.scale.set(2.6, 0.9, 1); g.add(o2lab);
     // electron spark travelling along the chain
     W.spark = new T.Mesh(new T.SphereGeometry(0.22, 10, 8), basic(COL.cyan)); W.spark.position.set(-5.2, 0.3, 0.9); g.add(W.spark);
-    // ATP synthase: rotor ring in membrane + stalk + 3-lobe head
+    // ATP synthase: F0 rotor ring embedded in the membrane, a central stalk, and
+    // the F1 head sitting DOWN in the matrix (where ADP + Pi become ATP). Protons
+    // flow from the intermembrane space (above) down through F0 into the matrix.
     const syn = new T.Group(); syn.position.set(4, 0, 0); W.syn = syn; g.add(syn);
+    // F0: rotor ring in the lipid bilayer (y ~ 0, membrane level)
     W.rotor = new T.Mesh(new T.CylinderGeometry(0.75, 0.75, 1.0, 20), mat(COL.gold)); W.rotor.position.y = 0; syn.add(W.rotor);
+    // fixed a-subunit stator beside the ring (holds the proton half-channels)
+    const stator = new T.Mesh(new T.BoxGeometry(0.34, 1.0, 0.5), mat(COL.slate)); stator.position.set(0.95, 0, 0); syn.add(stator);
     // rotor spokes so the spin is visible
     W.spokes = new T.Group(); for (let i = 0; i < 6; i++) { const sp = new T.Mesh(new T.BoxGeometry(1.5, 0.12, 0.18), mat(COL.amber)); sp.rotation.y = (i / 6) * Math.PI * 2; W.spokes.add(sp); } W.rotor.add(W.spokes);
-    const stalk = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, 1.3, 10), mat(COL.dim)); stalk.position.y = 1.0; syn.add(stalk);
-    W.head = new T.Group(); W.head.position.y = 1.9; syn.add(W.head);
+    // central stalk (gamma subunit) reaching DOWN into the matrix
+    const stalk = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, 1.3, 10), mat(COL.dim)); stalk.position.y = -1.0; syn.add(stalk);
+    // F1 head in the matrix — three catalytic lobes
+    W.head = new T.Group(); W.head.position.y = -1.9; syn.add(W.head);
     W.lobes = []; for (let i = 0; i < 3; i++) { const lobe = new T.Mesh(new T.SphereGeometry(0.55, 14, 12), mat(COL.green)); const a = (i / 3) * Math.PI * 2; lobe.position.set(Math.cos(a) * 0.55, 0, Math.sin(a) * 0.55); W.head.add(lobe); W.lobes.push(lobe); }
-    const synlab = makeLabel("ATP synthase"); synlab.position.set(4, 3.1, 0); synlab.scale.set(3, 1, 1); g.add(synlab);
+    const synlab = makeLabel("ATP synthase"); synlab.position.set(4, 2.9, 0); synlab.scale.set(3, 1, 1); g.add(synlab);
+    const f0lab = makeLabel("F₀ rotor (membrane)"); f0lab.position.set(6.1, 0.1, 0); f0lab.scale.set(3.2, 0.95, 1); g.add(f0lab);
+    const f1lab = makeLabel("F₁ head (matrix) → ATP"); f1lab.position.set(4, -3.1, 0); f1lab.scale.set(3.8, 0.95, 1); g.add(f1lab);
     // uncoupler leak channel (hidden until toggled)
     W.leak = new T.Mesh(new T.CylinderGeometry(0.4, 0.4, 1.3, 14), mat(COL.red, { transparent: true, opacity: 0.85 }));
     W.leak.position.set(2.7, 0, 1.2); W.leak.visible = false; g.add(W.leak);
@@ -758,6 +783,13 @@ const Stage = (() => {
     makeProtons(60, W, g);
     // movers: a few protons animate up through pumps / down through synthase & leak
     W.moversUp = W.protons.slice(0, 6); W.moversDownSyn = W.protons.slice(6, 12); W.moversDownLeak = W.protons.slice(12, 16);
+    // make the moving protons read as small glowing particles (additive, a touch larger)
+    [...W.moversUp, ...W.moversDownSyn, ...W.moversDownLeak].forEach((p) => {
+      p.material.color.setHex(0xffe6a0);
+      p.material.blending = T.AdditiveBlending;
+      p.material.transparent = true; p.material.depthWrite = false;
+      p.scale.setScalar(1.35);
+    });
     return W;
   }
 
@@ -808,14 +840,22 @@ const Stage = (() => {
       sim.atpRate = control.oligomycin ? 0 : through;
       sim.heat = clamp(uleak * 0.8 + (control.oligomycin ? 0 : bleak * 0.2), 0, 1.5);
     }
-    let sparkT = 0, atpT = 0;
+    let sparkT = 0;
     function update(dt) {
       step(dt);
       layoutProtons(W);
       // rotor spin (frozen under oligomycin; gentle under reduced motion)
       const spin = reduce ? 0 : sim.rpm;
-      if (!control.oligomycin) W.rotor.rotation.y += spin * dt;
-      W.plug.rotation.y += 0;
+      if (!control.oligomycin) {
+        const dAng = spin * dt;
+        W.rotor.rotation.y += dAng;
+        // three catalytic sites fire per full turn -> one ATP every 120 degrees,
+        // so the visible ATP rate stays ~3 per rotation (see Scene 5).
+        if (control.make && !reduce && sim.atpRate > 0.03) {
+          W.atpAngle = (W.atpAngle || 0) + dAng;
+          while (W.atpAngle >= THIRD_TURN) { W.atpAngle -= THIRD_TURN; spawnAtp(W); }
+        }
+      }
       // head lobe pulse when making ATP
       const making = control.make && sim.atpRate > 0.05;
       W.lobes.forEach((lb, i) => { const s = making && !reduce ? 1 + 0.12 * Math.sin(last * 0.006 + i * 2) : 1; lb.scale.setScalar(s); lb.material.emissive && lb.material.emissive.setHex(making ? 0x0f3d20 : 0x000000); });
@@ -831,16 +871,12 @@ const Stage = (() => {
       // heat glow
       W.glow.material.opacity = reduce ? Math.min(0.5, sim.heat * 0.35) : Math.min(0.6, sim.heat * 0.4) * (0.85 + 0.15 * Math.sin(last * 0.008));
       W.glow.scale.setScalar(0.8 + sim.heat * 0.5);
-      // ATP tokens pop from the head into the matrix
-      if (control.make && sim.atpRate > 0.05 && !reduce) {
-        atpT += dt * sim.atpRate * 3;
-        while (atpT > 1) { atpT -= 1; spawnAtp(W); }
-      }
-      W.atp.forEach((a) => { if (a.userData.phase >= 0) { a.userData.phase += dt * 0.8; const p = a.userData.phase; if (p >= 1) { a.visible = false; a.userData.phase = -1; } else { a.position.y = lerp(1.9, -1.8, p); a.material.opacity = 1 - p; a.visible = true; } } });
+      // ATP tokens drift from the F1 head deeper into the matrix, then fade
+      W.atp.forEach((a) => { if (a.userData.phase >= 0) { a.userData.phase += dt * 0.8; const p = a.userData.phase; if (p >= 1) { a.visible = false; a.userData.phase = -1; } else { a.position.y = lerp(-1.9, -3.4, p); a.material.opacity = 1 - p; a.visible = true; } } });
       // stats to the app ~5x/sec
       if (last - lastStatsAt > 200) { lastStatsAt = last; onStats && onStats(statsObj()); }
     }
-    function spawnAtp(W) { const a = W.atp.find((x) => x.userData.phase < 0); if (a) { a.userData.phase = 0; a.position.set(4 + (Math.random() - 0.5) * 0.8, 1.9, (Math.random() - 0.5) * 0.8); a.material.transparent = true; } }
+    function spawnAtp(W) { const a = W.atp.find((x) => x.userData.phase < 0); if (a) { a.userData.phase = 0; a.position.set(4 + (Math.random() - 0.5) * 0.8, -1.9, (Math.random() - 0.5) * 0.8); a.material.transparent = true; } }
     function moveThrough(arr, dt, rate, up, x, span) {
       arr.forEach((p, i) => {
         if (rate <= 0.001) { p.visible = false; return; }
