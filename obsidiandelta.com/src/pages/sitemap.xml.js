@@ -17,7 +17,7 @@ import { indexablePosts } from './_posts.js';
 
 const SITE = 'https://www.obsidiandelta.com';
 
-const STATIC_ROUTES = ['/', '/blog/', '/learning/'];
+const STATIC_ROUTES = ['/', '/blog/', '/learning/', '/learning/sample-report/'];
 
 const day = (value) => {
   const d = new Date(value);
