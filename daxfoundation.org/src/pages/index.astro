@@ -55,13 +55,14 @@ const doors = [
     text: 'The benchmark, the measure, how it works underneath, the experiments with their results, the Constraint Protocol, and the ask.' },
 ];
 
-// The five showcases, in one row: the ceiling of what the recipe builds.
+// The six showcases, in one row: the ceiling of what the recipe builds.
 const showcases = [
   { href: '/metadax/samples/stade-des-fractions/', name: 'Le Stade des Fractions', note: 'French fractions in a 3D stadium' },
   { href: '/metadax/showcases/first-week-at-the-bakery/', name: 'First Week at the Bakery', note: 'a staff onboarding module' },
   { href: '/metadax/showcases/proton-mill/', name: 'The Proton Mill', note: 'a 3D Biology 101 lesson' },
   { href: '/metadax/showcases/tutors-desk/', name: "The Tutor's Desk", note: "one tutor's week" },
   { href: '/metadax/showcases/grade-6-science-year/', name: 'The Year on the Wall', note: 'a whole Grade 6 science year' },
+  { href: 'https://www.obsidiandelta.com/learning/sample-report/', name: 'A sample tutor report', note: 'what a tutor gets back', rel: 'noopener' },
 ];
 
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
@@ -101,7 +102,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <p class="big">The same recipe built every one of these.</p>
       <nav class="showcases" aria-label="Showcases">
         {showcases.map((s) => (
-          <a href={s.href}>
+          <a href={s.href} rel={s.rel}>
             <span class="sc-name">{s.name}</span>
             <span class="sc-note">{s.note}</span>
           </a>
@@ -336,7 +337,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   .see-it { margin-top: 2rem; }
   .showcases {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
     margin-top: 0.5rem;
   }
