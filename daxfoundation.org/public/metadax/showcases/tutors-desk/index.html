@@ -612,8 +612,11 @@ const DATA = {
     if (p.kind === "notes") body = notesHTML(p);
     else if (p.kind === "report") body = reportHTML(p);
     else if (p.kind === "coach") body = coachHTML(p);
+    // The report panel's heading carries id="report" so it can be deep-linked
+    // (see the hash handling in boot): /tutors-desk/#report opens Panel 2.
+    var hId = p.id === "report" ? ' id="report"' : "";
     $("#panelcard").innerHTML =
-      '<div class="panel-head"><span class="tag">' + esc(p.tag) + "</span><h2>" + esc(p.title) + "</h2></div>" +
+      '<div class="panel-head"><span class="tag">' + esc(p.tag) + "</span><h2" + hId + ">" + esc(p.title) + "</h2></div>" +
       '<p class="panel-lede">' + esc(p.lede) + "</p>" +
       body +
       '<p class="panel-foot">' + esc(p.foot) + "</p>";
@@ -704,9 +707,29 @@ const DATA = {
     else if (el.hasAttribute("data-close")) { var dd = $("#about"); if (dd.close) dd.close(); }
   });
 
+  // A direct link to the report: #report (or #panel-2) opens Panel 2 on load.
+  // Index of the report panel, found by id so it survives any reordering.
+  function reportIndex() {
+    for (var i = 0; i < DATA.panels.length; i++) {
+      if (DATA.panels[i].id === "report") return i;
+    }
+    return 0;
+  }
+  function panelFromHash() {
+    var h = (window.location.hash || "").toLowerCase();
+    if (h === "#report" || h === "#panel-2") return reportIndex();
+    return null;
+  }
+
   function boot() {
     $("#prevbtn").addEventListener("click", function () { go(state.panel - 1); });
     $("#nextbtn").addEventListener("click", function () { go(state.panel + 1); });
+    var start = panelFromHash();
+    if (start !== null) state.panel = start;
+    window.addEventListener("hashchange", function () {
+      var p = panelFromHash();
+      if (p !== null) go(p);
+    });
     renderStepNav();
     renderPanel();
     renderSelector();
