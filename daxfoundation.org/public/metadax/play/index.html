@@ -46,6 +46,7 @@
   .scene .stages { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0; }
   .scene .stage { position:relative; width:220px; max-width:100%; aspect-ratio:1/1; background:var(--chip); border-radius:8px; overflow:hidden; }
   .scene .stage svg { width:100%; height:100%; display:block; }
+  .scene .stage canvas { width:100%; height:100%; display:block; }
   .scene .ans { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:.4rem 0; }
   .scene input[type=text] { font:inherit; padding:.35rem .5rem; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); }
   .scene button.chk { padding:.35rem .9rem; }
@@ -313,6 +314,12 @@
             if (def){
               stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
               var h = def.mount(THREEMod, stage, u.params, { reducedMotion: reduce, theme: theme, level: ulvl });
+              if (h.resize && typeof ResizeObserver !== "undefined") {
+                var ro = new ResizeObserver(function() { h.resize(); });
+                ro.observe(stage);
+                var origDispose = h.dispose;
+                h.dispose = function() { ro.disconnect(); if (origDispose) origDispose(); };
+              }
               handles.push(h);
               return;
             }

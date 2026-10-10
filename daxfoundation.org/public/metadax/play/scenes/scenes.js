@@ -155,7 +155,18 @@ function makeStage(THREE, el) {
   var key = new THREE.DirectionalLight(0xffffff, 0.6);
   key.position.set(1, 2, 3);
   scene.add(key);
-  return { renderer: renderer, scene: scene, cam: cam, w: w, h: h, aspect: aspect };
+  var st = { renderer: renderer, scene: scene, cam: cam, w: w, h: h, aspect: aspect };
+  // Resize to el's current size; safe to call when el was hidden at mount time.
+  st.resize = function() {
+    var nw = el.clientWidth, nh = el.clientHeight;
+    if (!nw || !nh || (nw === st.w && nh === st.h)) return;
+    st.w = nw; st.h = nh; st.aspect = nw / nh;
+    renderer.setSize(nw, nh, false);
+    cam.left = -st.aspect; cam.right = st.aspect;
+    cam.updateProjectionMatrix();
+    renderer.render(scene, cam);
+  };
+  return st;
 }
 
 // Overlay a small HTML label into the stage element (used for fraction labels at
@@ -266,6 +277,7 @@ var fractionBars = {
     loop();
     return {
       setReducedMotion: function (b) { reduced = b; if (b && raf) { cancelAnimationFrame(raf); raf = 0; } else if (!b && !raf) loop(); },
+      resize: st.resize,
       dispose: function () {
         if (raf) cancelAnimationFrame(raf);
         labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
@@ -404,6 +416,7 @@ var clock = {
     return {
       setReducedMotion: function (b) { reduced = b; render(); },
       getState: function () { return { hour: state.hour, minute: state.minute }; },
+      resize: st.resize,
       dispose: function () { cleanup.forEach(function (fn) { fn(); }); st.renderer.dispose(); if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement); },
     };
   },
@@ -650,6 +663,7 @@ var track = {
         if (b) { if (raf) { cancelAnimationFrame(raf); raf = 0; } runners.forEach(function (rn) { placeRunner(rn, 1); }); render(); }
         else if (!raf) { start = 0; raf = requestAnimationFrame(frame); }
       },
+      resize: st.resize,
       dispose: function () {
         if (raf) cancelAnimationFrame(raf);
         st.renderer.dispose();
