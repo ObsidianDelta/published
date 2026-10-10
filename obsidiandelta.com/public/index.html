@@ -59,6 +59,11 @@
   .nav { display: flex; gap: 24px; }
   .nav a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ash); text-decoration: none; transition: color 0.2s; }
   .nav a:hover, .nav a[aria-current] { color: var(--orange); }
+  @media (max-width: 559px) {
+    .strip .shell { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .brand span { white-space: nowrap; }
+    .nav { flex-wrap: wrap; gap: 6px 16px; }
+  }
 
   /* HERO — just the logo + name, nothing else */
   .hero {
