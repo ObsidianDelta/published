@@ -468,6 +468,24 @@
   document.getElementById("play").addEventListener("click", play);
   // optional: load check-lists.json so warnings match the gate
   fetch("check-lists.json").then(function(r){return r.json();}).then(function(j){window.CHECK_LISTS=j;}).catch(function(){});
+  // ?sample=<name> — fetch /metadax/play/samples/<name>.json and run the Play
+  // code path. On any failure fall back silently to the empty box (page behaves
+  // exactly as without the parameter).
+  (function(){
+    var sname = new URLSearchParams(location.search).get("sample");
+    if (!sname) return;
+    fetch("samples/" + encodeURIComponent(sname) + ".json")
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+      .then(function(j){
+        document.getElementById("src").value = JSON.stringify(j, null, 2);
+        return play();
+      })
+      .then(function(){
+        var tabs = document.querySelectorAll(".tabs button");
+        if (tabs.length > 1) tabs[1].click();
+      })
+      .catch(function(){});
+  })();
 })();
 </script>
 </body>

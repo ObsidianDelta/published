@@ -363,6 +363,7 @@
     try {
       var hash = location.hash || "";
       var src = new URL(location.href).searchParams.get("src");
+      var sample = new URL(location.href).searchParams.get("sample");
       var stored = null;
       try { stored = window.localStorage && localStorage.getItem("metadax:print"); } catch(e){}
       if (hash.indexOf("#p=") === 0){
@@ -372,6 +373,12 @@
         var r = await fetch(src);
         if (!r.ok) return fail("Could not load package from " + src + " (" + r.status + ").");
         await renderWithScenes(await r.json());
+      } else if (sample){
+        // ?sample=<name> — fetch /metadax/play/samples/<name>.json and render.
+        // On any failure fall back silently to the empty paste box.
+        var sr = await fetch("samples/" + encodeURIComponent(sample) + ".json");
+        if (!sr.ok){ document.getElementById("bar").style.display = "none"; showPaste(); return; }
+        await renderWithScenes(await sr.json());
       } else if (stored){
         localStorage.removeItem("metadax:print");
         await renderWithScenes(JSON.parse(stored));
