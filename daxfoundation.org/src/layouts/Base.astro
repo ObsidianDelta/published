@@ -2,14 +2,17 @@
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
   wide?: boolean;
 }
 const {
   title = 'DAX Foundation',
   description = 'DAX: preservation and expansion of life, humanity, and consciousness.',
+  image = 'metadax',
   wide = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL(`/og/${image}.png`, Astro.site);
 
 // 2026-09-20: the footer used to carry "Canadian not-for-profit" in its right
 // corner. It is gone at Jason's request, and nothing has taken its place: the
@@ -48,14 +51,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL('/og.png', Astro.site)} />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="DAX Foundation — preservation and expansion of life, humanity, and consciousness." />
+    <meta property="og:image:alt" content={`${title} — ${description}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL('/og.png', Astro.site)} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
     <header class="wrap top">
