@@ -1,0 +1,74 @@
+[
+  {
+    "file": "metadax/walkthroughs/homeschool/01.png",
+    "path": "/metadax/samples/stade-des-fractions/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "main"
+  },
+  {
+    "file": "metadax/walkthroughs/homeschool/02.png",
+    "path": "/metadax/play/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "h1"
+  },
+  {
+    "file": "metadax/walkthroughs/homeschool/03.png",
+    "path": "/metadax/play/print.html",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "#footer"
+  },
+  {
+    "file": "metadax/walkthroughs/teacher/01.png",
+    "path": "/metadax/play/print.html",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "#footer"
+  },
+  {
+    "file": "metadax/walkthroughs/teacher/02.png",
+    "path": "/metadax/showcases/grade-6-science-year/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "main"
+  },
+  {
+    "file": "metadax/walkthroughs/tutor/01.png",
+    "path": "/metadax/showcases/tutors-desk/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "main"
+  },
+  {
+    "file": "metadax/walkthroughs/trainer/01.png",
+    "path": "/metadax/showcases/first-week-at-the-bakery/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "main"
+  },
+  {
+    "file": "metadax/walkthroughs/trainer/02.png",
+    "path": "/metadax/showcases/proton-mill/",
+    "width": 390,
+    "height": 844,
+    "scrollY": 0,
+    "fullPage": false,
+    "waitFor": "main"
+  }
+]
