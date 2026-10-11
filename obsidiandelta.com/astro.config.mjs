@@ -22,10 +22,22 @@ import { defineConfig } from 'astro/config';
 // Do not edit, rename, reformat or "tidy" anything under public/mp/, and do not
 // add a route under src/pages/mp/. A route there would shadow the static page.
 //
-// Everything that is new -- /blog/, /blog/<slug>/, /404.html, /sitemap.xml,
-// /robots.txt, /version.json -- comes from src/ and the deploy stamp.
+// Everything that is new -- /blog/, /blog/<slug>/, /opportunities/, /404.html,
+// /sitemap.xml, /robots.txt, /version.json -- comes from src/ and the deploy
+// stamp.
+//
+// MOVED PAGES redirect through `redirects` below, which the static build turns
+// into plain HTML pages with a meta refresh and a canonical link. Never a
+// _redirects, _headers, _routes.json or _worker.js: the deploy gate fails on
+// any of them, because nothing may change how Pages routes /mp/.
 export default defineConfig({
   site: 'https://www.obsidiandelta.com',
+  redirects: {
+    // 2026-10-11: /learning/ became /opportunities/ (the emergent frame). The
+    // pinned home page still links /learning/; these keep every old link alive.
+    '/learning': '/opportunities/',
+    '/learning/sample-report': '/opportunities/sample-report/',
+  },
   markdown: {
     // Same reasoning as jeyanandan.com: no highlighter stamping inline colours
     // onto <pre> blocks; the stylesheet owns code blocks.
