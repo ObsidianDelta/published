@@ -3,7 +3,7 @@ title: "Meta DAX, Two Weeks In"
 subtitle: "The Open Recipe, the Honest Results, and Your Chair"
 date: 2026-10-11
 updated: 2026-10-11
-description: "Two weeks after the introduction: what Meta DAX actually is now — the one idea underneath it, the open recipe, the showcases, the first honest experiment results — and where you come in."
+description: "Two weeks after the introduction: what Meta DAX actually is now — the one idea underneath it, the open recipe, the showcases, the first honest experiment results, the first dish — and where you come in."
 draft: false
 tags: ["meta-dax", "learning", "experiments"]
 ---
@@ -62,7 +62,7 @@ So three things changed in the design, held as hypotheses for the next experimen
 
 My cognitive companion builds all of this, and it runs on paid compute. That is the honest shape of it, and it is also the point. Every build done for someone who pays can be shared back into the commons, de-identified, so the next person starts from reuse instead of a blank page. That is the flywheel: a teacher's published course, a learner's good question folded in with permission, a stumble a guide fixed so nobody falls into the same hole twice. Each one makes the next path shorter. The commons gets better every time somebody walks on it.
 
-The line I hold is simple. **Meta DAX, and the Foundation's universal learning initiative behind it, is free — the recipe, the skills, the samples, all of it.** The [done-for-you work](https://www.obsidiandelta.com/learning/) — a package built to order, a report written in your voice, a course built in a week — is a separate, clearly labelled service, Obsidian Delta's, never the Foundation's. The free thing stays free. The paid thing pays for the compute that keeps the free thing running and feeds the commons. That is the whole arrangement, and I would rather you understood it than trusted it.
+The line I hold is simple. **Meta DAX, and the Foundation's universal learning initiative behind it, is free — the recipe, the skills, the samples, all of it.** The [done-for-you work](https://www.obsidiandelta.com/opportunities/) — a package built to order, a report written in your voice, a course built in a week, and the businesses the whole stack now opens up for someone who brings their own expertise — is a separate, clearly labelled service, Obsidian Delta's, never the Foundation's. The free thing stays free. The paid thing pays for the compute that keeps the free thing running and feeds the commons. That is the whole arrangement, and I would rather you understood it than trusted it.
 
 Which brings me to the one sentence I will say outright:
 
@@ -70,9 +70,11 @@ Which brings me to the one sentence I will say outright:
 
 ---
 
-## What's next
+## What's new today
 
-The next packages are about food. Every culture has a dish that only one person in the family makes properly, and inside that dish is a whole lesson: the measuring and the ratios, the heat and the time, the chemistry of the one step that matters, and the story of where it comes from and when it is eaten. The same recipe that built the stadium will build *one dish, its story* for the kids of a diaspora — the first ones Filipino, Serbian, Sikh and Uruguayan — each one read by someone from that community before it goes out, published free, and carrying the name of the person who sponsored it. If one of those is your community, [the Sponsors page](https://github.com/sponsors/ObsidianDelta) is where you put your name on it.
+The first of the food packages is live: **[Sri Lankan Tamil chicken curry, Jaffna style](https://daxfoundation.org/metadax/showcases/tamil-chicken-curry/)** — my mother's recipe, as she told it to me this morning, built by the recipe from a brief of eight lines into a 3D kitchen in three stations: where it comes from, how to make it, what it means. Tamil and English on one click. Every culture has a dish that only one person in the family makes properly, and inside that dish is a whole lesson: the measuring and the ratios, the heat and the time, the one step that matters, and the story of where it comes from. The brief is on the page, so you can see exactly what had to be said to get all of that. The same recipe will build the next one for whoever sends me theirs. On formaddie.com I wrote up why: [The recipe is the story](https://formaddie.com/blog/the-recipe-is-the-story/).
+
+**Send me a scenario.** A dish — or any subject — a learner and a guide, in three lines, and I build it in the open, the way that one was built. The first ten. Reply wherever you found this, or [open an issue](https://github.com/daxfoundation/metadax/issues).
 
 ---
 
@@ -80,7 +82,7 @@ The next packages are about food. Every culture has a dish that only one person 
 
 Three things, and each is specific on purpose.
 
-1. **Send me a scenario.** A real learner, a real stuck spot, a real first week — whatever chair you sit in. Change the names, keep the shape. I want to point the factory at situations I did not invent.
+1. **Send me a scenario**, as above. A real learner, a real stuck spot, a real first week — whatever chair you sit in. Change the names, keep the shape. I want to point the factory at situations I did not invent.
 2. **Try one skill and tell me what broke.** Not what you liked — what broke. A wrong turn, a tone that was off, a place it steered you when it should have offered a door. The system is built to be told when it felt like *the* way instead of *a* way, and I read every report.
 3. **A coffee, or your name on a package**, if it helped. The sentence above is the whole of it.
 
