@@ -73,7 +73,7 @@
     head.appendChild(fl);
 
     var bar = h("div", { class: "toolbar" });
-    var tog = h("span", { class: "toggle", role: "group", "aria-label": "Language" });
+    var tog = h("span", { class: "toggle", id: "langtoggle", role: "group", "aria-label": "Language" });
     el.langEn = h("button", { id: "lang-en", "aria-pressed": "true" }, esc(ui.langEnLabel || "English"));
     el.langComm = h("button", { id: "lang-comm", class: DISH.lang.commClass || "", "aria-pressed": "false" }, esc(ui.langCommLabel || DISH.lang.commLabel || "—"));
     tog.appendChild(el.langEn); tog.appendChild(el.langComm); bar.appendChild(tog);
@@ -106,6 +106,10 @@
     el.panel = h("div", { class: "panel", id: "panel" });
     layout.appendChild(el.stage); layout.appendChild(el.panel);
     root.appendChild(layout);
+
+    /* "What this shows" — the behind-the-scenes section, directly under the stations.
+       Filled and wired by paintShows() (also re-run on language toggle). */
+    if (ui.shows) root.appendChild(h("div", { class: "card", id: "shows" }));
 
     /* adult page */
     if (ui.adult) {
@@ -150,6 +154,72 @@
     return s;
   }
 
+  /* ---- "What this shows" — a generic, dish-fed behind-the-scenes section ---------
+     The dish supplies ui.shows = { kicker?, h, intro?, concepts[], brief?, scenario? }.
+     Each concept is { h, body, links:[ {label, href} | {label, station:n} ] }; a
+     station link jumps the stage to that station, an href link is a plain anchor/URL.
+     The brief is { h, lines[], copy, copied?, after? } with a copy-to-clipboard button;
+     the scenario is { h, body, extra? }. Headings carry [READER] in review mode; the
+     bodies stay as written (English prose is not re-authored into the community language). */
+  function showsLink(l) {
+    if (l.station != null) return '<button type="button" class="shows-jump" data-st="' + esc(l.station) + '">' + esc(t(l.label)) + " →</button>";
+    return '<a class="shows-ptr" href="' + esc(l.href) + '">' + esc(t(l.label)) + " →</a>";
+  }
+  function renderShows(sh) {
+    var mk = REVIEW ? " " + reader() : "";
+    var s = '<div class="kicker" style="color:var(--accent)">' + esc(t(sh.kicker || { en: "Behind the scenes" })) + (REVIEW ? " · [READER]" : "") + "</div>";
+    s += "<h2>" + esc(t(sh.h)) + mk + "</h2>";
+    if (sh.intro) s += "<p>" + t(sh.intro) + "</p>";
+    s += '<ol class="shows">';
+    (sh.concepts || []).forEach(function (c) {
+      s += "<li><b>" + esc(t(c.h)) + mk + "</b> " + t(c.body);
+      if (c.links && c.links.length) s += '<div class="shows-ptrs">' + c.links.map(showsLink).join("") + "</div>";
+      s += "</li>";
+    });
+    s += "</ol>";
+    if (sh.brief) {
+      var b = sh.brief;
+      s += '<div class="brief" id="brief"><div class="brief-h">' + esc(t(b.h)) + mk + "</div>";
+      s += "<blockquote>" + (b.lines || []).map(esc).join("<br>") + "</blockquote>";
+      s += '<button type="button" class="btn shows-copy" id="brief-copy">' + esc(t(b.copy || { en: "Copy" })) + "</button>";
+      if (b.after) s += '<p class="brief-after">' + esc(t(b.after)) + "</p>";
+      s += "</div>";
+    }
+    if (sh.scenario) {
+      var sc = sh.scenario;
+      s += '<div class="scenario" id="scenario"><h3>' + esc(t(sc.h)) + mk + "</h3><p>" + t(sc.body) + "</p>";
+      if (sc.extra) s += '<p class="scenario-extra">' + t(sc.extra) + "</p>";
+      s += "</div>";
+    }
+    return s;
+  }
+  /* fill the #shows card and wire its station-jumps and the copy-the-brief button */
+  function paintShows() {
+    var card = document.getElementById("shows"), sh = DISH.ui.shows;
+    if (!card || !sh) return;
+    card.innerHTML = renderShows(sh);
+    [].forEach.call(card.querySelectorAll(".shows-jump"), function (btn) {
+      btn.onclick = function () {
+        gotoStation(+btn.getAttribute("data-st"));
+        var stage = document.getElementById("stage");
+        if (stage && stage.scrollIntoView) stage.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "center" });
+      };
+    });
+    var cp = document.getElementById("brief-copy"), b = sh.brief;
+    if (cp && b && b.lines) {
+      cp.onclick = function () {
+        var txt = b.lines.join("\n");
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt);
+          else { var ta = h("textarea"); ta.value = txt; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); document.body.removeChild(ta); }
+          var was = t(b.copy || { en: "Copy" });
+          cp.textContent = t(b.copied || { en: "Copied" });
+          setTimeout(function () { cp.textContent = was; }, 1800);
+        } catch (e) {}
+      };
+    }
+  }
+
   /* ---- language toggle ---------------------------------------------------- */
   function applyLang() {
     document.documentElement.lang = LANG === COMM ? COMM : "en";
@@ -166,6 +236,7 @@
     if (ui.about) { setI("ab_h", ui.about.h); if (ui.about.help) setI("ab_help", ui.about.help.h); }
     if (ui.footer) { var f = ui.footer; setI("f1", f.way); setI("f2", f.safety); setI("f3", f.reader); setI("f4", f.sponsor); setI("f5", f.byline); }
     renderRecipe();
+    if (DISH.ui.shows) paintShows();
     renderPanel(CUR);
     paintLabels();
     layoutLabels();

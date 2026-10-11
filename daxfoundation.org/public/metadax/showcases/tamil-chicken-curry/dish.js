@@ -58,8 +58,8 @@
         en: "Where it comes from · How to make it · What it means. A Jaffna kitchen in three stations — the lesson is in the scene, not decorating it.",
         ta: "எங்கிருந்து வருகிறது · எப்படி சமைப்பது · என்ன அர்த்தம். மூன்று நிலையங்களில் ஒரு யாழ்ப்பாண சமையலறை."
       },
-      face1: { en: "This is the showcase for the cultural packages: one dish, its story.", ta: "இது கலாசாரத் தொகுப்புகளுக்கான காட்சி: ஒரு உணவு, அதன் கதை." },
-      face2: { en: "The Filipino, Serbian, Sikh and Uruguayan packages are open for sponsorship." },
+      face1: { en: "One showcase.", ta: "ஒரே ஒரு காட்சி." },
+      face2: { en: "Everything on this page — the lesson, the game, the Tamil, the recipe card — came out of the open Meta DAX recipe, from a brief of eight lines. The brief is below.", ta: "இந்தப் பக்கத்தில் உள்ள அனைத்தும் — பாடம், விளையாட்டு, தமிழ், செய்முறை அட்டை — எட்டு வரிகள் கொண்ட ஒரு சுருக்கத்திலிருந்து, திறந்த Meta DAX செய்முறையிலிருந்து வந்தது. சுருக்கம் கீழே உள்ளது." },
       face3: { en: "Model-generated example, reviewed for safety and not certified. Read by someone from the community before it goes out." },
       langEnLabel: "English", langCommLabel: "தமிழ்",
       flip: { en: "tap to flip", ta: "மாற்ற தட்டவும்" },
@@ -70,6 +70,80 @@
       nogl: {
         en: "The 3D kitchen doesn't show on this device. Every lesson, word and game below works the same without it.",
         ta: "இந்த சாதனத்தில் 3D சமையலறை தெரியாது. கீழே உள்ள எல்லா பாடமும் விளையாட்டும் அதுவே வேலை செய்யும்."
+      },
+
+      /* "What this shows" — the behind-the-scenes section the engine renders under the
+         stations: eight concepts, each pointing at the thing on this page that proves it;
+         then the brief verbatim (with a copy button); then the "send me a scenario" box.
+         Headings and the section/box labels carry Tamil ([READER] in review); the bodies
+         stay English on purpose (full-sentence community-language copy is the reader's). */
+      shows: {
+        kicker: { en: "Behind the scenes", ta: "திரைக்குப் பின்னால்" },
+        h: { en: "What this shows", ta: "இந்தப் பக்கம் என்ன காட்டுகிறது" },
+        intro: { en: "This page is one example of what the platform does with a very simple set of prompts. Eight things it shows, and where on this page each one is:" },
+        concepts: [
+          {
+            h: { en: "The learner", ta: "கற்பவர்" },
+            body: { en: "Nila (invented, and she says so), ten, speaks Tamil at home and cannot read it, loves cricket, loses the thread when the denominators are different. Her page is the game and the transliteration line." },
+            links: [ { label: { en: "the kid's game, station 2" }, station: 1 }, { label: { en: "the words, station 3" }, station: 2 } ]
+          },
+          {
+            h: { en: "The guide", ta: "வழிகாட்டி" },
+            body: { en: "Her mother, at the kitchen table on a Sunday. The guide's page maps the misconceptions before the lesson, holds the check, and carries the safety line — knives, heat, allergens: the guide's call, every time. And the lead swings: Nila teaches her mother the toggle and the rules of cricket." },
+            links: [ { label: { en: "the guide page" }, href: "#adult" } ]
+          },
+          {
+            h: { en: "Same lesson, any skin", ta: "ஒரே பாடம், எந்த உருவிலும்" },
+            body: { en: "Fractions, ratio, heat and time, taught through one chicken. The same recipe built a fractions stadium for an eleven-year-old who loves football." },
+            links: [ { label: { en: "Le Stade des Fractions" }, href: "/metadax/samples/stade-des-fractions/" } ]
+          },
+          {
+            h: { en: "Any language", ta: "எந்த மொழியிலும்" },
+            body: { en: "Tamil and English on one click, with the sounds written out for a child who speaks but cannot yet read. Another language layer — Hindi, Arabic — is the same mechanism. To be plain: the shared player does English and French today; this page carries the Tamil itself; the player is being extended." },
+            links: [ { label: { en: "the Tamil toggle" }, href: "#langtoggle" } ]
+          },
+          {
+            h: { en: "Built from a brief, not by hand", ta: "கையால் அல்ல, சுருக்கத்திலிருந்து" },
+            body: { en: "Everything here came out of the short brief below — eight lines. Nobody hand-built the outline, the lessons, the misconceptions, the game or this page." },
+            links: [ { label: { en: "the brief" }, href: "#brief" } ]
+          },
+          {
+            h: { en: "Checked by a person, not certified", ta: "ஒரு மனிதர் பார்க்கிறார், சான்றளிக்கப்படவில்லை" },
+            body: { en: "A reader from the community reads every word before it goes out; the checker catches the rest; nothing here is <em>the</em> way." },
+            links: [ { label: { en: "A way, never the way" }, href: "#about" } ]
+          },
+          {
+            h: { en: "The record is open", ta: "பதிவு திறந்திருக்கிறது" },
+            body: { en: "The recipe, this package and its history are public." },
+            links: [ { label: { en: "github.com/daxfoundation/metadax" }, href: "https://github.com/daxfoundation/metadax" } ]
+          },
+          {
+            h: { en: "One file, works offline", ta: "ஒரே கோப்பு, இணையமில்லாமல் வேலை செய்யும்" },
+            body: { en: "The plain package is a single JSON file; it comes down whole and runs in the player without a connection. That is the five-minutes-a-day benchmark made concrete." },
+            links: [ { label: { en: "Open the plain package in the player" }, href: "/metadax/play/?sample=tamil-chicken-curry" } ]
+          }
+        ],
+        brief: {
+          h: { en: "The brief, verbatim — eight lines", ta: "சுருக்கம், அப்படியே — எட்டு வரிகள்" },
+          lines: [
+            "Dish: my mother's chicken curry, Jaffna style, the way she makes it.",
+            "Learner: a ten-year-old who speaks Tamil at home but can't read it, loves cricket, gets lost when the denominators are different.",
+            "Guide: her mother, at the kitchen table, on a Sunday.",
+            "Teach it through the dish: where it comes from, how to make it, what it means.",
+            "Language: English, with Tamil on one click and the sounds written out.",
+            "Three sessions of twenty minutes, or one afternoon cooking.",
+            "Someone from the community reads it before it goes out.",
+            "Make a guide page, a learner page and a recipe card."
+          ],
+          copy: { en: "Copy the brief", ta: "சுருக்கத்தை நகலெடு" },
+          copied: { en: "Copied", ta: "நகலெடுக்கப்பட்டது" },
+          after: { en: "Then the factory did the rest: an outline, the lessons, the misconceptions, the game, the package, the checker, this page." }
+        },
+        scenario: {
+          h: { en: "Send me a scenario", ta: "எனக்கு ஒரு சூழ்நிலையை அனுப்புங்கள்" },
+          body: { en: "A dish — or any subject — a learner and a guide, in three lines, and I will build it in the open, the way this one was built. Reply wherever you found this, or open an issue at <a href=\"https://github.com/daxfoundation/metadax/issues\">github.com/daxfoundation/metadax/issues</a>. The first ten." },
+          extra: { en: "Or run the recipe yourself: the repository has the skill and the prompt; a paste-ready version for any chat is being finished." }
+        }
       },
 
       adult: {
@@ -94,30 +168,33 @@
       },
 
       about: {
-        h: { en: "What this is", ta: "இது என்ன" },
+        /* The About is the why — the initiative, not a repeat of the concepts above.
+           Cultural variant of ABOUT-BLOCK.md (about/v2): what universal learning is,
+           the inversion, one line on the recipe, the formaddie thread, the reader line,
+           how to support. The five-showcase list is gone — concept 3 and the showcases
+           index carry that now. */
+        h: { en: "The why", ta: "ஏன்" },
         paras: [
-          /* "What this is" — verbatim from ABOUT-BLOCK.md (about/v1) */
-          { en: "This is part of the DAX Foundation's universal learning initiative. The idea is plain: learning should fit the one person doing it, not the other way round. A lesson built for a child who loves football should be made of football. A lesson for a child learning their grandmother's dish should be made of the dish. We don't believe there is one right method. <b>A way, never the way.</b>" },
-          /* one-line framing, in Jason's words (brief §3) */
-          { en: "This page is one example of what every Meta DAX package does: a culturally salient lesson for one guide and one learner — here, a ten-year-old learning to cook the dish her family makes — built from reusable parts, free, with the recipe for making your own in the open." },
-          /* cultural variant — verbatim; the formaddie seam ("you talk, she listens, your stories become a book"), never "cognitive companion" */
-          { en: "Every family has a dish only one person makes properly. There is a thread here to a sister project, Maddie, at <a href=\"https://formaddie.com\">formaddie.com</a>: you talk, she listens, your stories become a book. The chapter is theirs to share. A grandmother tells the dish the way she tells everything — out loud, in order, with the part everyone forgets — and it becomes a chapter. This package is what that story becomes for the next generation: the same dish, turned into a lesson a child can learn and cook, in the family's own words, read and signed off by someone from the community before it goes out." },
-          /* "What the recipe actually does" — verbatim, with the five showcases linked as proof */
-          { en: "<b>What the recipe actually does.</b> The same lesson can wear any skin and still be the same lesson. Fractions are fractions whether they live in a football stadium, a batch of dough, or a whole chicken cut for a curry. So we built a recipe: take one thing a learner cares about, and build the lesson through it, for that one learner. The proof is in the showcases — each one built by the same factory from a short brief:" },
-          { en: "<ul><li>The Tutor's Desk — <a href=\"/metadax/showcases/tutors-desk/\">/metadax/showcases/tutors-desk/</a></li><li>The Year on the Wall — <a href=\"/metadax/showcases/grade-6-science-year/\">/metadax/showcases/grade-6-science-year/</a></li><li>First Week at the Bakery — <a href=\"/metadax/showcases/first-week-at-the-bakery/\">/metadax/showcases/first-week-at-the-bakery/</a></li><li>The Proton Mill — <a href=\"/metadax/showcases/proton-mill/\">/metadax/showcases/proton-mill/</a></li><li>Le Stade des Fractions, in French and in 3D — <a href=\"/metadax/samples/stade-des-fractions/\">/metadax/samples/stade-des-fractions/</a></li></ul>Different learners, different skins, one recipe underneath." },
-          /* "You can take it and run it yourself" — verbatim, plus the doors and the player */
-          { en: "<b>You can take it and run it yourself.</b> The whole thing is open. The repository is public at <a href=\"https://github.com/daxfoundation/metadax\">github.com/daxfoundation/metadax</a> — the recipe. Fork it. You can run it in a plain chat on your own subscription — there is a skill for it, and the same thing written out as a single prompt for any capable model, so it costs the project nothing when you build your own. Every package you build can be shared back as a generic sample, with made-up names and nothing identifying, so the next family starts further along than you did. The doors are at <a href=\"https://daxfoundation.org/metadax/\">daxfoundation.org/metadax/</a>; open this dish as a plain package in <a href=\"/metadax/play/?sample=tamil-chicken-curry\">the player</a>." },
-          /* "A page for the guide, a page for the learner" — verbatim */
-          { en: "<b>A page for the guide, a page for the learner.</b> Each package is two pages. One is for the guide — the parent, the teacher, whoever sits beside the learner: the method, what to say, which slips are normal, the one thing only a person can do. One is for the learner — a game and a set of answered questions they use with the guide beside them. By default there is no AI on the child's side at all. The child plays and the guide teaches; the help went into building the pages, not into the child's hands." }
+          /* what universal learning is — any human, any subject, any bandwidth; the benchmark */
+          { en: "This is the DAX Foundation's universal learning initiative. The aim is plain: any human being, any subject, any domain, any bandwidth — a lesson made of the one thing the learner already cares about, built for the one person doing it. The benchmark we hold it to is a hard one: a person who can communicate, to the equivalent of a master's degree, on five minutes of connectivity a day. <b>A way, never the way.</b>" },
+          /* the inversion — thirty roles behind one learner, a few of them shown on this page */
+          { en: "It turns the old ratio inside out. Not thirty learners to one teacher, but thirty roles behind one learner — and this page already shows a few of them: the cook, the historian, the translator, the examiner, and the family at the table." },
+          /* what the recipe does, in one line; one link to the showcases index (not the five-item list) */
+          { en: "What the recipe does, in one line: take the one thing a learner cares about and build the whole lesson through it, for that one learner — then do it again for the next, each from a short brief. The other showcases are built the same way — <a href=\"/metadax/showcases/\">the showcases</a>." },
+          /* the formaddie thread, as it is now */
+          { en: "There is a thread here to a sister project, Maddie, at <a href=\"https://formaddie.com\">formaddie.com</a>: you talk, she listens, your stories become a book. Every family has a dish only one person makes properly; this package is what that telling becomes for the next generation — the dish turned into a lesson a child can learn and cook, in the family's own words." },
+          /* the reader line */
+          { en: "Nothing here is certified. A reader from the community reads every word before it goes out, and the checker catches the rest. Model-generated, reviewed for safety, read by a person." }
         ],
         help: {
-          /* "How to support it, and how to help" — verbatim items */
+          /* how to support — Ko-fi, GitHub Sponsors, the next package (no community names),
+             send a scenario, say what broke */
           h: { en: "How to support it, and how to help", ta: "எப்படி ஆதரிப்பது, எப்படி உதவுவது" },
           items: [
-            { en: "Sponsor a package on Ko-fi — <a href=\"https://ko-fi.com/jeyanandan\">ko-fi.com/jeyanandan</a>." },
-            { en: "Sponsor through GitHub Sponsors — <a href=\"https://github.com/sponsors/ObsidianDelta\">github.com/sponsors/ObsidianDelta</a>. Sponsor a package, or keep the lights on." },
-            { en: "Send a scenario — a learner, a thing they're stuck on, a thing they love — and we'll build it." },
-            { en: "Try a skill and tell us what broke. The ways it fails are how it gets better." }
+            { en: "Keep it running on Ko-fi — <a href=\"https://ko-fi.com/jeyanandan\">ko-fi.com/jeyanandan</a>." },
+            { en: "Or through GitHub Sponsors — <a href=\"https://github.com/sponsors/ObsidianDelta\">github.com/sponsors/ObsidianDelta</a>: keep the lights on, or back the next package." },
+            { en: "Send a scenario — a learner, a guide, a thing they love — and it gets built in the open." },
+            { en: "Run a skill and say what broke. The ways it fails are how it gets better." }
           ]
         }
       },
@@ -127,7 +204,6 @@
         safety: { en: "Model-generated; reviewed for safety, not certified. Read by someone from the community before it goes out." },
         reader: { en: "Read by Jason Jeyanandan." },
         sponsor: { en: "Built with the community.", ta: "சமூகத்துடன் கட்டப்பட்டது." },
-        open: { en: "The Filipino, Serbian, Sikh and Uruguayan packages are open for sponsorship — <a href=\"https://github.com/sponsors/ObsidianDelta\">github.com/sponsors/ObsidianDelta</a> · <a href=\"https://ko-fi.com/jeyanandan\">ko-fi.com/jeyanandan</a>." },
         byline: { en: "Published by Jason Jeyanandan through his cognitive companion, one unit." }
       }
     },

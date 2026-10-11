@@ -117,6 +117,22 @@ nav.stations .n{font-family:"Big Shoulders Display",sans-serif;color:var(--accen
 .foot{color:var(--muted);font-size:.82rem;margin:24px 0 40px;border-top:1px solid var(--line);padding-top:16px}
 .foot a{color:var(--accent)}
 .pill{display:inline-block;font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-left:6px}
+/* "What this shows" — the behind-the-scenes section the engine renders under the stations */
+ol.shows{margin:.6em 0 .2em;padding-left:1.35em}
+ol.shows li{margin:.6em 0;line-height:1.5}
+ol.shows li b{color:var(--text)}
+.shows-ptrs{display:flex;flex-wrap:wrap;gap:8px;margin:.4em 0 .2em}
+.shows-ptr,.shows-jump{font:inherit;font-size:.82rem;color:var(--accent);text-decoration:none;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 11px;line-height:1.4}
+.shows-ptr:hover,.shows-jump:hover{border-color:var(--accent)}
+.brief{margin:1.1em 0;padding:13px 15px;background:var(--surface2);border:1px solid var(--line);border-radius:12px}
+.brief-h{font-weight:700;margin-bottom:.5em}
+.brief blockquote{margin:0 0 .7em;padding-left:12px;border-left:3px solid var(--turmeric);
+  font-size:.9rem;color:var(--text);line-height:1.65}
+.brief-after{font-size:.86rem;color:var(--muted);margin:.4em 0 0}
+.scenario{margin:1.1em 0 0;padding:15px;border:1px solid var(--accent);border-radius:12px;background:var(--surface)}
+.scenario h3{margin:.1em 0 .4em;font-size:1.05rem}
+.scenario-extra{font-size:.86rem;color:var(--muted);margin:.55em 0 0}
 @media print{nav.stations,.toolbar,.stage,.btn,header.top .facelines{display:none!important}
   .layout{display:block} body{background:#fff;color:#000}}
 .hide{display:none!important}
