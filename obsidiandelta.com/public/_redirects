@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects. public/ is copied verbatim into dist/, so this
+# file is served from the deploy root. /learning/ was renamed to /opportunities/
+# on 2026-10-11; these 301s keep every old link (including the live home page's)
+# working. Most specific path first -- Cloudflare matches top to bottom.
+/learning/sample-report/  /opportunities/sample-report/  301
+/learning/sample-report   /opportunities/sample-report/  301
+/learning/                /opportunities/                301
+/learning                 /opportunities/                301

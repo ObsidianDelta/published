@@ -1,0 +1,271 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDate } from '../_posts.js';
+
+// /opportunities/ -- the reframe of what was /learning/. Not "four things we
+// sell you": the stack already exists and is free, and this page is the set of
+// businesses it opens up. You bring the expertise; these are the tools. The
+// reader should finish it thinking "he already solved universal learning, the
+// factory, the player, the companion -- so these are the problems he is on now."
+//
+// Obsidian Delta sells the done-for-you work; the DAX Foundation is the open
+// project, never a charity or a registered body. No AI vendor is named, no
+// email appears, no price appears -- contact goes through the "message Jason on
+// LinkedIn" link. The Stripe data-pay anchors stay in the DOM, hidden, exactly
+// as /learning/ carried them. We never link to jeyanandan.com from the body
+// (the shared footer in Base.astro carries its own link and is left untouched).
+//
+// /learning/ and /learning/sample-report/ now 301 to here and to
+// /opportunities/sample-report/ via public/_redirects (Cloudflare Pages); the
+// hand-rolled sitemap lists the new paths.
+//
+// First published / updated rendered by hand with the same helper the blog
+// uses, so the dates read the same across the site.
+const PUBLISHED = '2026-10-10';
+const UPDATED = '2026-10-11';
+const LINKEDIN = 'https://www.linkedin.com/in/jasonjeyanandan';
+---
+<Base
+  title="Opportunities — Obsidian Delta"
+  description="The MetaDAX stack already exists and is free: the recipe, the factory, the player, the showcases, the skills, the publishing system. These are the businesses it opens up — you bring the expertise, these are the tools.">
+  <section class="hero"><div class="shell narrow">
+    <p class="eyebrow">First published {formatDate(PUBLISHED)} <span aria-hidden="true">·</span> Updated {formatDate(UPDATED)}</p>
+    <h1>Opportunities.</h1>
+    <p class="deck">Everything below already exists, and all of it is free. These are the businesses it opens up: you bring the expertise, these are the tools.</p>
+    <div class="rule"></div>
+  </div></section>
+
+  <div class="shell narrow">
+
+    <!-- The showcase row -- the doors, kept at the top exactly as /learning/ had them -->
+    <section class="sc-row" aria-labelledby="showcase">
+      <h2 id="showcase">See what it makes</h2>
+      <div class="sc-cards">
+        <a class="sc-card" href="https://daxfoundation.org/metadax/samples/stade-des-fractions/" rel="noopener">
+          <span class="sc-kicker">Showcase</span>
+          <span class="sc-name">Le Stade des Fractions</span>
+          <span class="sc-note">French fractions in a 3D stadium</span>
+        </a>
+        <a class="sc-card" href="https://daxfoundation.org/metadax/showcases/first-week-at-the-bakery/" rel="noopener">
+          <span class="sc-kicker">Showcase</span>
+          <span class="sc-name">First Week at the Bakery</span>
+          <span class="sc-note">a staff onboarding module</span>
+        </a>
+        <a class="sc-card" href="https://daxfoundation.org/metadax/showcases/proton-mill/" rel="noopener">
+          <span class="sc-kicker">Showcase</span>
+          <span class="sc-name">The Proton Mill</span>
+          <span class="sc-note">a 3D Biology 101 lesson</span>
+        </a>
+        <a class="sc-card" href="https://daxfoundation.org/metadax/showcases/tutors-desk/" rel="noopener">
+          <span class="sc-kicker">Showcase</span>
+          <span class="sc-name">The Tutor's Desk</span>
+          <span class="sc-note">one tutor's week</span>
+        </a>
+        <a class="sc-card" href="https://daxfoundation.org/metadax/showcases/grade-6-science-year/" rel="noopener">
+          <span class="sc-kicker">Showcase</span>
+          <span class="sc-name">The Year on the Wall</span>
+          <span class="sc-note">a whole Grade 6 science year</span>
+        </a>
+        <a class="sc-card" href="/opportunities/sample-report/">
+          <span class="sc-kicker">Sample</span>
+          <span class="sc-name">A tutor session report</span>
+          <span class="sc-note">what a tutor gets back</span>
+        </a>
+      </div>
+      <p class="sc-research">The research behind it: <a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md" rel="noopener">the X13 / X14 findings</a></p>
+    </section>
+
+    <!-- What is already built -- the stack, as solved problems -->
+    <section class="plain built" aria-labelledby="built">
+      <h2 id="built">What is already built</h2>
+      <p>None of this is a plan. Each line is a problem already solved, that you can open right now.</p>
+      <ul class="built__list">
+        <li>
+          <a href="https://github.com/daxfoundation/metadax" rel="noopener">The open recipe.</a>
+          The whole method is a public repository &mdash; the prompts that do the work live in <a href="https://github.com/daxfoundation/metadax/tree/main/prompts" rel="noopener">prompts/</a>, free to read, copy and run.
+        </li>
+        <li>
+          <a href="https://daxfoundation.org/metadax/showcases/grade-6-science-year/" rel="noopener">The factory.</a>
+          One brief goes in and a whole course tree comes out &mdash; lessons, content and practice in order &mdash; with the misconceptions mapped before a single page exists.
+        </li>
+        <li>
+          <a href="https://daxfoundation.org/metadax/play/" rel="noopener">The player.</a>
+          You paste a package and it runs: a finished course, playing in the browser, nothing to install.
+        </li>
+        <li>
+          <a href="#showcase">The five showcases.</a>
+          Five finished courses are live and open above &mdash; a French-fractions stadium, a staff onboarding module, a 3D biology lesson, a tutor's week, a whole Grade 6 science year.
+        </li>
+        <li>
+          <a href="https://daxfoundation.org/metadax/" rel="noopener">The skills, in a plain chat.</a>
+          Homeschool, tutor, teacher &mdash; each is a skill you run in an ordinary chat: paste the prompt, answer a few questions, get a package back.
+        </li>
+        <li>
+          <a href="https://github.com/ObsidianDelta/published" rel="noopener">The publishing system.</a>
+          Everything is versioned in the open, with the failures left in, so you can read exactly how each piece was made and where it went wrong first.
+        </li>
+        <li>
+          <a href="https://daxfoundation.org/definitions/#cognitive-companion" rel="noopener">The companion that builds it all.</a>
+          A cognitive companion is what sits behind the factory and the skills, doing the building.
+        </li>
+      </ul>
+    </section>
+
+    <!-- What that opens -- the opportunities, each with the showcase that proves its shape -->
+    <section class="plain opens" aria-labelledby="opens">
+      <h2 id="opens">What that opens</h2>
+
+      <div class="opp">
+        <h3>A course that is a business in its own right</h3>
+        <p>A tutor, a trainer, a subject expert turns what they know into a course and a practice around it. <a href="https://daxfoundation.org/metadax/showcases/grade-6-science-year/" rel="noopener">The Year on the Wall</a> is the shape &mdash; a whole year, laid out. <a href="https://daxfoundation.org/metadax/showcases/tutors-desk/" rel="noopener">The Tutor's Desk</a> is the weekly work that keeps it alive. <a href="https://daxfoundation.org/metadax/showcases/first-week-at-the-bakery/" rel="noopener">First Week at the Bakery</a> is the first-week product you can sell to a company. The expertise is yours; the course is a thing you own and run.</p>
+      </div>
+
+      <div class="opp">
+        <h3>Packages for a community or a company</h3>
+        <p>&ldquo;One dish, its story&rdquo; cultural packages &mdash; sponsored, free to everyone who opens them, with your name on them. First-week modules built on commission, the way <a href="https://daxfoundation.org/metadax/showcases/first-week-at-the-bakery/" rel="noopener">the Bakery</a> was. Packages an expert builds once and sells under their own name. One method, many things to make with it.</p>
+      </div>
+
+      <div class="opp">
+        <h3>A tutoring practice between the sessions</h3>
+        <p>Rough notes in, a parent-ready report out &mdash; every week, for every student. The part of the work that used to happen late at night, done for you, in your own voice. <a href="/opportunities/sample-report/">See a sample report</a>, built from a tutor's rough notes.</p>
+      </div>
+
+      <div class="opp">
+        <h3>Coming: a cognitive companion of your own</h3>
+        <p>The <a href="https://daxfoundation.org/definitions/#cognitive-companion" rel="noopener">cognitive companion</a> that builds everything on this page is Jason's. Yours is coming.</p>
+      </div>
+    </section>
+
+    <!-- Two ways in -->
+    <section class="plain ways" aria-labelledby="ways">
+      <h2 id="ways">Two ways in</h2>
+
+      <div class="opp">
+        <h3>Do it yourself</h3>
+        <p>Free. The doors are at <a href="https://daxfoundation.org/metadax/" rel="noopener">daxfoundation.org/metadax/</a> &mdash; the skills you run in a plain chat, the player, the showcases &mdash; and the whole recipe is in <a href="https://github.com/daxfoundation/metadax" rel="noopener">the repository</a>. Everything you need to build is already there, open.</p>
+      </div>
+
+      <div class="opp">
+        <h3>Or Obsidian Delta builds it with you</h3>
+        <p>If you would rather have it built: a course from your own material in about a week, a pack built around one child, or tutor reports written in your voice. Jason reads every one before it goes out. You own the files. A de-identified copy can go back to the commons if you choose &mdash; that is yours to decide.</p>
+        <p class="offer__price">No price. Message Jason on LinkedIn and we will work it out together.</p>
+        <p class="cta-row">
+          <a class="cta" data-pay="tutor-monthly" href="#" hidden>Pay with Stripe</a>
+          <a class="cta" data-pay="tutor-single" href="#" hidden>Pay with Stripe</a>
+          <a class="cta" data-cta="fallback" href={LINKEDIN} rel="noopener">Message Jason to start</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- What is being worked on now -- the frontier -->
+    <section class="plain now" aria-labelledby="now">
+      <h2 id="now">What is being worked on now</h2>
+      <p>So you can see the frontier, not just the finished floor. These are the open problems right now:</p>
+      <ul class="built__list">
+        <li><span class="now__t">Retrieval over whole-course loading (X14).</span> Pulling in only the part of a course a learner needs, instead of loading the whole thing at once.</li>
+        <li><span class="now__t">A dedicated safety path (X13).</span> A separate, deliberate route for anything a child types that needs care.</li>
+        <li><span class="now__t">The once-a-day package.</span> A package that updates once a day, so it works where the connection is thin.</li>
+        <li><span class="now__t">The cultural packages.</span> &ldquo;One dish, its story&rdquo; &mdash; sponsored, free to all, built to travel.</li>
+        <li><span class="now__t">The companion, for you.</span> One already builds all of this; the one you can have is being built now.</li>
+      </ul>
+      <p class="sc-research">Follow the work: <a href="https://github.com/daxfoundation/metadax/tree/main/experiments" rel="noopener">the experiments</a> and <a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md" rel="noopener">the X13 / X14 findings</a>.</p>
+    </section>
+
+    <!-- Who you're buying from -->
+    <section class="plain" aria-labelledby="who">
+      <h2 id="who">Who you're buying from</h2>
+      <p>Obsidian Delta Corp, since 2015. The done-for-you builds above are the company's work. The DAX Foundation is the open project behind MetaDAX &mdash; separate, and not for sale.</p>
+      <p class="free">The recipe is free at <a href="https://daxfoundation.org/metadax/" rel="noopener">daxfoundation.org/metadax/</a>. This page is for people who want to build something on it.</p>
+      <p>A Founding Gift for formaddie arrives in November.</p>
+    </section>
+
+  </div>
+</Base>
+
+<style is:global>
+/* /opportunities/ in the Obsidian Delta dark system: white headings, bone body,
+   orange as the single accent. Measures follow the blog (680px). Built on the
+   same classes /learning/ used (.hero, .deck, .sc-*, .plain, .offer__price,
+   .cta*, .free) with a small set added for the stack list and the opportunity
+   blocks. */
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(28px,6vw,40px)}
+.deck{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(20px,3vw,26px);line-height:1.3;letter-spacing:-.01em;
+  color:var(--ash);margin-top:16px;text-wrap:balance;
+}
+
+.sc-row{border-top:1px solid var(--steel);padding:clamp(32px,6vw,48px) 0}
+.sc-row h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(26px,3.8vw,38px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--white);margin:0 0 .5em;text-wrap:balance;
+}
+.sc-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1.25rem}
+.sc-card{
+  display:flex;flex-direction:column;gap:6px;
+  padding:14px 16px 16px;
+  border:1px solid var(--steel);border-radius:3px;
+  text-decoration:none;transition:border-color .15s;
+}
+.sc-card:hover{border-color:var(--orange)}
+.sc-kicker{font-family:var(--font-mono);font-size:10px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.sc-name{font-family:var(--font-display);font-weight:500;font-size:15px;line-height:1.25;color:var(--white)}
+.sc-note{font-size:13px;line-height:1.4;color:var(--ash)}
+.sc-research{font-size:14px;color:var(--ash);margin-top:1rem}
+.sc-research a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.sc-research a:hover{color:var(--white);border-color:var(--white)}
+@media(max-width:640px){.sc-cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:400px){.sc-cards{grid-template-columns:1fr}}
+
+.plain{border-top:1px solid var(--steel);padding:clamp(32px,6vw,48px) 0}
+.plain h2{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(26px,3.8vw,38px);line-height:1.1;letter-spacing:-.02em;
+  color:var(--white);margin:0 0 .5em;text-wrap:balance;
+}
+.plain p{color:var(--bone);font-size:16px;line-height:1.7;margin:0 0 1rem;max-width:680px}
+.plain p:last-child{margin-bottom:0}
+.plain strong{color:var(--white);font-weight:500}
+.plain a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.plain a:hover{color:var(--white);border-color:var(--white)}
+.offer__price{color:var(--white)!important}
+.free{color:var(--white)!important}
+
+/* the stack and the frontier: a list where each item leads with a linked (or
+   emphasised) phrase, then a believable sentence. */
+.built__list{list-style:none;margin:1.25rem 0 0;padding:0;max-width:680px}
+.built__list li{
+  color:var(--bone);font-size:16px;line-height:1.7;
+  padding:0 0 1rem 1.1rem;position:relative;
+}
+.built__list li:last-child{padding-bottom:0}
+.built__list li::before{content:"";position:absolute;left:0;top:.65em;width:6px;height:6px;background:var(--orange);border-radius:1px}
+.built__list a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.built__list a:hover{color:var(--white);border-color:var(--white)}
+.now__t{color:var(--white);font-weight:500}
+
+/* opportunity blocks: a lighter heading than the section h2, kept on measure. */
+.opp{max-width:680px;margin:0 0 1.75rem}
+.opp:last-child{margin-bottom:0}
+.opp h3{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(18px,2.4vw,22px);line-height:1.2;letter-spacing:-.01em;
+  color:var(--white);margin:0 0 .4em;text-wrap:balance;
+}
+.opp p{color:var(--bone);font-size:16px;line-height:1.7;margin:0 0 1rem;max-width:680px}
+.opp p:last-child{margin-bottom:0}
+.opp a{color:var(--orange);text-decoration:none;border-bottom:1px solid var(--orange)}
+.opp a:hover{color:var(--white);border-color:var(--white)}
+
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin:1.25rem 0 .5rem}
+.cta{
+  display:inline-block;font-family:var(--font-mono);font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--black)!important;background:var(--orange);
+  padding:12px 22px;border:1px solid var(--orange)!important;border-radius:2px;
+  text-decoration:none!important;transition:background .2s,color .2s;
+}
+.cta:hover{background:transparent;color:var(--orange)!important}
+.cta[hidden]{display:none!important}
+</style>

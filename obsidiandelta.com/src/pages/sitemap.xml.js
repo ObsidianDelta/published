@@ -2,7 +2,7 @@
 // exactly one dependency and `npm ci` against the committed lockfile stays
 // valid.
 //
-// WHAT GOES IN IT. The home page, the blog index, the /learning/ page, and
+// WHAT GOES IN IT. The home page, the blog index, the /opportunities/ page, and
 // indexablePosts from src/pages/_posts.js: listed and never a draft, even in a
 // review build.
 //
@@ -17,7 +17,7 @@ import { indexablePosts } from './_posts.js';
 
 const SITE = 'https://www.obsidiandelta.com';
 
-const STATIC_ROUTES = ['/', '/blog/', '/learning/', '/learning/sample-report/'];
+const STATIC_ROUTES = ['/', '/blog/', '/opportunities/', '/opportunities/sample-report/'];
 
 const day = (value) => {
   const d = new Date(value);
