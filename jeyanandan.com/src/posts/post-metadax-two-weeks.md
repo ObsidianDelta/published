@@ -4,7 +4,7 @@ subtitle: "The Open Recipe, the Honest Results, and Your Chair"
 date: 2026-10-11
 updated: 2026-10-11
 description: "Two weeks after the introduction: what Meta DAX actually is now — the one idea underneath it, the open recipe, the showcases, the first honest experiment results — and where you come in."
-draft: true
+draft: false
 tags: ["meta-dax", "learning", "experiments"]
 ---
 

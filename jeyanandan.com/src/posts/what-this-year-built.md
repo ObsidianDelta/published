@@ -4,7 +4,7 @@ subtitle: "An update for the people who know me, and where you come in"
 date: 2026-10-11
 updated: 2026-10-11
 description: "A personal update: what Meta DAX and Maddie are now, the one idea underneath all of it, what it costs to keep going, and the three small ways to help."
-draft: true
+draft: false
 tags: ["personal", "meta-dax", "maddie"]
 ---
 
