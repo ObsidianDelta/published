@@ -35,7 +35,6 @@ brackets.
 ### Furniture Kit — https://kenney.nl/assets/furniture-kit  (CC0 1.0)
 | file in this folder | original |
 | --- | --- |
-| table.glb | tableRound.glb |
 | chair.glb | chair.glb |
 
 ## Environment — Poly Haven (polyhaven.com), CC0 1.0
@@ -48,9 +47,10 @@ brackets.
 
 These props are built in code (dish.js) in the same flat-shaded low-poly style,
 because no CC0 model read right for them: the country hen, the woven market
-baskets, the dried-chilli strings, the spice mounds, the banana leaf, the rice
-mound, the string-hopper coils, the coconut-milk jug, the curry surface, and the
-extruded Sri Lanka island. They carry no licence because they are original to
+baskets, the dried-chilli strings, the spice mounds, the low family table (the
+CC0 round table reads as a small coffee table at family scale), the banana leaf,
+the rice mound, the string-hopper coils, the coconut-milk jug, the curry surface,
+and the extruded Sri Lanka island. They carry no licence because they are original to
 this repository.
 
 ## Loaders

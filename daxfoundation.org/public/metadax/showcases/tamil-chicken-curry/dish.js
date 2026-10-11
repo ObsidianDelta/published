@@ -378,80 +378,138 @@
      is the kit toolbox, and returns { labels, picks, api, anim }.
      ======================================================================= */
 
-  /* ---- procedural canvas textures (no image files) ---------------------
-     One cache, built lazily from K.canvasTex. Each draw is deterministic
-     (index arithmetic, not random) so the scene is identical on every load. */
-  var TEX = {};
-  function tex(K, name, repeat) {
-    if (TEX[name]) return TEX[name];
-    var T = K.THREE, t;
-    var draw = {
-      clay: function (c, w, h) {           /* mottled terracotta, darker rim band at the top */
-        c.fillStyle = "#7b4a2a"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < 900; i++) { var s = (i * 73) % 2 ? 1 : -1; var g = 18 + ((i * 13) % 22); c.fillStyle = "rgba(" + (123 + s * g) + "," + (74 + s * g) + "," + (42 + s * (g >> 1)) + ",0.22)"; c.beginPath(); c.arc((i * 101) % w, (i * 59) % h, 1 + (i % 4), 0, 6.3); c.fill(); }
-        c.fillStyle = "rgba(42,22,10,0.5)"; c.fillRect(0, 0, w, Math.round(h * 0.16));
-      },
-      wood: function (c, w, h) {            /* wood grain — long streaks along the board */
-        c.fillStyle = "#8a6b43"; c.fillRect(0, 0, w, h);
-        for (var y = 0; y < h; y += 3) { var o = Math.sin(y * 0.18) * 6; c.strokeStyle = "rgba(" + (70 + (y % 30)) + ",48,26," + (0.12 + (y % 5) * 0.04) + ")"; c.lineWidth = 1 + (y % 3); c.beginPath(); c.moveTo(0, y + o); c.lineTo(w, y - o); c.stroke(); }
-      },
-      palm: function (c, w, h) {            /* woven palm — a tan over/under crosshatch */
-        c.fillStyle = "#b98b50"; c.fillRect(0, 0, w, h); var n = 10, s = w / n;
-        for (var i = 0; i < n; i++) for (var j = 0; j < n; j++) { c.fillStyle = (i + j) % 2 ? "rgba(150,110,62,0.9)" : "rgba(196,150,90,0.9)"; c.fillRect(i * s + 1, j * s + 1, s - 2, s - 2); }
-      },
-      stone: function (c, w, h) {           /* speckled grey-brown grinding stone */
-        c.fillStyle = "#6b6157"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < 1400; i++) { var v = (i * 29) % 60; c.fillStyle = "rgba(" + (70 + v) + "," + (64 + v) + "," + (58 + v) + ",0.5)"; c.fillRect((i * 97) % w, (i * 53) % h, 1 + (i % 2), 1 + (i % 2)); }
-      },
-      cloth: function (c, w, h) {           /* a woven runner with a stripe */
-        c.fillStyle = "#b5451f"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < w; i += 2) { c.fillStyle = "rgba(0,0,0," + (0.05 + (i % 4) * 0.02) + ")"; c.fillRect(i, 0, 1, h); }
-        for (var j = 0; j < h; j += 2) { c.fillStyle = "rgba(255,255,255,0.05)"; c.fillRect(0, j, w, 1); }
-        c.fillStyle = "#f2d9a0"; c.fillRect(0, Math.round(h * 0.42), w, Math.round(h * 0.06)); c.fillRect(0, Math.round(h * 0.52), w, Math.round(h * 0.06));
-      },
-      sea: function (c, w, h) {             /* teal water with a light caustic weave */
-        c.fillStyle = "#25616e"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < w; i += 4) for (var j = 0; j < h; j += 4) { var a = (Math.sin(i * 0.09) + Math.cos(j * 0.11) + Math.sin((i + j) * 0.05)) * 0.5; if (a > 0.6) { c.fillStyle = "rgba(180,225,230," + Math.min(0.5, (a - 0.6)) + ")"; c.fillRect(i, j, 3, 3); } }
-      },
-      earth: function (c, w, h) {           /* packed earth floor */
-        c.fillStyle = "#3a2c1c"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < 1100; i++) { var s = (i * 41) % 2 ? 1 : -1; c.fillStyle = "rgba(" + (58 + s * 18) + "," + (44 + s * 12) + "," + (28 + s * 8) + ",0.4)"; c.beginPath(); c.arc((i * 83) % w, (i * 61) % h, 1 + (i % 3), 0, 6.3); c.fill(); }
-      },
-      sand: function (c, w, h) {            /* pale shore sand */
-        c.fillStyle = "#cdb78a"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < 1600; i++) { var v = (i * 31) % 40; c.fillStyle = "rgba(" + (205 - v) + "," + (183 - v) + "," + (138 - v) + ",0.5)"; c.fillRect((i * 97) % w, (i * 53) % h, 1, 1); }
-      },
-      plaster: function (c, w, h) {         /* a lime-washed wall */
-        c.fillStyle = "#cbb89a"; c.fillRect(0, 0, w, h);
-        for (var i = 0; i < 700; i++) { var s = (i * 17) % 2 ? 1 : -1; c.fillStyle = "rgba(" + (203 + s * 14) + "," + (184 + s * 12) + "," + (154 + s * 10) + ",0.35)"; c.beginPath(); c.arc((i * 89) % w, (i * 57) % h, 2 + (i % 5), 0, 6.3); c.fill(); }
+  /* ---- palette + low-poly helpers --------------------------------------
+     One flat palette for the whole scene — warm earth, clay, palm green,
+     chilli red, sea teal. The art-direction pass dropped the canvas-noise
+     textures entirely: loaded CC0 models carry their own flat materials, and
+     every hand-built prop uses a solid palette colour, so a primitive never
+     sits next to a textured surface. */
+  var PAL = {
+    clay: 0xb5673a, clayRim: 0xc8824e, clayDark: 0x8a4a28,
+    earth: 0x7a5a3c, earthDark: 0x4a3420,
+    wood: 0x9c6f3e, woodDark: 0x6b4a28,
+    palm: 0x3f7d3a, palmDark: 0x2f5f2c,
+    chilli: 0xc8371e, chilliDark: 0x9a2314,
+    sea: 0x2f8a8f, seaDeep: 0x1f6b70, sand: 0xd8c38a,
+    turmeric: 0xe0a81c, onion: 0xcf9a5a, tomato: 0xc0392b,
+    rice: 0xf3eeda, milk: 0xf6f0e2, curry: 0xbe5a2c,
+    stone: 0x8a8078, cloth: 0xc8431f, clothStripe: 0xf2d9a0,
+    base: 0x7a5636, baseRim: 0x5a3f22, leaf: 0x2f7a32, plaster: 0xcbb89a,
+    outline: 0x241812, sky: 0x9fd0e6
+  };
+  var OUTLINE = { color: PAL.outline, thickness: 0.05 };
+
+  /* a flat-shaded standard material in one line */
+  function fmat(K, c, rough) { return K.mat(c, { roughness: rough == null ? 0.82 : rough, metalness: 0.02 }); }
+
+  /* a round diorama base with a raised rim — the little stage each station sits
+     on. Flagged _noFit so the camera frames the props, not the plinth. */
+  function dioramaBase(g, K, radius, y, color) {
+    var T = K.THREE, yy = y || 0;
+    var disc = new T.Mesh(new T.CylinderGeometry(radius, radius * 0.97, 0.6, 56), fmat(K, color || PAL.base, 0.95));
+    disc.position.y = yy - 0.3; disc.receiveShadow = true; disc._noFit = true; g.add(disc);
+    var rim = new T.Mesh(new T.TorusGeometry(radius, 0.14, 12, 72), fmat(K, PAL.baseRim, 0.8));
+    rim.rotation.x = Math.PI / 2; rim.position.y = yy; rim.receiveShadow = true; rim._noFit = true; g.add(rim);
+    return disc;
+  }
+
+  /* place a CC0 GLB at a spot with a hand-built fallback under it. Non-blocking:
+     the fallback shows at once; the model swaps in when it arrives, or the
+     fallback simply stays if the load fails. Returns the holder group. opts:
+       pos [x,y,z], rotY, size (target max dimension), sizeY (target height),
+       anchor "base"|"center" (default base), outline (bool | {color,thickness}),
+       fallback fn(), onReady fn(model, holder), pick fn, noFit bool. */
+  function model(g, K, url, opts) {
+    opts = opts || {};
+    var T = K.THREE, holder = new T.Group();
+    if (opts.pos) holder.position.set(opts.pos[0], opts.pos[1], opts.pos[2]);
+    if (opts.rotY != null) holder.rotation.y = opts.rotY;
+    if (opts.noFit) holder._noFit = true;
+    g.add(holder);
+    var fb = opts.fallback ? opts.fallback() : null;
+    if (fb) holder.add(fb);
+    if (opts.pick) holder._pick = opts.pick;
+    K.loadModel(url, {}, function (m) {
+      if (!m) return;                                   /* load failed — fallback stays */
+      normalizeModel(m, opts, T);
+      if (opts.outline !== false) K.outline(m, typeof opts.outline === "object" ? opts.outline : OUTLINE);
+      if (fb && fb.parent) fb.parent.remove(fb);
+      holder.add(m);
+      if (opts.onReady) try { opts.onReady(m, holder); } catch (e) {}
+    });
+    return holder;
+  }
+
+  /* scale a loaded model to a target size, sit it on y=0 (or centre it),
+     centred on x/z, shadows on, a gentle env response for the stylised look. */
+  function normalizeModel(m, opts, T) {
+    m.traverse(function (n) {
+      if (n.isMesh) {
+        n.castShadow = true; n.receiveShadow = true;
+        var mm = n.material ? (n.material.length ? n.material : [n.material]) : [];
+        mm.forEach(function (x) { if (x && x.isMeshStandardMaterial) { x.envMapIntensity = 0.75; if (x.metalness > 0.5) x.metalness = 0.3; } });
       }
-    }[name];
-    t = K.canvasTex(name === "sea" || name === "earth" ? 256 : 128, name === "sea" || name === "earth" ? 256 : 128, draw);
-    if (repeat) { t.wrapS = t.wrapT = T.RepeatWrapping; t.repeat.set(repeat[0], repeat[1]); }
-    TEX[name] = t; return t;
+    });
+    m.updateWorldMatrix(true, true);
+    var box = new T.Box3().setFromObject(m), size = new T.Vector3(), center = new T.Vector3();
+    box.getSize(size); box.getCenter(center);
+    var s = 1;
+    if (opts.sizeY) s = opts.sizeY / (size.y || 1);
+    else if (opts.size) s = opts.size / (Math.max(size.x, size.y, size.z) || 1);
+    m.scale.setScalar(s);
+    m.position.x = -center.x * s; m.position.z = -center.z * s;
+    m.position.y = opts.anchor === "center" ? -center.y * s : -box.min.y * s;
+  }
+
+  /* a hand-built country hen in the flat low-poly style — no CC0 hen read right,
+     so it is built here to match the loaded props. Returns a Group; y sets the
+     body height so it sits in the market basket. */
+  function makeHen(T, K, color, y) {
+    var hen = new T.Group(); hen.position.y = y || 1.2;
+    var bodyMat = fmat(K, color || 0xcaa36a, 0.75);
+    var body = new T.Mesh(new T.SphereGeometry(0.42, 18, 14), bodyMat); body.scale.set(1.35, 1.0, 1.0); body.castShadow = true; hen.add(body);
+    var tail = new T.Mesh(new T.ConeGeometry(0.28, 0.6, 10), bodyMat); tail.position.set(-0.5, 0.2, 0); tail.rotation.z = -0.9; tail.castShadow = true; hen.add(tail);
+    var neck = new T.Mesh(new T.CylinderGeometry(0.14, 0.2, 0.4, 10), bodyMat); neck.position.set(0.42, 0.28, 0); neck.rotation.z = -0.4; hen.add(neck);
+    var head = new T.Mesh(new T.SphereGeometry(0.2, 14, 12), bodyMat); head.position.set(0.55, 0.5, 0); head.castShadow = true; hen.add(head);
+    var beak = new T.Mesh(new T.ConeGeometry(0.07, 0.2, 8), fmat(K, PAL.turmeric, 0.6)); beak.position.set(0.74, 0.48, 0); beak.rotation.z = -Math.PI / 2; hen.add(beak);
+    var comb = new T.Mesh(new T.SphereGeometry(0.1, 10, 8, 0, Math.PI * 2, 0, Math.PI / 2), fmat(K, PAL.chilli, 0.6)); comb.position.set(0.55, 0.68, 0); comb.scale.set(1.4, 1, 0.5); hen.add(comb);
+    var wattle = new T.Mesh(new T.SphereGeometry(0.06, 8, 6), fmat(K, PAL.chilli, 0.6)); wattle.position.set(0.68, 0.36, 0); hen.add(wattle);
+    [0.2, -0.2].forEach(function (pz) { var leg = new T.Mesh(new T.CylinderGeometry(0.03, 0.03, 0.4, 6), fmat(K, PAL.turmeric, 0.6)); leg.position.set(0.12, -0.34, pz); hen.add(leg); });
+    return hen;
   }
 
   function buildMarket(g, K) {
     var T = K.THREE, labels = [], picks = [], tweens = [];
 
-    /* sea — a caustic-patterned water plane, with a sand shoal around the island */
-    var sea = new T.Mesh(new T.CircleGeometry(26, 48), new T.MeshStandardMaterial({ map: tex(K, "sea", [3, 3]), color: 0xffffff, roughness: 0.35, metalness: 0.15 }));
+    /* the station diorama: a teal sea disc with a rim, a pale sand shoal */
+    dioramaBase(g, K, 27, -0.5, PAL.seaDeep);
+    var sea = new T.Mesh(new T.CircleGeometry(26, 56), fmat(K, PAL.sea, 0.4));
     sea.rotation.x = -Math.PI / 2; sea.position.y = -0.4; sea.receiveShadow = true; sea._noFit = true; g.add(sea);
-    var sand = new T.Mesh(new T.CircleGeometry(10.5, 48), new T.MeshStandardMaterial({ map: tex(K, "sand", [2, 2]), color: 0xffffff, roughness: 1 }));
+    var sand = new T.Mesh(new T.CircleGeometry(10.5, 56), fmat(K, PAL.sand, 1));
     sand.rotation.x = -Math.PI / 2; sand.position.y = -0.36; sand.scale.set(0.95, 1.1, 1); sand.receiveShadow = true; g.add(sand);
 
-    /* Sri Lanka — an extruded teardrop, Jaffna at the north (−Z) */
-    var pts = [[0, 9], [1.2, 8], [1.6, 6.5], [3, 5], [3.6, 2], [3.2, -2], [2, -5], [0, -6], [-2, -5], [-3.2, -2], [-3.6, 2], [-3, 5], [-1.6, 6.5], [-1.2, 8]];
+    /* Sri Lanka — an extruded teardrop with a cleaner coastline, one flat earth
+       colour (the noise map is gone), Jaffna at the north (−Z) */
+    var pts = [[0, 9], [1.0, 8.2], [1.7, 6.4], [2.8, 4.6], [3.4, 2], [3.2, -1.6], [2.3, -4.2], [1.0, -5.6], [0, -6], [-1.0, -5.6], [-2.3, -4.2], [-3.2, -1.6], [-3.4, 2], [-2.8, 4.6], [-1.7, 6.4], [-1.0, 8.2]];
     var shp = new T.Shape();
     pts.forEach(function (p, i) { if (i === 0) shp.moveTo(p[0], p[1]); else shp.lineTo(p[0], p[1]); });
     shp.closePath();
-    var island = new T.Mesh(new T.ExtrudeGeometry(shp, { depth: 0.7, bevelEnabled: true, bevelThickness: 0.2, bevelSize: 0.25, bevelSegments: 2 }),
-      K.mat(0x9c7a46, { roughness: 0.95 }));
+    var island = new T.Mesh(new T.ExtrudeGeometry(shp, { depth: 0.7, bevelEnabled: true, bevelThickness: 0.2, bevelSize: 0.3, bevelSegments: 2 }),
+      fmat(K, PAL.earth, 0.95));
     island.rotation.x = -Math.PI / 2; island.position.y = -0.3; island.scale.set(0.95, 0.95, 1);
     island.castShadow = true; island.receiveShadow = true; g.add(island);
 
+    /* a few palm-green tufts on the island so the land reads as land (CC0 grass,
+       hand-built cone fallback). Kept out of the camera fit — they are dressing. */
+    [[1.4, -1.5], [-1.6, -0.5], [0.6, 2.2], [-0.8, 3.0], [2.0, 0.6]].forEach(function (p) {
+      model(g, K, "./assets/grass.glb", {
+        pos: [p[0], 0.05, p[1]], size: 1.2, noFit: true, outline: false,
+        fallback: function () { var m = new T.Mesh(new T.ConeGeometry(0.35, 0.9, 6), fmat(K, PAL.palm)); m.position.y = 0.45; m.castShadow = true; return m; }
+      });
+    });
+
     /* Jaffna peninsula — a lifted, lit nub at the north */
-    var jaffna = new T.Mesh(new T.CylinderGeometry(1.4, 1.9, 1.1, 6), K.mat(0xc98a4e));
+    var jaffna = new T.Mesh(new T.CylinderGeometry(1.4, 1.9, 1.1, 6), fmat(K, PAL.sand, 0.9));
     jaffna.position.set(0, 0.5, -7.3); jaffna.castShadow = true; g.add(jaffna);
     var spot = new T.SpotLight(0xffe4b0, 1.3, 20, 0.6, 0.5); spot.position.set(0, 9, -7); spot.target = jaffna; g.add(spot); g.add(spot.target);
     labels.push({ obj: jaffna, offset: [0, 1.6, 0], slot: "above", text: { en: "Jaffna", ta: "யாழ்ப்பாணம்" } });
@@ -460,14 +518,16 @@
     var toronto = new T.Mesh(new T.SphereGeometry(0.5, 16, 12), new T.MeshStandardMaterial({ color: 0xd94f4f, emissive: 0x551010, roughness: 0.5 }));
     toronto.position.set(-13, 2.2, -12); g.add(toronto);
     var curve = new T.QuadraticBezierCurve3(new T.Vector3(0, 1, -7.3), new T.Vector3(-7, 9, -10), new T.Vector3(-13, 2.2, -12));
-    var arc = new T.Mesh(new T.TubeGeometry(curve, 40, 0.09, 8, false), new T.MeshStandardMaterial({ color: 0xe0b060, emissive: 0x3a2800, roughness: 0.5 }));
+    var arc = new T.Mesh(new T.TubeGeometry(curve, 40, 0.09, 8, false), new T.MeshStandardMaterial({ color: PAL.turmeric, emissive: 0x3a2800, roughness: 0.5 }));
     g.add(arc);
     labels.push({ obj: toronto, offset: [0, 1.0, 0], slot: "left", cls: "lead", text: { en: "Toronto — the diaspora line", ta: "டொரொன்டோ — புலம்பெயர் கோடு" }, reader: true });
 
-    /* market row — four stalls, each a canopy on posts with a mound; each tappable */
+    /* market row — four stalls, each a canopy on posts with a basket; each tappable.
+       The coconut stall carries the one CC0 model used here; chillies, the spice
+       tray and the hen are hand-built in the same flat low-poly style. */
     var stallSpecs = [
       { key: "coconut", x: 7.5, z: 6, cloth: 0xcf8a3a, name: { en: "coconuts", ta: "தேங்காய்" }, mound: 0x8a6b3a, kind: "balls" },
-      { key: "chillies", x: 3, z: 8.5, cloth: 0xc0392b, name: { en: "chillies, sun-dried", ta: "மிளகாய்" }, mound: 0xb02d1c, kind: "cone" },
+      { key: "chillies", x: 3, z: 8.5, cloth: PAL.chilli, name: { en: "chillies, sun-dried", ta: "மிளகாய்" }, mound: PAL.chilliDark, kind: "cone" },
       { key: "spices", x: -3, z: 8.5, cloth: 0x9a6b2f, name: { en: "the spice tray", ta: "மசாலா" }, mound: 0x9a6b2f, kind: "tray" },
       { key: "chicken", x: -7.5, z: 6, cloth: 0xd8c08a, name: { en: "country hen", ta: "நாட்டுக் கோழி" }, mound: 0xcaa36a, kind: "hen" }
     ];
@@ -475,19 +535,27 @@
     stallSpecs.forEach(function (s) {
       var st = new T.Group(); st.position.set(s.x, 0, s.z);
       /* two posts + a canopy */
-      [-0.9, 0.9].forEach(function (px) { var p = new T.Mesh(new T.CylinderGeometry(0.08, 0.08, 1.8, 6), K.mat(0x6b4a28)); p.position.set(px, 0.9, 0); p.castShadow = true; st.add(p); });
-      var canopy = new T.Mesh(new T.BoxGeometry(2.4, 0.12, 1.4), new T.MeshStandardMaterial({ map: tex(K, "cloth"), color: s.cloth, roughness: 0.9 })); canopy.position.y = 1.85; canopy.castShadow = true; st.add(canopy);
-      var table = new T.Mesh(new T.BoxGeometry(2.2, 0.12, 1.2), new T.MeshStandardMaterial({ map: tex(K, "wood"), color: 0xbf9a66, roughness: 0.8 })); table.position.y = 0.8; table.castShadow = true; table.receiveShadow = true; st.add(table);
-      var basket = new T.Mesh(new T.CylinderGeometry(0.92, 0.78, 0.5, 20), new T.MeshStandardMaterial({ map: tex(K, "palm", [3, 1]), color: 0xffffff, roughness: 0.95 })); basket.position.y = 1.1; basket.castShadow = true; st.add(basket);
-      if (s.kind === "balls") { for (var i = 0; i < 5; i++) { var c = new T.Mesh(new T.SphereGeometry(0.28, 14, 10), K.mat(s.mound)); c.position.set(-0.6 + (i % 3) * 0.6, 1.3, -0.25 + Math.floor(i / 3) * 0.5); c.castShadow = true; st.add(c); } }
+      [-0.9, 0.9].forEach(function (px) { var p = new T.Mesh(new T.CylinderGeometry(0.08, 0.08, 1.8, 6), fmat(K, PAL.woodDark)); p.position.set(px, 0.9, 0); p.castShadow = true; st.add(p); });
+      var canopy = new T.Mesh(new T.BoxGeometry(2.4, 0.12, 1.4), fmat(K, s.cloth, 0.9)); canopy.position.y = 1.85; canopy.castShadow = true; st.add(canopy);
+      var table = new T.Mesh(new T.BoxGeometry(2.2, 0.12, 1.2), fmat(K, PAL.wood, 0.8)); table.position.y = 0.8; table.castShadow = true; table.receiveShadow = true; st.add(table);
+      var basket = new T.Mesh(new T.CylinderGeometry(0.92, 0.78, 0.5, 20), fmat(K, 0xb98b50, 0.95)); basket.position.y = 1.1; basket.castShadow = true; st.add(basket);
+      if (s.kind === "balls") {
+        /* CC0 coconuts in the basket, each with a sphere fallback */
+        [[-0.4, -0.2], [0.25, -0.15], [-0.1, 0.3], [0.45, 0.35], [0.05, -0.4]].forEach(function (p, i) {
+          model(st, K, "./assets/coconut.glb", {
+            pos: [p[0], 1.28, p[1]], size: 0.62, rotY: i * 1.3,
+            fallback: function () { var c = new T.Mesh(new T.SphereGeometry(0.28, 14, 10), fmat(K, s.mound)); c.position.y = 0.28; c.castShadow = true; return c; }
+          });
+        });
+      }
       else if (s.kind === "cone") {
-        var m = new T.Mesh(new T.ConeGeometry(0.7, 0.7, 20), K.mat(s.mound)); m.position.y = 1.5; m.castShadow = true; st.add(m);
+        var m = new T.Mesh(new T.ConeGeometry(0.7, 0.7, 20), fmat(K, s.mound)); m.position.y = 1.5; m.castShadow = true; st.add(m);
         /* strings of chillies hung from the canopy to dry */
-        var chMat = K.mat(0xaa2416, { roughness: 0.6 });
+        var chMat = fmat(K, PAL.chilliDark, 0.6);
         [-0.9, -0.45, 0, 0.45, 0.9].forEach(function (hx, hi) { for (var k = 0; k < 4; k++) { var ch = new T.Mesh(new T.ConeGeometry(0.05, 0.3, 6), chMat); ch.position.set(hx, 1.75 - k * 0.22, 0.75); ch.rotation.x = 0.4 + (hi % 2) * 0.2; st.add(ch); } });
       }
-      else if (s.kind === "tray") { var tray = new T.Mesh(new T.BoxGeometry(1.8, 0.1, 1.0), K.mat(0x5a3f22)); tray.position.y = 0.92; st.add(tray); [0xb5651d, 0xc0392b, 0xd9a441, 0x6b8e23].forEach(function (cc, i) { var mm = new T.Mesh(new T.ConeGeometry(0.22, 0.3, 14), K.mat(cc)); mm.position.set(-0.6 + i * 0.4, 1.1, 0); st.add(mm); }); }
-      else if (s.kind === "hen") { var body = new T.Mesh(new T.SphereGeometry(0.42, 16, 12), K.mat(s.mound)); body.scale.set(1.3, 1, 1); body.position.set(0, 1.15, 0); st.add(body); var head = new T.Mesh(new T.SphereGeometry(0.2, 12, 10), K.mat(s.mound)); head.position.set(0.5, 1.5, 0); st.add(head); var comb = new T.Mesh(new T.ConeGeometry(0.08, 0.2, 8), K.mat(0xc0392b)); comb.position.set(0.5, 1.72, 0); st.add(comb); }
+      else if (s.kind === "tray") { var tray = new T.Mesh(new T.BoxGeometry(1.8, 0.1, 1.0), fmat(K, PAL.baseRim)); tray.position.y = 0.92; st.add(tray); [0xb5651d, PAL.chilli, PAL.turmeric, 0x6b8e23].forEach(function (cc, i) { var mm = new T.Mesh(new T.ConeGeometry(0.22, 0.3, 14), fmat(K, cc)); mm.position.set(-0.6 + i * 0.4, 1.1, 0); mm.castShadow = true; st.add(mm); }); }
+      else if (s.kind === "hen") { st.add(makeHen(T, K, s.mound, 1.15)); }
       st._baseY = 0;
       g.add(st); stallByKey[s.key] = st;
       picks.push({ obj: st }); st._pick = (function (key) { return function () { lift(key); }; })(s.key);
@@ -532,100 +600,143 @@
 
   function buildKitchen(g, K) {
     var T = K.THREE, labels = [], picks = [];
-    var heat = 0.3, flames = [], smoke = [], bubbles = [], drops = [];
+    var heat = 0.3, flames = [], smoke = [], bubbles = [], drops = [], sparks = [];
 
-    /* packed-earth floor, a low plastered wall as a backdrop, and three hearth stones */
-    var floor = new T.Mesh(new T.CircleGeometry(11, 44), new T.MeshStandardMaterial({ map: tex(K, "earth", [3, 3]), color: 0xffffff, roughness: 1 }));
-    floor.rotation.x = -Math.PI / 2; floor.position.y = -0.5; floor.receiveShadow = true; g.add(floor);
-    var wallMat = new T.MeshStandardMaterial({ map: tex(K, "plaster", [3, 1]), color: 0xffffff, roughness: 1 });
+    /* the chatti is a wide, shallow clay pot (the CC0 model), so the sauce surface
+       and every particle effect hang off these two numbers rather than fixed heights:
+       mouthY is where the sauce sits, mouthR its radius inside the rim. */
+    var potBaseY = 0.45, potH = 2.1, mouthY = 2.3, mouthR = 1.45, dropStart = mouthY + 4;
+
+    /* round earth-floor diorama with a rim, and two low plastered walls behind */
+    dioramaBase(g, K, 10.5, -0.5, PAL.earth);
+    var wallMat = fmat(K, PAL.plaster, 1);
     var wallA = new T.Mesh(new T.BoxGeometry(16, 3.2, 0.4), wallMat); wallA.position.set(0, 1.1, -6.5); wallA.receiveShadow = true; wallA._noFit = true; g.add(wallA);
     var wallB = new T.Mesh(new T.BoxGeometry(0.4, 3.2, 13), wallMat); wallB.position.set(-7.5, 1.1, 0); wallB.receiveShadow = true; wallB._noFit = true; g.add(wallB);
-    for (var s = 0; s < 3; s++) { var a = s / 3 * Math.PI * 2; var stone = new T.Mesh(new T.DodecahedronGeometry(0.7, 0), new T.MeshStandardMaterial({ map: tex(K, "stone"), color: 0x8a8078, roughness: 0.95 })); stone.position.set(Math.cos(a) * 2.2, -0.1, Math.sin(a) * 2.2); stone.castShadow = true; stone.receiveShadow = true; g.add(stone); }
 
-    /* wood logs */
-    [[0.4, 0.3], [-0.4, -0.3], [0, 0.5]].forEach(function (p, i) { var log = new T.Mesh(new T.CylinderGeometry(0.18, 0.18, 2.4, 8), new T.MeshStandardMaterial({ map: tex(K, "wood", [3, 1]), color: 0x6a4a30, roughness: 0.85 })); log.rotation.z = Math.PI / 2; log.rotation.y = i * 1.1; log.position.set(p[0], 0.0, p[1]); g.add(log); });
+    /* the hearth — a CC0 ring of stones with firewood, fallback to chunky dodecahedra */
+    model(g, K, "./assets/hearth-stones.glb", {
+      pos: [0, -0.02, 0], size: 4.6,
+      fallback: function () { var grp = new T.Group(); for (var s = 0; s < 6; s++) { var a = s / 6 * Math.PI * 2; var stone = new T.Mesh(new T.DodecahedronGeometry(0.55, 0), fmat(K, PAL.stone, 0.95)); stone.position.set(Math.cos(a) * 2.2, 0.3, Math.sin(a) * 2.2); stone.castShadow = true; stone.receiveShadow = true; grp.add(stone); } return grp; }
+    });
+    [[0.3, 1.5, 0.5], [-1.1, -0.6, -0.4]].forEach(function (p) {
+      model(g, K, "./assets/firewood.glb", {
+        pos: [p[0], 0.05, p[1]], size: 2.0, rotY: p[2],
+        fallback: function () { var log = new T.Mesh(new T.CylinderGeometry(0.16, 0.16, 2.0, 8), fmat(K, PAL.woodDark, 0.85)); log.rotation.z = Math.PI / 2; log.rotation.y = p[2]; return log; }
+      });
+    });
 
-    /* animated flames (vertex-ish: scaled cones flickering) */
+    /* animated flames licking up around the pot base (scaled cones flickering) */
     var flameMat = new T.MeshBasicMaterial({ color: 0xff7a1a, transparent: true, opacity: 0.9, blending: T.AdditiveBlending, depthWrite: false });
     var NF = K.coarse ? 5 : 9;                         /* fewer flames on coarse pointers */
     for (var f = 0; f < NF; f++) {
-      var fl = new T.Mesh(new T.ConeGeometry(0.28, 1.3, 7), f % 2 ? flameMat : new T.MeshBasicMaterial({ color: 0xffc23a, transparent: true, opacity: 0.85, blending: T.AdditiveBlending, depthWrite: false }));
-      var aa = f / NF * Math.PI * 2; fl.position.set(Math.cos(aa) * 0.9, 0.6, Math.sin(aa) * 0.9);
-      fl._ph = f; fl._base = 0.6; flames.push(fl); g.add(fl);
+      var fl = new T.Mesh(new T.ConeGeometry(0.3, 1.4, 7), f % 2 ? flameMat : new T.MeshBasicMaterial({ color: 0xffc23a, transparent: true, opacity: 0.85, blending: T.AdditiveBlending, depthWrite: false }));
+      var aa = f / NF * Math.PI * 2; fl.position.set(Math.cos(aa) * 1.0, 0.4, Math.sin(aa) * 1.0);
+      fl._ph = f; fl._base = 0.4; fl._noFit = true; flames.push(fl); g.add(fl);
     }
     /* smoke particles */
     var smokeGeo = new T.BufferGeometry(), smp = [], NSM = K.coarse ? 18 : 40;
     for (var sm = 0; sm < NSM; sm++) { smp.push((Math.sin(sm) * 0.6), 1.5 + (sm % 10) * 0.3, (Math.cos(sm) * 0.6)); }
     smokeGeo.setAttribute("position", new T.Float32BufferAttribute(smp, 3));
     var smoke1 = new T.Points(smokeGeo, new T.PointsMaterial({ color: 0x9a8f80, size: 0.5, transparent: true, opacity: 0.25, depthWrite: false }));
-    g.add(smoke1);
+    smoke1._noFit = true; g.add(smoke1);
 
-    /* the chatti — a lathe-turned clay pot, with a rim and a lid beside it */
-    var profile = [];
-    [[0.0, 0.0], [1.6, 0.05], [2.3, 0.5], [2.6, 1.4], [2.35, 2.2], [1.9, 2.55], [1.95, 2.75]].forEach(function (p) { profile.push(new T.Vector2(p[0], p[1])); });
-    var clayMap = tex(K, "clay");
-    var pot = new T.Mesh(new T.LatheGeometry(profile, 36), new T.MeshStandardMaterial({ map: clayMap, color: 0xb98052, roughness: 0.95, metalness: 0 }));
-    pot.position.y = 1.0; pot.castShadow = true; pot.receiveShadow = true; g.add(pot);
-    var rim = new T.Mesh(new T.TorusGeometry(1.95, 0.16, 10, 32), new T.MeshStandardMaterial({ map: clayMap, color: 0xca9064, roughness: 0.92 })); rim.position.y = 3.75; rim.rotation.x = Math.PI / 2; g.add(rim);
-    var lid = new T.Mesh(new T.SphereGeometry(1.7, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.4), new T.MeshStandardMaterial({ map: clayMap, color: 0xa06838, roughness: 0.95 })); lid.position.set(4.2, 0.4, 1.5); lid.rotation.x = Math.PI; lid.castShadow = true; g.add(lid);
-    var knob = new T.Mesh(new T.SphereGeometry(0.22, 12, 10), K.clay(0x6e4226)); knob.position.set(4.2, 0.55, 1.5); g.add(knob);
+    /* the chatti — the CC0 clay pot, sized to potH and sat on the hearth, with a
+       hand-built lathe pot as the fallback so the station is never empty */
+    var pot = model(g, K, "./assets/chatti-pot.glb", {
+      pos: [0, potBaseY, 0], sizeY: potH,
+      fallback: function () {
+        var profile = [];
+        [[0.0, 0.0], [1.3, 0.05], [1.85, 0.4], [2.05, 1.1], [1.9, 1.75], [1.5, 2.0], [1.55, 2.15]].forEach(function (p) { profile.push(new T.Vector2(p[0], p[1])); });
+        var m = new T.Mesh(new T.LatheGeometry(profile, 36), fmat(K, PAL.clay, 0.92)); m.castShadow = true; m.receiveShadow = true; return m;
+      }
+    });
+    /* the lid, resting beside the pot */
+    model(g, K, "./assets/chatti-lid.glb", {
+      pos: [3.9, 0.08, 1.9], size: 1.7, rotY: 0.5,
+      fallback: function () { var grp = new T.Group(); var dome = new T.Mesh(new T.SphereGeometry(0.85, 24, 12, 0, Math.PI * 2, 0, Math.PI * 0.45), fmat(K, PAL.clayDark, 0.92)); dome.rotation.x = Math.PI; dome.position.y = 0.4; grp.add(dome); var knob = new T.Mesh(new T.SphereGeometry(0.14, 12, 10), fmat(K, PAL.clayDark)); knob.position.y = 0.46; grp.add(knob); return grp; }
+    });
 
-    /* the sauce surface inside the pot (color + displacement shift with heat) */
-    var sauceGeo = new T.CircleGeometry(1.85, 48);
+    /* the sauce surface inside the pot (colour + displacement shift with heat), and
+       a thin clay rim torus to frame it where the model's mouth sits */
+    var rimRing = new T.Mesh(new T.TorusGeometry(mouthR + 0.06, 0.1, 10, 40), fmat(K, PAL.clayRim, 0.9)); rimRing.position.y = mouthY; rimRing.rotation.x = Math.PI / 2; rimRing._noFit = true; g.add(rimRing);
+    var sauceGeo = new T.CircleGeometry(mouthR, 48);
     var sauce = new T.Mesh(sauceGeo, new T.MeshStandardMaterial({ color: 0xcf6a33, roughness: 0.5, metalness: 0.05 }));
-    sauce.rotation.x = -Math.PI / 2; sauce.position.y = 3.35; g.add(sauce);
+    sauce.rotation.x = -Math.PI / 2; sauce.position.y = mouthY; sauce._noFit = true; g.add(sauce);
     var saucePos0 = sauceGeo.attributes.position.array.slice();
 
     /* bubbles */
     var NB = K.coarse ? 16 : 30;
-    for (var b = 0; b < NB; b++) { var p = new T.Mesh(new T.SphereGeometry(0.1, 8, 6), new T.MeshStandardMaterial({ color: 0xf2ead9, roughness: 0.3 })); p._a = (b / NB) * 6.28; p._rr = Math.sqrt((b % 10) / 10) * 1.6; p._sp = 0.3 + (b % 7) / 10; p._yy = (b % 9) / 9; g.add(p); bubbles.push(p); }
+    for (var b = 0; b < NB; b++) { var p = new T.Mesh(new T.SphereGeometry(0.09, 8, 6), new T.MeshStandardMaterial({ color: 0xf2ead9, roughness: 0.3 })); p._a = (b / NB) * 6.28; p._rr = Math.sqrt((b % 10) / 10) * mouthR * 0.85; p._sp = 0.3 + (b % 7) / 10; p._yy = (b % 9) / 9; p._noFit = true; g.add(p); bubbles.push(p); }
 
     /* steam over the pot — thin at a simmer, a thick roiling plume at a hard boil */
     var NST = K.coarse ? 20 : 44, stp = [], stv = [];
-    for (var si2 = 0; si2 < NST; si2++) { var ra = Math.sqrt((si2 % 11) / 11) * 1.6, ang = si2 * 2.399; stp.push(Math.cos(ang) * ra, 3.5 + (si2 % 9) * 0.35, Math.sin(ang) * ra); stv.push(ra, ang, (si2 % 9) / 9); }
+    for (var si2 = 0; si2 < NST; si2++) { var ra = Math.sqrt((si2 % 11) / 11) * mouthR * 0.85, ang = si2 * 2.399; stp.push(Math.cos(ang) * ra, mouthY + 0.2 + (si2 % 9) * 0.3, Math.sin(ang) * ra); stv.push(ra, ang, (si2 % 9) / 9); }
     var steamGeo = new T.BufferGeometry(); steamGeo.setAttribute("position", new T.Float32BufferAttribute(stp, 3));
     var steam = new T.Points(steamGeo, new T.PointsMaterial({ color: 0xf4efe6, size: 0.6, transparent: true, opacity: 0.0, depthWrite: false, blending: T.NormalBlending }));
     steam._noFit = true; g.add(steam);
 
-    /* spice tray with coloured mounds */
-    var tray = new T.Mesh(new T.BoxGeometry(2.4, 0.18, 1.3), new T.MeshStandardMaterial({ map: tex(K, "wood"), color: 0x6a4a2a, roughness: 0.8 })); tray.position.set(-4.5, 0.3, 1.5); tray.castShadow = true; tray.receiveShadow = true; g.add(tray);
-    [0xb5651d, 0xc0392b, 0xd9a441, 0x8b5a2b].forEach(function (cc, i) { var mm = new T.Mesh(new T.ConeGeometry(0.3, 0.4, 16), K.mat(cc)); mm.position.set(-5.3 + i * 0.55, 0.55, 1.5); mm.castShadow = true; g.add(mm); });
+    /* spice tray with coloured mounds (hand-built: no tray model read right) */
+    var tray = new T.Mesh(new T.BoxGeometry(2.4, 0.18, 1.3), fmat(K, PAL.woodDark, 0.8)); tray.position.set(-4.5, 0.3, 1.5); tray.castShadow = true; tray.receiveShadow = true; g.add(tray);
+    [0xb5651d, PAL.chilli, PAL.turmeric, 0x8b5a2b].forEach(function (cc, i) { var mm = new T.Mesh(new T.ConeGeometry(0.3, 0.4, 16), fmat(K, cc)); mm.position.set(-5.3 + i * 0.55, 0.55, 1.5); mm.castShadow = true; g.add(mm); });
     labels.push({ obj: tray, offset: [0, 1.0, 0], slot: "left", text: { en: "the spice tray", ta: "மசாலா தட்டு" } });
 
-    /* the ammi — a speckled-stone grinding slab + roller */
-    var stoneMap = tex(K, "stone");
-    var ammi = new T.Mesh(new T.BoxGeometry(2.0, 0.3, 1.2), new T.MeshStandardMaterial({ map: stoneMap, color: 0x8a8078, roughness: 0.95 })); ammi.position.set(-4.3, 0.15, -1.6); ammi.castShadow = true; ammi.receiveShadow = true; g.add(ammi);
-    var roller = new T.Mesh(new T.CylinderGeometry(0.22, 0.22, 1.4, 16), new T.MeshStandardMaterial({ map: stoneMap, color: 0x938880, roughness: 0.95 })); roller.rotation.z = Math.PI / 2; roller.position.set(-4.3, 0.42, -1.6); roller.castShadow = true; g.add(roller);
-    labels.push({ obj: ammi, offset: [0, 0.9, 0], slot: "left", text: { en: "the ammi — crush the ginger & garlic", ta: "அம்மி" } });
+    /* the ammi — the CC0 mortar-and-pestle, fallback to a stone slab + roller */
+    var ammi = model(g, K, "./assets/mortar.glb", {
+      pos: [-4.3, 0.0, -1.6], sizeY: 1.1,
+      fallback: function () { var grp = new T.Group(); var slab = new T.Mesh(new T.BoxGeometry(1.8, 0.3, 1.1), fmat(K, PAL.stone, 0.95)); slab.position.y = 0.15; slab.castShadow = true; slab.receiveShadow = true; grp.add(slab); var roller = new T.Mesh(new T.CylinderGeometry(0.2, 0.2, 1.3, 16), fmat(K, 0x938880, 0.95)); roller.rotation.z = Math.PI / 2; roller.position.y = 0.42; grp.add(roller); return grp; }
+    });
+    labels.push({ obj: ammi, offset: [0, 1.1, 0], slot: "left", text: { en: "the ammi — crush the ginger & garlic", ta: "அம்மி" } });
 
-    /* cut bird on a wood board — tap to show the fractions; a few chillies and curry leaves scattered on it */
-    var board = new T.Mesh(new T.BoxGeometry(2.0, 0.14, 1.4), new T.MeshStandardMaterial({ map: tex(K, "wood", [2, 1]), color: 0xa5814f, roughness: 0.78 })); board.position.set(4.6, 0.3, -1.6); board.castShadow = true; board.receiveShadow = true; g.add(board);
-    var chilliMat = K.mat(0xaa2416, { roughness: 0.55 }), leafMat = K.mat(0x2f6a2a, { roughness: 0.6 });
-    [[0.7, 0.4, 0.5], [0.85, 0.1, -0.2]].forEach(function (p) { var ch = new T.Mesh(new T.ConeGeometry(0.07, 0.5, 7), chilliMat); ch.position.set(4.6 + p[0], 0.42, -1.6 + p[2]); ch.rotation.z = p[1]; ch.rotation.y = p[0]; g.add(ch); });
-    [[-0.7, 0.3], [-0.55, -0.35], [-0.8, -0.05]].forEach(function (p) { var lf = new T.Mesh(new T.SphereGeometry(0.16, 8, 6), leafMat); lf.scale.set(1.5, 0.25, 0.7); lf.position.set(4.6 + p[0], 0.4, -1.6 + p[1]); g.add(lf); });
+    /* cut bird on a CC0 board (tap for the fractions), a CC0 knife, and a few
+       hand-built chillies and curry leaves scattered on it */
+    var board = model(g, K, "./assets/board.glb", {
+      pos: [4.6, 0.26, -1.6], size: 2.4, pick: showFractions,
+      fallback: function () { var m = new T.Mesh(new T.BoxGeometry(2.0, 0.14, 1.4), fmat(K, PAL.wood, 0.78)); m.position.y = 0.07; m.castShadow = true; m.receiveShadow = true; return m; }
+    });
+    picks.push({ obj: board });
+    model(g, K, "./assets/knife.glb", {
+      pos: [5.5, 0.42, -0.9], size: 1.5, rotY: 0.8,
+      fallback: function () { var grp = new T.Group(); var blade = new T.Mesh(new T.BoxGeometry(1.1, 0.04, 0.3), fmat(K, 0xbfc3c7, 0.4)); grp.add(blade); var handle = new T.Mesh(new T.BoxGeometry(0.4, 0.1, 0.14), fmat(K, PAL.woodDark)); handle.position.x = -0.72; grp.add(handle); return grp; }
+    });
+    var chilliMat = fmat(K, PAL.chilliDark, 0.55), leafMat = fmat(K, 0x2f6a2a, 0.6);
+    [[0.7, 0.4, 0.5], [0.85, 0.1, -0.2]].forEach(function (p) { var ch = new T.Mesh(new T.ConeGeometry(0.07, 0.5, 7), chilliMat); ch.position.set(4.6 + p[0], 0.5, -1.6 + p[2]); ch.rotation.z = p[1]; ch.rotation.y = p[0]; g.add(ch); });
+    [[-0.7, 0.3], [-0.55, -0.35], [-0.8, -0.05]].forEach(function (p) { var lf = new T.Mesh(new T.SphereGeometry(0.16, 8, 6), leafMat); lf.scale.set(1.5, 0.25, 0.7); lf.position.set(4.6 + p[0], 0.48, -1.6 + p[1]); g.add(lf); });
     var pieces = [];
-    [[-0.5, -0.3], [0.1, -0.3], [-0.5, 0.3], [0.1, 0.3], [0.6, 0.0]].forEach(function (p) { var pc = new T.Mesh(new T.SphereGeometry(0.3, 12, 9), K.mat(0xd8b48a)); pc.scale.set(1.1, 0.7, 0.9); pc.position.set(4.6 + p[0], 0.5, -1.6 + p[1]); pc.castShadow = true; g.add(pc); pieces.push(pc); });
-    picks.push({ obj: board }); board._pick = showFractions;
+    [[-0.5, -0.3], [0.1, -0.3], [-0.5, 0.3], [0.1, 0.3], [0.6, 0.0]].forEach(function (p) { var pc = new T.Mesh(new T.SphereGeometry(0.3, 12, 9), fmat(K, 0xd8b48a)); pc.scale.set(1.1, 0.7, 0.9); pc.position.set(4.6 + p[0], 0.56, -1.6 + p[1]); pc.castShadow = true; g.add(pc); pieces.push(pc); });
     var fracAnchors = [], fracShown = false;
     var fracLabels = ["1/2", "1/4", "1/4", "1/8", "1/8"];
     pieces.forEach(function (pc, i) { var an = { obj: pc, offset: [0, 0.5, 0], slot: "above", cls: "tap", text: { en: fracLabels[i] }, tap: showFractions, hidden: true }; fracAnchors.push(an); labels.push(an); });
     labels.push({ obj: board, offset: [0, 0.9, 0], slot: "right", cls: "tap", text: { en: "the bird, cut — tap for the fractions", ta: "கோழி வெட்டப்பட்டது" }, tap: showFractions });
     function showFractions() { fracShown = !fracShown; fracAnchors.forEach(function (a) { a.hidden = !fracShown; }); }
 
-    /* split coconut + scraper, and a jug of coconut milk */
-    [-0.35, 0.35].forEach(function (dx) { var half = new T.Mesh(new T.SphereGeometry(0.5, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), K.mat(0x8a6b3a)); half.position.set(5.0 + dx, 0.5, 2.2); half.rotation.x = Math.PI; g.add(half); var inner = new T.Mesh(new T.CircleGeometry(0.46, 20), K.mat(0xf2ead9)); inner.position.set(5.0 + dx, 0.5, 2.2); inner.rotation.x = -Math.PI / 2; g.add(inner); });
-    var jug = new T.Mesh(new T.CylinderGeometry(0.5, 0.42, 1.1, 20), new T.MeshStandardMaterial({ color: 0xece3d0, roughness: 0.6 })); jug.position.set(3.0, 0.55, 2.6); g.add(jug);
-    var milk = new T.Mesh(new T.CircleGeometry(0.44, 20), new T.MeshStandardMaterial({ color: 0xf6f0e2, roughness: 0.3 })); milk.rotation.x = -Math.PI / 2; milk.position.set(3.0, 1.1, 2.6); g.add(milk);
+    /* split coconut (CC0 halves), the coconut-oil bottle (CC0), and a hand-built
+       jug of coconut milk with a milk surface */
+    [[4.65, 2.2], [5.35, 2.2]].forEach(function (pp, i) {
+      model(g, K, "./assets/coconut-half.glb", {
+        pos: [pp[0], 0.1, pp[1]], size: 0.75, rotY: i * 1.6,
+        fallback: function () { var grp = new T.Group(); var half = new T.Mesh(new T.SphereGeometry(0.42, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), fmat(K, 0x8a6b3a)); half.rotation.x = Math.PI; half.position.y = 0.42; grp.add(half); var inner = new T.Mesh(new T.CircleGeometry(0.38, 20), fmat(K, PAL.milk)); inner.rotation.x = -Math.PI / 2; inner.position.y = 0.42; grp.add(inner); return grp; }
+      });
+    });
+    model(g, K, "./assets/oil-bottle.glb", {
+      pos: [2.1, 0.0, 2.9], sizeY: 1.3,
+      fallback: function () { var m = new T.Mesh(new T.CylinderGeometry(0.22, 0.26, 1.3, 16), fmat(K, PAL.turmeric, 0.4)); m.position.y = 0.65; return m; }
+    });
+    labels.push({ obj: { position: new T.Vector3(2.1, 0.9, 2.9) }, offset: [0, 0.6, 0], slot: "right", text: { en: "coconut oil", ta: "தேங்காய் எண்ணெய்" } });
+    var jug = new T.Mesh(new T.CylinderGeometry(0.5, 0.42, 1.1, 20), fmat(K, 0xece3d0, 0.6)); jug.position.set(3.2, 0.55, 2.6); jug.castShadow = true; g.add(jug);
+    var milk = new T.Mesh(new T.CircleGeometry(0.44, 20), new T.MeshStandardMaterial({ color: PAL.milk, roughness: 0.3 })); milk.rotation.x = -Math.PI / 2; milk.position.set(3.2, 1.1, 2.6); g.add(milk);
     labels.push({ obj: jug, offset: [0, 0.9, 0], slot: "right", text: { en: "coconut milk", ta: "தேங்காய்ப் பால்" } });
+    /* an onion and a tomato (CC0) by the board — the aromatics and the paste */
+    model(g, K, "./assets/onion.glb", { pos: [3.7, 0.0, -2.5], size: 0.6, fallback: function () { var m = new T.Mesh(new T.SphereGeometry(0.3, 14, 10), fmat(K, PAL.onion)); m.position.y = 0.3; return m; } });
+    model(g, K, "./assets/tomato.glb", { pos: [4.4, 0.0, -2.7], size: 0.5, fallback: function () { var m = new T.Mesh(new T.SphereGeometry(0.26, 14, 10), fmat(K, PAL.tomato)); m.position.y = 0.26; return m; } });
 
-    labels.push({ obj: pot, offset: [0, 3.4, 0], slot: "above", text: { en: "coconut milk last — at a simmer", ta: "தேங்காய்ப் பால் கடைசியாக" } });
+    labels.push({ obj: pot, offset: [0, mouthY + 1.3, 0], slot: "above", text: { en: "coconut milk last — at a simmer", ta: "தேங்காய்ப் பால் கடைசியாக" } });
 
     /* ---- the pot API the order game and heat slider drive ---- */
     var effectColors = { temper: 0xd98a2b, onions: 0xe0b878, aromatics: 0xcf7a33, bird: 0xcf6a33, tomato: 0x9c2d17, coconut: 0xe9c89a };
     function drop(id, effect) {
       /* a quick ingredient drop into the pot */
-      var ing = new T.Mesh(new T.SphereGeometry(0.28, 12, 9), K.mat(effectColors[effect] || 0xcccccc));
-      ing.position.set((Math.sin(id.length) * 1.0), 6.5, (Math.cos(id.length) * 1.0)); g.add(ing);
+      var ing = new T.Mesh(new T.SphereGeometry(0.26, 12, 9), fmat(K, effectColors[effect] || 0xcccccc));
+      ing.position.set((Math.sin(id.length) * 0.8), dropStart, (Math.cos(id.length) * 0.8)); ing._noFit = true; g.add(ing);
       drops.push({ obj: ing, t: 0, dur: 0.7, effect: effect });
     }
     function applyEffect(effect) {
@@ -634,9 +745,8 @@
       else if (effect === "coconut") { sauce.material.color.setHex(0xe9c89a); sauce.material.roughness = 0.25; }  /* coconut milk pales it */
       else if (effect === "temper") burst(0xffd27a);
     }
-    function burst(color) { for (var i = 0; i < 10; i++) { var pp = new T.Mesh(new T.SphereGeometry(0.07, 6, 5), new T.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.9, blending: T.AdditiveBlending, depthWrite: false })); pp.position.set(0, 3.5, 0); pp._v = new T.Vector3((Math.sin(i) * 0.08), 0.12 + (i % 3) * 0.03, (Math.cos(i) * 0.08)); pp._life = 1; sparks.push(pp); g.add(pp); } }
-    var sparks = [];
-    function smokePuff() { for (var i = 0; i < 8; i++) { var pp = new T.Mesh(new T.SphereGeometry(0.12, 6, 5), new T.MeshStandardMaterial({ color: 0x5a5048, transparent: true, opacity: 0.6 })); pp.position.set(0, 3.6, 0); pp._v = new T.Vector3((Math.sin(i) * 0.05), 0.1, (Math.cos(i) * 0.05)); pp._life = 1; sparks.push(pp); g.add(pp); } }
+    function burst(color) { for (var i = 0; i < 10; i++) { var pp = new T.Mesh(new T.SphereGeometry(0.07, 6, 5), new T.MeshBasicMaterial({ color: color, transparent: true, opacity: 0.9, blending: T.AdditiveBlending, depthWrite: false })); pp.position.set(0, mouthY + 0.2, 0); pp._v = new T.Vector3((Math.sin(i) * 0.08), 0.12 + (i % 3) * 0.03, (Math.cos(i) * 0.08)); pp._life = 1; pp._noFit = true; sparks.push(pp); g.add(pp); } }
+    function smokePuff() { for (var i = 0; i < 8; i++) { var pp = new T.Mesh(new T.SphereGeometry(0.12, 6, 5), new T.MeshStandardMaterial({ color: 0x5a5048, transparent: true, opacity: 0.6 })); pp.position.set(0, mouthY + 0.3, 0); pp._v = new T.Vector3((Math.sin(i) * 0.05), 0.1, (Math.cos(i) * 0.05)); pp._life = 1; pp._noFit = true; sparks.push(pp); g.add(pp); } }
     function setHeat(v) { heat = v; }
 
     /* ---- per-frame animation ---- */
@@ -653,7 +763,7 @@
       var tp = steam.geometry.attributes.position.array;
       for (var n = 0; n < NST; n++) {
         var ra = stv[n * 3], ang = stv[n * 3 + 1];
-        tp[n * 3 + 1] += 0.015 + heat * 0.03; if (tp[n * 3 + 1] > 6.6) tp[n * 3 + 1] = 3.5;
+        tp[n * 3 + 1] += 0.015 + heat * 0.03; if (tp[n * 3 + 1] > mouthY + 3.2) tp[n * 3 + 1] = mouthY + 0.2;
         var rr = ra * (1 + roil * 0.7), sway = roil * Math.sin(tsec * 3 + n) * 0.5;
         tp[n * 3] = Math.cos(ang) * rr + sway; tp[n * 3 + 2] = Math.sin(ang) * rr;
       }
@@ -661,14 +771,14 @@
       steam.material.opacity = 0.16 + heat * 0.5; steam.material.size = 0.5 + roil * 0.5;
       /* bubbles — slow at a simmer, violent split at a hard boil */
       var split = heat > 0.6, spread = split ? 1 + heat * 1.2 : 1;
-      bubbles.forEach(function (p) { p._yy += (0.004 + heat * 0.04); if (p._yy > 1) p._yy = 0; p.visible = p._yy < (split ? 1 : 0.6); p.position.set(Math.cos(p._a) * p._rr * spread, 3.35 + p._yy * (split ? 1.4 : 0.4), Math.sin(p._a) * p._rr * spread); });
+      bubbles.forEach(function (p) { p._yy += (0.004 + heat * 0.04); if (p._yy > 1) p._yy = 0; p.visible = p._yy < (split ? 1 : 0.6); p.position.set(Math.cos(p._a) * p._rr * spread, mouthY + p._yy * (split ? 1.4 : 0.4), Math.sin(p._a) * p._rr * spread); });
       /* sauce surface: flat at a simmer, curdled two-tone displacement at a hard boil */
       var pos = sauce.geometry.attributes.position, arr = pos.array;
       for (var v = 0; v < arr.length; v += 3) { var x = saucePos0[v], z = saucePos0[v + 1]; var d = split ? Math.sin(x * 3 + tsec * 4) * Math.cos(z * 3) * 0.18 * ((heat - 0.6) / 0.4) : 0; arr[v + 2] = saucePos0[v + 2] + d; }
       pos.needsUpdate = true;
       if (split) { sauce.material.color.lerp(new T.Color(0xcf8a4a), 0.02); sauce.material.roughness = 0.7; }
       /* drops falling into pot */
-      for (var di = drops.length - 1; di >= 0; di--) { var dp = drops[di]; dp.t += 1 / 60; var k = Math.min(1, dp.t / dp.dur); dp.obj.position.y = 6.5 - (6.5 - 3.4) * k; dp.obj.position.x *= (1 - 0.04 * k); dp.obj.position.z *= (1 - 0.04 * k); if (k >= 1) { g.remove(dp.obj); applyEffect(dp.effect); drops.splice(di, 1); } }
+      for (var di = drops.length - 1; di >= 0; di--) { var dp = drops[di]; dp.t += 1 / 60; var k = Math.min(1, dp.t / dp.dur); dp.obj.position.y = dropStart - (dropStart - mouthY) * k; dp.obj.position.x *= (1 - 0.04 * k); dp.obj.position.z *= (1 - 0.04 * k); if (k >= 1) { g.remove(dp.obj); applyEffect(dp.effect); drops.splice(di, 1); } }
       /* sparks */
       for (var si = sparks.length - 1; si >= 0; si--) { var s = sparks[si]; s.position.add(s._v); s._v.y -= 0.004; s._life -= 0.03; s.material.opacity = Math.max(0, s._life); if (s._life <= 0) { g.remove(s); sparks.splice(si, 1); } }
     }
@@ -679,39 +789,49 @@
   function buildTable(g, K) {
     var T = K.THREE, labels = [], picks = [];
 
-    /* a tiled floor, and a plastered back wall with a daylight window */
-    var floor = new T.Mesh(new T.CircleGeometry(16, 44), new T.MeshStandardMaterial({ map: tex(K, "earth", [4, 4]), color: 0x6a5238, roughness: 0.95 }));
-    floor.rotation.x = -Math.PI / 2; floor.position.y = -2.3; floor.receiveShadow = true; g.add(floor);
-    var wallMat = new T.MeshStandardMaterial({ map: tex(K, "plaster", [3, 1]), color: 0xffffff, roughness: 1 });
+    /* round floor diorama with a rim, a plastered back wall and a daylight window */
+    dioramaBase(g, K, 11, -2.3, PAL.earthDark);
+    var wallMat = fmat(K, PAL.plaster, 1);
     var wall = new T.Mesh(new T.BoxGeometry(22, 12, 0.4), wallMat); wall.position.set(0, 3.7, -9); wall.receiveShadow = true; wall._noFit = true; g.add(wall);
-    var winFrame = new T.Mesh(new T.BoxGeometry(5.2, 4.2, 0.3), K.mat(0x5a3f22)); winFrame.position.set(-5, 5.2, -8.75); winFrame._noFit = true; g.add(winFrame);
-    var sky = new T.Mesh(new T.PlaneGeometry(4.6, 3.6), new T.MeshStandardMaterial({ color: 0x9fd0e6, emissive: 0x6ea9c4, emissiveIntensity: 0.6, roughness: 0.4 })); sky.position.set(-5, 5.2, -8.6); sky._noFit = true; g.add(sky);
-    var mullion = new T.Mesh(new T.BoxGeometry(0.16, 3.6, 0.2), K.mat(0x5a3f22)); mullion.position.set(-5, 5.2, -8.55); mullion._noFit = true; g.add(mullion);
+    var winFrame = new T.Mesh(new T.BoxGeometry(5.2, 4.2, 0.3), fmat(K, PAL.baseRim)); winFrame.position.set(-5, 5.2, -8.75); winFrame._noFit = true; g.add(winFrame);
+    var sky = new T.Mesh(new T.PlaneGeometry(4.6, 3.6), new T.MeshStandardMaterial({ color: PAL.sky, emissive: 0x6ea9c4, emissiveIntensity: 0.6, roughness: 0.4 })); sky.position.set(-5, 5.2, -8.6); sky._noFit = true; g.add(sky);
+    var mullion = new T.Mesh(new T.BoxGeometry(0.16, 3.6, 0.2), fmat(K, PAL.baseRim)); mullion.position.set(-5, 5.2, -8.55); mullion._noFit = true; g.add(mullion);
 
-    /* low round table with a wood top and a cloth runner */
-    var tbl = new T.Mesh(new T.CylinderGeometry(6, 6, 0.5, 40), new T.MeshStandardMaterial({ map: tex(K, "wood", [3, 3]), color: 0x7a5636, roughness: 0.75 })); tbl.position.y = 0; tbl.receiveShadow = true; g.add(tbl);
-    var runner = new T.Mesh(new T.BoxGeometry(3.2, 0.06, 11.6), new T.MeshStandardMaterial({ map: tex(K, "cloth", [1, 4]), color: 0xffffff, roughness: 0.9 })); runner.position.set(3.4, 0.27, 0); runner.receiveShadow = true; g.add(runner);
-    [[-4.5, -4.5], [4.5, -4.5], [-4.5, 4.5], [4.5, 4.5]].forEach(function (p) { var leg = new T.Mesh(new T.CylinderGeometry(0.3, 0.3, 2.2, 10), new T.MeshStandardMaterial({ map: tex(K, "wood"), color: 0x4a3220, roughness: 0.8 })); leg.position.set(p[0], -1.1, p[1]); leg.castShadow = true; g.add(leg); });
+    /* low round family table with a wood top and a cloth runner — hand-built: the
+       CC0 round table reads as a small coffee table at family scale, so it is kept
+       in flat palette colour to match the loaded crockery (see assets/LICENSES.md) */
+    var tbl = new T.Mesh(new T.CylinderGeometry(6, 6, 0.5, 48), fmat(K, PAL.base, 0.75)); tbl.position.y = 0; tbl.receiveShadow = true; g.add(tbl);
+    var runner = new T.Mesh(new T.BoxGeometry(3.2, 0.06, 11.6), fmat(K, PAL.cloth, 0.9)); runner.position.set(3.4, 0.27, 0); runner.receiveShadow = true; g.add(runner);
+    [[-4.5, -4.5], [4.5, -4.5], [-4.5, 4.5], [4.5, 4.5]].forEach(function (p) { var leg = new T.Mesh(new T.CylinderGeometry(0.3, 0.3, 2.2, 10), fmat(K, PAL.woodDark, 0.8)); leg.position.set(p[0], -1.1, p[1]); leg.castShadow = true; g.add(leg); });
 
     /* banana leaf */
-    var leaf = new T.Mesh(new T.CircleGeometry(4.2, 40), new T.MeshStandardMaterial({ color: 0x2f7a32, roughness: 0.6 })); leaf.rotation.x = -Math.PI / 2; leaf.scale.set(1.25, 1, 0.8); leaf.position.set(0, 0.27, 0); g.add(leaf);
-    var vein = new T.Mesh(new T.BoxGeometry(9.5, 0.02, 0.1), new T.MeshStandardMaterial({ color: 0x236026 })); vein.position.set(0, 0.29, 0); g.add(vein);
+    var leaf = new T.Mesh(new T.CircleGeometry(4.2, 40), fmat(K, PAL.leaf, 0.6)); leaf.rotation.x = -Math.PI / 2; leaf.scale.set(1.25, 1, 0.8); leaf.position.set(0, 0.27, 0); leaf.receiveShadow = true; g.add(leaf);
+    var vein = new T.Mesh(new T.BoxGeometry(9.5, 0.02, 0.1), fmat(K, 0x236026)); vein.position.set(0, 0.29, 0); g.add(vein);
 
-    /* rice mound */
-    var rice = new T.Mesh(new T.SphereGeometry(1.4, 24, 16, 0, 6.28, 0, Math.PI / 2), K.mat(0xf3eeda)); rice.position.set(-1.6, 0.28, 0); rice.castShadow = true; g.add(rice);
-    /* curry bowl */
-    var bowl = new T.Mesh(new T.LatheGeometry([new T.Vector2(0, 0), new T.Vector2(1.0, 0.05), new T.Vector2(1.15, 0.6), new T.Vector2(1.1, 0.65)], 28), new T.MeshStandardMaterial({ map: tex(K, "clay"), color: 0xa06838, roughness: 0.95 })); bowl.position.set(1.7, 0.28, 0.4); bowl.castShadow = true; bowl.receiveShadow = true; g.add(bowl);
-    var curry = new T.Mesh(new T.CircleGeometry(1.0, 24), new T.MeshStandardMaterial({ color: 0xbe5a2c, roughness: 0.45 })); curry.rotation.x = -Math.PI / 2; curry.position.set(1.7, 0.85, 0.4); g.add(curry);
-    /* string hoppers side plate */
-    var plate = new T.Mesh(new T.CylinderGeometry(1.1, 1.1, 0.12, 24), K.mat(0xeee6d4)); plate.position.set(1.4, 0.34, -2.6); g.add(plate);
-    for (var hcoil = 0; hcoil < 3; hcoil++) { var coil = new T.Mesh(new T.TorusGeometry(0.4, 0.14, 8, 20), new T.MeshStandardMaterial({ color: 0xf4efe2, roughness: 0.7 })); coil.rotation.x = Math.PI / 2; coil.position.set(1.4 + (hcoil - 1) * 0.3, 0.46, -2.6); g.add(coil); }
+    /* rice mound (hand-built) */
+    var rice = new T.Mesh(new T.SphereGeometry(1.4, 24, 16, 0, 6.28, 0, Math.PI / 2), fmat(K, PAL.rice)); rice.position.set(-1.6, 0.28, 0); rice.castShadow = true; g.add(rice);
+    /* curry bowl (CC0 bowl) with a hand-built curry surface; fallback to a lathe bowl */
+    var bowl = model(g, K, "./assets/bowl.glb", {
+      pos: [1.7, 0.27, 0.4], size: 2.3,
+      fallback: function () { var m = new T.Mesh(new T.LatheGeometry([new T.Vector2(0, 0), new T.Vector2(1.0, 0.05), new T.Vector2(1.15, 0.6), new T.Vector2(1.1, 0.65)], 28), fmat(K, PAL.clayDark, 0.95)); m.castShadow = true; m.receiveShadow = true; return m; }
+    });
+    var curry = new T.Mesh(new T.CircleGeometry(0.95, 24), new T.MeshStandardMaterial({ color: PAL.curry, roughness: 0.45 })); curry.rotation.x = -Math.PI / 2; curry.position.set(1.7, 1.0, 0.4); g.add(curry);
+    /* string hoppers on a CC0 plate, with hand-built coils; fallback to a disc */
+    var plate = model(g, K, "./assets/plate.glb", {
+      pos: [1.4, 0.28, -2.6], size: 2.6,
+      fallback: function () { var m = new T.Mesh(new T.CylinderGeometry(1.1, 1.0, 0.14, 24), fmat(K, 0xeee6d4)); m.position.y = 0.07; return m; }
+    });
+    for (var hcoil = 0; hcoil < 3; hcoil++) { var coil = new T.Mesh(new T.TorusGeometry(0.38, 0.12, 8, 20), fmat(K, 0xf4efe2, 0.7)); coil.rotation.x = Math.PI / 2; coil.position.set(1.4 + (hcoil - 1) * 0.3, 0.62, -2.6); coil.castShadow = true; g.add(coil); }
 
-    /* the empty chair */
-    var chair = new T.Group(); var seat = new T.Mesh(new T.BoxGeometry(1.6, 0.2, 1.6), K.mat(0x4a3220)); seat.position.y = 2.0; chair.add(seat); var back = new T.Mesh(new T.BoxGeometry(1.6, 1.8, 0.2), K.mat(0x4a3220)); back.position.set(0, 2.9, -0.7); chair.add(back); [[-0.6, -0.6], [0.6, -0.6], [-0.6, 0.6], [0.6, 0.6]].forEach(function (p) { var l = new T.Mesh(new T.CylinderGeometry(0.1, 0.1, 2, 8), K.mat(0x3a281a)); l.position.set(p[0], 1.0, p[1]); chair.add(l); }); chair.position.set(0, 0, 8.5); g.add(chair);
-    labels.push({ obj: chair, offset: [0, 3.4, 0], slot: "above", cls: "lead", text: { en: "a place kept — Sunday lunch", ta: "ஞாயிறு மதிய உணவு" }, reader: true });
+    /* the empty chair — a place kept (CC0 chair, fallback to a boxy chair) */
+    var chair = model(g, K, "./assets/chair.glb", {
+      pos: [0, 0, 8.5], sizeY: 3.6, rotY: Math.PI,
+      fallback: function () { var grp = new T.Group(); var seat = new T.Mesh(new T.BoxGeometry(1.6, 0.2, 1.6), fmat(K, PAL.woodDark)); seat.position.y = 2.0; grp.add(seat); var back = new T.Mesh(new T.BoxGeometry(1.6, 1.8, 0.2), fmat(K, PAL.woodDark)); back.position.set(0, 2.9, -0.7); grp.add(back); [[-0.6, -0.6], [0.6, -0.6], [-0.6, 0.6], [0.6, 0.6]].forEach(function (p) { var l = new T.Mesh(new T.CylinderGeometry(0.1, 0.1, 2, 8), fmat(K, 0x3a281a)); l.position.set(p[0], 1.0, p[1]); grp.add(l); }); return grp; }
+    });
+    labels.push({ obj: chair, offset: [0, 3.6, 0], slot: "above", cls: "lead", text: { en: "a place kept — Sunday lunch", ta: "ஞாயிறு மதிய உணவு" }, reader: true });
 
     /* the recipe card on the table — tap to open the printable one */
-    var card = new T.Mesh(new T.BoxGeometry(2.2, 0.08, 3.0), new T.MeshStandardMaterial({ color: 0xf2ead9, roughness: 0.8 })); card.position.set(-3.6, 0.34, 1.6); card.rotation.y = 0.3; g.add(card);
+    var card = new T.Mesh(new T.BoxGeometry(2.2, 0.08, 3.0), fmat(K, 0xf2ead9, 0.8)); card.position.set(-3.6, 0.34, 1.6); card.rotation.y = 0.3; card.castShadow = true; g.add(card);
     picks.push({ obj: card }); card._pick = openCard;
     labels.push({ obj: card, offset: [0, 0.8, 0], slot: "left", cls: "tap", text: { en: "the recipe card — tap to open", ta: "செய்முறை அட்டை" }, tap: openCard });
     function openCard() { try { location.hash = "#card"; var c = document.getElementById("card"); if (c) c.scrollIntoView({ behavior: "smooth" }); } catch (e) {} }
