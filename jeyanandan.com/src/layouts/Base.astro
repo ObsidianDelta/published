@@ -1,5 +1,5 @@
 ---
-const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.props;
+const { title, description = "Jason Jeyanandan.", noindex = false, image = null, imageAlt = null } = Astro.props;
 
 // 2026-10-08: the page carried a title and description but no canonical, no
 // Open Graph and no Twitter card, so a shared link -- the home page included --
@@ -8,8 +8,12 @@ const { title, description = "Jason Jeyanandan.", noindex = false } = Astro.prop
 // (1200x630, the wordmark on paper with the coda line, in the site's own
 // palette). Astro.site is https://jeyanandan.com. No new copy: og:image:alt is
 // the name, the share text is each page's own title and description.
+//
+// 2026-10-11: a page may pass image/imageAlt (a 1200x630 path under public/);
+// the share card then uses it instead of /og.png. Pages that pass nothing are
+// unchanged.
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const ogImage = new URL('/og.png', Astro.site);
+const ogImage = new URL(image || '/og.png', Astro.site);
 
 // 2026-09-08: the Blog link is off the masthead and the footer at Jason's
 // request. The /blog/ routes still build and still resolve, they are simply
@@ -28,6 +32,13 @@ const ogImage = new URL('/og.png', Astro.site);
 // 2026-10-01: two more, on every page: "How I publish" (/blog/how-i-publish/,
 // the explainer every surface points at) and the public record,
 // github.com/ObsidianDelta/published, where every post's history is readable.
+//
+// 2026-10-11: at Jason's request the footer is minimal: the name, "How I
+// publish" and LinkedIn, nothing else. The "Versioned, in public" link and the
+// one-body-of-work line are gone; every post still links its own History. The
+// footer had also lost its side padding to a `padding:1.6rem 0 2.6rem`
+// shorthand, which pushed it against the screen edges on a phone; it now sets
+// only top and bottom and keeps .shell's side padding.
 //
 // These notes live in the frontmatter, not in an HTML comment in the body,
 // because this layout wraps every page on the site: an <!-- --> here is emitted
@@ -57,7 +68,7 @@ const ogImage = new URL('/og.png', Astro.site);
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="Jason Jeyanandan" />
+<meta property="og:image:alt" content={imageAlt || "Jason Jeyanandan"} />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
@@ -108,9 +119,8 @@ h1{
 .eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin:0 0 .9rem}
 
 footer{border-top:1px solid var(--line);margin-top:clamp(2.5rem,6vw,4rem)}
-footer .shell{padding:1.6rem 0 2.6rem;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer .shell{padding-top:1.6rem;padding-bottom:2.6rem;font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;align-items:baseline;gap:.6rem 1.4rem;flex-wrap:wrap}
 footer .links{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
-footer .ecosystem{flex-basis:100%;margin:0}
 footer a{text-decoration:none}
 footer a:hover{color:var(--orange)}
 
@@ -128,10 +138,8 @@ footer a:hover{color:var(--orange)}
     <span>Jason Jeyanandan</span>
     <span class="links">
       <a href="/blog/how-i-publish/">How I publish</a>
-      <a href="https://github.com/ObsidianDelta/published/tree/main/jeyanandan.com">Versioned, in public</a>
       <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>
     </span>
-    <p class="ecosystem">One body of work: <a href="/">jeyanandan.com</a> (the writing) · <a href="https://daxfoundation.org/metadax/">daxfoundation.org</a> (MetaDAX, the open commons) · <a href="https://www.obsidiandelta.com/learning/">obsidiandelta.com</a> (the company: done-for-you services) · <a href="https://formaddie.com/">formaddie.com</a> (Maddie)</p>
   </div></footer>
 </body>
 </html>
