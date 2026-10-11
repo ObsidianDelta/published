@@ -1,14 +1,20 @@
 ---
 title: "Meta DAX, Two Weeks In"
 subtitle: "The Open Recipe, the Honest Results, and Your Chair"
-date: 2026-10-10
-updated: 2026-10-10
-description: "Two weeks after the introduction: what Meta DAX actually is now — the open recipe, the showcases, the first honest experiment results — and the specific thing I would like you to do with it."
+date: 2026-10-11
+updated: 2026-10-11
+description: "Two weeks after the introduction: what Meta DAX actually is now — the one idea underneath it, the open recipe, the showcases, the first honest experiment results — and where you come in."
 draft: true
 tags: ["meta-dax", "learning", "experiments"]
 ---
 
-*Two weeks ago I [introduced Meta DAX](/blog/meta-dax/). This is the working log from inside it: what exists now, what the first experiments showed, and the one thing I would like you to do with it.*
+*Two weeks ago I [introduced Meta DAX](/blog/meta-dax/). This is the working log from inside it: what exists now, what the first experiments showed, and where you come in.*
+
+---
+
+## The one idea
+
+Everything below comes down to one trick, and it is the part people do not expect. A lesson on fractions is the same lesson whether it is played in a football stadium, a kitchen, or the back of a jeepney. What changes is the skin: the recipe builds the page through whatever that particular learner already loves. Newton's laws for a kid who lives for hockey are Newton's laws with pucks; for a kid who lives for theme parks they are Newton's laws with a sled. **Same lesson, any skin, built for one person.** Once that works for a child at a kitchen table, it works for a new hire's first week and for a first-year university unit, because the recipe does not care what the subject is. Everything that follows is that one idea, run through different doors.
 
 ---
 
@@ -18,7 +24,7 @@ Open the repository and the whole recipe is there — not a description of it, t
 
 Five showcases, each built by that factory from a short brief, each a page you can open right now: **[Le Stade des Fractions](https://daxfoundation.org/metadax/samples/stade-des-fractions/)**, a 3D fractions parcours for one eleven-year-old; **[First Week at the Bakery](https://daxfoundation.org/metadax/showcases/first-week-at-the-bakery/)**, staff onboarding from a one-page brief; **[The Proton Mill](https://daxfoundation.org/metadax/showcases/proton-mill/)**, a first-year biology lesson on how mitochondria make ATP; **[The Tutor's Desk](https://daxfoundation.org/metadax/showcases/tutors-desk/)**, one tutor's week — rough notes in, a parent-ready report out, and the coach working the problem she keeps hitting; and **[The Year on the Wall](https://daxfoundation.org/metadax/showcases/grade-6-science-year/)**, a whole Grade 6 science year — 36 weeks mapped, misconceptions named, one week built in full. Every one is a model-generated example, reviewed for safety and not certified, and says so on its own face.
 
-Underneath them, **[nine homeschool samples](https://daxfoundation.org/metadax/samples/)** across reading, maths, science, writing and history — made-up families, nothing identifying, one page for the guide and one for the child. And the homeschool skill, [in the open repo](https://github.com/daxfoundation/metadax), that lets you make your own. The [tutor skill](https://github.com/daxfoundation/metadax/tree/main/skills/metadax-tutor) and [teacher skill](https://github.com/daxfoundation/metadax/tree/main/skills/metadax-teacher) are now merged in the open repo — open to run today.
+Underneath them, **[nine homeschool samples](https://daxfoundation.org/metadax/samples/)** across reading, maths, science, writing and history — made-up families, nothing identifying, one page for the guide and one for the child. And the homeschool skill, [in the open repo](https://github.com/daxfoundation/metadax), that lets you make your own: its prompt now works pasted into a plain chat with no tools at all — it hands you the package and [the player](https://daxfoundation.org/metadax/play/) checks it. The [tutor skill](https://github.com/daxfoundation/metadax/tree/main/skills/metadax-tutor) and [teacher skill](https://github.com/daxfoundation/metadax/tree/main/skills/metadax-teacher) are merged in the same repo — open to run today.
 
 ---
 
@@ -32,7 +38,7 @@ Meta DAX is one system with many seats. Pull up the one that is yours, and tell 
 - **Trainer.** [The trainer's door](https://daxfoundation.org/metadax/trainer/): turn a one-page brief into an onboarding module a new hire actually finishes, the way the bakery did. *What does someone need in their first week that nobody has written down yet?*
 - **Researcher.** [The research door](https://daxfoundation.org/metadax/research/): every experiment is a script, a question, and the result that would tell us to stop. Reproduce them, argue with them, break them. *Which of our findings would you most like to prove wrong?*
 
-Every door is open. If you want to see before you try, each one has a walkthrough at `/metadax/<door>/walkthrough/` — a step-by-step preview of exactly what a session looks like. None of these is *the* way in. They are doors onto one room.
+Every door is open. If you want to see before you try, each one has a walkthrough at `/metadax/<door>/walkthrough/` — a step-by-step preview of a session, with real screenshots of the pages it produces. None of these is *the* way in. They are doors onto one room.
 
 ---
 
@@ -54,23 +60,29 @@ So three things changed in the design, held as hypotheses for the next experimen
 
 ## How it's built, and why it's free
 
-The fleet that builds all this runs on paid compute. That is the honest shape of it, and it is also the point. Every build the fleet does for someone who pays can be shared back into the commons, de-identified, so the next person starts from reuse instead of a blank page. That is the flywheel: a teacher's published course, a learner's good question folded in with permission, a stumble a guide fixed so nobody falls into the same hole twice. Each one makes the next path shorter. The commons gets better every time somebody walks on it.
+My cognitive companion builds all of this, and it runs on paid compute. That is the honest shape of it, and it is also the point. Every build done for someone who pays can be shared back into the commons, de-identified, so the next person starts from reuse instead of a blank page. That is the flywheel: a teacher's published course, a learner's good question folded in with permission, a stumble a guide fixed so nobody falls into the same hole twice. Each one makes the next path shorter. The commons gets better every time somebody walks on it.
 
 The line I hold is simple. **Meta DAX, and the Foundation's universal learning initiative behind it, is free — the recipe, the skills, the samples, all of it.** The [done-for-you work](https://www.obsidiandelta.com/learning/) — a package built to order, a report written in your voice, a course built in a week — is a separate, clearly labelled service, Obsidian Delta's, never the Foundation's. The free thing stays free. The paid thing pays for the compute that keeps the free thing running and feeds the commons. That is the whole arrangement, and I would rather you understood it than trusted it.
 
-Which brings me to the one sentence I will ask outright:
+Which brings me to the one sentence I will say outright:
 
-> **MetaDAX is free. It is built on paid compute. If it helped, a coffee on [Ko-fi](https://ko-fi.com/jeyanandan) or a GitHub sponsorship keeps it going.**
+> **Meta DAX is free. It is built on paid compute. If it helped, a coffee on [Ko-fi](https://ko-fi.com/jeyanandan) or a [GitHub sponsorship](https://github.com/sponsors/ObsidianDelta) keeps it going.**
 
 ---
 
-## What I'm asking
+## What's next
+
+The next packages are about food. Every culture has a dish that only one person in the family makes properly, and inside that dish is a whole lesson: the measuring and the ratios, the heat and the time, the chemistry of the one step that matters, and the story of where it comes from and when it is eaten. The same recipe that built the stadium will build *one dish, its story* for the kids of a diaspora — the first ones Filipino, Serbian, Sikh and Uruguayan — each one read by someone from that community before it goes out, published free, and carrying the name of the person who sponsored it. If one of those is your community, [the Sponsors page](https://github.com/sponsors/ObsidianDelta) is where you put your name on it.
+
+---
+
+## Where you come in
 
 Three things, and each is specific on purpose.
 
 1. **Send me a scenario.** A real learner, a real stuck spot, a real first week — whatever chair you sit in. Change the names, keep the shape. I want to point the factory at situations I did not invent.
 2. **Try one skill and tell me what broke.** Not what you liked — what broke. A wrong turn, a tone that was off, a place it steered you when it should have offered a door. The system is built to be told when it felt like *the* way instead of *a* way, and I read every report.
-3. **Buy a coffee**, if it helped. The sentence above is the whole of the ask.
+3. **A coffee, or your name on a package**, if it helped. The sentence above is the whole of it.
 
 None of this is production. The experiments are not products, and I will keep publishing the results that go against me as carefully as the ones that go my way. Human delta value — the old question of what a person brings that nothing else brings, which I have been chewing on far longer than any of this — is the thread I am measuring all of it against: what you do with the cognition you get back.
 
@@ -78,4 +90,4 @@ Everything here is held to one sentence, and I know it is absurd: **take a perso
 
 ---
 
-*Versioned like everything else here; the [History](https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/post-metadax-two-weeks.md) is public. Published through my cognitive companion, one unit — [how I publish](/blog/how-i-publish/). First published 10 October 2026.*
+*Versioned like everything else here; the [History](https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/post-metadax-two-weeks.md) is public. Published through my cognitive companion, one unit — [how I publish](/blog/how-i-publish/).*
