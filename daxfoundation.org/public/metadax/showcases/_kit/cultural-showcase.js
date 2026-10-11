@@ -555,7 +555,7 @@
     if (renderer.outputEncoding !== undefined) renderer.outputEncoding = T.sRGBEncoding;
     /* ACES filmic tone mapping + sRGB out: the stylised look wants gentle highlight
        roll-off rather than clipped whites, and a touch more exposure to carry it. */
-    if (T.ACESFilmicToneMapping !== undefined) { renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15; }
+    if (T.ACESFilmicToneMapping !== undefined) { renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 0.9; }
     if (T.PMREMGenerator) renderer.physicallyCorrectLights = false;
     return true;
   }

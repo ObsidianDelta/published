@@ -43,10 +43,9 @@
     palette: { accent: "#c8371e", accent2: "#2f6b3a", turmeric: "#e0a81c" },
     vocab: VOCAB,
 
-    /* a small 1k CC0 HDRI (Poly Haven, warm dawn) drives reflections and ambient
-       through PMREMGenerator; see assets/LICENSES.md. The engine loads it after
-       first paint and leaves the page background transparent. */
-    env: { hdri: "./assets/env-kiara_1_dawn.hdr" },
+    /* environment map off: the dawn HDRI washed the flat-tinted scene out.
+       The asset stays in assets/ (CC0, see LICENSES.md) for a later pass. */
+    env: null,
 
     links: {
       player: "/metadax/play/?sample=tamil-chicken-curry",
@@ -399,6 +398,19 @@
   };
   var OUTLINE = { color: PAL.outline, thickness: 0.05 };
 
+  /* The Kenney kits colour their models from a shared Textures/colormap.png
+     that differs per kit; rather than ship three clashing colormaps, every
+     loaded model is painted one flat palette colour, so the whole scene reads
+     as one stylised look. Keyed by the GLB's basename. */
+  var TINT = {
+    "grass": PAL.palm, "coconut": PAL.woodDark, "coconut-half": PAL.wood,
+    "hearth-stones": PAL.stone, "firewood": PAL.woodDark,
+    "chatti-pot": PAL.clay, "chatti-lid": PAL.clayRim,
+    "mortar": PAL.stone, "board": PAL.wood, "knife": 0xb9b6ae,
+    "oil-bottle": 0xe6d7a8, "onion": PAL.onion, "tomato": PAL.tomato,
+    "bowl": PAL.clay, "plate": 0xece4cf, "chair": PAL.wood, "table": PAL.wood
+  };
+
   /* a flat-shaded standard material in one line */
   function fmat(K, c, rough) { return K.mat(c, { roughness: rough == null ? 0.82 : rough, metalness: 0.02 }); }
 
@@ -431,6 +443,8 @@
     if (opts.pick) holder._pick = opts.pick;
     K.loadModel(url, {}, function (m) {
       if (!m) return;                                   /* load failed — fallback stays */
+      var base = String(url).split("/").pop().replace(/\.glb$/, "");
+      if (opts._tint == null && TINT[base] != null) opts._tint = TINT[base];
       normalizeModel(m, opts, T);
       if (opts.outline !== false) K.outline(m, typeof opts.outline === "object" ? opts.outline : OUTLINE);
       if (fb && fb.parent) fb.parent.remove(fb);
@@ -447,7 +461,11 @@
       if (n.isMesh) {
         n.castShadow = true; n.receiveShadow = true;
         var mm = n.material ? (n.material.length ? n.material : [n.material]) : [];
-        mm.forEach(function (x) { if (x && x.isMeshStandardMaterial) { x.envMapIntensity = 0.75; if (x.metalness > 0.5) x.metalness = 0.3; } });
+        mm.forEach(function (x) {
+          if (!x) return;
+          if (opts._tint != null && x.color) { if (x.map) { x.map = null; } x.color.setHex(opts._tint); x.needsUpdate = true; }
+          if (x.isMeshStandardMaterial) { x.envMapIntensity = 0.5; x.roughness = Math.max(x.roughness || 0, 0.7); if (x.metalness > 0.2) x.metalness = 0.1; }
+        });
       }
     });
     m.updateWorldMatrix(true, true);
