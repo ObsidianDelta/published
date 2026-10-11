@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>One dish, its story — Sri Lankan Tamil chicken curry, Jaffna style</title>
+<meta name="description" content="The showcase for the cultural packages: one dish, its story. Sri Lankan Tamil chicken curry, Jaffna style — where it comes from, how to make it, what it means. A 3D Jaffna kitchen in three stations, with a one-click Tamil/English toggle. Read by someone from the community.">
+<meta property="og:title" content="One dish, its story — Sri Lankan Tamil chicken curry, Jaffna style">
+<meta property="og:description" content="The showcase for the cultural packages. A 3D Jaffna kitchen in three stations: where it comes from, how to make it, what it means.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcases/tamil-chicken-curry/">
+<meta property="og:image" content="https://daxfoundation.org/og/tamil-chicken-curry.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Big+Shoulders+Display:wght@700;800&family=Noto+Sans+Tamil:wght@400;500;700&display=swap">
+<!-- the shared look for every "one dish, its story" showcase -->
+<link rel="stylesheet" href="../_kit/cultural-showcase.css">
+</head>
+<body>
+<!-- the kit builds the whole page (header, stations, scene, panel, cards, footer)
+     from the dish content module. This page is deliberately thin. -->
+<div id="showcase-root"></div>
+
+<!-- three.js r128 — the same cdnjs build Le Stade des Fractions uses -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<!-- the engine (dish-agnostic), then this dish (content + 3D props) -->
+<script src="../_kit/cultural-showcase.js"></script>
+<script src="./dish.js"></script>
+</body>
+</html>

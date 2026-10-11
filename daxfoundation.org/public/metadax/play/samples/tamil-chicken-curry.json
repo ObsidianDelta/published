@@ -1,0 +1,741 @@
+{
+  "format": "metadax-package",
+  "v": 1,
+  "ref": "CUL-TCC1",
+  "session": 1,
+  "word": "session",
+  "title": "One dish, its story: Sri Lankan Tamil chicken curry, Jaffna style",
+  "lang": "en",
+  "guide": {
+    "tab": "For you",
+    "theme": {
+      "light": {
+        "bg": "#f5f0eb",
+        "surface": "#ffffff",
+        "surface2": "#ede6dc",
+        "text": "#2e2416",
+        "muted": "#6b5a44",
+        "accent": "#7a5230",
+        "accent2": "#3a7a5a",
+        "good": "#2a6a46",
+        "bad": "#8a2020"
+      },
+      "dark": {
+        "bg": "#1e1710",
+        "surface": "#2a2016",
+        "surface2": "#241c12",
+        "text": "#e8dcc8",
+        "muted": "#a08c6e",
+        "accent": "#c08050",
+        "accent2": "#60b888",
+        "good": "#50b870",
+        "bad": "#d05050"
+      }
+    },
+    "sections": [
+      {
+        "id": "upnext",
+        "label": "Up next",
+        "blocks": [
+          {
+            "type": "lead",
+            "title": "Nila leads first",
+            "body": "Nila has eaten this curry their whole life and knows it from the eating end, where you may know it from the cooking end or not at all. Start there. Ask Nila what the kitchen smells like when the curry is cooking, and what the curry is served with at home. Nila knows the smell of the temper crackling in hot coconut oil, and knows which bowl it goes in. Let that knowledge lead, then the three movements follow.",
+            "prompt": "Ask: what does the kitchen smell like when the curry is cooking? What do we eat the curry with? Who in the family makes it best?"
+          },
+          {
+            "type": "h",
+            "text": "One dish, its story"
+          },
+          {
+            "type": "p",
+            "text": "This package teaches one dish in three movements, always in this order: where it comes from, how to make it, and what it means. You cook it, with the learner beside you. The dish carries the lesson by itself: measuring, fractions of a whole bird, the spice blend as a ratio, scaling for a feast, what goes in when, a simmer against a boil, and the chemistry of the one step that makes or breaks it."
+          },
+          {
+            "type": "card",
+            "title": "A showcase, and a reader",
+            "body": "This is the showcase for the cultural packages: one dish, its story. It is read by Jason Jeyanandan, a reader from the Sri Lankan Tamil community, who checks the name, the method, the meaning, and every Tamil word, and can strike any line. Where a fact is still waiting for the reader it is marked [READER] in the text, so you can see what has been checked and what has not.",
+            "tone": "note"
+          },
+          {
+            "type": "p",
+            "text": "The learner here is Nila, about ten, Tamil-Canadian, who speaks Tamil at home and cannot yet read the script, and loves cricket. Nila is invented for this showcase and is not a real child. There is a second cook this one guide page also serves: an adult cooking the curry for the first time, who wants the chemistry and the order. Both are invented."
+          }
+        ]
+      },
+      {
+        "id": "origin",
+        "label": "Where it comes from",
+        "blocks": [
+          {
+            "type": "card",
+            "title": "The land explains the larder",
+            "body": "Jaffna is the dry northern peninsula of Sri Lanka: limestone soil, hot and dry, palmyra and coconut everywhere, chillies dried in the sun, country chickens kept at the house. [READER] A lean, bony bird that runs, coconut in reach, and spices that keep without refrigeration — the larder is what the land gives, and the curry is built from it.",
+            "tone": "why"
+          },
+          {
+            "type": "p",
+            "text": "This is the curry Jason's mother makes — chicken curry, she calls it, no Tamil name at home. She is from Jaffna and learned it from her mother. Back home it was their own chickens and a firewood stove, probably, and coconut scraped fresh; in Canada the ingredients were hard to find at first, and now the Tamil shops have everything. The wider history — the spice trade and how the chilli arrived, Jaffna Tamil cooking as its own tradition distinct from the south of the island, and what the diaspora carried out and kept — is one honest paragraph the reader writes; a model only drafts a placeholder. [READER]"
+          },
+          {
+            "type": "p",
+            "text": "The largest Sri Lankan Tamil community outside Sri Lanka is in the Toronto area. [READER] This is stated as a place, never tied to the learner's own family."
+          },
+          {
+            "type": "card",
+            "title": "One of a family",
+            "body": "A slow-simmered spiced chicken is one of a family of dishes, not an exception. It is a cousin of other curries, of a Filipino adobo, of a stew, a tagine, a mole, a goulash; and it sits on the coconut-milk belt beside Kerala, Thailand, the Philippines, and Brazil's moqueca. [READER] This is the universality move: the learner sees their dish as a relative of many, taught in the spine module, The universal table. A relative, never the same as.",
+            "tone": "note"
+          }
+        ]
+      },
+      {
+        "id": "learned",
+        "label": "What we're finding out",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "This is the first session of the dish. We're finding out what the learner already carries from the table, and building the maths and science onto it. The dish holds all of it: measuring, fractions of the bird, the blend as a ratio, scaling, order against time, simmer against boil, and the chemistry of roasting and of the coconut-milk emulsion."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "The maths this dish holds: fractions of a whole bird; tablespoons per kilogram; the blend as a ratio of parts; scaling for two, six, or a feast; ordering what goes in when.",
+              "The science this dish holds: capsaicin and why coconut fat tempers the heat; roasting the spices as a chemical change, not just heating; the coconut-milk emulsion that splits on a hard boil and holds at a simmer.",
+              "So: by the end the learner can halve and quarter the bird, read and build the blend as a ratio, scale the curry, order the steps against the clock, and say why the coconut milk goes in last."
+            ]
+          },
+          {
+            "type": "faq",
+            "q": "What if the learner has never cooked at the stove?",
+            "a": "That is the common case and it is fine. You own the heat and the knife throughout. The learner measures, grinds, arranges, and counts the parts; the cooking at the fire is yours. The maths and the naming do not need the stove.",
+            "more": [
+              {
+                "q": "What if they have cooked this many times?",
+                "a": "Then let them lead the steps and you fill in the why. Push on the ratio and the scaling, where even a practised cook often works by feel rather than by number.",
+                "more": [
+                  {
+                    "q": "Do we have to cook it to do the lesson?",
+                    "a": "No. Sessions one and two are the map and the maths, at a table with cold ingredients. The cook is session three, a long afternoon in a kitchen, and is the best part — but the lesson stands without it."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "science",
+        "label": "The thinking inside the cooking",
+        "blocks": [
+          {
+            "type": "card",
+            "title": "Fractions of a whole bird",
+            "body": "A whole bird halves into two, quarters into four; a drumstick is one of the pieces of the whole. Cut the bird with the learner and name each piece as a fraction of the bird. The classic slip is here: a half is bigger than a quarter, even though four is a bigger number than two — the bigger the bottom number, the smaller each piece. Catch it with the real pieces in front of you.",
+            "tone": "why"
+          },
+          {
+            "type": "card",
+            "title": "The blend as a ratio, and the rate",
+            "body": "Jaffna curry powder is a blend of parts: so many parts coriander to one part fenugreek, and so on. Jason's mother buys it ready-made from the Tamil shop — she does not roast her own — but what it is made of is still a ratio, and reading it as one is the lesson. [READER] The real proportions are the reader's to confirm. The spice-to-meat rate is tablespoons of powder per kilogram of bird. [READER] Read the blend by parts and it scales cleanly: double every part and the signature holds.",
+            "tone": "why"
+          },
+          {
+            "type": "card",
+            "title": "Scaling for a feast",
+            "body": "The same curry for a family of four or for a feast of forty. What scales with the bird scales linearly — the spice, the salt, the coconut milk. What does not scale that way is the pot and the clock: a deeper pot of the same curry takes a little longer to come up to heat, but ten times the bird is not ten times the time. The heat sets the time, not the arithmetic.",
+            "tone": "why"
+          },
+          {
+            "type": "card",
+            "title": "Order against time, and simmer against boil",
+            "body": "The order is the temper, then the onions, then the garlic, ginger and green chilli, then the marinated bird in its own juices (no water), then tomato paste once the base has softened, then the coconut milk last. Late is not early: the delicate coconut milk goes in at the end and is brought only to a simmer. A simmer holds the sauce; a hard boil breaks it. Heat is energy — more flame is not more cooking, it is a different result.",
+            "tone": "why"
+          },
+          {
+            "type": "card",
+            "title": "The chemistry of the key step",
+            "body": "Three chemical facts carry this dish. Capsaicin is the chilli heat; it is fat-soluble, so coconut fat carries it off the tongue — which is why water does not help and the coconut does. The roast is already in the powder: Jason's mother buys the Jaffna curry powder from the Tamil shop, and what that powder is, is dark-roasted spices ground fine — roasting them makes new aroma compounds, a chemical change, not just heating, which is why the powder tastes of the roast. The roasting happened at the mill, not on this stove. And coconut milk is an emulsion of fat in water; a hard boil breaks it and the fat separates, while a simmer holds it together — which is why the milk goes in late and never boils hard.",
+            "tone": "why"
+          }
+        ]
+      },
+      {
+        "id": "steps",
+        "label": "The steps",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "The real recipe, in order, the way Jason's mother makes it. You own the heat and the knife; the learner does the safe parts. The family's own version is on the recipe card below; a few amounts and timings are still open questions Jason is asking her, and those stay marked [READER]."
+          },
+          {
+            "type": "step",
+            "n": 1,
+            "do": "Marinate the cut bird — bone in, skin on — about 20 minutes",
+            "say": "Salt, pepper, the Jaffna curry powder and extra chilli, rubbed into every piece, skin and all. Leave it about twenty minutes while the pot gets going.",
+            "why": "The curry powder is store-bought from the Tamil shop; the chilli is separate from it, and this is a spicy curry. The skin stays on — it makes it richer — and the bone stays in, where a lot of the flavour is. Roughly two to three tablespoons of powder for one bird. [READER]"
+          },
+          {
+            "type": "step",
+            "n": 2,
+            "do": "Temper the whole spices in hot coconut oil (you own this step; keep the learner back)",
+            "say": "Watch the oil — when it shimmers, in go the fenugreek, the mustard seeds, the curry leaves and the cinnamon, and they crackle and go fragrant in seconds.",
+            "why": "Fenugreek seed, mustard seeds, curry leaves and cinnamon in hot coconut oil until fragrant. The oil is at its hottest here; this is the moment the learner stays back."
+          },
+          {
+            "type": "step",
+            "n": 3,
+            "do": "Cook the onions long and soft",
+            "say": "Onions cut lengthwise, cooked down until soft and sweet before anything else goes in.",
+            "why": "Onions cut long, softened into the base after the temper."
+          },
+          {
+            "type": "step",
+            "n": 4,
+            "do": "Add the garlic, ginger and green chilli, with a little rampe and star anise",
+            "say": "Crushed garlic and ginger, green chilli if you want the aroma, a little rampe and a hint of star anise — you need that aroma coming out.",
+            "why": "Crushed ginger and garlic, rampe (pandan) and a little star anise; green chilli sometimes. Just a hint of different flavours, as she puts it. Bay leaf is one of the things Jason is asking her. [READER]"
+          },
+          {
+            "type": "step",
+            "n": 5,
+            "do": "Add the marinated bird — no water",
+            "say": "In goes the chicken, skin and bone and all. We add no water; the bird makes its own gravy as it cooks.",
+            "why": "The marinated bird cooks in its own juices. No water — the liquid comes from the chicken, skin and bones and all. This is the one thing the family does that no recipe says."
+          },
+          {
+            "type": "step",
+            "n": 6,
+            "do": "Stir in tomato paste once the base has softened",
+            "say": "When the base has cooked down and softened, the tomato paste goes in and turns it red.",
+            "why": "Tomato, as paste, once the base is soft. Exactly when it goes in is one of the things Jason is asking his mother. [READER]"
+          },
+          {
+            "type": "step",
+            "n": 7,
+            "do": "Add the coconut milk last, to taste, and bring only to a simmer",
+            "say": "Last of all, the coconut milk — as much as you like. More makes it the white curry; less keeps it the red one. Keep it at a gentle simmer, never a hard boil, or it splits.",
+            "why": "Coconut milk at the end, to taste — more for the white curry, less for the red. A hard boil breaks the emulsion; a simmer holds it. This is the step that most often goes wrong. Her exact words for 'never a hard boil', and the overall time, are things Jason is asking her. [READER]"
+          },
+          {
+            "type": "p",
+            "text": "Serve with rice, or with string hoppers (idiyappam), pittu, or bread. [READER] The spellings are the reader's to confirm."
+          }
+        ]
+      },
+      {
+        "id": "meaning",
+        "label": "What it means",
+        "blocks": [
+          {
+            "type": "card",
+            "title": "What it means",
+            "body": "It is Jason's mother's go-to dish — the one people always enjoy at family dinners, and she is the one who makes it properly; Jason has not learned it yet. \"We always entertain with food,\" he says; \"it's central to our culture. People always come and eat.\" For Jason, the way he likes it is the way she makes it: spicy and oily. This curry, for him, will always be his mother. The kitchen and the table are taught here; the faith is not.",
+            "tone": "note"
+          },
+          {
+            "type": "p",
+            "text": "The words the family uses, in Tamil with a transliteration for a child who speaks the language but cannot yet read the script. Every word is [READER] until the reader has confirmed the spelling, the script, and the reading."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "chicken curry — kozhi kari (கோழிக் கறி) [READER]",
+              "country chicken — nattu kozhi (நாட்டுக் கோழி) [READER]",
+              "Jaffna curry powder — yaazhppaana kari thool (யாழ்ப்பாணக் கறித் தூள்) [READER]",
+              "coconut milk — thengai paal (தேங்காய்ப் பால்) [READER]",
+              "pandan leaf (rampe) — rampa (ரம்பா) [READER]",
+              "curry leaves — karivembu (கறிவேப்பிலை) [READER]",
+              "fenugreek — vendhayam (வெந்தயம்) [READER]",
+              "string hoppers — idiyappam (இடியப்பம்) [READER]",
+              "rice — soru (சோறு) [READER]"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "There is no one chicken curry. The meaning movement hands off to the recipe card below: here is a way the dish is made, and there is Jason's family's own version — the one his mother makes properly, and the one thing she does that no recipe says: no water."
+          }
+        ]
+      },
+      {
+        "id": "recipe",
+        "label": "The recipe card",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "Print this card. The top half is the representative method. The bottom half is now Jason's family's version, as he tells it — from his call with his mother. A few amounts and timings are still open questions he is asking her; those lines read (Jason is asking her) and stay marked [READER]. Fill in anything of your own at the stove in session three."
+          },
+          {
+            "type": "copy",
+            "title": "Your family's recipe card — print this",
+            "text": "ONE DISH, ITS STORY — SRI LANKAN TAMIL CHICKEN CURRY, JAFFNA STYLE\nchicken curry — kozhi kari (கோழிக் கறி) [READER]\n\nTHE REPRESENTATIVE METHOD      Serves 4\nJaffna curry powder is store-bought (from the Tamil shop). What it is made of,\n  dark-roasted & ground: coriander · cumin · fennel · fenugreek · black pepper\n  · dried red chillies · curry leaves (kariveppilai) [READER]\nMarinate (about 20 min): bone-in, skin-on chicken + salt + pepper + curry powder\n  + chilli powder (chilli is separate from the curry powder; this is a spicy curry)\nTemper (hot coconut oil): fenugreek seed · mustard seeds (kadugu) · curry leaves · cinnamon\nAromatics: onion (cut long) · garlic · ginger · green chilli (sometimes) · rampe (pandan)\n  · a little star anise\nBird: whole bone-in country chicken (nattu kozhi), cut up, skin on — one bird feeds four\nNo water — the bird makes its own gravy.\nTomato: as paste, once the base has softened\nCoconut milk: at the end, to taste — more = white curry, less = red; never a hard boil\nSteps: 1 marinate  2 temper  3 onions  4 garlic, ginger, green chilli  5 the bird (no water)\n       6 tomato paste  7 coconut milk LAST, simmer, never a hard boil\nServe with: rice / string hoppers (idiyappam) / pittu / bread [READER]\n\n- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\nJASON'S FAMILY'S VERSION, AS HE TELLS IT\n  (from his call with his mother — names here are Jason and his mother only)\nWhat they call it: chicken curry (no Tamil name at home).\nWho makes it properly: his mother.    Who taught her: her mother.    Serves: about 4.\nThe bird: a whole mature / stewing chicken (nattu kozhi), cut up, bone in and skin on.\n  The bones carry the flavour; the skin makes it richer.\nThe powder: store-bought Jaffna curry powder; chilli separate; roughly 2–3 tbsp per bird (Jason is asking her) [READER]\nThe temper: fenugreek, mustard seeds, curry leaves, cinnamon, in hot coconut oil.\nBeyond the powder: crushed ginger & garlic, rampe, a little star anise.  Bay leaf? (Jason is asking her) [READER]\nThe order: temper -> onions -> garlic, ginger, green chilli -> the marinated bird -> tomato paste -> coconut milk last.\nThe one thing we do that no recipe says: no water — the bird makes its own gravy. More\n  coconut milk makes the white curry; less keeps it the red one.\nWhen the tomato paste goes in: (Jason is asking her) [READER]\nHer words for 'never a hard boil' after the coconut milk: (Jason is asking her) [READER]\nOverall time: (Jason is asking her) [READER]\nWe eat it with: rice / string hoppers (idiyappam) / pittu / bread.\n\nA way, never the way. Read by someone from the community before it goes out."
+          }
+        ]
+      },
+      {
+        "id": "tricky",
+        "label": "When it's tricky",
+        "blocks": [
+          {
+            "type": "ifthen",
+            "if": "They say a quarter of the bird is more than a half because four is bigger than two",
+            "then": "Put the real pieces in front of them. Lay a half next to a quarter. The bigger the bottom number, the smaller each piece. The pieces are the argument — do not do it on paper first."
+          },
+          {
+            "type": "ifthen",
+            "if": "They say doubling the recipe doubles the cooking time",
+            "then": "It does not. Two pots of the same depth cook in about the same time; it is the thickness that changes the clock, not the amount. Show that the heat sets the time, not the arithmetic."
+          },
+          {
+            "type": "ifthen",
+            "if": "They want to turn the heat up to cook the coconut milk faster",
+            "then": "A hard boil splits it — the fat separates and the sauce turns grainy and oily. Coconut milk is an emulsion; keep it at a simmer and add it late. Faster here is worse, not quicker."
+          },
+          {
+            "type": "ifthen",
+            "if": "They think more chilli is just more pain",
+            "then": "Heat is capsaicin, and coconut fat carries it off the tongue. Spice here is built, tempered and balanced, not piled on. Let them taste the curry with a spoon of coconut milk and feel the heat settle."
+          },
+          {
+            "type": "ifthen",
+            "if": "They want to add water because the pot looks dry",
+            "then": "This curry takes no water — the bird makes its own gravy from the skin and the bones as it cooks, and the coconut milk comes at the end. If it looks dry, lower the heat and let it draw its own liquid. Adding water makes a thin, washed-out curry, not this one."
+          },
+          {
+            "type": "card",
+            "title": "Safety — read before you start",
+            "body": "Knives: you cut the bird; the learner measures, grinds, stirs off the heat, and arranges. Heat: you own the stove, the hot oil for tempering, and the pot — the oil is hottest at the temper, so that is the moment to keep the learner back. Allergens: this dish contains coconut, fenugreek and mustard; check before you start if anyone reacts. You know your kitchen and your child. Any step here is yours to change, move off the heat, or skip. The page gives a way; you make the calls.",
+            "tone": "note"
+          },
+          {
+            "type": "human",
+            "title": "What only you can do",
+            "items": [
+              "Own the heat and the knife, and judge the moment the oil is too hot for a child near it.",
+              "Judge when the base has softened enough for the tomato, and keep the coconut milk at a simmer — the line between a simmer and a split is yours to call, not a timer's.",
+              "Decide how spicy the portion you serve the child is, without watering down what the dish actually is.",
+              "Tell when the learner is guessing at a fraction versus actually seeing the pieces.",
+              "Decide when the session is done, even if the curry or the quiz is not."
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tellus",
+        "label": "Tell us and ask",
+        "blocks": [
+          {
+            "type": "card",
+            "title": "Read and built with",
+            "body": "Read by Jason Jeyanandan. Built with the community. A way, never the way. Model-generated; reviewed for safety, not certified. Read by someone from the community before it goes out.",
+            "tone": "note"
+          },
+          {
+            "type": "copy",
+            "title": "Send this note after the session",
+            "text": "Dish session done. We did [the map / the maths / the cook]. The fractions of the bird [landed / slipped — they said a quarter was more than a half]. The coconut-milk-at-a-simmer idea [landed / didn't]. Most common slip in the game: [bigger bottom = bigger piece / double the time / boiled it hard / added water / wrong order]. One thing I noticed: ___. One word Nila taught me: ___."
+          },
+          {
+            "type": "p",
+            "text": "About this package. Part of the DAX Foundation's universal learning initiative. The idea is plain: learning should fit the one person doing it, not the other way round. A lesson for a child learning their grandmother's dish should be made of the dish. A way, never the way. The same lesson can wear any skin and still be the same lesson — fractions are fractions whether they live in a football stadium or a whole chicken cut for a curry. The whole thing is open and free to fork — find it on GitHub; keep it running on Ko-fi or GitHub Sponsors."
+          },
+          {
+            "type": "p",
+            "text": "Every family has a dish only one person makes properly. Its sister project, Maddie — you talk, she listens, your stories become a book — keeps the telling; this package turns the dish into a lesson for the next generation, in the family's own words, read and signed off by someone from the community before it goes out."
+          },
+          {
+            "type": "faq",
+            "q": "Why is there a reader, and why can they strike a line?",
+            "a": "Because what a dish means is not a model's to invent. A person from the community reads every string in both languages and checks the name, the method, the meaning, and every Tamil word. A struck line does not go out and is not argued.",
+            "more": [
+              {
+                "q": "What does [READER] mean in the text?",
+                "a": "It marks a fact or a word that is still waiting for the reader to confirm. It is built from the representative version in the brief, not invented, but not yet signed off. When the reader confirms it, the bracket comes off.",
+                "more": [
+                  {
+                    "q": "Whose recipe is on the card, then?",
+                    "a": "The top half is the representative method. The bottom half is now Jason's family's version, as he tells it — there is no one chicken curry, and a few amounts he is still asking his mother stay marked. The card is still where your own goes down."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "lead",
+            "title": "The learner teaches you",
+            "body": "The child who grew up eating this knows things you may not: the smell of the temper crackling in hot oil, which auntie makes it best and how hers is different, and the Tamil word for a thing you only half-remember. Let them teach it. Write down one word they give you.",
+            "prompt": "Ask Nila to tell you one word from the kitchen in Tamil, and to say what the kitchen smells like when the curry is nearly ready."
+          },
+          {
+            "type": "check",
+            "id": "dish-guide-check",
+            "title": "How did it go?",
+            "items": [
+              "The temper smelled right, not burnt",
+              "They halved and quartered the bird without me",
+              "They could say why the coconut milk goes in last",
+              "They taught me a word or a smell I didn't know",
+              "We stopped before anyone got tired"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "learner": {
+    "tab": "For Nila",
+    "theme": {
+      "light": {
+        "bg": "#edf7f0",
+        "surface": "#ffffff",
+        "surface2": "#d4eddc",
+        "text": "#0f2a1a",
+        "muted": "#3a6a50",
+        "accent": "#1e7a46",
+        "accent2": "#c07000",
+        "good": "#1a6a3c",
+        "bad": "#a02020"
+      },
+      "dark": {
+        "bg": "#0d1f14",
+        "surface": "#142a1c",
+        "surface2": "#102218",
+        "text": "#c8e8d4",
+        "muted": "#60a878",
+        "accent": "#40c870",
+        "accent2": "#f0a020",
+        "good": "#40c060",
+        "bad": "#e04040"
+      }
+    },
+    "sections": [
+      {
+        "id": "from",
+        "label": "Where it's from",
+        "blocks": [
+          {
+            "type": "lead",
+            "title": "You go first",
+            "body": "You've eaten this curry your whole life, so you know things the grown-up might not. You know what the kitchen smells like when the curry is cooking. You know what you eat it with. You know who makes it best. Start by telling them.",
+            "prompt": "Tell them: this is what the kitchen smells like when the curry is nearly ready. This is what we eat it with. This is who makes it best."
+          },
+          {
+            "type": "p",
+            "text": "This curry comes from Jaffna, the dry top of the island of Sri Lanka. It is hot and dry there, with coconut trees everywhere, chillies drying in the sun, and chickens kept at the house. The food is made from what the land gives: coconut, spices that keep, and a lean bird that runs around. [READER]"
+          },
+          {
+            "type": "p",
+            "text": "Your curry is one of a big family of dishes. All over the world people cook meat slowly in a spiced liquid — a curry, an adobo, a stew. And many places cook with coconut milk, like Jaffna does: Kerala, Thailand, the Philippines, and Brazil. Your dish is a cousin of all of those. Not the same — a relative. [READER]"
+          },
+          {
+            "type": "sort",
+            "id": "from-sort",
+            "title": "Which station does it belong to?",
+            "intro": "Drag each thing to where it belongs. This is the warm-up before the maths game.",
+            "bins": [
+              { "id": "market", "label": "The market and the map" },
+              { "id": "kitchen", "label": "The pot on the fire" },
+              { "id": "table", "label": "The table" }
+            ],
+            "items": [
+              { "text": "A coconut growing on the dry peninsula", "bin": "market", "why": "Where it comes from — the land gives the larder." },
+              { "text": "Dried red chillies drying in the sun", "bin": "market", "why": "Where it comes from — spices that keep." },
+              { "text": "The curry powder going into the pot", "bin": "kitchen", "why": "How to make it — the powder is cooked into the bird." },
+              { "text": "No water — the bird makes its own gravy", "bin": "kitchen", "why": "How to make it — the one thing the family does that no recipe says." },
+              { "text": "Coconut milk added last, at a simmer", "bin": "kitchen", "why": "How to make it — the milk goes in late and never boils hard." },
+              { "text": "A bowl of rice beside the curry on a Sunday", "bin": "table", "why": "What it means — the curry at the meal." },
+              { "text": "The Tamil word for the dish, said out loud", "bin": "table", "why": "What it means — the words the family uses." }
+            ]
+          },
+          {
+            "type": "faq",
+            "q": "Why is it so spicy?",
+            "a": "Because that is how it is meant to be — the heat is part of the dish, not a mistake. The chilli heat is a chemical called capsaicin.",
+            "more": [
+              {
+                "q": "What makes it hot?",
+                "a": "Capsaicin, from the dried red chillies. It grabs onto the part of your mouth that feels heat, so your tongue thinks it's hot even though it isn't burning you.",
+                "more": [
+                  {
+                    "q": "Why does coconut help?",
+                    "a": "Because capsaicin sticks to fat, and coconut milk is full of fat. The coconut carries the heat off your tongue. Water doesn't, because capsaicin doesn't stick to water — that's why a glass of water doesn't help."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "make",
+        "label": "The curry game",
+        "blocks": [
+          {
+            "type": "quiz",
+            "id": "curry-build",
+            "title": "The curry game",
+            "intro": "Cut the bird, build the blend, and keep the pot right. Get a streak going.",
+            "start": 1,
+            "up_after": 3,
+            "down_after": 1,
+            "mistakes": {
+              "bigger-bottom-bigger": {
+                "name": "thought the bigger bottom number meant the bigger piece",
+                "guide": "They picked the piece with the bigger bottom number as the bigger piece. The bigger the bottom number, the smaller each piece. Show it with real pieces of the bird."
+              },
+              "double-time": {
+                "name": "doubled the cooking time when doubling the food",
+                "guide": "They thought twice the bird needs twice the time. The heat sets the time, not the amount; a pot of the same depth cooks in about the same time."
+              },
+              "boil-it": {
+                "name": "boiled the coconut milk hard",
+                "guide": "They turned the heat up on the coconut milk. A hard boil splits the emulsion; it goes in late and stays at a simmer."
+              },
+              "break-the-ratio": {
+                "name": "changed the blend without keeping the ratio",
+                "guide": "They scaled some parts of the blend but not others, so the signature changed. Scale every part by the same number to keep the ratio."
+              },
+              "wrong-order": {
+                "name": "put a step in the wrong place in time",
+                "guide": "They put a step out of order. The order is temper, onions, then garlic, ginger and green chilli, the bird, tomato paste, coconut milk last."
+              },
+              "add-water": {
+                "name": "added water to the curry",
+                "guide": "They reached for water when the pot looked dry. This curry takes none — the bird makes its own gravy from skin and bones, and the coconut milk comes at the end."
+              }
+            },
+            "levels": [
+              {
+                "level": 1,
+                "label": "Cut the bird",
+                "items": [
+                  {
+                    "q": "You cut the whole bird into two equal pieces. Each piece is what fraction of the bird?",
+                    "visual": "[  1/2  ] [  1/2  ]",
+                    "choices": [
+                      { "text": "1/2 (one half)", "correct": true, "msg": "One of two equal pieces is a half. Two halves make the whole bird." },
+                      { "text": "2 (two)", "mistake": "bigger-bottom-bigger", "msg": "Each piece isn't two — there are two pieces, and each one is one half. The bottom number is how many equal pieces the whole is cut into." }
+                    ],
+                    "hint": "Two equal pieces. One of them is one out of two.",
+                    "explain": "One piece out of two equal pieces is 1/2."
+                  },
+                  {
+                    "q": "You cut the bird into four equal pieces. Each piece is what fraction?",
+                    "visual": "[1/4][1/4][1/4][1/4]",
+                    "choices": [
+                      { "text": "1/4 (one quarter)", "correct": true, "msg": "One of four equal pieces is a quarter." },
+                      { "text": "4 (four)", "mistake": "bigger-bottom-bigger", "msg": "There are four pieces; each one is one quarter. The bottom number counts the pieces the whole is cut into." }
+                    ],
+                    "hint": "Four equal pieces. One of them is one out of four.",
+                    "explain": "One piece out of four equal pieces is 1/4."
+                  },
+                  {
+                    "q": "Which is the bigger piece of the bird: a half, or a quarter?",
+                    "visual": "[    1/2    ]  vs  [ 1/4 ]",
+                    "choices": [
+                      { "text": "A half", "correct": true, "msg": "A half is bigger. Cut into fewer pieces means each piece is bigger." },
+                      { "text": "A quarter, because four is bigger than two", "mistake": "bigger-bottom-bigger", "msg": "This is the big one to watch. Four is a bigger number, but a quarter is a smaller piece. The more pieces you cut the bird into, the smaller each piece is." }
+                    ],
+                    "hint": "Cut the bird into two, or into four. Which pieces are bigger?",
+                    "explain": "A half is bigger than a quarter. Bigger bottom number means smaller piece."
+                  },
+                  {
+                    "q": "The curry needs half the bird. You have cut the bird into four quarters. How many quarters do you take?",
+                    "visual": "[1/4][1/4][1/4][1/4] -> take ?",
+                    "choices": [
+                      { "text": "Two quarters", "correct": true, "msg": "Two quarters make a half. 2/4 is the same as 1/2." },
+                      { "text": "Four quarters", "mistake": "bigger-bottom-bigger", "msg": "Four quarters is the whole bird. A half is two of the four quarters." }
+                    ],
+                    "hint": "How many quarters fit in a half?",
+                    "explain": "2/4 = 1/2. Two quarters make a half."
+                  }
+                ]
+              },
+              {
+                "level": 2,
+                "label": "Build the blend, feed the feast",
+                "items": [
+                  {
+                    "q": "The blend is 4 parts coriander to 1 part fenugreek. You use 4 spoons of coriander. How much fenugreek?",
+                    "visual": "coriander : fenugreek = 4 : 1",
+                    "choices": [
+                      { "text": "1 spoon", "correct": true, "msg": "Four to one. Four spoons of coriander, one of fenugreek." },
+                      { "text": "4 spoons", "mistake": "break-the-ratio", "msg": "That would make it one to one, not four to one. The ratio says four times as much coriander as fenugreek." }
+                    ],
+                    "hint": "Four to one means four of the first for every one of the second.",
+                    "explain": "4 parts to 1 part: 4 spoons coriander, 1 spoon fenugreek."
+                  },
+                  {
+                    "q": "You want double the blend. It was 4 parts coriander to 1 part fenugreek. What keeps the same taste?",
+                    "visual": "double 4 : 1",
+                    "choices": [
+                      { "text": "8 parts coriander to 2 parts fenugreek", "correct": true, "msg": "Double every part by the same number and the ratio holds." },
+                      { "text": "8 parts coriander to 1 part fenugreek", "mistake": "break-the-ratio", "msg": "You doubled the coriander but not the fenugreek, so the blend changed. Double both." }
+                    ],
+                    "hint": "Multiply every part by the same number.",
+                    "explain": "8 : 2 is the same ratio as 4 : 1. Scale every part equally."
+                  },
+                  {
+                    "q": "The curry feeds 4. The feast needs it for 8. You had 2 spoons of powder per kilo of bird. What's the rate for the bigger batch?",
+                    "visual": "2 spoons per kilo",
+                    "choices": [
+                      { "text": "Still 2 spoons per kilo", "correct": true, "msg": "The rate per kilo doesn't change — you just have more kilos. The rate stays; the totals grow." },
+                      { "text": "4 spoons per kilo", "mistake": "break-the-ratio", "msg": "The rate per kilo stays the same. You use more powder because there are more kilos, not because the rate changed." }
+                    ],
+                    "hint": "A rate per kilo stays the same; the number of kilos changes.",
+                    "explain": "The rate is per kilo: it stays 2 spoons per kilo, over more kilos."
+                  },
+                  {
+                    "q": "You cook twice as much curry in a pot of the same depth. How much longer does it simmer?",
+                    "visual": "same depth, twice as much",
+                    "choices": [
+                      { "text": "About the same time", "correct": true, "msg": "The heat sets the time, not the amount. Same depth cooks in about the same time." },
+                      { "text": "Twice as long", "mistake": "double-time", "msg": "Doubling the food does not double the time. It's the thickness, not the amount, that changes the clock." }
+                    ],
+                    "hint": "What sets the cooking time — the amount, or the heat and thickness?",
+                    "explain": "Same depth, about the same time. The heat sets the clock, not the arithmetic."
+                  }
+                ]
+              },
+              {
+                "level": 3,
+                "label": "Keep the pot right",
+                "items": [
+                  {
+                    "q": "The coconut milk is in. Someone turns the heat to a hard boil. What happens?",
+                    "visual": "simmer -> hard boil?",
+                    "choices": [
+                      { "text": "It splits — the sauce goes grainy and oily", "correct": true, "msg": "Coconut milk is an emulsion of fat in water; a hard boil breaks it." },
+                      { "text": "It cooks faster and better", "mistake": "boil-it", "msg": "A hard boil splits the emulsion. Keep it at a simmer; faster here is worse, not quicker." }
+                    ],
+                    "hint": "Coconut milk is fat in water held together. What does a hard boil do to that?",
+                    "explain": "A hard boil splits the emulsion. Keep coconut milk at a simmer."
+                  },
+                  {
+                    "q": "When does the coconut milk go into the pot?",
+                    "visual": "temper -> onions -> aromatics -> bird -> tomato -> ?",
+                    "choices": [
+                      { "text": "Last, at the end", "correct": true, "msg": "The coconut milk goes in last and is brought only to a simmer." },
+                      { "text": "First, with the oil", "mistake": "wrong-order", "msg": "Late is not early. The order is temper, onions, garlic-ginger-chilli, the bird, tomato paste, coconut milk last." }
+                    ],
+                    "hint": "The delicate milk goes in late, not early.",
+                    "explain": "Coconut milk is last, at a simmer."
+                  },
+                  {
+                    "q": "The chicken is in and the pot looks a bit dry. Do you add water?",
+                    "visual": "bird in, looks dry -> water?",
+                    "choices": [
+                      { "text": "No — the bird makes its own gravy", "correct": true, "msg": "No water. The skin and bones give up their own liquid as it cooks; that is the gravy." },
+                      { "text": "Yes, a big splash of water", "mistake": "add-water", "msg": "This curry takes no water. The bird makes its own gravy, and the coconut milk comes at the end. Water makes it thin and washed-out." }
+                    ],
+                    "hint": "What does this family never add? The bird brings its own liquid.",
+                    "explain": "No water — the bird makes its own gravy; coconut milk comes last."
+                  },
+                  {
+                    "q": "Your mouth is burning from the chilli. What actually helps?",
+                    "visual": "capsaicin + ?",
+                    "choices": [
+                      { "text": "A spoon of coconut milk", "correct": true, "msg": "Capsaicin sticks to fat; the coconut fat carries it off your tongue." },
+                      { "text": "A big glass of water", "mistake": "boil-it", "msg": "Water doesn't help much — capsaicin doesn't stick to water. The coconut fat does the work." }
+                    ],
+                    "hint": "The heat is a chemical that sticks to fat, not water.",
+                    "explain": "Coconut fat carries capsaicin off the tongue; water doesn't."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "cook",
+        "label": "The cook",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "This is the afternoon you actually cook it, with the grown-up at the stove. You do the parts that are yours: measure the spices for the marinade, rub them into the bird, count the pieces of the bird, and stir when the pot is off the heat. The grown-up does the knife and the fire. The temper crackling in the hot oil is a smell you already know — tell them when it smells right."
+          },
+          {
+            "type": "list",
+            "ordered": true,
+            "items": [
+              "Measure the spices for the marinade and rub them into the bird, skin and all.",
+              "Count the pieces of the bird as fractions: halves, then quarters.",
+              "Say the curry powder's blend as a ratio out loud — how many parts of each spice it is made of.",
+              "When the coconut milk goes in last, remind the grown-up: simmer, never a hard boil.",
+              "At the end, read the family's version on the recipe card and add anything of your own."
+            ]
+          },
+          {
+            "type": "p",
+            "text": "Part of the DAX Foundation's universal learning initiative. A way, never the way. Open and free to fork — find it on GitHub; keep it running on Ko-fi or GitHub Sponsors. Every family has a dish only one person makes properly."
+          }
+        ]
+      },
+      {
+        "id": "means",
+        "label": "What it means",
+        "blocks": [
+          {
+            "type": "p",
+            "text": "These are the words from the kitchen, in Tamil with the sound written out so you can say them even if you can't read the script yet. Say them out loud with the grown-up — and if you know one they got wrong, you teach them."
+          },
+          {
+            "type": "list",
+            "ordered": false,
+            "items": [
+              "chicken curry — kozhi kari (கோழிக் கறி) [READER]",
+              "country chicken — nattu kozhi (நாட்டுக் கோழி) [READER]",
+              "coconut milk — thengai paal (தேங்காய்ப் பால்) [READER]",
+              "curry leaves — karivembu (கறிவேப்பிலை) [READER]",
+              "string hoppers — idiyappam (இடியப்பம்) [READER]",
+              "rice — soru (சோறு) [READER]"
+            ]
+          },
+          {
+            "type": "p",
+            "text": "When is it eaten, and who makes it best? That part is for the family to tell — it is the reader's to write, not a model's. [READER] Ask the grown-up, or the auntie who makes it best, and write it on the card."
+          },
+          {
+            "type": "faq",
+            "q": "Why do we eat this curry?",
+            "a": "Because it tastes of home, and because someone in the family makes it the way their family made it. The grown-up or the reader tells this part — it belongs to the family.",
+            "more": [
+              {
+                "q": "Is my family's one the same as this one?",
+                "a": "Maybe not exactly, and that's the point — there is no one chicken curry. This is a way it's made. Yours goes on the recipe card.",
+                "more": [
+                  {
+                    "q": "What goes on the card?",
+                    "a": "The card already shows Jason's family's version as an example. The amounts your own family uses, the one thing you do that no recipe says, and who makes it best go down beside it. You fill it in at the stove."
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "next": {
+    "ticks": [
+      "The temper smelled right, not burnt",
+      "They halved and quartered the bird without me",
+      "They could say why the coconut milk goes in last",
+      "They taught me a word or a smell I didn't know",
+      "We stopped before anyone got tired"
+    ],
+    "ask": [
+      "Hardest moment",
+      "Where the learner led",
+      "Which slip came up in the game",
+      "What you'd like next time"
+    ]
+  },
+  "build": {
+    "from": ["brief", "MP-11 outline", "MP-12 fan-out"],
+    "notes": "First cultural package: Sri Lankan Tamil chicken curry, Jaffna style. Built to TEMPLATE-one-dish-its-story section 10. Guide ids in order: upnext, origin, learned, science, steps, meaning, recipe, tricky, tellus (the five required present and in order; origin/science/meaning/recipe are the cultural extras between them). Learner sections: from, make, cook, means. The representative method now follows Jason's family's version, as he tells it (from his call with his mother): store-bought Jaffna curry powder, a 20-minute marinade, mustard seeds in the temper, star anise and rampe, no added water, tomato paste after the base softens, coconut milk at the end (white curry vs red), one bird (bone in, skin on) feeds four. Names on the page are Jason and his mother only. Confirmed facts have lost their [READER]; what stays [READER] is the Tamil words, the climate/soil and universality framing, the Toronto line, and the open [ASK] items Jason is still asking her (curry-powder amount, bay leaf, when the tomato goes in, her words for 'never a hard boil', overall time). Recipe card is a guide-side copy block whose bottom half is now the worked family version. Language layer uses the inline fallback form (English then transliteration then Tamil script in one string) so it renders in the shared player today; the one-click en/ta toggle is a showcase-page feature. Single learner track (Nila, 10, invented) plus the shared guide page; the adult first-time cook is carried on the showcase page as a 2D section sharing this guide, because the learners[] age bands cannot represent an adult. Reader line: read by Jason Jeyanandan (consented). Sponsor line: built with the community. About block short/link-free form in tellus; chrome carries the links."
+  }
+}
