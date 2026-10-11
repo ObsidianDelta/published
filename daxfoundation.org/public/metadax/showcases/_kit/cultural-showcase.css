@@ -81,6 +81,7 @@ nav.stations .n{font-family:"Big Shoulders Display",sans-serif;color:var(--accen
 .nogl,.stage-cap{position:absolute;left:0;right:0;padding:12px 14px;font-size:.84rem;color:var(--muted)}
 .stage-cap{bottom:0;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);color:#f6f1e8;pointer-events:none;z-index:3}
 .nogl{top:0;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;z-index:4}
+.stage-progress{position:absolute;left:0;right:0;top:0;padding:10px 14px;font-size:.78rem;letter-spacing:.02em;color:#f6f1e8;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent);pointer-events:none;z-index:3;opacity:.9}
 
 .panel{min-width:0}
 .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px;margin:0 0 12px}

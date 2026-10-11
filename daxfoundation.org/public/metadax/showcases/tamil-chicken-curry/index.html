@@ -23,6 +23,10 @@
 
 <!-- three.js r128 — the same cdnjs build Le Stade des Fractions uses -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" crossorigin="anonymous"></script>
+<!-- glTF + HDRI loaders, vendored from the three.js r128 examples (MIT); no new CDN host.
+     They attach THREE.GLTFLoader / THREE.RGBELoader, which the engine reads. -->
+<script src="../_kit/vendor/GLTFLoader.js"></script>
+<script src="../_kit/vendor/RGBELoader.js"></script>
 <!-- the engine (dish-agnostic), then this dish (content + 3D props) -->
 <script src="../_kit/cultural-showcase.js"></script>
 <script src="./dish.js"></script>

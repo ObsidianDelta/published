@@ -102,7 +102,8 @@
     el.labels = h("div", { class: "labels", id: "labels", "aria-hidden": "true" });
     el.nogl = h("div", { class: "nogl hide", id: "nogl" }, '<div style="max-width:32ch" data-i="nogl">' + esc(t(ui.nogl)) + "</div>");
     el.cap = h("div", { class: "stage-cap", id: "cap" }, esc(t(DISH.stations[0].cap)));
-    el.stage.appendChild(el.canvas); el.stage.appendChild(el.labels); el.stage.appendChild(el.nogl); el.stage.appendChild(el.cap);
+    el.progress = h("div", { class: "stage-progress hide", id: "stage-progress" });
+    el.stage.appendChild(el.canvas); el.stage.appendChild(el.labels); el.stage.appendChild(el.nogl); el.stage.appendChild(el.cap); el.stage.appendChild(el.progress);
     el.panel = h("div", { class: "panel", id: "panel" });
     layout.appendChild(el.stage); layout.appendChild(el.panel);
     root.appendChild(layout);
@@ -450,8 +451,98 @@
       return tex;
     },
     reduce: reduce,
-    coarse: coarse
+    coarse: coarse,
+    /* load a CC0 GLB and hand back its scene (cloned). The call is non-blocking:
+       builders drop a hand-built fallback in place first, then swap when the model
+       arrives. cb(null) on any failure, so the fallback simply stays. */
+    loadModel: function (url, opts, cb) { return enqueueModel(url, opts || {}, cb || function () {}); },
+    /* a cheap inverted-hull outline so chunky low-poly props read on a phone */
+    outline: function (obj, o) { return applyOutline(obj, o || {}); }
   };
+
+  /* ---- model loading, environment, outline --------------------------------
+     Models load lazily, after the first paint, so the scene draws its hand-built
+     fallbacks immediately and swaps in the real props as they arrive. A quiet
+     line in the stage tracks progress; the camera re-fits once they are all in. */
+  var MODEL = { loader: null, cache: {}, queue: [], total: 0, done: 0, started: false };
+  var firstPainted = false, envRequested = false;
+
+  function enqueueModel(url, opts, cb) {
+    MODEL.total++;
+    MODEL.queue.push({ url: url, opts: opts, cb: cb });
+    if (MODEL.started) flushModelQueue();   /* a late request (rare) still runs */
+  }
+  function modelDone() {
+    MODEL.done++;
+    if (MODEL.done >= MODEL.total) { if (el.progress) el.progress.classList.add("hide"); refitCurrent(); }
+    else if (el.progress) el.progress.textContent = loadingLabel();
+  }
+  function loadingLabel() {
+    var L = (DISH.ui && DISH.ui.loading) || { en: "loading the scene…" };
+    return t(L) + "  " + MODEL.done + "/" + MODEL.total;
+  }
+  function flushModelQueue() {
+    MODEL.started = true;
+    var q = MODEL.queue; MODEL.queue = [];
+    if (!q.length) return;
+    if (!T.GLTFLoader) { q.forEach(function (it) { try { it.cb(null); } catch (e) {} modelDone(); }); return; }
+    if (!MODEL.loader) MODEL.loader = new T.GLTFLoader();
+    if (el.progress) { el.progress.textContent = loadingLabel(); el.progress.classList.remove("hide"); }
+    q.forEach(function (it) {
+      var cached = MODEL.cache[it.url];
+      if (cached) { try { it.cb(cached.clone(true)); } catch (e) {} modelDone(); return; }
+      MODEL.loader.load(it.url, function (gltf) {
+        var root = gltf.scene || (gltf.scenes && gltf.scenes[0]);
+        if (!root) { try { it.cb(null); } catch (e) {} modelDone(); return; }
+        MODEL.cache[it.url] = root;
+        try { it.cb(root.clone(true)); } catch (e) {}
+        modelDone();
+      }, undefined, function () { try { it.cb(null); } catch (e) {} modelDone(); });
+    });
+  }
+
+  /* inverted-hull outline: a back-face shell, slightly inflated, unlit. Cheap,
+     works everywhere, and gives the low-poly props a clean read on small screens. */
+  function applyOutline(root, o) {
+    if (!root || !root.traverse) return root;
+    var color = o.color != null ? o.color : 0x2a1a10, k = o.thickness != null ? o.thickness : 0.06;
+    var mat = new T.MeshBasicMaterial({ color: color, side: T.BackSide });
+    var meshes = [];
+    root.traverse(function (n) { if (n.isMesh && n.geometry && !n._outline) meshes.push(n); });
+    meshes.forEach(function (m) {
+      var shell = new T.Mesh(m.geometry, mat);
+      shell._outline = true; shell._noFit = true;
+      shell.position.copy(m.position); shell.quaternion.copy(m.quaternion);
+      shell.scale.copy(m.scale).multiplyScalar(1 + k);
+      shell.renderOrder = (m.renderOrder || 0) - 1;
+      if (m.parent) m.parent.add(shell); else root.add(shell);
+    });
+    return root;
+  }
+
+  function refitCurrent() {
+    if (!GL || orbit.user || tween) return;     /* never yank a camera the user owns or that's mid-move */
+    var fit = computeFit(stations3D[CUR] && stations3D[CUR].group);
+    if (!fit) return;
+    var v = DISH.stations[CUR].view || {};
+    orbit.r = fitDistance(fit.radius);
+    orbit.target.copy(fit.center); if (v.ty != null) orbit.target.y += v.ty;
+    fitShadow(fit.center, fit.radius);
+  }
+
+  function loadEnvironment(url) {
+    if (envRequested || !url || !T.RGBELoader || !T.PMREMGenerator) return;
+    envRequested = true;
+    try {
+      var pmrem = new T.PMREMGenerator(renderer); pmrem.compileEquirectangularShader();
+      new T.RGBELoader().load(url, function (tex) {
+        tex.mapping = T.EquirectangularReflectionMapping;
+        var env = pmrem.fromEquirectangular(tex).texture;
+        scene.environment = env;                 /* reflections + ambient; background stays transparent */
+        tex.dispose(); pmrem.dispose();
+      }, undefined, function () { try { pmrem.dispose(); } catch (e) {} });
+    } catch (e) {}
+  }
 
   function makeRenderer() {
     try {
@@ -462,11 +553,17 @@
     renderer.shadowMap.enabled = !coarse;           /* soft shadows off on phones for frame rate */
     renderer.shadowMap.type = T.PCFSoftShadowMap;
     if (renderer.outputEncoding !== undefined) renderer.outputEncoding = T.sRGBEncoding;
+    /* ACES filmic tone mapping + sRGB out: the stylised look wants gentle highlight
+       roll-off rather than clipped whites, and a touch more exposure to carry it. */
+    if (T.ACESFilmicToneMapping !== undefined) { renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.15; }
+    if (T.PMREMGenerator) renderer.physicallyCorrectLights = false;
     return true;
   }
 
   function buildLights() {
-    var hemi = new T.HemisphereLight(0xfff0dd, 0x2a1c10, 0.85); scene.add(hemi);
+    /* hemisphere fills the shadows warmly; kept moderate because the HDRI
+       environment (when it loads) carries most of the ambient and reflections. */
+    var hemi = new T.HemisphereLight(0xfff0dd, 0x2a1c10, 0.55); scene.add(hemi);
     var key = new T.DirectionalLight(0xfff4e2, 1.0); key.position.set(12, 20, 10);
     key.castShadow = !coarse;
     if (key.shadow) {
@@ -528,6 +625,8 @@
     applyOrbit();
     renderer.render(scene, camera);
     layoutLabels();
+    /* first frame is on screen — now pull in the HDRI and the GLB props */
+    if (!firstPainted) { firstPainted = true; loadEnvironment(DISH.env && DISH.env.hdri); flushModelQueue(); }
   }
 
   function applyOrbit() {

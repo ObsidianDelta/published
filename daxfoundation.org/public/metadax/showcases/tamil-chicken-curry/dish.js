@@ -43,6 +43,11 @@
     palette: { accent: "#c8371e", accent2: "#2f6b3a", turmeric: "#e0a81c" },
     vocab: VOCAB,
 
+    /* a small 1k CC0 HDRI (Poly Haven, warm dawn) drives reflections and ambient
+       through PMREMGenerator; see assets/LICENSES.md. The engine loads it after
+       first paint and leaves the page background transparent. */
+    env: { hdri: "./assets/env-kiara_1_dawn.hdr" },
+
     links: {
       player: "/metadax/play/?sample=tamil-chicken-curry",
       repo: "https://github.com/daxfoundation/metadax",
@@ -62,6 +67,7 @@
       face2: { en: "Everything on this page — the lesson, the game, the Tamil, the recipe card — came out of the open Meta DAX recipe, from a brief of eight lines. The brief is below.", ta: "இந்தப் பக்கத்தில் உள்ள அனைத்தும் — பாடம், விளையாட்டு, தமிழ், செய்முறை அட்டை — எட்டு வரிகள் கொண்ட ஒரு சுருக்கத்திலிருந்து, திறந்த Meta DAX செய்முறையிலிருந்து வந்தது. சுருக்கம் கீழே உள்ளது." },
       face3: { en: "Model-generated example, reviewed for safety and not certified. Read by someone from the community before it goes out." },
       langEnLabel: "English", langCommLabel: "தமிழ்",
+      loading: { en: "setting the kitchen…", ta: "சமையலறையை அமைக்கிறது…" },
       flip: { en: "tap to flip", ta: "மாற்ற தட்டவும்" },
       openpkg: { en: "Open the plain package in the player", ta: "எளிய தொகுப்பைத் திறக்க" },
       openadult: { en: "The adult cook's page", ta: "முதல் முறை சமைப்பவர்" },
