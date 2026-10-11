@@ -89,7 +89,7 @@
       recipe: {
         kicker: { en: "The recipe card · print this" },
         h: { en: "There is no one chicken curry", ta: "ஒரே ஒரு கோழிக் கறி கிடையாது" },
-        intro: { en: "The top half is the representative method. The bottom half is now <em>Jason's family's version, as he tells it</em> — from his call with his mother. A few amounts and timings are still open questions he is asking her; those lines read <em>Jason is asking her</em>. Print with your browser." },
+        intro: { en: "The top half is the representative method. The bottom half is now \"Jason's family's version, as he tells it\" — from his call with his mother. A few amounts and timings are still open questions he is asking her; those lines read \"Jason is asking her\". Print with your browser." },
         slot: { en: "The family-version slot is a single file: <code>state/metadax/cultural/tamil-chicken-curry/family-version.json</code>. It now has content, so this card and the package show the worked family version in Jason's own words; the open questions stay marked until he has her answers." }
       },
 
@@ -143,7 +143,7 @@
         panel: [
           { type: "heading", text: { en: "Where it comes from", ta: "எங்கிருந்து வருகிறது" } },
           { type: "prose", text: { en: "This is the curry Jason's mother makes — chicken curry, she calls it, no Tamil name at home. She is from Jaffna, the dry northern peninsula of Sri Lanka, and learned it from her mother. The peninsula is hot and dry — limestone soil, coconut and palmyra everywhere, chillies dried in the sun, country chickens kept at the house. " + rdr() + " The land explains the larder: coconut in reach, spices that keep, and a lean bird that runs." } },
-          { type: "prose", why: true, text: { en: "Back home it was their own chickens and a firewood stove, probably, and coconut scraped fresh; in Canada the ingredients were hard to find at first, and now the Tamil shops have everything. The wider history — the spice trade, Jaffna Tamil cooking as its own tradition, what the diaspora carried out and kept — is one honest paragraph the reader writes. " + rdr() + " The largest Sri Lankan Tamil community outside Sri Lanka is in the Toronto area. " + rdr() } },
+          { type: "prose", why: true, text: { en: "Back home it was their own chickens and a firewood stove, probably, and coconut scraped fresh; in Canada the ingredients were hard to find at first, and now the Tamil shops have everything. The wider history — the spice trade, Jaffna Tamil cooking as its own tradition, what the diaspora carried out and kept — is a longer story than this page tells. " + rdr() + " The largest Sri Lankan Tamil community outside Sri Lanka is in the Toronto area. " + rdr() } },
           { type: "sub", text: { en: "Which ingredient grows where?", ta: "எது எங்கிருந்து வருகிறது?" } },
           { type: "note", text: { en: "Tap an ingredient on the market row, then tap where it comes from. This is the universality move: your dish is one of a family — a slow-simmer cousin of adobo, stew, tagine and mole, on the coconut-milk belt beside Kerala, Thailand and the Philippines. " + rdr() } },
           { type: "origin", cfg: originCfg() },
