@@ -107,13 +107,13 @@
 </head>
 <body>
 <div class="wrap">
-  <p class="way">This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
-  <h1>Play a MetaDAX package</h1>
+  <p class="way" id="banner">This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
+  <h1 id="page-title">Play a MetaDAX package</h1>
   <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
   <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
   <details id="companion-box">
-    <summary>Companion notes (optional)</summary>
-    <p class="muted cnote">Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.</p>
+    <summary id="companion-summary">Companion notes (optional)</summary>
+    <p class="muted cnote" id="companion-note">Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.</p>
     <textarea id="companion-src" placeholder='{ "format": "metadax-companion", ... }' aria-label="Companion notes JSON (optional)"></textarea>
   </details>
   <p><button id="play">Play</button></p>
@@ -131,6 +131,101 @@
   function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
   function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
   var ENG = window.MetaDAXEngine || {};
+
+  // ---- player-owned UI strings (en / fr) ----------------------------------
+  var UI = {
+    en: {
+      banner:       'This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.',
+      title:        'Play a MetaDAX package',
+      intro:        'Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.',
+      companionSum: 'Companion notes (optional)',
+      companionNote:'Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.',
+      play:         'Play',
+      warnHead:     'Warnings (the builder decides): ',
+      levelBadge:   function(n,N){ return 'Level '+n+' of '+N; },
+      hint:         'Hint',
+      next:         'Next',
+      nextStep:     'Next step',
+      allDone:      'All done — press Start over to go again.',
+      dragNote:     'Drag each one into a box — or tap it, then tap a box.',
+      didIt:        'You did it — every step in order.',
+      check:        'Check',
+      seeResult:    'See result',
+      fbRight:      'Right.',
+      fbWrong:      'Not quite.',
+      fbSoundRight: 'That’s the one.',
+      fbSoundWrong: 'Listen again and try once more.',
+      fbSeqWrong:   'Not that one — try another.',
+      sortResult:   function(r,n){ return r+' of '+n+' in the right box.'; },
+      startOver:    'Start over',
+      startOverConfirm: 'Start over? This clears what was answered on this device.',
+      answerKey:    'Answer key (for you)',
+      answerKeyNote:'Every game’s answers, for you only. The learner tab shows none of this.',
+      nextTimeTitle:'Next time',
+      nextTimeIntro:'Tick what landed, add a line in your own words, then make the note. It is prefilled from how the games went.',
+      keepNote:     'Keep this note',
+      makeNote:     'Make the note',
+      copy:         'Copy',
+      copied:       'Copied',
+      tagline:      'This is everything you’d share. Nothing leaves this device unless you copy it.',
+      printThis:    'Print this',
+      pasteErr:     'That doesn’t look like a whole package. Copy the entire code block from the chat, from the first { to the last }, and paste it again.',
+      grownUpSay:   function(s){ return 'Grown-up, say this aloud: “'+s+'”'; },
+      tapHear:      'Then tap the one you hear.'
+    },
+    fr: {
+      banner:       'C’est <strong>une façon, jamais LA façon</strong>. Vous êtes le parent (18+) ; cette page est un point de départ que vous adaptez. Elle ne pose aucun diagnostic. Rien n’est enregistré ni envoyé.',
+      title:        'Jouer un paquet MetaDAX',
+      intro:        'Collez le JSON d’un <code>metadax-package</code> ci-dessous et appuyez sur Jouer. Tout fonctionne dans votre navigateur.',
+      companionSum: 'Notes d’accompagnement (facultatif)',
+      companionNote:'Collez un fichier sidecar <code>companion.json</code> (format <code>metadax-companion</code>). Seules ses notes pour le guide sont affichées, uniquement dans la vue guide — jamais pour l’apprenant, jamais à l’impression.',
+      play:         'Jouer',
+      warnHead:     'Avertissements (le créateur décide) : ',
+      levelBadge:   function(n,N){ return 'Niveau '+n+' sur '+N; },
+      hint:         'Indice',
+      next:         'Suivant',
+      nextStep:     'Étape suivante',
+      allDone:      'Terminé — appuie sur Recommencer pour rejouer.',
+      dragNote:     'Fais glisser chaque élément dans une case — ou touche-le, puis touche une case.',
+      didIt:        'Bravo — toutes les étapes dans l’ordre.',
+      check:        'Vérifier',
+      seeResult:    'Voir le résultat',
+      fbRight:      'Exact.',
+      fbWrong:      'Pas tout à fait.',
+      fbSoundRight: 'C’est bien ça.',
+      fbSoundWrong: 'Encore une fois.',
+      fbSeqWrong:   'Pas celui-là — essaie encore.',
+      sortResult:   function(r,n){ return r+' sur '+n+' dans la bonne case.'; },
+      startOver:    'Recommencer',
+      startOverConfirm: 'Recommencer ? Cela efface les réponses enregistrées sur cet appareil.',
+      answerKey:    'Corrigé (pour vous)',
+      answerKeyNote:'Toutes les réponses, pour vous uniquement. L’onglet apprenant n’en montre aucune.',
+      nextTimeTitle:'La prochaine fois',
+      nextTimeIntro:'Cochez ce qui a fonctionné, ajoutez une ligne dans vos propres mots, puis préparez la note. Elle est préremplie à partir du déroulement des jeux.',
+      keepNote:     'Conserver cette note',
+      makeNote:     'Préparer la note',
+      copy:         'Copier',
+      copied:       'Copié',
+      tagline:      'Voici tout ce que vous partageriez. Rien ne quitte cet appareil à moins que vous ne le copiiez.',
+      printThis:    'Imprimer',
+      pasteErr:     'Ce ne semble pas être un paquet complet. Copiez l’intégralité du bloc de code, du premier { au dernier }, et collez-le à nouveau.',
+      grownUpSay:   function(s){ return 'Grand adulte, dites ceci à voix haute : « '+s+' »'; },
+      tapHear:      'Puis touche ce que tu entends.'
+    }
+  };
+  function t(key){
+    var lang = ENG.pickLang ? ENG.pickLang(SESSION_PKG ? SESSION_PKG.lang : null, typeof navigator !== "undefined" ? navigator.language : null) : "en";
+    var tbl = UI[lang] || UI.en;
+    return tbl.hasOwnProperty(key) ? tbl[key] : UI.en[key];
+  }
+  function translateStatic(){
+    var b = document.getElementById("banner"); if(b) b.innerHTML = t("banner");
+    var pt = document.getElementById("page-title"); if(pt) pt.textContent = t("title");
+    var intr = document.getElementById("intro"); if(intr) intr.innerHTML = t("intro");
+    var cs = document.getElementById("companion-summary"); if(cs) cs.textContent = t("companionSum");
+    var cn = document.getElementById("companion-note"); if(cn) cn.innerHTML = t("companionNote");
+    var pb = document.getElementById("play"); if(pb) pb.textContent = t("play");
+  }
 
   // ---- play session: every answer, in memory and in localStorage ---------
   // Records live under metadax:<ref>:<session>. SESSION holds, per game id, the
@@ -448,8 +543,8 @@
     function render(){
       play.innerHTML = "";
       var lv = ENG.getLevel(b, st.level);
-      if(!lv || !(lv.items||[]).length){ play.appendChild(el("p","muted","All done — press Start over to go again.")); return; }
-      var badge = el("div","badge","Level "+st.level+" of "+N);
+      if(!lv || !(lv.items||[]).length){ play.appendChild(el("p","muted",t("allDone"))); return; }
+      var badge = el("div","badge",t("levelBadge")(st.level, N));
       if(lv.label) badge.textContent += " · "+inline(lv.label);
       play.appendChild(badge);
       jobChip(play, lv, learnersByName);
@@ -462,7 +557,7 @@
       if(it.visual) play.appendChild(el("div","qvisual",it.visual));
 
       if(it.hint){
-        var hb = el("button","hintbtn","Hint"); hb.type="button";
+        var hb = el("button","hintbtn",t("hint")); hb.type="button";
         var hint = el("p","hint",inline(it.hint)); hint.style.display="none";
         hb.addEventListener("click",function(){ hint.style.display="block"; hb.style.display="none"; });
         play.appendChild(hb); play.appendChild(hint);
@@ -478,12 +573,12 @@
           [].forEach.call(opts.children,function(x){ x.disabled = true; });
           btn.className = "opt "+(ok?"picked-ok":"picked-no");
           recordAnswer(b.id, { item: inline(it.q), chosen: inline(c.text), correct: ok, mistake: c.mistake || null, level: st.level });
-          var fb = el("div","fb "+(ok?"ok":"no"), inline(c.msg || (ok?"Right.":"Not quite.")));
+          var fb = el("div","fb "+(ok?"ok":"no"), inline(c.msg || (ok?t("fbRight"):t("fbWrong"))));
           play.appendChild(fb);
           if(it.explain) play.appendChild(el("div","explain",inline(it.explain)));
           ENG.stepLevel(st, ok, { upAfter:upAfter, downAfter:downAfter, minLevel:minL, maxLevel:maxL });
           saveSession();
-          var nb = el("button","nextbtn","Next"); nb.type="button";
+          var nb = el("button","nextbtn",t("next")); nb.type="button";
           nb.addEventListener("click",render);
           play.appendChild(nb);
         });
@@ -496,7 +591,7 @@
 
   function renderSortPlay(container, b){
     var g = gameShell(b);
-    var items = (b.items||[]).slice(), bins = b.bins||[];
+    var items = ENG.shuffle(b.items||[]), bins = b.bins||[];
     var placed = {};
     var chips = el("div"); chips.style.margin=".4rem 0";
     var selected = { idx: null };
@@ -512,7 +607,7 @@
       });
       chips.appendChild(chip);
     });
-    g.appendChild(el("p","gintro","Drag each one into a box — or tap it, then tap a box."));
+    g.appendChild(el("p","gintro",t("dragNote")));
     g.appendChild(chips);
 
     var binsEl = el("div","bins");
@@ -537,7 +632,7 @@
     });
     g.appendChild(binsEl);
 
-    var chk = el("button","chkbtn","Check"); chk.type="button";
+    var chk = el("button","chkbtn",t("check")); chk.type="button";
     chk.addEventListener("click",function(){
       var right = 0;
       items.forEach(function(it, idx){
@@ -552,7 +647,7 @@
           }
         }); }
       });
-      g.appendChild(el("div","result", right+" of "+items.length+" in the right box."));
+      g.appendChild(el("div","result", t("sortResult")(right, items.length)));
       chk.disabled = true;
     });
     g.appendChild(chk);
@@ -563,7 +658,7 @@
     var g = gameShell(b);
     var steps = b.steps||[], play = el("div"); g.appendChild(play);
     function renderStep(i){
-      if(i >= steps.length){ play.appendChild(el("div","result","You did it — every step in order.")); return; }
+      if(i >= steps.length){ play.appendChild(el("div","result",t("didIt"))); return; }
       var st = steps[i];
       var wrap = el("div"); wrap.style.margin=".5rem 0";
       wrap.appendChild(el("div","qtext",(i+1)+". "+inline(st.prompt)));
@@ -578,13 +673,13 @@
             answered = true;
             [].forEach.call(opts.children,function(x){ x.disabled = true; });
             btn.className = "opt picked-ok";
-            wrap.appendChild(el("div","fb ok",inline(c.msg||"Right.")));
-            var nb = el("button","nextbtn","Next step"); nb.type="button";
+            wrap.appendChild(el("div","fb ok",inline(c.msg||t("fbRight"))));
+            var nb = el("button","nextbtn",t("nextStep")); nb.type="button";
             nb.addEventListener("click",function(){ renderStep(i+1); });
             wrap.appendChild(nb);
           } else {
             btn.className = "opt picked-no"; btn.disabled = true;
-            wrap.appendChild(el("div","fb no",inline(c.msg||"Not that one — try another.")));
+            wrap.appendChild(el("div","fb no",inline(c.msg||t("fbSeqWrong"))));
           }
         });
         opts.appendChild(btn);
@@ -603,7 +698,7 @@
       var pw = el("div","part");
       pw.appendChild(el("div","plabel",inline(p.label)));
       var opts = el("div","opts");
-      (p.options||[]).forEach(function(o){
+      ENG.shuffle(p.options||[]).forEach(function(o){
         var btn = el("button","opt",inline(o)); btn.type="button"; btn.setAttribute("aria-pressed","false");
         btn.addEventListener("click",function(){
           [].forEach.call(opts.children,function(x){ x.setAttribute("aria-pressed","false"); x.classList.remove("picked-ok"); });
@@ -614,7 +709,7 @@
       });
       pw.appendChild(opts); g.appendChild(pw);
     });
-    var chk = el("button","chkbtn","See result"); chk.type="button";
+    var chk = el("button","chkbtn",t("seeResult")); chk.type="button";
     chk.addEventListener("click",function(){
       chk.disabled = true;
       parts.forEach(function(p, pi){
@@ -634,23 +729,31 @@
 
   function renderSpokenSoundPlay(container, b){
     var g = gameShell(b);
-    g.appendChild(el("p","gintro","Grown-up, say this aloud: “"+inline(b.prompt_for_guide)+"”"));
-    g.appendChild(el("p","muted","Then tap the one you hear."));
+    g.appendChild(el("p","gintro",t("grownUpSay")(inline(b.prompt_for_guide))));
+    g.appendChild(el("p","muted",t("tapHear")));
     var opts = el("div","opts"); var answered = false;
-    ENG.shuffle((b.options||[]).map(function(o){ return o; })).forEach(function(o){
+    var fb = el("div","fb");
+    ENG.shuffle(b.options||[]).forEach(function(o){
       var btn = el("button","opt",inline(o)); btn.type="button";
       btn.addEventListener("click",function(){
-        if(answered) return; answered = true;
+        if(answered) return;
         var ok = o === b.answer;
-        [].forEach.call(opts.children,function(x){ x.disabled = true; });
-        btn.className = "opt "+(ok?"picked-ok":"picked-no");
         recordAnswer(b.id, { item: inline(b.prompt_for_guide), chosen: inline(o), correct: ok });
-        g.appendChild(el("div","fb "+(ok?"ok":"no"), ok?"That's the one.":"Listen again and try once more."));
-        if(b.why) g.appendChild(el("div","explain",inline(b.why)));
+        if(ok){
+          answered = true;
+          [].forEach.call(opts.children,function(x){ x.disabled = true; });
+          btn.className = "opt picked-ok";
+          fb.className = "fb ok"; fb.textContent = t("fbSoundRight");
+          if(b.why) g.appendChild(el("div","explain",inline(b.why)));
+        } else {
+          btn.className = "opt picked-no"; btn.disabled = true;
+          fb.className = "fb no"; fb.textContent = t("fbSoundWrong");
+        }
       });
       opts.appendChild(btn);
     });
     g.appendChild(opts);
+    g.appendChild(fb);
     container.appendChild(g);
   }
 
@@ -746,8 +849,8 @@
     var ticks = next.ticks || [], asks = next.ask || [];
     if (!ticks.length && !asks.length) return;
     var box = el("div","nexttime");
-    box.appendChild(el("h3",null,"Next time"));
-    box.appendChild(el("p","gintro","Tick what landed, add a line in your own words, then make the note. It is prefilled from how the games went."));
+    box.appendChild(el("h3",null,t("nextTimeTitle")));
+    box.appendChild(el("p","gintro",t("nextTimeIntro")));
 
     var tickInputs = [];
     ticks.forEach(function(t){
@@ -766,10 +869,10 @@
 
     var keepLab = el("label","tick");
     var keep = el("input"); keep.type="checkbox"; keep.checked = true;
-    keepLab.appendChild(keep); keepLab.appendChild(document.createTextNode("Keep this note"));
+    keepLab.appendChild(keep); keepLab.appendChild(document.createTextNode(t("keepNote")));
     box.appendChild(keepLab);
 
-    var makeBtn = el("button","makenote","Make the note"); makeBtn.type="button";
+    var makeBtn = el("button","makenote",t("makeNote")); makeBtn.type="button";
     box.appendChild(makeBtn);
 
     var outWrap = el("div","noteout"); outWrap.style.display="none"; box.appendChild(outWrap);
@@ -784,17 +887,17 @@
       var ta = el("textarea","note"); ta.readOnly = true; ta.value = note;
       ta.style.cssText += ";width:100%;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);padding:.5rem;";
       outWrap.appendChild(ta);
-      var copyBtn = el("button","copynote","Copy"); copyBtn.type="button";
+      var copyBtn = el("button","copynote",t("copy")); copyBtn.type="button";
       copyBtn.addEventListener("click",function(){
         ta.select();
-        var done = function(){ copyBtn.textContent="Copied"; };
+        var done = function(){ copyBtn.textContent=t("copied"); };
         try {
           if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function(){ try{document.execCommand("copy");}catch(e){} done(); });
           else { document.execCommand("copy"); done(); }
         } catch(e){ try{ document.execCommand("copy"); done(); }catch(_){} }
       });
       outWrap.appendChild(copyBtn);
-      outWrap.appendChild(el("p","tagline","This is everything you'd share. Nothing leaves this device unless you copy it."));
+      outWrap.appendChild(el("p","tagline",t("tagline")));
       outWrap.style.display="block";
     });
 
@@ -805,9 +908,9 @@
   // the package, so the quiz drops back to its start level and nothing is kept.
   function startOverControl(pkg, companion){
     var wrap = el("div"); wrap.style.margin=".4rem 0 .8rem";
-    var btn = el("button","startover","Start over"); btn.type="button";
+    var btn = el("button","startover",t("startOver")); btn.type="button";
     btn.addEventListener("click",function(){
-      if (!confirm("Start over? This clears what was answered on this device.")) return;
+      if (!confirm(t("startOverConfirm"))) return;
       clearSession();
       renderPackage(pkg, companion);
     });
@@ -817,6 +920,7 @@
 
   function renderPackage(pkg, companion){
     loadSession(pkg);
+    translateStatic();
     var out = document.getElementById("out"); out.innerHTML="";
     out.appendChild(el("h2",null,inline(pkg.title||"Package")));
     out.appendChild(el("p","muted",(pkg.word||"session")+" "+(pkg.session||1)));
@@ -860,9 +964,9 @@
       var games = (ENG.gameBlocks ? ENG.gameBlocks(pkg) : []);
       if (games.length){
         var ak = el("details","answerkey");
-        ak.appendChild(el("summary",null,"Answer key (for you)"));
+        ak.appendChild(el("summary",null,t("answerKey")));
         var akb = el("div","akbody");
-        akb.appendChild(el("p","muted","Every game's answers, for you only. The learner tab shows none of this."));
+        akb.appendChild(el("p","muted",t("answerKeyNote")));
         games.forEach(function(g){ renderGameStatic(akb, g.block, learnersByName); });
         ak.appendChild(akb);
         panes.guide.appendChild(ak);
@@ -877,7 +981,7 @@
     }
 
     // Print this: a paper-first render of the learner side, same package, same link scheme.
-    var pr = el("p"); var pb = el("button",null,"Print this"); pb.style.background="transparent"; pb.style.color="var(--accent)"; pb.style.border="1px solid var(--accent)";
+    var pr = el("p"); var pb = el("button",null,t("printThis")); pb.style.background="transparent"; pb.style.color="var(--accent)"; pb.style.border="1px solid var(--accent)";
     pb.onclick = function(){
       function open(url){ window.open(url, "_blank"); }
       if (window.MetaDAXCheck && MetaDAXCheck.encodePackage) {
@@ -900,12 +1004,12 @@
     var pkg;
     var rawInput = document.getElementById("src").value;
     var extracted = ENG.extractPastedPackage ? ENG.extractPastedPackage(rawInput) : rawInput;
-    if (extracted === null) { rep.appendChild(el("div","err", ENG.PASTE_MSG || "")); return; }
+    if (extracted === null) { rep.appendChild(el("div","err", t("pasteErr"))); return; }
     try { pkg = JSON.parse(extracted); }
-    catch(e){ rep.appendChild(el("div","err", ENG.PASTE_MSG || "")); return; }
+    catch(e){ rep.appendChild(el("div","err", t("pasteErr"))); return; }
     var res = (window.MetaDAXCheck && window.MetaDAXCheck.checkPackage) ? window.MetaDAXCheck.checkPackage(pkg, window.CHECK_LISTS||{}) : {errors:[],warnings:[]};
     if (res.warnings && res.warnings.length){
-      var w = el("div","warn"); w.appendChild(el("strong",null,"Warnings (the builder decides): "));
+      var w = el("div","warn"); w.appendChild(el("strong",null,t("warnHead")));
       var wu=el("ul"); res.warnings.forEach(function(x){wu.appendChild(el("li",null,x.path+" — "+x.msg));}); w.appendChild(wu); rep.appendChild(w);
     }
     if (res.errors && res.errors.length){
@@ -937,6 +1041,7 @@
 
   function companionNote(rep, msg){ rep.appendChild(el("div","warn", msg)); }
 
+  translateStatic();
   document.getElementById("play").addEventListener("click", play);
   // optional: load check-lists.json so warnings match the gate
   fetch("check-lists.json").then(function(r){return r.json();}).then(function(j){window.CHECK_LISTS=j;}).catch(function(){});

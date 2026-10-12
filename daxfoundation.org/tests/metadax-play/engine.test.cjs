@@ -202,3 +202,56 @@ test("extractPastedPackage: truncated JSON returns null and PASTE_MSG is the exp
   assert.strictEqual(E.extractPastedPackage(raw), null);
   assert.strictEqual(E.PASTE_MSG, "That doesn't look like a whole package. Copy the entire code block from the chat, from the first { to the last }, and paste it again.");
 });
+
+// P1d: fenced-block-first extraction
+const MINI_PKG = JSON.stringify({ format: "metadax-package", lang: "en", ref: "TEST" });
+
+test("extractPastedPackage: prose with { before a fenced package block uses the fenced block", () => {
+  // Simulates AI reply: "copy the whole code block, from the first { to the last }."
+  // followed by the actual ```json block. The prose { must not win.
+  const raw = "Great session! copy the whole code block, from the first { to the last }.\n\n```json\n" + MINI_PKG + "\n```\n\nLet me know if you need anything else.";
+  const out = E.extractPastedPackage(raw);
+  assert.strictEqual(out, MINI_PKG);
+  assert.deepStrictEqual(JSON.parse(out).format, "metadax-package");
+});
+
+test("extractPastedPackage: prose with a bare { and no fences loads", () => {
+  // No fences: falls through to bare-brace search. First { where next char is " wins.
+  const raw = "Here you go:\n\n" + MINI_PKG + "\n\nEnjoy!";
+  const out = E.extractPastedPackage(raw);
+  assert.deepStrictEqual(JSON.parse(out).format, "metadax-package");
+});
+
+test("extractPastedPackage: truncated fenced block returns null", () => {
+  // Fenced block with valid opening but no closing } — cannot parse.
+  const raw = "```json\n{\"format\":\"metadax-package\"\n```";
+  assert.strictEqual(E.extractPastedPackage(raw), null);
+});
+
+test("pickLang: pkg.lang 'fr' -> 'fr'", () => {
+  assert.strictEqual(E.pickLang("fr", "en"), "fr");
+});
+
+test("pickLang: pkg.lang 'fr-CA' -> 'fr' (first two letters)", () => {
+  assert.strictEqual(E.pickLang("fr-CA", "en"), "fr");
+});
+
+test("pickLang: pkg.lang 'en' -> 'en'", () => {
+  assert.strictEqual(E.pickLang("en", "fr"), "en");
+});
+
+test("pickLang: pkg.lang 'xx' (unsupported) -> navigator fallback -> 'en'", () => {
+  assert.strictEqual(E.pickLang("xx", "en-US"), "en");
+});
+
+test("pickLang: no package (null) -> navigator language 'fr-CA' -> 'fr'", () => {
+  assert.strictEqual(E.pickLang(null, "fr-CA"), "fr");
+});
+
+test("pickLang: no package, unknown navigator language -> 'en'", () => {
+  assert.strictEqual(E.pickLang(null, "xx"), "en");
+});
+
+test("pickLang: no package, no navigator language -> 'en'", () => {
+  assert.strictEqual(E.pickLang(null, null), "en");
+});

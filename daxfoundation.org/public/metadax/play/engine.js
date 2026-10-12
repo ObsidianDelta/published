@@ -202,19 +202,64 @@
   // Shown when extraction or parsing fails on the paste input.
   var PASTE_MSG = "That doesn't look like a whole package. Copy the entire code block from the chat, from the first { to the last }, and paste it again.";
 
-  // Strip ``` fence lines, then slice from the first '{' to the last '}'.
-  // Returns the extracted string, or null if no brace pair is found.
+  // Returns the first fenced-block or bare-brace JSON string that is a valid
+  // metadax-package, or null if none is found.
   function extractPastedPackage(raw) {
-    var s = (raw || "").split("\n").filter(function (l) { return !/^```/.test(l); }).join("\n");
-    var start = s.indexOf("{");
+    var s = raw || "";
+
+    // Step 1: if the text has fenced blocks, try each (largest first).
+    // The first that parses and carries format:"metadax-package" wins.
+    var fenceRe = /```(?:json)?\r?\n([\s\S]*?)\r?\n```/g;
+    var fencedBlocks = [];
+    var m;
+    while ((m = fenceRe.exec(s)) !== null) fencedBlocks.push(m[1]);
+    if (fencedBlocks.length > 0) {
+      fencedBlocks.sort(function (a, b) { return b.length - a.length; });
+      for (var i = 0; i < fencedBlocks.length; i++) {
+        try {
+          var p = JSON.parse(fencedBlocks[i]);
+          if (p && p.format === "metadax-package") return fencedBlocks[i];
+        } catch (e) {}
+      }
+      // No fenced block matched — fall through to bare-brace search.
+    }
+
+    // Step 2: no fenced match — try each '{' where the next non-space char is '"',
+    // slicing up to the last '}'. First candidate that parses wins.
     var end = s.lastIndexOf("}");
-    if (start === -1 || end === -1 || end < start) return null;
-    return s.slice(start, end + 1);
+    if (end === -1) return null;
+    for (var j = 0; j < end; j++) {
+      if (s[j] !== "{") continue;
+      var rest = s.slice(j + 1);
+      var ns = rest.search(/\S/);
+      if (ns === -1 || rest[ns] !== '"') continue;
+      var candidate = s.slice(j, end + 1);
+      try { JSON.parse(candidate); return candidate; } catch (e) {}
+    }
+
+    return null;
+  }
+
+  var SUPPORTED_LANGS = { en: 1, fr: 1 };
+
+  // Pick the display language: pkg.lang (first two letters) first, then
+  // navigator.language, then "en". Both arguments are optional.
+  function pickLang(pkgLang, navigatorLang) {
+    if (pkgLang) {
+      var l = String(pkgLang).slice(0, 2).toLowerCase();
+      if (SUPPORTED_LANGS[l]) return l;
+    }
+    if (navigatorLang) {
+      var n = String(navigatorLang).slice(0, 2).toLowerCase();
+      if (SUPPORTED_LANGS[n]) return n;
+    }
+    return "en";
   }
 
   var E = {
     txt: txt,
     shuffle: shuffle,
+    pickLang: pickLang,
     stepLevel: stepLevel,
     nextItemIndex: nextItemIndex,
     levelNumbers: levelNumbers,
