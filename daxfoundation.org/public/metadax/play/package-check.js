@@ -211,6 +211,11 @@
             }
           }
         } else if (b.type === "sequence") {
+          var smids = {};
+          if (b.mistakes) {
+            var smk = Object.keys(b.mistakes);
+            for (var smm = 0; smm < smk.length; smm++) smids[smk[smm]] = 1;
+          }
           var steps = b.steps || [];
           for (var sti = 0; sti < steps.length; sti++) {
             var sch = steps[sti].choices || [];
@@ -219,7 +224,22 @@
               var sp2 = sp + ".sequence[" + b.id + "].s" + sti + ".c" + sci;
               if (!sc.correct && !sc.mistake) {
                 errors.push({ path: sp2, msg: "choice has neither correct:true nor a mistake id" });
+              } else if (sc.mistake && !smids[sc.mistake]) {
+                errors.push({ path: sp2, msg: "choice refers to undefined mistake id: " + sc.mistake });
               }
+            }
+          }
+        } else if (b.type === "build") {
+          var bparts = b.parts || [];
+          for (var parti = 0; parti < bparts.length; parti++) {
+            var bpart = bparts[parti];
+            var pp2 = sp + ".build[" + b.id + "].parts[" + parti + "]";
+            if (!Array.isArray(bpart.options) || bpart.options.length === 0) {
+              errors.push({ path: pp2, msg: "build part needs a non-empty options array" });
+            } else if (bpart.best === undefined) {
+              errors.push({ path: pp2, msg: "build part missing best" });
+            } else if (bpart.options.indexOf(bpart.best) === -1) {
+              errors.push({ path: pp2, msg: "best \"" + bpart.best + "\" is not one of the options" });
             }
           }
         } else if (b.type === "spoken-sound") {
@@ -274,12 +294,12 @@
     return RE_HTTP.test(s) || RE_SHORTENER.test(s) || RE_BARE_DOMAIN.test(s);
   }
 
-  function buildWordRe(words) {
+  function buildWordRe(words, flags) {
     if (!words || !words.length) return null;
     var parts = words.map(function (w) {
       return w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     });
-    return new RegExp("(?:^|[^a-zA-ZÀ-ɏ])(?:" + parts.join("|") + ")(?:[^a-zA-ZÀ-ɏ]|$)", "i");
+    return new RegExp("(?:^|[^a-zA-ZÀ-ɏ])(?:" + parts.join("|") + ")(?:[^a-zA-ZÀ-ɏ]|$)", flags || "");
   }
 
   function buildTitleRe(titles) {
@@ -476,6 +496,37 @@
       }
     });
 
+    // Answer giveaways and unused mistakes (warnings)
+    function choiceText(c) { var x = c && c.text; return typeof x === "string" ? x : JSON.stringify(x || ""); }
+    function scanGames(sideName, sections) {
+      (sections || []).forEach(function (sec, si) {
+        (sec.blocks || []).forEach(function (blk, bi) {
+          var base = sideName + ".sections[" + si + "].blocks[" + bi + "]";
+          var lists = [];
+          if (blk.type === "quiz") (blk.levels || []).forEach(function (lv) { (lv.items || []).forEach(function (it) { lists.push(it.choices || []); }); });
+          if (blk.type === "sequence") (blk.steps || []).forEach(function (st) { lists.push(st.choices || []); });
+          if (!lists.length) return;
+          var longest = 0, bracket = 0, first = 0, used = {};
+          lists.forEach(function (cs) {
+            var ci = -1;
+            cs.forEach(function (c, i) { if (c.correct) ci = i; if (c.mistake) used[c.mistake] = 1; });
+            if (ci < 0) return;
+            if (ci === 0) first++;
+            var ct = choiceText(cs[ci]);
+            if (cs.every(function (c, i) { return i === ci || choiceText(c).length < ct.length; })) longest++;
+            if (/\(/.test(ct) && cs.every(function (c, i) { return i === ci || !/\(/.test(choiceText(c)); })) bracket++;
+          });
+          var n = lists.length;
+          if (longest * 2 > n) warnings.push({ path: base, msg: "the right answer is the longest choice in " + longest + " of " + n + " items" });
+          if (bracket) warnings.push({ path: base, msg: "only the right answer has words in brackets in " + bracket + " items" });
+          if (n >= 4 && first === n) warnings.push({ path: base, msg: "the right answer is always listed first" });
+          if (blk.mistakes) Object.keys(blk.mistakes).forEach(function (m) { if (!used[m]) warnings.push({ path: base, msg: "mistake '" + m + "' is never offered" }); });
+        });
+      });
+    }
+    scanGames("guide", pkg.guide && pkg.guide.sections);
+    scanGames("learner", pkg.learner && pkg.learner.sections);
+
     return { errors: errors, warnings: warnings };
   }
 
@@ -571,41 +622,14 @@
     throw new Error("No UTF-8 decoder available");
   }
 
-  async function deflateRawBrowser(data) {
-    var cs = new CompressionStream("deflate-raw");
-    var writer = cs.writable.getWriter();
-    await writer.write(data);
-    await writer.close();
-    var chunks = [], reader = cs.readable.getReader();
-    while (true) {
-      var res = await reader.read();
-      if (res.done) break;
-      chunks.push(res.value);
-    }
-    var total = chunks.reduce(function (a, c) { return a + c.length; }, 0);
-    var out = new Uint8Array(total);
-    var off = 0;
-    for (var i = 0; i < chunks.length; i++) { out.set(chunks[i], off); off += chunks[i].length; }
-    return out;
+  async function streamThrough(data, stream) {
+    // Read and write concurrently: awaiting write() before reading deadlocks on backpressure.
+    var bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
+    var out = await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer();
+    return new Uint8Array(out);
   }
-
-  async function inflateRawBrowser(data) {
-    var ds = new DecompressionStream("deflate-raw");
-    var writer = ds.writable.getWriter();
-    await writer.write(data instanceof Uint8Array ? data : new Uint8Array(data));
-    await writer.close();
-    var chunks = [], reader = ds.readable.getReader();
-    while (true) {
-      var res = await reader.read();
-      if (res.done) break;
-      chunks.push(res.value);
-    }
-    var total = chunks.reduce(function (a, c) { return a + c.length; }, 0);
-    var out = new Uint8Array(total);
-    var off = 0;
-    for (var i = 0; i < chunks.length; i++) { out.set(chunks[i], off); off += chunks[i].length; }
-    return out;
-  }
+  function deflateRawBrowser(data) { return streamThrough(data, new CompressionStream("deflate-raw")); }
+  function inflateRawBrowser(data) { return streamThrough(data, new DecompressionStream("deflate-raw")); }
 
   // ── encodePackage / decodePackage ─────────────────────────────────────────
   async function encodePackage(pkg, impl) {
