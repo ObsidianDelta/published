@@ -4,7 +4,7 @@ import Base from '../../../../layouts/Base.astro';
 // /metadax/guide/any-ai/ -- the plain-prompt route for any capable AI chat.
 // Content tracks prompt.md's own front-matter instructions. No vendor named.
 ---
-<Base title="Use Meta DAX with any AI chat" description="Copy one plain prompt into whatever AI assistant you already pay for, attach the template files, and save the lesson package it builds." wide>
+<Base title="Use Meta DAX with any AI chat" description="Open one plain prompt, paste it into any capable AI assistant you already pay for, and save the lesson package it builds." wide>
   <section class="lede">
     <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/guide/">Help</a> &rsaquo; Any AI chat</p>
     <h1>Use any AI chat</h1>
@@ -13,58 +13,55 @@ import Base from '../../../../layouts/Base.astro';
       one plain prompt you can paste into any capable AI assistant you already pay
       for. The task uses no features specific to any one product.
     </p>
+    <p class="lede-note">
+      Prefer to install it once? There is also a <a href="/metadax/guide/claude-skill/">Claude skill</a>.
+    </p>
   </section>
 
   <section class="block" aria-labelledby="h-copy">
-    <h2 id="h-copy">1. Copy the prompt</h2>
+    <h2 id="h-copy">1. Open the prompt</h2>
     <p class="body">
-      The prompt is one file in the open repository,
-      <code>skills/metadax-homeschool/prompt.md</code>. Open it and copy
-      everything below the line near the top:
+      Open the plain text file &mdash; it&rsquo;s the whole prompt, ready to copy:
     </p>
-    <p class="out"><a href="https://github.com/daxfoundation/metadax/blob/main/skills/metadax-homeschool/prompt.md">prompt.md on GitHub &rarr;</a></p>
+    <p class="out">
+      <a href="https://raw.githubusercontent.com/daxfoundation/metadax/main/skills/metadax-homeschool/prompt.md">Open the plain text, ready to copy &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="https://github.com/daxfoundation/metadax/blob/main/skills/metadax-homeschool/prompt.md">View on GitHub</a>
+    </p>
+    <p class="body">Select all and copy.</p>
   </section>
 
   <section class="block" aria-labelledby="h-paste">
-    <h2 id="h-paste">2. Paste it, and attach the templates</h2>
+    <h2 id="h-paste">2. Paste and send</h2>
     <p class="body">
-      Start a new chat and paste the prompt in. Then attach (or paste) the files
-      the prompt asks for, from the same folder&rsquo;s <code>templates</code>:
+      Start a new chat in the AI assistant you already use. Paste it as your first
+      message, type <strong>Start</strong> under it, and send. If your chat turns a
+      long paste into an attachment, that&rsquo;s fine; the &ldquo;Start&rdquo; line
+      tells it to begin.
     </p>
-    <ul class="plain">
-      <li><code>PACKAGE-FORMAT.md</code> &mdash; the contract the package is built to.</li>
-      <li><code>intake-questions.md</code> &mdash; the questions it will ask you.</li>
-      <li><code>SAMPLE-FORMAT.md</code> &mdash; the shape of the generic version you can share.</li>
-      <li><code>EXAMPLE-package.json</code> &mdash; a complete, valid example to model yours on.</li>
-      <li>And, for the next session and more than one child, <code>NEXT-TIME-NOTE.md</code> and <code>FAMILY-PROGRESS.md</code>.</li>
-    </ul>
-    <p class="out"><a href="https://github.com/daxfoundation/metadax/tree/main/skills/metadax-homeschool/templates">The templates folder &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="h-answer">
     <h2 id="h-answer">3. Answer its questions</h2>
     <p class="body">
-      It interviews you a few questions at a time, in plain words: a nickname (not
-      a real name), a rough age, the subject, where exactly they get stuck, a real
-      wrong answer if you have one, and what they love. Give it nothing
-      identifying &mdash; no real name, school, town, email or phone. If you do, it
-      tells you what it looks like and leaves it out.
+      It asks about a dozen questions, a few at a time. Nothing identifying: a
+      made-up nickname, no real name, school, town, email or phone. Your answers go
+      to that AI service under its own privacy settings; the package file you get
+      stays with you.
     </p>
   </section>
 
-  <section class="block" aria-labelledby="h-save">
-    <h2 id="h-save">4. Save the package JSON</h2>
+  <section class="block" aria-labelledby="h-play">
+    <h2 id="h-play">4. Play it</h2>
     <p class="body">
-      It produces a <code>metadax-package</code> in JSON &mdash; the two-page
-      lesson. Copy all of it and save it as a plain text file ending in
-      <code>.json</code> (for example <code>family-package.json</code>). That file
-      is yours and private; nothing is uploaded.
-    </p>
-    <p class="body">
-      To use it, open the player and paste the JSON in, or print it for paper.
+      Copy the package JSON it gives you, open the player, paste it into the box
+      and press Play. Read your tab first; your child plays theirs with you beside
+      them.
     </p>
     <p class="out">
-      <a href="/metadax/guide/play-and-print/">Open it and print it &rarr;</a>
+      <a href="/metadax/play/">Open the player &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/play-and-print/">How to play and print</a>
       <span aria-hidden="true">&middot;</span>
       <a href="/metadax/guide/no-ai/">No AI at all? Use the questionnaire</a>
       <span aria-hidden="true">&middot;</span>
@@ -80,16 +77,17 @@ import Base from '../../../../layouts/Base.astro';
   .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
   h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
   .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .lede-note { margin: 0.75rem 0 0; max-width: 40em; font-size: 0.9375rem; color: var(--muted); }
+  .lede-note a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .lede-note a:hover, .lede-note a:focus-visible { border-bottom-color: currentColor; }
 
   .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
   h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
   strong { font-weight: 600; color: var(--fg); }
   .body { margin: 0; max-width: 40em; color: #cfcfcf; }
-  .body + .body, .body + .out, .out + .body, .body + .plain, .plain + .body { margin-top: 1rem; }
+  .body + .body, .body + .out, .out + .body { margin-top: 1rem; }
   .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
-  .plain { margin: 0; padding-left: 1.25rem; max-width: 42em; color: #cfcfcf; }
-  .plain li + li { margin-top: 0.5rem; }
 
   code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, var(--fg) 8%, transparent); padding: 0.1em 0.35em; border-radius: 4px; }
 
