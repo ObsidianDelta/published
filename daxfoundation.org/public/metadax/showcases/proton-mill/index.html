@@ -15,8 +15,8 @@
    Design language follows the Stade showcase: Atkinson Hyperlegible body,
    Big Shoulders display, gold accent, high-contrast focus rings. */
 :root {
-  --bg: #e8eef4; --surface: #ffffff; --surface-2: #f1f5fa; --ink: #0f1d2a; --muted: #46586a;
-  --line: #ccd7e2; --accent: #1d6fb8; --accent-ink: #ffffff;
+  --bg: #faf7f1; --surface: #ffffff; --surface-2: #f4f1ea; --ink: #15181d; --muted: #5a6066;
+  --line: #e4ded3; --accent: #1d6fb8; --accent-ink: #ffffff;
   --gold: #e0a500; --gold-ink: #1c1500; --good: #157a43; --bad: #c0392b; --heat: #e0591f;
   --stage-bg: #cfe4f4;
   --font-display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
@@ -25,14 +25,14 @@
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #081320; --surface: #0f1d2a; --surface-2: #14263a; --ink: #e9f1f8; --muted: #9db1c4;
-    --line: #22384d; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
+    --bg: #121417; --surface: #1a1d22; --surface-2: #22262c; --ink: #eceae6; --muted: #a8aeb5;
+    --line: #2e333a; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
     --good: #45c27a; --bad: #f0625a; --heat: #ff7a4d; --stage-bg: #081324;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #081320; --surface: #0f1d2a; --surface-2: #14263a; --ink: #e9f1f8; --muted: #9db1c4;
-  --line: #22384d; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
+  --bg: #121417; --surface: #1a1d22; --surface-2: #22262c; --ink: #eceae6; --muted: #a8aeb5;
+  --line: #2e333a; --accent: #4a9fe0; --accent-ink: #04121f; --gold: #f5c02a; --gold-ink: #1c1500;
   --good: #45c27a; --bad: #f0625a; --heat: #ff7a4d; --stage-bg: #081324;
 }
 * { box-sizing: border-box; }
@@ -40,7 +40,7 @@ html, body { margin: 0; }
 body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--s0); line-height: 1.5; }
 button, input { font: inherit; color: inherit; }
 button { cursor: pointer; }
-:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 4px; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
 h1, h2, h3 { font-family: var(--font-display); font-weight: 800; letter-spacing: 0.01em; margin: 0; line-height: 1.08; }
 p { margin: 0; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
