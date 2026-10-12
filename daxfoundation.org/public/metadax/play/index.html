@@ -111,6 +111,7 @@
   <h1 id="page-title">Play a MetaDAX package</h1>
   <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
   <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
+  <p style="margin:.3rem 0"><input type="file" id="file-input" accept=".json,.txt,.md" style="display:none"><button type="button" id="open-file">Open a file</button></p>
   <details id="companion-box">
     <summary id="companion-summary">Companion notes (optional)</summary>
     <p class="muted cnote" id="companion-note">Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.</p>
@@ -171,7 +172,9 @@
       printThis:    'Print this',
       pasteErr:     'That doesn’t look like a whole package. Copy the entire code block from the chat, from the first { to the last }, and paste it again.',
       grownUpSay:   function(s){ return 'Grown-up, say this aloud: “'+s+'”'; },
-      tapHear:      'Then tap the one you hear.'
+      tapHear:      'Then tap the one you hear.',
+      openFile:     'Open a file',
+      clockLabel:   function(h, m){ return 'Clock showing '+h+':'+(m<10?'0':'')+m; }
     },
     fr: {
       banner:       'C’est <strong>une façon, jamais LA façon</strong>. Vous êtes le parent (18+) ; cette page est un point de départ que vous adaptez. Elle ne pose aucun diagnostic. Rien n’est enregistré ni envoyé.',
@@ -210,7 +213,9 @@
       printThis:    'Imprimer',
       pasteErr:     'Ce ne semble pas être un paquet complet. Copiez l’intégralité du bloc de code, du premier { au dernier }, et collez-le à nouveau.',
       grownUpSay:   function(s){ return 'Grand adulte, dites ceci à voix haute : « '+s+' »'; },
-      tapHear:      'Puis touche ce que tu entends.'
+      tapHear:      'Puis touche ce que tu entends.',
+      openFile:     'Ouvrir un fichier',
+      clockLabel:   function(h, m){ return 'Horloge affichant '+h+'h'+(m<10?'0':'')+m; }
     }
   };
   function t(key){
@@ -225,6 +230,7 @@
     var cs = document.getElementById("companion-summary"); if(cs) cs.textContent = t("companionSum");
     var cn = document.getElementById("companion-note"); if(cn) cn.innerHTML = t("companionNote");
     var pb = document.getElementById("play"); if(pb) pb.textContent = t("play");
+    var of = document.getElementById("open-file"); if(of) of.textContent = t("openFile");
   }
 
   // ---- play session: every answer, in memory and in localStorage ---------
@@ -502,6 +508,7 @@
       (lv.items||[]).forEach(function(it){
         var iw = el("div","blk");
         jobChip(iw, it, learnersByName);
+        if(it.clock) iw.appendChild(renderClock(it.clock));
         iw.appendChild(el("div","q",inline(it.q)));
         if(it.visual) iw.appendChild(el("pre","muted",it.visual));
         (it.choices||[]).forEach(function(c){ iw.appendChild(el("div","choice"+(c.correct?" correct":""),inline(c.text))); });
@@ -511,6 +518,41 @@
       q.appendChild(box);
     });
     container.appendChild(q);
+  }
+
+  // ---- clock SVG ---------------------------------------------------------
+  function renderClock(clock) {
+    var h = clock.h, m = clock.m;
+    var ns = "http://www.w3.org/2000/svg";
+    var label = t("clockLabel")(h, m);
+    function svgEl(tag, attrs) {
+      var e = document.createElementNS(ns, tag);
+      for (var k in attrs) if (Object.prototype.hasOwnProperty.call(attrs, k)) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+    function pt(deg, r) {
+      var rad = deg * Math.PI / 180;
+      return [+(50 + r * Math.sin(rad)).toFixed(2), +(50 - r * Math.cos(rad)).toFixed(2)];
+    }
+    var svg = svgEl("svg", {viewBox:"0 0 100 100", width:"100", height:"100", "aria-label":label, role:"img", focusable:"false"});
+    svg.style.cssText = "display:block;margin:0 0 .5rem";
+    svg.appendChild(svgEl("circle", {cx:"50", cy:"50", r:"46", fill:"none", stroke:"currentColor", "stroke-width":"2"}));
+    for (var n = 1; n <= 12; n++) {
+      var p = pt(n * 30, 37);
+      var numTxt = document.createElementNS(ns, "text");
+      numTxt.setAttribute("x", p[0]); numTxt.setAttribute("y", p[1]);
+      numTxt.setAttribute("text-anchor", "middle"); numTxt.setAttribute("dominant-baseline", "central");
+      numTxt.setAttribute("font-size", "10"); numTxt.setAttribute("fill", "currentColor");
+      numTxt.setAttribute("aria-hidden", "true"); numTxt.textContent = String(n);
+      svg.appendChild(numTxt);
+    }
+    var mp = pt(m * 6, 36);
+    svg.appendChild(svgEl("line", {x1:"50", y1:"50", x2:mp[0], y2:mp[1], stroke:"currentColor", "stroke-width":"1.5", "stroke-linecap":"round", "aria-hidden":"true"}));
+    var hAngle = (h % 12) * 30 + m * 0.5;
+    var hp = pt(hAngle, 23);
+    svg.appendChild(svgEl("line", {x1:"50", y1:"50", x2:hp[0], y2:hp[1], stroke:"currentColor", "stroke-width":"5", "stroke-linecap":"round", "aria-hidden":"true"}));
+    svg.appendChild(svgEl("circle", {cx:"50", cy:"50", r:"2.5", fill:"currentColor", "aria-hidden":"true"}));
+    return svg;
   }
 
   // ---- interactive games (LEARNER tab) ----------------------------------
@@ -553,6 +595,7 @@
       var it = lv.items[idx];
       saveSession();
       jobChip(play, it, learnersByName);
+      if (it.clock) play.appendChild(renderClock(it.clock));
       play.appendChild(el("div","qtext",inline(it.q)));
       if(it.visual) play.appendChild(el("div","qvisual",it.visual));
 
@@ -1043,6 +1086,29 @@
 
   translateStatic();
   document.getElementById("play").addEventListener("click", play);
+  // Open a file button
+  var fileInput = document.getElementById("file-input");
+  var openFileBtn = document.getElementById("open-file");
+  if (openFileBtn) openFileBtn.addEventListener("click", function(){ if(fileInput) fileInput.click(); });
+  if (fileInput) fileInput.addEventListener("change", function(e){
+    var file = e.target.files && e.target.files[0]; if(!file) return;
+    var fr = new FileReader();
+    fr.onload = function(ev){ document.getElementById("src").value = ev.target.result || ""; play(); };
+    fr.readAsText(file);
+    fileInput.value = "";
+  });
+  // Drop a file onto the paste box
+  var dropTarget = document.getElementById("src");
+  if (dropTarget) {
+    dropTarget.addEventListener("dragover", function(e){ e.preventDefault(); });
+    dropTarget.addEventListener("drop", function(e){
+      e.preventDefault();
+      var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if(!file) return;
+      var fr2 = new FileReader();
+      fr2.onload = function(ev){ dropTarget.value = ev.target.result || ""; play(); };
+      fr2.readAsText(file);
+    });
+  }
   // optional: load check-lists.json so warnings match the gate
   fetch("check-lists.json").then(function(r){return r.json();}).then(function(j){window.CHECK_LISTS=j;}).catch(function(){});
   // ?sample=<name> — fetch /metadax/play/samples/<name>.json and run the Play

@@ -362,3 +362,52 @@ test("EXAMPLE-package.json fixture: report errors and warnings (do not change fi
   }
   assert.ok(true);
 });
+
+// ── Clock field validation ────────────────────────────────────────────────────
+test("clock: valid clock {h:7, m:0} passes with no errors", () => {
+  const pkg = minimalPkg();
+  pkg.learner.sections[0].blocks[1].levels[0].items[0].clock = { h: 7, m: 0 };
+  const { errors } = checkPackage(pkg, lists);
+  assert.ok(!errors.some(e => e.path.includes("clock")), "valid clock must not produce errors: " + JSON.stringify(errors.filter(e => e.path.includes("clock"))));
+});
+
+test("clock: h 13 is an error", () => {
+  const pkg = minimalPkg();
+  pkg.learner.sections[0].blocks[1].levels[0].items[0].clock = { h: 13, m: 0 };
+  const { errors } = checkPackage(pkg, lists);
+  assert.ok(errors.some(e => e.path.includes("clock") && e.msg.includes("1..12")),
+    "h=13 must produce an error about 1..12 range");
+});
+
+test("clock: m 60 is an error", () => {
+  const pkg = minimalPkg();
+  pkg.learner.sections[0].blocks[1].levels[0].items[0].clock = { h: 7, m: 60 };
+  const { errors } = checkPackage(pkg, lists);
+  assert.ok(errors.some(e => e.path.includes("clock") && e.msg.includes("0..59")),
+    "m=60 must produce an error about 0..59 range");
+});
+
+// ── Duration warning: clock-reading phrases must not warn ────────────────────
+test("duration: '5 minutes past 3' does not trigger duration warning", () => {
+  const pkg = minimalPkg();
+  pkg.guide.sections[0].blocks[0].body = "Show the time 5 minutes past 3 on the clock.";
+  const { warnings } = checkPackage(pkg, lists);
+  assert.ok(!warnings.some(w => w.msg === "duration in minutes/hours"),
+    "'5 minutes past 3' must not trigger duration warning");
+});
+
+test("duration: '5 minutes to 3' does not trigger duration warning", () => {
+  const pkg = minimalPkg();
+  pkg.guide.sections[0].blocks[0].body = "Show 5 minutes to 3 on the clock face.";
+  const { warnings } = checkPackage(pkg, lists);
+  assert.ok(!warnings.some(w => w.msg === "duration in minutes/hours"),
+    "'5 minutes to 3' must not trigger duration warning");
+});
+
+test("duration: '10 minutes' still triggers duration warning", () => {
+  const pkg = minimalPkg();
+  pkg.guide.sections[0].blocks[0].body = "This activity takes 10 minutes to complete.";
+  const { warnings } = checkPackage(pkg, lists);
+  assert.ok(warnings.some(w => w.msg === "duration in minutes/hours"),
+    "'10 minutes' must still trigger duration warning");
+});
