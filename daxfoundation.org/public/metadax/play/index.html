@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Play a MetaDAX package</title>
+<style>
+  :root { color-scheme: light dark; --bg:#fbfaf7; --fg:#1a1a1a; --muted:#555; --line:#e2ddd3; --surface:#fff; --accent:#3a6a2a; --chip:#eef3e8; }
+  @media (prefers-color-scheme: dark){ :root{ --bg:#14160f; --fg:#eceadf; --muted:#9a9a8c; --line:#2a2c22; --surface:#1c1e16; --accent:#8ec96e; --chip:#23281d; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  .wrap { max-width: 50rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+  .way { margin:0 0 1rem; padding:.5rem .8rem; border:1px dashed var(--accent); border-radius:8px; color:var(--muted); font-size:.85rem; }
+  h1 { font-weight:500; font-size:1.5rem; margin:.2rem 0 1rem; }
+  textarea { width:100%; min-height:7rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.8rem; padding:.6rem; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--fg); }
+  button { font:inherit; padding:.5rem 1.1rem; border:0; border-radius:7px; background:var(--accent); color:#fff; cursor:pointer; }
+  .tabs { display:flex; gap:.4rem; margin:1.25rem 0 1rem; border-bottom:1px solid var(--line); }
+  .tabs button { background:none; color:var(--muted); border-bottom:2px solid transparent; border-radius:0; padding:.5rem .9rem; }
+  .tabs button[aria-selected="true"] { color:var(--fg); border-bottom-color:var(--accent); }
+  .sec { margin:1.5rem 0; }
+  .sec > .label { font-size:.75rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:.5rem; }
+  .blk { margin:.75rem 0; }
+  .card { border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:6px; padding:.6rem .8rem; background:var(--surface); }
+  .step { border-left:3px solid var(--accent); padding:.3rem 0 .3rem .8rem; }
+  .step .say { font-style:italic; color:var(--muted); }
+  .q { font-weight:500; margin:.4rem 0 .2rem; }
+  .choice { padding:.15rem 0 .15rem 1rem; color:var(--muted); }
+  .choice.correct { color:var(--accent); }
+  .choice.correct::before { content:"✓ "; }
+  .roster { display:flex; flex-wrap:wrap; gap:.5rem; margin:.5rem 0 1rem; }
+  .who { display:inline-block; font-size:.72rem; background:var(--chip); color:var(--accent); border-radius:999px; padding:.1rem .6rem; margin:.15rem .3rem .15rem 0; white-space:nowrap; }
+  .lvl { border:1px solid var(--line); border-radius:8px; padding:.5rem .7rem; margin:.6rem 0; background:var(--surface); }
+  .err { border:1px solid #c0392b; background:#c0392b14; color:#c0392b; padding:.6rem .8rem; border-radius:8px; margin:1rem 0; }
+  .warn { border:1px solid #c7951f; background:#c7951f14; color:#9a7414; padding:.6rem .8rem; border-radius:8px; margin:1rem 0; font-size:.85rem; }
+  .muted { color:var(--muted); }
+  ul { margin:.3rem 0; padding-left:1.3rem; }
+  details#companion-box { margin:.6rem 0 0; }
+  details#companion-box summary { cursor:pointer; color:var(--muted); font-size:.9rem; padding:.2rem 0; }
+  details#companion-box .cnote { font-size:.82rem; margin:.5rem 0; }
+  .gnotes { border:1px solid var(--accent); border-radius:8px; padding:.7rem .9rem; margin:0 0 1rem; background:var(--chip); }
+  .gnotes h3 { margin:.1rem 0 .5rem; font-size:1rem; }
+  .gnotes .gn-item { margin:.5rem 0; }
+  .gnotes .gn-k { font-weight:600; }
+  .gnotes .gn-sub { color:var(--muted); font-size:.9rem; }
+  .scene { border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:6px; padding:.6rem .8rem; background:var(--surface); }
+  .scene .stages { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0; }
+  .scene .stage { position:relative; width:220px; max-width:100%; aspect-ratio:1/1; background:var(--chip); border-radius:8px; overflow:hidden; }
+  .scene .stage svg { width:100%; height:100%; display:block; }
+  .scene .stage canvas { width:100%; height:100%; display:block; }
+  .scene .ans { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:.4rem 0; }
+  .scene input[type=text] { font:inherit; padding:.35rem .5rem; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); }
+  .scene button.chk { padding:.35rem .9rem; }
+  .scene .fb { font-size:.9rem; margin:.3rem 0 0; }
+  .scene .fb.ok { color:var(--accent); }
+  .scene .lvl-tag { font-size:.72rem; color:var(--muted); }
+
+  /* ---- interactive games (learner tab) --------------------------------- */
+  /* No colour or glyph here marks a right answer before the child picks; the
+     ✓ answer key (`.choice.correct`) lives only in the guide view below. */
+  .game { border:1px solid var(--line); border-radius:8px; padding:.7rem .9rem; margin:.8rem 0; background:var(--surface); }
+  .game .gtitle { font-weight:600; margin:0 0 .2rem; }
+  .game .gintro { color:var(--muted); font-size:.9rem; margin:.1rem 0 .6rem; }
+  .badge { display:inline-block; font-size:.72rem; letter-spacing:.04em; background:var(--chip); color:var(--accent); border-radius:999px; padding:.1rem .6rem; margin:.1rem 0 .5rem; }
+  .qtext { font-weight:500; margin:.3rem 0 .5rem; }
+  .qvisual { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.8rem; white-space:pre-wrap; background:var(--chip); border-radius:6px; padding:.4rem .6rem; margin:.3rem 0; }
+  .opts { display:flex; flex-direction:column; gap:.4rem; margin:.5rem 0; }
+  .opt { text-align:left; background:var(--chip); color:var(--fg); border:1px solid var(--line); border-radius:7px; padding:.5rem .7rem; cursor:pointer; }
+  .opt:hover:not(:disabled) { border-color:var(--accent); }
+  .opt:disabled { cursor:default; }
+  .opt.picked-ok { border-color:var(--accent); background:var(--chip); font-weight:600; }
+  .opt.picked-no { border-color:#c0392b; }
+  .fb { margin:.5rem 0 .2rem; font-size:.95rem; }
+  .fb.ok { color:var(--accent); }
+  .fb.no { color:#c0392b; }
+  .explain { color:var(--muted); font-size:.9rem; margin:.2rem 0; }
+  .hintbtn, .nextbtn, .startover, .chkbtn, .makenote, .copynote { background:var(--accent); color:#fff; border:0; border-radius:7px; padding:.4rem 1rem; cursor:pointer; font:inherit; margin:.4rem .4rem .2rem 0; }
+  .hintbtn { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  .hint { color:var(--muted); font-size:.9rem; margin:.3rem 0; }
+  .startover { background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .bins { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0; }
+  .bin { flex:1 1 9rem; min-width:9rem; border:1px dashed var(--line); border-radius:8px; padding:.4rem .5rem; background:var(--bg); }
+  .bin.over { border-color:var(--accent); }
+  .bin .binlabel { font-size:.8rem; font-weight:600; color:var(--muted); margin-bottom:.3rem; }
+  .chip { display:inline-block; background:var(--chip); border:1px solid var(--line); border-radius:7px; padding:.3rem .6rem; margin:.2rem; cursor:grab; }
+  .chip.placed { opacity:.45; cursor:default; }
+  .placed-item { display:block; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:.25rem .5rem; margin:.25rem 0; font-size:.9rem; }
+  .placed-item.ok { border-color:var(--accent); }
+  .placed-item.no { border-color:#c0392b; }
+  .placed-item .why { color:var(--muted); font-size:.82rem; margin-top:.2rem; }
+  .part { margin:.5rem 0; }
+  .part .plabel { font-weight:500; margin-bottom:.25rem; }
+  .part-result { border:1px solid var(--line); border-radius:6px; padding:.4rem .6rem; margin:.3rem 0; }
+  .part-result.ok { border-color:var(--accent); }
+  .part-result.no { border-color:#c0392b; }
+  .result { font-weight:500; margin:.5rem 0; }
+  details.answerkey { margin:1rem 0; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+  details.answerkey > summary { cursor:pointer; padding:.6rem .8rem; font-weight:600; color:var(--accent); }
+  details.answerkey > .akbody { padding:0 .8rem .6rem; }
+  .nexttime { border:1px solid var(--accent); border-radius:8px; padding:.7rem .9rem; margin:1.2rem 0; background:var(--chip); }
+  .nexttime h3 { margin:.1rem 0 .4rem; font-size:1rem; }
+  .nexttime label.tick { display:flex; gap:.5rem; align-items:flex-start; margin:.3rem 0; font-size:.92rem; }
+  .nexttime .asklabel { font-size:.9rem; font-weight:500; margin:.5rem 0 .2rem; }
+  .nexttime textarea { min-height:3rem; }
+  .noteout textarea.note { min-height:9rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.78rem; }
+  .noteout .tagline { color:var(--muted); font-size:.85rem; margin:.4rem 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="way" id="banner">This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
+  <h1 id="page-title">Play a MetaDAX package</h1>
+  <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
+  <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
+  <p style="margin:.3rem 0"><input type="file" id="file-input" accept=".json,.txt,.md" style="display:none"><button type="button" id="open-file">Open a file</button></p>
+  <details id="companion-box">
+    <summary id="companion-summary">Companion notes (optional)</summary>
+    <p class="muted cnote" id="companion-note">Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.</p>
+    <textarea id="companion-src" placeholder='{ "format": "metadax-companion", ... }' aria-label="Companion notes JSON (optional)"></textarea>
+  </details>
+  <p><button id="play">Play</button></p>
+  <div id="report"></div>
+  <div id="out"></div>
+  <div id="record"></div>
+</div>
+
+<script src="package-check.js"></script>
+<script src="engine.js"></script>
+<script src="record.js"></script>
+<script>
+(function(){
+  var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
+  function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
+  function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+  var ENG = window.MetaDAXEngine || {};
+
+  // ---- player-owned UI strings (en / fr) ----------------------------------
+  var UI = {
+    en: {
+      banner:       'This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.',
+      title:        'Play a MetaDAX package',
+      intro:        'Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.',
+      companionSum: 'Companion notes (optional)',
+      companionNote:'Paste a <code>companion.json</code> sidecar (the <code>metadax-companion</code> shape). Only its guide-facing notes are shown, and only on the guide view — never to the learner, never in print.',
+      play:         'Play',
+      warnHead:     'Warnings (the builder decides): ',
+      levelBadge:   function(n,N){ return 'Level '+n+' of '+N; },
+      hint:         'Hint',
+      next:         'Next',
+      nextStep:     'Next step',
+      allDone:      'All done — press Start over to go again.',
+      dragNote:     'Drag each one into a box — or tap it, then tap a box.',
+      didIt:        'You did it — every step in order.',
+      check:        'Check',
+      seeResult:    'See result',
+      fbRight:      'Right.',
+      fbWrong:      'Not quite.',
+      fbSoundRight: 'That’s the one.',
+      fbSoundWrong: 'Listen again and try once more.',
+      fbSeqWrong:   'Not that one — try another.',
+      sortResult:   function(r,n){ return r+' of '+n+' in the right box.'; },
+      startOver:    'Start over',
+      startOverConfirm: 'Start over? This clears what was answered on this device.',
+      answerKey:    'Answer key (for you)',
+      answerKeyNote:'Every game’s answers, for you only. The learner tab shows none of this.',
+      nextTimeTitle:'Next time',
+      nextTimeIntro:'Tick what landed, add a line in your own words, then make the note. It is prefilled from how the games went.',
+      keepNote:     'Keep this note',
+      makeNote:     'Make the note',
+      copy:         'Copy',
+      copied:       'Copied',
+      tagline:      'This is everything you’d share. Nothing leaves this device unless you copy it.',
+      printThis:    'Print this',
+      pasteErr:     'That doesn’t look like a whole package. Copy the entire code block from the chat, from the first { to the last }, and paste it again.',
+      grownUpSay:   function(s){ return 'Grown-up, say this aloud: “'+s+'”'; },
+      tapHear:      'Then tap the one you hear.',
+      openFile:     'Open a file',
+      clockLabel:   function(h, m){ return 'Clock showing '+h+':'+(m<10?'0':'')+m; }
+    },
+    fr: {
+      banner:       'C’est <strong>une façon, jamais LA façon</strong>. Vous êtes le parent (18+) ; cette page est un point de départ que vous adaptez. Elle ne pose aucun diagnostic. Rien n’est enregistré ni envoyé.',
+      title:        'Jouer un paquet MetaDAX',
+      intro:        'Collez le JSON d’un <code>metadax-package</code> ci-dessous et appuyez sur Jouer. Tout fonctionne dans votre navigateur.',
+      companionSum: 'Notes d’accompagnement (facultatif)',
+      companionNote:'Collez un fichier sidecar <code>companion.json</code> (format <code>metadax-companion</code>). Seules ses notes pour le guide sont affichées, uniquement dans la vue guide — jamais pour l’apprenant, jamais à l’impression.',
+      play:         'Jouer',
+      warnHead:     'Avertissements (le créateur décide) : ',
+      levelBadge:   function(n,N){ return 'Niveau '+n+' sur '+N; },
+      hint:         'Indice',
+      next:         'Suivant',
+      nextStep:     'Étape suivante',
+      allDone:      'Terminé — appuie sur Recommencer pour rejouer.',
+      dragNote:     'Fais glisser chaque élément dans une case — ou touche-le, puis touche une case.',
+      didIt:        'Bravo — toutes les étapes dans l’ordre.',
+      check:        'Vérifier',
+      seeResult:    'Voir le résultat',
+      fbRight:      'Exact.',
+      fbWrong:      'Pas tout à fait.',
+      fbSoundRight: 'C’est bien ça.',
+      fbSoundWrong: 'Encore une fois.',
+      fbSeqWrong:   'Pas celui-là — essaie encore.',
+      sortResult:   function(r,n){ return r+' sur '+n+' dans la bonne case.'; },
+      startOver:    'Recommencer',
+      startOverConfirm: 'Recommencer ? Cela efface les réponses enregistrées sur cet appareil.',
+      answerKey:    'Corrigé (pour vous)',
+      answerKeyNote:'Toutes les réponses, pour vous uniquement. L’onglet apprenant n’en montre aucune.',
+      nextTimeTitle:'La prochaine fois',
+      nextTimeIntro:'Cochez ce qui a fonctionné, ajoutez une ligne dans vos propres mots, puis préparez la note. Elle est préremplie à partir du déroulement des jeux.',
+      keepNote:     'Conserver cette note',
+      makeNote:     'Préparer la note',
+      copy:         'Copier',
+      copied:       'Copié',
+      tagline:      'Voici tout ce que vous partageriez. Rien ne quitte cet appareil à moins que vous ne le copiiez.',
+      printThis:    'Imprimer',
+      pasteErr:     'Ce ne semble pas être un paquet complet. Copiez l’intégralité du bloc de code, du premier { au dernier }, et collez-le à nouveau.',
+      grownUpSay:   function(s){ return 'Grand adulte, dites ceci à voix haute : « '+s+' »'; },
+      tapHear:      'Puis touche ce que tu entends.',
+      openFile:     'Ouvrir un fichier',
+      clockLabel:   function(h, m){ return 'Horloge affichant '+h+'h'+(m<10?'0':'')+m; }
+    }
+  };
+  function t(key){
+    var lang = ENG.pickLang ? ENG.pickLang(SESSION_PKG ? SESSION_PKG.lang : null, typeof navigator !== "undefined" ? navigator.language : null) : "en";
+    var tbl = UI[lang] || UI.en;
+    return tbl.hasOwnProperty(key) ? tbl[key] : UI.en[key];
+  }
+  function translateStatic(){
+    var b = document.getElementById("banner"); if(b) b.innerHTML = t("banner");
+    var pt = document.getElementById("page-title"); if(pt) pt.textContent = t("title");
+    var intr = document.getElementById("intro"); if(intr) intr.innerHTML = t("intro");
+    var cs = document.getElementById("companion-summary"); if(cs) cs.textContent = t("companionSum");
+    var cn = document.getElementById("companion-note"); if(cn) cn.innerHTML = t("companionNote");
+    var pb = document.getElementById("play"); if(pb) pb.textContent = t("play");
+    var of = document.getElementById("open-file"); if(of) of.textContent = t("openFile");
+  }
+
+  // ---- play session: every answer, in memory and in localStorage ---------
+  // Records live under metadax:<ref>:<session>. SESSION holds, per game id, the
+  // list of answers and (for a quiz) its adaptive state. All storage is wrapped
+  // in try/catch — a blocked localStorage only means the session is not kept
+  // between reloads; play still works. Nothing is sent anywhere.
+  var SESSION = {}, SESSION_PKG = null;
+  function storageKey(pkg){ return pkg ? ("metadax:" + pkg.ref + ":" + (pkg.session != null ? pkg.session : 1)) : null; }
+  function loadSession(pkg){
+    SESSION_PKG = pkg; SESSION = {};
+    var key = storageKey(pkg); if (!key) return;
+    try { var raw = localStorage.getItem(key); if (raw) SESSION = JSON.parse(raw) || {}; } catch(e){}
+  }
+  function saveSession(){
+    var key = storageKey(SESSION_PKG); if (!key) return;
+    try { localStorage.setItem(key, JSON.stringify(SESSION)); } catch(e){}
+  }
+  function clearSession(){
+    SESSION = {};
+    var key = storageKey(SESSION_PKG); if (!key) return;
+    try { localStorage.removeItem(key); } catch(e){}
+  }
+  // Record one answer for a game, then let record.js / the next-time note know.
+  function recordAnswer(gameId, entry){
+    if (!gameId) return;
+    if (!SESSION[gameId]) SESSION[gameId] = [];
+    SESSION[gameId].push(entry);
+    saveSession();
+    try { document.dispatchEvent(new CustomEvent("metadax:recorded")); } catch(e){}
+  }
+  function quizState(block){
+    var k = "quiz:" + block.id;
+    if (!SESSION[k]) SESSION[k] = { level: block.start || 1, streak: 0, missStreak: 0, usedByLevel: {} };
+    return SESSION[k];
+  }
+  // record.js reads the live session to prefill its form from the same records.
+  window.MetaDAXPlay = { session: function(){ return SESSION; } };
+
+  // ---- scenes (optional 3D) ---------------------------------------------
+  // three.js + the scene registry are imported ONLY when a package carries a
+  // scene block, so a scene-free package pulls in no 3D code and renders
+  // byte-for-byte as before (the "scene" case below is simply never reached).
+  var SceneLib = null, THREEMod = null, SceneLoadFailed = false;
+  function packageHasScene(pkg){
+    var hit = false;
+    (function walk(o){
+      if (hit || !o || typeof o !== "object") return;
+      if (Array.isArray(o)) { for (var i=0;i<o.length;i++) walk(o[i]); return; }
+      if (o.type === "scene") { hit = true; return; }
+      for (var k in o) if (Object.prototype.hasOwnProperty.call(o,k)) walk(o[k]);
+    })(pkg);
+    return hit;
+  }
+  function loadSceneLibs(){
+    if (SceneLib || SceneLoadFailed) return Promise.resolve();
+    return import("./vendor/three.module.min.js")
+      .then(function(T){ THREEMod = T; return import("./scenes/scenes.js"); })
+      .then(function(M){ SceneLib = M; })
+      .catch(function(){ SceneLoadFailed = true; });
+  }
+  function clampLevel(n){ n = Math.round(Number(n)); return isFinite(n) ? Math.max(1,Math.min(3,n)) : 1; }
+  function normAnswer(s){ return String(s==null?"":s).trim().toLowerCase().replace(/\s+/g," "); }
+  function prefersReducedMotion(){ try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch(e){ return false; } }
+
+  // ---- companion.json sidecar (optional) --------------------------------
+  // Pure checks copied inline from companion/validate-companion.mjs, the same
+  // way package-check.js sits beside this player: the structural keys plus the
+  // invariants JSON Schema can't express (every signal names its "not", the
+  // guide-only work is non-empty, a technique is offered as one way). Returns
+  // null when the sidecar is good, or one short reason it is not. A sidecar
+  // that fails any check is simply dropped — the package plays without it.
+  var THEN_ACTIONS = { offer:1, surface_to_guide:1, pause:1, log_only:1 };
+  function checkCompanion(c){
+    if (c === null || typeof c !== "object" || Array.isArray(c)) return "it is not an object";
+    if (c.format !== "metadax-companion") return 'its format is not "metadax-companion"';
+    if (!c.pairs_with || typeof c.pairs_with.sample_id !== "string" || !c.pairs_with.sample_id) return "it does not say which package it pairs with";
+    if (!c.next_step || typeof c.next_step.guide !== "string" || typeof c.next_step.learner !== "string") return "next_step needs a single guide and learner line";
+    if (!c.reach || typeof c.reach.with_help !== "string" || !c.reach.with_help) return "reach.with_help is missing";
+    if (!Array.isArray(c.signals) || c.signals.length < 1) return "it carries no signals";
+    for (var i=0;i<c.signals.length;i++){ var s=c.signals[i]||{};
+      if (typeof s.not !== "string" || !s.not) return "a signal is missing its “not” (the inference it must never become)";
+      if (!s.then || !THEN_ACTIONS[s.then.action]) return "a signal has an action a companion may not take";
+    }
+    var go = c.interventions && c.interventions.guide_only;
+    if (!Array.isArray(go) || go.length < 1) return "it leaves the human guide nothing reserved";
+    for (var j=0;j<go.length;j++){ if(!go[j] || typeof go[j].reserved!=="string" || !go[j].reserved) return "a reserved guide item is empty"; }
+    if (c.techniques !== undefined){
+      if (!Array.isArray(c.techniques)) return "techniques is not a list";
+      for (var k=0;k<c.techniques.length;k++){ var t=c.techniques[k]||{};
+        if (t.provenance !== "guide") return "a technique must come from the guide";
+        if (t.one_way !== true) return "a technique must be offered as one way";
+      }
+    }
+    return null;
+  }
+
+  // Build the guide-facing notes block from the sidecar. Only guide-designated
+  // keys are read (next_step.guide, reach, signals, interventions.guide_only,
+  // techniques); the learner line and any learner-facing field are never shown.
+  function buildGuideNotes(c){
+    var box = el("div","gnotes");
+    box.appendChild(el("h3",null,"Notes for the guide"));
+    function item(k, v, sub){
+      var d = el("div","gn-item");
+      d.appendChild(el("span","gn-k", k + ": "));
+      d.appendChild(document.createTextNode(v));
+      if (sub){ var p = el("div","gn-sub", sub); d.appendChild(p); }
+      box.appendChild(d);
+    }
+    if (c.next_step && c.next_step.guide) item("Your next step", c.next_step.guide);
+    if (c.reach && c.reach.with_help) item("Where to aim", "with help — " + c.reach.with_help, c.reach.not_yet ? ("Not yet: " + c.reach.not_yet) : null);
+    (c.signals||[]).forEach(function(s){ item("Watch", s.watch + (s.looks_like?(" — looks like: "+s.looks_like):""), "Never conclude: " + s.not); });
+    ((c.interventions&&c.interventions.guide_only)||[]).forEach(function(g){ item("Reserved for you", g.reserved, g.why ? ("Why: "+g.why) : null); });
+    (c.techniques||[]).forEach(function(t){ item("A move on record (one way)", t.move, t.concept ? ("For: "+t.concept) : null); });
+    return box;
+  }
+
+  // ?companion=<url> — fetch a same-origin sidecar so the library can link
+  // "play with companion notes". Cross-origin URLs are ignored.
+  var urlCompanion = null;
+  function sameOrigin(u){ try { var r = new URL(u, location.href); return r.origin === location.origin ? r.href : null; } catch(e){ return null; } }
+  (function loadCompanionFromQuery(){
+    var cu = new URLSearchParams(location.search).get("companion");
+    if (!cu) return;
+    var safe = sameOrigin(cu);
+    if (!safe) return;
+    fetch(safe).then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(j){ if (j) urlCompanion = j; })
+      .catch(function(){});
+  })();
+
+  // Resolve a who/for_age tag into a human chip: "<nickname> · ages <band>".
+  // This is the read-only render of the split: which learner does which part.
+  function jobChip(parent, o, learnersByName){
+    if (o.who === undefined && o.for_age === undefined) return;
+    var who = o.who;
+    var band = o.for_age || (who && learnersByName[who] && learnersByName[who].age_band) || "";
+    var label;
+    if (who === "all" || (!who && band)) label = "Everyone" + (band ? " · ages " + band : "");
+    else if (who) label = who + (band ? " · ages " + band : "");
+    else label = "ages " + band;
+    parent.appendChild(el("span","who", label));
+  }
+
+  function renderBlocks(container, blocks, learnersByName, side){
+    (blocks||[]).forEach(function(b){
+      // Games on the learner side play live; the guide side never renders a
+      // game inline — every game's answers live in the collapsed answer key, so
+      // the child's tab shows no answer and no ✓.
+      if (/^(quiz|sort|sequence|build|spoken-sound)$/.test(b.type)){
+        if (side !== "learner") return;
+        var gw = el("div","blk");
+        jobChip(gw, b, learnersByName);
+        renderGamePlay(gw, b, learnersByName);
+        container.appendChild(gw);
+        return;
+      }
+      var wrap = el("div","blk");
+      // job chip first so the split reads before the content
+      jobChip(wrap, b, learnersByName);
+      switch(b.type){
+        case "h": wrap.appendChild(el("h3",null,inline(b.text))); break;
+        case "p": wrap.appendChild(el("p",null,inline(b.text))); break;
+        case "so": wrap.appendChild(el("p",null,inline(b.text))); break;
+        case "list": {
+          var ul = el(b.ordered?"ol":"ul");
+          (b.items||[]).forEach(function(i){ ul.appendChild(el("li",null,inline(i))); });
+          wrap.appendChild(ul); break; }
+        case "card": {
+          var c = el("div","card");
+          if(b.title) c.appendChild(el("strong",null,inline(b.title)));
+          c.appendChild(el("p",null,inline(b.body))); wrap.appendChild(c); break; }
+        case "step": {
+          var s = el("div","step");
+          s.appendChild(el("strong",null,(b.n?b.n+". ":"")+inline(b.do)));
+          if(b.say) s.appendChild(el("p","say","“"+inline(b.say)+"”"));
+          if(b.why) s.appendChild(el("p","muted",inline(b.why))); wrap.appendChild(s); break; }
+        case "ifthen": {
+          var it = el("div","card");
+          it.appendChild(el("strong",null,"If "+inline(b.if)));
+          it.appendChild(el("p",null,"Then "+inline(b.then))); wrap.appendChild(it); break; }
+        case "human": {
+          var h = el("div","card");
+          h.appendChild(el("strong",null,inline(b.title||"What only you can do")));
+          var hu=el("ul"); (b.items||[]).forEach(function(i){hu.appendChild(el("li",null,inline(i)));}); h.appendChild(hu); wrap.appendChild(h); break; }
+        case "lead": {
+          var l = el("div","card");
+          l.appendChild(el("strong",null,inline(b.title||"A step ahead")));
+          l.appendChild(el("p",null,inline(b.body)));
+          if(b.prompt) l.appendChild(el("p","say","“"+inline(b.prompt)+"”")); wrap.appendChild(l); break; }
+        case "copy": {
+          var cp = el("div","card");
+          cp.appendChild(el("strong",null,inline(b.title||"Copy")));
+          cp.appendChild(el("p","muted",inline(b.text))); wrap.appendChild(cp); break; }
+        case "check": {
+          var ck = el("div","card");
+          ck.appendChild(el("strong",null,inline(b.title||"Checklist")));
+          var cu=el("ul"); (b.items||[]).forEach(function(i){cu.appendChild(el("li",null,"☐ "+inline(i)));}); ck.appendChild(cu); wrap.appendChild(ck); break; }
+        case "faq": { renderFaq(wrap, b, 0); break; }
+        case "scene": { renderScene(wrap, b); break; }
+        default: wrap.appendChild(el("p","muted","["+b.type+"]"));
+      }
+      container.appendChild(wrap);
+    });
+  }
+
+  function renderFaq(container, b, depth){
+    var d = el("div", depth?"":"card");
+    d.appendChild(el("strong",null,inline(b.q)));
+    d.appendChild(el("p",null,inline(b.a)));
+    (b.more||[]).forEach(function(m){ var sub=el("div","blk"); sub.style.marginLeft="1rem"; renderFaq(sub,m,depth+1); d.appendChild(sub); });
+    container.appendChild(d);
+  }
+
+  // ---- static game views (GUIDE answer key only) ------------------------
+  // Today's read-only render of every game, shown to the guide inside the
+  // collapsed "Answer key (for you)". This is the ONLY place a right answer is
+  // marked (quiz / spoken-sound carry `.choice.correct` → a ✓). It never runs
+  // on the learner tab or in print.
+  function renderGameStatic(container, b, learnersByName){
+    switch(b.type){
+      case "quiz": renderQuizStatic(container, b, learnersByName); break;
+      case "spoken-sound": {
+        var ss = el("div","blk");
+        ss.appendChild(el("strong",null,inline(b.title||"Say and find")));
+        ss.appendChild(el("p","muted","Say aloud (guide): “"+inline(b.prompt_for_guide)+"”"));
+        (b.options||[]).forEach(function(o){ ss.appendChild(el("div","choice"+(o===b.answer?" correct":""),inline(o))); });
+        if(b.why) ss.appendChild(el("p","muted",inline(b.why)));
+        container.appendChild(ss); break; }
+      case "sort": {
+        var sg = el("div","blk");
+        sg.appendChild(el("strong",null,inline(b.title||"Sort")));
+        if(b.intro) sg.appendChild(el("p","muted",inline(b.intro)));
+        var binName = {}; (b.bins||[]).forEach(function(bn){ binName[bn.id]=inline(bn.label); });
+        (b.items||[]).forEach(function(i){
+          var line = el("div","choice correct", inline(i.text)+" → "+(binName[i.bin]||i.bin));
+          sg.appendChild(line);
+          if(i.why) sg.appendChild(el("p","muted",inline(i.why)));
+        });
+        container.appendChild(sg); break; }
+      case "sequence": {
+        var qg = el("div","blk");
+        qg.appendChild(el("strong",null,inline(b.title||"Sequence")));
+        if(b.intro) qg.appendChild(el("p","muted",inline(b.intro)));
+        (b.steps||[]).forEach(function(st,i){
+          qg.appendChild(el("div","q",(i+1)+". "+inline(st.prompt)));
+          (st.choices||[]).forEach(function(c){ qg.appendChild(el("div","choice"+(c.correct?" correct":""),inline(c.text))); });
+        });
+        container.appendChild(qg); break; }
+      case "build": {
+        var bg = el("div","blk");
+        bg.appendChild(el("strong",null,inline(b.title||"Build")));
+        if(b.intro) bg.appendChild(el("p","muted",inline(b.intro)));
+        (b.parts||[]).forEach(function(p){
+          bg.appendChild(el("div","q",inline(p.label)));
+          (p.options||[]).forEach(function(o){ bg.appendChild(el("div","choice"+(o===p.best?" correct":""),inline(o))); });
+          if(p.why) bg.appendChild(el("p","muted",inline(p.why)));
+        });
+        container.appendChild(bg); break; }
+      default: break;
+    }
+  }
+
+  function renderQuizStatic(container, b, learnersByName){
+    var q = el("div","blk");
+    q.appendChild(el("strong",null,inline(b.title||"Game")));
+    if(b.intro) q.appendChild(el("p","muted",inline(b.intro)));
+    (b.levels||[]).forEach(function(lv){
+      var box = el("div","lvl");
+      var head = el("div");
+      head.appendChild(el("strong",null,"Level "+lv.level+(lv.label?" — "+inline(lv.label):"")));
+      jobChip(head, lv, learnersByName);
+      box.appendChild(head);
+      (lv.items||[]).forEach(function(it){
+        var iw = el("div","blk");
+        jobChip(iw, it, learnersByName);
+        if(it.clock) iw.appendChild(renderClock(it.clock));
+        iw.appendChild(el("div","q",inline(it.q)));
+        if(it.visual) iw.appendChild(el("pre","muted",it.visual));
+        (it.choices||[]).forEach(function(c){ iw.appendChild(el("div","choice"+(c.correct?" correct":""),inline(c.text))); });
+        if(it.explain) iw.appendChild(el("p","muted",inline(it.explain)));
+        box.appendChild(iw);
+      });
+      q.appendChild(box);
+    });
+    container.appendChild(q);
+  }
+
+  // ---- clock SVG ---------------------------------------------------------
+  function renderClock(clock) {
+    var h = clock.h, m = clock.m;
+    var ns = "http://www.w3.org/2000/svg";
+    var label = t("clockLabel")(h, m);
+    function svgEl(tag, attrs) {
+      var e = document.createElementNS(ns, tag);
+      for (var k in attrs) if (Object.prototype.hasOwnProperty.call(attrs, k)) e.setAttribute(k, attrs[k]);
+      return e;
+    }
+    function pt(deg, r) {
+      var rad = deg * Math.PI / 180;
+      return [+(50 + r * Math.sin(rad)).toFixed(2), +(50 - r * Math.cos(rad)).toFixed(2)];
+    }
+    var svg = svgEl("svg", {viewBox:"0 0 100 100", width:"100", height:"100", "aria-label":label, role:"img", focusable:"false"});
+    svg.style.cssText = "display:block;margin:0 0 .5rem";
+    svg.appendChild(svgEl("circle", {cx:"50", cy:"50", r:"46", fill:"none", stroke:"currentColor", "stroke-width":"2"}));
+    for (var n = 1; n <= 12; n++) {
+      var p = pt(n * 30, 37);
+      var numTxt = document.createElementNS(ns, "text");
+      numTxt.setAttribute("x", p[0]); numTxt.setAttribute("y", p[1]);
+      numTxt.setAttribute("text-anchor", "middle"); numTxt.setAttribute("dominant-baseline", "central");
+      numTxt.setAttribute("font-size", "10"); numTxt.setAttribute("fill", "currentColor");
+      numTxt.setAttribute("aria-hidden", "true"); numTxt.textContent = String(n);
+      svg.appendChild(numTxt);
+    }
+    var mp = pt(m * 6, 36);
+    svg.appendChild(svgEl("line", {x1:"50", y1:"50", x2:mp[0], y2:mp[1], stroke:"currentColor", "stroke-width":"1.5", "stroke-linecap":"round", "aria-hidden":"true"}));
+    var hAngle = (h % 12) * 30 + m * 0.5;
+    var hp = pt(hAngle, 23);
+    svg.appendChild(svgEl("line", {x1:"50", y1:"50", x2:hp[0], y2:hp[1], stroke:"currentColor", "stroke-width":"5", "stroke-linecap":"round", "aria-hidden":"true"}));
+    svg.appendChild(svgEl("circle", {cx:"50", cy:"50", r:"2.5", fill:"currentColor", "aria-hidden":"true"}));
+    return svg;
+  }
+
+  // ---- interactive games (LEARNER tab) ----------------------------------
+  // One item at a time, choices shuffled every render, nothing marked right
+  // before the child picks. No ✓ and no answer key here — those are the guide's.
+  function renderGamePlay(container, b, learnersByName){
+    switch(b.type){
+      case "quiz": renderQuizPlay(container, b, learnersByName); break;
+      case "sort": renderSortPlay(container, b); break;
+      case "sequence": renderSequencePlay(container, b); break;
+      case "build": renderBuildPlay(container, b); break;
+      case "spoken-sound": renderSpokenSoundPlay(container, b); break;
+    }
+  }
+
+  function gameShell(b){
+    var g = el("div","game");
+    g.appendChild(el("div","gtitle",inline(b.title||b.type)));
+    if(b.intro) g.appendChild(el("div","gintro",inline(b.intro)));
+    return g;
+  }
+
+  function renderQuizPlay(container, b, learnersByName){
+    var g = gameShell(b);
+    var play = el("div"); g.appendChild(play);
+    var st = quizState(b);
+    var N = ENG.levelCount(b), minL = ENG.minLevel(b), maxL = ENG.maxLevel(b);
+    var upAfter = b.up_after || 3, downAfter = b.down_after || 1;
+
+    function render(){
+      play.innerHTML = "";
+      var lv = ENG.getLevel(b, st.level);
+      if(!lv || !(lv.items||[]).length){ play.appendChild(el("p","muted",t("allDone"))); return; }
+      var badge = el("div","badge",t("levelBadge")(st.level, N));
+      if(lv.label) badge.textContent += " · "+inline(lv.label);
+      play.appendChild(badge);
+      jobChip(play, lv, learnersByName);
+
+      var idx = ENG.nextItemIndex(st, st.level, lv.items.length);
+      var it = lv.items[idx];
+      saveSession();
+      jobChip(play, it, learnersByName);
+      if (it.clock) play.appendChild(renderClock(it.clock));
+      play.appendChild(el("div","qtext",inline(it.q)));
+      if(it.visual) play.appendChild(el("div","qvisual",it.visual));
+
+      if(it.hint){
+        var hb = el("button","hintbtn",t("hint")); hb.type="button";
+        var hint = el("p","hint",inline(it.hint)); hint.style.display="none";
+        hb.addEventListener("click",function(){ hint.style.display="block"; hb.style.display="none"; });
+        play.appendChild(hb); play.appendChild(hint);
+      }
+
+      var opts = el("div","opts"); play.appendChild(opts);
+      var answered = false;
+      ENG.shuffle(it.choices||[]).forEach(function(c){
+        var btn = el("button","opt",inline(c.text)); btn.type="button";
+        btn.addEventListener("click",function(){
+          if(answered) return; answered = true;
+          var ok = !!c.correct;
+          [].forEach.call(opts.children,function(x){ x.disabled = true; });
+          btn.className = "opt "+(ok?"picked-ok":"picked-no");
+          recordAnswer(b.id, { item: inline(it.q), chosen: inline(c.text), correct: ok, mistake: c.mistake || null, level: st.level });
+          var fb = el("div","fb "+(ok?"ok":"no"), inline(c.msg || (ok?t("fbRight"):t("fbWrong"))));
+          play.appendChild(fb);
+          if(it.explain) play.appendChild(el("div","explain",inline(it.explain)));
+          ENG.stepLevel(st, ok, { upAfter:upAfter, downAfter:downAfter, minLevel:minL, maxLevel:maxL });
+          saveSession();
+          var nb = el("button","nextbtn",t("next")); nb.type="button";
+          nb.addEventListener("click",render);
+          play.appendChild(nb);
+        });
+        opts.appendChild(btn);
+      });
+    }
+    render();
+    container.appendChild(g);
+  }
+
+  function renderSortPlay(container, b){
+    var g = gameShell(b);
+    var items = ENG.shuffle(b.items||[]), bins = b.bins||[];
+    var placed = {};
+    var chips = el("div"); chips.style.margin=".4rem 0";
+    var selected = { idx: null };
+    items.forEach(function(it, idx){
+      var chip = el("button","chip",inline(it.text)); chip.type="button";
+      chip.draggable = true; chip.dataset.idx = idx;
+      chip.addEventListener("dragstart",function(e){ e.dataTransfer.setData("text/plain", String(idx)); });
+      chip.addEventListener("click",function(){
+        if(placed[idx]!=null) return;
+        selected.idx = idx;
+        [].forEach.call(chips.children,function(c){ c.style.outline=""; });
+        chip.style.outline = "2px solid var(--accent)";
+      });
+      chips.appendChild(chip);
+    });
+    g.appendChild(el("p","gintro",t("dragNote")));
+    g.appendChild(chips);
+
+    var binsEl = el("div","bins");
+    function place(idx, binId){
+      if(idx==null || placed[idx]!=null) return;
+      placed[idx] = binId; selected.idx = null;
+      var chip = chips.children[idx];
+      chip.className = "chip placed"; chip.style.outline="";
+      var holder = binsEl.querySelector('[data-bin="'+binId+'"] .binitems');
+      var pi = el("div","placed-item",inline(items[idx].text)); pi.dataset.idx = idx;
+      holder.appendChild(pi);
+    }
+    bins.forEach(function(bin){
+      var be = el("div","bin"); be.dataset.bin = bin.id;
+      be.appendChild(el("div","binlabel",inline(bin.label)));
+      be.appendChild(el("div","binitems"));
+      be.addEventListener("dragover",function(e){ e.preventDefault(); be.classList.add("over"); });
+      be.addEventListener("dragleave",function(){ be.classList.remove("over"); });
+      be.addEventListener("drop",function(e){ e.preventDefault(); be.classList.remove("over"); place(parseInt(e.dataTransfer.getData("text/plain"),10), bin.id); });
+      be.addEventListener("click",function(){ if(selected.idx!=null) place(selected.idx, bin.id); });
+      binsEl.appendChild(be);
+    });
+    g.appendChild(binsEl);
+
+    var chk = el("button","chkbtn",t("check")); chk.type="button";
+    chk.addEventListener("click",function(){
+      var right = 0;
+      items.forEach(function(it, idx){
+        var chosen = placed[idx], ok = chosen === it.bin;
+        if(ok) right++;
+        recordAnswer(b.id, { item: inline(it.text), chosen: chosen||null, correct: ok });
+        var holder = binsEl.querySelector('[data-bin="'+chosen+'"] .binitems');
+        if(holder){ [].forEach.call(holder.children,function(pi){
+          if(pi.dataset.idx === String(idx)){
+            pi.classList.add(ok?"ok":"no");
+            if(!ok && it.why) pi.appendChild(el("div","why",inline(it.why)));
+          }
+        }); }
+      });
+      g.appendChild(el("div","result", t("sortResult")(right, items.length)));
+      chk.disabled = true;
+    });
+    g.appendChild(chk);
+    container.appendChild(g);
+  }
+
+  function renderSequencePlay(container, b){
+    var g = gameShell(b);
+    var steps = b.steps||[], play = el("div"); g.appendChild(play);
+    function renderStep(i){
+      if(i >= steps.length){ play.appendChild(el("div","result",t("didIt"))); return; }
+      var st = steps[i];
+      var wrap = el("div"); wrap.style.margin=".5rem 0";
+      wrap.appendChild(el("div","qtext",(i+1)+". "+inline(st.prompt)));
+      var opts = el("div","opts"); var answered = false;
+      ENG.shuffle(st.choices||[]).forEach(function(c){
+        var btn = el("button","opt",inline(c.text)); btn.type="button";
+        btn.addEventListener("click",function(){
+          if(answered) return;
+          var ok = !!c.correct;
+          recordAnswer(b.id, { step: i, chosen: inline(c.text), correct: ok, mistake: c.mistake || null });
+          if(ok){
+            answered = true;
+            [].forEach.call(opts.children,function(x){ x.disabled = true; });
+            btn.className = "opt picked-ok";
+            wrap.appendChild(el("div","fb ok",inline(c.msg||t("fbRight"))));
+            var nb = el("button","nextbtn",t("nextStep")); nb.type="button";
+            nb.addEventListener("click",function(){ renderStep(i+1); });
+            wrap.appendChild(nb);
+          } else {
+            btn.className = "opt picked-no"; btn.disabled = true;
+            wrap.appendChild(el("div","fb no",inline(c.msg||t("fbSeqWrong"))));
+          }
+        });
+        opts.appendChild(btn);
+      });
+      wrap.appendChild(opts);
+      play.appendChild(wrap);
+    }
+    renderStep(0);
+    container.appendChild(g);
+  }
+
+  function renderBuildPlay(container, b){
+    var g = gameShell(b);
+    var parts = b.parts||[], sel = {};
+    parts.forEach(function(p, pi){
+      var pw = el("div","part");
+      pw.appendChild(el("div","plabel",inline(p.label)));
+      var opts = el("div","opts");
+      ENG.shuffle(p.options||[]).forEach(function(o){
+        var btn = el("button","opt",inline(o)); btn.type="button"; btn.setAttribute("aria-pressed","false");
+        btn.addEventListener("click",function(){
+          [].forEach.call(opts.children,function(x){ x.setAttribute("aria-pressed","false"); x.classList.remove("picked-ok"); });
+          btn.setAttribute("aria-pressed","true"); btn.classList.add("picked-ok");
+          sel[pi] = o;
+        });
+        opts.appendChild(btn);
+      });
+      pw.appendChild(opts); g.appendChild(pw);
+    });
+    var chk = el("button","chkbtn",t("seeResult")); chk.type="button";
+    chk.addEventListener("click",function(){
+      chk.disabled = true;
+      parts.forEach(function(p, pi){
+        var chosen = sel[pi] != null ? sel[pi] : null, ok = chosen === p.best;
+        recordAnswer(b.id, { part: inline(p.label), chosen: chosen, best: p.best, correct: ok });
+        var pr = el("div","part-result "+(ok?"ok":"no"));
+        pr.appendChild(el("strong",null,inline(p.label)+": "));
+        pr.appendChild(document.createTextNode(chosen!=null?inline(chosen):"—"));
+        if(!ok) pr.appendChild(el("span","muted"," (best: "+inline(p.best)+")"));
+        if(p.why) pr.appendChild(el("div","why",inline(p.why)));
+        g.appendChild(pr);
+      });
+    });
+    g.appendChild(chk);
+    container.appendChild(g);
+  }
+
+  function renderSpokenSoundPlay(container, b){
+    var g = gameShell(b);
+    g.appendChild(el("p","gintro",t("grownUpSay")(inline(b.prompt_for_guide))));
+    g.appendChild(el("p","muted",t("tapHear")));
+    var opts = el("div","opts"); var answered = false;
+    var fb = el("div","fb");
+    ENG.shuffle(b.options||[]).forEach(function(o){
+      var btn = el("button","opt",inline(o)); btn.type="button";
+      btn.addEventListener("click",function(){
+        if(answered) return;
+        var ok = o === b.answer;
+        recordAnswer(b.id, { item: inline(b.prompt_for_guide), chosen: inline(o), correct: ok });
+        if(ok){
+          answered = true;
+          [].forEach.call(opts.children,function(x){ x.disabled = true; });
+          btn.className = "opt picked-ok";
+          fb.className = "fb ok"; fb.textContent = t("fbSoundRight");
+          if(b.why) g.appendChild(el("div","explain",inline(b.why)));
+        } else {
+          btn.className = "opt picked-no"; btn.disabled = true;
+          fb.className = "fb no"; fb.textContent = t("fbSoundWrong");
+        }
+      });
+      opts.appendChild(btn);
+    });
+    g.appendChild(opts);
+    g.appendChild(fb);
+    container.appendChild(g);
+  }
+
+  // A scene block: mount the live 3D scene (or a static SVG fallback), ask the
+  // learner question, and check the typed answer. Same streak/miss idea as the
+  // other game items — a miss drops the level by one within the item, revealing
+  // more scaffolding. answer/why come straight off the item, like spoken-sound.
+  function renderScene(wrap, b){
+    var box = el("div","scene");
+    if (b.title) box.appendChild(el("strong",null,inline(b.title)));
+    var level = clampLevel(b.level);
+    var reduce = prefersReducedMotion();
+    // the one or more scene units to show (compose = up to 3 side by side)
+    var units = Array.isArray(b.compose) ? b.compose.slice(0,3)
+      : (b.scene ? [{ scene: b.scene, params: b.params, theme: b.theme, level: b.level }] : []);
+    var stages = el("div","stages");
+    box.appendChild(stages);
+    var handles = [];
+    function mountAll(lvl){
+      handles.forEach(function(h){ try { h.dispose(); } catch(e){} });
+      handles = [];
+      stages.innerHTML = "";
+      units.forEach(function(u){
+        var stage = el("div","stage");
+        stages.appendChild(stage);
+        var theme = u.theme || b.theme || "plain";
+        var ulvl = u.level != null ? clampLevel(u.level) : lvl;
+        if (SceneLib && THREEMod && !SceneLoadFailed){
+          try {
+            var def = SceneLib.getScene(u.scene);
+            if (def){
+              stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
+              var h = def.mount(THREEMod, stage, u.params, { reducedMotion: reduce, theme: theme, level: ulvl });
+              if (h.resize && typeof ResizeObserver !== "undefined") {
+                var ro = new ResizeObserver(function() { h.resize(); });
+                ro.observe(stage);
+                var origDispose = h.dispose;
+                h.dispose = function() { ro.disconnect(); if (origDispose) origDispose(); };
+              }
+              handles.push(h);
+              return;
+            }
+          } catch(e){ /* fall through to SVG */ }
+        }
+        // Fallback: static SVG + alt (no WebGL, or load failed).
+        if (SceneLib && SceneLib.svgFor){
+          stage.innerHTML = SceneLib.svgFor(u.scene, u.params, theme, ulvl);
+          stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
+        } else {
+          stage.appendChild(el("p","muted","A diagram goes here. Open the printable sheet to see it."));
+        }
+      });
+    }
+    mountAll(level);
+
+    if (b.ask_learner) box.appendChild(el("p","q",inline(b.ask_learner)));
+    var streak = 0;
+    if (b.answer !== undefined && b.answer !== null && b.answer !== ""){
+      var row = el("div","ans");
+      var inp = el("input"); inp.type = "text"; inp.setAttribute("aria-label","Your answer"); inp.placeholder = "Your answer";
+      var btn = el("button","chk","Check");
+      var tag = el("span","lvl-tag","Level "+level);
+      row.appendChild(inp); row.appendChild(btn); row.appendChild(tag);
+      box.appendChild(row);
+      var fb = el("p","fb"); box.appendChild(fb);
+      function check(){
+        if (normAnswer(inp.value) === normAnswer(b.answer)){
+          streak++;
+          fb.textContent = "That’s it." + (b.why ? " " + inline(b.why) : "");
+          fb.className = "fb ok";
+        } else {
+          streak = 0;
+          if (level > 1){ level--; mountAll(level); tag.textContent = "Level "+level; }
+          fb.textContent = "Not quite — have another go.";
+          fb.className = "fb";
+        }
+      }
+      btn.addEventListener("click", check);
+      inp.addEventListener("keydown", function(e){ if (e.key === "Enter"){ check(); e.preventDefault(); } });
+    } else if (b.why){
+      box.appendChild(el("p","muted",inline(b.why)));
+    }
+    wrap.appendChild(box);
+  }
+
+  // ---- next-time note (guide, closes the tellus section) ----------------
+  // Prefilled from the game records via ENG.buildNextNote, with the guide's
+  // ticks (next.ticks) and open answers (next.ask). Read-only output + Copy.
+  // The note's shape is fixed by templates/NEXT-TIME-NOTE.md — the skill's
+  // Step 6 reads it. Nothing leaves the device unless the guide copies it.
+  function renderNextTimeForm(sc, pkg){
+    var next = pkg.next || {};
+    var ticks = next.ticks || [], asks = next.ask || [];
+    if (!ticks.length && !asks.length) return;
+    var box = el("div","nexttime");
+    box.appendChild(el("h3",null,t("nextTimeTitle")));
+    box.appendChild(el("p","gintro",t("nextTimeIntro")));
+
+    var tickInputs = [];
+    ticks.forEach(function(t){
+      var lab = el("label","tick");
+      var cb = el("input"); cb.type="checkbox"; cb.value = inline(t);
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(inline(t)));
+      box.appendChild(lab); tickInputs.push(cb);
+    });
+
+    var askInputs = [];
+    asks.forEach(function(a){
+      box.appendChild(el("div","asklabel",inline(a)));
+      var ta = el("textarea"); ta.style.cssText="width:100%;padding:.4rem;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);";
+      box.appendChild(ta); askInputs.push({ label: inline(a), ta: ta });
+    });
+
+    var keepLab = el("label","tick");
+    var keep = el("input"); keep.type="checkbox"; keep.checked = true;
+    keepLab.appendChild(keep); keepLab.appendChild(document.createTextNode(t("keepNote")));
+    box.appendChild(keepLab);
+
+    var makeBtn = el("button","makenote",t("makeNote")); makeBtn.type="button";
+    box.appendChild(makeBtn);
+
+    var outWrap = el("div","noteout"); outWrap.style.display="none"; box.appendChild(outWrap);
+    makeBtn.addEventListener("click",function(){
+      var form = {
+        ticked: tickInputs.filter(function(c){return c.checked;}).map(function(c){return c.value;}),
+        asks: askInputs.map(function(a){ return { label: a.label, value: a.ta.value }; }),
+        keep: keep.checked
+      };
+      var note = ENG.buildNextNote ? ENG.buildNextNote(pkg, SESSION, form) : "";
+      outWrap.innerHTML = "";
+      var ta = el("textarea","note"); ta.readOnly = true; ta.value = note;
+      ta.style.cssText += ";width:100%;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);padding:.5rem;";
+      outWrap.appendChild(ta);
+      var copyBtn = el("button","copynote",t("copy")); copyBtn.type="button";
+      copyBtn.addEventListener("click",function(){
+        ta.select();
+        var done = function(){ copyBtn.textContent=t("copied"); };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function(){ try{document.execCommand("copy");}catch(e){} done(); });
+          else { document.execCommand("copy"); done(); }
+        } catch(e){ try{ document.execCommand("copy"); done(); }catch(_){} }
+      });
+      outWrap.appendChild(copyBtn);
+      outWrap.appendChild(el("p","tagline",t("tagline")));
+      outWrap.style.display="block";
+    });
+
+    sc.appendChild(box);
+  }
+
+  // "Start over": clears this session's records (after a confirm) and re-renders
+  // the package, so the quiz drops back to its start level and nothing is kept.
+  function startOverControl(pkg, companion){
+    var wrap = el("div"); wrap.style.margin=".4rem 0 .8rem";
+    var btn = el("button","startover",t("startOver")); btn.type="button";
+    btn.addEventListener("click",function(){
+      if (!confirm(t("startOverConfirm"))) return;
+      clearSession();
+      renderPackage(pkg, companion);
+    });
+    wrap.appendChild(btn);
+    return wrap;
+  }
+
+  function renderPackage(pkg, companion){
+    loadSession(pkg);
+    translateStatic();
+    var out = document.getElementById("out"); out.innerHTML="";
+    out.appendChild(el("h2",null,inline(pkg.title||"Package")));
+    out.appendChild(el("p","muted",(pkg.word||"session")+" "+(pkg.session||1)));
+
+    var learnersByName = {};
+    if (Array.isArray(pkg.learners) && pkg.learners.length){
+      (pkg.learners||[]).forEach(function(l){ if(l&&l.nickname) learnersByName[l.nickname]=l; });
+      var roster = el("div","sec");
+      roster.appendChild(el("div","label","Who this is for"));
+      var r = el("div","roster");
+      pkg.learners.forEach(function(l){ r.appendChild(el("span","who",(l.nickname||"?")+(l.age_band?" · ages "+l.age_band:""))); });
+      roster.appendChild(r);
+      roster.appendChild(el("p","muted","Each part below shows who does it. Everyone can be in the room; the chip says who leads or whose level it is."));
+      out.appendChild(roster);
+    }
+
+    // tabs
+    var tabs = el("div","tabs"); var panes = {};
+    [["guide",pkg.guide&&pkg.guide.tab||"For you"],["learner",pkg.learner&&pkg.learner.tab||"For the learner"]].forEach(function(t,i){
+      var btn = el("button",null,t[1]); btn.setAttribute("aria-selected", i===0?"true":"false");
+      btn.onclick = function(){ Object.keys(panes).forEach(function(k){panes[k].style.display="none";}); panes[t[0]].style.display="block";
+        [].forEach.call(tabs.children,function(c){c.setAttribute("aria-selected","false");}); btn.setAttribute("aria-selected","true"); };
+      tabs.appendChild(btn);
+      var pane = el("div"); pane.style.display = i===0?"block":"none"; panes[t[0]]=pane;
+      var sideKey = t[0], side = pkg[sideKey]||{};
+      if (sideKey === "learner") pane.appendChild(startOverControl(pkg, companion));
+      (side.sections||[]).forEach(function(sec){
+        var sc = el("div","sec"); sc.appendChild(el("div","label",inline(sec.label||sec.id)));
+        renderBlocks(sc, sec.blocks, learnersByName, sideKey);
+        // the next-time note form closes the guide's tellus section (FORMAT §)
+        if (sideKey === "guide" && sec.id === "tellus") renderNextTimeForm(sc, pkg);
+        pane.appendChild(sc);
+      });
+    });
+    out.appendChild(tabs);
+    Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
+
+    // The guide's answer key: today's static view of every game, collapsed so
+    // the guide can check answers and the child's tab never shows one.
+    if (panes.guide){
+      var games = (ENG.gameBlocks ? ENG.gameBlocks(pkg) : []);
+      if (games.length){
+        var ak = el("details","answerkey");
+        ak.appendChild(el("summary",null,t("answerKey")));
+        var akb = el("div","akbody");
+        akb.appendChild(el("p","muted",t("answerKeyNote")));
+        games.forEach(function(g){ renderGameStatic(akb, g.block, learnersByName); });
+        ak.appendChild(akb);
+        panes.guide.appendChild(ak);
+      }
+    }
+
+    // Optional companion sidecar: its guide-facing notes go at the top of the
+    // guide pane only. Gated on `companion`, so a package with no sidecar
+    // renders exactly as before — this branch never runs.
+    if (companion && panes.guide){
+      panes.guide.insertBefore(buildGuideNotes(companion), panes.guide.firstChild);
+    }
+
+    // Print this: a paper-first render of the learner side, same package, same link scheme.
+    var pr = el("p"); var pb = el("button",null,t("printThis")); pb.style.background="transparent"; pb.style.color="var(--accent)"; pb.style.border="1px solid var(--accent)";
+    pb.onclick = function(){
+      function open(url){ window.open(url, "_blank"); }
+      if (window.MetaDAXCheck && MetaDAXCheck.encodePackage) {
+        MetaDAXCheck.encodePackage(pkg).then(function(s){ open("print.html#p="+s); })
+          .catch(function(){ try{ localStorage.setItem("metadax:print", JSON.stringify(pkg)); }catch(e){} open("print.html"); });
+      } else {
+        try{ localStorage.setItem("metadax:print", JSON.stringify(pkg)); }catch(e){}
+        open("print.html");
+      }
+    };
+    pr.appendChild(pb); out.appendChild(pr);
+
+    // session end: offer to save this session to a learning record (download only)
+    if (window.MetaDAXRecord) window.MetaDAXRecord.offer(pkg);
+  }
+
+  async function play(){
+    var rep = document.getElementById("report"); rep.innerHTML="";
+    document.getElementById("record").innerHTML="";
+    var pkg;
+    var rawInput = document.getElementById("src").value;
+    var extracted = ENG.extractPastedPackage ? ENG.extractPastedPackage(rawInput) : rawInput;
+    if (extracted === null) { rep.appendChild(el("div","err", t("pasteErr"))); return; }
+    try { pkg = JSON.parse(extracted); }
+    catch(e){ rep.appendChild(el("div","err", t("pasteErr"))); return; }
+    var res = (window.MetaDAXCheck && window.MetaDAXCheck.checkPackage) ? window.MetaDAXCheck.checkPackage(pkg, window.CHECK_LISTS||{}) : {errors:[],warnings:[]};
+    if (res.warnings && res.warnings.length){
+      var w = el("div","warn"); w.appendChild(el("strong",null,t("warnHead")));
+      var wu=el("ul"); res.warnings.forEach(function(x){wu.appendChild(el("li",null,x.path+" — "+x.msg));}); w.appendChild(wu); rep.appendChild(w);
+    }
+    if (res.errors && res.errors.length){
+      var e2 = el("div","err"); e2.appendChild(el("strong",null,"This package has errors and does not go out:"));
+      var eu=el("ul"); res.errors.forEach(function(x){eu.appendChild(el("li",null,x.path+" — "+x.msg));}); e2.appendChild(eu); rep.appendChild(e2);
+      document.getElementById("out").innerHTML=""; return;
+    }
+
+    // Optional companion sidecar, from the paste box or a ?companion= fetch.
+    // If it is present but does not match the shape, say so in one plain
+    // sentence and play without it.
+    var companion = null, candidate = null;
+    var cRaw = (document.getElementById("companion-src")||{}).value;
+    cRaw = cRaw ? cRaw.trim() : "";
+    if (cRaw){ try { candidate = JSON.parse(cRaw); } catch(e){ companionNote(rep, "The companion notes are not valid JSON, so this plays without them."); } }
+    else if (urlCompanion){ candidate = urlCompanion; }
+    if (candidate){
+      var cErr = checkCompanion(candidate);
+      if (cErr) companionNote(rep, "The companion notes don’t match the companion shape (" + cErr + "), so this plays without them.");
+      else companion = candidate;
+    }
+
+    // Lazy-load the 3D libs only when this package actually uses a scene, so a
+    // scene-free package renders exactly as before.
+    if (packageHasScene(pkg)) await loadSceneLibs();
+
+    renderPackage(pkg, companion);
+  }
+
+  function companionNote(rep, msg){ rep.appendChild(el("div","warn", msg)); }
+
+  translateStatic();
+  document.getElementById("play").addEventListener("click", play);
+  // Open a file button
+  var fileInput = document.getElementById("file-input");
+  var openFileBtn = document.getElementById("open-file");
+  if (openFileBtn) openFileBtn.addEventListener("click", function(){ if(fileInput) fileInput.click(); });
+  if (fileInput) fileInput.addEventListener("change", function(e){
+    var file = e.target.files && e.target.files[0]; if(!file) return;
+    var fr = new FileReader();
+    fr.onload = function(ev){ document.getElementById("src").value = ev.target.result || ""; play(); };
+    fr.readAsText(file);
+    fileInput.value = "";
+  });
+  // Drop a file onto the paste box
+  var dropTarget = document.getElementById("src");
+  if (dropTarget) {
+    dropTarget.addEventListener("dragover", function(e){ e.preventDefault(); });
+    dropTarget.addEventListener("drop", function(e){
+      e.preventDefault();
+      var file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; if(!file) return;
+      var fr2 = new FileReader();
+      fr2.onload = function(ev){ dropTarget.value = ev.target.result || ""; play(); };
+      fr2.readAsText(file);
+    });
+  }
+  // optional: load check-lists.json so warnings match the gate
+  fetch("check-lists.json").then(function(r){return r.json();}).then(function(j){window.CHECK_LISTS=j;}).catch(function(){});
+  // ?sample=<name> — fetch /metadax/play/samples/<name>.json and run the Play
+  // code path. On any failure fall back silently to the empty box (page behaves
+  // exactly as without the parameter).
+  (function(){
+    var sname = new URLSearchParams(location.search).get("sample");
+    if (!sname) return;
+    fetch("samples/" + encodeURIComponent(sname) + ".json")
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(); })
+      .then(function(j){
+        document.getElementById("src").value = JSON.stringify(j, null, 2);
+        return play();
+      })
+      .then(function(){
+        var tabs = document.querySelectorAll(".tabs button");
+        if (tabs.length > 1) tabs[1].click();
+      })
+      .catch(function(){});
+  })();
+})();
+</script>
+</body>
+</html>

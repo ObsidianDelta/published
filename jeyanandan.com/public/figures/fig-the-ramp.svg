@@ -1,0 +1,198 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1331.32" width="1200" height="1331.32" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">
+<rect x="0" y="0" width="1200" height="1331.32" fill="#FAF7F0"/>
+<line x1="26" y1="16" x2="1174" y2="16" stroke="#B5AE9C" stroke-width="1"/>
+<line x1="26" y1="1315.32" x2="1174" y2="1315.32" stroke="#B5AE9C" stroke-width="1"/>
+<text x="600" y="48.6" font-size="36" fill="#1A1A1A" font-weight="600" text-anchor="middle">The ramp</text>
+<text x="600" y="83.94" font-size="22.8" fill="#555555" text-anchor="middle" font-style="italic">All 28 rows: what is captured, against what it costs to leave</text>
+<text x="600" y="110.91" font-size="17.4" fill="#888888" text-anchor="middle">Outward to inward on the horizontal · colour is the severity ramp</text>
+<rect x="200" y="240" width="940" height="540" fill="#FFFFFF" rx="4" fill-opacity="0.6"/>
+<line x1="200" y1="780" x2="1140" y2="780" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="690" x2="1140" y2="690" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="600" x2="1140" y2="600" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="510" x2="1140" y2="510" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="420" x2="1140" y2="420" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="330" x2="1140" y2="330" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="240" x2="1140" y2="240" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="2 5" opacity="0.7"/>
+<line x1="200" y1="240" x2="200" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="317.5" y1="240" x2="317.5" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="435" y1="240" x2="435" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="552.5" y1="240" x2="552.5" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="670" y1="240" x2="670" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="787.5" y1="240" x2="787.5" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="905" y1="240" x2="905" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="1022.5" y1="240" x2="1022.5" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<line x1="1140" y1="240" x2="1140" y2="780" stroke="#9F9A8E" stroke-width="0.5" stroke-dasharray="2 5" opacity="0.5"/>
+<text x="186" y="740" font-size="14.5" fill="#555555" text-anchor="end">Trivial</text>
+<text x="186" y="650" font-size="14.5" fill="#555555" text-anchor="end">Low</text>
+<text x="186" y="560" font-size="14.5" fill="#555555" text-anchor="end">Moderate</text>
+<text x="186" y="470" font-size="14.5" fill="#555555" text-anchor="end">High</text>
+<text x="186" y="380" font-size="14.5" fill="#555555" text-anchor="end">Very high</text>
+<text x="186" y="281.5" font-size="14.5" fill="#555555" text-anchor="end">Total / Extreme /</text>
+<text x="186" y="298.5" font-size="14.5" fill="#555555" text-anchor="end">Existential</text>
+<text x="186" y="214" font-size="14" fill="#555555" font-weight="600" text-anchor="end" letter-spacing="1">EXIT COST</text>
+<text x="186" y="232" font-size="12.5" fill="#888888" text-anchor="end" font-style="italic">tier from the row’s own wording</text>
+<text x="258.75" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">land / external</text>
+<text x="376.25" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">body</text>
+<text x="493.75" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">time</text>
+<text x="611.25" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">attention</text>
+<text x="728.75" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">perception</text>
+<text x="846.25" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">desire</text>
+<text x="963.75" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">will</text>
+<text x="1081.25" y="806" font-size="14.5" fill="#555555" font-weight="600" text-anchor="middle">cognition</text>
+<text x="200" y="832" font-size="13.5" fill="#888888" font-style="italic">← outward</text>
+<text x="1140" y="832" font-size="13.5" fill="#888888" text-anchor="end" font-style="italic">inward →</text>
+<circle cx="258.75" cy="735" r="14" fill="#E8F2D8" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="258.75" y="740" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">1</text>
+<circle cx="258.75" cy="645" r="14" fill="#DDEAB8" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="258.75" y="650" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">2</text>
+<circle cx="258.75" cy="465" r="14" fill="#E8C880" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="258.75" y="470" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">5</text>
+<circle cx="376.25" cy="285" r="14" fill="#5A2218" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="376.25" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">16</text>
+<circle cx="478.25" cy="465" r="14" fill="#E5AC65" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="478.25" y="470" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">6</text>
+<circle cx="509.25" cy="465" r="14" fill="#E5AC65" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="509.25" y="470" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">7</text>
+<circle cx="493.75" cy="375" r="14" fill="#5A2218" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="493.75" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">17</text>
+<circle cx="611.25" cy="465" r="14" fill="#7D3825" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="611.25" y="470" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">23</text>
+<circle cx="611.25" cy="375" r="14" fill="#5A2218" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="611.25" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">24</text>
+<circle cx="728.75" cy="645" r="14" fill="#E5DAA0" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="728.75" y="650" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">3</text>
+<circle cx="713.25" cy="555" r="14" fill="#E8C880" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="713.25" y="560" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">4</text>
+<circle cx="744.25" cy="555" r="14" fill="#A85535" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="744.25" y="560" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">18</text>
+<circle cx="728.75" cy="465" r="14" fill="#DA8E55" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="728.75" y="470" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">8</text>
+<circle cx="713.25" cy="375" r="14" fill="#C57045" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="713.25" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">9</text>
+<circle cx="744.25" cy="375" r="14" fill="#5A2218" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="744.25" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">25</text>
+<circle cx="846.25" cy="555" r="14" fill="#A85535" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="846.25" y="560" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">20</text>
+<circle cx="830.75" cy="285" r="14" fill="#7D3825" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="830.75" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">12</text>
+<circle cx="861.75" cy="285" r="14" fill="#3A1010" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="861.75" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">26</text>
+<circle cx="963.75" cy="375" r="14" fill="#A85535" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="963.75" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">10</text>
+<circle cx="963.75" cy="285" r="14" fill="#3A1010" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="963.75" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">27</text>
+<circle cx="1081.25" cy="555" r="14" fill="#C57045" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1081.25" y="560" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">14</text>
+<circle cx="1050.25" cy="465" r="14" fill="#A85535" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1050.25" y="470" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">15</text>
+<circle cx="1081.25" cy="465" r="14" fill="#7D3825" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1081.25" y="470" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">19</text>
+<circle cx="1112.25" cy="465" r="14" fill="#7D3825" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1112.25" y="470" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">21</text>
+<circle cx="1081.25" cy="375" r="14" fill="#A85535" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1081.25" y="380" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">11</text>
+<circle cx="1065.75" cy="285" r="14" fill="#7D3825" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1065.75" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">13</text>
+<circle cx="1096.75" cy="285" r="14" fill="#3A1010" stroke="#FFFFFF" stroke-width="1.6"/>
+<text x="1096.75" y="290" font-size="13" fill="#FFFFFF" font-weight="700" text-anchor="middle">28</text>
+<circle cx="258.75" cy="854" r="14" fill="#E5DAA0" stroke="#1F6B5C" stroke-width="2.4"/>
+<text x="258.75" y="859" font-size="13" fill="#1A1A1A" font-weight="700" text-anchor="middle">22</text>
+<text x="284.75" y="859" font-size="14.5" fill="#1F6B5C">Web 1.0 — exit cost reads n/a, so it is not plotted on the vertical. It is the one fall in the sequence.</text>
+<text x="60" y="902" font-size="14" fill="#555555" font-weight="600" letter-spacing="0.6">WHAT EACH ROW CAPTURES — the wording is the diagram’s; the grouping is the author’s</text>
+<text x="60" y="938" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">LAND / EXTERNAL</text>
+<circle cx="68" cy="955" r="8" fill="#E8F2D8"/>
+<text x="68" y="959" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">1</text>
+<text x="82" y="959" font-size="13" fill="#1A1A1A">Nothing yet — meaning emerges from</text>
+<text x="82" y="975" font-size="13" fill="#1A1A1A">kin and environment</text>
+<circle cx="68" cy="990" r="8" fill="#DDEAB8"/>
+<text x="68" y="994" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">2</text>
+<text x="82" y="994" font-size="13" fill="#1A1A1A">Belonging</text>
+<circle cx="68" cy="1009" r="8" fill="#E8C880"/>
+<text x="68" y="1013" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">5</text>
+<text x="82" y="1013" font-size="13" fill="#1A1A1A">Landscape + lineage</text>
+<text x="60" y="1043" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">BODY</text>
+<circle cx="68" cy="1060" r="8" fill="#5A2218"/>
+<text x="68" y="1064" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">16</text>
+<text x="82" y="1064" font-size="13" fill="#1A1A1A">Body / time</text>
+<text x="345" y="938" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">TIME</text>
+<circle cx="353" cy="955" r="8" fill="#E5AC65"/>
+<text x="353" y="959" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">6</text>
+<text x="367" y="959" font-size="13" fill="#1A1A1A">Coordination of labor by ritual</text>
+<text x="367" y="975" font-size="13" fill="#1A1A1A">authority</text>
+<circle cx="353" cy="990" r="8" fill="#E5AC65"/>
+<text x="353" y="994" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">7</text>
+<text x="367" y="994" font-size="13" fill="#1A1A1A">Time itself</text>
+<circle cx="353" cy="1009" r="8" fill="#5A2218"/>
+<text x="353" y="1013" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">17</text>
+<text x="367" y="1013" font-size="13" fill="#1A1A1A">Tempo of life</text>
+<text x="345" y="1043" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">ATTENTION</text>
+<circle cx="353" cy="1060" r="8" fill="#7D3825"/>
+<text x="353" y="1064" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">23</text>
+<text x="367" y="1064" font-size="13" fill="#1A1A1A">Discoverability</text>
+<circle cx="353" cy="1079" r="8" fill="#5A2218"/>
+<text x="353" y="1083" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">24</text>
+<text x="367" y="1083" font-size="13" fill="#1A1A1A">Focus / waking hours</text>
+<text x="630" y="938" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">PERCEPTION</text>
+<circle cx="638" cy="955" r="8" fill="#E5DAA0"/>
+<text x="638" y="959" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">3</text>
+<text x="652" y="959" font-size="13" fill="#1A1A1A">Identity boundary</text>
+<circle cx="638" cy="974" r="8" fill="#E8C880"/>
+<text x="638" y="978" font-size="9" fill="#1A1A1A" font-weight="700" text-anchor="middle">4</text>
+<text x="652" y="978" font-size="13" fill="#1A1A1A">Cosmological frame</text>
+<circle cx="638" cy="993" r="8" fill="#DA8E55"/>
+<text x="638" y="997" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">8</text>
+<text x="652" y="997" font-size="13" fill="#1A1A1A">Legitimacy of hierarchy</text>
+<circle cx="638" cy="1012" r="8" fill="#C57045"/>
+<text x="638" y="1016" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">9</text>
+<text x="652" y="1016" font-size="13" fill="#1A1A1A">Cosmic order itself</text>
+<circle cx="638" cy="1031" r="8" fill="#A85535"/>
+<text x="638" y="1035" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">18</text>
+<text x="652" y="1035" font-size="13" fill="#1A1A1A">Public opinion</text>
+<circle cx="638" cy="1050" r="8" fill="#5A2218"/>
+<text x="638" y="1054" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">25</text>
+<text x="652" y="1054" font-size="13" fill="#1A1A1A">What is even seen</text>
+<text x="630" y="1084" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">DESIRE</text>
+<circle cx="638" cy="1101" r="8" fill="#7D3825"/>
+<text x="638" y="1105" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">12</text>
+<text x="652" y="1105" font-size="13" fill="#1A1A1A">Salvation / damnation framing</text>
+<circle cx="638" cy="1120" r="8" fill="#A85535"/>
+<text x="638" y="1124" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">20</text>
+<text x="652" y="1124" font-size="13" fill="#1A1A1A">Aspiration / desire</text>
+<circle cx="638" cy="1139" r="8" fill="#3A1010"/>
+<text x="638" y="1143" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">26</text>
+<text x="652" y="1143" font-size="13" fill="#1A1A1A">Pre-conscious want</text>
+<text x="915" y="938" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">WILL</text>
+<circle cx="923" cy="955" r="8" fill="#A85535"/>
+<text x="923" y="959" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">10</text>
+<text x="937" y="959" font-size="13" fill="#1A1A1A">Behavior + conscience</text>
+<circle cx="923" cy="974" r="8" fill="#3A1010"/>
+<text x="923" y="978" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">27</text>
+<text x="937" y="978" font-size="13" fill="#1A1A1A">Will / decision-making</text>
+<text x="915" y="1008" font-size="12.5" fill="#888888" font-weight="600" letter-spacing="0.8">COGNITION</text>
+<circle cx="923" cy="1025" r="8" fill="#A85535"/>
+<text x="923" y="1029" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">11</text>
+<text x="937" y="1029" font-size="13" fill="#1A1A1A">Self-concept</text>
+<circle cx="923" cy="1044" r="8" fill="#7D3825"/>
+<text x="923" y="1048" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">13</text>
+<text x="937" y="1048" font-size="13" fill="#1A1A1A">Access to interpretation</text>
+<circle cx="923" cy="1063" r="8" fill="#C57045"/>
+<text x="923" y="1067" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">14</text>
+<text x="937" y="1067" font-size="13" fill="#1A1A1A">Standardized meaning at scale</text>
+<circle cx="923" cy="1082" r="8" fill="#A85535"/>
+<text x="923" y="1086" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">15</text>
+<text x="937" y="1086" font-size="13" fill="#1A1A1A">Linguistic identity</text>
+<circle cx="923" cy="1101" r="8" fill="#7D3825"/>
+<text x="923" y="1105" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">19</text>
+<text x="937" y="1105" font-size="13" fill="#1A1A1A">Belief formation</text>
+<circle cx="923" cy="1120" r="8" fill="#7D3825"/>
+<text x="923" y="1124" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">21</text>
+<text x="937" y="1124" font-size="13" fill="#1A1A1A">Self-concept</text>
+<circle cx="923" cy="1139" r="8" fill="#3A1010"/>
+<text x="923" y="1143" font-size="9" fill="#FFFFFF" font-weight="700" text-anchor="middle">28</text>
+<text x="937" y="1143" font-size="13" fill="#1A1A1A">Cognition itself</text>
+<text x="60" y="1189" font-size="16.5" fill="#555555" font-style="italic">The horizontal ordering is a classification of the captures column, not something the diagram states. Row 16 sits far to the</text>
+<text x="60" y="1212" font-size="16.5" fill="#555555" font-style="italic">left at the top of the vertical: enclosure took the body and left no exit. That is the exception, and it is why this is not a</text>
+<text x="60" y="1235" font-size="16.5" fill="#555555" font-style="italic">ladder anyone climbed.</text>
+<text x="60" y="1272" font-size="14.64" fill="#1A1A1A" font-weight="600">Severity and exit cost are the author’s own interpretive scale, not scholarship — no cited source ranks these phases.</text>
+<text x="60" y="1291.32" font-size="14.64" fill="#555555">The citations support each card’s mechanism, not its position on this ramp.</text>
+</svg>

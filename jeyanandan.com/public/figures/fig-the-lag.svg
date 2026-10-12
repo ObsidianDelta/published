@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 1224.83" width="1480" height="1224.83" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif">
+<rect x="0" y="0" width="1480" height="1224.83" fill="#FAF7F0"/>
+<line x1="26" y1="16" x2="1454" y2="16" stroke="#B5AE9C" stroke-width="1"/>
+<line x1="26" y1="1208.83" x2="1454" y2="1208.83" stroke="#B5AE9C" stroke-width="1"/>
+<text x="740" y="59.94" font-size="44.4" fill="#1A1A1A" font-weight="600" text-anchor="middle">The lag</text>
+<text x="740" y="103.53" font-size="28.12" fill="#555555" text-anchor="middle" font-style="italic">How long an assignment runs before it is recognised as one</text>
+<text x="740" y="136.79" font-size="21.46" fill="#888888" text-anchor="middle">Rows 11, 14, 16, 20 and 24 of The Genealogy of Meaning Capture, then row 26 · horizontal distance is logarithmic</text>
+<circle cx="60" cy="183" r="10" fill="#A85535"/>
+<text x="78" y="188" font-size="16" fill="#1A1A1A" font-weight="600">assignment installed</text>
+<text x="78" y="208" font-size="14" fill="#888888">onset year from the row’s own time column</text>
+<circle cx="480" cy="183" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="498" y="188" font-size="16" fill="#1F6B5C" font-weight="600">assignment recognised</text>
+<text x="498" y="208" font-size="14" fill="#888888">earliest publication year among the row’s citations</text>
+<line x1="762.14" y1="264" x2="762.14" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<text x="762.14" y="256" font-size="12.5" fill="#888888" text-anchor="middle">1</text>
+<line x1="677.86" y1="264" x2="677.86" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<line x1="865.79" y1="264" x2="865.79" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<text x="865.79" y="256" font-size="12.5" fill="#888888" text-anchor="middle">10</text>
+<line x1="574.21" y1="264" x2="574.21" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<line x1="1000.6" y1="264" x2="1000.6" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<text x="1000.6" y="256" font-size="12.5" fill="#888888" text-anchor="middle">100</text>
+<line x1="439.4" y1="264" x2="439.4" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<line x1="1140.06" y1="264" x2="1140.06" y2="1022" stroke="#9F9A8E" stroke-width="0.8" stroke-dasharray="2 6" opacity="0.6"/>
+<text x="1140.06" y="256" font-size="12.5" fill="#888888" text-anchor="middle">1,000 yr</text>
+<text x="360" y="256" font-size="12.5" fill="#1F6B5C" font-style="italic">← named first</text>
+<line x1="720" y1="270" x2="720" y2="1026" stroke="#555555" stroke-width="2"/>
+<text x="720" y="240" font-size="14" fill="#555555" font-weight="600" text-anchor="middle" letter-spacing="1">ASSIGNMENT INSTALLED</text>
+<circle cx="68" cy="318" r="17" fill="#A85535"/>
+<text x="68" y="324" font-size="17" fill="white" font-weight="700" text-anchor="middle">11</text>
+<text x="94" y="312" font-size="19" fill="#1A1A1A" font-weight="600">Axial Age universal</text>
+<text x="94" y="334" font-size="19" fill="#1A1A1A" font-weight="600">frameworks</text>
+<text x="94" y="358" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~800–200 BCE</text>
+<rect x="720" y="331" width="481.51" height="14" fill="#A85535" rx="7" opacity="0.3"/>
+<circle cx="720" cy="338" r="10" fill="#A85535"/>
+<circle cx="1201.51" cy="338" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="1201.51" y="318" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">1949</text>
+<text x="732" y="372" font-size="13.5" fill="#888888" font-style="italic">Jaspers 1949; Bellah 2011; cf. Mullins et al. 2018</text>
+<text x="1430" y="340" font-size="32" fill="#1A1A1A" font-weight="700" text-anchor="end">2,749</text>
+<text x="1430" y="362" font-size="13.5" fill="#888888" text-anchor="end">years to first naming</text>
+<line x1="50" y1="414" x2="1430" y2="414" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="1 5" opacity="0.7"/>
+<circle cx="68" cy="442" r="17" fill="#C57045"/>
+<text x="68" y="448" font-size="17" fill="white" font-weight="700" text-anchor="middle">14</text>
+<text x="94" y="436" font-size="19" fill="#1A1A1A" font-weight="600">Print revolution</text>
+<text x="94" y="460" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~1450–1700</text>
+<rect x="720" y="455" width="381.4" height="14" fill="#C57045" rx="7" opacity="0.3"/>
+<circle cx="720" cy="462" r="10" fill="#C57045"/>
+<circle cx="1101.4" cy="462" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="1101.4" y="442" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">1979</text>
+<text x="732" y="496" font-size="13.5" fill="#888888" font-style="italic">Eisenstein 1979; cf. Johns 1998</text>
+<text x="1430" y="464" font-size="32" fill="#1A1A1A" font-weight="700" text-anchor="end">529</text>
+<text x="1430" y="486" font-size="13.5" fill="#888888" text-anchor="end">years to first naming</text>
+<line x1="50" y1="538" x2="1430" y2="538" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="1 5" opacity="0.7"/>
+<circle cx="68" cy="566" r="17" fill="#5A2218"/>
+<text x="68" y="572" font-size="17" fill="white" font-weight="700" text-anchor="middle">16</text>
+<text x="94" y="560" font-size="19" fill="#1A1A1A" font-weight="600">Enclosure + wage labor</text>
+<text x="94" y="584" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~1500–1900 (England)</text>
+<rect x="720" y="579" width="370.77" height="14" fill="#5A2218" rx="7" opacity="0.3"/>
+<circle cx="720" cy="586" r="10" fill="#5A2218"/>
+<circle cx="1090.77" cy="586" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="1090.77" y="566" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">1944</text>
+<text x="732" y="620" font-size="13.5" fill="#888888" font-style="italic">Polanyi 1944; Thompson 1963</text>
+<text x="1430" y="588" font-size="32" fill="#1A1A1A" font-weight="700" text-anchor="end">444</text>
+<text x="1430" y="610" font-size="13.5" fill="#888888" text-anchor="end">years to first naming</text>
+<line x1="50" y1="662" x2="1430" y2="662" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="1 5" opacity="0.7"/>
+<circle cx="68" cy="690" r="17" fill="#A85535"/>
+<text x="68" y="696" font-size="17" fill="white" font-weight="700" text-anchor="middle">20</text>
+<text x="94" y="684" font-size="19" fill="#1A1A1A" font-weight="600">Broadcast era (radio/TV)</text>
+<text x="94" y="708" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~1920–2000</text>
+<rect x="720" y="703" width="231.45" height="14" fill="#A85535" rx="7" opacity="0.3"/>
+<circle cx="720" cy="710" r="10" fill="#A85535"/>
+<circle cx="951.45" cy="710" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="951.45" y="690" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">1964</text>
+<text x="732" y="744" font-size="13.5" fill="#888888" font-style="italic">McLuhan 1964; Postman 1985</text>
+<text x="1430" y="712" font-size="32" fill="#1A1A1A" font-weight="700" text-anchor="end">44</text>
+<text x="1430" y="734" font-size="13.5" fill="#888888" text-anchor="end">years to first naming</text>
+<line x1="50" y1="786" x2="1430" y2="786" stroke="#9F9A8E" stroke-width="0.6" stroke-dasharray="1 5" opacity="0.7"/>
+<circle cx="68" cy="814" r="17" fill="#5A2218"/>
+<text x="68" y="820" font-size="17" fill="white" font-weight="700" text-anchor="middle">24</text>
+<text x="94" y="808" font-size="19" fill="#1A1A1A" font-weight="600">Attention economy</text>
+<text x="94" y="832" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~2010–present</text>
+<rect x="495.71" y="827" width="224.29" height="14" fill="#1F6B5C" rx="7" opacity="0.3"/>
+<circle cx="720" cy="834" r="10" fill="#5A2218"/>
+<circle cx="495.71" cy="834" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="495.71" y="814" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">1971</text>
+<text x="708" y="868" font-size="13.5" fill="#888888" text-anchor="end" font-style="italic">Simon 1971; Goldhaber 1997; Wu 2016</text>
+<text x="1430" y="836" font-size="32" fill="#1F6B5C" font-weight="700" text-anchor="end">39</text>
+<text x="1430" y="858" font-size="13.5" fill="#888888" text-anchor="end">years early</text>
+<line x1="50" y1="910" x2="1430" y2="910" stroke="#9F9A8E" stroke-width="2" opacity="0.9"/>
+<text x="50" y="934" font-size="14" fill="#1F6B5C" font-weight="600" letter-spacing="1.2">THE COLLAPSE</text>
+<circle cx="68" cy="964" r="17" fill="#3A1010"/>
+<text x="68" y="970" font-size="17" fill="white" font-weight="700" text-anchor="middle">26</text>
+<text x="94" y="958" font-size="19" fill="#1A1A1A" font-weight="600">Intent capture</text>
+<text x="94" y="982" font-size="14" fill="#888888" font-family="ui-monospace, Menlo, monospace">~2020–present</text>
+<rect x="635.71" y="951" width="84.29" height="14" fill="#1F6B5C" rx="7" opacity="0.3"/>
+<circle cx="720" cy="958" r="10" fill="#3A1010"/>
+<circle cx="635.71" cy="958" r="10" fill="#FFFFFF" stroke="#1F6B5C" stroke-width="3.2"/>
+<text x="635.71" y="938" font-size="16" fill="#1F6B5C" font-weight="700" text-anchor="middle" font-family="ui-monospace, Menlo, monospace">2017</text>
+<text x="708" y="992" font-size="13.5" fill="#888888" text-anchor="end" font-style="italic">Yeung 2017</text>
+<text x="1430" y="960" font-size="32" fill="#1F6B5C" font-weight="700" text-anchor="end">3</text>
+<text x="1430" y="982" font-size="13.5" fill="#888888" text-anchor="end">years early</text>
+<text x="50" y="1070" font-size="18" fill="#555555" font-style="italic">Twenty-seven centuries, then five centuries, then four, then forty-four years — and then the line is crossed. Rows 24 and 26 were named by sources</text>
+<text x="50" y="1095" font-size="18" fill="#555555" font-style="italic">that predate their build-out. That is the finding, not an error in the dating: by the most recent rows the description arrives before or alongside</text>
+<text x="50" y="1120" font-size="18" fill="#555555" font-style="italic">the thing it describes. The lag is what used to protect you, and it is gone.</text>
+<text x="50" y="1161" font-size="18.06" fill="#1A1A1A" font-weight="600">Severity and exit cost are the author’s own interpretive scale, not scholarship — no cited source ranks these phases.</text>
+<text x="50" y="1184.83" font-size="18.06" fill="#555555">The citations support each card’s mechanism, not its position on this ramp.</text>
+</svg>

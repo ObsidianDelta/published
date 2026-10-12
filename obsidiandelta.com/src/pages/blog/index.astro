@@ -1,0 +1,50 @@
+---
+import Base from '../../layouts/Base.astro';
+import { listedPosts, formatDate } from '../_posts.js';
+
+// The reading list. It shows listedPosts: an unlisted post still has its own
+// URL and still serves, it is simply not advertised here. A draft appears here
+// only in a review build (OD_SHOW_DRAFTS=1), and is labelled as one.
+// src/pages/_posts.js holds the rules; /sitemap.xml reads the same module.
+---
+<Base title="Blog — Obsidian Delta" description="Writing from Obsidian Delta on cognition, cognitive companions, and where the work stands.">
+  <section class="hero"><div class="shell narrow">
+    <p class="eyebrow">Obsidian Delta · writing</p>
+    <h1>Blog</h1>
+    <div class="rule"></div>
+  </div></section>
+  <section><div class="shell narrow">
+    <ul class="posts">
+      {listedPosts.map((p) => (
+        <li>
+          <p class="meta">
+            {p.date && <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>}
+            {p.draft && <span class="tag">Draft</span>}
+          </p>
+          <a href={`/blog/${p.slug}/`}>{p.title}</a>
+          {p.description && <p class="desc">{p.description}</p>}
+        </li>
+      ))}
+    </ul>
+    {listedPosts.length === 0 && <p class="empty">Nothing published yet.</p>}
+  </div></section>
+</Base>
+
+<style is:global>
+.hero{padding:clamp(56px,10vw,96px) 0 clamp(32px,6vw,56px)}
+.posts{list-style:none;display:flex;flex-direction:column}
+.posts li{border-top:1px solid var(--steel);padding:32px 0}
+.posts li:last-child{border-bottom:1px solid var(--steel)}
+.posts .meta{display:flex;gap:14px;align-items:center;margin-bottom:12px;font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.posts .tag{color:var(--black);background:var(--orange);padding:2px 8px;letter-spacing:.14em}
+.posts a{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(24px,3.6vw,34px);line-height:1.15;letter-spacing:-.02em;
+  color:var(--white);text-decoration:none;display:inline;
+  border-bottom:2px solid var(--orange);padding-bottom:2px;
+  transition:color .2s,border-color .2s;
+}
+.posts a:hover{color:var(--orange);border-color:var(--white)}
+.posts .desc{margin-top:16px;color:var(--bone);font-size:16px;line-height:1.7}
+.empty{color:var(--ash);font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+</style>

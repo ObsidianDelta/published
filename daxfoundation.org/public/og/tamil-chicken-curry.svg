@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2a1c10"/><stop offset="1" stop-color="#4a2a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="930" cy="330" r="210" fill="#b84a22" opacity="0.9"/>
+  <circle cx="930" cy="330" r="150" fill="#d8692c"/>
+  <circle cx="930" cy="330" r="150" fill="none" stroke="#f2ead9" stroke-width="6" opacity="0.5"/>
+  <text x="80" y="150" font-family="Georgia,serif" font-size="30" fill="#e08a3c" letter-spacing="4">SHOWCASE · ONE DISH, ITS STORY</text>
+  <text x="80" y="250" font-family="Georgia,serif" font-weight="bold" font-size="74" fill="#f0e6d6">Sri Lankan Tamil</text>
+  <text x="80" y="330" font-family="Georgia,serif" font-weight="bold" font-size="74" fill="#f0e6d6">chicken curry</text>
+  <text x="80" y="390" font-family="Georgia,serif" font-size="38" fill="#c3ab86">Jaffna style</text>
+  <text x="80" y="470" font-family="Georgia,serif" font-size="30" fill="#c3ab86">Where it comes from · How to make it · What it means</text>
+  <text x="80" y="540" font-family="Noto Sans Tamil, sans-serif" font-size="42" fill="#e08a3c">யாழ்ப்பாணக் கோழிக் கறி</text>
+  <text x="80" y="590" font-family="Georgia,serif" font-size="24" fill="#8a7152">Read by someone from the community. A way, never the way.</text>
+</svg>

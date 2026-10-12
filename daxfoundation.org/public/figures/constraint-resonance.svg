@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" role="img" aria-labelledby="t d">
+<title id="t">Constraint resonance (Fuckari)</title>
+<desc id="d">A loop of three stages. Emergent structure forms a new higher-level constraint regime; that regime reshapes the lower-level interaction space; the reshaped space yields further emergent structure, and the loop runs again, each turn depending on the path before it.</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#e8e8e8"/></marker></defs>
+<rect width="1000" height="640" fill="#0a0a0a"/>
+<path d="M574.9 138.6 A200 200 0 0 1 698.1 351.8" fill="none" stroke="#e8e8e8" stroke-width="2.4" marker-end="url(#ar)"/>
+<path d="M623.1 481.6 A200 200 0 0 1 376.9 481.6" fill="none" stroke="#e8e8e8" stroke-width="2.4" marker-end="url(#ar)"/>
+<path d="M301.9 351.8 A200 200 0 0 1 425.1 138.6" fill="none" stroke="#e8e8e8" stroke-width="2.4" marker-end="url(#ar)"/>
+<circle cx="500.0" cy="124.0" r="8" fill="#e8e8e8"/>
+<text x="500" y="98" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#e8e8e8">emergent structure</text>
+<text x="708" y="211" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="21" font-style="italic" fill="#8c8c8c">forms</text>
+<circle cx="673.2" cy="424.0" r="8" fill="#e8e8e8"/>
+<text x="699" y="432" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#e8e8e8">a new higher-level</text>
+<text x="699" y="462" text-anchor="start" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#e8e8e8">constraint regime</text>
+<text x="500" y="571" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="21" font-style="italic" fill="#8c8c8c">reshapes</text>
+<circle cx="326.8" cy="424.0" r="8" fill="#e8e8e8"/>
+<text x="301" y="432" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#e8e8e8">a reshaped</text>
+<text x="301" y="462" text-anchor="end" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="25" fill="#e8e8e8">lower-level space</text>
+<text x="292" y="211" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="21" font-style="italic" fill="#8c8c8c">yields</text>
+<text x="500.0" y="324.0" text-anchor="middle" font-family="Iowan Old Style, Palatino, Georgia, serif" font-size="44" font-style="italic" fill="#e8e8e8">Fuckari</text>
+<text x="500.0" y="358.0" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15" letter-spacing="3" fill="#8c8c8c">CONSTRAINT RESONANCE</text>
+<text x="500.0" y="618" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="19" fill="#8c8c8c">each turn of the loop starts where the last one left off</text>
+</svg>

@@ -1,0 +1,93 @@
+{
+  "format": "metadax-package",
+  "v": 1,
+  "ref": "HS-ALLG",
+  "session": 2,
+  "word": "session",
+  "title": "Every Game Once",
+  "lang": "en",
+  "guide": {
+    "tab": "For you",
+    "sections": [
+      { "id": "upnext", "label": "Up next", "blocks": [
+        { "type": "lead", "title": "They lead", "body": "Let the learner show you first.", "prompt": "Ask them to show you one thing." },
+        { "type": "p", "text": "A tiny package that exercises every game type once." }
+      ] },
+      { "id": "learned", "label": "What we're finding out", "blocks": [
+        { "type": "p", "text": "Whether each game plays and records." }
+      ] },
+      { "id": "steps", "label": "The steps", "blocks": [
+        { "type": "list", "ordered": true, "items": ["Play the games", "Read the note"] }
+      ] },
+      { "id": "tricky", "label": "When it's tricky", "blocks": [
+        { "type": "ifthen", "if": "It stalls", "then": "Move on and come back." },
+        { "type": "human", "title": "What only you can do", "items": ["Notice when they tire."] }
+      ] },
+      { "id": "tellus", "label": "Tell us and ask", "blocks": [
+        { "type": "faq", "q": "How long?", "a": "Short.", "more": [ { "q": "Really?", "a": "Yes.", "more": [ { "q": "How short?", "a": "About 20 minutes." } ] } ] }
+      ] }
+    ]
+  },
+  "learner": {
+    "tab": "For the learner",
+    "sections": [
+      { "id": "lead", "label": "You lead", "blocks": [
+        { "type": "lead", "title": "You first", "body": "Show the guide a thing you know.", "prompt": "Pick one and explain it." },
+        { "type": "faq", "q": "What is this?", "a": "A set of little games.", "more": [ { "q": "Why?", "a": "To find the gap.", "more": [ { "q": "What gap?", "a": "The gap between what you know and what comes next." } ] } ] }
+      ] },
+      { "id": "games", "label": "The games", "blocks": [
+        { "type": "quiz", "id": "q-count", "title": "Counting", "intro": "Pick the answer.",
+          "start": 1, "up_after": 3, "down_after": 1,
+          "mistakes": {
+            "off-by-one": { "name": "off by one", "guide": "Counted one too many or too few." },
+            "added-wrong": { "name": "added the wrong pair", "guide": "Added the wrong two numbers." }
+          },
+          "levels": [
+            { "level": 1, "label": "Warm-up", "items": [
+              { "q": "1 + 1?", "choices": [ { "text": "2", "correct": true, "msg": "Right." }, { "text": "3", "mistake": "off-by-one", "msg": "One too many." } ], "hint": "Count on fingers.", "explain": "1 and 1 make 2." },
+              { "q": "2 + 1?", "choices": [ { "text": "3", "correct": true, "msg": "Yes." }, { "text": "2", "mistake": "off-by-one", "msg": "One short." } ], "explain": "2 then one more is 3." },
+              { "q": "2 + 2?", "choices": [ { "text": "4", "correct": true, "msg": "Good." }, { "text": "5", "mistake": "off-by-one", "msg": "Close." } ], "explain": "Two twos are four." },
+              { "q": "3 + 1?", "choices": [ { "text": "4", "correct": true, "msg": "Yes." }, { "text": "31", "mistake": "added-wrong", "msg": "Not joined together." } ], "explain": "3 and one more is 4." }
+            ] },
+            { "level": 2, "label": "Bigger", "items": [
+              { "q": "5 + 4?", "choices": [ { "text": "9", "correct": true, "msg": "Right." }, { "text": "8", "mistake": "off-by-one", "msg": "One short." } ], "explain": "5 and 4 make 9." },
+              { "q": "6 + 3?", "choices": [ { "text": "9", "correct": true, "msg": "Yes." }, { "text": "10", "mistake": "off-by-one", "msg": "One too many." } ], "explain": "6 and 3 make 9." }
+            ] }
+          ]
+        },
+        { "type": "sort", "id": "s-shape", "title": "Sort the shapes", "intro": "Drop each into a bin.",
+          "bins": [ { "id": "round", "label": "Round" }, { "id": "straight", "label": "Straight sides" } ],
+          "items": [
+            { "text": "circle", "bin": "round", "why": "A circle is all curve." },
+            { "text": "square", "bin": "straight", "why": "A square has straight sides." },
+            { "text": "ball", "bin": "round", "why": "A ball is round." }
+          ]
+        },
+        { "type": "sequence", "id": "seq-tea", "title": "Make tea in order", "intro": "Pick the next step.",
+          "mistakes": {
+            "water-last": { "name": "boiled the water too late", "guide": "Chose to boil after pouring." },
+            "milk-first": { "name": "added milk before the water", "guide": "Milk came before the hot water." }
+          },
+          "steps": [
+            { "prompt": "First step?", "choices": [ { "text": "Boil the water", "correct": true, "msg": "Yes." }, { "text": "Pour the cup", "mistake": "water-last", "msg": "Boil first." } ] },
+            { "prompt": "Next?", "choices": [ { "text": "Add the teabag", "correct": true, "msg": "Good." }, { "text": "Add the milk", "mistake": "milk-first", "msg": "Water and bag first." } ] }
+          ]
+        },
+        { "type": "build", "id": "b-sandwich", "title": "Build a sandwich", "intro": "Pick one per slot.",
+          "parts": [
+            { "label": "Base", "options": ["bread", "a brick"], "best": "bread", "why": "You can eat bread." },
+            { "label": "Filling", "options": ["cheese", "a sock"], "best": "cheese", "why": "Cheese is food." }
+          ]
+        },
+        { "type": "spoken-sound", "id": "ss-sh", "title": "Say and find",
+          "prompt_for_guide": "Say the sound at the start of ship.",
+          "options": ["sh", "ch", "th"], "answer": "sh",
+          "why": "sh is one sound written with two letters." }
+      ] }
+    ]
+  },
+  "next": {
+    "ticks": ["They tried every game", "They stayed to the end"],
+    "ask": ["Hardest moment", "Where they led"]
+  }
+}

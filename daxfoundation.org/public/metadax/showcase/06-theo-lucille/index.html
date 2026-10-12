@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Real or Scam?: a sample page from Meta DAX for Theo, 19, and Lucille, 78, his grandmother, on spotting phone, text and email scams. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/06-theo-lucille/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="Vrai ou arnaque?">
+<meta property="og:description" content="Real or Scam?: a sample page from Meta DAX for Theo, 19, and Lucille, 78, his grandmother, on spotting phone, text and email scams. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/06-theo-lucille/">
+<title>Vrai ou arnaque?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ── */
+:root {
+  --theo-bg: #1a2a4a;
+  --theo-surface: #243358;
+  --theo-card: #2d3f6b;
+  --theo-accent: #f5c842;
+  --theo-accent2: #4a9eff;
+  --theo-text: #e8edf8;
+  --theo-muted: #8fa3cc;
+  --theo-border: #3a4f7a;
+  --theo-success: #4caf7d;
+  --theo-warn: #e07b39;
+  color-scheme: light dark;
+
+  --luc-bg: #f5f0f8;
+  --luc-surface: #ffffff;
+  --luc-card: #eae3f0;
+  --luc-teal: #1a5c5c;
+  --luc-teal-dk: #0d3d3d;
+  --luc-gold: #b8860b;
+  --luc-text: #111111;
+  --luc-muted: #444444;
+  --luc-border: #9b8ab0;
+  --luc-success: #0a5c2a;
+  --luc-danger: #8b0000;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --theo-bg: #0d1526;
+    --theo-surface: #162035;
+    --theo-card: #1e2d50;
+    --theo-border: #2d3f6b;
+    --theo-text: #d8e3f5;
+    --luc-bg: #1a1020;
+    --luc-surface: #241830;
+    --luc-card: #2e2040;
+    --luc-teal: #4ab0a0;
+    --luc-teal-dk: #2d8070;
+    --luc-text: #f0ece8;
+    --luc-muted: #c0b8c8;
+    --luc-border: #6a5880;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --theo-bg: #0d1526;
+  --theo-surface: #162035;
+  --theo-card: #1e2d50;
+  --theo-border: #2d3f6b;
+  --theo-text: #d8e3f5;
+  --luc-bg: #1a1020;
+  --luc-surface: #241830;
+  --luc-card: #2e2040;
+  --luc-teal: #4ab0a0;
+  --luc-teal-dk: #2d8070;
+  --luc-text: #f0ece8;
+  --luc-muted: #c0b8c8;
+  --luc-border: #6a5880;
+  color-scheme: dark;
+}
+
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--theo-bg);color:var(--theo-text);min-height:100vh;transition:background .2s,color .2s}
+body.luc-active{background:var(--luc-bg);color:var(--luc-text)}
+img{max-width:100%}
+button{cursor:pointer;font-family:inherit}
+details>summary{cursor:pointer;list-style:none}
+details>summary::marker,details>summary::-webkit-details-marker{display:none}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ── Top bar ── */
+.top-bar{text-align:center;padding:8px 16px;font-size:.75rem;background:#0008;color:#bbb;letter-spacing:.02em}
+body.luc-active .top-bar{background:#0002;color:var(--luc-muted)}
+
+/* ── Main tabs ── */
+.main-tabs{display:flex;gap:0;padding:0 16px;padding-top:8px;background:var(--theo-bg);position:sticky;top:0;z-index:10;border-bottom:2px solid var(--theo-border)}
+body.luc-active .main-tabs{background:var(--luc-bg);border-bottom-color:var(--luc-border)}
+
+.main-tab-btn{flex:1;padding:12px 8px;border:none;border-bottom:3px solid transparent;background:transparent;font-size:1rem;font-weight:600;color:var(--theo-muted);cursor:pointer;transition:color .15s,border-color .15s}
+.main-tab-btn[aria-selected="true"]{color:var(--theo-accent);border-bottom-color:var(--theo-accent)}
+.main-tab-btn:focus-visible{outline:3px solid var(--theo-accent);outline-offset:2px;border-radius:4px}
+body.luc-active .main-tab-btn{color:var(--luc-muted);font-family:'Atkinson Hyperlegible',sans-serif}
+body.luc-active .main-tab-btn[aria-selected="true"]{color:var(--luc-teal);border-bottom-color:var(--luc-teal)}
+
+/* ── Panels ── */
+.main-panel{padding:16px;max-width:720px;margin:0 auto}
+.main-panel[hidden]{display:none}
+
+/* ══════════════════════════════
+   THEO TAB STYLES
+══════════════════════════════ */
+#panel-theo{color:var(--theo-text)}
+
+/* Sub-tab bar */
+.theo-subtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px;background:var(--theo-surface);padding:8px;border-radius:10px}
+.theo-stab{flex:1;min-width:90px;padding:8px 6px;border:none;border-radius:6px;background:transparent;color:var(--theo-muted);font-size:.82rem;font-weight:600;text-align:center;transition:background .15s,color .15s}
+.theo-stab[aria-selected="true"]{background:var(--theo-accent);color:#1a2a4a}
+.theo-stab:focus-visible{outline:3px solid var(--theo-accent2);outline-offset:2px}
+.theo-subpanel[hidden]{display:none}
+
+/* Cards */
+.t-card{background:var(--theo-card);border:1px solid var(--theo-border);border-radius:10px;padding:16px;margin-bottom:14px}
+.t-card h3{font-size:1rem;color:var(--theo-accent);margin-bottom:8px}
+.t-card p,.t-card li{font-size:.9rem;line-height:1.6;color:var(--theo-text)}
+.t-card ul,.t-card ol{padding-left:1.2em}
+.t-card ul li,.t-card ol li{margin-bottom:4px}
+
+.chip{display:inline-block;padding:3px 9px;border-radius:20px;font-size:.75rem;font-weight:700;margin:2px}
+.chip-red{background:#8b000033;color:#ff8888;border:1px solid #8b0000}
+.chip-green{background:#0a5c2a33;color:#5de0a0;border:1px solid #2a7a4a}
+.chip-yellow{background:#b8860b33;color:#f5d070;border:1px solid #b8860b}
+
+.step-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.step-num{width:28px;height:28px;border-radius:50%;background:var(--theo-accent);color:#1a2a4a;font-weight:700;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-done .step-num{background:#3a4f7a;color:var(--theo-muted)}
+.step-next .step-num{background:var(--theo-accent);color:#1a2a4a;box-shadow:0 0 0 3px var(--theo-accent2)44}
+.step-sketch .step-num{background:transparent;border:2px dashed var(--theo-muted);color:var(--theo-muted)}
+.step-row p{font-size:.88rem;line-height:1.5;flex:1}
+
+.ifthen-card{border-left:4px solid var(--theo-accent2);padding:10px 12px;background:var(--theo-surface);border-radius:0 8px 8px 0;margin-bottom:10px}
+.ifthen-card .if-label{font-size:.72rem;font-weight:700;color:var(--theo-accent2);text-transform:uppercase;letter-spacing:.06em}
+.ifthen-card .then-label{font-size:.72rem;font-weight:700;color:var(--theo-success);text-transform:uppercase;letter-spacing:.06em;margin-top:6px}
+.ifthen-card p{font-size:.88rem;line-height:1.5;margin-top:2px}
+
+.copy-block{background:#0005;border:1px solid var(--theo-border);border-radius:8px;padding:12px;font-size:.84rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:8px 0}
+.copy-btn{display:inline-block;margin-top:8px;padding:8px 16px;border:none;border-radius:6px;background:var(--theo-accent);color:#1a2a4a;font-weight:700;font-size:.85rem}
+.copy-btn:focus-visible{outline:3px solid var(--theo-accent2);outline-offset:2px}
+.copy-status{font-size:.8rem;color:var(--theo-success);margin-left:8px}
+
+.radio-group{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}
+.radio-group label{display:flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid var(--theo-border);border-radius:6px;cursor:pointer;font-size:.85rem}
+.radio-group label:has(input:checked){border-color:var(--theo-accent);background:var(--theo-accent)22}
+
+.feedback-line{font-size:.85rem;line-height:1.5;padding:8px 10px;border-radius:6px;margin-top:8px;background:var(--theo-surface)}
+
+/* ══════════════════════════════
+   LUCILLE TAB STYLES
+══════════════════════════════ */
+#panel-luc{font-family:'Atkinson Hyperlegible',Georgia,serif;font-size:1.25rem;color:var(--luc-text)}
+
+.luc-subtabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;padding:10px;background:var(--luc-card);border-radius:12px}
+.luc-stab{flex:1;min-width:100px;padding:14px 8px;border:none;border-radius:8px;background:transparent;color:var(--luc-muted);font-size:1rem;font-weight:700;font-family:'Atkinson Hyperlegible',sans-serif;text-align:center;min-height:56px;transition:background .15s,color .15s}
+.luc-stab[aria-selected="true"]{background:var(--luc-teal);color:#fff}
+.luc-stab:focus-visible{outline:4px solid var(--luc-gold);outline-offset:2px}
+.luc-subpanel[hidden]{display:none}
+
+.luc-fr-btn{padding:10px 18px;border:2px solid var(--luc-teal);border-radius:8px;background:transparent;color:var(--luc-teal);font-weight:700;font-size:1rem;font-family:'Atkinson Hyperlegible',sans-serif;min-height:56px}
+.luc-fr-btn:focus-visible{outline:4px solid var(--luc-gold);outline-offset:2px}
+.luc-fr-btn.active{background:var(--luc-teal);color:#fff}
+
+.l-card{background:var(--luc-surface);border:2px solid var(--luc-border);border-radius:12px;padding:20px;margin-bottom:18px}
+.l-card h3{font-size:1.3rem;color:var(--luc-teal-dk);margin-bottom:10px;font-weight:700}
+body.luc-active .l-card h3{color:var(--luc-teal)}
+.l-card p,.l-card li{font-size:1.2rem;line-height:1.7;color:var(--luc-text)}
+.l-card ul{padding-left:1.4em}
+.l-card li{margin-bottom:6px}
+
+.l-flag{display:flex;align-items:flex-start;gap:10px;padding:14px;background:var(--luc-card);border-radius:10px;margin-bottom:12px;border-left:6px solid var(--luc-danger)}
+.l-flag-icon{font-size:1.4rem;flex-shrink:0;color:var(--luc-danger);font-weight:900}
+.l-flag p{font-size:1.2rem;line-height:1.6;font-weight:700}
+
+/* Quiz */
+.quiz-card{background:var(--luc-surface);border:3px solid var(--luc-border);border-radius:14px;padding:22px;margin-bottom:20px}
+.quiz-msg{font-size:1.25rem;line-height:1.7;background:var(--luc-card);border-radius:10px;padding:18px;margin-bottom:20px;font-style:italic;border-left:5px solid var(--luc-teal)}
+.quiz-buttons{display:flex;flex-direction:column;gap:12px}
+.quiz-btn{width:100%;padding:16px 20px;border:2px solid var(--luc-border);border-radius:10px;background:var(--luc-surface);color:var(--luc-text);font-size:1.2rem;font-weight:700;font-family:'Atkinson Hyperlegible',sans-serif;min-height:56px;text-align:left;transition:background .15s,border-color .15s}
+.quiz-btn:hover{background:var(--luc-card);border-color:var(--luc-teal)}
+.quiz-btn:focus-visible{outline:4px solid var(--luc-gold);outline-offset:2px}
+.quiz-btn.correct{background:#0a5c2a22;border-color:var(--luc-success);color:var(--luc-success)}
+.quiz-btn.wrong{background:#8b000022;border-color:var(--luc-danger);color:var(--luc-danger)}
+.quiz-btn.selected{background:var(--luc-teal)22;border-color:var(--luc-teal)}
+.quiz-feedback{font-size:1.2rem;line-height:1.7;padding:16px;border-radius:10px;margin-top:14px;border:2px solid transparent}
+.quiz-feedback.fb-correct{background:#0a5c2a18;border-color:var(--luc-success);color:var(--luc-success)}
+.quiz-feedback.fb-wrong{background:#8b000018;border-color:var(--luc-danger);color:var(--luc-danger)}
+.quiz-feedback.fb-cb{background:var(--luc-card);border-color:var(--luc-teal);color:var(--luc-teal-dk)}
+body.luc-active .quiz-feedback.fb-cb{color:var(--luc-teal)}
+.quiz-next-btn{margin-top:16px;width:100%;padding:16px;border:none;border-radius:10px;background:var(--luc-teal);color:#fff;font-size:1.2rem;font-weight:700;font-family:'Atkinson Hyperlegible',sans-serif;min-height:56px}
+.quiz-next-btn:focus-visible{outline:4px solid var(--luc-gold);outline-offset:2px}
+.streak-bar{text-align:right;font-size:1rem;color:var(--luc-muted);margin-bottom:8px}
+
+.code-card{background:var(--luc-teal);color:#fff;border-radius:14px;padding:24px;margin-bottom:18px;text-align:center}
+.code-card .code-word{font-size:2.4rem;font-weight:700;letter-spacing:.05em;color:#fff;display:block;margin:10px 0}
+.code-card p{font-size:1.2rem;color:#d0f0ec;line-height:1.6}
+
+.l-details{margin-bottom:14px}
+.l-details summary{font-size:1.2rem;font-weight:700;color:var(--luc-teal-dk);padding:12px 14px;background:var(--luc-card);border-radius:8px;margin-bottom:4px}
+body.luc-active .l-details summary{color:var(--luc-teal)}
+.l-details[open] summary{border-radius:8px 8px 0 0;margin-bottom:0}
+.l-details-body{padding:14px;background:var(--luc-surface);border:2px solid var(--luc-border);border-top:none;border-radius:0 0 8px 8px;font-size:1.15rem;line-height:1.7}
+.l-details-body details{margin-top:10px}
+.l-details-body summary{font-size:1.1rem;color:var(--luc-teal);padding:8px 10px;background:var(--luc-card);border-radius:6px}
+.l-details-body .l2-body{padding:10px 12px;font-size:1.05rem;line-height:1.7;border-left:3px solid var(--luc-teal);margin-top:4px}
+
+/* Gold star accent */
+.gold-star{color:var(--luc-gold);font-size:1.1em;margin-right:4px}
+
+/* ── Footer ── */
+.footer{text-align:center;padding:24px 16px;font-size:.78rem;color:#888;border-top:1px solid #3334}
+body.luc-active .footer{color:var(--luc-muted);font-size:1rem}
+
+/* ── Swing-leads badge ── */
+.swing-banner{background:var(--theo-accent);color:#1a2a4a;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-weight:700;font-size:.88rem}
+.swing-banner-luc{background:var(--luc-gold);color:#1a0000;border-radius:10px;padding:14px 16px;margin-bottom:16px;font-weight:700;font-size:1.15rem}
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<!-- ── TOP BAR ── -->
+<p class="top-bar">Sample &middot; made-up people &middot; after three visits with MetaDAX</p>
+
+<!-- ── MAIN TABS ── -->
+<div class="main-tabs" role="tablist" aria-label="Choose a tab">
+  <button class="main-tab-btn" role="tab" id="tab-theo" aria-selected="true" aria-controls="panel-theo">For Theo</button>
+  <button class="main-tab-btn" role="tab" id="tab-luc" aria-selected="false" aria-controls="panel-luc">For M&#233;m&#232;re</button>
+</div>
+
+<!-- ══════════════════════════
+     THEO PANEL
+══════════════════════════ -->
+<div class="main-panel" id="panel-theo" role="tabpanel" aria-labelledby="tab-theo">
+
+  <!-- Sub-tab bar -->
+  <div class="theo-subtabs" role="tablist" aria-label="Theo sections">
+    <button class="theo-stab" role="tab" id="tt-next" aria-selected="true" aria-controls="tp-next">Up next</button>
+    <button class="theo-stab" role="tab" id="tt-learn" aria-selected="false" aria-controls="tp-learn">What we learned</button>
+    <button class="theo-stab" role="tab" id="tt-steps" aria-selected="false" aria-controls="tp-steps">The steps</button>
+    <button class="theo-stab" role="tab" id="tt-tricky" aria-selected="false" aria-controls="tp-tricky">When it&rsquo;s tricky</button>
+    <button class="theo-stab" role="tab" id="tt-tell" aria-selected="false" aria-controls="tp-tell">Tell us &amp; ask</button>
+  </div>
+
+  <!-- UP NEXT -->
+  <div class="theo-subpanel" id="tp-next" role="tabpanel" aria-labelledby="tt-next">
+    <div class="t-card">
+      <h3>Visit 4 goal</h3>
+      <p>Practise reading real-looking messages together. Set the family code word on paper. Go over who to call: a family member, the number on her bank card, the local police, or the Canadian Anti-Fraud Centre.</p>
+    </div>
+    <div class="t-card">
+      <h3>What to bring</h3>
+      <ul>
+        <li>Her phone, unlocked (or a tablet)</li>
+        <li>A pen and an index card for the code word</li>
+        <li>10 minutes of patience &mdash; let her tap first, every time</li>
+      </ul>
+    </div>
+    <div class="t-card">
+      <h3>How it goes (roughly)</h3>
+      <ol>
+        <li>Open her quiz tab on this page together. Let her tap the answers.</li>
+        <li>After each round, ask: <em>"How did you know?"</em> &mdash; don&rsquo;t explain, ask.</li>
+        <li>Write the code word on the card together. She picks the word.</li>
+        <li>Go over the short contact list: who she calls if something feels wrong.</li>
+        <li>Ask her the counter question (see below). Listen.</li>
+      </ol>
+    </div>
+    <div class="swing-banner">&#x2194; Your turn to learn &mdash; Lucille teaches you how she reads people. Ask her: "When someone lied to you across the counter, what gave them away?"</div>
+    <div class="t-card">
+      <h3>What to say &amp; what to skip</h3>
+      <p><span class="chip chip-green">Say</span> "What does that feel like to you?" &nbsp;<span class="chip chip-green">Say</span> "That&rsquo;s exactly the right call." &nbsp;<span class="chip chip-green">Say</span> "I didn&rsquo;t know that."</p>
+      <p style="margin-top:8px"><span class="chip chip-red">Skip</span> Grabbing the phone to show her. &nbsp;<span class="chip chip-red">Skip</span> "It&rsquo;s easy, just&hellip;" &nbsp;<span class="chip chip-red">Skip</span> Any sentence that starts with "No, you&hellip;"</p>
+    </div>
+    <div class="t-card">
+      <h3>Spam-call filter (do this together)</h3>
+      <p>Find <strong>Phone</strong> in her settings, then look for <strong>Silence Unknown Callers</strong> (iPhone) or <strong>Spam protection</strong> under caller ID settings (Android). Toggle it on. Unknown callers go to voicemail; people she knows still ring through.</p>
+      <p style="margin-top:6px;color:var(--theo-muted);font-size:.82rem">The exact label differs by phone model &mdash; search "silence unknown" in her settings search bar if you can&rsquo;t find it.</p>
+    </div>
+  </div>
+
+  <!-- WHAT WE LEARNED -->
+  <div class="theo-subpanel" id="tp-learn" role="tabpanel" aria-labelledby="tt-learn" hidden>
+    <div class="t-card">
+      <h3>About M&#233;m&#232;re &mdash; visit by visit</h3>
+      <div class="step-row">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">1</div>
+        <div>
+          <p><strong>She nearly tapped a fake customs link</strong> because the text looked urgent. Small print made it harder to question it.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> big text and both languages &mdash; that&rsquo;s her tab now.</p>
+        </div>
+      </div>
+      <div class="step-row" style="margin-top:10px">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">2</div>
+        <div>
+          <p><strong>She spotted a fake tax voicemail herself</strong> using the three red flags you made together. Rules she can say out loud are the ones that stick.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> the quiz gives her rules with names (rush, secret, strange payment).</p>
+        </div>
+      </div>
+      <div class="step-row" style="margin-top:10px">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">3</div>
+        <div>
+          <p><strong>She hung up on a fake "grandson in trouble" call</strong> because the caller said "Grandma" &mdash; and she knew you call her M&#233;m&#232;re. The code-word idea was hers, not yours.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> she leads visit 4. Her instinct to slow someone down is sharp; you&rsquo;re learning it from her.</p>
+        </div>
+      </div>
+    </div>
+    <div class="t-card">
+      <h3>About you &mdash; visit by visit</h3>
+      <div class="step-row">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">1</div>
+        <div>
+          <p>You explained well but the print was too small and it was all in English. She couldn&rsquo;t practise independently after you left.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> format and language matter as much as content.</p>
+        </div>
+      </div>
+      <div class="step-row" style="margin-top:10px">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">2</div>
+        <div>
+          <p>You made her the red-flag card &mdash; a rule she could say out loud. That was the right call.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> keep making things she can hold, post, or repeat to herself.</p>
+        </div>
+      </div>
+      <div class="step-row" style="margin-top:10px">
+        <div class="step-num step-done" style="background:#3a4f7a;color:var(--theo-muted)">3</div>
+        <div>
+          <p>You noticed the code-word idea was hers. You didn&rsquo;t take it over. That was the best thing you did that visit.</p>
+          <p style="color:var(--theo-accent);margin-top:4px;font-size:.84rem"><strong>So:</strong> your job this visit is to ask and listen. She has things to teach you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THE STEPS -->
+  <div class="theo-subpanel" id="tp-steps" role="tabpanel" aria-labelledby="tt-steps" hidden>
+    <div class="t-card">
+      <div class="step-row step-done">
+        <div class="step-num" style="background:#3a4f7a;color:var(--theo-muted)">1</div>
+        <p><strong>Visit 1 &mdash; done.</strong> Real scam example (customs text). Spotted the link; text was too small. Moved to big-print bilingual format.</p>
+      </div>
+      <div class="step-row step-done" style="margin-top:12px">
+        <div class="step-num" style="background:#3a4f7a;color:var(--theo-muted)">2</div>
+        <p><strong>Visit 2 &mdash; done.</strong> Three red flags on a card. She caught a fake tax voicemail herself. Rules with names that stick.</p>
+      </div>
+      <div class="step-row step-done" style="margin-top:12px">
+        <div class="step-num" style="background:#3a4f7a;color:var(--theo-muted)">3</div>
+        <p><strong>Visit 3 &mdash; done.</strong> Fake "grandson in trouble" call. She hung up. Code-word idea: hers. She leads next time.</p>
+      </div>
+      <div class="step-row step-next" style="margin-top:12px">
+        <div class="step-num">4</div>
+        <p><strong>Visit 4 &mdash; now.</strong> Quiz on realistic messages. Code word on a card. Contact list. Lucille teaches you how she reads people.</p>
+      </div>
+      <div class="step-row step-sketch" style="margin-top:12px">
+        <div class="step-num">5+</div>
+        <p style="color:var(--theo-muted)"><em>Where this could go:</em> Lucille brings what she&rsquo;s learned to her seniors&rsquo; club. You turn her "slow them down" questions into a card her friends can keep.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHEN IT'S TRICKY -->
+  <div class="theo-subpanel" id="tp-tricky" role="tabpanel" aria-labelledby="tt-tricky" hidden>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>She gets one wrong in the quiz and looks embarrassed</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Say: "That one fools a lot of people. The scammers design it that way." Move on without dwelling.</p>
+    </div>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>She asks you to just look at it and tell her the answer</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Say: "I&rsquo;ll look after you do. What&rsquo;s your first feeling?" Keep the phone in her hands.</p>
+    </div>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>She gets annoyed or says "this is too complicated"</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Slow down. Put the phone down. Say: "We don&rsquo;t need to finish today. What one thing feels solid?" One rule is enough for one visit.</p>
+    </div>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>You feel impatient and want to grab the phone</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Sit on your hands, literally if needed. Count to five. She needs the time to think, not your speed.</p>
+    </div>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>She tells you something about reading liars that surprises you</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Write it down in front of her. Say: "I want to remember that." She has 35 years on you here.</p>
+    </div>
+    <div class="ifthen-card">
+      <div class="if-label">If &mdash;</div>
+      <p>You&rsquo;re not sure if a message is a scam either</p>
+      <div class="then-label">Then &mdash;</div>
+      <p>Say exactly that: "I&rsquo;m not sure either &mdash; so we call back on the number we already have. That&rsquo;s always the right move." Modelling uncertainty is useful.</p>
+    </div>
+  </div>
+
+  <!-- TELL US & ASK -->
+  <div class="theo-subpanel" id="tp-tell" role="tabpanel" aria-labelledby="tt-tell" hidden>
+    <div class="t-card">
+      <h3>Send us a note after visit 4</h3>
+      <p style="font-size:.82rem;color:var(--theo-muted);margin-bottom:8px">Copy this, fill in the blanks, send it back to MetaDAX.</p>
+      <div class="copy-block" id="theo-note">Visit 4 note
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;
+Quiz: she got ___ / 5 right.
+Code word: set [ ] yes [ ] not yet
+Lucille's reading-people insight: ___________________________
+The moment I almost grabbed the phone: [ ] didn't happen [ ] happened - what I did instead: ___________
+One thing I want to do differently in visit 5: ___________________________</div>
+      <button class="copy-btn" id="btn-copy-note">Copy note</button>
+      <span class="copy-status" id="copy-status-note" aria-live="polite"></span>
+    </div>
+    <div class="t-card">
+      <h3>Ask your own AI</h3>
+      <p style="font-size:.82rem;color:var(--theo-muted);margin-bottom:8px">Paste this into any AI chat to think through visit 4.</p>
+      <div class="copy-block" id="theo-ai-prompt">I'm helping my 78-year-old grandmother learn to spot phone, text and email scams. She lives alone in Dieppe, NB and uses a new smartphone. She already knows three red flags (rush, secret, strange payment) and came up with a family code word herself. I tend to grab the phone and fix things; I'm learning to let her work through it.
+
+Visit 4 plan: quiz her on realistic messages, write the code word on a card, go over who to call if she's unsure. She's also going to teach me how she used to read customers in her hardware store.
+
+What questions could I ask her at the end that would help me understand how she's feeling about all of this?</div>
+      <button class="copy-btn" id="btn-copy-ai">Copy prompt</button>
+      <span class="copy-status" id="copy-status-ai" aria-live="polite"></span>
+    </div>
+    <div class="t-card">
+      <h3>Did visit 4 help?</h3>
+      <div class="radio-group" id="did-help-group" role="radiogroup" aria-label="Did it help">
+        <label><input type="radio" name="didhelp" value="yes"> Yes</label>
+        <label><input type="radio" name="didhelp" value="notyet"> Not yet</label>
+      </div>
+      <p class="feedback-line" id="help-feedback" aria-live="polite" hidden></p>
+    </div>
+  </div>
+
+</div><!-- /panel-theo -->
+
+<!-- ══════════════════════════
+     LUCILLE PANEL
+══════════════════════════ -->
+<div class="main-panel" id="panel-luc" role="tabpanel" aria-labelledby="tab-luc" hidden>
+
+  <!-- Language toggle + subtabs row -->
+  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px">
+    <div style="display:flex;gap:8px">
+      <button class="luc-fr-btn active" id="btn-fr" aria-pressed="true" data-lang="fr">Fran&#231;ais</button>
+      <button class="luc-fr-btn" id="btn-en" aria-pressed="false" data-lang="en">English</button>
+    </div>
+  </div>
+
+  <div class="luc-subtabs" role="tablist" aria-label="Sections pour Mémère">
+    <button class="luc-stab" role="tab" id="lt-quiz" aria-selected="true" aria-controls="lp-quiz" data-fr="Vrai ou arnaque&nbsp;?" data-en="Real or scam?">Vrai ou arnaque&nbsp;?</button>
+    <button class="luc-stab" role="tab" id="lt-flags" aria-selected="false" aria-controls="lp-flags" data-fr="Mes trois signaux" data-en="My three flags">Mes trois signaux</button>
+    <button class="luc-stab" role="tab" id="lt-code" aria-selected="false" aria-controls="lp-code" data-fr="Notre mot de code" data-en="Our code word">Notre mot de code</button>
+    <button class="luc-stab" role="tab" id="lt-who" aria-selected="false" aria-controls="lp-who" data-fr="Qui appeler" data-en="Who to call">Qui appeler</button>
+    <button class="luc-stab" role="tab" id="lt-teach" aria-selected="false" aria-controls="lp-teach" data-fr="Tu enseignes" data-en="You teach">Tu enseignes</button>
+    <button class="luc-stab" role="tab" id="lt-faq" aria-selected="false" aria-controls="lp-faq" data-fr="Questions" data-en="Questions">Questions</button>
+  </div>
+
+  <!-- QUIZ TAB -->
+  <div class="luc-subpanel" id="lp-quiz" role="tabpanel" aria-labelledby="lt-quiz">
+    <div class="streak-bar" id="luc-streak-bar" aria-live="polite"></div>
+    <div class="quiz-card" id="quiz-container">
+      <!-- filled by JS -->
+    </div>
+  </div>
+
+  <!-- THREE FLAGS -->
+  <div class="luc-subpanel" id="lp-flags" role="tabpanel" aria-labelledby="lt-flags" hidden>
+    <div class="l-card">
+      <h3 data-fr="Mes trois signaux d&#39;alarme" data-en="My three warning signs">Mes trois signaux d&#39;alarme</h3>
+      <div class="l-flag">
+        <div class="l-flag-icon" aria-hidden="true">&#9650;</div>
+        <p data-fr="URGENT &mdash; Il faut agir tout de suite, sinon il est trop tard." data-en="RUSH &mdash; Act right now or it will be too late.">URGENT &mdash; Il faut agir tout de suite, sinon il est trop tard.</p>
+      </div>
+      <div class="l-flag">
+        <div class="l-flag-icon" aria-hidden="true">&#9650;</div>
+        <p data-fr="SECRET &mdash; N&#39;en parle &agrave; personne, pas m&ecirc;me &agrave; ta famille." data-en="SECRET &mdash; Don&#39;t tell anyone, not even your family.">SECRET &mdash; N&#39;en parle &agrave; personne, pas m&ecirc;me &agrave; ta famille.</p>
+      </div>
+      <div class="l-flag">
+        <div class="l-flag-icon" aria-hidden="true">&#9650;</div>
+        <p data-fr="PAIEMENT BIZARRE &mdash; Carte-cadeau, cryptomonnaie ou virement." data-en="STRANGE PAYMENT &mdash; Gift card, cryptocurrency or wire transfer.">PAIEMENT BIZARRE &mdash; Carte-cadeau, cryptomonnaie ou virement.</p>
+      </div>
+    </div>
+    <div class="l-card" style="border-color:var(--luc-teal)">
+      <h3 data-fr="Si j&#39;ai un doute" data-en="When I&#39;m not sure">Si j&#39;ai un doute</h3>
+      <p data-fr="Je raccroche. Je rappelle sur le num&eacute;ro que je connais d&eacute;j&agrave;. Je dis &agrave; quelqu&#39;un ce qui s&#39;est pass&eacute;." data-en="I hang up. I call back on a number I already know. I tell someone what happened.">Je raccroche. Je rappelle sur le num&eacute;ro que je connais d&eacute;j&agrave;. Je dis &agrave; quelqu&#39;un ce qui s&#39;est pass&eacute;.</p>
+    </div>
+    <div class="l-card" style="border-color:var(--luc-success)">
+      <h3 data-fr="L&#39;Agence du revenu du Canada" data-en="The Canada Revenue Agency">L&#39;Agence du revenu du Canada</h3>
+      <p data-fr="L&#39;ARC ne demande jamais un paiement par carte-cadeau ou en cryptomonnaie." data-en="The CRA never asks for payment by gift card or cryptocurrency.">L&#39;ARC ne demande jamais un paiement par carte-cadeau ou en cryptomonnaie.</p>
+    </div>
+  </div>
+
+  <!-- CODE WORD -->
+  <div class="luc-subpanel" id="lp-code" role="tabpanel" aria-labelledby="lt-code" hidden>
+    <div class="code-card">
+      <p data-fr="Notre mot de code de famille" data-en="Our family code word">Notre mot de code de famille</p>
+      <span class="code-word" id="code-word-display" aria-label="secret">&#8226; &#8226; &#8226; &#8226;</span>
+      <p data-fr="Notre mot reste secret : on l&#39;&eacute;crit seulement sur la carte, jamais en ligne. Et Theo m&#39;appelle toujours M&#233;m&#232;re, jamais &#171;&nbsp;Grand-maman&nbsp;&#187;." data-en="Our word stays secret: we write it only on the card, never online. And Theo always calls me M&#233;m&#232;re, never &#171;Grandma&#187;.">Notre mot reste secret : on l&#39;&eacute;crit seulement sur la carte, jamais en ligne. Et Theo m&#39;appelle toujours M&#233;m&#232;re, jamais &#171;&nbsp;Grand-maman&nbsp;&#187;.</p>
+    </div>
+    <div class="l-card">
+      <h3 data-fr="Comment &ccedil;a fonctionne" data-en="How it works">Comment &ccedil;a fonctionne</h3>
+      <ul>
+        <li data-fr="Si un appel pr&eacute;tend &ecirc;tre Theo, je demande notre mot de code." data-en="If a call claims to be Theo, I ask for our code word.">Si un appel pr&eacute;tend &ecirc;tre Theo, je demande notre mot de code.</li>
+        <li data-fr="S&#39;il ne le conna&icirc;t pas, je raccroche tout de suite." data-en="If they don&#39;t know it, I hang up right away.">S&#39;il ne le conna&icirc;t pas, je raccroche tout de suite.</li>
+        <li data-fr="Je rappelle Theo sur son num&eacute;ro &agrave; moi." data-en="I call Theo back on the number I have for him.">Je rappelle Theo sur son num&eacute;ro &agrave; moi.</li>
+      </ul>
+    </div>
+    <div class="l-card" style="border-color:var(--luc-gold)">
+      <p><span class="gold-star" aria-hidden="true">&#9733;</span><span data-fr="C&#39;est toi qui as eu cette id&eacute;e. C&#39;&eacute;tait la bonne." data-en="This idea was yours. It was the right one.">C&#39;est toi qui as eu cette id&eacute;e. C&#39;&eacute;tait la bonne.</span></p>
+    </div>
+  </div>
+
+  <!-- WHO TO CALL -->
+  <div class="luc-subpanel" id="lp-who" role="tabpanel" aria-labelledby="lt-who" hidden>
+    <div class="l-card">
+      <h3 data-fr="Si quelque chose semble louche" data-en="If something seems off">Si quelque chose semble louche</h3>
+      <ol>
+        <li><p data-fr="J&#39;appelle un membre de ma famille." data-en="I call a family member.">J&#39;appelle un membre de ma famille.</p></li>
+        <li><p data-fr="J&#39;appelle ma banque &mdash; le num&eacute;ro qui est inscrit au dos de ma carte." data-en="I call my bank &mdash; the number on the back of my card.">J&#39;appelle ma banque &mdash; le num&eacute;ro qui est inscrit au dos de ma carte.</p></li>
+        <li><p data-fr="J&#39;appelle la police." data-en="I call the police.">J&#39;appelle la police.</p></li>
+        <li><p data-fr="Je signale la fraude au Centre antifraude du Canada." data-en="I report the fraud to the Canadian Anti-Fraud Centre.">Je signale la fraude au Centre antifraude du Canada.</p></li>
+      </ol>
+    </div>
+    <div class="l-card" style="border-color:var(--luc-teal)">
+      <h3 data-fr="Je ne suis jamais seule" data-en="I am never alone">Je ne suis jamais seule</h3>
+      <p data-fr="Tout le monde peut se faire avoir. Signaler une tentative d&#39;arnaque aide &agrave; prot&eacute;ger les autres." data-en="Anyone can be targeted. Reporting a scam attempt helps protect others.">Tout le monde peut se faire avoir. Signaler une tentative d&#39;arnaque aide &agrave; prot&eacute;ger les autres.</p>
+    </div>
+  </div>
+
+  <!-- YOU TEACH -->
+  <div class="luc-subpanel" id="lp-teach" role="tabpanel" aria-labelledby="lt-teach" hidden>
+    <div class="swing-banner-luc" data-fr="&#x2194; Cette fois, c&#39;est toi qui enseignes &agrave; Theo." data-en="&#x2194; This time, you teach Theo.">&#x2194; Cette fois, c&#39;est toi qui enseignes &agrave; Theo.</div>
+    <div class="l-card">
+      <h3 data-fr="Ce que tu sais, lui ne sait pas encore" data-en="What you know that Theo doesn&#39;t yet">Ce que tu sais, lui ne sait pas encore</h3>
+      <p data-fr="Trente-cinq ans au comptoir du magasin. Tu as vu des centaines de clients. Tu sais quand quelqu&#39;un ment." data-en="Thirty-five years behind the hardware store counter. You saw hundreds of customers. You know when someone is lying.">Trente-cinq ans au comptoir du magasin. Tu as vu des centaines de clients. Tu sais quand quelqu&#39;un ment.</p>
+    </div>
+    <div class="l-card" style="border-color:var(--luc-gold)">
+      <h3 data-fr="Ce que tu vas lui montrer" data-en="What you&#39;ll show him">Ce que tu vas lui montrer</h3>
+      <ul>
+        <li data-fr="Les questions que tu posais aux clients que tu ne connaissais pas." data-en="The questions you used to ask customers you didn&#39;t know.">Les questions que tu posais aux clients que tu ne connaissais pas.</li>
+        <li data-fr="Ce qu&#39;un menteur fait quand tu ralentis la conversation." data-en="What a liar does when you slow down the conversation.">Ce qu&#39;un menteur fait quand tu ralentis la conversation.</li>
+        <li data-fr="Pourquoi presser les gens r&eacute;v&egrave;le toujours quelque chose." data-en="Why rushing people always reveals something.">Pourquoi presser les gens r&eacute;v&egrave;le toujours quelque chose.</li>
+      </ul>
+    </div>
+    <div class="l-card">
+      <p><span class="gold-star" aria-hidden="true">&#9733;</span><span data-fr="Theo prend des notes. Il veut apprendre." data-en="Theo is taking notes. He wants to learn.">Theo prend des notes. Il veut apprendre.</span></p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="luc-subpanel" id="lp-faq" role="tabpanel" aria-labelledby="lt-faq" hidden>
+    <details class="l-details">
+      <summary data-fr="Qu&#39;est-ce que je fais si j&#39;ai d&eacute;j&agrave; tap&eacute; sur un lien&nbsp;?" data-en="What if I already tapped a link?">Qu&#39;est-ce que je fais si j&#39;ai d&eacute;j&agrave; tap&eacute; sur un lien&nbsp;?</summary>
+      <div class="l-details-body">
+        <p data-fr="Ne panique pas. Ferme l&#39;application ou l&#39;onglet tout de suite. N&#39;entre aucun mot de passe ni information. Appelle Theo ou un membre de ta famille imm&eacute;diatement." data-en="Don&#39;t panic. Close the app or tab right away. Don&#39;t enter any password or information. Call Theo or a family member right away.">Ne panique pas. Ferme l&#39;application ou l&#39;onglet tout de suite. N&#39;entre aucun mot de passe ni information. Appelle Theo ou un membre de ta famille imm&eacute;diatement.</p>
+        <details>
+          <summary data-fr="Et si j&#39;ai entr&eacute; des informations&nbsp;?" data-en="What if I entered information?">Et si j&#39;ai entr&eacute; des informations&nbsp;?</summary>
+          <div class="l2-body">
+            <p data-fr="Appelle ta banque tout de suite sur le num&eacute;ro au dos de ta carte. Dis-leur ce qui s&#39;est pass&eacute;. Ils ont des &eacute;quipes pour &ccedil;a. Ce n&#39;est pas ta faute &mdash; les escrocs sont des professionnels." data-en="Call your bank right away on the number on the back of your card. Tell them what happened. They have teams for this. It is not your fault &mdash; scammers are professionals.">Appelle ta banque tout de suite sur le num&eacute;ro au dos de ta carte. Dis-leur ce qui s&#39;est pass&eacute;. Ils ont des &eacute;quipes pour &ccedil;a. Ce n&#39;est pas ta faute &mdash; les escrocs sont des professionnels.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="l-details">
+      <summary data-fr="Est-ce que tous les appels inconnus sont dangereux&nbsp;?" data-en="Are all unknown calls dangerous?">Est-ce que tous les appels inconnus sont dangereux&nbsp;?</summary>
+      <div class="l-details-body">
+        <p data-fr="Non. Certains sont de vraies entreprises ou de vraies personnes. La r&egrave;gle simple: si tu n&#39;attends pas l&#39;appel et qu&#39;ils veulent de l&#39;argent ou des informations, rappelle sur un num&eacute;ro que tu connais avant de rien donner." data-en="No. Some are real businesses or real people. The simple rule: if you weren&#39;t expecting the call and they want money or information, call back on a number you already know before giving anything.">Non. Certains sont de vraies entreprises ou de vraies personnes. La r&egrave;gle simple: si tu n&#39;attends pas l&#39;appel et qu&#39;ils veulent de l&#39;argent ou des informations, rappelle sur un num&eacute;ro que tu connais avant de rien donner.</p>
+        <details>
+          <summary data-fr="Comment je trouve un num&eacute;ro que je connais&nbsp;?" data-en="How do I find a number I already know?">Comment je trouve un num&eacute;ro que je connais&nbsp;?</summary>
+          <div class="l2-body">
+            <p data-fr="Le dos de ta carte bancaire. La facture d&#39;une entreprise que tu as d&eacute;j&agrave; utilis&eacute;e. L&#39;annuaire t&eacute;l&eacute;phonique officiel. Jamais le num&eacute;ro qu&#39;un inconnu vient de te donner." data-en="The back of your bank card. An invoice from a company you&#39;ve used before. The official phone directory. Never the number a stranger just gave you.">Le dos de ta carte bancaire. La facture d&#39;une entreprise que tu as d&eacute;j&agrave; utilis&eacute;e. L&#39;annuaire t&eacute;l&eacute;phonique officiel. Jamais le num&eacute;ro qu&#39;un inconnu vient de te donner.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+    <details class="l-details">
+      <summary data-fr="Et les courriels de ma pharmacie ou de ma banque&nbsp;?" data-en="What about emails from my pharmacy or bank?">Et les courriels de ma pharmacie ou de ma banque&nbsp;?</summary>
+      <div class="l-details-body">
+        <p data-fr="Certains sont vrais. Un courriel r&eacute;el de ta pharmacie peut dire que ton ordonnance est pr&ecirc;te &mdash; il ne te demande rien. Si un courriel te demande de payer ou de cliquer pour mettre &agrave; jour un mot de passe, rappelle directement la pharmacie ou la banque." data-en="Some are real. A real email from your pharmacy might say your prescription is ready &mdash; it asks for nothing. If an email asks you to pay or click to update a password, call the pharmacy or bank directly.">Certains sont vrais. Un courriel r&eacute;el de ta pharmacie peut dire que ton ordonnance est pr&ecirc;te &mdash; il ne te demande rien. Si un courriel te demande de payer ou de cliquer pour mettre &agrave; jour un mot de passe, rappelle directement la pharmacie ou la banque.</p>
+        <details>
+          <summary data-fr="Comment je reconnais un vrai courriel de ma banque&nbsp;?" data-en="How do I recognize a real email from my bank?">Comment je reconnais un vrai courriel de ma banque&nbsp;?</summary>
+          <div class="l2-body">
+            <p data-fr="Ta banque ne te demande jamais ton mot de passe par courriel. Elle ne te demande jamais de cliquer sur un lien pour confirmer ton compte. En cas de doute, appelle le num&eacute;ro au dos de ta carte." data-en="Your bank will never ask for your password by email. It will never ask you to click a link to confirm your account. When in doubt, call the number on the back of your card.">Ta banque ne te demande jamais ton mot de passe par courriel. Elle ne te demande jamais de cliquer sur un lien pour confirmer ton compte. En cas de doute, appelle le num&eacute;ro au dos de ta carte.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+</div><!-- /panel-luc -->
+
+<!-- ── FOOTER ── -->
+<p class="footer">Une d&eacute;monstration faite avec MetaDAX, un projet d&#39;apprentissage ouvert, avec l&#39;aide de l&#39;IA. Toutes les personnes mentionn&eacute;es ici sont fictives. &nbsp;&middot;&nbsp; A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</p>
+<script>
+(function(){
+"use strict";
+
+/* ── Quiz data ── */
+var QUIZ = [
+  {
+    fr: {
+      msg: "Bonjour, c’est votre pharmacie. Votre ordonnance pour vos comprimés est prête pour ramassage. Aucune action requise.",
+      opt: ["Vrai","Arnaque","Pas sûre : je rappelle"],
+      correct: 0,
+      fb: [
+        "Exact. Ce message est vrai. Il ne te demande rien : pas d’argent, pas de lien, pas de renseignement. C’est le signe d’un vrai message.",
+        "Celui-là est vrai. Il ne te demande rien du tout. Les arnaques veulent toujours quelque chose.",
+        "Bon instinct de vérifier. Mais ici, le message ne demande rien : pas de lien, pas d’argent. C’est un vrai message."
+      ]
+    },
+    en: {
+      msg: "Hello, this is your pharmacy. Your prescription for your tablets is ready for pickup. No action required.",
+      opt: ["Real","Scam","Not sure: call back"],
+      correct: 0,
+      fb: [
+        "Correct. This message is real. It asks for nothing: no money, no link, no information. That is what a real message looks like.",
+        "This one is real. It asks for nothing at all. Scams always want something.",
+        "Good instinct to check. But this message asks for nothing: no link, no money. It is a real message."
+      ]
+    }
+  },
+  {
+    fr: {
+      msg: "URGENT : Votre colis est retenu. Des frais de douane de 3,49 $ sont dus. Cliquez pour payer immédiatement : [lien]",
+      opt: ["Vrai","Arnaque","Pas sûre : je rappelle"],
+      correct: 1,
+      fb: [
+        "Ce message est une arnaque. Il utilise le signal URGENT et te demande de payer par un lien inconnu. Une vraie compagnie de livraison ne te fait pas payer par un lien inconnu dans un texto.",
+        "Exact. Trois signaux : URGENT, paiement immédiat, et un lien que tu ne connais pas. C’est une arnaque.",
+        "Tu as bien senti que quelque chose n’allait pas. C’est effectivement une arnaque : URGENT + lien inconnu + paiement."
+      ]
+    },
+    en: {
+      msg: "URGENT: Your parcel is held. Customs fee of $3.49 is due. Click to pay immediately: [link]",
+      opt: ["Real","Scam","Not sure: call back"],
+      correct: 1,
+      fb: [
+        "This is a scam. It uses the RUSH signal and asks you to pay through an unknown link. A real delivery company won’t ask you to pay through an unknown link in a text.",
+        "Correct. Three signals: RUSH, immediate payment, and a link you don’t recognize. This is a scam.",
+        "You sensed something was off. It is indeed a scam: RUSH + unknown link + payment."
+      ]
+    }
+  },
+  {
+    fr: {
+      msg: "Bonjour, c’est votre petit-fils. Je suis au poste de police. J’ai besoin de 2 000 $ pour sortir. Ne dis rien à personne. Il faut agir maintenant.",
+      opt: ["Vrai","Arnaque","Pas sûre : je rappelle"],
+      correct: 1,
+      fb: [
+        "C’est une arnaque. Ton petit-fils t’appelle Mémère. Il n’a pas dit le mot de code. Et il dit SECRET + URGENT. Raccroche et rappelle-le.",
+        "Exact. Trois signaux : il dit « petit-fils » et non Mémère, il dit SECRET (« ne dis rien ») et URGENT. Raccroche et rappelle.",
+        "Très bonne décision de rappeler. C’est une arnaque : SECRET + URGENT + pas de mot de code. Theo t’appelle toujours Mémère."
+      ]
+    },
+    en: {
+      msg: "Hello, it’s your grandson. I’m at the police station. I need $2,000 to get out. Don’t tell anyone. I need you to act now.",
+      opt: ["Real","Scam","Not sure: call back"],
+      correct: 1,
+      fb: [
+        "This is a scam. Your grandson calls you Mémère. He didn’t say the code word. And he says SECRET + RUSH. Hang up and call him back.",
+        "Correct. Three signals: he says ‘grandson’ not Mémère, he says SECRET (‘don’t tell anyone’) and RUSH. Hang up and call back.",
+        "Very good decision to call back. This is a scam: SECRET + RUSH + no code word. Theo always calls you Mémère."
+      ]
+    }
+  },
+  {
+    fr: {
+      msg: "Bonjour, c’est l’Agence du revenu du Canada. Votre dossier fiscal indique une dette impayée. Pour éviter une arrestation, payez immédiatement par carte-cadeau.",
+      opt: ["Vrai","Arnaque","Pas sûre : je rappelle"],
+      correct: 1,
+      fb: [
+        "C’est une arnaque. L’ARC ne menace pas d’arrestation immédiate et ne demande jamais de paiement par carte-cadeau. C’est le signal PAIEMENT BIZARRE.",
+        "Exact. Deux signaux : URGENT (arrestation) et PAIEMENT BIZARRE (carte-cadeau). L’ARC n’utilise jamais ces méthodes.",
+        "Bon réflexe. C’est une arnaque : l’ARC ne demande jamais de paiement par carte-cadeau, et jamais de cette façon urgente."
+      ]
+    },
+    en: {
+      msg: "Hello, this is the Canada Revenue Agency. Your file shows an unpaid debt. To avoid arrest, pay immediately by gift card.",
+      opt: ["Real","Scam","Not sure: call back"],
+      correct: 1,
+      fb: [
+        "This is a scam. The CRA does not threaten immediate arrest and never asks for payment by gift card. That is the STRANGE PAYMENT signal.",
+        "Correct. Two signals: RUSH (arrest threat) and STRANGE PAYMENT (gift card). The CRA never uses these methods.",
+        "Good instinct. This is a scam: the CRA never asks for payment by gift card, and never in this urgent way."
+      ]
+    }
+  },
+  {
+    fr: {
+      msg: "Bonjour Lucille, c’est Pierre à l’épicerie. On a trouvé ton sac à main dans le magasin. Tu peux passer le chercher au service à la clientèle quand tu veux.",
+      opt: ["Vrai","Arnaque","Pas sûre : je rappelle"],
+      correct: 2,
+      fb: [
+        "Rappeler est la bonne décision ici. Ce message semble vrai (pas d’argent demandé, pas de lien), mais tu ne connais pas « Pierre ». Rappelle l’épicerie directement pour vérifier.",
+        "Ce message semble vrai, mais rappeler est encore sage. Appelle l’épicerie sur le numéro que tu connais pour confirmer.",
+        "Exactement la bonne réponse. Ce message semble réel, mais rappeler l’épicerie directement pour vérifier ne prend qu’une minute."
+      ]
+    },
+    en: {
+      msg: "Hello Lucille, this is Pierre at the grocery store. We found your handbag in the store. You can pick it up at customer service whenever you like.",
+      opt: ["Real","Scam","Not sure: call back"],
+      correct: 2,
+      fb: [
+        "Calling back is the right move here. This message looks real (no money asked, no link), but you don’t know ‘Pierre’. Call the grocery store directly to check.",
+        "This message looks real, but calling back is still wise. Call the grocery store on the number you know to confirm.",
+        "Exactly right. This message looks real, but calling the grocery store directly to check takes only a minute."
+      ]
+    }
+  }
+];
+
+/* ── State ── */
+var lang = "fr";
+var quizIdx = 0;
+var streak = 0;
+var answered = false;
+var difficulty = 0; // 0=normal, 1=harder
+
+/* ── Helpers ── */
+function t(el){ return el ? (el.dataset[lang] || el.textContent) : ""; }
+function applyLang(){
+  document.querySelectorAll("[data-fr]").forEach(function(el){
+    el.textContent = el.dataset[lang] || el.dataset.fr;
+  });
+  document.querySelectorAll(".luc-stab").forEach(function(btn){
+    btn.textContent = btn.dataset[lang] || btn.dataset.fr || btn.textContent;
+  });
+  renderQuiz();
+}
+
+/* ── Main tabs ── */
+var mainBtns = document.querySelectorAll(".main-tab-btn");
+var mainPanels = document.querySelectorAll(".main-panel");
+mainBtns.forEach(function(btn){
+  btn.addEventListener("click", function(){
+    mainBtns.forEach(function(b){ b.setAttribute("aria-selected","false"); });
+    mainPanels.forEach(function(p){ p.hidden = true; });
+    btn.setAttribute("aria-selected","true");
+    document.getElementById(btn.getAttribute("aria-controls")).hidden = false;
+    var isLuc = btn.id === "tab-luc";
+    document.body.classList.toggle("luc-active", isLuc);
+  });
+});
+
+/* ── Theo sub-tabs ── */
+function initSubtabs(tabSel, panelSel){
+  var tabs = document.querySelectorAll(tabSel);
+  var panels = document.querySelectorAll(panelSel);
+  tabs.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      tabs.forEach(function(b){ b.setAttribute("aria-selected","false"); });
+      panels.forEach(function(p){ p.hidden = true; });
+      btn.setAttribute("aria-selected","true");
+      document.getElementById(btn.getAttribute("aria-controls")).hidden = false;
+    });
+  });
+}
+initSubtabs(".theo-stab", ".theo-subpanel");
+initSubtabs(".luc-stab", ".luc-subpanel");
+
+/* ── Language toggle ── */
+document.getElementById("btn-fr").addEventListener("click", function(){
+  lang = "fr";
+  document.getElementById("btn-fr").setAttribute("aria-pressed","true");
+  document.getElementById("btn-fr").classList.add("active");
+  document.getElementById("btn-en").setAttribute("aria-pressed","false");
+  document.getElementById("btn-en").classList.remove("active");
+  applyLang();
+});
+document.getElementById("btn-en").addEventListener("click", function(){
+  lang = "en";
+  document.getElementById("btn-en").setAttribute("aria-pressed","true");
+  document.getElementById("btn-en").classList.add("active");
+  document.getElementById("btn-fr").setAttribute("aria-pressed","false");
+  document.getElementById("btn-fr").classList.remove("active");
+  applyLang();
+});
+
+/* ── Quiz ── */
+function renderQuiz(){
+  var container = document.getElementById("quiz-container");
+  var bar = document.getElementById("luc-streak-bar");
+  if (!container) return;
+  var q = QUIZ[quizIdx % QUIZ.length];
+  var d = q[lang];
+  var streakStars = streak > 0 ? ("&#9733;".repeat(Math.min(streak,5))) : "";
+  bar.innerHTML = lang==="fr"
+    ? "Question " + (quizIdx+1) + " sur " + QUIZ.length + (streakStars ? " &nbsp;&nbsp; Série : " + streakStars : "")
+    : "Question " + (quizIdx+1) + " of " + QUIZ.length + (streakStars ? " &nbsp;&nbsp; Streak: " + streakStars : "");
+  var btnLabels = d.opt;
+  container.innerHTML =
+    "<div class='quiz-msg' role='status' aria-live='polite'>" + d.msg + "</div>" +
+    "<div class='quiz-buttons' role='group' aria-label='" + (lang==="fr" ? "Vos choix" : "Your choices") + "'>" +
+    btnLabels.map(function(lbl,i){
+      return "<button class='quiz-btn' data-idx='" + i + "'>" + lbl + "</button>";
+    }).join("") +
+    "</div>";
+  answered = false;
+  container.querySelectorAll(".quiz-btn").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      if (answered) return;
+      answered = true;
+      var chosen = parseInt(btn.dataset.idx, 10);
+      var correct = d.correct;
+      container.querySelectorAll(".quiz-btn").forEach(function(b){ b.disabled = true; });
+      btn.classList.add(chosen === correct ? "correct" : (correct === 2 ? "selected" : "wrong"));
+      var fbEl = document.createElement("div");
+      fbEl.className = "quiz-feedback " + (chosen === correct ? "fb-correct" : chosen === 2 ? "fb-cb" : "fb-wrong");
+      fbEl.setAttribute("role","alert");
+      fbEl.textContent = d.fb[chosen];
+      container.appendChild(fbEl);
+      if (chosen === correct){ streak++; } else { streak = Math.max(0,streak-1); }
+      if (streak >= 3){ difficulty = 1; }
+      if (streak === 0){ difficulty = 0; }
+      var nextBtn = document.createElement("button");
+      nextBtn.className = "quiz-next-btn";
+      nextBtn.textContent = lang==="fr" ? "Suivant ›" : "Next ›";
+      nextBtn.addEventListener("click", function(){
+        quizIdx = (quizIdx + 1) % QUIZ.length;
+        renderQuiz();
+      });
+      container.appendChild(nextBtn);
+      nextBtn.focus();
+    });
+  });
+}
+renderQuiz();
+
+/* ── Copy buttons ── */
+function setupCopy(btnId, sourceId, statusId){
+  var btn = document.getElementById(btnId);
+  if (!btn) return;
+  btn.addEventListener("click", function(){
+    var text = document.getElementById(sourceId).innerText;
+    var status = document.getElementById(statusId);
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        status.textContent = lang==="fr" ? "Copié !" : "Copied!";
+        setTimeout(function(){ status.textContent = ""; }, 2500);
+      }).catch(function(){ fallback(text,status); });
+    } else { fallback(text,status); }
+  });
+  function fallback(text,status){
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.cssText = "position:fixed;opacity:0";
+    document.body.appendChild(ta);
+    ta.select();
+    try{ document.execCommand("copy"); status.textContent = "Copied!"; }
+    catch(e){ status.textContent = "Select text above to copy."; }
+    document.body.removeChild(ta);
+    setTimeout(function(){ status.textContent = ""; }, 2500);
+  }
+}
+setupCopy("btn-copy-note","theo-note","copy-status-note");
+setupCopy("btn-copy-ai","theo-ai-prompt","copy-status-ai");
+
+/* ── Did it help radio ── */
+var helpFb = document.getElementById("help-feedback");
+document.querySelectorAll("input[name='didhelp']").forEach(function(inp){
+  inp.addEventListener("change", function(){
+    helpFb.hidden = false;
+    helpFb.textContent = inp.value === "yes"
+      ? "Great. Tell us what clicked and we’ll build on it."
+      : "Thanks for saying so. Tell us what felt off and we’ll adjust visit 5.";
+  });
+});
+
+})();
+</script>
+
+</body>
+</html>

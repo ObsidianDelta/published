@@ -1,0 +1,143 @@
+/* ============================================================================
+   Cultural Showcase Kit — the shared look for "one dish, its story" showcases.
+   Dish-agnostic. A dish module (dish.js) supplies content and 3D props; this
+   stylesheet and cultural-showcase.js supply the chrome, the scene frame, the
+   HTML label overlay, the panel widgets, and the 2D fallback.
+   Palette variables can be overridden per dish on :root by the dish module.
+   ============================================================================ */
+/* One clean, bright scheme — paper, ink, a soft rule. No brown surfaces.
+   The dish module supplies the accent trio on :root (see SHOWCASE-KIT.md §5):
+     --accent    the single accent  (buttons, active station, links)
+     --accent2   the reader/review markers only
+     --turmeric  the streak and small highlights
+   Defaults below are this dish's (chilli red / curry-leaf green / turmeric) so the
+   page is correct even before the dish's JS runs. Every text token holds ≥4.5:1 on
+   paper and on white; the accent is used for links/buttons, the ink for body copy. */
+:root{
+  --bg:#faf7f1;        /* paper — the page */
+  --surface:#ffffff;   /* cards — white, soft rule as border */
+  --surface2:#f4f1ea;  /* faint fill: chips, slots, the recipe pre */
+  --text:#15181d;      /* ink — body copy */
+  --muted:#5a6066;     /* muted copy — passes 4.5:1 on paper and white */
+  --line:#e4ded3;      /* the soft rule */
+  --accent:#c8371e;    /* chilli red — dish accent (overridable by the dish) */
+  --accent2:#2f6b3a;   /* curry-leaf green — reader/review markers only */
+  --turmeric:#e0a81c;  /* turmeric — streak + small highlights (bg, never small text) */
+  --good:#2f6b3a; --bad:#b4291a;
+  --onaccent:#ffffff;  /* text on an accent fill */
+  --hot:#c8371e; --coc:#f2ead9;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  line-height:1.5;-webkit-text-size-adjust:100%;overflow-x:hidden}
+.ta{font-family:"Noto Sans Tamil","Atkinson Hyperlegible",sans-serif}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+a{color:var(--accent)}
+header.top{padding:22px 0 10px}
+.kicker{font-family:"Big Shoulders Display",sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  font-size:.78rem;color:var(--accent);font-weight:800}
+h1{font-family:"Big Shoulders Display",sans-serif;font-weight:800;font-size:clamp(1.7rem,6vw,3rem);
+  line-height:1.02;margin:.15em 0 .1em}
+.sub{color:var(--muted);font-size:1.02rem;margin:.2em 0 0;max-width:62ch}
+.facelines{margin:14px 0 6px;font-size:.92rem;color:var(--muted)}
+.facelines b{color:var(--text)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0 4px}
+.btn{font:inherit;border:1px solid var(--line);background:var(--surface);color:var(--text);
+  padding:8px 13px;border-radius:999px;cursor:pointer;font-size:.9rem;text-decoration:none;display:inline-block}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--onaccent);border-color:var(--accent);font-weight:700}
+.toggle{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.toggle button{font:inherit;border:0;background:transparent;color:var(--muted);padding:8px 14px;cursor:pointer;font-size:.9rem}
+.toggle button[aria-pressed="true"]{background:var(--accent);color:var(--onaccent);font-weight:700}
+nav.stations{display:flex;gap:6px;overflow-x:auto;padding:10px 0;margin:8px 0 0;-webkit-overflow-scrolling:touch}
+nav.stations button{white-space:nowrap;flex:0 0 auto;font:inherit;border:1px solid var(--line);
+  background:var(--surface);color:var(--text);border-radius:12px;padding:9px 13px;cursor:pointer;font-size:.88rem}
+nav.stations button[aria-current="true"]{border-color:var(--accent);background:var(--surface2);box-shadow:inset 0 -3px 0 var(--accent)}
+nav.stations .n{font-family:"Big Shoulders Display",sans-serif;color:var(--accent);font-weight:800;margin-right:7px}
+.layout{display:grid;grid-template-columns:1fr;gap:14px;margin:8px 0 26px}
+@media(min-width:900px){.layout{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);align-items:start}}
+
+/* the 3D stage, and the HTML label overlay layered on top of the canvas */
+.stage{position:relative;background:var(--surface2);border:1px solid var(--line);border-radius:16px;
+  height:min(56vh,380px);overflow:hidden}
+@media(min-width:900px){.stage{height:460px;position:sticky;top:12px}}
+.stage canvas{display:block;width:100%;height:100%;touch-action:none}
+.labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.leaders{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.leader{stroke:rgba(255,255,255,.55);stroke-width:1;stroke-dasharray:2 2}
+.leader.off{visibility:hidden}
+.cs-label{position:absolute;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:auto;
+  font-family:"Atkinson Hyperlegible","Noto Sans Tamil",system-ui,sans-serif;
+  font-size:.74rem;font-weight:700;color:#fff;background:rgba(18,12,6,.72);border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;padding:3px 9px;cursor:default;transition:opacity .25s;backdrop-filter:blur(2px);
+  text-shadow:0 1px 2px rgba(0,0,0,.6);line-height:1.25;max-width:46vw;white-space:normal;text-align:center}
+.cs-label.tap{cursor:pointer;border-color:var(--accent);background:rgba(40,22,8,.82)}
+.cs-label.tap:hover{border-color:#fff}
+.cs-label .scr{font-size:1.05em}
+.cs-label .tr{display:block;font-weight:400;opacity:.8;font-size:.86em;font-style:italic}
+.cs-label.lead{background:rgba(26,70,52,.86);border-color:var(--accent2)}
+.cs-label.hidden{opacity:0;pointer-events:none}
+.nogl,.stage-cap{position:absolute;left:0;right:0;padding:12px 14px;font-size:.84rem;color:var(--muted)}
+.stage-cap{bottom:0;background:linear-gradient(0deg,rgba(0,0,0,.6),transparent);color:#f6f1e8;pointer-events:none;z-index:3}
+.nogl{top:0;bottom:0;display:flex;align-items:center;justify-content:center;text-align:center;z-index:4}
+.stage-progress{position:absolute;left:0;right:0;top:0;padding:10px 14px;font-size:.78rem;letter-spacing:.02em;color:#f6f1e8;background:linear-gradient(180deg,rgba(0,0,0,.45),transparent);pointer-events:none;z-index:3;opacity:.9}
+
+.panel{min-width:0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 16px;margin:0 0 12px}
+.card h2{font-family:"Big Shoulders Display",sans-serif;font-size:1.3rem;margin:.1em 0 .35em}
+.card h3{font-size:1rem;margin:1em 0 .3em}
+.reader{color:var(--accent2);font-weight:700;font-size:.8rem;letter-spacing:.03em}
+.why{border-left:3px solid var(--turmeric);padding-left:11px;color:var(--muted);margin:.5em 0}
+.vocab{list-style:none;padding:0;margin:.4em 0}
+.vocab li{padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.vocab li:hover{background:var(--surface2)}
+.vocab .en{font-weight:700}
+.vocab .scr{font-size:1.25rem}
+.vocab .tr{color:var(--muted);font-style:italic;font-size:.9rem}
+.vocab .flip{color:var(--accent);font-size:.78rem;float:right}
+.ingr{display:flex;flex-wrap:wrap;gap:7px;margin:.5em 0}
+.chip{border:1px solid var(--line);background:var(--surface2);border-radius:10px;padding:7px 10px;cursor:pointer;font-size:.85rem;color:var(--text)}
+.chip:hover{border-color:var(--accent)}
+.chip.sel{border-color:var(--accent);background:var(--accent);color:var(--onaccent)}
+.ans{min-height:1.4em;color:var(--muted);font-size:.9rem;margin:.3em 0}
+.ans.ok{color:var(--good)} .ans.no{color:var(--bad)}
+.streak{font-family:"Big Shoulders Display",sans-serif;font-weight:800;color:var(--text);
+  background:var(--turmeric);border-radius:8px;padding:0 8px}
+.seqrow{display:flex;flex-wrap:wrap;gap:6px;margin:.4em 0}
+.seqrow button{font:inherit;border:1px solid var(--line);background:var(--surface2);color:var(--text);
+  border-radius:9px;padding:8px 10px;cursor:pointer;font-size:.85rem}
+.seqrow button:hover{border-color:var(--accent)}
+.slot{display:flex;flex-wrap:wrap;gap:6px;min-height:40px;border:1px dashed var(--line);border-radius:9px;padding:6px;margin:.4em 0}
+.slot span{background:var(--accent);color:var(--onaccent);border-radius:8px;padding:6px 9px;font-size:.82rem}
+.heat{display:flex;gap:8px;align-items:center;margin:.5em 0}
+.heat input[type=range]{flex:1}
+.pot{font-size:.85rem;color:var(--muted)}
+.recipe{font-family:ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;white-space:pre-wrap;
+  font-size:.78rem;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:12px;overflow-x:auto}
+.foot{color:var(--muted);font-size:.82rem;margin:24px 0 40px;border-top:1px solid var(--line);padding-top:16px}
+.foot a{color:var(--accent)}
+.pill{display:inline-block;font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:999px;padding:2px 9px;margin-left:6px}
+/* "What this shows" — the behind-the-scenes section the engine renders under the stations */
+ol.shows{margin:.6em 0 .2em;padding-left:1.35em}
+ol.shows li{margin:.6em 0;line-height:1.5}
+ol.shows li b{color:var(--text)}
+.shows-ptrs{display:flex;flex-wrap:wrap;gap:8px;margin:.4em 0 .2em}
+.shows-ptr,.shows-jump{font:inherit;font-size:.82rem;color:var(--accent);text-decoration:none;cursor:pointer;
+  border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 11px;line-height:1.4}
+.shows-ptr:hover,.shows-jump:hover{border-color:var(--accent)}
+.brief{margin:1.1em 0;padding:13px 15px;background:var(--surface2);border:1px solid var(--line);border-radius:12px}
+.brief-h{font-weight:700;margin-bottom:.5em}
+.brief blockquote{margin:0 0 .7em;padding-left:12px;border-left:3px solid var(--turmeric);
+  font-size:.9rem;color:var(--text);line-height:1.65}
+.brief-after{font-size:.86rem;color:var(--muted);margin:.4em 0 0}
+.scenario{margin:1.1em 0 0;padding:15px;border:1px solid var(--accent);border-radius:12px;background:var(--surface)}
+.scenario h3{margin:.1em 0 .4em;font-size:1.05rem}
+.scenario-extra{font-size:.86rem;color:var(--muted);margin:.55em 0 0}
+@media print{nav.stations,.toolbar,.stage,.btn,header.top .facelines{display:none!important}
+  .layout{display:block} body{background:#fff;color:#000}}
+.hide{display:none!important}
+.skip{position:absolute;left:-9999px}
+/* review mode: [READER] markers only show when the kit is in review mode */
+.reader{display:none}
+.review .reader{display:inline}

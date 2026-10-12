@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Within Reach: a sample page from Meta DAX for Dinah, who teaches teachers, and Jordan, a first-year teacher, on checking for understanding and help that fades. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/03-dinah-jordan/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="Within Reach">
+<meta property="og:description" content="Within Reach: a sample page from Meta DAX for Dinah, who teaches teachers, and Jordan, a first-year teacher, on checking for understanding and help that fades. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/03-dinah-jordan/">
+<title>Within Reach</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --d-bg:#f2e8d8;--d-surf:#e8d9c0;--d-border:#c8b090;
+  --d-amber:#b8841a;--d-teal:#1c5c58;--d-tl2:#2a8080;
+  --d-text:#2c1e0a;--d-muted:#6b5238;--d-acc:#8a4e10;
+  --j-bg:#2c3547;--j-surf:#38445a;--j-border:#4a5870;
+  --j-chalk:#f0dc3a;--j-sea:#5ba3b8;--j-text:#eee8d8;
+  --j-muted:#a0b2c0;--j-ok:#6db87a;--j-err:#e07060;
+  --rad:8px;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --d-bg:#241808;--d-surf:#311f0a;--d-border:#6b4a20;
+    --d-amber:#d4a030;--d-teal:#2a8880;--d-tl2:#3aa898;
+    --d-text:#f0e8d0;--d-muted:#c0a878;--d-acc:#c07030;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --d-bg:#241808;--d-surf:#311f0a;--d-border:#6b4a20;
+  --d-amber:#d4a030;--d-teal:#2a8880;--d-tl2:#3aa898;
+  --d-text:#f0e8d0;--d-muted:#c0a878;--d-acc:#c07030;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-size:16px;line-height:1.6;background:var(--d-bg);color:var(--d-text);min-height:100vh}
+body.j-on{background:var(--j-bg);color:var(--j-text)}
+.sample-bar{text-align:center;font-size:.75rem;padding:.4rem 1rem;background:var(--d-teal);color:#e8f4f0;letter-spacing:.02em}
+body.j-on .sample-bar{background:var(--j-surf);color:var(--j-muted)}
+.main-tl{display:flex;border-bottom:2px solid var(--d-border);background:var(--d-surf)}
+body.j-on .main-tl{border-bottom-color:var(--j-border);background:var(--j-surf)}
+.mt{flex:1;padding:.9rem 1rem;border:none;background:transparent;cursor:pointer;font-size:1rem;font-weight:600;color:var(--d-muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Lora',Georgia,serif;transition:color .2s,border-color .2s}
+.mt[aria-selected="true"]{color:var(--d-teal);border-bottom-color:var(--d-teal)}
+body.j-on .mt{font-family:'Nunito',sans-serif;color:var(--j-muted)}
+body.j-on .mt[aria-selected="true"]{color:var(--j-chalk);border-bottom-color:var(--j-chalk)}
+.mt:focus-visible{outline:2px solid var(--d-teal);outline-offset:-2px}
+body.j-on .mt:focus-visible{outline-color:var(--j-chalk)}
+.panel{padding:1.25rem 1rem 3rem;max-width:760px;margin:0 auto}
+/* DINAH */
+#pd{font-family:'Lora',Georgia,serif}
+.dstl{display:flex;flex-wrap:wrap;gap:.2rem;margin-bottom:1.5rem;border-bottom:1px solid var(--d-border);padding-bottom:.3rem}
+.dst{border:none;background:transparent;padding:.4rem .75rem;font-family:'Lora',Georgia,serif;font-size:.84rem;color:var(--d-muted);cursor:pointer;border-bottom:2px solid transparent;transition:color .2s}
+.dst[aria-selected="true"]{color:var(--d-amber);border-bottom-color:var(--d-amber);font-weight:600}
+.dst:focus-visible{outline:2px solid var(--d-amber);outline-offset:2px}
+.dst:hover{color:var(--d-amber)}
+.dsp{display:none}.dsp.on{display:block}
+.dh2{font-size:1.25rem;font-weight:700;color:var(--d-teal);margin-bottom:.9rem;border-left:3px solid var(--d-amber);padding-left:.75rem}
+.dh3{font-size:1rem;font-weight:600;color:var(--d-acc);margin:1.3rem 0 .4rem}
+.dp{margin-bottom:.85rem;font-size:.94rem}
+.dul{padding-left:1.4rem;margin-bottom:.85rem}
+.dul li{margin-bottom:.4rem;font-size:.94rem}
+.dc{background:var(--d-surf);border:1px solid var(--d-border);border-radius:var(--rad);padding:1rem 1.2rem;margin-bottom:1rem}
+.dcl{font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--d-amber);margin-bottom:.4rem}
+.dtag{display:inline-block;background:var(--d-teal);color:#e8f4f0;font-size:.73rem;padding:.12rem .45rem;border-radius:3px;margin:.1rem;font-style:italic}
+.dino{text-align:right;margin-bottom:1.2rem;opacity:.15;color:var(--d-text)}
+.ift{border-left:3px solid var(--d-teal);background:var(--d-surf);padding:.8rem 1rem;margin-bottom:.75rem;border-radius:0 var(--rad) var(--rad) 0}
+.ifi{font-weight:600;color:var(--d-teal);font-size:.87rem;margin-bottom:.3rem}
+.ift-t{font-size:.92rem}
+.sw{border:2px solid var(--d-amber);border-radius:var(--rad);padding:1rem 1.2rem;margin:1.2rem 0;background:var(--d-surf)}
+.swt{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--d-amber);margin-bottom:.4rem}
+.cpre{background:var(--d-surf);border:1px solid var(--d-border);border-radius:var(--rad);padding:.8rem 1rem;font-size:.86rem;margin-bottom:.5rem;white-space:pre-wrap;font-family:'Lora',Georgia,serif;word-break:break-word}
+.cbtn{padding:.4rem 1rem;border:1px solid var(--d-teal);background:transparent;color:var(--d-teal);border-radius:4px;font-family:'Lora',Georgia,serif;font-size:.84rem;cursor:pointer;transition:background .2s,color .2s}
+.cbtn:hover{background:var(--d-teal);color:#fff}
+.cbtn:focus-visible{outline:2px solid var(--d-amber);outline-offset:2px}
+.cnote{font-size:.78rem;color:var(--d-teal);margin-top:.3rem;min-height:1.2em}
+.fbrow{display:flex;gap:.5rem;margin-top:.75rem}
+.fbb{padding:.4rem 1rem;border-radius:4px;border:1px solid var(--d-border);background:var(--d-surf);color:var(--d-text);font-family:'Lora',Georgia,serif;font-size:.84rem;cursor:pointer}
+.fbb:hover{border-color:var(--d-teal)}
+.fbb:focus-visible{outline:2px solid var(--d-amber);outline-offset:2px}
+.fbc{background:var(--d-teal);color:#fff;border-color:var(--d-teal)}
+/* steps shared */
+.slist{list-style:none;padding:0}
+.si{display:flex;gap:1rem;margin-bottom:1.5rem;align-items:flex-start}
+.sn{width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.83rem;flex-shrink:0}
+.s-done .sn{background:var(--d-teal);color:#e8f4f0}
+.s-next .sn{background:var(--d-amber);color:#fff}
+.s-fut .sn{background:var(--d-surf);color:var(--d-muted);border:1px solid var(--d-border)}
+.sl{font-size:.87rem;font-weight:700;margin-bottom:.2rem}
+.s-done .sl{color:var(--d-teal)}.s-next .sl{color:var(--d-amber)}.s-fut .sl{color:var(--d-muted)}
+.sdesc{font-size:.9rem}
+/* JORDAN */
+#pj{font-family:'Nunito',sans-serif}
+.jstl{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1.5rem}
+.jst{border:2px solid var(--j-border);background:transparent;padding:.4rem .9rem;font-family:'Nunito',sans-serif;font-size:.87rem;font-weight:600;color:var(--j-muted);cursor:pointer;border-radius:20px;transition:all .2s}
+.jst[aria-selected="true"]{background:var(--j-chalk);border-color:var(--j-chalk);color:#1a2030}
+.jst:hover:not([aria-selected="true"]){border-color:var(--j-sea);color:var(--j-sea)}
+.jst:focus-visible{outline:2px solid var(--j-chalk);outline-offset:2px}
+.jsp{display:none}.jsp.on{display:block}
+.jh1{font-family:'Caveat',cursive;font-size:1.9rem;font-weight:700;color:var(--j-chalk);margin-bottom:.4rem}
+.jh2{font-family:'Caveat',cursive;font-size:1.45rem;font-weight:700;color:var(--j-chalk);margin-bottom:.75rem}
+.jh3{font-size:.9rem;font-weight:700;color:var(--j-sea);text-transform:uppercase;letter-spacing:.06em;margin:1.2rem 0 .4rem}
+.jp{margin-bottom:.85rem;font-size:.94rem;color:var(--j-text)}
+.jul{padding-left:1.4rem;margin-bottom:.85rem}
+.jul li{margin-bottom:.4rem;font-size:.94rem;color:var(--j-text)}
+.jc{background:var(--j-surf);border:1px solid var(--j-border);border-radius:var(--rad);padding:1rem 1.2rem;margin-bottom:1rem}
+.jlbl{font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--j-sea);margin-bottom:.3rem}
+.jsw{border:2px solid var(--j-chalk);border-radius:var(--rad);padding:1rem 1.2rem;margin:1.2rem 0;background:var(--j-surf)}
+.jswt{font-family:'Caveat',cursive;font-size:1.15rem;font-weight:700;color:var(--j-chalk);margin-bottom:.4rem}
+/* Jordan steps */
+.js-done .sn{background:var(--j-ok);color:#1a2030}
+.js-next .sn{background:var(--j-chalk);color:#1a2030}
+.js-fut .sn{background:var(--j-surf);color:var(--j-muted);border:1px solid var(--j-border)}
+/* Whiteboard quiz */
+.wbs{background:var(--j-surf);border:1px solid var(--j-border);border-radius:var(--rad);padding:1rem;margin-bottom:1rem}
+.wbrow{display:flex;flex-wrap:wrap;gap:.35rem;margin:.75rem 0}
+.wb{background:#f5f5f0;color:#1a1a1a;border:2px solid #aaa;border-radius:4px;width:46px;height:32px;display:flex;align-items:center;justify-content:center;font-size:.84rem;font-weight:700}
+.wb.c{border-color:var(--j-ok)}.wb.w1{border-color:var(--j-err)}.wb.w2{border-color:#e0a060}
+.choices{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0}
+.chbtn{background:var(--j-surf);border:2px solid var(--j-border);border-radius:var(--rad);padding:.7rem 1rem;color:var(--j-text);font-family:'Nunito',sans-serif;font-size:.9rem;cursor:pointer;text-align:left;transition:border-color .2s}
+.chbtn:hover{border-color:var(--j-sea)}
+.chbtn:focus-visible{outline:2px solid var(--j-chalk);outline-offset:2px}
+.chbtn.c-ok{border-color:var(--j-ok);background:rgba(109,184,122,.14)}
+.chbtn.c-so{border-color:var(--j-sea);background:rgba(91,163,184,.14)}
+.chbtn.c-no{border-color:var(--j-err);background:rgba(224,112,96,.14)}
+.fbx{padding:.9rem 1rem;border-radius:var(--rad);margin-top:.75rem;display:none;font-size:.91rem}
+.fbx.on{display:block}
+.fbx.good{background:rgba(109,184,122,.18);border:1px solid var(--j-ok)}
+.fbx.so{background:rgba(91,163,184,.18);border:1px solid var(--j-sea)}
+.fbx.miss{background:rgba(224,112,96,.18);border:1px solid var(--j-err)}
+.qnxt{margin-top:.75rem;padding:.5rem 1.2rem;background:var(--j-chalk);color:#1a2030;border:none;border-radius:20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer;display:none}
+.qnxt.on{display:inline-block}
+.qnxt:focus-visible{outline:2px solid var(--j-sea);outline-offset:2px}
+.stk{font-size:.78rem;color:var(--j-muted);margin-bottom:.5rem;min-height:1.2em}
+/* Fade game */
+.fslots{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.fslot{background:var(--j-surf);border:1px dashed var(--j-border);border-radius:var(--rad);padding:.6rem 1rem;font-size:.89rem;color:var(--j-muted);min-height:44px;cursor:pointer;transition:border-color .2s}
+.fslot.filled{border-style:solid;border-color:var(--j-sea);color:var(--j-text)}
+.fslot:focus-visible{outline:2px solid var(--j-chalk);outline-offset:2px}
+.fpool{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.fitem{background:var(--j-surf);border:2px solid var(--j-sea);border-radius:var(--rad);padding:.6rem 1rem;font-size:.89rem;color:var(--j-text);cursor:pointer;text-align:left;transition:background .15s}
+.fitem:hover{background:rgba(91,163,184,.18)}
+.fitem:focus-visible{outline:2px solid var(--j-chalk);outline-offset:2px}
+.fitem.used{opacity:.35;pointer-events:none}
+.fitem.sel{outline:2px solid var(--j-chalk);outline-offset:2px}
+.fbtn2{padding:.5rem 1.2rem;background:var(--j-chalk);color:#1a2030;border:none;border-radius:20px;font-family:'Nunito',sans-serif;font-weight:700;font-size:.9rem;cursor:pointer}
+.fbtn2:focus-visible{outline:2px solid var(--j-sea);outline-offset:2px}
+.fbtn2.ghost{background:transparent;border:1px solid var(--j-border);color:var(--j-muted)}
+.fres{margin-top:.75rem;padding:.8rem;border-radius:var(--rad);font-size:.9rem;display:none}
+.fres.on{display:block}
+.fres.ok{background:rgba(109,184,122,.18);border:1px solid var(--j-ok)}
+.fres.so{background:rgba(91,163,184,.18);border:1px solid var(--j-sea)}
+/* FAQ */
+.jdet{background:var(--j-surf);border:1px solid var(--j-border);border-radius:var(--rad);margin-bottom:.6rem;overflow:hidden}
+.jdet summary{padding:.75rem 1rem;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--j-text);list-style:none;display:flex;justify-content:space-between;align-items:center}
+.jdet summary::-webkit-details-marker{display:none}
+.jdet summary::after{content:'+';color:var(--j-sea);font-size:1.1rem;font-weight:700}
+.jdet[open] summary::after{content:'−'}
+.jdet summary:focus-visible{outline:2px solid var(--j-chalk);outline-offset:-2px}
+.jdb{padding:.75rem 1rem 1rem;font-size:.91rem;color:var(--j-text);border-top:1px solid var(--j-border)}
+.jdb .jdet{background:var(--j-bg)}
+/* footer */
+footer{text-align:center;font-size:.74rem;color:var(--d-muted);padding:1.5rem 1rem;border-top:1px solid var(--d-border);margin-top:1rem}
+body.j-on footer{color:var(--j-muted);border-top-color:var(--j-border)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
+@media(max-width:480px){
+  .panel{padding:.85rem .85rem 2.5rem}
+  .dst,.jst{font-size:.79rem;padding:.3rem .55rem}
+  .mt{font-size:.9rem;padding:.75rem .6rem}
+  .jh1{font-size:1.6rem}
+}
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<p class="sample-bar">Sample &middot; made-up people &middot; after three conversations with MetaDAX</p>
+
+<div class="main-tl" role="tablist" aria-label="Person tabs">
+  <button class="mt" role="tab" aria-selected="true" id="tab-d" aria-controls="pd">For Dinah</button>
+  <button class="mt" role="tab" aria-selected="false" id="tab-j" aria-controls="pj">For Jordan</button>
+</div>
+
+<!-- ══════════ DINAH PANEL ══════════ -->
+<div id="pd" class="panel" role="tabpanel" aria-labelledby="tab-d">
+
+  <div class="dino" aria-hidden="true">
+    <svg width="44" height="54" viewBox="0 0 44 54" fill="currentColor">
+      <ellipse cx="22" cy="43" rx="9" ry="9"/>
+      <ellipse cx="22" cy="22" rx="3.8" ry="11"/>
+      <ellipse cx="12" cy="27" rx="3.2" ry="9" transform="rotate(20,12,27)"/>
+      <ellipse cx="32" cy="27" rx="3.2" ry="9" transform="rotate(-20,32,27)"/>
+    </svg>
+  </div>
+
+  <div class="dstl" role="tablist" aria-label="Dinah sections">
+    <button class="dst" role="tab" aria-selected="true" data-p="d0">Up next</button>
+    <button class="dst" role="tab" aria-selected="false" data-p="d1">What we've learned</button>
+    <button class="dst" role="tab" aria-selected="false" data-p="d2">The steps</button>
+    <button class="dst" role="tab" aria-selected="false" data-p="d3">When it's tricky</button>
+    <button class="dst" role="tab" aria-selected="false" data-p="d4">Tell us &amp; ask</button>
+  </div>
+
+  <div class="dsp on" id="d0">
+    <h2 class="dh2">Conversation 4 &mdash; the plan</h2>
+
+    <div class="dc">
+      <div class="dcl">What Jordan brings</div>
+      <p class="dp">A draft hinge question for a Grade 3 lesson on two-digit addition with regrouping: <strong>24 + 18</strong>. Before you meet, he writes the predicted wrong answers first, explains the misconception story behind each one, and sketches a three-level fading plan.</p>
+    </div>
+
+    <div class="dc">
+      <div class="dcl">The two distractors worth keeping</div>
+      <p class="dp">Work through each one as a diagnostic signal, not a grading category.</p>
+      <ul class="dul">
+        <li><strong>312</strong> &mdash; column addition without regrouping: student adds 4 + 8 = 12, writes &ldquo;12&rdquo;; adds 2 + 1 = 3, writes &ldquo;3&rdquo;; reads left-to-right as 312. This reveals a place-value gap: the student is not treating digits as positional holders.</li>
+        <li><strong>32</strong> &mdash; partial regrouping: student adds 4 + 8 = 12, writes the 2 but drops the carried ten, then adds 2 + 1 = 3. The procedure exists; the regrouped ten is not conserved.</li>
+      </ul>
+      <p class="dp">Ask Jordan: what would you say to the student who wrote 312 that you would <em>not</em> say to the student who wrote 32? That question makes the diagnostic function concrete.</p>
+    </div>
+
+    <div class="dc">
+      <div class="dcl">The fading plan (three levels)</div>
+      <ul class="dul">
+        <li><strong>Level 1 &mdash; model it together:</strong> work through a parallel problem at the board; think aloud every place-value decision.</li>
+        <li><strong>Level 2 &mdash; prompt card:</strong> student works from a card showing the steps. Jordan watches and does not speak.</li>
+        <li><strong>Level 3 &mdash; one phrase:</strong> &ldquo;check your tens&rdquo; &mdash; then step back.</li>
+      </ul>
+      <p class="dp" style="font-style:italic;font-size:.87rem">Contingent support (Wood, Bruner and Ross, 1976) is read from the student, not imposed by the plan. The fading levels are a starting position. Jordan needs to know he can move up a level if the student stalls &mdash; that is not failing, that is reading the room.</p>
+    </div>
+
+    <div class="dc">
+      <div class="dcl">What to say &mdash; and what to hold back</div>
+      <ul class="dul">
+        <li>Say: &ldquo;Write the wrong answers before you write the question. Each one is a student&rsquo;s thinking made visible.&rdquo;</li>
+        <li>Say: &ldquo;Your fading plan starts at level 1, but where you <em>actually</em> start depends on what you saw last lesson.&rdquo;</li>
+        <li>Hold back: do not correct his question&rsquo;s phrasing until he has explained why he chose it. Hear the reasoning first.</li>
+      </ul>
+    </div>
+
+    <div class="sw">
+      <div class="swt">Your turn to lead</div>
+      <p class="dp" style="margin:0">Jordan knows his students&rsquo; world in ways no pre-service textbook reaches. In conversation 3 he showed you that a trap line of 24 lobster traps plus 18 more lands as clearly as any classroom addition problem &mdash; and more truthfully for his students. Ask him to walk you through two or three of those contexts. Let him run that segment of the conversation. Tell him plainly that you are taking his examples into your pre-service seminar. That is not a compliment; it is a fact. He teaches you here.</p>
+    </div>
+
+    <h3 class="dh3">Where Jordan sits in his own ZPD &mdash; as a teacher</h3>
+    <p class="dp">In three conversations Jordan has moved through the ZPD for formative assessment at a pace most first-year teachers do not manage. He can construct a hinge question, anticipate misconceptions, and now articulate the fading principle. What remains in his ZPD: reading a mixed-misconception whiteboard set in real time and adjusting mid-lesson without freezing. That is the MKO function for conversation 5 &mdash; scaffold real-time responsiveness, then plan your own exit from the mentoring relationship.</p>
+
+    <div class="dc">
+      <div class="dcl">Observation lens &mdash; for your next classroom visit</div>
+      <p class="dp">Watch for: does Jordan differentiate his response to 312 versus 32, or does he treat all wrong answers the same way? Does he return to level 1 when a student stalls, or stay at the planned level? Does he read when to pull a small group versus re-teach the class? These are the in-the-moment formative assessment moves Black and Wiliam (1998, &ldquo;Inside the Black Box&rdquo;) describe as requiring responsive, not scripted, teaching.</p>
+      <p class="dp">Note: Jordan already reads his community with precision. Do not scaffold what he already does.</p>
+    </div>
+  </div>
+
+  <div class="dsp" id="d1">
+    <h2 class="dh2">What we&rsquo;ve learned &mdash; by conversation</h2>
+
+    <div class="dc">
+      <div class="dcl">From conversation 1</div>
+      <p class="dp"><strong>About Jordan:</strong> relied on show-of-hands confirmation; interpreted universal nodding as understanding. Exit task revealed 50% had not followed. Classic false-positive problem with low-stakes, undifferentiated checking.</p>
+      <p class="dp"><strong>So:</strong> shifted to an all-response system (mini whiteboards). The hinge question gave him a tool he could use the next morning &mdash; theory anchored to his classroom worked. <span class="dtag">hinge questions</span> <span class="dtag">all-response system</span></p>
+    </div>
+
+    <div class="dc">
+      <div class="dcl">From conversation 2</div>
+      <p class="dp"><strong>About Jordan:</strong> once he had the data (whiteboards with mixed answers) he froze. The formative loop collapsed at the response step. He had the diagnostic; he lacked the contingency plan.</p>
+      <p class="dp"><strong>So:</strong> introduced pre-planned responses &mdash; each wrong option predicts a specific misconception; plan the response before writing the question. (Dylan Wiliam&rsquo;s formulation of the hinge question principle.) <span class="dtag">contingency planning</span> <span class="dtag">formative loop</span></p>
+    </div>
+
+    <div class="dc">
+      <div class="dcl">From conversation 3</div>
+      <p class="dp"><strong>About Jordan:</strong> over-scaffolded until students were copying his steps. He named the principle himself: &ldquo;the help should get smaller on purpose.&rdquo; That phrasing is a marker &mdash; he can now articulate the concept, not just follow a procedure.</p>
+      <p class="dp"><strong>About you:</strong> Jordan knows his community in ways that pre-service textbook cases do not reach. Fishing, forestry, small trades &mdash; these provide richer, more culturally grounded maths contexts than your current seminar materials.</p>
+      <p class="dp"><strong>So:</strong> introduced contingent support and fading explicitly (Wood, Bruner and Ross, 1976). Agreed to learn the community contexts from Jordan. <span class="dtag">contingent support</span> <span class="dtag">fading</span> <span class="dtag">ZPD</span></p>
+    </div>
+  </div>
+
+  <div class="dsp" id="d2">
+    <h2 class="dh2">The arc</h2>
+    <ul class="slist">
+      <li class="si s-done">
+        <div class="sn">1</div>
+        <div>
+          <div class="sl">Conversation 1 &mdash; Hinge questions and all-response</div>
+          <div class="sdesc dp">Introduced the hinge question format and mini whiteboards. Jordan moved from show-of-hands to every-student evidence in one session.</div>
+        </div>
+      </li>
+      <li class="si s-done">
+        <div class="sn">2</div>
+        <div>
+          <div class="sl">Conversation 2 &mdash; Pre-planned responses</div>
+          <div class="sdesc dp">Each wrong answer predicts a specific misconception; plan the response before writing the question. Jordan moved from data to contingency plan.</div>
+        </div>
+      </li>
+      <li class="si s-done">
+        <div class="sn">3</div>
+        <div>
+          <div class="sl">Conversation 3 &mdash; Contingent support and fading</div>
+          <div class="sdesc dp">Named the fading principle; Jordan articulated it himself. You learned his community contexts; he agreed to teach you. (Wood, Bruner and Ross, 1976.)</div>
+        </div>
+      </li>
+      <li class="si s-next">
+        <div class="sn">4</div>
+        <div>
+          <div class="sl">Conversation 4 &mdash; Design the full question-and-response arc <em>(this one)</em></div>
+          <div class="sdesc dp">Jordan designs one hinge question with planned responses for each distractor and a three-level fading plan. He leads the community-contexts segment.</div>
+        </div>
+      </li>
+      <li class="si s-fut">
+        <div class="sn">5</div>
+        <div>
+          <div class="sl">Where this could go</div>
+          <div class="sdesc dp" style="color:var(--d-muted)">A structured classroom observation with the formative assessment lens you have built together. And Jordan beginning to mentor another new teacher &mdash; the lead keeps moving.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="dsp" id="d3">
+    <h2 class="dh2">When it&rsquo;s tricky</h2>
+
+    <div class="ift">
+      <div class="ifi">If Jordan arrives with more than three distractors and wants to use all of them:</div>
+      <div class="ift-t">Ask him to explain the misconception story behind each one, step by step. If he cannot trace the error pathway, the distractor is not useful yet. Keep only the ones he can explain. (The worked example for this scenario discards any answer he cannot account for &mdash; not because it might not occur, but because a distractor without an explanation is just a wrong answer.)</div>
+    </div>
+
+    <div class="ift">
+      <div class="ifi">If he wants to design the hinge question for a different topic:</div>
+      <div class="ift-t">Fine &mdash; the framework holds for any domain. Ask him to write the wrong answers first. If he can predict two with distinct misconception stories, the question is a genuine hinge question. If he cannot predict any, it is a test item, not a diagnostic tool.</div>
+    </div>
+
+    <div class="ift">
+      <div class="ifi">If Jordan is anxious that fading feels like abandoning a struggling student:</div>
+      <div class="ift-t">Name what Vygotsky&rsquo;s ZPD actually describes: the space between what a learner does alone and what they do with support. The goal of the MKO is to make themselves unnecessary within that space. Fading is purposeful care, not withdrawal.</div>
+    </div>
+
+    <div class="ift">
+      <div class="ifi">If Jordan treats the fading levels as a fixed sequence:</div>
+      <div class="ift-t">Contingent support (Wood, Bruner and Ross) requires reading the moment, not following a script. The fading plan is a starting position. Ask him: what would the student have to show you to make you move back to level 1? That question makes it contingent rather than mechanical.</div>
+    </div>
+
+    <div class="ift">
+      <div class="ifi">If you feel stuck on what to ask next:</div>
+      <div class="ift-t">Jordan knows his class better than you do. Ask: &ldquo;What did you notice last time you tried this?&rdquo; His classroom observation is the evidence. Your job is to help him read it.</div>
+    </div>
+
+    <div class="ift">
+      <div class="ifi">If the community-contexts segment starts feeling one-directional &mdash; like he is presenting for you:</div>
+      <div class="ift-t">Ask what he is still figuring out about those contexts, not just what you want to learn. This is peer knowledge exchange, not an interview.</div>
+    </div>
+  </div>
+
+  <div class="dsp" id="d4">
+    <h2 class="dh2">After conversation 4</h2>
+
+    <h3 class="dh3">Sample note to send back to MetaDAX</h3>
+    <p class="dp" style="font-size:.86rem;color:var(--d-muted)">Copy and edit this, or send it as-is. It helps MetaDAX learn what worked.</p>
+    <pre class="cpre" id="dnote">After conversation 4 with Jordan.
+
+He arrived with a solid hinge question draft and two distractors he could explain. We worked through the misconception story for 312 (place-value gap) and 32 (lost carried ten) and he named the difference clearly.
+
+Fading plan: he moved away from the sequential view once I asked "what does the student show you right now?" That question landed.
+
+Community contexts: Jordan walked me through lobster-trap counting and cord-wood stacking as addition contexts. I'm taking these into my pre-service seminar.
+
+What I noticed: he is ready to start noticing fading opportunities in real time. Conversation 5 could be an observation visit with that lens.
+
+What surprised me:</pre>
+    <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+      <button class="cbtn" onclick="doCopy('dnote','dn1')">Copy note</button>
+      <span class="cnote" id="dn1"></span>
+    </div>
+
+    <h3 class="dh3" style="margin-top:1.5rem">Prompt for your own AI &mdash; conversation 4 prep</h3>
+    <p class="dp" style="font-size:.86rem;color:var(--d-muted)">Paste this into your own AI chat to think through the conversation before it happens.</p>
+    <pre class="cpre" id="daprompt">I'm mentoring a first-year Grade 3 teacher. In our next conversation he is designing a hinge question for two-digit addition with regrouping (24 + 18 = 42). He predicts wrong answers and explains the misconception behind each.
+
+Useful distractors: 312 (column addition without regrouping — place-value gap) and 32 (partial regrouping — the carried ten is dropped).
+
+He's also building a three-level fading plan: model it together, then a prompt card, then a single phrase ("check your tens"), then nothing.
+
+Help me think through: What question should I ask if he can explain a distractor but doesn't know what to do differently for each group? What's the clearest way to distinguish contingent support from scripted instruction when I explain fading?</pre>
+    <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+      <button class="cbtn" onclick="doCopy('daprompt','dn2')">Copy prompt</button>
+      <span class="cnote" id="dn2"></span>
+    </div>
+
+    <h3 class="dh3" style="margin-top:1.5rem">Did this page help?</h3>
+    <div class="fbrow" id="dfbrow">
+      <button class="fbb" onclick="doFb(this,'dfbrow','dmsg')">Yes</button>
+      <button class="fbb" onclick="doFb(this,'dfbrow','dmsg')">Not yet</button>
+    </div>
+    <p id="dmsg" style="font-size:.78rem;color:var(--d-muted);margin-top:.35rem"></p>
+  </div>
+
+</div><!-- /pd -->
+
+<!-- ══════════ JORDAN PANEL ══════════ -->
+<div id="pj" class="panel" role="tabpanel" aria-labelledby="tab-j" hidden>
+
+  <div class="jh1">Your plan, Jordan</div>
+  <p class="jp" style="color:var(--j-muted);margin-bottom:1.5rem">Three conversations done. Here&rsquo;s what&rsquo;s next, what you&rsquo;ve built, and some things to try.</p>
+
+  <div class="jstl" role="tablist" aria-label="Jordan sections">
+    <button class="jst" role="tab" aria-selected="true" data-p="j0">Up next</button>
+    <button class="jst" role="tab" aria-selected="false" data-p="j1">What we&rsquo;ve built</button>
+    <button class="jst" role="tab" aria-selected="false" data-p="j2">Try it</button>
+    <button class="jst" role="tab" aria-selected="false" data-p="j3">Questions</button>
+    <button class="jst" role="tab" aria-selected="false" data-p="j4">Your turn to lead</button>
+  </div>
+
+  <div class="jsp on" id="j0">
+    <h2 class="jh2">Conversation 4</h2>
+
+    <div class="jc">
+      <div class="jlbl">What you bring</div>
+      <p class="jp">Write these out before you meet with Dinah:</p>
+      <ul class="jul">
+        <li>One hinge question for a lesson coming up this week &mdash; a question where you already know some students will get it wrong.</li>
+        <li>Two wrong answers students might give. For each one, write one sentence: <em>why</em> would a student write that? What got mixed up?</li>
+        <li>A three-level fading plan: most help, middle, almost none.</li>
+      </ul>
+    </div>
+
+    <div class="jc">
+      <div class="jlbl">A worked example to build from</div>
+      <p class="jp">If you want to practise on something concrete first:</p>
+      <p class="jp" style="font-size:1.15rem;font-weight:700;color:var(--j-chalk);text-align:center;padding:.5rem 0">24 + 18 = ?</p>
+      <p class="jp">The answer is <strong style="color:var(--j-chalk)">42</strong>. Two answers show up often on whiteboards:</p>
+      <ul class="jul">
+        <li><strong>312</strong> &mdash; student adds 4 + 8 = 12, writes &ldquo;12&rdquo;; adds 2 + 1 = 3, writes &ldquo;3&rdquo;; reads them as 312. They haven&rsquo;t figured out that the digit in the tens column means ten times as much.</li>
+        <li><strong>32</strong> &mdash; student adds 4 + 8 = 12, writes the 2 but loses the extra ten, then adds 2 + 1 = 3. Almost right &mdash; just one ten went missing.</li>
+      </ul>
+      <p class="jp">Different answer, different problem, different next step.</p>
+    </div>
+
+    <div class="jc">
+      <div class="jlbl">A three-level fading plan (example)</div>
+      <ul class="jul">
+        <li><strong>Level 1 &mdash; model it together:</strong> work through a similar question at the board, thinking out loud every step.</li>
+        <li><strong>Level 2 &mdash; prompt card:</strong> student works from a card with the steps on it. You watch; you don&rsquo;t speak.</li>
+        <li><strong>Level 3 &mdash; one phrase only:</strong> say &ldquo;check your tens&rdquo; and step back.</li>
+      </ul>
+      <p class="jp" style="font-size:.87rem;color:var(--j-muted)">You don&rsquo;t go 1, 2, 3 in order. You start where the student is today. You watch for when to move. This has a name: <em>fading</em>. The help gets smaller on purpose, because the goal is that they get there &mdash; not that you got them there.</p>
+    </div>
+  </div>
+
+  <div class="jsp" id="j1">
+    <h2 class="jh2">Three conversations</h2>
+    <ul class="slist">
+      <li class="si js-done">
+        <div class="sn">1</div>
+        <div>
+          <div class="sl" style="color:var(--j-ok)">Conversation 1 &mdash; The whiteboard question</div>
+          <div class="sdesc jp">You asked &ldquo;Does everyone get it?&rdquo; and everyone nodded. Half the class got the exit question wrong. You found a better way: one question, every student writes the answer on a mini whiteboard. You see every answer at once.</div>
+        </div>
+      </li>
+      <li class="si js-done">
+        <div class="sn">2</div>
+        <div>
+          <div class="sl" style="color:var(--j-ok)">Conversation 2 &mdash; What to do with the answers</div>
+          <div class="sdesc jp">The whiteboards worked. You had the answers. But when six students wrote the same wrong thing, you froze. So: before you ask the question, decide what you&rsquo;ll do when you see each wrong answer. Plan it ahead.</div>
+        </div>
+      </li>
+      <li class="si js-done">
+        <div class="sn">3</div>
+        <div>
+          <div class="sl" style="color:var(--j-ok)">Conversation 3 &mdash; Help that fades</div>
+          <div class="sdesc jp">You were helping so much that students started copying your steps instead of working through theirs. You said it yourself: &ldquo;the help should get smaller on purpose.&rdquo; That&rsquo;s exactly it. And Dinah learned something from you &mdash; she&rsquo;s taking your lobster-trap examples into her university class.</div>
+        </div>
+      </li>
+      <li class="si js-next">
+        <div class="sn">4</div>
+        <div>
+          <div class="sl" style="color:var(--j-chalk)">Conversation 4 &mdash; Design it yourself <em>(this one)</em></div>
+          <div class="sdesc jp">You bring the question, the wrong answers with explanations, and the fading plan. You show Dinah how the trap-line context works. She learns from you.</div>
+        </div>
+      </li>
+      <li class="si js-fut">
+        <div class="sn">5</div>
+        <div>
+          <div class="sl" style="color:var(--j-muted)">Where this could go</div>
+          <div class="sdesc" style="font-size:.9rem;color:var(--j-muted)">Dinah visits your class and watches with you. Maybe you start helping another new teacher. The lead keeps moving.</div>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="jsp" id="j2">
+    <h2 class="jh2">Try it</h2>
+
+    <!-- Quiz -->
+    <div class="jc">
+      <div class="jlbl">What would you do next?</div>
+      <p class="jp" style="font-size:.9rem">You asked: 24 + 18 = ? on mini whiteboards. Here&rsquo;s what you see. Pick your next move.</p>
+      <div class="stk" id="stk"></div>
+      <div class="wbs" id="qscene"></div>
+      <div class="choices" id="qchoices"></div>
+      <div class="fbx" id="qfb"></div>
+      <button class="qnxt" id="qnxt" onclick="qNext()">Next question</button>
+    </div>
+
+    <!-- Fade game -->
+    <div class="jc">
+      <div class="jlbl">Fade it &mdash; put the supports in order</div>
+      <p class="jp" style="font-size:.9rem">Tap a support from the list, then tap the slot where it belongs. Most help at the top, least at the bottom.</p>
+      <p style="font-size:.82rem;color:var(--j-muted);margin-bottom:.75rem">Slots (1 = most help, 4 = least):</p>
+      <div class="fslots" id="fslots">
+        <div class="fslot" id="fs0" data-pos="0" tabindex="0">1 &mdash; most help</div>
+        <div class="fslot" id="fs1" data-pos="1" tabindex="0">2</div>
+        <div class="fslot" id="fs2" data-pos="2" tabindex="0">3</div>
+        <div class="fslot" id="fs3" data-pos="3" tabindex="0">4 &mdash; least help</div>
+      </div>
+      <p style="font-size:.82rem;color:var(--j-muted);margin-bottom:.5rem">Tap one to select, then tap a slot:</p>
+      <div class="fpool" id="fpool"></div>
+      <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem">
+        <button class="fbtn2" onclick="fCheck()">Check my order</button>
+        <button class="fbtn2 ghost" onclick="fReset()">Reset</button>
+      </div>
+      <div class="fres" id="fres"></div>
+    </div>
+  </div>
+
+  <div class="jsp" id="j3">
+    <h2 class="jh2">Questions you might have</h2>
+
+    <details class="jdet">
+      <summary>What if most of my class gets it wrong &mdash; do I re-teach the whole lesson?</summary>
+      <div class="jdb">
+        <p class="jp">If more than half the class wrote a wrong answer, re-teaching the whole group makes sense. But be specific about what you&rsquo;re re-teaching &mdash; not &ldquo;the lesson&rdquo; but &ldquo;the part where you carry the ten.&rdquo; A vague re-teach doesn&rsquo;t fix the specific gap.</p>
+        <details class="jdet">
+          <summary>What if they got it wrong in two different ways?</summary>
+          <div class="jdb">
+            <p class="jp">Then you have two groups with two different problems. Re-teaching the whole class will reach one group and talk past the other. It&rsquo;s worth splitting them &mdash; even briefly &mdash; so each group hears what they actually need.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="jdet">
+      <summary>How do I know when a student is ready for less help?</summary>
+      <div class="jdb">
+        <p class="jp">Watch for: they stop asking what to do next. They slow down before a tricky step &mdash; that&rsquo;s thinking, not waiting. They start checking their own work. Any of those is a signal to step back.</p>
+        <details class="jdet">
+          <summary>What if I step back and they get stuck again?</summary>
+          <div class="jdb">
+            <p class="jp">Normal, and fine. Move back to the level that worked &mdash; maybe the prompt card again, maybe one phrase. You&rsquo;re not starting over. You&rsquo;re just at where they are right now, and you&rsquo;ll try stepping back again later.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="jdet">
+      <summary>Why plan the wrong answers before asking the question?</summary>
+      <div class="jdb">
+        <p class="jp">When you&rsquo;re at the front of the class with twenty-two whiteboards in the air, you have about two seconds to decide what to do. If you&rsquo;ve already thought it through, you know what you&rsquo;re looking for. If you haven&rsquo;t, you freeze &mdash; exactly what happened in conversation 2.</p>
+        <details class="jdet">
+          <summary>Do I have to plan for every possible wrong answer?</summary>
+          <div class="jdb">
+            <p class="jp">No &mdash; just the likely ones. Two or three is enough. If a student writes something unexpected, ask them to show you their thinking. The plan is for the predictable mistakes that show up again and again.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+
+    <details class="jdet">
+      <summary>Why does the help have to get smaller &mdash; can&rsquo;t I just help as much as they need?</summary>
+      <div class="jdb">
+        <p class="jp">You can, and sometimes that&rsquo;s exactly right. But if the amount of help never changes, students practise doing it with you rather than on their own. The goal is that they do it alone &mdash; so they need practice with a little less each time.</p>
+        <details class="jdet">
+          <summary>Isn&rsquo;t that just letting them struggle?</summary>
+          <div class="jdb">
+            <p class="jp">There&rsquo;s a difference between a struggle that moves and one that goes nowhere. Fading means staying close, watching, and stepping back in if they hit a real wall. You&rsquo;re not walking away. You&rsquo;re stepping back with your eyes open.</p>
+          </div>
+        </details>
+      </div>
+    </details>
+  </div>
+
+  <div class="jsp" id="j4">
+    <h2 class="jh2">Your turn to lead</h2>
+
+    <div class="jsw">
+      <div class="jswt">You know something Dinah doesn&rsquo;t.</div>
+      <p class="jp">Your students&rsquo; families fish, work in the woods, and run small businesses near Miramichi. Dinah teaches teachers at a university &mdash; she has never seen a trap line become an addition problem the way you have.</p>
+      <p class="jp">In conversation 4, you run this part. Walk her through how you&rsquo;d say: &ldquo;24 traps out, 18 more added this morning &mdash; how many traps total?&rdquo; and why that lands differently than &ldquo;a store has 24 apples.&rdquo;</p>
+      <p class="jp">She&rsquo;s writing it down for her university class. That&rsquo;s not flattery &mdash; she said so plainly. You&rsquo;re teaching a teacher.</p>
+    </div>
+
+    <h3 class="jh3">A few ideas to bring</h3>
+    <ul class="jul">
+      <li>A trap line: 24 traps out, 18 more added. How many traps total?</li>
+      <li>Cords of firewood: 24 cords stacked yesterday, 18 more today. Total?</li>
+      <li>Lobster in the pound: started with 24, morning run brought 18 more. How many now?</li>
+    </ul>
+    <p class="jp">These aren&rsquo;t just &ldquo;fun&rdquo; examples. They land because your students have watched their families count this way. The numbers mean something before the maths starts.</p>
+
+    <div class="jc">
+      <div class="jlbl">What Dinah gets from you</div>
+      <p class="jp" style="margin:0">Real examples she can use with teachers-in-training who will work in communities like yours. Not a textbook case &mdash; your actual classroom, your actual students&rsquo; world.</p>
+    </div>
+  </div>
+
+</div><!-- /pj -->
+
+<footer>A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</footer>
+
+<script>
+(function(){
+var qs=function(s){return document.querySelector(s)};
+var qa=function(s){return document.querySelectorAll(s)};
+
+// Main tabs
+qa('.mt').forEach(function(t){
+  t.addEventListener('click',function(){
+    qa('.mt').forEach(function(x){x.setAttribute('aria-selected','false')});
+    qs('#pd').hidden=true; qs('#pj').hidden=true;
+    t.setAttribute('aria-selected','true');
+    qs('#'+t.getAttribute('aria-controls')).hidden=false;
+    document.body.classList.toggle('j-on',t.id==='tab-j');
+  });
+});
+
+// Sub-tabs (generic)
+function mkSubTabs(tlSel){
+  qa(tlSel+' [role="tab"]').forEach(function(t){
+    t.addEventListener('click',function(){
+      qa(tlSel+' [role="tab"]').forEach(function(x){
+        x.setAttribute('aria-selected','false');
+        var p=document.getElementById(x.getAttribute('data-p'));
+        if(p)p.classList.remove('on');
+      });
+      t.setAttribute('aria-selected','true');
+      var p=document.getElementById(t.getAttribute('data-p'));
+      if(p)p.classList.add('on');
+    });
+  });
+}
+mkSubTabs('.dstl'); mkSubTabs('.jstl');
+
+// Keyboard nav
+qa('[role="tablist"]').forEach(function(tl){
+  tl.addEventListener('keydown',function(e){
+    var tabs=Array.from(tl.querySelectorAll('[role="tab"]'));
+    var i=tabs.indexOf(document.activeElement);
+    if(i===-1)return;
+    var n;
+    if(e.key==='ArrowRight'||e.key==='ArrowDown')n=(i+1)%tabs.length;
+    else if(e.key==='ArrowLeft'||e.key==='ArrowUp')n=(i-1+tabs.length)%tabs.length;
+    else if(e.key==='Home')n=0;
+    else if(e.key==='End')n=tabs.length-1;
+    else return;
+    e.preventDefault();
+    tabs[n].focus(); tabs[n].click();
+  });
+});
+
+// Copy
+window.doCopy=function(id,nid){
+  var el=document.getElementById(id);
+  var txt=el.textContent||el.innerText;
+  var n=document.getElementById(nid);
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){
+      n.textContent='Copied!';
+      setTimeout(function(){n.textContent='';},2000);
+    }).catch(function(){n.textContent='Select and copy manually.';});
+  } else { n.textContent='Select and copy manually.'; }
+};
+
+// Feedback
+window.doFb=function(btn,rowId,msgId){
+  var row=document.getElementById(rowId);
+  row.querySelectorAll('.fbb').forEach(function(b){b.classList.remove('fbc')});
+  btn.classList.add('fbc');
+  var msg=document.getElementById(msgId);
+  if(msg)msg.textContent=btn.textContent==='Yes'?'Thank you.':'Tell us more in your note.';
+};
+
+// ── Quiz ──
+var QS=[
+  {boards:[{v:'42',t:'c',n:12},{v:'312',t:'w1',n:6},{v:'32',t:'w2',n:4}],
+   desc:'12 boards show 42, 6 show 312, 4 show 32.',
+   level:1,
+   choices:[
+    {t:'Re-teach the whole class from scratch',q:'miss',f:'Twelve students already have it. Re-teaching the whole group loses them and doesn\'t reach the specific gaps the other ten have. Better when most of the class is lost.'},
+    {t:'Pull the students who wrote 312 and 32 into a small group',q:'good',f:'Strong move. Ten students have a misconception about regrouping. Before grouping them together, check whether they wrote 312 or 32 — those are two different problems and may need different conversations.'},
+    {t:'Have students who got 42 explain to a partner',q:'so',f:'Good instinct. Students who just figured it out often explain in a way that clicks. Make sure they’re talking through the thinking, not just showing the answer.'},
+    {t:'Move on — most got it',q:'miss',f:'Ten students have a gap in their understanding of regrouping that will make the next lesson harder. Moving on leaves that gap in place.'}
+  ]},
+  {boards:[{v:'42',t:'c',n:4},{v:'312',t:'w1',n:14},{v:'32',t:'w2',n:4}],
+   desc:'4 boards show 42, 14 show 312, 4 show 32.',
+   level:1,
+   choices:[
+    {t:'Re-teach the whole class, focused on place value',q:'good',f:'Yes. Eighteen students have a misconception, and the most common one (312) points straight to place value. Re-teaching the whole group makes sense here. Name what you’re re-teaching: not “the lesson,” but “how digits work by position.”'},
+    {t:'Pull a small group and move on with the rest',q:'miss',f:'Eighteen out of twenty-two got it wrong. A small-group pull leaves most of the class without what they need. This is a whole-class re-teach moment.'},
+    {t:'Have the 4 who got 42 explain to the class',q:'so',f:'Can work, but only if those four can explain place value clearly. That’s a lot to ask. Better as a follow-up after you re-anchor the concept yourself.'},
+    {t:'Move on — they’ll get it next lesson',q:'miss',f:'A misconception this widespread won’t fix itself. The next lesson builds on this one — bringing eighteen students forward with a place-value gap makes everything harder.'}
+  ]},
+  {boards:[{v:'42',t:'c',n:18},{v:'312',t:'w1',n:2},{v:'32',t:'w2',n:2}],
+   desc:'18 boards show 42, 2 show 312, 2 show 32.',
+   level:2,
+   choices:[
+    {t:'Move on — eighteen out of twenty-two got it',q:'so',f:'Reasonable, but four students have a real gap. Before moving on, set them up with a prompt card or a partner. Moving on without anything for those four isn’t quite right.'},
+    {t:'Re-teach the whole class',q:'miss',f:'Eighteen students already have it. A whole-class re-teach for four students loses the eighteen. This calls for targeted help, not a full re-teach.'},
+    {t:'Pull the four students with wrong answers for a quick small-group check',q:'good',f:'Yes. Four students, two different gaps — a quick three-minute small group lets you find out who’s where and give a targeted nudge. This is exactly what small-group formative work is for.'},
+    {t:'Pair each struggling student with someone who got 42',q:'so',f:'Can work if you pair intentionally. The student who wrote 312 needs to understand place value; the one who wrote 32 needs to understand the carried ten. Match the explainer to the gap.'}
+  ]}
+];
+
+var qState={streak:0,level:1,answered:false,cur:0};
+
+function qRender(){
+  qState.answered=false;
+  var s=QS[qState.cur];
+  var boards='';
+  s.boards.forEach(function(b){
+    for(var i=0;i<b.n;i++) boards+='<div class="wb '+b.t+'">'+b.v+'</div>';
+  });
+  qs('#qscene').innerHTML='<p style="font-size:.87rem;margin-bottom:.4rem;color:var(--j-muted)">'+s.desc+'</p><div class="wbrow">'+boards+'</div>';
+  var chtml='';
+  s.choices.forEach(function(c,i){
+    chtml+='<button class="chbtn" onclick="qAns(this,'+i+')" data-i="'+i+'">'+c.t+'</button>';
+  });
+  qs('#qchoices').innerHTML=chtml;
+  var fb=qs('#qfb'); fb.className='fbx'; fb.textContent='';
+  var nx=qs('#qnxt'); nx.className='qnxt';
+  var sk=qs('#stk');
+  sk.textContent=qState.streak>0?qState.streak+' in a row':'';
+}
+
+window.qAns=function(btn,idx){
+  if(qState.answered)return;
+  qState.answered=true;
+  var s=QS[qState.cur];
+  var c=s.choices[idx];
+  qa('#qchoices .chbtn').forEach(function(b){b.style.opacity='.6';b.style.pointerEvents='none';});
+  var fb=qs('#qfb');
+  fb.textContent=c.f; fb.classList.add('on');
+  if(c.q==='good'){
+    btn.classList.add('c-ok'); fb.classList.add('good');
+    qState.streak++;
+    if(qState.streak>=2)qState.level=2;
+  } else if(c.q==='so'){
+    btn.classList.add('c-so'); fb.classList.add('so');
+    qState.streak=Math.max(0,qState.streak-1);
+  } else {
+    btn.classList.add('c-no'); fb.classList.add('miss');
+    qState.streak=0; qState.level=1;
+  }
+  var nx=qs('#qnxt'); nx.classList.add('on');
+  nx.textContent=qNext_peek()!==null?'Next question':'Start again';
+};
+
+function qNext_peek(){
+  for(var t=0;t<QS.length;t++){
+    var idx=(qState.cur+1+t)%QS.length;
+    if(QS[idx].level<=qState.level)return idx;
+  }
+  return null;
+}
+
+window.qNext=function(){
+  var nx=qNext_peek();
+  if(nx!==null){qState.cur=nx;}
+  else{qState.cur=0;qState.streak=0;qState.level=1;}
+  qRender();
+};
+
+// ── Fade game ──
+var FITEMS=[
+  {id:'fa',txt:'I work through a problem at the board, thinking out loud every step',pos:0},
+  {id:'fb',txt:'You work from a prompt card showing the steps — I watch, I don’t speak',pos:1},
+  {id:'fc',txt:'I say “check your tens” and step back',pos:2},
+  {id:'fd',txt:'You go it alone',pos:3}
+];
+var fPlaced=[null,null,null,null];
+var fSel=null;
+var FDEFAULTS=['1 — most help','2','3','4 — least help'];
+
+function fRenderPool(){
+  var pool=qs('#fpool');
+  var order=[FITEMS[1],FITEMS[3],FITEMS[0],FITEMS[2]];
+  pool.innerHTML='';
+  order.forEach(function(item){
+    var btn=document.createElement('button');
+    btn.className='fitem'+(fPlaced.indexOf(item.id)!==-1?' used':'');
+    btn.id='fp'+item.id; btn.setAttribute('data-fid',item.id);
+    btn.textContent=item.txt;
+    btn.addEventListener('click',function(){
+      if(fPlaced.indexOf(item.id)!==-1)return;
+      if(fSel===item.id){
+        fSel=null;
+        pool.querySelectorAll('.fitem').forEach(function(b){b.classList.remove('sel');});
+      } else {
+        fSel=item.id;
+        pool.querySelectorAll('.fitem').forEach(function(b){b.classList.remove('sel');});
+        btn.classList.add('sel');
+      }
+    });
+    pool.appendChild(btn);
+  });
+}
+
+function fSetupSlots(){
+  qa('#fslots .fslot').forEach(function(slot){
+    slot.onclick=function(){
+      var pos=parseInt(slot.getAttribute('data-pos'));
+      if(fSel!==null){
+        var prev=fPlaced.indexOf(fSel);
+        if(prev!==-1){
+          fPlaced[prev]=null;
+          var ps=qs('#fs'+prev);
+          ps.textContent=FDEFAULTS[prev]; ps.classList.remove('filled');
+        }
+        if(fPlaced[pos]!==null){
+          var oldId=fPlaced[pos];
+          var ob=qs('#fp'+oldId);
+          if(ob)ob.classList.remove('used');
+        }
+        fPlaced[pos]=fSel;
+        var it=FITEMS.find(function(x){return x.id===fSel;});
+        slot.textContent=it.txt; slot.classList.add('filled');
+        var pb=qs('#fp'+fSel);
+        if(pb){pb.classList.add('used');pb.classList.remove('sel');}
+        fSel=null;
+      } else if(fPlaced[pos]!==null){
+        var rid=fPlaced[pos]; fPlaced[pos]=null;
+        slot.textContent=FDEFAULTS[pos]; slot.classList.remove('filled');
+        var rb=qs('#fp'+rid);
+        if(rb)rb.classList.remove('used');
+      }
+    };
+    slot.addEventListener('keydown',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();slot.click();}});
+  });
+}
+
+window.fCheck=function(){
+  var res=qs('#fres');
+  var all=fPlaced.every(function(v){return v!==null;});
+  if(!all){res.className='fres so on';res.textContent='Fill all four slots first.';return;}
+  var ok=fPlaced.every(function(id,pos){
+    var it=FITEMS.find(function(x){return x.id===id;});
+    return it&&it.pos===pos;
+  });
+  if(ok){
+    res.className='fres ok on';
+    res.innerHTML='<strong>That\'s it.</strong> Most help first, then less and less, until they go it alone. That\'s fading.';
+  } else {
+    var wrong=[];
+    fPlaced.forEach(function(id,pos){
+      var it=FITEMS.find(function(x){return x.id===id;});
+      if(it&&it.pos!==pos)wrong.push(pos+1);
+    });
+    res.className='fres so on';
+    res.textContent='Not quite. Slot'+(wrong.length>1?'s ':' ')+wrong.join(' and ')+' need another look. Think about what gives a student the most support versus the least.';
+  }
+};
+
+window.fReset=function(){
+  fPlaced=[null,null,null,null]; fSel=null;
+  qa('#fslots .fslot').forEach(function(s,i){
+    s.textContent=FDEFAULTS[i]; s.classList.remove('filled');
+  });
+  var res=qs('#fres'); res.className='fres'; res.textContent='';
+  fRenderPool(); fSetupSlots();
+};
+
+qRender(); fRenderPool(); fSetupSlots();
+})();
+</script>
+
+</body>
+</html>

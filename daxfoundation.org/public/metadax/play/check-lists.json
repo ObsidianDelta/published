@@ -1,0 +1,41 @@
+{
+  "titles": [
+    "Mr", "Mrs", "Ms", "Miss", "Dr", "Prof", "Professor",
+    "Sir", "Madam", "Mme", "Mlle", "Monsieur", "Madame"
+  ],
+  "ai_words": [
+    "AI", "A.I.", "chatbot", "chat bot", "Chatbot",
+    "assistant app", "ask the computer", "IA"
+  ],
+  "vendor_words": [
+    "OpenAI", "ChatGPT", "GPT-4", "GPT-3", "GPT",
+    "Claude", "Anthropic",
+    "Gemini", "Google AI",
+    "Copilot", "Bing Chat",
+    "Meta AI",
+    "Mistral AI", "Perplexity",
+    "Grok", "xAI",
+    "Cohere", "Stability AI", "Midjourney", "DALL-E"
+  ],
+  "brands": [
+    "Shoppers Drug Mart", "Rexall", "London Drugs",
+    "Jean Coutu", "Pharmaprix", "Pharmasave",
+    "CVS", "Walgreens", "Duane Reade", "Rite Aid",
+    "Loblaws", "Loblaw", "Sobeys", "IGA",
+    "No Frills", "Food Basics", "FreshCo",
+    "Provigo", "Walmart", "Costco",
+    "Kroger", "Safeway", "Whole Foods", "Trader Joe",
+    "Canada Post", "Purolator", "FedEx", "UPS", "DHL",
+    "Canpar", "Intelcom", "Postes Canada", "USPS",
+    "WhatsApp", "Telegram", "Snapchat", "Instagram",
+    "WeChat", "Viber", "iMessage", "Discord",
+    "App Store", "Google Play", "Play Store",
+    "Microsoft Store",
+    "Vanilla Visa", "Vanilla Mastercard",
+    "iTunes", "eBay",
+    "Tim Hortons", "Starbucks", "McDonald", "McDonalds",
+    "Apple Store", "Google Store", "Amazon gift card",
+    "Microsoft", "Samsung", "Netflix",
+    "Facebook", "Twitter", "TikTok", "YouTube", "Spotify"
+  ]
+}
