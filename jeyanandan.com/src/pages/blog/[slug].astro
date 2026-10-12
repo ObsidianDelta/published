@@ -47,7 +47,7 @@ const noindex = isUnlisted(Astro.params.slug, frontmatter);
 // readable as a diff. Jason, 2026-10-01: nothing is quietly edited.
 const history = `https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/${Astro.params.slug}.md`;
 ---
-<Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle} noindex={noindex}>
+<Base title={`${fullTitle} — Jason Jeyanandan`} description={frontmatter.description || fullTitle} noindex={noindex} image={frontmatter.image} imageAlt={frontmatter.imageAlt}>
   <section class="hero"><div class="shell narrow">
     <p class="eyebrow"><time datetime={published.toISOString()}>{fmt}</time>{showUpdated && <span class="updated"> <span aria-hidden="true">·</span> Updated <time datetime={revised.toISOString()}>{fmtUpdated}</time></span>} <span class="updated"><span aria-hidden="true">·</span> <a class="history" href={history} rel="noopener">History</a></span></p>
     <h1>{frontmatter.title}</h1>
