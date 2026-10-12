@@ -26,10 +26,41 @@ import Base from '../../../../layouts/Base.astro';
 
   <section class="block" aria-labelledby="h-code">
     <h2 id="h-code">In Claude Code</h2>
-    <p class="body">Type these two lines in Claude Code, one at a time:</p>
+    <p class="body">Never used a terminal? The Claude app steps above are easier. These steps are for Claude Code.</p>
+    <p class="body"><strong>1.</strong> Open a terminal. Mac: press Cmd and Space, type Terminal, press Enter. Windows: open PowerShell from the Start menu.</p>
+    <p class="body"><strong>2.</strong> Install Claude Code: paste the install line from Claude&rsquo;s install page (<a href="https://code.claude.com/docs/en/setup">code.claude.com/docs/en/setup</a>) and press Enter. Check it with <code>claude --version</code>; a number means it worked. Claude Code needs a paid Claude plan (Pro or Max).</p>
+    <p class="body"><strong>3.</strong> Make a folder for lessons and start there (Mac: <code>mkdir -p ~/Documents/Lessons &amp;&amp; cd ~/Documents/Lessons</code>; Windows PowerShell: <code>mkdir ~\Documents\Lessons; cd ~\Documents\Lessons</code>), then type <code>claude</code> and press Enter.</p>
+    <pre class="term"> Let's get started.
+
+ Choose the text style that looks best with your terminal
+ To change this later, run /theme
+
+     Auto (match terminal)
+ ❯ ✔ Dark mode
+     Light mode</pre>
+    <p class="body"><strong>4.</strong> First time only: press Enter to pick a look, sign in when your browser opens, press Enter on the safety notes, and choose &ldquo;Yes, I trust this folder&rdquo; (down arrow, then Enter).</p>
+    <p class="body"><strong>5.</strong> Add the skill:</p>
     <pre><code>/plugin marketplace add daxfoundation/metadax
 /plugin install metadax-homeschool@metadax</code></pre>
-    <p class="body">Choose &ldquo;user&rdquo; if it asks where to install.</p>
+    <p class="body">Press Enter on &ldquo;Install for you&rdquo;.</p>
+    <pre class="term">❯ /plugin marketplace add daxfoundation/metadax
+  ⎿  Successfully added marketplace: metadax
+
+❯ /plugin install metadax-homeschool@metadax
+  ❯ Install for you (user scope)
+  ⎿  ✓ Installed metadax-homeschool. Plugin is now active.</pre>
+    <p class="body"><strong>6.</strong> Ask:</p>
+    <blockquote class="said">Use the metadax-homeschool skill. I homeschool and my child is stuck on something.</blockquote>
+    <p class="body">Answer its questions in your own words; nickname only.</p>
+    <p class="body"><strong>7.</strong> When it asks &ldquo;Do you want to proceed?&rdquo;, press 1 (Yes) and Enter. You will see a few of these while it reads its instructions, saves your lesson and checks it.</p>
+    <pre class="term"> Do you want to create family-package.json?
+ ❯ 1. Yes
+   2. Yes, and switch to accept edits (auto-approve file edits and common file commands) for this
+      session (shift+tab)
+   3. No</pre>
+    <p class="body"><strong>8.</strong> When it says it is done, your lesson is the file <code>family-package.json</code> in your Lessons folder. Open the player and press &ldquo;Open a file&rdquo;, then pick <code>family-package.json</code>.</p>
+    <pre class="term">● Sprout's package, "The Two Engines" (family-package.json), is built and passes the checker with no
+  errors.</pre>
   </section>
 
   <section class="block" aria-labelledby="h-then">
@@ -49,8 +80,9 @@ import Base from '../../../../layouts/Base.astro';
     <h2 id="h-next">Open what it built</h2>
     <p class="body">
       Your answers go to Claude under your account&rsquo;s own privacy settings. The
-      package it builds is a file that stays with you. Open the player, paste it in
-      and press Play; read your tab first.
+      package it builds is a file that stays with you. Open the player, press
+      &ldquo;Open a file&rdquo; and pick it (or paste it in), then press Play; read
+      your tab first.
     </p>
     <p class="out">
       <a href="/metadax/play/">Open the player</a>
@@ -86,6 +118,8 @@ import Base from '../../../../layouts/Base.astro';
 
   pre { margin: 1rem 0 0; max-width: 40em; background: color-mix(in srgb, var(--fg) 6%, transparent); border: 1px solid var(--line); border-radius: 8px; padding: 0.9rem 1.1rem; overflow-x: auto; }
   pre code { background: none; padding: 0; font-size: inherit; }
+  pre.term { background: #111; color: #d4d4d4; border-color: #2a2a2a; max-width: 100%; }
+  pre.term + .body { margin-top: 1rem; }
 
   .out { margin: 1.25rem 0 0; font-size: 0.9375rem; }
   .out span { color: var(--faint); margin-inline: 0.5rem; }
