@@ -53,6 +53,56 @@
   .scene .fb { font-size:.9rem; margin:.3rem 0 0; }
   .scene .fb.ok { color:var(--accent); }
   .scene .lvl-tag { font-size:.72rem; color:var(--muted); }
+
+  /* ---- interactive games (learner tab) --------------------------------- */
+  /* No colour or glyph here marks a right answer before the child picks; the
+     ✓ answer key (`.choice.correct`) lives only in the guide view below. */
+  .game { border:1px solid var(--line); border-radius:8px; padding:.7rem .9rem; margin:.8rem 0; background:var(--surface); }
+  .game .gtitle { font-weight:600; margin:0 0 .2rem; }
+  .game .gintro { color:var(--muted); font-size:.9rem; margin:.1rem 0 .6rem; }
+  .badge { display:inline-block; font-size:.72rem; letter-spacing:.04em; background:var(--chip); color:var(--accent); border-radius:999px; padding:.1rem .6rem; margin:.1rem 0 .5rem; }
+  .qtext { font-weight:500; margin:.3rem 0 .5rem; }
+  .qvisual { font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.8rem; white-space:pre-wrap; background:var(--chip); border-radius:6px; padding:.4rem .6rem; margin:.3rem 0; }
+  .opts { display:flex; flex-direction:column; gap:.4rem; margin:.5rem 0; }
+  .opt { text-align:left; background:var(--chip); color:var(--fg); border:1px solid var(--line); border-radius:7px; padding:.5rem .7rem; cursor:pointer; }
+  .opt:hover:not(:disabled) { border-color:var(--accent); }
+  .opt:disabled { cursor:default; }
+  .opt.picked-ok { border-color:var(--accent); background:var(--chip); font-weight:600; }
+  .opt.picked-no { border-color:#c0392b; }
+  .fb { margin:.5rem 0 .2rem; font-size:.95rem; }
+  .fb.ok { color:var(--accent); }
+  .fb.no { color:#c0392b; }
+  .explain { color:var(--muted); font-size:.9rem; margin:.2rem 0; }
+  .hintbtn, .nextbtn, .startover, .chkbtn, .makenote, .copynote { background:var(--accent); color:#fff; border:0; border-radius:7px; padding:.4rem 1rem; cursor:pointer; font:inherit; margin:.4rem .4rem .2rem 0; }
+  .hintbtn { background:transparent; color:var(--accent); border:1px solid var(--accent); }
+  .hint { color:var(--muted); font-size:.9rem; margin:.3rem 0; }
+  .startover { background:transparent; color:var(--muted); border:1px solid var(--line); }
+  .bins { display:flex; flex-wrap:wrap; gap:.6rem; margin:.5rem 0; }
+  .bin { flex:1 1 9rem; min-width:9rem; border:1px dashed var(--line); border-radius:8px; padding:.4rem .5rem; background:var(--bg); }
+  .bin.over { border-color:var(--accent); }
+  .bin .binlabel { font-size:.8rem; font-weight:600; color:var(--muted); margin-bottom:.3rem; }
+  .chip { display:inline-block; background:var(--chip); border:1px solid var(--line); border-radius:7px; padding:.3rem .6rem; margin:.2rem; cursor:grab; }
+  .chip.placed { opacity:.45; cursor:default; }
+  .placed-item { display:block; background:var(--surface); border:1px solid var(--line); border-radius:6px; padding:.25rem .5rem; margin:.25rem 0; font-size:.9rem; }
+  .placed-item.ok { border-color:var(--accent); }
+  .placed-item.no { border-color:#c0392b; }
+  .placed-item .why { color:var(--muted); font-size:.82rem; margin-top:.2rem; }
+  .part { margin:.5rem 0; }
+  .part .plabel { font-weight:500; margin-bottom:.25rem; }
+  .part-result { border:1px solid var(--line); border-radius:6px; padding:.4rem .6rem; margin:.3rem 0; }
+  .part-result.ok { border-color:var(--accent); }
+  .part-result.no { border-color:#c0392b; }
+  .result { font-weight:500; margin:.5rem 0; }
+  details.answerkey { margin:1rem 0; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
+  details.answerkey > summary { cursor:pointer; padding:.6rem .8rem; font-weight:600; color:var(--accent); }
+  details.answerkey > .akbody { padding:0 .8rem .6rem; }
+  .nexttime { border:1px solid var(--accent); border-radius:8px; padding:.7rem .9rem; margin:1.2rem 0; background:var(--chip); }
+  .nexttime h3 { margin:.1rem 0 .4rem; font-size:1rem; }
+  .nexttime label.tick { display:flex; gap:.5rem; align-items:flex-start; margin:.3rem 0; font-size:.92rem; }
+  .nexttime .asklabel { font-size:.9rem; font-weight:500; margin:.5rem 0 .2rem; }
+  .nexttime textarea { min-height:3rem; }
+  .noteout textarea.note { min-height:9rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.78rem; }
+  .noteout .tagline { color:var(--muted); font-size:.85rem; margin:.4rem 0; }
 </style>
 </head>
 <body>
@@ -73,12 +123,51 @@
 </div>
 
 <script src="package-check.js"></script>
+<script src="engine.js"></script>
 <script src="record.js"></script>
 <script>
 (function(){
   var AGE_BANDS = { "4-6":1,"4-9":1,"7-9":1,"10-12":1,"13-15":1,"16-18":1 };
   function el(t, cls, txt){ var e=document.createElement(t); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e; }
   function inline(s){ return String(s||"").replace(/\*\*(.+?)\*\*/g,"$1").replace(/\*(.+?)\*/g,"$1"); }
+  var ENG = window.MetaDAXEngine || {};
+
+  // ---- play session: every answer, in memory and in localStorage ---------
+  // Records live under metadax:<ref>:<session>. SESSION holds, per game id, the
+  // list of answers and (for a quiz) its adaptive state. All storage is wrapped
+  // in try/catch — a blocked localStorage only means the session is not kept
+  // between reloads; play still works. Nothing is sent anywhere.
+  var SESSION = {}, SESSION_PKG = null;
+  function storageKey(pkg){ return pkg ? ("metadax:" + pkg.ref + ":" + (pkg.session != null ? pkg.session : 1)) : null; }
+  function loadSession(pkg){
+    SESSION_PKG = pkg; SESSION = {};
+    var key = storageKey(pkg); if (!key) return;
+    try { var raw = localStorage.getItem(key); if (raw) SESSION = JSON.parse(raw) || {}; } catch(e){}
+  }
+  function saveSession(){
+    var key = storageKey(SESSION_PKG); if (!key) return;
+    try { localStorage.setItem(key, JSON.stringify(SESSION)); } catch(e){}
+  }
+  function clearSession(){
+    SESSION = {};
+    var key = storageKey(SESSION_PKG); if (!key) return;
+    try { localStorage.removeItem(key); } catch(e){}
+  }
+  // Record one answer for a game, then let record.js / the next-time note know.
+  function recordAnswer(gameId, entry){
+    if (!gameId) return;
+    if (!SESSION[gameId]) SESSION[gameId] = [];
+    SESSION[gameId].push(entry);
+    saveSession();
+    try { document.dispatchEvent(new CustomEvent("metadax:recorded")); } catch(e){}
+  }
+  function quizState(block){
+    var k = "quiz:" + block.id;
+    if (!SESSION[k]) SESSION[k] = { level: block.start || 1, streak: 0, missStreak: 0, usedByLevel: {} };
+    return SESSION[k];
+  }
+  // record.js reads the live session to prefill its form from the same records.
+  window.MetaDAXPlay = { session: function(){ return SESSION; } };
 
   // ---- scenes (optional 3D) ---------------------------------------------
   // three.js + the scene registry are imported ONLY when a package carries a
@@ -186,8 +275,19 @@
     parent.appendChild(el("span","who", label));
   }
 
-  function renderBlocks(container, blocks, learnersByName){
+  function renderBlocks(container, blocks, learnersByName, side){
     (blocks||[]).forEach(function(b){
+      // Games on the learner side play live; the guide side never renders a
+      // game inline — every game's answers live in the collapsed answer key, so
+      // the child's tab shows no answer and no ✓.
+      if (/^(quiz|sort|sequence|build|spoken-sound)$/.test(b.type)){
+        if (side !== "learner") return;
+        var gw = el("div","blk");
+        jobChip(gw, b, learnersByName);
+        renderGamePlay(gw, b, learnersByName);
+        container.appendChild(gw);
+        return;
+      }
       var wrap = el("div","blk");
       // job chip first so the split reads before the content
       jobChip(wrap, b, learnersByName);
@@ -230,21 +330,6 @@
           ck.appendChild(el("strong",null,inline(b.title||"Checklist")));
           var cu=el("ul"); (b.items||[]).forEach(function(i){cu.appendChild(el("li",null,"☐ "+inline(i)));}); ck.appendChild(cu); wrap.appendChild(ck); break; }
         case "faq": { renderFaq(wrap, b, 0); break; }
-        case "quiz": { renderQuiz(wrap, b, learnersByName); break; }
-        case "spoken-sound": {
-          // Guide reads the prompt aloud; the learner taps the matching option.
-          // The page speaks nothing. The answer is marked here (a preview); the
-          // printed learner page hides it and keeps it in the guide key.
-          var ss = el("div","blk");
-          ss.appendChild(el("p","muted","Say aloud (guide): “"+inline(b.prompt_for_guide)+"”"));
-          (b.options||[]).forEach(function(o){ ss.appendChild(el("div","choice"+(o===b.answer?" correct":""),inline(o))); });
-          if(b.why) ss.appendChild(el("p","muted",inline(b.why)));
-          wrap.appendChild(ss); break; }
-        case "sort": case "sequence": case "build": {
-          var g = el("div","card");
-          g.appendChild(el("strong",null,inline(b.title||b.type)));
-          if(b.intro) g.appendChild(el("p","muted",inline(b.intro)));
-          g.appendChild(el("p","muted","(game: "+b.type+" — play it live in the player)")); wrap.appendChild(g); break; }
         case "scene": { renderScene(wrap, b); break; }
         default: wrap.appendChild(el("p","muted","["+b.type+"]"));
       }
@@ -260,7 +345,56 @@
     container.appendChild(d);
   }
 
-  function renderQuiz(container, b, learnersByName){
+  // ---- static game views (GUIDE answer key only) ------------------------
+  // Today's read-only render of every game, shown to the guide inside the
+  // collapsed "Answer key (for you)". This is the ONLY place a right answer is
+  // marked (quiz / spoken-sound carry `.choice.correct` → a ✓). It never runs
+  // on the learner tab or in print.
+  function renderGameStatic(container, b, learnersByName){
+    switch(b.type){
+      case "quiz": renderQuizStatic(container, b, learnersByName); break;
+      case "spoken-sound": {
+        var ss = el("div","blk");
+        ss.appendChild(el("strong",null,inline(b.title||"Say and find")));
+        ss.appendChild(el("p","muted","Say aloud (guide): “"+inline(b.prompt_for_guide)+"”"));
+        (b.options||[]).forEach(function(o){ ss.appendChild(el("div","choice"+(o===b.answer?" correct":""),inline(o))); });
+        if(b.why) ss.appendChild(el("p","muted",inline(b.why)));
+        container.appendChild(ss); break; }
+      case "sort": {
+        var sg = el("div","blk");
+        sg.appendChild(el("strong",null,inline(b.title||"Sort")));
+        if(b.intro) sg.appendChild(el("p","muted",inline(b.intro)));
+        var binName = {}; (b.bins||[]).forEach(function(bn){ binName[bn.id]=inline(bn.label); });
+        (b.items||[]).forEach(function(i){
+          var line = el("div","choice correct", inline(i.text)+" → "+(binName[i.bin]||i.bin));
+          sg.appendChild(line);
+          if(i.why) sg.appendChild(el("p","muted",inline(i.why)));
+        });
+        container.appendChild(sg); break; }
+      case "sequence": {
+        var qg = el("div","blk");
+        qg.appendChild(el("strong",null,inline(b.title||"Sequence")));
+        if(b.intro) qg.appendChild(el("p","muted",inline(b.intro)));
+        (b.steps||[]).forEach(function(st,i){
+          qg.appendChild(el("div","q",(i+1)+". "+inline(st.prompt)));
+          (st.choices||[]).forEach(function(c){ qg.appendChild(el("div","choice"+(c.correct?" correct":""),inline(c.text))); });
+        });
+        container.appendChild(qg); break; }
+      case "build": {
+        var bg = el("div","blk");
+        bg.appendChild(el("strong",null,inline(b.title||"Build")));
+        if(b.intro) bg.appendChild(el("p","muted",inline(b.intro)));
+        (b.parts||[]).forEach(function(p){
+          bg.appendChild(el("div","q",inline(p.label)));
+          (p.options||[]).forEach(function(o){ bg.appendChild(el("div","choice"+(o===p.best?" correct":""),inline(o))); });
+          if(p.why) bg.appendChild(el("p","muted",inline(p.why)));
+        });
+        container.appendChild(bg); break; }
+      default: break;
+    }
+  }
+
+  function renderQuizStatic(container, b, learnersByName){
     var q = el("div","blk");
     q.appendChild(el("strong",null,inline(b.title||"Game")));
     if(b.intro) q.appendChild(el("p","muted",inline(b.intro)));
@@ -282,6 +416,242 @@
       q.appendChild(box);
     });
     container.appendChild(q);
+  }
+
+  // ---- interactive games (LEARNER tab) ----------------------------------
+  // One item at a time, choices shuffled every render, nothing marked right
+  // before the child picks. No ✓ and no answer key here — those are the guide's.
+  function renderGamePlay(container, b, learnersByName){
+    switch(b.type){
+      case "quiz": renderQuizPlay(container, b, learnersByName); break;
+      case "sort": renderSortPlay(container, b); break;
+      case "sequence": renderSequencePlay(container, b); break;
+      case "build": renderBuildPlay(container, b); break;
+      case "spoken-sound": renderSpokenSoundPlay(container, b); break;
+    }
+  }
+
+  function gameShell(b){
+    var g = el("div","game");
+    g.appendChild(el("div","gtitle",inline(b.title||b.type)));
+    if(b.intro) g.appendChild(el("div","gintro",inline(b.intro)));
+    return g;
+  }
+
+  function renderQuizPlay(container, b, learnersByName){
+    var g = gameShell(b);
+    var play = el("div"); g.appendChild(play);
+    var st = quizState(b);
+    var N = ENG.levelCount(b), minL = ENG.minLevel(b), maxL = ENG.maxLevel(b);
+    var upAfter = b.up_after || 3, downAfter = b.down_after || 1;
+
+    function render(){
+      play.innerHTML = "";
+      var lv = ENG.getLevel(b, st.level);
+      if(!lv || !(lv.items||[]).length){ play.appendChild(el("p","muted","All done — press Start over to go again.")); return; }
+      var badge = el("div","badge","Level "+st.level+" of "+N);
+      if(lv.label) badge.textContent += " · "+inline(lv.label);
+      play.appendChild(badge);
+      jobChip(play, lv, learnersByName);
+
+      var idx = ENG.nextItemIndex(st, st.level, lv.items.length);
+      var it = lv.items[idx];
+      saveSession();
+      jobChip(play, it, learnersByName);
+      play.appendChild(el("div","qtext",inline(it.q)));
+      if(it.visual) play.appendChild(el("div","qvisual",it.visual));
+
+      if(it.hint){
+        var hb = el("button","hintbtn","Hint"); hb.type="button";
+        var hint = el("p","hint",inline(it.hint)); hint.style.display="none";
+        hb.addEventListener("click",function(){ hint.style.display="block"; hb.style.display="none"; });
+        play.appendChild(hb); play.appendChild(hint);
+      }
+
+      var opts = el("div","opts"); play.appendChild(opts);
+      var answered = false;
+      ENG.shuffle(it.choices||[]).forEach(function(c){
+        var btn = el("button","opt",inline(c.text)); btn.type="button";
+        btn.addEventListener("click",function(){
+          if(answered) return; answered = true;
+          var ok = !!c.correct;
+          [].forEach.call(opts.children,function(x){ x.disabled = true; });
+          btn.className = "opt "+(ok?"picked-ok":"picked-no");
+          recordAnswer(b.id, { item: inline(it.q), chosen: inline(c.text), correct: ok, mistake: c.mistake || null, level: st.level });
+          var fb = el("div","fb "+(ok?"ok":"no"), inline(c.msg || (ok?"Right.":"Not quite.")));
+          play.appendChild(fb);
+          if(it.explain) play.appendChild(el("div","explain",inline(it.explain)));
+          ENG.stepLevel(st, ok, { upAfter:upAfter, downAfter:downAfter, minLevel:minL, maxLevel:maxL });
+          saveSession();
+          var nb = el("button","nextbtn","Next"); nb.type="button";
+          nb.addEventListener("click",render);
+          play.appendChild(nb);
+        });
+        opts.appendChild(btn);
+      });
+    }
+    render();
+    container.appendChild(g);
+  }
+
+  function renderSortPlay(container, b){
+    var g = gameShell(b);
+    var items = (b.items||[]).slice(), bins = b.bins||[];
+    var placed = {};
+    var chips = el("div"); chips.style.margin=".4rem 0";
+    var selected = { idx: null };
+    items.forEach(function(it, idx){
+      var chip = el("button","chip",inline(it.text)); chip.type="button";
+      chip.draggable = true; chip.dataset.idx = idx;
+      chip.addEventListener("dragstart",function(e){ e.dataTransfer.setData("text/plain", String(idx)); });
+      chip.addEventListener("click",function(){
+        if(placed[idx]!=null) return;
+        selected.idx = idx;
+        [].forEach.call(chips.children,function(c){ c.style.outline=""; });
+        chip.style.outline = "2px solid var(--accent)";
+      });
+      chips.appendChild(chip);
+    });
+    g.appendChild(el("p","gintro","Drag each one into a box — or tap it, then tap a box."));
+    g.appendChild(chips);
+
+    var binsEl = el("div","bins");
+    function place(idx, binId){
+      if(idx==null || placed[idx]!=null) return;
+      placed[idx] = binId; selected.idx = null;
+      var chip = chips.children[idx];
+      chip.className = "chip placed"; chip.style.outline="";
+      var holder = binsEl.querySelector('[data-bin="'+binId+'"] .binitems');
+      var pi = el("div","placed-item",inline(items[idx].text)); pi.dataset.idx = idx;
+      holder.appendChild(pi);
+    }
+    bins.forEach(function(bin){
+      var be = el("div","bin"); be.dataset.bin = bin.id;
+      be.appendChild(el("div","binlabel",inline(bin.label)));
+      be.appendChild(el("div","binitems"));
+      be.addEventListener("dragover",function(e){ e.preventDefault(); be.classList.add("over"); });
+      be.addEventListener("dragleave",function(){ be.classList.remove("over"); });
+      be.addEventListener("drop",function(e){ e.preventDefault(); be.classList.remove("over"); place(parseInt(e.dataTransfer.getData("text/plain"),10), bin.id); });
+      be.addEventListener("click",function(){ if(selected.idx!=null) place(selected.idx, bin.id); });
+      binsEl.appendChild(be);
+    });
+    g.appendChild(binsEl);
+
+    var chk = el("button","chkbtn","Check"); chk.type="button";
+    chk.addEventListener("click",function(){
+      var right = 0;
+      items.forEach(function(it, idx){
+        var chosen = placed[idx], ok = chosen === it.bin;
+        if(ok) right++;
+        recordAnswer(b.id, { item: inline(it.text), chosen: chosen||null, correct: ok });
+        var holder = binsEl.querySelector('[data-bin="'+chosen+'"] .binitems');
+        if(holder){ [].forEach.call(holder.children,function(pi){
+          if(pi.dataset.idx === String(idx)){
+            pi.classList.add(ok?"ok":"no");
+            if(!ok && it.why) pi.appendChild(el("div","why",inline(it.why)));
+          }
+        }); }
+      });
+      g.appendChild(el("div","result", right+" of "+items.length+" in the right box."));
+      chk.disabled = true;
+    });
+    g.appendChild(chk);
+    container.appendChild(g);
+  }
+
+  function renderSequencePlay(container, b){
+    var g = gameShell(b);
+    var steps = b.steps||[], play = el("div"); g.appendChild(play);
+    function renderStep(i){
+      if(i >= steps.length){ play.appendChild(el("div","result","You did it — every step in order.")); return; }
+      var st = steps[i];
+      var wrap = el("div"); wrap.style.margin=".5rem 0";
+      wrap.appendChild(el("div","qtext",(i+1)+". "+inline(st.prompt)));
+      var opts = el("div","opts"); var answered = false;
+      ENG.shuffle(st.choices||[]).forEach(function(c){
+        var btn = el("button","opt",inline(c.text)); btn.type="button";
+        btn.addEventListener("click",function(){
+          if(answered) return;
+          var ok = !!c.correct;
+          recordAnswer(b.id, { step: i, chosen: inline(c.text), correct: ok, mistake: c.mistake || null });
+          if(ok){
+            answered = true;
+            [].forEach.call(opts.children,function(x){ x.disabled = true; });
+            btn.className = "opt picked-ok";
+            wrap.appendChild(el("div","fb ok",inline(c.msg||"Right.")));
+            var nb = el("button","nextbtn","Next step"); nb.type="button";
+            nb.addEventListener("click",function(){ renderStep(i+1); });
+            wrap.appendChild(nb);
+          } else {
+            btn.className = "opt picked-no"; btn.disabled = true;
+            wrap.appendChild(el("div","fb no",inline(c.msg||"Not that one — try another.")));
+          }
+        });
+        opts.appendChild(btn);
+      });
+      wrap.appendChild(opts);
+      play.appendChild(wrap);
+    }
+    renderStep(0);
+    container.appendChild(g);
+  }
+
+  function renderBuildPlay(container, b){
+    var g = gameShell(b);
+    var parts = b.parts||[], sel = {};
+    parts.forEach(function(p, pi){
+      var pw = el("div","part");
+      pw.appendChild(el("div","plabel",inline(p.label)));
+      var opts = el("div","opts");
+      (p.options||[]).forEach(function(o){
+        var btn = el("button","opt",inline(o)); btn.type="button"; btn.setAttribute("aria-pressed","false");
+        btn.addEventListener("click",function(){
+          [].forEach.call(opts.children,function(x){ x.setAttribute("aria-pressed","false"); x.classList.remove("picked-ok"); });
+          btn.setAttribute("aria-pressed","true"); btn.classList.add("picked-ok");
+          sel[pi] = o;
+        });
+        opts.appendChild(btn);
+      });
+      pw.appendChild(opts); g.appendChild(pw);
+    });
+    var chk = el("button","chkbtn","See result"); chk.type="button";
+    chk.addEventListener("click",function(){
+      chk.disabled = true;
+      parts.forEach(function(p, pi){
+        var chosen = sel[pi] != null ? sel[pi] : null, ok = chosen === p.best;
+        recordAnswer(b.id, { part: inline(p.label), chosen: chosen, best: p.best, correct: ok });
+        var pr = el("div","part-result "+(ok?"ok":"no"));
+        pr.appendChild(el("strong",null,inline(p.label)+": "));
+        pr.appendChild(document.createTextNode(chosen!=null?inline(chosen):"—"));
+        if(!ok) pr.appendChild(el("span","muted"," (best: "+inline(p.best)+")"));
+        if(p.why) pr.appendChild(el("div","why",inline(p.why)));
+        g.appendChild(pr);
+      });
+    });
+    g.appendChild(chk);
+    container.appendChild(g);
+  }
+
+  function renderSpokenSoundPlay(container, b){
+    var g = gameShell(b);
+    g.appendChild(el("p","gintro","Grown-up, say this aloud: “"+inline(b.prompt_for_guide)+"”"));
+    g.appendChild(el("p","muted","Then tap the one you hear."));
+    var opts = el("div","opts"); var answered = false;
+    ENG.shuffle((b.options||[]).map(function(o){ return o; })).forEach(function(o){
+      var btn = el("button","opt",inline(o)); btn.type="button";
+      btn.addEventListener("click",function(){
+        if(answered) return; answered = true;
+        var ok = o === b.answer;
+        [].forEach.call(opts.children,function(x){ x.disabled = true; });
+        btn.className = "opt "+(ok?"picked-ok":"picked-no");
+        recordAnswer(b.id, { item: inline(b.prompt_for_guide), chosen: inline(o), correct: ok });
+        g.appendChild(el("div","fb "+(ok?"ok":"no"), ok?"That's the one.":"Listen again and try once more."));
+        if(b.why) g.appendChild(el("div","explain",inline(b.why)));
+      });
+      opts.appendChild(btn);
+    });
+    g.appendChild(opts);
+    container.appendChild(g);
   }
 
   // A scene block: mount the live 3D scene (or a static SVG fallback), ask the
@@ -366,7 +736,87 @@
     wrap.appendChild(box);
   }
 
+  // ---- next-time note (guide, closes the tellus section) ----------------
+  // Prefilled from the game records via ENG.buildNextNote, with the guide's
+  // ticks (next.ticks) and open answers (next.ask). Read-only output + Copy.
+  // The note's shape is fixed by templates/NEXT-TIME-NOTE.md — the skill's
+  // Step 6 reads it. Nothing leaves the device unless the guide copies it.
+  function renderNextTimeForm(sc, pkg){
+    var next = pkg.next || {};
+    var ticks = next.ticks || [], asks = next.ask || [];
+    if (!ticks.length && !asks.length) return;
+    var box = el("div","nexttime");
+    box.appendChild(el("h3",null,"Next time"));
+    box.appendChild(el("p","gintro","Tick what landed, add a line in your own words, then make the note. It is prefilled from how the games went."));
+
+    var tickInputs = [];
+    ticks.forEach(function(t){
+      var lab = el("label","tick");
+      var cb = el("input"); cb.type="checkbox"; cb.value = inline(t);
+      lab.appendChild(cb); lab.appendChild(document.createTextNode(inline(t)));
+      box.appendChild(lab); tickInputs.push(cb);
+    });
+
+    var askInputs = [];
+    asks.forEach(function(a){
+      box.appendChild(el("div","asklabel",inline(a)));
+      var ta = el("textarea"); ta.style.cssText="width:100%;padding:.4rem;font:inherit;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);";
+      box.appendChild(ta); askInputs.push({ label: inline(a), ta: ta });
+    });
+
+    var keepLab = el("label","tick");
+    var keep = el("input"); keep.type="checkbox"; keep.checked = true;
+    keepLab.appendChild(keep); keepLab.appendChild(document.createTextNode("Keep this note"));
+    box.appendChild(keepLab);
+
+    var makeBtn = el("button","makenote","Make the note"); makeBtn.type="button";
+    box.appendChild(makeBtn);
+
+    var outWrap = el("div","noteout"); outWrap.style.display="none"; box.appendChild(outWrap);
+    makeBtn.addEventListener("click",function(){
+      var form = {
+        ticked: tickInputs.filter(function(c){return c.checked;}).map(function(c){return c.value;}),
+        asks: askInputs.map(function(a){ return { label: a.label, value: a.ta.value }; }),
+        keep: keep.checked
+      };
+      var note = ENG.buildNextNote ? ENG.buildNextNote(pkg, SESSION, form) : "";
+      outWrap.innerHTML = "";
+      var ta = el("textarea","note"); ta.readOnly = true; ta.value = note;
+      ta.style.cssText += ";width:100%;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--fg);padding:.5rem;";
+      outWrap.appendChild(ta);
+      var copyBtn = el("button","copynote","Copy"); copyBtn.type="button";
+      copyBtn.addEventListener("click",function(){
+        ta.select();
+        var done = function(){ copyBtn.textContent="Copied"; };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ta.value).then(done, function(){ try{document.execCommand("copy");}catch(e){} done(); });
+          else { document.execCommand("copy"); done(); }
+        } catch(e){ try{ document.execCommand("copy"); done(); }catch(_){} }
+      });
+      outWrap.appendChild(copyBtn);
+      outWrap.appendChild(el("p","tagline","This is everything you'd share. Nothing leaves this device unless you copy it."));
+      outWrap.style.display="block";
+    });
+
+    sc.appendChild(box);
+  }
+
+  // "Start over": clears this session's records (after a confirm) and re-renders
+  // the package, so the quiz drops back to its start level and nothing is kept.
+  function startOverControl(pkg, companion){
+    var wrap = el("div"); wrap.style.margin=".4rem 0 .8rem";
+    var btn = el("button","startover","Start over"); btn.type="button";
+    btn.addEventListener("click",function(){
+      if (!confirm("Start over? This clears what was answered on this device.")) return;
+      clearSession();
+      renderPackage(pkg, companion);
+    });
+    wrap.appendChild(btn);
+    return wrap;
+  }
+
   function renderPackage(pkg, companion){
+    loadSession(pkg);
     var out = document.getElementById("out"); out.innerHTML="";
     out.appendChild(el("h2",null,inline(pkg.title||"Package")));
     out.appendChild(el("p","muted",(pkg.word||"session")+" "+(pkg.session||1)));
@@ -391,14 +841,33 @@
         [].forEach.call(tabs.children,function(c){c.setAttribute("aria-selected","false");}); btn.setAttribute("aria-selected","true"); };
       tabs.appendChild(btn);
       var pane = el("div"); pane.style.display = i===0?"block":"none"; panes[t[0]]=pane;
-      var side = pkg[t[0]]||{};
+      var sideKey = t[0], side = pkg[sideKey]||{};
+      if (sideKey === "learner") pane.appendChild(startOverControl(pkg, companion));
       (side.sections||[]).forEach(function(sec){
         var sc = el("div","sec"); sc.appendChild(el("div","label",inline(sec.label||sec.id)));
-        renderBlocks(sc, sec.blocks, learnersByName); pane.appendChild(sc);
+        renderBlocks(sc, sec.blocks, learnersByName, sideKey);
+        // the next-time note form closes the guide's tellus section (FORMAT §)
+        if (sideKey === "guide" && sec.id === "tellus") renderNextTimeForm(sc, pkg);
+        pane.appendChild(sc);
       });
     });
     out.appendChild(tabs);
     Object.keys(panes).forEach(function(k){ out.appendChild(panes[k]); });
+
+    // The guide's answer key: today's static view of every game, collapsed so
+    // the guide can check answers and the child's tab never shows one.
+    if (panes.guide){
+      var games = (ENG.gameBlocks ? ENG.gameBlocks(pkg) : []);
+      if (games.length){
+        var ak = el("details","answerkey");
+        ak.appendChild(el("summary",null,"Answer key (for you)"));
+        var akb = el("div","akbody");
+        akb.appendChild(el("p","muted","Every game's answers, for you only. The learner tab shows none of this."));
+        games.forEach(function(g){ renderGameStatic(akb, g.block, learnersByName); });
+        ak.appendChild(akb);
+        panes.guide.appendChild(ak);
+      }
+    }
 
     // Optional companion sidecar: its guide-facing notes go at the top of the
     // guide pane only. Gated on `companion`, so a package with no sidecar
@@ -429,8 +898,11 @@
     var rep = document.getElementById("report"); rep.innerHTML="";
     document.getElementById("record").innerHTML="";
     var pkg;
-    try { pkg = JSON.parse(document.getElementById("src").value); }
-    catch(e){ rep.appendChild(el("div","err","Not valid JSON: "+e.message)); return; }
+    var rawInput = document.getElementById("src").value;
+    var extracted = ENG.extractPastedPackage ? ENG.extractPastedPackage(rawInput) : rawInput;
+    if (extracted === null) { rep.appendChild(el("div","err", ENG.PASTE_MSG || "")); return; }
+    try { pkg = JSON.parse(extracted); }
+    catch(e){ rep.appendChild(el("div","err", ENG.PASTE_MSG || "")); return; }
     var res = (window.MetaDAXCheck && window.MetaDAXCheck.checkPackage) ? window.MetaDAXCheck.checkPackage(pkg, window.CHECK_LISTS||{}) : {errors:[],warnings:[]};
     if (res.warnings && res.warnings.length){
       var w = el("div","warn"); w.appendChild(el("strong",null,"Warnings (the builder decides): "));

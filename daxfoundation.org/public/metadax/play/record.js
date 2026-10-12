@@ -75,14 +75,35 @@
     var games = gamesOf(pkg);
     if (!games.length) games = ["(the game)"];
 
-    // per-game rows: answered / right / level / of
+    // Prefill from the same game records the learner built while playing: the
+    // live session (exposed by the play page) summarised through the engine.
+    // The guide can still edit every field; this only saves them re-counting.
+    var byTitle = {}, slipLines = [];
+    try {
+      var eng = window.MetaDAXEngine, play = window.MetaDAXPlay;
+      if (eng && eng.summarizeGames && play && play.session) {
+        eng.summarizeGames(pkg, play.session()).forEach(function (s) {
+          byTitle[s.title] = s;
+          (s.mistakes || []).forEach(function (m) { slipLines.push(m.name + " x" + m.count); });
+        });
+      }
+    } catch (e) { /* no records, or storage blocked — fields stay empty */ }
+
+    // per-game rows: answered / right / level / of, prefilled where we have it
     var gameRows = [];
     games.forEach(function (g) {
+      var pre = byTitle[g] || {};
       var row = el("div", "lvl");
       row.appendChild(el("strong", null, g));
       var grid = el("div"); grid.style.cssText = "display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.4rem;";
-      function num(ph) { var i = el("input"); i.type = "number"; i.min = "0"; i.placeholder = ph; i.style.cssText = "width:7.5rem;padding:.3rem;font:inherit;"; grid.appendChild(i); return i; }
-      var r = { game: g, answered: num("answered"), right: num("right"), level: num("level reached"), of: num("of how many") };
+      function num(ph, val) { var i = el("input"); i.type = "number"; i.min = "0"; i.placeholder = ph; if (val != null) i.value = val; i.style.cssText = "width:7.5rem;padding:.3rem;font:inherit;"; grid.appendChild(i); return i; }
+      var r = {
+        game: g,
+        answered: num("answered", pre.answered),
+        right: num("right", pre.right),
+        level: num("level reached", pre.level),
+        of: num("of how many", pre.of)
+      };
       row.appendChild(grid); gameRows.push(r); sec.appendChild(row);
     });
 
@@ -95,6 +116,7 @@
     }
     var fDate = field("Date of the session (YYYY-MM-DD)", "2026-10-09");
     var fMistakes = field("Where it got tricky — behaviour, never a diagnosis (one per line, “what happened ×count”)", "said the sounds but they stayed apart x2", true);
+    if (slipLines.length) fMistakes.value = slipLines.join("\n");
     var fLearner = field("In the learner's words (nickname only)", "What they said, where they led…", true);
     var fGuide = field("The guide's note", "The hardest moment, what did not work, what only you could do, what you'd like next time…", true);
 

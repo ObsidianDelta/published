@@ -11,13 +11,13 @@ import zlib from "node:zlib";
 const here = dirname(fileURLToPath(import.meta.url));
 
 // ── Load checker and lists ───────────────────────────────────────────────────
-const src = readFileSync(resolve(here, "package-check.js"), "utf8");
+const src = readFileSync(resolve(here, "../../public/metadax/play/package-check.js"), "utf8");
 const ctx = { globalThis: {}, TextEncoder, TextDecoder, Buffer };
 ctx.globalThis = ctx;
 vm.createContext(ctx);
 vm.runInContext(src, ctx);
 const { checkPackage, encodePackage, decodePackage } = ctx.MetaDAXCheck;
-const lists = JSON.parse(readFileSync(resolve(here, "check-lists.json"), "utf8"));
+const lists = JSON.parse(readFileSync(resolve(here, "../../public/metadax/play/check-lists.json"), "utf8"));
 
 // ── Injected zlib impl for encode/decode tests ───────────────────────────────
 const zlibImpl = {
@@ -325,7 +325,7 @@ test("minimal valid package has no errors", () => {
 // ── Fixtures: HS-DEMO-s1.package.json and EXAMPLE-package.json ───────────────
 // Note: do NOT change these fixtures; just report results.
 
-const fixturePath = resolve(here, "../../../../../state/metadax/homeschool/fixtures/HS-DEMO-s1.package.json");
+const fixturePath = resolve(here, "../../../../state/metadax/homeschool/fixtures/HS-DEMO-s1.package.json");
 
 test("HS-DEMO-s1 fixture: report errors and warnings (do not change fixture)", () => {
   const pkg = JSON.parse(readFileSync(fixturePath, "utf8"));
