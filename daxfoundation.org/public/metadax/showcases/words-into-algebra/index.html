@@ -213,6 +213,104 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
 .badge { display: inline-block; font-size: .75rem; padding: 2px 9px; border-radius: 999px; background: var(--wash); border: 1px solid var(--line); color: var(--muted); margin-right: 6px; }
 
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* smooth scroll; disabled under reduced motion */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---- Hero edition link -------------------------------------------------- */
+.hero-new-link { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+.hero-new-link a { color: var(--moss); font-weight: 600; }
+
+/* ---- Editions ------------------------------------------------------------- */
+.editions-cards { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 759px) { .editions-cards { grid-template-columns: 1fr; } }
+.ecard { display: flex; flex-direction: column; gap: 14px; }
+.ecard .ehead { font-size: 1.3rem; margin: 0; font-family: var(--font-serif); font-weight: 600; color: var(--ink); }
+.ecard .etag { font-size: .8rem; color: var(--muted); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0; }
+.ecard .escene { width: 100%; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: var(--sage); border: 1px solid var(--line-wash); }
+.ecard .escene canvas, .ecard .escene > svg { width: 100%; height: 100%; display: block; }
+.ecard .equote { font-style: italic; color: var(--ink); margin: 0; font-family: var(--font-serif); font-size: 1rem; line-height: 1.45; }
+.ecard .etext { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* space card: fixed dark background in both light and dark modes */
+.space-card {
+  position: relative;
+  isolation: isolate;
+  background: #0a0f24 !important;
+  border-color: #1a2545 !important;
+}
+.space-card .ehead, .space-card .equote { color: #e8ecff; }
+.space-card .etag, .space-card .etext { color: #aab3dd; }
+.space-card .escene { background: #0b1226; border-color: #1a2545; }
+.space-card .btn.primary { background: #9db4ff; color: #0a0f24; border-color: #9db4ff; }
+.space-card::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  border-radius: var(--radius); pointer-events: none;
+  background:
+    radial-gradient(circle 1.2px at 13% 11%, rgba(255,255,255,.9)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 33%  7%, rgba(255,255,255,.6)  0%, transparent 100%),
+    radial-gradient(circle 1.4px at 71% 17%, rgba(255,255,255,.8)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 89%  6%, rgba(255,255,255,.65) 0%, transparent 100%),
+    radial-gradient(circle  .9px at  5% 44%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle 1.1px at 54% 34%, rgba(255,255,255,.75) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 91% 41%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 24% 64%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle 1.2px at 77% 57%, rgba(255,255,255,.7)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 43% 77%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 61% 87%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(circle   1px at  9% 89%, rgba(255,255,255,.45) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 82% 81%, rgba(255,255,255,.6)  0%, transparent 100%);
+  animation: twinkle-stars 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle-stars { from { opacity: 1; } to { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .space-card::before { animation: none; } }
+
+/* editions comparison lists */
+.editions-lists { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; margin-top: 32px; }
+@media (max-width: 480px) { .editions-lists { grid-template-columns: 1fr; } }
+.editions-list h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 0 0 10px; }
+.editions-list ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.editions-list li { padding-left: 18px; position: relative; color: var(--muted); font-size: .93rem; }
+.editions-list li::before { content: ""; position: absolute; left: 0; top: .66em; width: 6px; height: 6px; border-radius: 50%; background: var(--moss); }
+
+/* editions real-world hook */
+.hook-fact { background: var(--wash); border: 1px solid var(--line-wash); border-radius: var(--radius); padding: 24px 26px; margin-top: 28px; }
+.hook-fact h3 { font-size: 1.05rem; margin: 0 0 8px; color: var(--ink); font-weight: 700; }
+.hook-fact p { margin: 0; color: var(--muted); max-width: 68ch; }
+
+/* ---- How the pieces fit -------------------------------------------------- */
+.pieces-chain { display: flex; align-items: stretch; gap: 4px; margin: 32px 0 28px; }
+@media (max-width: 700px) { .pieces-chain { flex-direction: column; gap: 0; } }
+.pstep {
+  flex: 1; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px 16px;
+}
+.pconn {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 1.1rem; width: 28px;
+}
+.pconn::after { content: "→"; }
+@media (max-width: 700px) { .pconn { width: auto; height: 28px; } .pconn::after { content: "↓"; } }
+.pstep-num { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 3px; }
+.pstep-label { font-weight: 700; color: var(--ink); font-size: .97rem; margin: 0 0 6px; }
+.pstep-desc { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+
+/* copy box */
+.copy-box { position: relative; margin-top: 14px; }
+.copy-box pre {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 72px 16px 18px; font-family: var(--font-mono); font-size: .875rem;
+  color: var(--ink); white-space: pre-wrap; word-break: break-word; margin: 0; line-height: 1.6;
+}
+.copy-btn {
+  position: absolute; top: 10px; right: 10px; min-height: 36px; padding: 0 14px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+  font: inherit; font-size: .85rem; color: var(--muted); cursor: pointer; white-space: nowrap;
+}
+.copy-btn:hover { border-color: var(--moss); color: var(--ink); }
+.copy-btn.copied { border-color: var(--moss); color: var(--moss); }
 </style>
 </head>
 <body>
@@ -254,6 +352,7 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
             <button class="btn secondary" id="try-balance" type="button">Try the balance</button>
             <a class="btn-link" href="#make">Make one for your learner</a>
           </div>
+          <p class="hero-new-link">New: the same kit, re-made for one learner. <a href="#editions">Meet Nova's Edition</a></p>
         </div>
         <div>
           <div class="scene-hero">
@@ -341,6 +440,68 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
     </div>
   </section>
 
+  <!-- NEW: Editions -->
+  <section id="editions" class="washed" aria-labelledby="editions-h">
+    <div class="wrap">
+      <p class="section-kicker">Editions</p>
+      <h2 id="editions-h">The same kit, re-aimed</h2>
+      <p class="lede-wide">A kit is a starting point. An Edition is the same kit re-made for one learner. Every mechanic, slip, route and scene is kept. The world and the words change, and the tutor's page is rewritten around who that learner is.</p>
+
+      <div class="editions-cards">
+
+        <div class="card ecard reveal">
+          <div class="escene" id="edition-stage-base" role="img" aria-label="A balance scale: the base kit scene at level 2."></div>
+          <p class="etag">Sam &middot; football</p>
+          <h3 class="ehead">The base kit</h3>
+          <p class="equote">&ldquo;Two scarves and a 4 pound badge cost the same as one scarf and an 11 pound programme.&rdquo;</p>
+          <p class="etext">Built for any learner. Goals, shirt numbers, a pitch, ticket prices.</p>
+          <a class="btn primary" href="/metadax/play/?sample=words-into-algebra">Open the base kit</a>
+        </div>
+
+        <div class="card ecard space-card reveal">
+          <div class="escene" id="edition-stage-nova" role="img" aria-label="A balance scale: Nova's Edition scene at level 2."></div>
+          <p class="etag">Nova, 15 &middot; into space</p>
+          <h3 class="ehead">Nova&rsquo;s Edition</h3>
+          <p class="equote">&ldquo;Two mission patches and a 4 pound star map cost the same as one patch and an 11 pound telescope filter.&rdquo;</p>
+          <p class="etext">Moon photos, meteor nights, mission patches, a launch-pad safety zone, planetarium tickets. The same equations, in her world.</p>
+          <a class="btn primary" href="/metadax/play/?sample=words-into-algebra-nova">Open Nova&rsquo;s Edition</a>
+        </div>
+
+      </div>
+
+      <div class="editions-lists">
+        <div class="editions-list">
+          <h3>What stayed</h3>
+          <ul>
+            <li>The five equations and their answers</li>
+            <li>The six named slips</li>
+            <li>The three routes and the fast path</li>
+            <li>The say-it-back pause before every example</li>
+            <li>The four games and the three quiz levels</li>
+            <li>The scenes, from the same shared library</li>
+          </ul>
+        </div>
+        <div class="editions-list">
+          <h3>What changed</h3>
+          <ul>
+            <li>Every sentence, now from her world</li>
+            <li>The skin: a starfield page and space versions of every scene</li>
+            <li>The tutor&rsquo;s page: who Nova is, and how to meet her there. &ldquo;Don&rsquo;t explain space to her: let her correct you.&rdquo;</li>
+            <li>A checked real-world hook for the tutor</li>
+            <li>Her role: mission control, calling go or no-go before each move</li>
+            <li>Her own mission problem at the end</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hook-fact reveal">
+        <h3>The real-world hook</h3>
+        <p>In April 2026, Artemis II flew four astronauts around the Moon. Christina Koch became the first woman, and Jeremy Hansen the first Canadian, to travel around the Moon. That fact sits on the tutor&rsquo;s page, not in Nova&rsquo;s questions, so nothing she answers depends on news she might not have seen.</p>
+      </div>
+
+    </div>
+  </section>
+
   <!-- 4. About -->
   <section aria-labelledby="about-h">
     <div class="wrap">
@@ -384,6 +545,53 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
         <p>The kit can hold the structure: the order, the examples, the slips, the routes. It cannot read a face. It cannot tell the silence of thinking from the silence of being stuck, wait a few seconds longer than is comfortable, praise the sentence instead of the answer, or decide that today should end on something the learner got right.</p>
         <p>Those belong to the tutor, and the kit says so on the tutor's page, in a card called What only you can do. MetaDAX calls this the <a href="/definitions/">human delta value</a>: what the person brought that the system could not. This kit is built to hand the tutor more of it, not less.</p>
       </div>
+    </div>
+  </section>
+
+  <!-- NEW: How the pieces fit -->
+  <section aria-labelledby="pieces-h">
+    <div class="wrap">
+      <p class="section-kicker">The pieces</p>
+      <h2 id="pieces-h">How the pieces fit</h2>
+
+      <div class="pieces-chain" role="list">
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">1</p>
+          <p class="pstep-label">Player</p>
+          <p class="pstep-desc">One page that plays any package.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">2</p>
+          <p class="pstep-label">Scene library</p>
+          <p class="pstep-desc">Shared 3D pieces. The numbers, the skin and the level are separate, so a new skin never changes the maths.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">3</p>
+          <p class="pstep-label">Package</p>
+          <p class="pstep-desc">One file: a page for the guide and a page for the learner.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">4</p>
+          <p class="pstep-label">Edition</p>
+          <p class="pstep-desc">A package re-made for one learner: same mechanics, new world.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">5</p>
+          <p class="pstep-label">Showcase</p>
+          <p class="pstep-desc">A page like this one, for the people deciding whether to use it.</p>
+        </div>
+      </div>
+
+      <p>Make an Edition for your learner. Paste this into the MetaDAX prompt or skill:</p>
+      <div class="copy-box">
+        <pre id="prompt-copy-text">Build an Edition of the MetaDAX Words into Algebra kit for my learner. Keep the five worked examples, the scenes, the games, the six named slips, the three routes and the say-it-back pause. Re-make every sentence and the tutor notes for this learner: [age], loves [their interest], and [one thing about how they learn].</pre>
+        <button class="copy-btn" id="copy-prompt-btn" type="button">Copy</button>
+      </div>
+
     </div>
   </section>
 
@@ -450,10 +658,10 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
 </footer>
 
 <script type="module">
-// Words into Algebra — mounts the live 3D balance in the hero and paints the
-// five static SVG thumbnails, both from the player's own scene library. The
-// page is fully readable before any of this runs; a missing module or missing
-// WebGL simply leaves the hero on its SVG fallback and the copy untouched.
+// Words into Algebra — mounts the live 3D balance in the hero and the two
+// edition cards, and paints the five static SVG thumbnails. The page is fully
+// readable before any of this runs; a missing module or missing WebGL leaves
+// each stage on its SVG fallback and the copy untouched.
 const SCENES_URL = "/metadax/play/scenes/scenes.js";
 const THREE_URL = "/metadax/play/vendor/three.module.min.js";
 
@@ -484,6 +692,28 @@ if (tryBtn && heroStage) {
   });
 }
 
+// --- copy prompt button ---------------------------------------------------
+const copyBtn = document.getElementById("copy-prompt-btn");
+const copyText = document.getElementById("prompt-copy-text");
+if (copyBtn && copyText) {
+  copyBtn.addEventListener("click", () => {
+    try {
+      navigator.clipboard.writeText(copyText.textContent.trim()).then(() => {
+        copyBtn.textContent = "Copied!";
+        copyBtn.classList.add("copied");
+        setTimeout(() => { copyBtn.textContent = "Copy"; copyBtn.classList.remove("copied"); }, 2000);
+      }).catch(() => {
+        const r = document.createRange();
+        r.selectNodeContents(copyText);
+        const sel = window.getSelection();
+        if (sel) { sel.removeAllRanges(); sel.addRange(r); }
+        copyBtn.textContent = "Selected";
+        setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
+      });
+    } catch (e) {}
+  });
+}
+
 // --- reveal-on-scroll -----------------------------------------------------
 (function reveal() {
   const els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
@@ -499,16 +729,16 @@ if (tryBtn && heroStage) {
   els.forEach((el) => io.observe(el));
 })();
 
-// --- scenes: thumbnails + live hero balance -------------------------------
-const HERO_PARAMS = { left_x: 2, left_c: 4, right_x: 1, right_c: 11 };
+// --- scenes: thumbnails + live balances (hero + editions) -----------------
+const BALANCE_PARAMS = { left_x: 2, left_c: 4, right_x: 1, right_c: 11 };
 
 (async function scenes() {
   let Scenes;
   try {
     Scenes = await import(SCENES_URL);
   } catch (e) {
-    // No scene library: thumbnails stay on their sage wash, hero keeps its
-    // SVG-less fallback box and caption. Nothing throws.
+    // No scene library: thumbnails stay on their sage wash, stages on their
+    // fallback background. Nothing throws.
     return;
   }
 
@@ -527,32 +757,49 @@ const HERO_PARAMS = { left_x: 2, left_c: 4, right_x: 1, right_c: 11 };
     } catch (e) { /* leave the wash */ }
   });
 
-  // The live hero balance: import three exactly as the player does, then mount
-  // getScene('balance') at level 2 (interactive), sage theme. Any failure falls
-  // back to the static SVG from svgFor('balance', params, 'sage', 2).
-  function heroFallback() {
-    try {
-      const svg = Scenes.svgFor("balance", HERO_PARAMS, "sage", 2);
-      if (svg && heroStage) heroStage.innerHTML = svg;
-    } catch (e) { /* keep the empty sage stage */ }
+  // Import THREE once for all three live balances (hero + two editions).
+  let THREE;
+  try {
+    THREE = await import(THREE_URL);
+  } catch (e) {
+    // No THREE: fall back each live stage to its SVG.
+    [["hero-stage", "sage"], ["edition-stage-base", "sage"], ["edition-stage-nova", "space"]].forEach((pair) => {
+      const stage = document.getElementById(pair[0]);
+      if (!stage) return;
+      try {
+        const svg = Scenes.svgFor("balance", BALANCE_PARAMS, pair[1], 2);
+        if (svg) stage.innerHTML = svg;
+      } catch (e) {}
+    });
+    return;
   }
 
-  if (!heroStage) return;
-  try {
-    const THREE = await import(THREE_URL);
-    const def = Scenes.getScene("balance");
-    if (!def) { heroFallback(); return; }
-    heroStage.setAttribute("aria-label", Scenes.altFor("balance", HERO_PARAMS, "sage", 2));
-    const handle = def.mount(THREE, heroStage, HERO_PARAMS, {
-      theme: "sage", level: 2, reducedMotion: reducedMotion
-    });
-    if (handle && handle.resize && typeof ResizeObserver !== "undefined") {
-      const ro = new ResizeObserver(() => { try { handle.resize(); } catch (e) {} });
-      ro.observe(heroStage);
+  function mountBalance(stageId, theme) {
+    const stage = document.getElementById(stageId);
+    if (!stage) return;
+    function fallback() {
+      try {
+        const svg = Scenes.svgFor("balance", BALANCE_PARAMS, theme, 2);
+        if (svg) stage.innerHTML = svg;
+      } catch (e) {}
     }
-  } catch (e) {
-    heroFallback();
+    try {
+      const def = Scenes.getScene("balance");
+      if (!def) { fallback(); return; }
+      stage.setAttribute("aria-label", Scenes.altFor("balance", BALANCE_PARAMS, theme, 2));
+      const handle = def.mount(THREE, stage, BALANCE_PARAMS, {
+        theme: theme, level: 2, reducedMotion: reducedMotion
+      });
+      if (handle && handle.resize && typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => { try { handle.resize(); } catch (e) {} });
+        ro.observe(stage);
+      }
+    } catch (e) { fallback(); }
   }
+
+  mountBalance("hero-stage", "sage");
+  mountBalance("edition-stage-base", "sage");
+  mountBalance("edition-stage-nova", "space");
 })();
 </script>
 </body>
