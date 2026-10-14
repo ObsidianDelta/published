@@ -1142,6 +1142,242 @@ var functionMachine = {
   },
 };
 
+// ---- scene: bar-model -------------------------------------------------------
+// One bar row per extra value: an x block + an extra block (when extra != 0).
+// A total bracket spans all rows. Level 3: interactive steps to solve for x.
+
+var barModel = {
+  title: "Bar model",
+  levels: [1, 2, 3],
+  params: {
+    extras: { type: "int-array", min: -20, max: 60, maxLen: 4, default: [0, 3] },
+    total:  { type: "int", min: 0, max: 500, default: 41 },
+  },
+  _sumExtras: function (p) {
+    var s = 0;
+    for (var i = 0; i < p.extras.length; i++) s += p.extras[i];
+    return s;
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var n = p.extras.length, sum = barModel._sumExtras(p);
+    var xLabel = level >= 2 ? "unknown" : "x";
+    var rows = p.extras.map(function (e) { return "x" + (e > 0 ? "+" + e : e < 0 ? e : ""); }).join(", ");
+    var base = "Bar model with " + n + " row" + (n !== 1 ? "s" : "") + ": " + rows + ". Total: " + p.total + ".";
+    if (level >= 3) return base + " Use buttons to solve for x.";
+    return base;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("bar-model", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var n = p.extras.length;
+    var W = 240, rowH = 22, gap = 8, pad = 14;
+    var totalH = pad * 2 + n * rowH + (n - 1) * gap + 24;
+    var H = Math.max(160, Math.min(totalH, 220));
+    var barW = 160, xW = 70, bracketX = barW + pad + 8;
+    var topY = (H - (n * rowH + (n - 1) * gap)) / 2;
+    var showQ = level >= 2;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(barModel.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    for (var i = 0; i < n; i++) {
+      var ry = topY + i * (rowH + gap);
+      var e = p.extras[i];
+      var eW = e !== 0 ? Math.max(20, Math.min(barW - xW - 2, Math.round(Math.abs(e) * 1.4 + 14))) : 0;
+      var xBarW = barW - eW;
+      // x block
+      s += '<rect x="' + pad + '" y="' + ry + '" width="' + xBarW + '" height="' + rowH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+      s += '<text x="' + (pad + xBarW / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + (showQ ? "?" : "x") + '</text>';
+      // extra block
+      if (e !== 0) {
+        var ex = pad + xBarW + 2;
+        s += '<rect x="' + ex + '" y="' + ry + '" width="' + (eW - 2) + '" height="' + rowH + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (ex + (eW - 2) / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">' + (e > 0 ? "+" : "") + e + '</text>';
+      }
+    }
+    // Total bracket
+    var by1 = topY - 4, by2 = topY + n * rowH + (n - 1) * gap + 4;
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + (bracketX + 6) + '" y2="' + by1 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + bracketX + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by2 + '" x2="' + (bracketX + 6) + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="' + (bracketX + 12) + '" y="' + ((by1 + by2) / 2 + 5 | 0) + '" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="' + tone.ink + '">' + p.total + '</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("bar-model", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    var n = p.extras.length;
+    var sum = barModel._sumExtras(p);
+    // step: 0=initial, 1=extras removed (show k·x = total-sum), 2=shared (show x)
+    var step = 0;
+
+    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matE   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matInk = new THREE.MeshBasicMaterial({ color: t.ink });
+
+    // Layout: n rows centred vertically. rowH=0.16, gap=0.06
+    var rowH = 0.16, rowGap = 0.06, barLen = 1.1;
+    var totalBH = n * rowH + (n - 1) * rowGap;
+    var topY = totalBH / 2 - rowH / 2;
+    var xFrac = 0.6; // x blocks take 60% of bar by default
+
+    var xMeshes = [], eMeshes = [];
+    var labels = [];
+
+    function clearLabels() {
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+
+    function buildScene() {
+      // Remove old meshes
+      xMeshes.concat(eMeshes).forEach(function (m) {
+        if (m.geometry) m.geometry.dispose();
+        group.remove(m);
+      });
+      xMeshes = []; eMeshes = [];
+      clearLabels();
+
+      var showQ = level >= 2 && step < 2;
+      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+      var asp = st.w > 0 ? st.w / st.h : 1;
+
+      for (var i = 0; i < n; i++) {
+        var e = p.extras[i];
+        var ry = topY - i * (rowH + rowGap);
+        var eShow = e !== 0 && step === 0;
+        var xLen = eShow ? barLen * xFrac : barLen;
+        var eLen = eShow ? barLen * (1 - xFrac) - 0.02 : 0;
+
+        var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.1), matX.clone());
+        xM.position.set(-barLen / 2 + xLen / 2, ry, 0);
+        group.add(xM); xMeshes.push(xM);
+
+        // x label
+        var xSc = { xF: ((-barLen / 2 + xLen / 2) + asp) / (2 * asp), yF: (1 - ry) / 2 };
+        labels.push(addLabel(el, showQ ? "?" : "x", xSc.xF, xSc.yF, faceHex));
+
+        if (eShow) {
+          var eM = new THREE.Mesh(new THREE.BoxGeometry(eLen * 0.97, rowH * 0.9, 0.1), matE.clone());
+          var ex = -barLen / 2 + xLen + eLen / 2 + 0.02;
+          eM.position.set(ex, ry, 0);
+          group.add(eM); eMeshes.push(eM);
+          var eSc = { xF: (ex + asp) / (2 * asp), yF: (1 - ry) / 2 };
+          labels.push(addLabel(el, (e > 0 ? "+" : "") + e, eSc.xF, eSc.yF, inkHex));
+        }
+      }
+
+      // Total bracket (right side)
+      var brkX = barLen / 2 + 0.04;
+      var brkGeo = new THREE.BufferGeometry();
+      var yTop = topY + rowH / 2 + 0.04, yBot = topY - (n - 1) * (rowH + rowGap) - rowH / 2 - 0.04;
+      brkGeo.setAttribute("position", new THREE.Float32BufferAttribute([
+        brkX, yTop, 0.02,  brkX + 0.05, yTop, 0.02,
+        brkX, yTop, 0.02,  brkX, yBot, 0.02,
+        brkX, yBot, 0.02,  brkX + 0.05, yBot, 0.02,
+      ], 3));
+      var brkLine = new THREE.LineSegments(brkGeo, matInk.clone());
+      group.add(brkLine); xMeshes.push(brkLine);
+
+      var midY = (yTop + yBot) / 2;
+      var tSc = { xF: (brkX + 0.1 + asp) / (2 * asp), yF: (1 - midY) / 2 };
+      labels.push(addLabel(el, String(p.total), tSc.xF, tSc.yF, inkHex));
+
+      // Intermediate or solved labels
+      if (step === 1) {
+        var kx = n + "x = " + (p.total - sum);
+        labels.push(addLabel(el, kx, 0.5, 0.85, inkHex));
+      } else if (step === 2) {
+        var xVal = (p.total - sum) / n;
+        labels.push(addLabel(el, "x = " + xVal, 0.5, 0.85, inkHex));
+      }
+    }
+
+    buildScene();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Take away the extras";
+      btn1.setAttribute("aria-label", "Remove extra blocks from all bars");
+      btn1.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btn1); btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Share it out";
+      btn2.setAttribute("aria-label", "Divide the remaining total equally between the x blocks");
+      btn2.style.cssText = bStyle + "right:3%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2); btns.push(btn2);
+
+      function doAnim(after) {
+        if (reduced) { after(); return; }
+        var t0 = null;
+        function fr(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 220);
+          group.scale.set(1, 1 + 0.07 * Math.sin(prog * Math.PI), 1);
+          render();
+          if (prog < 1) raf = requestAnimationFrame(fr);
+          else { group.scale.set(1, 1, 1); after(); raf = 0; }
+        }
+        raf = requestAnimationFrame(fr);
+      }
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0) return;
+        doAnim(function () {
+          step = 1;
+          btn1.disabled = true; btn1.style.opacity = "0.38";
+          btn2.disabled = false; btn2.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        doAnim(function () {
+          step = 2;
+          btn2.disabled = true; btn2.style.opacity = "0.38";
+          buildScene(); render();
+        });
+      });
+    }
+
+    el.setAttribute("aria-label", barModel.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearLabels();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
 // ---- registry ---------------------------------------------------------------
 
 export var SCENES = {
@@ -1150,6 +1386,7 @@ export var SCENES = {
   "track": track,
   "balance": balance,
   "function-machine": functionMachine,
+  "bar-model": barModel,
 };
 
 export function getScene(id) { return SCENES[id] || null; }
