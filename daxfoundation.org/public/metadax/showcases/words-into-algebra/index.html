@@ -129,9 +129,9 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
 .btn-link { color: var(--moss); font-weight: 600; min-height: var(--tap); display: inline-flex; align-items: center; }
 
 .scene-hero { background: var(--wash); border: 1px solid var(--line-wash); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
-.stage { width: 100%; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; display: block; background: var(--sage); }
-@media (min-width: 880px) { .stage { aspect-ratio: 4 / 3; } }
-.stage svg, .stage canvas { width: 100%; height: 100%; display: block; }
+.stage { width: 100%; }
+.stage canvas, .stage > svg { width: 100%; aspect-ratio: 16 / 10; border-radius: 10px; display: block; background: var(--sage); }
+@media (min-width: 880px) { .stage canvas, .stage > svg { aspect-ratio: 4 / 3; } }
 .scene-caption { margin: 12px 4px 2px; color: var(--muted); font-size: .92rem; }
 .scene-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .scene-controls button {

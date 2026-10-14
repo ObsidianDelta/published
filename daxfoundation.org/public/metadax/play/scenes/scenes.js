@@ -185,7 +185,10 @@ function addLabel(el, text, xFrac, yFrac, color) {
 
 // Perspective stage for wide algebra scenes: PerspectiveCamera tilted ~22° down
 // and slightly to the right; hemisphere + shadow-casting directional light.
-function makeAlgebraStage(THREE, el) {
+// halfW / halfH: world-space half-extents of the scene content from the lookAt
+// point. When supplied, the vertical FoV is computed so the full bounding box
+// fits inside the canvas with 8% margin on every side (both axes constrain).
+function makeAlgebraStage(THREE, el, halfW, halfH) {
   var w = el.clientWidth || 480, h = Math.round(w * 10 / 16);
   var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
@@ -194,9 +197,26 @@ function makeAlgebraStage(THREE, el) {
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   el.appendChild(renderer.domElement);
   var scene = new THREE.Scene();
+  // Camera distance from (0.15, 0.55, 1.20) to lookAt (0, -0.05, 0):
+  // sqrt(0.15^2 + 0.60^2 + 1.20^2) ≈ 1.35
+  var camDist = Math.sqrt(0.15 * 0.15 + 0.60 * 0.60 + 1.20 * 1.20);
   var cam = new THREE.PerspectiveCamera(46, w / h, 0.1, 20);
   cam.position.set(0.15, 0.55, 1.20);
   cam.lookAt(0, -0.05, 0);
+
+  // Compute vertical FoV so that the full halfW × halfH content box fits with
+  // an 8% margin. Both horizontal and vertical extents constrain the result.
+  function fitFov(aspect) {
+    if (!halfW || !halfH) return;
+    var k = 1 / 0.92; // 1/(1−margin)
+    var fovH = 2 * Math.atan(halfH * k / camDist) * (180 / Math.PI);
+    var fovW = 2 * Math.atan(halfW * k / (camDist * aspect)) * (180 / Math.PI);
+    cam.fov = Math.max(fovH, fovW);
+    cam.updateProjectionMatrix();
+  }
+
+  fitFov(w / h);
+
   scene.add(new THREE.HemisphereLight(0xeef4ff, 0x223322, 0.55));
   var sun = new THREE.DirectionalLight(0xffffff, 0.88);
   sun.position.set(1.5, 3, 2);
@@ -214,7 +234,7 @@ function makeAlgebraStage(THREE, el) {
     st.w = nw; st.h = nh;
     renderer.setSize(nw, nh, false);
     cam.aspect = nw / nh;
-    cam.updateProjectionMatrix();
+    fitFov(nw / nh);
     renderer.render(scene, cam);
   };
   return st;
@@ -838,7 +858,9 @@ var balance = {
     var p = normalizeParams("balance", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    var st = makeAlgebraStage(THREE, el);
+    // halfW 1.10: beam ±0.72, pans ±0.85, plus "+N" overflow label at ~±1.00
+    // halfH 0.40: beam top 0.03, baseBar bottom −0.34, with label sprites above
+    var st = makeAlgebraStage(THREE, el, 1.10, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
 
@@ -906,7 +928,7 @@ var balance = {
             new THREE.MeshLambertMaterial({ color: t.shadeOn }));
           box.position.set(mx, iy, 0.04); box.castShadow = true;
           dynGroup.add(box);
-          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, faceHex, null);
+          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, "#ffffff", null);
           sp.position.set(mx, iy + bH / 2 + 0.07, 0.08);
           dynGroup.add(sp);
         }
@@ -1084,7 +1106,9 @@ var functionMachine = {
     var p = normalizeParams("function-machine", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    var st = makeAlgebraStage(THREE, el);
+    // halfW 0.95: in/out boxes at ±0.76 ± half-width 0.15 = ±0.91
+    // halfH 0.32: "in"/"out" sprites at y=0.20 + half-height, body ± 0.20
+    var st = makeAlgebraStage(THREE, el, 0.95, 0.32);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
@@ -1118,9 +1142,9 @@ var functionMachine = {
     var inkHex = toHex(t.ink), faceHex = toHex(t.face);
     var addStrFM = (p.add >= 0 ? "+" : "") + p.add;
     // Static machine op labels (on body face)
-    var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, faceHex, null);
+    var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, "#ffffff", null);
     spMul.position.set(0, 0.06, 0.12); group.add(spMul);
-    var spAdd = makeTextSprite(THREE, addStrFM, 0.13, faceHex, null);
+    var spAdd = makeTextSprite(THREE, addStrFM, 0.13, "#ffffff", null);
     spAdd.position.set(0, -0.09, 0.12); group.add(spAdd);
     // "out" label
     var spOutLabel = makeTextSprite(THREE, "out", 0.09, inkHex, null);
@@ -1303,7 +1327,9 @@ var barModel = {
     var p = normalizeParams("bar-model", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    var st = makeAlgebraStage(THREE, el);
+    // halfW 1.10: barLen/2=0.62 + bracket + total sprite (up to "340"=1.05)
+    // halfH 0.55: up to 4 rows × (rowH+rowGap)=0.25 stacked, plus bracket ends
+    var st = makeAlgebraStage(THREE, el, 1.10, 0.55);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
@@ -1343,7 +1369,7 @@ var barModel = {
         var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.12), matX.clone());
         xM.position.set(-barLen / 2 + xLen / 2, ry, 0); xM.castShadow = true;
         group.add(xM); meshes.push(xM);
-        var spX = makeTextSprite(THREE, showQ ? "?" : "x", 0.13, faceHex, null);
+        var spX = makeTextSprite(THREE, showQ ? "?" : "x", 0.13, "#ffffff", null);
         spX.position.set(-barLen / 2 + xLen / 2, ry, 0.1); group.add(spX); sprites.push(spX);
         if (eShow) {
           var ex = -barLen / 2 + xLen + eLen / 2 + 0.02;
@@ -1528,7 +1554,9 @@ var algebraTiles = {
     var p = normalizeParams("algebra-tiles", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    var st = makeAlgebraStage(THREE, el);
+    // halfW 0.80: tiles spread up to maxW/2=0.60 plus small sprite overhang
+    // halfH 0.40: multiple rows of tiles, typically under 0.35 total height
+    var st = makeAlgebraStage(THREE, el, 0.80, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
@@ -1600,7 +1628,7 @@ var algebraTiles = {
             var xm = new THREE.Mesh(new THREE.BoxGeometry(tW * 0.92, tH, tD), matX.clone());
             xm.position.set(mx, gy, 0); xm.castShadow = true;
             group.add(xm); tileMeshes.push(xm);
-            var spx = makeTextSprite(THREE, "x", 0.11, faceHex, null);
+            var spx = makeTextSprite(THREE, "x", 0.11, "#ffffff", null);
             spx.position.set(mx, gy, tD / 2 + 0.04); group.add(spx); sprites.push(spx);
           }
           if (p.units) {
@@ -1616,7 +1644,7 @@ var algebraTiles = {
       } else {
         var showUnits = step < 2;
         var xLabel = (step >= 3) ? function () { return String((p.total - totalU) / totalX); } : function () { return "x"; };
-        var xRows = placeRows(totalX, tW, tH, tD, matX, xLabel, faceHex, 0.10);
+        var xRows = placeRows(totalX, tW, tH, tD, matX, xLabel, "#ffffff", 0.10);
         if (showUnits && totalU > 0) {
           var cap = Math.min(totalU, 24);
           var uStartY = 0.10 - xRows * rPitch;
