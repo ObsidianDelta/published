@@ -675,12 +675,272 @@ var track = {
   },
 };
 
+// ---- scene: balance ---------------------------------------------------------
+// A two-pan balance. x-boxes (left_x, right_x) and unit weights (left_c,
+// right_c) on each pan. The beam is always level — only equality-preserving
+// moves are offered as buttons.
+
+var balance = {
+  title: "Balance",
+  levels: [1, 2, 3],
+  params: {
+    left_x:  { type: "int", min: 0, max: 5,  default: 2 },
+    left_c:  { type: "int", min: 0, max: 40, default: 4 },
+    right_x: { type: "int", min: 0, max: 5,  default: 1 },
+    right_c: { type: "int", min: 0, max: 60, default: 11 },
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var xw = level >= 3 ? "unknown" : "x";
+    function expr(nx, nc) {
+      var parts = [];
+      if (nx) parts.push(nx + " " + xw);
+      if (nc) parts.push(String(nc));
+      return parts.join(" + ") || "0";
+    }
+    var base = "Balance: left pan " + expr(p.left_x, p.left_c) + ", right pan " + expr(p.right_x, p.right_c) + ". Beam level.";
+    var hint = level >= 2 ? " Use the buttons to isolate x." : "";
+    return base + hint;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("balance", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 240;
+    var beamY = 88, panY = 168, cx = 120;
+    var lx = 42, rx = 198;
+    var showQ = level >= 3;
+
+    var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(balance.alt(p, theme, level)) + '">';
+    out += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+    // Fulcrum
+    out += '<polygon points="' + cx + ',' + (beamY + 4) + ' ' + (cx - 13) + ',' + (beamY + 43) + ' ' + (cx + 13) + ',' + (beamY + 43) + '" fill="' + tone.ink + '"/>';
+    out += '<rect x="' + (cx - 18) + '" y="' + (beamY + 41) + '" width="36" height="5" rx="1" fill="' + tone.ink + '"/>';
+    // Beam
+    out += '<rect x="30" y="' + (beamY - 3) + '" width="180" height="7" rx="3" fill="' + tone.on + '"/>';
+    // Chains
+    out += '<line x1="' + lx + '" y1="' + (beamY + 4) + '" x2="' + lx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+    out += '<line x1="' + rx + '" y1="' + (beamY + 4) + '" x2="' + rx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+    // Pans
+    out += '<rect x="' + (lx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
+    out += '<rect x="' + (rx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
+
+    function drawPanItems(panCX, numX, numC) {
+      var s = "", bW = 14, bH = 19, uS = 10, g = 3;
+      var xtw = numX * (bW + g) - (numX ? g : 0);
+      var showU = Math.min(numC, 4), utw = showU * (uS + g) - (showU ? g : 0);
+      var totalW = xtw + (numX && numC ? g + 4 : 0) + utw;
+      var sx = panCX - totalW / 2, iy = panY - bH - 4;
+      for (var i = 0; i < numX; i++) {
+        var bx = Math.round(sx + i * (bW + g));
+        s += '<rect x="' + bx + '" y="' + iy + '" width="' + bW + '" height="' + bH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 13) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="' + tone.ink + '">' + (showQ ? "?" : "x") + '</text>';
+      }
+      var ux = sx + xtw + (numX && numC ? g + 4 : 0);
+      for (var j = 0; j < showU; j++) {
+        var uxx = Math.round(ux + j * (uS + g));
+        s += '<rect x="' + uxx + '" y="' + (iy + 5) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1" rx="1"/>';
+      }
+      if (numC > 4) s += '<text x="' + (ux + showU * (uS + g) + 2) + '" y="' + (iy + 12) + '" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">+' + (numC - 4) + '</text>';
+      return s;
+    }
+
+    out += drawPanItems(lx, p.left_x, p.left_c);
+    out += drawPanItems(rx, p.right_x, p.right_c);
+    out += propSvg(t.prop, W - 22, 20, 11, tone.ink);
+    out += '</svg>';
+    return out;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("balance", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+
+    var state = { lx: p.left_x, lc: p.left_c, rx: p.right_x, rc: p.right_c };
+    var solved = false;
+    var reduced = !!(opts && opts.reducedMotion);
+
+    // Static balance structure
+    group.add(new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.055, 0.1),
+      new THREE.MeshLambertMaterial({ color: t.shadeOn })));
+    var fCone = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.072, 0.28, 6),
+      new THREE.MeshLambertMaterial({ color: t.ink }));
+    fCone.position.set(0, -0.168, 0);
+    group.add(fCone);
+    var baseBar = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.038, 0.14),
+      new THREE.MeshLambertMaterial({ color: t.ink }));
+    baseBar.position.set(0, -0.312, 0);
+    group.add(baseBar);
+    var cMat = new THREE.MeshBasicMaterial({ color: t.ink });
+    [-0.6, 0.6].forEach(function (px) {
+      var ch = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.36, 4), cMat);
+      ch.position.set(px, -0.195, 0.04);
+      group.add(ch);
+      var pan = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.24),
+        new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+      pan.position.set(px, -0.39, 0);
+      group.add(pan);
+    });
+
+    // Dynamic pan items
+    var dynGroup = new THREE.Group();
+    st.scene.add(dynGroup);
+    var dynLabels = [];
+
+    function clearDyn() {
+      while (dynGroup.children.length) {
+        var m = dynGroup.children[0];
+        if (m.geometry) m.geometry.dispose();
+        if (m.material) m.material.dispose();
+        dynGroup.remove(m);
+      }
+      dynLabels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      dynLabels = [];
+    }
+
+    function w2s(wx, wy) {
+      var asp = st.w > 0 ? st.w / st.h : 1;
+      return { xF: (wx + asp) / (2 * asp), yF: (1 - wy) / 2 };
+    }
+
+    function buildDyn() {
+      clearDyn();
+      var inkHex = toHex(t.ink), onHex = toHex(t.shadeOn), showQ = level >= 3 && !solved;
+
+      function addSide(panX, numX, numC) {
+        var bW = 0.064, bH = 0.1, bD = 0.058, uS = 0.058;
+        var gap = 0.018, panY = -0.39;
+        var showU = Math.min(numC, 4);
+        var xtw = numX * (bW + gap) - (numX ? gap : 0);
+        var utw = showU * (uS + gap) - (showU ? gap : 0);
+        var totalW = xtw + (numX && numC ? gap * 2 : 0) + utw;
+        var sx = panX - totalW / 2;
+        var iy = panY + bH / 2 + 0.022;
+
+        for (var i = 0; i < numX; i++) {
+          var mx = sx + i * (bW + gap) + bW / 2;
+          var box = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.88, bH, bD),
+            new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+          box.position.set(mx, iy, 0.04);
+          dynGroup.add(box);
+          var sc = w2s(mx, iy + bH / 2 - 0.01);
+          var lbl = addLabel(el, showQ ? "?" : "x", sc.xF, sc.yF, inkHex);
+          dynLabels.push(lbl);
+        }
+        var ux = sx + xtw + (numX && numC ? gap * 2 : 0);
+        for (var j = 0; j < showU; j++) {
+          var umx = ux + j * (uS + gap) + uS / 2;
+          var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.88, uS, uS),
+            new THREE.MeshLambertMaterial({ color: t.shadeOff }));
+          um.position.set(umx, panY + uS / 2 + 0.022, -0.02);
+          dynGroup.add(um);
+        }
+        if (numC > 4) {
+          var csc = w2s(ux + showU * (uS + gap) + 0.02, panY + uS / 2 + 0.022);
+          dynLabels.push(addLabel(el, "+" + (numC - 4), csc.xF, csc.yF, inkHex));
+        }
+      }
+
+      addSide(-0.6, state.lx, state.lc);
+      addSide(0.6, state.rx, state.rc);
+    }
+
+    buildDyn();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    var raf = 0;
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    // Interactive buttons (levels 2 & 3)
+    var btns = [];
+    if (level >= 2) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var btnX = el.ownerDocument.createElement("button");
+      btnX.textContent = "Take one x off both sides";
+      btnX.setAttribute("aria-label", "Take one x from both sides of the balance");
+      btnX.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btnX);
+      btns.push(btnX);
+
+      var btnC = el.ownerDocument.createElement("button");
+      btnC.textContent = "Take 1 off both sides";
+      btnC.setAttribute("aria-label", "Take one unit weight from both sides of the balance");
+      btnC.style.cssText = bStyle + "right:3%;";
+      el.appendChild(btnC);
+      btns.push(btnC);
+
+      function refreshBtns() {
+        var canX = Math.min(state.lx, state.rx) >= 1;
+        var canC = Math.min(state.lc, state.rc) >= 1;
+        btnX.disabled = !canX; btnX.style.opacity = canX ? "1" : "0.38";
+        btnC.disabled = !canC; btnC.style.opacity = canC ? "1" : "0.38";
+      }
+      refreshBtns();
+
+      function doUpdate() {
+        var loneLeft  = state.lx === 1 && state.lc === 0 && state.rx === 0;
+        var loneRight = state.rx === 1 && state.rc === 0 && state.lx === 0;
+        if (loneLeft || loneRight) solved = true;
+        buildDyn();
+        refreshBtns();
+        if (reduced) { render(); return; }
+        // Brief pop: cycle scale 1.1 -> 1 on dynGroup
+        var t0 = null;
+        function pop(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 200);
+          var sc = 1 + 0.1 * Math.sin(prog * Math.PI);
+          dynGroup.scale.set(sc, sc, sc);
+          render();
+          if (prog < 1) raf = requestAnimationFrame(pop);
+          else { dynGroup.scale.set(1, 1, 1); render(); raf = 0; }
+        }
+        raf = requestAnimationFrame(pop);
+      }
+
+      btnX.addEventListener("click", function () {
+        if (Math.min(state.lx, state.rx) < 1) return;
+        state.lx -= 1; state.rx -= 1;
+        doUpdate();
+      });
+      btnC.addEventListener("click", function () {
+        if (Math.min(state.lc, state.rc) < 1) return;
+        state.lc -= 1; state.rc -= 1;
+        doUpdate();
+      });
+    }
+
+    el.setAttribute("aria-label", balance.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: function () { st.resize(); buildDyn(); render(); },
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearDyn();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
 // ---- registry ---------------------------------------------------------------
 
 export var SCENES = {
   "fraction-bars": fractionBars,
   "clock": clock,
   "track": track,
+  "balance": balance,
 };
 
 export function getScene(id) { return SCENES[id] || null; }
