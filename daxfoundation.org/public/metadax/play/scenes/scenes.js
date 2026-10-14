@@ -1080,8 +1080,8 @@ var functionMachine = {
     s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
     // Input box
     s += '<rect x="' + inX + '" y="' + bY + '" width="' + inW + '" height="' + bH + '" rx="8" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.8"/>';
-    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + tone.ink + '">' + (showIn ? p.input : "?") + '</text>';
-    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="' + tone.ink + '">in</text>';
+    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + toHex(t.ink) + '">' + (showIn ? p.input : "?") + '</text>';
+    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="' + toHex(t.ink) + '">in</text>';
     // Arrow 1
     var a1x = inX + inW + 2, a1end = bodyX - 2;
     s += '<line x1="' + a1x + '" y1="' + midY + '" x2="' + (a1end - 12) + '" y2="' + midY + '" stroke="' + tone.ink + '" stroke-width="2.5"/>';
@@ -1096,8 +1096,8 @@ var functionMachine = {
     s += '<polygon points="' + (a2end-12) + ',' + (midY-6) + ' ' + a2end + ',' + midY + ' ' + (a2end-12) + ',' + (midY+6) + '" fill="' + tone.ink + '"/>';
     // Output box
     s += '<rect x="' + outX + '" y="' + bY + '" width="' + outW + '" height="' + bH + '" rx="8" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.8"/>';
-    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + tone.ink + '">' + out + '</text>';
-    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="' + tone.ink + '">out</text>';
+    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + toHex(t.ink) + '">' + out + '</text>';
+    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" font-weight="bold" fill="' + toHex(t.ink) + '">out</text>';
     s += propSvg(t.prop, W - 20, 18, 13, tone.ink);
     s += '</svg>';
     return s;
@@ -1106,9 +1106,10 @@ var functionMachine = {
     var p = normalizeParams("function-machine", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    // halfW 0.95: in/out boxes at ±0.76 ± half-width 0.15 = ±0.91
-    // halfH 0.32: "in"/"out" sprites at y=0.20 + half-height, body ± 0.20
-    var st = makeAlgebraStage(THREE, el, 0.95, 0.32);
+    // halfW 1.30: in/out box faces ±0.91, sprite widths and 3D box-corner
+    // projection add ~0.15 more; 1.30 fits everything with the 8% margin.
+    // halfH 0.40: "in"/"out" sprites above the box top (y≈0.25), body ±0.20.
+    var st = makeAlgebraStage(THREE, el, 1.30, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
@@ -1141,16 +1142,17 @@ var functionMachine = {
     // Sprites for labels
     var inkHex = toHex(t.ink), faceHex = toHex(t.face);
     var addStrFM = (p.add >= 0 ? "+" : "") + p.add;
+    var shadeOffHex = toHex(t.shadeOff);
     // Static machine op labels (on body face)
     var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, "#ffffff", null);
     spMul.position.set(0, 0.06, 0.12); group.add(spMul);
     var spAdd = makeTextSprite(THREE, addStrFM, 0.13, "#ffffff", null);
     spAdd.position.set(0, -0.09, 0.12); group.add(spAdd);
-    // "out" label
-    var spOutLabel = makeTextSprite(THREE, "out", 0.09, inkHex, null);
+    // "out" label — solid shadeOff background so ink reads at full opacity
+    var spOutLabel = makeTextSprite(THREE, "out", 0.09, inkHex, shadeOffHex);
     spOutLabel.position.set(0.76, 0.2, 0.1); group.add(spOutLabel);
     // "in" label
-    var spInLabel = makeTextSprite(THREE, "in", 0.09, inkHex, null);
+    var spInLabel = makeTextSprite(THREE, "in", 0.09, inkHex, shadeOffHex);
     spInLabel.position.set(-0.76, 0.2, 0.1); group.add(spInLabel);
 
     // step: 0=initial, 1=undid add, 2=undid mul (input shown)
@@ -1164,9 +1166,9 @@ var functionMachine = {
     function buildDynLabels() {
       clearDynSprites();
       var showIn = level === 1 || step >= 2;
-      var spIn = makeTextSprite(THREE, showIn ? String(p.input) : "?", 0.16, inkHex, null);
+      var spIn = makeTextSprite(THREE, showIn ? String(p.input) : "?", 0.16, inkHex, shadeOffHex);
       spIn.position.set(-0.76, 0, 0.12); group.add(spIn); dynSprites.push(spIn);
-      var spOut = makeTextSprite(THREE, String(out), 0.16, inkHex, null);
+      var spOut = makeTextSprite(THREE, String(out), 0.16, inkHex, shadeOffHex);
       spOut.position.set(0.76, 0, 0.12); group.add(spOut); dynSprites.push(spOut);
       if (step >= 1 && step < 2) {
         var inter = out - p.add;
