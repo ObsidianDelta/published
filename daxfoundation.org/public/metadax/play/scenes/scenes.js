@@ -183,6 +183,84 @@ function addLabel(el, text, xFrac, yFrac, color) {
   return d;
 }
 
+// Perspective stage for wide algebra scenes: PerspectiveCamera tilted ~22° down
+// and slightly to the right; hemisphere + shadow-casting directional light.
+function makeAlgebraStage(THREE, el) {
+  var w = el.clientWidth || 480, h = Math.round(w * 10 / 16);
+  var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.setSize(w, h, false);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  el.appendChild(renderer.domElement);
+  var scene = new THREE.Scene();
+  var cam = new THREE.PerspectiveCamera(46, w / h, 0.1, 20);
+  cam.position.set(0.34, 1.3, 2.68);
+  cam.lookAt(0, -0.05, 0);
+  scene.add(new THREE.HemisphereLight(0xeef4ff, 0x223322, 0.55));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.88);
+  sun.position.set(1.5, 3, 2);
+  sun.castShadow = true;
+  sun.shadow.mapSize.width = sun.shadow.mapSize.height = 512;
+  sun.shadow.camera.near = 0.1; sun.shadow.camera.far = 12;
+  sun.shadow.camera.left = -2.2; sun.shadow.camera.right = 2.2;
+  sun.shadow.camera.top = 2; sun.shadow.camera.bottom = -2;
+  scene.add(sun);
+  var st = { renderer: renderer, scene: scene, cam: cam, w: w, h: h };
+  st.resize = function () {
+    var cvs = renderer.domElement;
+    var nw = cvs.clientWidth, nh = cvs.clientHeight;
+    if (!nw || !nh || (nw === st.w && nh === st.h)) return;
+    st.w = nw; st.h = nh;
+    renderer.setSize(nw, nh, false);
+    cam.aspect = nw / nh;
+    cam.updateProjectionMatrix();
+    renderer.render(scene, cam);
+  };
+  return st;
+}
+
+// Canvas-texture Sprite: crisp text label positioned in 3D world space.
+// worldH is the world-space height; 0.14 ≈ 22 screen-px at 680 px canvas width.
+function makeTextSprite(THREE, text, worldH, inkHex, bgHex) {
+  var pxH = 80, len = Math.max(1, text.length);
+  var pxW = Math.max(pxH, Math.ceil(len * pxH * 0.65));
+  pxW = Math.pow(2, Math.ceil(Math.log2(pxW)));
+  var cvs = document.createElement("canvas");
+  cvs.width = pxW; cvs.height = pxH;
+  var ctx = cvs.getContext("2d");
+  if (bgHex) { ctx.fillStyle = bgHex; ctx.fillRect(0, 0, pxW, pxH); }
+  var fs = Math.round(pxH * 0.55);
+  ctx.font = "bold " + fs + "px system-ui,sans-serif";
+  ctx.fillStyle = inkHex;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText(text, pxW / 2, pxH / 2);
+  var tex = new THREE.CanvasTexture(cvs);
+  var mat = new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true });
+  var sp = new THREE.Sprite(mat);
+  sp.scale.set(worldH * (pxW / pxH), worldH, 1);
+  return sp;
+}
+
+// Add a div.scene-controls after the canvas inside el (for buttons in normal flow).
+function makeCtrlDiv(el) {
+  var d = el.ownerDocument.createElement("div");
+  d.className = "scene-controls";
+  el.appendChild(d);
+  return d;
+}
+
+// A live-region paragraph inside ctrlDiv showing the current equation.
+function makeEqLine(ctrlDiv) {
+  var d = ctrlDiv.ownerDocument.createElement("div");
+  d.className = "scene-eq";
+  d.setAttribute("aria-live", "polite");
+  d.setAttribute("aria-atomic", "true");
+  ctrlDiv.appendChild(d);
+  return d;
+}
+
 // ---- scene: fraction-bars ---------------------------------------------------
 
 var fractionBars = {
@@ -682,6 +760,7 @@ var track = {
 
 var balance = {
   title: "Balance",
+  wide: true,
   levels: [1, 2, 3],
   params: {
     left_x:  { type: "int", min: 0, max: 5,  default: 2 },
@@ -706,48 +785,52 @@ var balance = {
     p = normalizeParams("balance", p);
     level = normalizeLevel(level);
     var t = themeOf(theme), tone = printTones(t);
-    var W = 240, H = 240;
-    var beamY = 88, panY = 168, cx = 120;
-    var lx = 42, rx = 198;
+    var W = 480, H = 220;
+    var beamY = 82, panY = 158, cx = 240;
+    var lx = 90, rx = 390;
     var showQ = level >= 3;
 
     var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(balance.alt(p, theme, level)) + '">';
     out += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
     // Fulcrum
-    out += '<polygon points="' + cx + ',' + (beamY + 4) + ' ' + (cx - 13) + ',' + (beamY + 43) + ' ' + (cx + 13) + ',' + (beamY + 43) + '" fill="' + tone.ink + '"/>';
-    out += '<rect x="' + (cx - 18) + '" y="' + (beamY + 41) + '" width="36" height="5" rx="1" fill="' + tone.ink + '"/>';
+    out += '<polygon points="' + cx + ',' + (beamY + 5) + ' ' + (cx - 18) + ',' + (beamY + 52) + ' ' + (cx + 18) + ',' + (beamY + 52) + '" fill="' + tone.ink + '"/>';
+    out += '<rect x="' + (cx - 26) + '" y="' + (beamY + 50) + '" width="52" height="7" rx="2" fill="' + tone.ink + '"/>';
     // Beam
-    out += '<rect x="30" y="' + (beamY - 3) + '" width="180" height="7" rx="3" fill="' + tone.on + '"/>';
+    out += '<rect x="56" y="' + (beamY - 4) + '" width="368" height="9" rx="4" fill="' + tone.on + '"/>';
     // Chains
-    out += '<line x1="' + lx + '" y1="' + (beamY + 4) + '" x2="' + lx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
-    out += '<line x1="' + rx + '" y1="' + (beamY + 4) + '" x2="' + rx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+    out += '<line x1="' + lx + '" y1="' + (beamY + 5) + '" x2="' + lx + '" y2="' + (panY - 4) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    out += '<line x1="' + rx + '" y1="' + (beamY + 5) + '" x2="' + rx + '" y2="' + (panY - 4) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
     // Pans
-    out += '<rect x="' + (lx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
-    out += '<rect x="' + (rx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
+    out += '<rect x="' + (lx - 48) + '" y="' + panY + '" width="96" height="7" rx="3" fill="' + tone.on + '"/>';
+    out += '<rect x="' + (rx - 48) + '" y="' + panY + '" width="96" height="7" rx="3" fill="' + tone.on + '"/>';
 
     function drawPanItems(panCX, numX, numC) {
-      var s = "", bW = 14, bH = 19, uS = 10, g = 3;
+      var s = "", bW = 24, bH = 32, uS = 18, g = 5;
       var xtw = numX * (bW + g) - (numX ? g : 0);
       var showU = Math.min(numC, 4), utw = showU * (uS + g) - (showU ? g : 0);
-      var totalW = xtw + (numX && numC ? g + 4 : 0) + utw;
-      var sx = panCX - totalW / 2, iy = panY - bH - 4;
+      var totalW = xtw + (numX && numC ? g + 6 : 0) + utw;
+      var sx = panCX - totalW / 2, iy = panY - bH - 6;
       for (var i = 0; i < numX; i++) {
         var bx = Math.round(sx + i * (bW + g));
-        s += '<rect x="' + bx + '" y="' + iy + '" width="' + bW + '" height="' + bH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 13) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="' + tone.ink + '">' + (showQ ? "?" : "x") + '</text>';
+        s += '<rect x="' + bx + '" y="' + iy + '" width="' + bW + '" height="' + bH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="3"/>';
+        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 21) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + (showQ ? "?" : "x") + '</text>';
       }
-      var ux = sx + xtw + (numX && numC ? g + 4 : 0);
+      var ux = sx + xtw + (numX && numC ? g + 6 : 0);
       for (var j = 0; j < showU; j++) {
         var uxx = Math.round(ux + j * (uS + g));
-        s += '<rect x="' + uxx + '" y="' + (iy + 5) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1" rx="1"/>';
+        s += '<rect x="' + uxx + '" y="' + (iy + 7) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.2" rx="2"/>';
       }
-      if (numC > 4) s += '<text x="' + (ux + showU * (uS + g) + 2) + '" y="' + (iy + 12) + '" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">+' + (numC - 4) + '</text>';
+      if (numC > 4) s += '<text x="' + (ux + showU * (uS + g) + 3) + '" y="' + (iy + 20) + '" font-family="system-ui,sans-serif" font-size="15" fill="' + tone.ink + '">+' + (numC - 4) + '</text>';
       return s;
     }
 
     out += drawPanItems(lx, p.left_x, p.left_c);
     out += drawPanItems(rx, p.right_x, p.right_c);
-    out += propSvg(t.prop, W - 22, 20, 11, tone.ink);
+
+    // Equation
+    function expr(nx, nc) { var parts=[]; if(nx) parts.push(nx+(showQ?"?":"x")); if(nc) parts.push(String(nc)); return parts.join("+")||"0"; }
+    out += '<text x="' + cx + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="' + tone.ink + '">' + expr(p.left_x, p.left_c) + ' = ' + expr(p.right_x, p.right_c) + '</text>';
+    out += propSvg(t.prop, W - 24, 22, 14, tone.ink);
     out += '</svg>';
     return out;
   },
@@ -755,8 +838,7 @@ var balance = {
     var p = normalizeParams("balance", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    el.style.position = el.style.position || "relative";
-    var st = makeStage(THREE, el);
+    var st = makeAlgebraStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
 
@@ -764,125 +846,127 @@ var balance = {
     var solved = false;
     var reduced = !!(opts && opts.reducedMotion);
 
-    // Static balance structure
-    group.add(new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.055, 0.1),
-      new THREE.MeshLambertMaterial({ color: t.shadeOn })));
-    var fCone = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.072, 0.28, 6),
+    // Beam (thick box with real depth for perspective shadow)
+    var beam = new THREE.Mesh(new THREE.BoxGeometry(1.44, 0.06, 0.1),
+      new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+    beam.castShadow = true;
+    group.add(beam);
+    // Fulcrum cone + base bar
+    var fCone = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.075, 0.29, 8),
       new THREE.MeshLambertMaterial({ color: t.ink }));
-    fCone.position.set(0, -0.168, 0);
+    fCone.position.set(0, -0.175, 0); fCone.castShadow = true;
     group.add(fCone);
-    var baseBar = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.038, 0.14),
+    var baseBar = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.042, 0.16),
       new THREE.MeshLambertMaterial({ color: t.ink }));
-    baseBar.position.set(0, -0.312, 0);
+    baseBar.position.set(0, -0.32, 0); baseBar.receiveShadow = true;
     group.add(baseBar);
+    // Chains + pans
     var cMat = new THREE.MeshBasicMaterial({ color: t.ink });
-    [-0.6, 0.6].forEach(function (px) {
-      var ch = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.36, 4), cMat);
-      ch.position.set(px, -0.195, 0.04);
+    var panY3 = -0.39;
+    [-0.62, 0.62].forEach(function (px) {
+      var ch = new THREE.Mesh(new THREE.CylinderGeometry(0.008, 0.008, 0.37, 4), cMat);
+      ch.position.set(px, -0.2, 0.04);
       group.add(ch);
-      var pan = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.24),
+      var pan = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.032, 0.28),
         new THREE.MeshLambertMaterial({ color: t.shadeOn }));
-      pan.position.set(px, -0.39, 0);
+      pan.position.set(px, panY3, 0);
+      pan.castShadow = pan.receiveShadow = true;
       group.add(pan);
     });
 
-    // Dynamic pan items
+    // Dynamic pan items + sprites
     var dynGroup = new THREE.Group();
     st.scene.add(dynGroup);
-    var dynLabels = [];
 
     function clearDyn() {
       while (dynGroup.children.length) {
         var m = dynGroup.children[0];
         if (m.geometry) m.geometry.dispose();
-        if (m.material) m.material.dispose();
+        if (m.material) { if (m.material.map) m.material.map.dispose(); m.material.dispose(); }
         dynGroup.remove(m);
       }
-      dynLabels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
-      dynLabels = [];
-    }
-
-    function w2s(wx, wy) {
-      var asp = st.w > 0 ? st.w / st.h : 1;
-      return { xF: (wx + asp) / (2 * asp), yF: (1 - wy) / 2 };
     }
 
     function buildDyn() {
       clearDyn();
-      var inkHex = toHex(t.ink), onHex = toHex(t.shadeOn), showQ = level >= 3 && !solved;
+      var inkHex = toHex(t.ink), showQ = level >= 3 && !solved;
+      var bW = 0.07, bH = 0.11, bD = 0.06, uS = 0.062, gap = 0.02;
 
       function addSide(panX, numX, numC) {
-        var bW = 0.064, bH = 0.1, bD = 0.058, uS = 0.058;
-        var gap = 0.018, panY = -0.39;
-        var showU = Math.min(numC, 4);
         var xtw = numX * (bW + gap) - (numX ? gap : 0);
+        var showU = Math.min(numC, 4);
         var utw = showU * (uS + gap) - (showU ? gap : 0);
         var totalW = xtw + (numX && numC ? gap * 2 : 0) + utw;
         var sx = panX - totalW / 2;
-        var iy = panY + bH / 2 + 0.022;
+        var iy = panY3 + bH / 2 + 0.025;
 
         for (var i = 0; i < numX; i++) {
           var mx = sx + i * (bW + gap) + bW / 2;
           var box = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.88, bH, bD),
             new THREE.MeshLambertMaterial({ color: t.shadeOn }));
-          box.position.set(mx, iy, 0.04);
+          box.position.set(mx, iy, 0.04); box.castShadow = true;
           dynGroup.add(box);
-          var sc = w2s(mx, iy + bH / 2 - 0.01);
-          var lbl = addLabel(el, showQ ? "?" : "x", sc.xF, sc.yF, inkHex);
-          dynLabels.push(lbl);
+          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, inkHex, null);
+          sp.position.set(mx, iy + bH / 2 + 0.07, 0.08);
+          dynGroup.add(sp);
         }
         var ux = sx + xtw + (numX && numC ? gap * 2 : 0);
         for (var j = 0; j < showU; j++) {
           var umx = ux + j * (uS + gap) + uS / 2;
           var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.88, uS, uS),
             new THREE.MeshLambertMaterial({ color: t.shadeOff }));
-          um.position.set(umx, panY + uS / 2 + 0.022, -0.02);
+          um.position.set(umx, panY3 + uS / 2 + 0.025, -0.02);
+          um.castShadow = true;
           dynGroup.add(um);
         }
         if (numC > 4) {
-          var csc = w2s(ux + showU * (uS + gap) + 0.02, panY + uS / 2 + 0.022);
-          dynLabels.push(addLabel(el, "+" + (numC - 4), csc.xF, csc.yF, inkHex));
+          var sp2 = makeTextSprite(THREE, "+" + (numC - 4), 0.11, inkHex, null);
+          sp2.position.set(ux + showU * (uS + gap) + 0.06, iy, 0.08);
+          dynGroup.add(sp2);
         }
       }
 
-      addSide(-0.6, state.lx, state.lc);
-      addSide(0.6, state.rx, state.rc);
+      addSide(-0.62, state.lx, state.lc);
+      addSide(0.62, state.rx, state.rc);
     }
 
     buildDyn();
-
-    var prop = makeProp(THREE, t.prop, t.accent);
-    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
 
     var raf = 0;
     function render() { st.renderer.render(st.scene, st.cam); }
     render();
 
-    // Interactive buttons (levels 2 & 3)
+    // Equation helper
+    function eqStr() {
+      function ex(nx, nc) { var p=[]; if(nx) p.push(nx+"x"); if(nc) p.push(String(nc)); return p.join("+")||"0"; }
+      return ex(state.lx, state.lc) + " = " + ex(state.rx, state.rc);
+    }
+
+    // Controls below (levels 2 & 3)
     var btns = [];
     if (level >= 2) {
-      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
-        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
-        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var ctrlDiv = makeCtrlDiv(el);
+      var eqLine = makeEqLine(ctrlDiv);
+      eqLine.textContent = eqStr();
+
       var btnX = el.ownerDocument.createElement("button");
       btnX.textContent = "Take one x off both sides";
       btnX.setAttribute("aria-label", "Take one x from both sides of the balance");
-      btnX.style.cssText = bStyle + "left:3%;";
-      el.appendChild(btnX);
+      ctrlDiv.insertBefore(btnX, eqLine);
       btns.push(btnX);
 
       var btnC = el.ownerDocument.createElement("button");
       btnC.textContent = "Take 1 off both sides";
       btnC.setAttribute("aria-label", "Take one unit weight from both sides of the balance");
-      btnC.style.cssText = bStyle + "right:3%;";
-      el.appendChild(btnC);
+      ctrlDiv.insertBefore(btnC, eqLine);
       btns.push(btnC);
 
       function refreshBtns() {
         var canX = Math.min(state.lx, state.rx) >= 1;
         var canC = Math.min(state.lc, state.rc) >= 1;
-        btnX.disabled = !canX; btnX.style.opacity = canX ? "1" : "0.38";
-        btnC.disabled = !canC; btnC.style.opacity = canC ? "1" : "0.38";
+        btnX.disabled = !canX;
+        btnC.disabled = !canC;
+        eqLine.textContent = eqStr();
       }
       refreshBtns();
 
@@ -890,19 +974,18 @@ var balance = {
         var loneLeft  = state.lx === 1 && state.lc === 0 && state.rx === 0;
         var loneRight = state.rx === 1 && state.rc === 0 && state.lx === 0;
         if (loneLeft || loneRight) solved = true;
-        buildDyn();
-        refreshBtns();
+        buildDyn(); refreshBtns();
         if (reduced) { render(); return; }
-        // Brief pop: cycle scale 1.1 -> 1 on dynGroup
+        // Blocks lift off both sides together then settle over 0.5 s
         var t0 = null;
         function pop(now) {
           if (!t0) t0 = now;
-          var prog = Math.min(1, (now - t0) / 200);
-          var sc = 1 + 0.1 * Math.sin(prog * Math.PI);
-          dynGroup.scale.set(sc, sc, sc);
+          var prog = Math.min(1, (now - t0) / 500);
+          var lift = 0.08 * Math.sin(prog * Math.PI);
+          dynGroup.position.y = lift;
           render();
           if (prog < 1) raf = requestAnimationFrame(pop);
-          else { dynGroup.scale.set(1, 1, 1); render(); raf = 0; }
+          else { dynGroup.position.y = 0; render(); raf = 0; }
         }
         raf = requestAnimationFrame(pop);
       }
@@ -922,11 +1005,13 @@ var balance = {
     el.setAttribute("aria-label", balance.alt(p, opts && opts.theme, level));
     return {
       setReducedMotion: function (b) { reduced = b; render(); },
-      resize: function () { st.resize(); buildDyn(); render(); },
+      resize: st.resize,
       dispose: function () {
         if (raf) cancelAnimationFrame(raf);
         clearDyn();
         btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        var ctrl = el.querySelector(".scene-controls");
+        if (ctrl && ctrl.parentNode) ctrl.parentNode.removeChild(ctrl);
         st.renderer.dispose();
         if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
       },
@@ -940,6 +1025,7 @@ var balance = {
 
 var functionMachine = {
   title: "Function machine",
+  wide: true,
   levels: [1, 2, 3],
   params: {
     mul:        { type: "int",  min: 1,   max: 12,  default: 2 },
@@ -961,34 +1047,36 @@ var functionMachine = {
     p = normalizeParams("function-machine", p);
     level = normalizeLevel(level);
     var t = themeOf(theme), tone = printTones(t);
-    var W = 240, H = 200, out = functionMachine._output(p);
+    var W = 480, H = 180, out = functionMachine._output(p);
     var showIn = level === 1;
     var addStr = (p.add >= 0 ? "+" : "") + p.add;
+    var bH = 64, bY = (H - bH) / 2;
+    var inX = 14, inW = 88, bodyX = 136, bodyW = 128, outX = 376, outW = 90;
+    var midY = bY + bH / 2;
 
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(functionMachine.alt(p, theme, level)) + '">';
     s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
-
-    // Three boxes: input, machine-body, output
-    var bH = 48, bY = (H - bH) / 2;
     // Input box
-    s += '<rect x="8" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<text x="34" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + (showIn ? p.input : "?") + '</text>';
-    s += '<text x="34" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">in</text>';
+    s += '<rect x="' + inX + '" y="' + bY + '" width="' + inW + '" height="' + bH + '" rx="8" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.8"/>';
+    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + tone.ink + '">' + (showIn ? p.input : "?") + '</text>';
+    s += '<text x="' + (inX + inW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="' + tone.ink + '">in</text>';
     // Arrow 1
-    s += '<line x1="60" y1="' + (bY + bH / 2) + '" x2="76" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
-    s += '<polygon points="76,' + (bY + bH / 2 - 5) + ' 86,' + (bY + bH / 2) + ' 76,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
-    // Machine body (two op labels inside)
-    s += '<rect x="86" y="' + (bY - 8) + '" width="68" height="' + (bH + 16) + '" rx="8" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<text x="120" y="' + (bY + bH / 2 - 4) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">×' + p.mul + '</text>';
-    s += '<text x="120" y="' + (bY + bH / 2 + 11) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + addStr + '</text>';
+    var a1x = inX + inW + 2, a1end = bodyX - 2;
+    s += '<line x1="' + a1x + '" y1="' + midY + '" x2="' + (a1end - 12) + '" y2="' + midY + '" stroke="' + tone.ink + '" stroke-width="2.5"/>';
+    s += '<polygon points="' + (a1end-12) + ',' + (midY-6) + ' ' + a1end + ',' + midY + ' ' + (a1end-12) + ',' + (midY+6) + '" fill="' + tone.ink + '"/>';
+    // Machine body
+    s += '<rect x="' + bodyX + '" y="' + (bY - 12) + '" width="' + bodyW + '" height="' + (bH + 24) + '" rx="12" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.8"/>';
+    s += '<text x="' + (bodyX + bodyW / 2 | 0) + '" y="' + (midY - 6) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#fff">×' + p.mul + '</text>';
+    s += '<text x="' + (bodyX + bodyW / 2 | 0) + '" y="' + (midY + 16) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#fff">' + addStr + '</text>';
     // Arrow 2
-    s += '<line x1="154" y1="' + (bY + bH / 2) + '" x2="170" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
-    s += '<polygon points="170,' + (bY + bH / 2 - 5) + ' 180,' + (bY + bH / 2) + ' 170,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
+    var a2x = bodyX + bodyW + 2, a2end = outX - 2;
+    s += '<line x1="' + a2x + '" y1="' + midY + '" x2="' + (a2end - 12) + '" y2="' + midY + '" stroke="' + tone.ink + '" stroke-width="2.5"/>';
+    s += '<polygon points="' + (a2end-12) + ',' + (midY-6) + ' ' + a2end + ',' + midY + ' ' + (a2end-12) + ',' + (midY+6) + '" fill="' + tone.ink + '"/>';
     // Output box
-    s += '<rect x="180" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<text x="206" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + out + '</text>';
-    s += '<text x="206" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">out</text>';
-    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '<rect x="' + outX + '" y="' + bY + '" width="' + outW + '" height="' + bH + '" rx="8" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.8"/>';
+    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (midY + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="bold" fill="' + tone.ink + '">' + out + '</text>';
+    s += '<text x="' + (outX + outW / 2 | 0) + '" y="' + (bY - 7) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="12" fill="' + tone.ink + '">out</text>';
+    s += propSvg(t.prop, W - 20, 18, 13, tone.ink);
     s += '</svg>';
     return s;
   },
@@ -996,134 +1084,137 @@ var functionMachine = {
     var p = normalizeParams("function-machine", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    el.style.position = el.style.position || "relative";
-    var st = makeStage(THREE, el);
+    var st = makeAlgebraStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     var out = functionMachine._output(p);
 
-    // Machine geometry: input box, body (two halves for ops), output box, arrows
-    var matIn  = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matIn   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
     var matBody = new THREE.MeshLambertMaterial({ color: t.shadeOn });
-    var matOut = new THREE.MeshLambertMaterial({ color: t.shadeOff });
-    var matArr = new THREE.MeshLambertMaterial({ color: t.ink });
+    var matOut  = new THREE.MeshLambertMaterial({ color: t.shadeOff });
 
-    // Input box
-    var inBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matIn);
-    inBox.position.set(-0.72, 0, 0);
+    // Input box — thick for perspective depth
+    var inBox = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.16), matIn);
+    inBox.position.set(-0.76, 0, 0); inBox.castShadow = true;
     group.add(inBox);
-    // Machine body (wider)
-    var body = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.14), matBody);
-    body.position.set(0, 0, 0);
+    // Machine body (rounded-ish using BoxGeometry with extra depth)
+    var body = new THREE.Mesh(new THREE.BoxGeometry(0.52, 0.4, 0.2), matBody);
+    body.position.set(0, 0, 0); body.castShadow = true;
     group.add(body);
     // Output box
-    var outBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matOut);
-    outBox.position.set(0.72, 0, 0);
+    var outBox = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.16), matOut);
+    outBox.position.set(0.76, 0, 0); outBox.castShadow = true;
     group.add(outBox);
-    // Arrows (thin boxes)
-    var arrowMat = new THREE.MeshBasicMaterial({ color: t.ink });
-    [-0.44, 0.44].forEach(function (ax) {
-      var arr = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.025, 0.04), arrowMat);
-      arr.position.set(ax, 0, 0.08);
-      group.add(arr);
+    // Arrow shafts
+    var arrMat = new THREE.MeshBasicMaterial({ color: t.ink });
+    [-0.46, 0.46].forEach(function (ax) {
+      var arr = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.028, 0.04), arrMat);
+      arr.position.set(ax, 0, 0.1); group.add(arr);
     });
 
-    var prop = makeProp(THREE, t.prop, t.accent);
-    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+    // Sprites for labels
+    var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+    var addStrFM = (p.add >= 0 ? "+" : "") + p.add;
+    // Static machine op labels (on body face)
+    var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, faceHex, null);
+    spMul.position.set(0, 0.06, 0.12); group.add(spMul);
+    var spAdd = makeTextSprite(THREE, addStrFM, 0.13, faceHex, null);
+    spAdd.position.set(0, -0.09, 0.12); group.add(spAdd);
+    // "out" label
+    var spOutLabel = makeTextSprite(THREE, "out", 0.09, inkHex, null);
+    spOutLabel.position.set(0.76, 0.2, 0.1); group.add(spOutLabel);
+    // "in" label
+    var spInLabel = makeTextSprite(THREE, "in", 0.09, inkHex, null);
+    spInLabel.position.set(-0.76, 0.2, 0.1); group.add(spInLabel);
 
-    // Labels (added via HTML overlay)
-    var labels = [];
-    // step: 0=show output only, 1=undid +add, 2=undid xmul (input revealed)
+    // step: 0=initial, 1=undid add, 2=undid mul (input shown)
     var step = 0;
+    var dynSprites = [];
 
-    function clearLabels() {
-      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
-      labels = [];
+    function clearDynSprites() {
+      dynSprites.forEach(function (sp) { group.remove(sp); if (sp.material && sp.material.map) sp.material.map.dispose(); if (sp.material) sp.material.dispose(); });
+      dynSprites = [];
     }
-    function buildLabels() {
-      clearLabels();
-      var inkHex = toHex(t.ink);
-      var faceHex = toHex(t.face);
-      var addStr = (p.add >= 0 ? "+" : "") + p.add;
-      // Machine op labels
-      labels.push(addLabel(el, "×" + p.mul, 0.5, 0.42, faceHex));
-      labels.push(addLabel(el, addStr, 0.5, 0.58, faceHex));
-      // Output label
-      labels.push(addLabel(el, String(out), 0.86, 0.5, inkHex));
-      // Input label
+    function buildDynLabels() {
+      clearDynSprites();
       var showIn = level === 1 || step >= 2;
-      labels.push(addLabel(el, showIn ? String(p.input) : "?", 0.14, 0.5, inkHex));
-      // Intermediate label (after undo +add)
+      var spIn = makeTextSprite(THREE, showIn ? String(p.input) : "?", 0.16, inkHex, null);
+      spIn.position.set(-0.76, 0, 0.12); group.add(spIn); dynSprites.push(spIn);
+      var spOut = makeTextSprite(THREE, String(out), 0.16, inkHex, null);
+      spOut.position.set(0.76, 0, 0.12); group.add(spOut); dynSprites.push(spOut);
       if (step >= 1 && step < 2) {
         var inter = out - p.add;
-        labels.push(addLabel(el, "÷" + p.mul + " →", 0.5, 0.76, inkHex));
-        labels.push(addLabel(el, String(inter), 0.14, 0.76, inkHex));
+        var spMid = makeTextSprite(THREE, String(inter), 0.13, inkHex, null);
+        spMid.position.set(-0.5, -0.28, 0.12); group.add(spMid); dynSprites.push(spMid);
       }
     }
-    buildLabels();
+    buildDynLabels();
 
     function render() { st.renderer.render(st.scene, st.cam); }
     render();
 
+    // Token animation: token sphere runs from inBox to outBox over 0.5 s
+    var token = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 8),
+      new THREE.MeshLambertMaterial({ color: t.accent }));
+    token.visible = false; group.add(token);
+
+    function runToken(after) {
+      if (reduced) { after(); return; }
+      token.visible = true; token.position.set(-0.76, 0, 0.15);
+      var t0 = null;
+      function fr(now) {
+        if (!t0) t0 = now;
+        var prog = Math.min(1, (now - t0) / 500);
+        token.position.x = -0.76 + prog * 1.52;
+        token.position.y = 0.08 * Math.sin(prog * Math.PI);
+        render();
+        if (prog < 1) raf = requestAnimationFrame(fr);
+        else { token.visible = false; after(); render(); raf = 0; }
+      }
+      raf = requestAnimationFrame(fr);
+    }
+
+    // Equation helper
+    function eqStr() {
+      if (step === 0) return "? × " + p.mul + (p.add >= 0 ? " + " : " − ") + Math.abs(p.add) + " = " + out;
+      if (step === 1) return "? × " + p.mul + " = " + (out - p.add);
+      return "x = " + p.input;
+    }
+
     var btns = [];
     if (level >= 3) {
-      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
-        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
-        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
-      var addStr = (p.add >= 0 ? "+" : "") + p.add;
+      var ctrlDiv = makeCtrlDiv(el);
+      var eqLine = makeEqLine(ctrlDiv);
+      eqLine.textContent = eqStr();
+
       var btn1 = el.ownerDocument.createElement("button");
-      btn1.textContent = "Undo " + addStr;
+      btn1.textContent = "Undo " + addStrFM;
       btn1.setAttribute("aria-label", "Undo the addition step");
-      btn1.style.cssText = bStyle + "left:3%;";
-      el.appendChild(btn1);
+      ctrlDiv.insertBefore(btn1, eqLine);
       btns.push(btn1);
 
       var btn2 = el.ownerDocument.createElement("button");
       btn2.textContent = "Undo ×" + p.mul;
       btn2.setAttribute("aria-label", "Undo the multiply step");
-      btn2.style.cssText = bStyle + "right:3%;";
-      btn2.disabled = true; btn2.style.opacity = "0.38";
-      el.appendChild(btn2);
+      btn2.disabled = true;
+      ctrlDiv.insertBefore(btn2, eqLine);
       btns.push(btn2);
 
       btn1.addEventListener("click", function () {
         if (step !== 0) return;
-        step = 1;
-        btn1.disabled = true; btn1.style.opacity = "0.38";
-        btn2.disabled = false; btn2.style.opacity = "1";
-        buildLabels();
-        if (!reduced) {
-          var t0 = null;
-          function anim(now) {
-            if (!t0) t0 = now;
-            var prog = Math.min(1, (now - t0) / 180);
-            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
-            render();
-            if (prog < 1) raf = requestAnimationFrame(anim);
-            else { group.rotation.y = 0; render(); raf = 0; }
-          }
-          raf = requestAnimationFrame(anim);
-        } else render();
+        runToken(function () {
+          step = 1; btn1.disabled = true; btn2.disabled = false;
+          buildDynLabels(); eqLine.textContent = eqStr(); render();
+        });
       });
       btn2.addEventListener("click", function () {
         if (step !== 1) return;
-        step = 2;
-        btn2.disabled = true; btn2.style.opacity = "0.38";
-        buildLabels();
-        if (!reduced) {
-          var t0 = null;
-          function anim2(now) {
-            if (!t0) t0 = now;
-            var prog = Math.min(1, (now - t0) / 180);
-            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
-            render();
-            if (prog < 1) raf = requestAnimationFrame(anim2);
-            else { group.rotation.y = 0; render(); raf = 0; }
-          }
-          raf = requestAnimationFrame(anim2);
-        } else render();
+        runToken(function () {
+          step = 2; btn2.disabled = true;
+          buildDynLabels(); eqLine.textContent = eqStr(); render();
+        });
       });
     }
 
@@ -1133,8 +1224,10 @@ var functionMachine = {
       resize: st.resize,
       dispose: function () {
         if (raf) cancelAnimationFrame(raf);
-        clearLabels();
+        clearDynSprites();
         btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        var ctrl = el.querySelector(".scene-controls");
+        if (ctrl && ctrl.parentNode) ctrl.parentNode.removeChild(ctrl);
         st.renderer.dispose();
         if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
       },
@@ -1148,6 +1241,7 @@ var functionMachine = {
 
 var barModel = {
   title: "Bar model",
+  wide: true,
   levels: [1, 2, 3],
   params: {
     extras: { type: "int-array", min: -20, max: 60, maxLen: 4, default: [0, 3] },
@@ -1172,10 +1266,10 @@ var barModel = {
     level = normalizeLevel(level);
     var t = themeOf(theme), tone = printTones(t);
     var n = p.extras.length;
-    var W = 240, rowH = 22, gap = 8, pad = 14;
-    var totalH = pad * 2 + n * rowH + (n - 1) * gap + 24;
-    var H = Math.max(160, Math.min(totalH, 220));
-    var barW = 160, xW = 70, bracketX = barW + pad + 8;
+    var W = 480, rowH = 34, gap = 12, pad = 22;
+    var totalH = pad * 2 + n * rowH + (n - 1) * gap + 32;
+    var H = Math.max(160, Math.min(totalH, 260));
+    var barW = 340, xW = 140, bracketX = barW + pad + 10;
     var topY = (H - (n * rowH + (n - 1) * gap)) / 2;
     var showQ = level >= 2;
 
@@ -1185,25 +1279,23 @@ var barModel = {
     for (var i = 0; i < n; i++) {
       var ry = topY + i * (rowH + gap);
       var e = p.extras[i];
-      var eW = e !== 0 ? Math.max(20, Math.min(barW - xW - 2, Math.round(Math.abs(e) * 1.4 + 14))) : 0;
+      var eW = e !== 0 ? Math.max(38, Math.min(barW - xW - 4, Math.round(Math.abs(e) * 2.4 + 22))) : 0;
       var xBarW = barW - eW;
-      // x block
-      s += '<rect x="' + pad + '" y="' + ry + '" width="' + xBarW + '" height="' + rowH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-      s += '<text x="' + (pad + xBarW / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + (showQ ? "?" : "x") + '</text>';
-      // extra block
+      s += '<rect x="' + pad + '" y="' + ry + '" width="' + xBarW + '" height="' + rowH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
+      s += '<text x="' + (pad + xBarW / 2 | 0) + '" y="' + (ry + rowH / 2 + 6) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#fff">' + (showQ ? "?" : "x") + '</text>';
       if (e !== 0) {
-        var ex = pad + xBarW + 2;
-        s += '<rect x="' + ex + '" y="' + ry + '" width="' + (eW - 2) + '" height="' + rowH + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-        s += '<text x="' + (ex + (eW - 2) / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">' + (e > 0 ? "+" : "") + e + '</text>';
+        var ex = pad + xBarW + 3;
+        s += '<rect x="' + ex + '" y="' + ry + '" width="' + (eW - 3) + '" height="' + rowH + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
+        s += '<text x="' + (ex + (eW - 3) / 2 | 0) + '" y="' + (ry + rowH / 2 + 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="16" fill="' + tone.ink + '">' + (e > 0 ? "+" : "") + e + '</text>';
       }
     }
     // Total bracket
-    var by1 = topY - 4, by2 = topY + n * rowH + (n - 1) * gap + 4;
-    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + (bracketX + 6) + '" y2="' + by1 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + bracketX + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<line x1="' + bracketX + '" y1="' + by2 + '" x2="' + (bracketX + 6) + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
-    s += '<text x="' + (bracketX + 12) + '" y="' + ((by1 + by2) / 2 + 5 | 0) + '" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="' + tone.ink + '">' + p.total + '</text>';
-    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    var by1 = topY - 5, by2 = topY + n * rowH + (n - 1) * gap + 5;
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + (bracketX + 9) + '" y2="' + by1 + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + bracketX + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by2 + '" x2="' + (bracketX + 9) + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<text x="' + (bracketX + 16) + '" y="' + ((by1 + by2) / 2 + 7 | 0) + '" font-family="Georgia,serif" font-size="20" font-weight="bold" fill="' + tone.ink + '">' + p.total + '</text>';
+    s += propSvg(t.prop, W - 22, 22, 14, tone.ink);
     s += '</svg>';
     return s;
   },
@@ -1211,135 +1303,108 @@ var barModel = {
     var p = normalizeParams("bar-model", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    el.style.position = el.style.position || "relative";
-    var st = makeStage(THREE, el);
+    var st = makeAlgebraStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     var n = p.extras.length;
     var sum = barModel._sumExtras(p);
-    // step: 0=initial, 1=extras removed (show k·x = total-sum), 2=shared (show x)
-    var step = 0;
+    var step = 0; // 0=initial, 1=extras removed, 2=shared
 
     var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
     var matE   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
     var matInk = new THREE.MeshBasicMaterial({ color: t.ink });
+    var inkHex = toHex(t.ink), faceHex = toHex(t.face);
 
-    // Layout: n rows centred vertically. rowH=0.16, gap=0.06
-    var rowH = 0.16, rowGap = 0.06, barLen = 1.1;
+    var rowH = 0.18, rowGap = 0.07, barLen = 1.24;
     var totalBH = n * rowH + (n - 1) * rowGap;
     var topY = totalBH / 2 - rowH / 2;
-    var xFrac = 0.6; // x blocks take 60% of bar by default
+    var xFrac = 0.62;
 
-    var xMeshes = [], eMeshes = [];
-    var labels = [];
+    var meshes = [], sprites = [];
 
-    function clearLabels() {
-      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
-      labels = [];
+    function clearScene() {
+      meshes.forEach(function (m) { if (m.geometry) m.geometry.dispose(); group.remove(m); });
+      meshes = [];
+      sprites.forEach(function (sp) { if (sp.material && sp.material.map) sp.material.map.dispose(); if (sp.material) sp.material.dispose(); group.remove(sp); });
+      sprites = [];
     }
 
     function buildScene() {
-      // Remove old meshes
-      xMeshes.concat(eMeshes).forEach(function (m) {
-        if (m.geometry) m.geometry.dispose();
-        group.remove(m);
-      });
-      xMeshes = []; eMeshes = [];
-      clearLabels();
-
+      clearScene();
       var showQ = level >= 2 && step < 2;
-      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
-      var asp = st.w > 0 ? st.w / st.h : 1;
-
       for (var i = 0; i < n; i++) {
         var e = p.extras[i];
         var ry = topY - i * (rowH + rowGap);
         var eShow = e !== 0 && step === 0;
         var xLen = eShow ? barLen * xFrac : barLen;
         var eLen = eShow ? barLen * (1 - xFrac) - 0.02 : 0;
-
-        var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.1), matX.clone());
-        xM.position.set(-barLen / 2 + xLen / 2, ry, 0);
-        group.add(xM); xMeshes.push(xM);
-
-        // x label
-        var xSc = { xF: ((-barLen / 2 + xLen / 2) + asp) / (2 * asp), yF: (1 - ry) / 2 };
-        labels.push(addLabel(el, showQ ? "?" : "x", xSc.xF, xSc.yF, faceHex));
-
+        var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.12), matX.clone());
+        xM.position.set(-barLen / 2 + xLen / 2, ry, 0); xM.castShadow = true;
+        group.add(xM); meshes.push(xM);
+        var spX = makeTextSprite(THREE, showQ ? "?" : "x", 0.13, faceHex, null);
+        spX.position.set(-barLen / 2 + xLen / 2, ry, 0.1); group.add(spX); sprites.push(spX);
         if (eShow) {
-          var eM = new THREE.Mesh(new THREE.BoxGeometry(eLen * 0.97, rowH * 0.9, 0.1), matE.clone());
           var ex = -barLen / 2 + xLen + eLen / 2 + 0.02;
-          eM.position.set(ex, ry, 0);
-          group.add(eM); eMeshes.push(eM);
-          var eSc = { xF: (ex + asp) / (2 * asp), yF: (1 - ry) / 2 };
-          labels.push(addLabel(el, (e > 0 ? "+" : "") + e, eSc.xF, eSc.yF, inkHex));
+          var eM = new THREE.Mesh(new THREE.BoxGeometry(eLen * 0.97, rowH * 0.9, 0.12), matE.clone());
+          eM.position.set(ex, ry, 0); eM.castShadow = true;
+          group.add(eM); meshes.push(eM);
+          var spE = makeTextSprite(THREE, (e > 0 ? "+" : "") + e, 0.12, inkHex, null);
+          spE.position.set(ex, ry, 0.1); group.add(spE); sprites.push(spE);
         }
       }
-
-      // Total bracket (right side)
-      var brkX = barLen / 2 + 0.04;
+      var brkX = barLen / 2 + 0.05;
+      var yTop = topY + rowH / 2 + 0.05, yBot = topY - (n - 1) * (rowH + rowGap) - rowH / 2 - 0.05;
       var brkGeo = new THREE.BufferGeometry();
-      var yTop = topY + rowH / 2 + 0.04, yBot = topY - (n - 1) * (rowH + rowGap) - rowH / 2 - 0.04;
       brkGeo.setAttribute("position", new THREE.Float32BufferAttribute([
-        brkX, yTop, 0.02,  brkX + 0.05, yTop, 0.02,
-        brkX, yTop, 0.02,  brkX, yBot, 0.02,
-        brkX, yBot, 0.02,  brkX + 0.05, yBot, 0.02,
+        brkX, yTop, 0.02, brkX + 0.06, yTop, 0.02,
+        brkX, yTop, 0.02, brkX, yBot, 0.02,
+        brkX, yBot, 0.02, brkX + 0.06, yBot, 0.02,
       ], 3));
       var brkLine = new THREE.LineSegments(brkGeo, matInk.clone());
-      group.add(brkLine); xMeshes.push(brkLine);
-
-      var midY = (yTop + yBot) / 2;
-      var tSc = { xF: (brkX + 0.1 + asp) / (2 * asp), yF: (1 - midY) / 2 };
-      labels.push(addLabel(el, String(p.total), tSc.xF, tSc.yF, inkHex));
-
-      // Intermediate or solved labels
-      if (step === 1) {
-        var kx = n + "x = " + (p.total - sum);
-        labels.push(addLabel(el, kx, 0.5, 0.85, inkHex));
-      } else if (step === 2) {
-        var xVal = (p.total - sum) / n;
-        labels.push(addLabel(el, "x = " + xVal, 0.5, 0.85, inkHex));
-      }
+      group.add(brkLine); meshes.push(brkLine);
+      var spTot = makeTextSprite(THREE, String(p.total), 0.14, inkHex, null);
+      spTot.position.set(brkX + 0.16, (yTop + yBot) / 2, 0.02); group.add(spTot); sprites.push(spTot);
     }
 
     buildScene();
-
-    var prop = makeProp(THREE, t.prop, t.accent);
-    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
-
     function render() { st.renderer.render(st.scene, st.cam); }
     render();
 
+    function eqStr() {
+      if (step === 0) return n + "x" + (sum > 0 ? "+" + sum : sum < 0 ? sum : "") + " = " + p.total;
+      if (step === 1) return n + "x = " + (p.total - sum);
+      return "x = " + (p.total - sum) / n;
+    }
+
     var btns = [];
     if (level >= 3) {
-      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
-        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
-        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var ctrlDiv = makeCtrlDiv(el);
+      var eqLine = makeEqLine(ctrlDiv);
+      eqLine.textContent = eqStr();
+
       var btn1 = el.ownerDocument.createElement("button");
       btn1.textContent = "Take away the extras";
       btn1.setAttribute("aria-label", "Remove extra blocks from all bars");
-      btn1.style.cssText = bStyle + "left:3%;";
-      el.appendChild(btn1); btns.push(btn1);
+      ctrlDiv.insertBefore(btn1, eqLine); btns.push(btn1);
 
       var btn2 = el.ownerDocument.createElement("button");
       btn2.textContent = "Share it out";
       btn2.setAttribute("aria-label", "Divide the remaining total equally between the x blocks");
-      btn2.style.cssText = bStyle + "right:3%;";
-      btn2.disabled = true; btn2.style.opacity = "0.38";
-      el.appendChild(btn2); btns.push(btn2);
+      btn2.disabled = true;
+      ctrlDiv.insertBefore(btn2, eqLine); btns.push(btn2);
 
       function doAnim(after) {
         if (reduced) { after(); return; }
         var t0 = null;
         function fr(now) {
           if (!t0) t0 = now;
-          var prog = Math.min(1, (now - t0) / 220);
-          group.scale.set(1, 1 + 0.07 * Math.sin(prog * Math.PI), 1);
+          var prog = Math.min(1, (now - t0) / 500);
+          group.position.x = 0.06 * Math.sin(prog * Math.PI * 2) * (1 - prog);
           render();
           if (prog < 1) raf = requestAnimationFrame(fr);
-          else { group.scale.set(1, 1, 1); after(); raf = 0; }
+          else { group.position.x = 0; after(); raf = 0; }
         }
         raf = requestAnimationFrame(fr);
       }
@@ -1347,18 +1412,15 @@ var barModel = {
       btn1.addEventListener("click", function () {
         if (step !== 0) return;
         doAnim(function () {
-          step = 1;
-          btn1.disabled = true; btn1.style.opacity = "0.38";
-          btn2.disabled = false; btn2.style.opacity = "1";
-          buildScene(); render();
+          step = 1; btn1.disabled = true; btn2.disabled = false;
+          buildScene(); eqLine.textContent = eqStr(); render();
         });
       });
       btn2.addEventListener("click", function () {
         if (step !== 1) return;
         doAnim(function () {
-          step = 2;
-          btn2.disabled = true; btn2.style.opacity = "0.38";
-          buildScene(); render();
+          step = 2; btn2.disabled = true;
+          buildScene(); eqLine.textContent = eqStr(); render();
         });
       });
     }
@@ -1369,8 +1431,10 @@ var barModel = {
       resize: st.resize,
       dispose: function () {
         if (raf) cancelAnimationFrame(raf);
-        clearLabels();
+        clearScene();
         btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        var ctrl = el.querySelector(".scene-controls");
+        if (ctrl && ctrl.parentNode) ctrl.parentNode.removeChild(ctrl);
         st.renderer.dispose();
         if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
       },
@@ -1385,6 +1449,7 @@ var barModel = {
 
 var algebraTiles = {
   title: "Algebra tiles",
+  wide: true,
   levels: [1, 2, 3],
   params: {
     groups: { type: "int", min: 1, max: 6,   default: 4 },
@@ -1404,56 +1469,56 @@ var algebraTiles = {
     p = normalizeParams("algebra-tiles", p);
     level = normalizeLevel(level);
     var t = themeOf(theme), tone = printTones(t);
-    var W = 240, H = 200;
-    var tileW = 22, tileH = 30, uS = 18, gap = 4, gGap = 10;
+    var W = 480, H = 200;
+    var tileW = 34, tileH = 46, uS = 28, gap = 6, gGap = 16;
 
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(algebraTiles.alt(p, theme, level)) + '">';
     s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
 
     var totalXt = p.groups * p.xs, totalU = p.groups * p.units;
+    // Clamp tiles to fit width
+    var maxTiles = Math.floor((W - 24) / (tileW + gap));
+    var drawXt = Math.min(totalXt, maxTiles), drawU = Math.min(totalU, Math.max(0, maxTiles - drawXt));
 
     if (level === 1) {
-      // Draw p.groups groups side by side
-      var groupW = p.xs * (tileW + gap) - gap + (p.units ? gap + p.units * (uS + gap) - gap : 0) + gGap;
-      var allW = p.groups * groupW - gGap;
-      var sx = (W - allW) / 2, ty = (H - tileH) / 2;
-      for (var g = 0; g < p.groups; g++) {
+      var groupW = p.xs * (tileW + gap) + (p.units ? p.units * (uS + gap) : 0) + gGap;
+      var drawG = Math.min(p.groups, Math.floor((W - 12) / groupW) || 1);
+      var allW = drawG * groupW - gGap;
+      var sx = (W - allW) / 2, ty = (H - tileH - 28) / 2;
+      for (var g = 0; g < drawG; g++) {
         var gx = sx + g * groupW;
         for (var xi = 0; xi < p.xs; xi++) {
           var bx = gx + xi * (tileW + gap);
-          s += '<rect x="' + bx + '" y="' + ty + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-          s += '<text x="' + (bx + tileW / 2 | 0) + '" y="' + (ty + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+          s += '<rect x="' + bx.toFixed(1) + '" y="' + ty + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
+          s += '<text x="' + (bx + tileW / 2 | 0) + '" y="' + (ty + tileH / 2 + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#fff">x</text>';
         }
         var ux0 = gx + p.xs * (tileW + gap);
         for (var ui = 0; ui < p.units; ui++) {
           var ux = ux0 + ui * (uS + gap), uy = ty + (tileH - uS) / 2;
-          s += '<rect x="' + ux + '" y="' + uy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+          s += '<rect x="' + ux.toFixed(1) + '" y="' + uy.toFixed(1) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
         }
       }
     } else {
-      // Level 2+: rearranged — all x tiles together then all unit tiles
-      var xtW = totalXt * (tileW + gap) - gap, utW = totalU * (uS + gap) - (totalU ? gap : 0);
-      var totW = xtW + (totalU ? gGap + utW : 0);
-      var sx2 = (W - totW) / 2, ty2 = (H - tileH) / 2;
-      for (var xi2 = 0; xi2 < totalXt; xi2++) {
+      var xtW = drawXt * (tileW + gap) - (drawXt ? gap : 0);
+      var utW = drawU > 0 ? gGap + drawU * (uS + gap) - gap : 0;
+      var totW = xtW + utW;
+      var sx2 = (W - totW) / 2, ty2 = (H - tileH - 28) / 2;
+      for (var xi2 = 0; xi2 < drawXt; xi2++) {
         var bx2 = sx2 + xi2 * (tileW + gap);
-        s += '<rect x="' + bx2 + '" y="' + ty2 + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-        s += '<text x="' + (bx2 + tileW / 2 | 0) + '" y="' + (ty2 + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+        s += '<rect x="' + bx2.toFixed(1) + '" y="' + ty2 + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
+        s += '<text x="' + (bx2 + tileW / 2 | 0) + '" y="' + (ty2 + tileH / 2 + 7) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#fff">x</text>';
       }
-      if (level < 3 || true) { // always show units in SVG
-        var ux2 = sx2 + xtW + gGap;
-        for (var ui2 = 0; ui2 < totalU; ui2++) {
-          var uux = ux2 + ui2 * (uS + gap), uuy = ty2 + (tileH - uS) / 2;
-          s += '<rect x="' + uux + '" y="' + uuy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
-        }
+      var ux2 = sx2 + xtW + gGap;
+      for (var ui2 = 0; ui2 < drawU; ui2++) {
+        var uux = ux2 + ui2 * (uS + gap), uuy = ty2 + (tileH - uS) / 2;
+        s += '<rect x="' + uux.toFixed(1) + '" y="' + uuy.toFixed(1) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="4"/>';
       }
     }
 
-    // Equation label
     var addStr = p.units ? " + " + p.units : "";
     var eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
-    s += '<text x="' + (W / 2 | 0) + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="' + tone.ink + '">' + eq + '</text>';
-    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '<text x="' + (W / 2 | 0) + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="' + tone.ink + '">' + eq + '</text>';
+    s += propSvg(t.prop, W - 22, 20, 14, tone.ink);
     s += '</svg>';
     return s;
   },
@@ -1461,8 +1526,7 @@ var algebraTiles = {
     var p = normalizeParams("algebra-tiles", params);
     var level = normalizeLevel(opts && opts.level);
     var t = themeOf(opts && opts.theme);
-    el.style.position = el.style.position || "relative";
-    var st = makeStage(THREE, el);
+    var st = makeAlgebraStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
     var reduced = !!(opts && opts.reducedMotion);
@@ -1471,132 +1535,146 @@ var algebraTiles = {
     var step = level === 1 ? 0 : 1;
     var totalX = p.groups * p.xs, totalU = p.groups * p.units;
 
-    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
-    var matU   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
-
-    var tileW = 0.1, tileH = 0.16, tileD = 0.09, uS = 0.1, gap = 0.025, gGap = 0.07;
-    var tileMeshes = [], labels = [];
+    var matX = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matU = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+    var tileMeshes = [], sprites = [];
 
     function clearAll() {
-      tileMeshes.forEach(function (m) {
-        if (m.geometry) m.geometry.dispose();
-        group.remove(m);
-      });
+      tileMeshes.forEach(function (m) { if (m.geometry) m.geometry.dispose(); group.remove(m); });
       tileMeshes = [];
-      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
-      labels = [];
+      sprites.forEach(function (sp) { if (sp.material && sp.material.map) sp.material.map.dispose(); if (sp.material) sp.material.dispose(); group.remove(sp); });
+      sprites = [];
     }
 
     function buildScene() {
       clearAll();
-      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
-      var asp = st.w > 0 ? st.w / st.h : 1;
+      // Base tile dims; scaled down when a single group is too wide for one row.
+      var tW = 0.10, tH = 0.17, tD = 0.09;
+      var uW = 0.08, uH = 0.12, uD = 0.07;
+      var gp = 0.022, gGp = 0.055, rPitch = 0.24, maxW = 1.20;
 
-      function w2xF(wx) { return (wx + asp) / (2 * asp); }
-      function w2yF(wy) { return (1 - wy) / 2; }
+      var gW = p.xs * (tW + gp) - gp + (p.units ? gGp + p.units * (uW + gp) - gp : 0);
+      if (gW > maxW) {
+        var sc = maxW / gW;
+        tW *= sc; tH *= sc; tD *= sc; uW *= sc; uH *= sc; uD *= sc;
+        gp *= sc; gGp *= sc; rPitch = Math.max(rPitch * sc, 0.17);
+        gW = maxW;
+      }
+      var nPerRow = Math.max(1, Math.floor((maxW + gGp) / (gW + gGp)));
+
+      // Place count tiles in wrapped rows starting at startY; returns row count used.
+      function placeRows(count, sz, h, d, mat, labelFn, labelColor, startY) {
+        var per = Math.max(1, Math.floor((maxW + gp) / (sz + gp)));
+        for (var i = 0; i < count; i++) {
+          var row = Math.floor(i / per), col = i % per;
+          var nInRow = Math.min(per, count - row * per);
+          var rW = nInRow * sz + (nInRow - 1) * gp;
+          var tx = -rW / 2 + col * (sz + gp) + sz / 2;
+          var ty = startY - row * rPitch;
+          var m = new THREE.Mesh(new THREE.BoxGeometry(sz * 0.92, h, d), mat.clone());
+          m.position.set(tx, ty, 0); m.castShadow = true;
+          group.add(m); tileMeshes.push(m);
+          if (labelFn) {
+            var sp = makeTextSprite(THREE, labelFn(i), 0.11, labelColor, null);
+            sp.position.set(tx, ty, d / 2 + 0.04); group.add(sp); sprites.push(sp);
+          }
+        }
+        return Math.ceil(count / per);
+      }
 
       if (step === 0) {
-        // Grouped: p.groups groups side by side
-        var groupW = p.xs * (tileW + gap) + (p.units ? p.units * (uS + gap) : 0) + gGap;
-        var allW = p.groups * groupW - gGap;
-        var sx = -allW / 2;
+        var nRows = Math.ceil(p.groups / nPerRow);
+        var startY = (nRows - 1) * rPitch / 2;
         for (var g = 0; g < p.groups; g++) {
-          var gx = sx + g * groupW;
+          var gr = Math.floor(g / nPerRow), gc = g % nPerRow;
+          var nInR = Math.min(nPerRow, p.groups - gr * nPerRow);
+          var rowW = nInR * (gW + gGp) - gGp;
+          var gx = -rowW / 2 + gc * (gW + gGp);
+          var gy = startY - gr * rPitch;
           for (var xi = 0; xi < p.xs; xi++) {
-            var mx = gx + xi * (tileW + gap) + tileW / 2;
-            var xm = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
-            xm.position.set(mx, 0, 0);
+            var mx = gx + xi * (tW + gp) + tW / 2;
+            var xm = new THREE.Mesh(new THREE.BoxGeometry(tW * 0.92, tH, tD), matX.clone());
+            xm.position.set(mx, gy, 0); xm.castShadow = true;
             group.add(xm); tileMeshes.push(xm);
-            labels.push(addLabel(el, "x", w2xF(mx), w2yF(0), faceHex));
+            var spx = makeTextSprite(THREE, "x", 0.11, faceHex, null);
+            spx.position.set(mx, gy, tD / 2 + 0.04); group.add(spx); sprites.push(spx);
           }
           if (p.units) {
-            var ux0 = gx + p.xs * (tileW + gap);
+            var ux0 = gx + p.xs * (tW + gp) + gGp - gp;
             for (var ui = 0; ui < p.units; ui++) {
-              var umx = ux0 + ui * (uS + gap) + uS / 2;
-              var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
-              um.position.set(umx, 0, 0);
+              var umx = ux0 + ui * (uW + gp) + uW / 2;
+              var um = new THREE.Mesh(new THREE.BoxGeometry(uW * 0.92, uH, uD), matU.clone());
+              um.position.set(umx, gy, 0); um.castShadow = true;
               group.add(um); tileMeshes.push(um);
             }
           }
         }
       } else {
-        // Rearranged: all x then all units
         var showUnits = step < 2;
-        var xtW = totalX * (tileW + gap);
-        var utW = (totalU && showUnits) ? gGap + totalU * (uS + gap) : 0;
-        var totW = xtW + utW - (showUnits && totalU ? gap : (totalX ? gap : 0));
-        var sx2 = -totW / 2;
-        for (var xi2 = 0; xi2 < totalX; xi2++) {
-          var mx2 = sx2 + xi2 * (tileW + gap) + tileW / 2;
-          var xm2 = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
-          xm2.position.set(mx2, 0, 0);
-          group.add(xm2); tileMeshes.push(xm2);
-          labels.push(addLabel(el, "x", w2xF(mx2), w2yF(0), faceHex));
-        }
-        if (showUnits && totalU) {
-          var ux2 = sx2 + xtW + gGap;
-          for (var ui2 = 0; ui2 < totalU; ui2++) {
-            var umx2 = ux2 + ui2 * (uS + gap) + uS / 2;
-            var um2 = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
-            um2.position.set(umx2, 0, 0);
-            group.add(um2); tileMeshes.push(um2);
+        var xLabel = (step >= 3) ? function () { return String((p.total - totalU) / totalX); } : function () { return "x"; };
+        var xRows = placeRows(totalX, tW, tH, tD, matX, xLabel, faceHex, 0.10);
+        if (showUnits && totalU > 0) {
+          var cap = Math.min(totalU, 24);
+          var uStartY = 0.10 - xRows * rPitch;
+          placeRows(cap, uW, uH, uD, matU, null, null, uStartY);
+          if (totalU > cap) {
+            var per2 = Math.max(1, Math.floor((maxW + gp) / (uW + gp)));
+            var lastRow = Math.floor((cap - 1) / per2);
+            var spOvf = makeTextSprite(THREE, "+" + (totalU - cap), 0.11, inkHex, null);
+            spOvf.position.set(0, uStartY - (lastRow + 1) * rPitch, 0.04);
+            group.add(spOvf); sprites.push(spOvf);
           }
         }
       }
-
-      // Equation/progress label at bottom
-      var addStr = p.units ? " + " + p.units : "";
-      var eq;
-      if (step === 0) eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
-      else if (step === 1) eq = (totalX) + "x" + (totalU ? " + " + totalU : "") + " = " + p.total;
-      else if (step === 2) eq = totalX + "x = " + (p.total - totalU);
-      else eq = "x = " + ((p.total - totalU) / totalX);
-      labels.push(addLabel(el, eq, 0.5, 0.88, inkHex));
     }
 
     buildScene();
-
-    var prop = makeProp(THREE, t.prop, t.accent);
-    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
-
     function render() { st.renderer.render(st.scene, st.cam); }
     render();
 
+    function eqStr() {
+      var addStr = p.units ? " + " + p.units : "";
+      if (step === 0) return p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+      if (step === 1) return totalX + "x" + (totalU ? " + " + totalU : "") + " = " + p.total;
+      if (step === 2) return totalX + "x = " + (p.total - totalU);
+      return "x = " + (p.total - totalU) / totalX;
+    }
+
     var btns = [];
     if (level >= 3) {
-      var bStyle = "position:absolute;background:rgba(0,0,0,.72);color:#fff;" +
-        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
-        "font:12px/1.3 system-ui,sans-serif;cursor:pointer;";
+      var ctrlDiv = makeCtrlDiv(el);
+      var eqLine = makeEqLine(ctrlDiv);
+      eqLine.textContent = eqStr();
+
       var btn1 = el.ownerDocument.createElement("button");
       btn1.textContent = "Open the brackets";
       btn1.setAttribute("aria-label", "Expand the brackets and rearrange tiles");
-      btn1.style.cssText = bStyle + "bottom:8px;left:3%;max-width:30%;";
-      el.appendChild(btn1); btns.push(btn1);
+      ctrlDiv.insertBefore(btn1, eqLine); btns.push(btn1);
 
       var btn2 = el.ownerDocument.createElement("button");
       btn2.textContent = "Take away the units";
       btn2.setAttribute("aria-label", "Remove unit tiles from both sides");
-      btn2.style.cssText = bStyle + "bottom:8px;left:35%;max-width:30%;";
-      btn2.disabled = true; btn2.style.opacity = "0.38";
-      el.appendChild(btn2); btns.push(btn2);
+      btn2.disabled = true;
+      ctrlDiv.insertBefore(btn2, eqLine); btns.push(btn2);
 
       var btn3 = el.ownerDocument.createElement("button");
       btn3.textContent = "Share";
       btn3.setAttribute("aria-label", "Divide both sides by the number of x-tiles");
-      btn3.style.cssText = bStyle + "bottom:8px;right:3%;max-width:25%;";
-      btn3.disabled = true; btn3.style.opacity = "0.38";
-      el.appendChild(btn3); btns.push(btn3);
+      btn3.disabled = true;
+      ctrlDiv.insertBefore(btn3, eqLine); btns.push(btn3);
 
       function doAnim(after) {
         if (reduced) { after(); return; }
         var t0 = null;
         function fr(now) {
           if (!t0) t0 = now;
-          var prog = Math.min(1, (now - t0) / 200);
-          group.rotation.y = Math.sin(prog * Math.PI) * 0.12;
+          var prog = Math.min(1, (now - t0) / 500);
+          // Tiles lift and regroup
+          group.position.y = 0.06 * Math.sin(prog * Math.PI);
           render();
           if (prog < 1) raf = requestAnimationFrame(fr);
-          else { group.rotation.y = 0; after(); raf = 0; }
+          else { group.position.y = 0; after(); raf = 0; }
         }
         raf = requestAnimationFrame(fr);
       }
@@ -1604,27 +1682,22 @@ var algebraTiles = {
       btn1.addEventListener("click", function () {
         if (step !== 0 && step !== 1) return;
         doAnim(function () {
-          step = 1;
-          btn1.disabled = true; btn1.style.opacity = "0.38";
-          btn2.disabled = false; btn2.style.opacity = "1";
-          buildScene(); render();
+          step = 1; btn1.disabled = true; btn2.disabled = false;
+          buildScene(); eqLine.textContent = eqStr(); render();
         });
       });
       btn2.addEventListener("click", function () {
         if (step !== 1) return;
         doAnim(function () {
-          step = 2;
-          btn2.disabled = true; btn2.style.opacity = "0.38";
-          btn3.disabled = false; btn3.style.opacity = "1";
-          buildScene(); render();
+          step = 2; btn2.disabled = true; btn3.disabled = false;
+          buildScene(); eqLine.textContent = eqStr(); render();
         });
       });
       btn3.addEventListener("click", function () {
         if (step !== 2) return;
         doAnim(function () {
-          step = 3;
-          btn3.disabled = true; btn3.style.opacity = "0.38";
-          buildScene(); render();
+          step = 3; btn3.disabled = true;
+          buildScene(); eqLine.textContent = eqStr(); render();
         });
       });
     }
@@ -1637,6 +1710,8 @@ var algebraTiles = {
         if (raf) cancelAnimationFrame(raf);
         clearAll();
         btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        var ctrl = el.querySelector(".scene-controls");
+        if (ctrl && ctrl.parentNode) ctrl.parentNode.removeChild(ctrl);
         st.renderer.dispose();
         if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
       },

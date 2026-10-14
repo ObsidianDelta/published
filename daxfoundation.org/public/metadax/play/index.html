@@ -47,6 +47,14 @@
   .scene .stage { position:relative; width:220px; max-width:100%; aspect-ratio:1/1; background:var(--chip); border-radius:8px; overflow:hidden; }
   .scene .stage svg { width:100%; height:100%; display:block; }
   .scene .stage canvas { width:100%; height:100%; display:block; }
+  .scene .stage.wide { width:100%; max-width:680px; aspect-ratio:auto; overflow:visible; display:flex; flex-direction:column; background:none; }
+  .scene .stage.wide canvas { width:100%; height:auto; aspect-ratio:16/10; flex-shrink:0; display:block; border-radius:8px; background:var(--chip); }
+  .scene .stage.wide svg { width:100%; height:auto; aspect-ratio:16/10; display:block; border-radius:8px; }
+  .scene-controls { display:flex; flex-wrap:wrap; gap:.5rem; padding:.5rem 0 .25rem; align-items:center; }
+  .scene-controls button { min-height:40px; padding:.5rem .9rem; font:14px/1.3 system-ui,sans-serif; border:1px solid var(--line); border-radius:7px; background:var(--surface); color:var(--fg); cursor:pointer; }
+  .scene-controls button:hover:not(:disabled) { border-color:var(--accent); }
+  .scene-controls button:disabled { opacity:.38; cursor:default; }
+  .scene-eq { font:13px/1.4 ui-monospace,Menlo,monospace; color:var(--muted); padding:.1rem .2rem; width:100%; }
   .scene .ans { display:flex; flex-wrap:wrap; gap:.4rem; align-items:center; margin:.4rem 0; }
   .scene input[type=text] { font:inherit; padding:.35rem .5rem; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--fg); }
   .scene button.chk { padding:.35rem .9rem; }
@@ -824,6 +832,8 @@
         stages.appendChild(stage);
         var theme = u.theme || b.theme || "plain";
         var ulvl = u.level != null ? clampLevel(u.level) : lvl;
+        var sceneDef = SceneLib && SceneLib.getScene ? SceneLib.getScene(u.scene) : null;
+        if (sceneDef && sceneDef.wide) stage.className = "stage wide";
         if (SceneLib && THREEMod && !SceneLoadFailed){
           try {
             var def = SceneLib.getScene(u.scene);
