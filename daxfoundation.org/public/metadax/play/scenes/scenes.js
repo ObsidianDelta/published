@@ -195,7 +195,7 @@ function makeAlgebraStage(THREE, el) {
   el.appendChild(renderer.domElement);
   var scene = new THREE.Scene();
   var cam = new THREE.PerspectiveCamera(46, w / h, 0.1, 20);
-  cam.position.set(0.34, 1.3, 2.68);
+  cam.position.set(0.15, 0.55, 1.20);
   cam.lookAt(0, -0.05, 0);
   scene.add(new THREE.HemisphereLight(0xeef4ff, 0x223322, 0.55));
   var sun = new THREE.DirectionalLight(0xffffff, 0.88);
@@ -813,7 +813,7 @@ var balance = {
       for (var i = 0; i < numX; i++) {
         var bx = Math.round(sx + i * (bW + g));
         s += '<rect x="' + bx + '" y="' + iy + '" width="' + bW + '" height="' + bH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.5" rx="3"/>';
-        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 21) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + (showQ ? "?" : "x") + '</text>';
+        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 21) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="#fff">' + (showQ ? "?" : "x") + '</text>';
       }
       var ux = sx + xtw + (numX && numC ? g + 6 : 0);
       for (var j = 0; j < showU; j++) {
@@ -828,7 +828,7 @@ var balance = {
     out += drawPanItems(rx, p.right_x, p.right_c);
 
     // Equation
-    function expr(nx, nc) { var parts=[]; if(nx) parts.push(nx+(showQ?"?":"x")); if(nc) parts.push(String(nc)); return parts.join("+")||"0"; }
+    function expr(nx, nc) { var parts=[]; if(nx) parts.push(nx===1?(showQ?"?":"x"):(nx+(showQ?"?":"x"))); if(nc) parts.push(String(nc)); return parts.join(" + ")||"0"; }
     out += '<text x="' + cx + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="' + tone.ink + '">' + expr(p.left_x, p.left_c) + ' = ' + expr(p.right_x, p.right_c) + '</text>';
     out += propSvg(t.prop, W - 24, 22, 14, tone.ink);
     out += '</svg>';
@@ -889,7 +889,7 @@ var balance = {
 
     function buildDyn() {
       clearDyn();
-      var inkHex = toHex(t.ink), showQ = level >= 3 && !solved;
+      var inkHex = toHex(t.ink), faceHex = toHex(t.face), showQ = level >= 3 && !solved;
       var bW = 0.07, bH = 0.11, bD = 0.06, uS = 0.062, gap = 0.02;
 
       function addSide(panX, numX, numC) {
@@ -906,7 +906,7 @@ var balance = {
             new THREE.MeshLambertMaterial({ color: t.shadeOn }));
           box.position.set(mx, iy, 0.04); box.castShadow = true;
           dynGroup.add(box);
-          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, inkHex, null);
+          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, faceHex, null);
           sp.position.set(mx, iy + bH / 2 + 0.07, 0.08);
           dynGroup.add(sp);
         }
@@ -938,7 +938,7 @@ var balance = {
 
     // Equation helper
     function eqStr() {
-      function ex(nx, nc) { var p=[]; if(nx) p.push(nx+"x"); if(nc) p.push(String(nc)); return p.join("+")||"0"; }
+      function ex(nx, nc) { var p=[]; if(nx) p.push(nx===1?"x":nx+"x"); if(nc) p.push(String(nc)); return p.join(" + ")||"0"; }
       return ex(state.lx, state.lc) + " = " + ex(state.rx, state.rc);
     }
 
@@ -1373,8 +1373,9 @@ var barModel = {
     render();
 
     function eqStr() {
-      if (step === 0) return n + "x" + (sum > 0 ? "+" + sum : sum < 0 ? sum : "") + " = " + p.total;
-      if (step === 1) return n + "x = " + (p.total - sum);
+      var xPart = n === 1 ? "x" : n + "x";
+      if (step === 0) return xPart + (sum > 0 ? " + " + sum : sum < 0 ? " - " + (-sum) : "") + " = " + p.total;
+      if (step === 1) return xPart + " = " + (p.total - sum);
       return "x = " + (p.total - sum) / n;
     }
 
@@ -1515,8 +1516,9 @@ var algebraTiles = {
       }
     }
 
+    var xSvgLabel = p.xs === 1 ? "x" : p.xs + "x";
     var addStr = p.units ? " + " + p.units : "";
-    var eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+    var eq = p.groups + "(" + xSvgLabel + addStr + ") = " + p.total;
     s += '<text x="' + (W / 2 | 0) + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="' + tone.ink + '">' + eq + '</text>';
     s += propSvg(t.prop, W - 22, 20, 14, tone.ink);
     s += '</svg>';
@@ -1532,7 +1534,8 @@ var algebraTiles = {
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     // step: 0=grouped, 1=opened brackets (rearranged), 2=units removed, 3=shared
-    var step = level === 1 ? 0 : 1;
+    // level 1: grouped (no buttons), level 2: rearranged (no buttons), level 3: grouped with buttons
+    var step = level === 2 ? 1 : 0;
     var totalX = p.groups * p.xs, totalU = p.groups * p.units;
 
     var matX = new THREE.MeshLambertMaterial({ color: t.shadeOn });
@@ -1634,10 +1637,12 @@ var algebraTiles = {
     render();
 
     function eqStr() {
+      var xIns = p.xs === 1 ? "x" : p.xs + "x";
       var addStr = p.units ? " + " + p.units : "";
-      if (step === 0) return p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
-      if (step === 1) return totalX + "x" + (totalU ? " + " + totalU : "") + " = " + p.total;
-      if (step === 2) return totalX + "x = " + (p.total - totalU);
+      var xTot = totalX === 1 ? "x" : totalX + "x";
+      if (step === 0) return p.groups + "(" + xIns + addStr + ") = " + p.total;
+      if (step === 1) return xTot + (totalU ? " + " + totalU : "") + " = " + p.total;
+      if (step === 2) return xTot + " = " + (p.total - totalU);
       return "x = " + (p.total - totalU) / totalX;
     }
 
@@ -1680,7 +1685,7 @@ var algebraTiles = {
       }
 
       btn1.addEventListener("click", function () {
-        if (step !== 0 && step !== 1) return;
+        if (step !== 0) return;
         doAnim(function () {
           step = 1; btn1.disabled = true; btn2.disabled = false;
           buildScene(); eqLine.textContent = eqStr(); render();
