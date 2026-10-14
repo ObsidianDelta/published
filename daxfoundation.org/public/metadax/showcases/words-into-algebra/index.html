@@ -110,8 +110,16 @@ h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
 
 /* ---- Hero ------------------------------------------------------------- */
 .hero { padding-top: 48px; }
-.hero-grid { display: grid; gap: 40px; align-items: center; }
-@media (min-width: 880px) { .hero-grid { grid-template-columns: 1fr 1fr; gap: 48px; } }
+/* Phones: title, then the live balance, then the rest, so the 3D scene is on
+   the first screen. Wide screens: text left, scene right, as before. */
+.hero-grid { display: grid; gap: 24px; align-items: center; }
+@media (max-width: 879px) { .hero { padding-top: 28px; } .hero-intro .hook { margin-bottom: 0; } }
+@media (min-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; column-gap: 48px; row-gap: 0; grid-template-areas: "intro scene" "rest scene"; }
+  .hero-intro { grid-area: intro; align-self: end; }
+  .hero-rest { grid-area: rest; align-self: start; }
+  .hero-scene { grid-area: scene; }
+}
 .kicker { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--moss); margin: 0 0 16px; font-weight: 600; }
 .hero h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 0 0 18px; }
 .hook { font-family: var(--font-serif); font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; color: var(--ink); margin: 0 0 20px; }
@@ -342,10 +350,18 @@ html { scroll-behavior: smooth; }
   <section class="hero" aria-labelledby="hero-h">
     <div class="wrap">
       <div class="hero-grid">
-        <div>
+        <div class="hero-intro">
           <p class="kicker">A tutor's kit · O-level maths · ages 15 to 16</p>
           <h1 id="hero-h">Words into Algebra</h1>
           <p class="hook">The hardest step in algebra isn't solving the equation. It's writing it.</p>
+        </div>
+        <div class="hero-scene">
+          <div class="scene-hero">
+            <div class="stage" id="hero-stage" role="img" aria-label="A balance scale: two scarves and a 4 pound badge on one side, one scarf and an 11 pound programme on the other."></div>
+            <p class="scene-caption">Take the same off both sides. The balance never tips.</p>
+          </div>
+        </div>
+        <div class="hero-rest">
           <p class="sub">A maths tutor told us the one topic he found hardest to teach: turning a sentence into algebra. He also told us his hardest problem as a tutor: the clock. This is what MetaDAX built from that conversation. A complete two-sided kit, five interactive 3D scenes, and a pause built into every example.</p>
           <div class="cta">
             <a class="btn primary" href="/metadax/play/?sample=words-into-algebra">Open the kit</a>
@@ -353,12 +369,6 @@ html { scroll-behavior: smooth; }
             <a class="btn-link" href="#make">Make one for your learner</a>
           </div>
           <p class="hero-new-link">New: the same kit, re-made for one learner. <a href="#editions">Meet Nova's Edition</a></p>
-        </div>
-        <div>
-          <div class="scene-hero">
-            <div class="stage" id="hero-stage" role="img" aria-label="A balance scale: two scarves and a 4 pound badge on one side, one scarf and an 11 pound programme on the other."></div>
-            <p class="scene-caption">Take the same off both sides. The balance never tips.</p>
-          </div>
         </div>
       </div>
     </div>
