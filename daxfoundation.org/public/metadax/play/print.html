@@ -119,7 +119,8 @@
       : (b.scene ? [{ scene: b.scene, params: b.params, theme: b.theme, level: b.level }] : []);
     units.forEach(function(u){
       var holder = el("div","visual");
-      holder.style.maxWidth = "16rem";
+      var sceneWide = SCENES_MOD && SCENES_MOD.getScene && SCENES_MOD.getScene(u.scene) && SCENES_MOD.getScene(u.scene).wide;
+      holder.style.maxWidth = sceneWide ? "28rem" : "16rem";
       var theme = u.theme || b.theme || "plain";
       var level = u.level != null ? u.level : b.level;
       if (SCENES_MOD && SCENES_MOD.svgFor) holder.innerHTML = SCENES_MOD.svgFor(u.scene, u.params, theme, level);
