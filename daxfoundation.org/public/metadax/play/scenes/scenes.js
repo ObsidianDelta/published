@@ -1378,6 +1378,272 @@ var barModel = {
   },
 };
 
+// ---- scene: algebra-tiles ---------------------------------------------------
+// Groups of (xs x-tiles + units unit-tiles). Label: groups(xs·x + units) = total.
+// Level 1: grouped. Level 2: rearranged (all x together, all units together).
+// Level 3: interactive open/remove-units/share buttons.
+
+var algebraTiles = {
+  title: "Algebra tiles",
+  levels: [1, 2, 3],
+  params: {
+    groups: { type: "int", min: 1, max: 6,   default: 4 },
+    xs:     { type: "int", min: 1, max: 3,   default: 1 },
+    units:  { type: "int", min: 0, max: 12,  default: 3 },
+    total:  { type: "int", min: 0, max: 200, default: 56 },
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var expr = p.groups + "(" + p.xs + "x" + (p.units ? " + " + p.units : "") + ") = " + p.total;
+    var base = "Algebra tiles: " + expr + ". " + p.groups + " groups, each with " + p.xs + " x-tile" + (p.xs > 1 ? "s" : "") + (p.units ? " and " + p.units + " unit tile" + (p.units > 1 ? "s" : "") : "") + ".";
+    if (level === 2) return base + " Rearranged: " + (p.groups * p.xs) + " x-tiles and " + (p.groups * p.units) + " unit tiles.";
+    if (level >= 3) return base + " Use buttons to open brackets and solve.";
+    return base;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("algebra-tiles", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 200;
+    var tileW = 22, tileH = 30, uS = 18, gap = 4, gGap = 10;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(algebraTiles.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    var totalXt = p.groups * p.xs, totalU = p.groups * p.units;
+
+    if (level === 1) {
+      // Draw p.groups groups side by side
+      var groupW = p.xs * (tileW + gap) - gap + (p.units ? gap + p.units * (uS + gap) - gap : 0) + gGap;
+      var allW = p.groups * groupW - gGap;
+      var sx = (W - allW) / 2, ty = (H - tileH) / 2;
+      for (var g = 0; g < p.groups; g++) {
+        var gx = sx + g * groupW;
+        for (var xi = 0; xi < p.xs; xi++) {
+          var bx = gx + xi * (tileW + gap);
+          s += '<rect x="' + bx + '" y="' + ty + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+          s += '<text x="' + (bx + tileW / 2 | 0) + '" y="' + (ty + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+        }
+        var ux0 = gx + p.xs * (tileW + gap);
+        for (var ui = 0; ui < p.units; ui++) {
+          var ux = ux0 + ui * (uS + gap), uy = ty + (tileH - uS) / 2;
+          s += '<rect x="' + ux + '" y="' + uy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        }
+      }
+    } else {
+      // Level 2+: rearranged — all x tiles together then all unit tiles
+      var xtW = totalXt * (tileW + gap) - gap, utW = totalU * (uS + gap) - (totalU ? gap : 0);
+      var totW = xtW + (totalU ? gGap + utW : 0);
+      var sx2 = (W - totW) / 2, ty2 = (H - tileH) / 2;
+      for (var xi2 = 0; xi2 < totalXt; xi2++) {
+        var bx2 = sx2 + xi2 * (tileW + gap);
+        s += '<rect x="' + bx2 + '" y="' + ty2 + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (bx2 + tileW / 2 | 0) + '" y="' + (ty2 + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+      }
+      if (level < 3 || true) { // always show units in SVG
+        var ux2 = sx2 + xtW + gGap;
+        for (var ui2 = 0; ui2 < totalU; ui2++) {
+          var uux = ux2 + ui2 * (uS + gap), uuy = ty2 + (tileH - uS) / 2;
+          s += '<rect x="' + uux + '" y="' + uuy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        }
+      }
+    }
+
+    // Equation label
+    var addStr = p.units ? " + " + p.units : "";
+    var eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+    s += '<text x="' + (W / 2 | 0) + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="' + tone.ink + '">' + eq + '</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("algebra-tiles", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    // step: 0=grouped, 1=opened brackets (rearranged), 2=units removed, 3=shared
+    var step = level === 1 ? 0 : 1;
+    var totalX = p.groups * p.xs, totalU = p.groups * p.units;
+
+    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matU   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+
+    var tileW = 0.1, tileH = 0.16, tileD = 0.09, uS = 0.1, gap = 0.025, gGap = 0.07;
+    var tileMeshes = [], labels = [];
+
+    function clearAll() {
+      tileMeshes.forEach(function (m) {
+        if (m.geometry) m.geometry.dispose();
+        group.remove(m);
+      });
+      tileMeshes = [];
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+
+    function buildScene() {
+      clearAll();
+      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+      var asp = st.w > 0 ? st.w / st.h : 1;
+
+      function w2xF(wx) { return (wx + asp) / (2 * asp); }
+      function w2yF(wy) { return (1 - wy) / 2; }
+
+      if (step === 0) {
+        // Grouped: p.groups groups side by side
+        var groupW = p.xs * (tileW + gap) + (p.units ? p.units * (uS + gap) : 0) + gGap;
+        var allW = p.groups * groupW - gGap;
+        var sx = -allW / 2;
+        for (var g = 0; g < p.groups; g++) {
+          var gx = sx + g * groupW;
+          for (var xi = 0; xi < p.xs; xi++) {
+            var mx = gx + xi * (tileW + gap) + tileW / 2;
+            var xm = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
+            xm.position.set(mx, 0, 0);
+            group.add(xm); tileMeshes.push(xm);
+            labels.push(addLabel(el, "x", w2xF(mx), w2yF(0), faceHex));
+          }
+          if (p.units) {
+            var ux0 = gx + p.xs * (tileW + gap);
+            for (var ui = 0; ui < p.units; ui++) {
+              var umx = ux0 + ui * (uS + gap) + uS / 2;
+              var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
+              um.position.set(umx, 0, 0);
+              group.add(um); tileMeshes.push(um);
+            }
+          }
+        }
+      } else {
+        // Rearranged: all x then all units
+        var showUnits = step < 2;
+        var xtW = totalX * (tileW + gap);
+        var utW = (totalU && showUnits) ? gGap + totalU * (uS + gap) : 0;
+        var totW = xtW + utW - (showUnits && totalU ? gap : (totalX ? gap : 0));
+        var sx2 = -totW / 2;
+        for (var xi2 = 0; xi2 < totalX; xi2++) {
+          var mx2 = sx2 + xi2 * (tileW + gap) + tileW / 2;
+          var xm2 = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
+          xm2.position.set(mx2, 0, 0);
+          group.add(xm2); tileMeshes.push(xm2);
+          labels.push(addLabel(el, "x", w2xF(mx2), w2yF(0), faceHex));
+        }
+        if (showUnits && totalU) {
+          var ux2 = sx2 + xtW + gGap;
+          for (var ui2 = 0; ui2 < totalU; ui2++) {
+            var umx2 = ux2 + ui2 * (uS + gap) + uS / 2;
+            var um2 = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
+            um2.position.set(umx2, 0, 0);
+            group.add(um2); tileMeshes.push(um2);
+          }
+        }
+      }
+
+      // Equation/progress label at bottom
+      var addStr = p.units ? " + " + p.units : "";
+      var eq;
+      if (step === 0) eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+      else if (step === 1) eq = (totalX) + "x" + (totalU ? " + " + totalU : "") + " = " + p.total;
+      else if (step === 2) eq = totalX + "x = " + (p.total - totalU);
+      else eq = "x = " + ((p.total - totalU) / totalX);
+      labels.push(addLabel(el, eq, 0.5, 0.88, inkHex));
+    }
+
+    buildScene();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:12px/1.3 system-ui,sans-serif;cursor:pointer;";
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Open the brackets";
+      btn1.setAttribute("aria-label", "Expand the brackets and rearrange tiles");
+      btn1.style.cssText = bStyle + "bottom:8px;left:3%;max-width:30%;";
+      el.appendChild(btn1); btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Take away the units";
+      btn2.setAttribute("aria-label", "Remove unit tiles from both sides");
+      btn2.style.cssText = bStyle + "bottom:8px;left:35%;max-width:30%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2); btns.push(btn2);
+
+      var btn3 = el.ownerDocument.createElement("button");
+      btn3.textContent = "Share";
+      btn3.setAttribute("aria-label", "Divide both sides by the number of x-tiles");
+      btn3.style.cssText = bStyle + "bottom:8px;right:3%;max-width:25%;";
+      btn3.disabled = true; btn3.style.opacity = "0.38";
+      el.appendChild(btn3); btns.push(btn3);
+
+      function doAnim(after) {
+        if (reduced) { after(); return; }
+        var t0 = null;
+        function fr(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 200);
+          group.rotation.y = Math.sin(prog * Math.PI) * 0.12;
+          render();
+          if (prog < 1) raf = requestAnimationFrame(fr);
+          else { group.rotation.y = 0; after(); raf = 0; }
+        }
+        raf = requestAnimationFrame(fr);
+      }
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0 && step !== 1) return;
+        doAnim(function () {
+          step = 1;
+          btn1.disabled = true; btn1.style.opacity = "0.38";
+          btn2.disabled = false; btn2.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        doAnim(function () {
+          step = 2;
+          btn2.disabled = true; btn2.style.opacity = "0.38";
+          btn3.disabled = false; btn3.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn3.addEventListener("click", function () {
+        if (step !== 2) return;
+        doAnim(function () {
+          step = 3;
+          btn3.disabled = true; btn3.style.opacity = "0.38";
+          buildScene(); render();
+        });
+      });
+    }
+
+    el.setAttribute("aria-label", algebraTiles.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearAll();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
 // ---- registry ---------------------------------------------------------------
 
 export var SCENES = {
@@ -1387,6 +1653,7 @@ export var SCENES = {
   "balance": balance,
   "function-machine": functionMachine,
   "bar-model": barModel,
+  "algebra-tiles": algebraTiles,
 };
 
 export function getScene(id) { return SCENES[id] || null; }
