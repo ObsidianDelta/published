@@ -65,8 +65,38 @@
         denominators: { type: "int-array", min: 1, max: 24, maxLen: 2 },
       },
     },
+    "balance": {
+      params: {
+        left_x:  { type: "int", min: 0, max: 5  },
+        left_c:  { type: "int", min: 0, max: 40 },
+        right_x: { type: "int", min: 0, max: 5  },
+        right_c: { type: "int", min: 0, max: 60 },
+      },
+    },
+    "function-machine": {
+      params: {
+        mul:        { type: "int",  min: 1,   max: 12 },
+        add:        { type: "int",  min: -20, max: 20 },
+        input:      { type: "int",  min: 0,   max: 60 },
+        hide_input: { type: "bool" },
+      },
+    },
+    "bar-model": {
+      params: {
+        extras: { type: "int-array", min: -20, max: 60, maxLen: 4 },
+        total:  { type: "int", min: 0, max: 500 },
+      },
+    },
+    "algebra-tiles": {
+      params: {
+        groups: { type: "int", min: 1, max: 6   },
+        xs:     { type: "int", min: 1, max: 3   },
+        units:  { type: "int", min: 0, max: 12  },
+        total:  { type: "int", min: 0, max: 200 },
+      },
+    },
   };
-  var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1, football: 1, running: 1 };
+  var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1, football: 1, running: 1, sage: 1 };
 
   // Validate one { scene, params, theme?, level? } unit; push errors under `p`.
   function checkSceneUnit(unit, p, errors) {

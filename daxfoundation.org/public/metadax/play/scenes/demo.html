@@ -35,11 +35,14 @@ This page is not wired into the player.</p>
 <script type="module">
 // Each scene across levels 1–3, with two themes per scene.
 const SCENES_UNDER_TEST = [
-  { scene: "fraction-bars", params: { denominators: [2, 4], shaded: [1, 3] }, themes: ["plain", "unicorn"] },
-  { scene: "clock",         params: { hour: 10, minute: 40, draggable: true }, themes: ["hockey", "space"] },
-  // New track mechanic: level 1 same-denominator compare, level 2 different
-  // denominators, level 3 adds two segments and runs past one lap.
-  { scene: "track",         params: { numerators: [3, 2], denominators: [4, 3] }, themes: ["football", "running"] },
+  { scene: "fraction-bars",   params: { denominators: [2, 4], shaded: [1, 3] }, themes: ["plain", "unicorn"] },
+  { scene: "clock",           params: { hour: 10, minute: 40, draggable: true }, themes: ["hockey", "space"] },
+  { scene: "track",           params: { numerators: [3, 2], denominators: [4, 3] }, themes: ["football", "running"] },
+  // Algebra scenes — all shown in sage theme at levels 1–3
+  { scene: "balance",         params: { left_x: 2, left_c: 4, right_x: 1, right_c: 11 }, themes: ["sage"] },
+  { scene: "function-machine",params: { mul: 2, add: 5, input: 9, hide_input: true },     themes: ["sage"] },
+  { scene: "bar-model",       params: { extras: [0, 3], total: 41 },                       themes: ["sage"] },
+  { scene: "algebra-tiles",   params: { groups: 4, xs: 1, units: 3, total: 56 },           themes: ["sage"] },
 ];
 const CASES = [];
 for (const s of SCENES_UNDER_TEST) {

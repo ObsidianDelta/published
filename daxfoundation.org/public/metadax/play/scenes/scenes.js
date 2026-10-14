@@ -71,6 +71,8 @@ export var THEMES = {
   football: { label: "Football", shadeOn: 0x2f8f4e, shadeOff: 0xdcebd9, ink: 0x14301d, accent: 0xf6f8f2, face: 0xeaf3e6, prop: "ball", word: "pitch" },
   // running: track tartan (burnt orange) with pale lanes; the prop is a pennant.
   running:  { label: "Running",  shadeOn: 0xc0532a, shadeOff: 0xf0e1d6, ink: 0x3a1c10, accent: 0xf6f8f2, face: 0xf7ece3, prop: "flag", word: "track" },
+  // sage: earth-tone green (never brown). Soft muted palette; prop is a leaf shape.
+  sage:     { label: "Sage",     shadeOn: 0x4c6a41, shadeOff: 0xd8e8d0, ink: 0x1e2a1b, accent: 0x6a9e5a, face: 0xf3f5ee, prop: "leaf", word: "sage" },
 };
 
 export function normalizeTheme(theme) { return THEMES[theme] ? theme : "plain"; }
@@ -673,12 +675,985 @@ var track = {
   },
 };
 
+// ---- scene: balance ---------------------------------------------------------
+// A two-pan balance. x-boxes (left_x, right_x) and unit weights (left_c,
+// right_c) on each pan. The beam is always level — only equality-preserving
+// moves are offered as buttons.
+
+var balance = {
+  title: "Balance",
+  levels: [1, 2, 3],
+  params: {
+    left_x:  { type: "int", min: 0, max: 5,  default: 2 },
+    left_c:  { type: "int", min: 0, max: 40, default: 4 },
+    right_x: { type: "int", min: 0, max: 5,  default: 1 },
+    right_c: { type: "int", min: 0, max: 60, default: 11 },
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var xw = level >= 3 ? "unknown" : "x";
+    function expr(nx, nc) {
+      var parts = [];
+      if (nx) parts.push(nx + " " + xw);
+      if (nc) parts.push(String(nc));
+      return parts.join(" + ") || "0";
+    }
+    var base = "Balance: left pan " + expr(p.left_x, p.left_c) + ", right pan " + expr(p.right_x, p.right_c) + ". Beam level.";
+    var hint = level >= 2 ? " Use the buttons to isolate x." : "";
+    return base + hint;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("balance", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 240;
+    var beamY = 88, panY = 168, cx = 120;
+    var lx = 42, rx = 198;
+    var showQ = level >= 3;
+
+    var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(balance.alt(p, theme, level)) + '">';
+    out += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+    // Fulcrum
+    out += '<polygon points="' + cx + ',' + (beamY + 4) + ' ' + (cx - 13) + ',' + (beamY + 43) + ' ' + (cx + 13) + ',' + (beamY + 43) + '" fill="' + tone.ink + '"/>';
+    out += '<rect x="' + (cx - 18) + '" y="' + (beamY + 41) + '" width="36" height="5" rx="1" fill="' + tone.ink + '"/>';
+    // Beam
+    out += '<rect x="30" y="' + (beamY - 3) + '" width="180" height="7" rx="3" fill="' + tone.on + '"/>';
+    // Chains
+    out += '<line x1="' + lx + '" y1="' + (beamY + 4) + '" x2="' + lx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+    out += '<line x1="' + rx + '" y1="' + (beamY + 4) + '" x2="' + rx + '" y2="' + (panY - 3) + '" stroke="' + tone.ink + '" stroke-width="1.5"/>';
+    // Pans
+    out += '<rect x="' + (lx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
+    out += '<rect x="' + (rx - 28) + '" y="' + panY + '" width="56" height="5" rx="2" fill="' + tone.on + '"/>';
+
+    function drawPanItems(panCX, numX, numC) {
+      var s = "", bW = 14, bH = 19, uS = 10, g = 3;
+      var xtw = numX * (bW + g) - (numX ? g : 0);
+      var showU = Math.min(numC, 4), utw = showU * (uS + g) - (showU ? g : 0);
+      var totalW = xtw + (numX && numC ? g + 4 : 0) + utw;
+      var sx = panCX - totalW / 2, iy = panY - bH - 4;
+      for (var i = 0; i < numX; i++) {
+        var bx = Math.round(sx + i * (bW + g));
+        s += '<rect x="' + bx + '" y="' + iy + '" width="' + bW + '" height="' + bH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (bx + bW / 2 | 0) + '" y="' + (iy + 13) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" font-weight="bold" fill="' + tone.ink + '">' + (showQ ? "?" : "x") + '</text>';
+      }
+      var ux = sx + xtw + (numX && numC ? g + 4 : 0);
+      for (var j = 0; j < showU; j++) {
+        var uxx = Math.round(ux + j * (uS + g));
+        s += '<rect x="' + uxx + '" y="' + (iy + 5) + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1" rx="1"/>';
+      }
+      if (numC > 4) s += '<text x="' + (ux + showU * (uS + g) + 2) + '" y="' + (iy + 12) + '" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">+' + (numC - 4) + '</text>';
+      return s;
+    }
+
+    out += drawPanItems(lx, p.left_x, p.left_c);
+    out += drawPanItems(rx, p.right_x, p.right_c);
+    out += propSvg(t.prop, W - 22, 20, 11, tone.ink);
+    out += '</svg>';
+    return out;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("balance", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+
+    var state = { lx: p.left_x, lc: p.left_c, rx: p.right_x, rc: p.right_c };
+    var solved = false;
+    var reduced = !!(opts && opts.reducedMotion);
+
+    // Static balance structure
+    group.add(new THREE.Mesh(new THREE.BoxGeometry(1.42, 0.055, 0.1),
+      new THREE.MeshLambertMaterial({ color: t.shadeOn })));
+    var fCone = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.072, 0.28, 6),
+      new THREE.MeshLambertMaterial({ color: t.ink }));
+    fCone.position.set(0, -0.168, 0);
+    group.add(fCone);
+    var baseBar = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.038, 0.14),
+      new THREE.MeshLambertMaterial({ color: t.ink }));
+    baseBar.position.set(0, -0.312, 0);
+    group.add(baseBar);
+    var cMat = new THREE.MeshBasicMaterial({ color: t.ink });
+    [-0.6, 0.6].forEach(function (px) {
+      var ch = new THREE.Mesh(new THREE.CylinderGeometry(0.007, 0.007, 0.36, 4), cMat);
+      ch.position.set(px, -0.195, 0.04);
+      group.add(ch);
+      var pan = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.24),
+        new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+      pan.position.set(px, -0.39, 0);
+      group.add(pan);
+    });
+
+    // Dynamic pan items
+    var dynGroup = new THREE.Group();
+    st.scene.add(dynGroup);
+    var dynLabels = [];
+
+    function clearDyn() {
+      while (dynGroup.children.length) {
+        var m = dynGroup.children[0];
+        if (m.geometry) m.geometry.dispose();
+        if (m.material) m.material.dispose();
+        dynGroup.remove(m);
+      }
+      dynLabels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      dynLabels = [];
+    }
+
+    function w2s(wx, wy) {
+      var asp = st.w > 0 ? st.w / st.h : 1;
+      return { xF: (wx + asp) / (2 * asp), yF: (1 - wy) / 2 };
+    }
+
+    function buildDyn() {
+      clearDyn();
+      var inkHex = toHex(t.ink), onHex = toHex(t.shadeOn), showQ = level >= 3 && !solved;
+
+      function addSide(panX, numX, numC) {
+        var bW = 0.064, bH = 0.1, bD = 0.058, uS = 0.058;
+        var gap = 0.018, panY = -0.39;
+        var showU = Math.min(numC, 4);
+        var xtw = numX * (bW + gap) - (numX ? gap : 0);
+        var utw = showU * (uS + gap) - (showU ? gap : 0);
+        var totalW = xtw + (numX && numC ? gap * 2 : 0) + utw;
+        var sx = panX - totalW / 2;
+        var iy = panY + bH / 2 + 0.022;
+
+        for (var i = 0; i < numX; i++) {
+          var mx = sx + i * (bW + gap) + bW / 2;
+          var box = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.88, bH, bD),
+            new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+          box.position.set(mx, iy, 0.04);
+          dynGroup.add(box);
+          var sc = w2s(mx, iy + bH / 2 - 0.01);
+          var lbl = addLabel(el, showQ ? "?" : "x", sc.xF, sc.yF, inkHex);
+          dynLabels.push(lbl);
+        }
+        var ux = sx + xtw + (numX && numC ? gap * 2 : 0);
+        for (var j = 0; j < showU; j++) {
+          var umx = ux + j * (uS + gap) + uS / 2;
+          var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.88, uS, uS),
+            new THREE.MeshLambertMaterial({ color: t.shadeOff }));
+          um.position.set(umx, panY + uS / 2 + 0.022, -0.02);
+          dynGroup.add(um);
+        }
+        if (numC > 4) {
+          var csc = w2s(ux + showU * (uS + gap) + 0.02, panY + uS / 2 + 0.022);
+          dynLabels.push(addLabel(el, "+" + (numC - 4), csc.xF, csc.yF, inkHex));
+        }
+      }
+
+      addSide(-0.6, state.lx, state.lc);
+      addSide(0.6, state.rx, state.rc);
+    }
+
+    buildDyn();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    var raf = 0;
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    // Interactive buttons (levels 2 & 3)
+    var btns = [];
+    if (level >= 2) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var btnX = el.ownerDocument.createElement("button");
+      btnX.textContent = "Take one x off both sides";
+      btnX.setAttribute("aria-label", "Take one x from both sides of the balance");
+      btnX.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btnX);
+      btns.push(btnX);
+
+      var btnC = el.ownerDocument.createElement("button");
+      btnC.textContent = "Take 1 off both sides";
+      btnC.setAttribute("aria-label", "Take one unit weight from both sides of the balance");
+      btnC.style.cssText = bStyle + "right:3%;";
+      el.appendChild(btnC);
+      btns.push(btnC);
+
+      function refreshBtns() {
+        var canX = Math.min(state.lx, state.rx) >= 1;
+        var canC = Math.min(state.lc, state.rc) >= 1;
+        btnX.disabled = !canX; btnX.style.opacity = canX ? "1" : "0.38";
+        btnC.disabled = !canC; btnC.style.opacity = canC ? "1" : "0.38";
+      }
+      refreshBtns();
+
+      function doUpdate() {
+        var loneLeft  = state.lx === 1 && state.lc === 0 && state.rx === 0;
+        var loneRight = state.rx === 1 && state.rc === 0 && state.lx === 0;
+        if (loneLeft || loneRight) solved = true;
+        buildDyn();
+        refreshBtns();
+        if (reduced) { render(); return; }
+        // Brief pop: cycle scale 1.1 -> 1 on dynGroup
+        var t0 = null;
+        function pop(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 200);
+          var sc = 1 + 0.1 * Math.sin(prog * Math.PI);
+          dynGroup.scale.set(sc, sc, sc);
+          render();
+          if (prog < 1) raf = requestAnimationFrame(pop);
+          else { dynGroup.scale.set(1, 1, 1); render(); raf = 0; }
+        }
+        raf = requestAnimationFrame(pop);
+      }
+
+      btnX.addEventListener("click", function () {
+        if (Math.min(state.lx, state.rx) < 1) return;
+        state.lx -= 1; state.rx -= 1;
+        doUpdate();
+      });
+      btnC.addEventListener("click", function () {
+        if (Math.min(state.lc, state.rc) < 1) return;
+        state.lc -= 1; state.rc -= 1;
+        doUpdate();
+      });
+    }
+
+    el.setAttribute("aria-label", balance.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: function () { st.resize(); buildDyn(); render(); },
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearDyn();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
+// ---- scene: function-machine ------------------------------------------------
+// A three-box machine: input → ×mul → +add → output.
+// Level 1: input shown. Level 2: input hidden ("?"). Level 3: interactive undo.
+
+var functionMachine = {
+  title: "Function machine",
+  levels: [1, 2, 3],
+  params: {
+    mul:        { type: "int",  min: 1,   max: 12,  default: 2 },
+    add:        { type: "int",  min: -20, max: 20,  default: 5 },
+    input:      { type: "int",  min: 0,   max: 60,  default: 9 },
+    hide_input: { type: "bool",                     default: true },
+  },
+  _output: function (p) { return p.input * p.mul + p.add; },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var out = functionMachine._output(p);
+    var addStr = (p.add >= 0 ? "add " : "subtract ") + Math.abs(p.add);
+    var base = "Function machine: multiply by " + p.mul + ", then " + addStr + ". Output: " + out + ".";
+    if (level === 1) return base + " Input: " + p.input + ".";
+    if (level === 2) return base + " Input hidden.";
+    return base + " Use undo buttons to find the input.";
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("function-machine", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 200, out = functionMachine._output(p);
+    var showIn = level === 1;
+    var addStr = (p.add >= 0 ? "+" : "") + p.add;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(functionMachine.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    // Three boxes: input, machine-body, output
+    var bH = 48, bY = (H - bH) / 2;
+    // Input box
+    s += '<rect x="8" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="34" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + (showIn ? p.input : "?") + '</text>';
+    s += '<text x="34" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">in</text>';
+    // Arrow 1
+    s += '<line x1="60" y1="' + (bY + bH / 2) + '" x2="76" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<polygon points="76,' + (bY + bH / 2 - 5) + ' 86,' + (bY + bH / 2) + ' 76,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
+    // Machine body (two op labels inside)
+    s += '<rect x="86" y="' + (bY - 8) + '" width="68" height="' + (bH + 16) + '" rx="8" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="120" y="' + (bY + bH / 2 - 4) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">×' + p.mul + '</text>';
+    s += '<text x="120" y="' + (bY + bH / 2 + 11) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + addStr + '</text>';
+    // Arrow 2
+    s += '<line x1="154" y1="' + (bY + bH / 2) + '" x2="170" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<polygon points="170,' + (bY + bH / 2 - 5) + ' 180,' + (bY + bH / 2) + ' 170,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
+    // Output box
+    s += '<rect x="180" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="206" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + out + '</text>';
+    s += '<text x="206" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">out</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("function-machine", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    var out = functionMachine._output(p);
+
+    // Machine geometry: input box, body (two halves for ops), output box, arrows
+    var matIn  = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matBody = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matOut = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matArr = new THREE.MeshLambertMaterial({ color: t.ink });
+
+    // Input box
+    var inBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matIn);
+    inBox.position.set(-0.72, 0, 0);
+    group.add(inBox);
+    // Machine body (wider)
+    var body = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.14), matBody);
+    body.position.set(0, 0, 0);
+    group.add(body);
+    // Output box
+    var outBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matOut);
+    outBox.position.set(0.72, 0, 0);
+    group.add(outBox);
+    // Arrows (thin boxes)
+    var arrowMat = new THREE.MeshBasicMaterial({ color: t.ink });
+    [-0.44, 0.44].forEach(function (ax) {
+      var arr = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.025, 0.04), arrowMat);
+      arr.position.set(ax, 0, 0.08);
+      group.add(arr);
+    });
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    // Labels (added via HTML overlay)
+    var labels = [];
+    // step: 0=show output only, 1=undid +add, 2=undid xmul (input revealed)
+    var step = 0;
+
+    function clearLabels() {
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+    function buildLabels() {
+      clearLabels();
+      var inkHex = toHex(t.ink);
+      var faceHex = toHex(t.face);
+      var addStr = (p.add >= 0 ? "+" : "") + p.add;
+      // Machine op labels
+      labels.push(addLabel(el, "×" + p.mul, 0.5, 0.42, faceHex));
+      labels.push(addLabel(el, addStr, 0.5, 0.58, faceHex));
+      // Output label
+      labels.push(addLabel(el, String(out), 0.86, 0.5, inkHex));
+      // Input label
+      var showIn = level === 1 || step >= 2;
+      labels.push(addLabel(el, showIn ? String(p.input) : "?", 0.14, 0.5, inkHex));
+      // Intermediate label (after undo +add)
+      if (step >= 1 && step < 2) {
+        var inter = out - p.add;
+        labels.push(addLabel(el, "÷" + p.mul + " →", 0.5, 0.76, inkHex));
+        labels.push(addLabel(el, String(inter), 0.14, 0.76, inkHex));
+      }
+    }
+    buildLabels();
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var addStr = (p.add >= 0 ? "+" : "") + p.add;
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Undo " + addStr;
+      btn1.setAttribute("aria-label", "Undo the addition step");
+      btn1.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btn1);
+      btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Undo ×" + p.mul;
+      btn2.setAttribute("aria-label", "Undo the multiply step");
+      btn2.style.cssText = bStyle + "right:3%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2);
+      btns.push(btn2);
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0) return;
+        step = 1;
+        btn1.disabled = true; btn1.style.opacity = "0.38";
+        btn2.disabled = false; btn2.style.opacity = "1";
+        buildLabels();
+        if (!reduced) {
+          var t0 = null;
+          function anim(now) {
+            if (!t0) t0 = now;
+            var prog = Math.min(1, (now - t0) / 180);
+            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
+            render();
+            if (prog < 1) raf = requestAnimationFrame(anim);
+            else { group.rotation.y = 0; render(); raf = 0; }
+          }
+          raf = requestAnimationFrame(anim);
+        } else render();
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        step = 2;
+        btn2.disabled = true; btn2.style.opacity = "0.38";
+        buildLabels();
+        if (!reduced) {
+          var t0 = null;
+          function anim2(now) {
+            if (!t0) t0 = now;
+            var prog = Math.min(1, (now - t0) / 180);
+            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
+            render();
+            if (prog < 1) raf = requestAnimationFrame(anim2);
+            else { group.rotation.y = 0; render(); raf = 0; }
+          }
+          raf = requestAnimationFrame(anim2);
+        } else render();
+      });
+    }
+
+    el.setAttribute("aria-label", functionMachine.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearLabels();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
+// ---- scene: bar-model -------------------------------------------------------
+// One bar row per extra value: an x block + an extra block (when extra != 0).
+// A total bracket spans all rows. Level 3: interactive steps to solve for x.
+
+var barModel = {
+  title: "Bar model",
+  levels: [1, 2, 3],
+  params: {
+    extras: { type: "int-array", min: -20, max: 60, maxLen: 4, default: [0, 3] },
+    total:  { type: "int", min: 0, max: 500, default: 41 },
+  },
+  _sumExtras: function (p) {
+    var s = 0;
+    for (var i = 0; i < p.extras.length; i++) s += p.extras[i];
+    return s;
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var n = p.extras.length, sum = barModel._sumExtras(p);
+    var xLabel = level >= 2 ? "unknown" : "x";
+    var rows = p.extras.map(function (e) { return "x" + (e > 0 ? "+" + e : e < 0 ? e : ""); }).join(", ");
+    var base = "Bar model with " + n + " row" + (n !== 1 ? "s" : "") + ": " + rows + ". Total: " + p.total + ".";
+    if (level >= 3) return base + " Use buttons to solve for x.";
+    return base;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("bar-model", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var n = p.extras.length;
+    var W = 240, rowH = 22, gap = 8, pad = 14;
+    var totalH = pad * 2 + n * rowH + (n - 1) * gap + 24;
+    var H = Math.max(160, Math.min(totalH, 220));
+    var barW = 160, xW = 70, bracketX = barW + pad + 8;
+    var topY = (H - (n * rowH + (n - 1) * gap)) / 2;
+    var showQ = level >= 2;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(barModel.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    for (var i = 0; i < n; i++) {
+      var ry = topY + i * (rowH + gap);
+      var e = p.extras[i];
+      var eW = e !== 0 ? Math.max(20, Math.min(barW - xW - 2, Math.round(Math.abs(e) * 1.4 + 14))) : 0;
+      var xBarW = barW - eW;
+      // x block
+      s += '<rect x="' + pad + '" y="' + ry + '" width="' + xBarW + '" height="' + rowH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+      s += '<text x="' + (pad + xBarW / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + (showQ ? "?" : "x") + '</text>';
+      // extra block
+      if (e !== 0) {
+        var ex = pad + xBarW + 2;
+        s += '<rect x="' + ex + '" y="' + ry + '" width="' + (eW - 2) + '" height="' + rowH + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (ex + (eW - 2) / 2 | 0) + '" y="' + (ry + rowH / 2 + 5) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="' + tone.ink + '">' + (e > 0 ? "+" : "") + e + '</text>';
+      }
+    }
+    // Total bracket
+    var by1 = topY - 4, by2 = topY + n * rowH + (n - 1) * gap + 4;
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + (bracketX + 6) + '" y2="' + by1 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by1 + '" x2="' + bracketX + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<line x1="' + bracketX + '" y1="' + by2 + '" x2="' + (bracketX + 6) + '" y2="' + by2 + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="' + (bracketX + 12) + '" y="' + ((by1 + by2) / 2 + 5 | 0) + '" font-family="Georgia,serif" font-size="13" font-weight="bold" fill="' + tone.ink + '">' + p.total + '</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("bar-model", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    var n = p.extras.length;
+    var sum = barModel._sumExtras(p);
+    // step: 0=initial, 1=extras removed (show k·x = total-sum), 2=shared (show x)
+    var step = 0;
+
+    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matE   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matInk = new THREE.MeshBasicMaterial({ color: t.ink });
+
+    // Layout: n rows centred vertically. rowH=0.16, gap=0.06
+    var rowH = 0.16, rowGap = 0.06, barLen = 1.1;
+    var totalBH = n * rowH + (n - 1) * rowGap;
+    var topY = totalBH / 2 - rowH / 2;
+    var xFrac = 0.6; // x blocks take 60% of bar by default
+
+    var xMeshes = [], eMeshes = [];
+    var labels = [];
+
+    function clearLabels() {
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+
+    function buildScene() {
+      // Remove old meshes
+      xMeshes.concat(eMeshes).forEach(function (m) {
+        if (m.geometry) m.geometry.dispose();
+        group.remove(m);
+      });
+      xMeshes = []; eMeshes = [];
+      clearLabels();
+
+      var showQ = level >= 2 && step < 2;
+      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+      var asp = st.w > 0 ? st.w / st.h : 1;
+
+      for (var i = 0; i < n; i++) {
+        var e = p.extras[i];
+        var ry = topY - i * (rowH + rowGap);
+        var eShow = e !== 0 && step === 0;
+        var xLen = eShow ? barLen * xFrac : barLen;
+        var eLen = eShow ? barLen * (1 - xFrac) - 0.02 : 0;
+
+        var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.1), matX.clone());
+        xM.position.set(-barLen / 2 + xLen / 2, ry, 0);
+        group.add(xM); xMeshes.push(xM);
+
+        // x label
+        var xSc = { xF: ((-barLen / 2 + xLen / 2) + asp) / (2 * asp), yF: (1 - ry) / 2 };
+        labels.push(addLabel(el, showQ ? "?" : "x", xSc.xF, xSc.yF, faceHex));
+
+        if (eShow) {
+          var eM = new THREE.Mesh(new THREE.BoxGeometry(eLen * 0.97, rowH * 0.9, 0.1), matE.clone());
+          var ex = -barLen / 2 + xLen + eLen / 2 + 0.02;
+          eM.position.set(ex, ry, 0);
+          group.add(eM); eMeshes.push(eM);
+          var eSc = { xF: (ex + asp) / (2 * asp), yF: (1 - ry) / 2 };
+          labels.push(addLabel(el, (e > 0 ? "+" : "") + e, eSc.xF, eSc.yF, inkHex));
+        }
+      }
+
+      // Total bracket (right side)
+      var brkX = barLen / 2 + 0.04;
+      var brkGeo = new THREE.BufferGeometry();
+      var yTop = topY + rowH / 2 + 0.04, yBot = topY - (n - 1) * (rowH + rowGap) - rowH / 2 - 0.04;
+      brkGeo.setAttribute("position", new THREE.Float32BufferAttribute([
+        brkX, yTop, 0.02,  brkX + 0.05, yTop, 0.02,
+        brkX, yTop, 0.02,  brkX, yBot, 0.02,
+        brkX, yBot, 0.02,  brkX + 0.05, yBot, 0.02,
+      ], 3));
+      var brkLine = new THREE.LineSegments(brkGeo, matInk.clone());
+      group.add(brkLine); xMeshes.push(brkLine);
+
+      var midY = (yTop + yBot) / 2;
+      var tSc = { xF: (brkX + 0.1 + asp) / (2 * asp), yF: (1 - midY) / 2 };
+      labels.push(addLabel(el, String(p.total), tSc.xF, tSc.yF, inkHex));
+
+      // Intermediate or solved labels
+      if (step === 1) {
+        var kx = n + "x = " + (p.total - sum);
+        labels.push(addLabel(el, kx, 0.5, 0.85, inkHex));
+      } else if (step === 2) {
+        var xVal = (p.total - sum) / n;
+        labels.push(addLabel(el, "x = " + xVal, 0.5, 0.85, inkHex));
+      }
+    }
+
+    buildScene();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Take away the extras";
+      btn1.setAttribute("aria-label", "Remove extra blocks from all bars");
+      btn1.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btn1); btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Share it out";
+      btn2.setAttribute("aria-label", "Divide the remaining total equally between the x blocks");
+      btn2.style.cssText = bStyle + "right:3%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2); btns.push(btn2);
+
+      function doAnim(after) {
+        if (reduced) { after(); return; }
+        var t0 = null;
+        function fr(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 220);
+          group.scale.set(1, 1 + 0.07 * Math.sin(prog * Math.PI), 1);
+          render();
+          if (prog < 1) raf = requestAnimationFrame(fr);
+          else { group.scale.set(1, 1, 1); after(); raf = 0; }
+        }
+        raf = requestAnimationFrame(fr);
+      }
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0) return;
+        doAnim(function () {
+          step = 1;
+          btn1.disabled = true; btn1.style.opacity = "0.38";
+          btn2.disabled = false; btn2.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        doAnim(function () {
+          step = 2;
+          btn2.disabled = true; btn2.style.opacity = "0.38";
+          buildScene(); render();
+        });
+      });
+    }
+
+    el.setAttribute("aria-label", barModel.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearLabels();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
+// ---- scene: algebra-tiles ---------------------------------------------------
+// Groups of (xs x-tiles + units unit-tiles). Label: groups(xs·x + units) = total.
+// Level 1: grouped. Level 2: rearranged (all x together, all units together).
+// Level 3: interactive open/remove-units/share buttons.
+
+var algebraTiles = {
+  title: "Algebra tiles",
+  levels: [1, 2, 3],
+  params: {
+    groups: { type: "int", min: 1, max: 6,   default: 4 },
+    xs:     { type: "int", min: 1, max: 3,   default: 1 },
+    units:  { type: "int", min: 0, max: 12,  default: 3 },
+    total:  { type: "int", min: 0, max: 200, default: 56 },
+  },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var expr = p.groups + "(" + p.xs + "x" + (p.units ? " + " + p.units : "") + ") = " + p.total;
+    var base = "Algebra tiles: " + expr + ". " + p.groups + " groups, each with " + p.xs + " x-tile" + (p.xs > 1 ? "s" : "") + (p.units ? " and " + p.units + " unit tile" + (p.units > 1 ? "s" : "") : "") + ".";
+    if (level === 2) return base + " Rearranged: " + (p.groups * p.xs) + " x-tiles and " + (p.groups * p.units) + " unit tiles.";
+    if (level >= 3) return base + " Use buttons to open brackets and solve.";
+    return base;
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("algebra-tiles", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 200;
+    var tileW = 22, tileH = 30, uS = 18, gap = 4, gGap = 10;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(algebraTiles.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    var totalXt = p.groups * p.xs, totalU = p.groups * p.units;
+
+    if (level === 1) {
+      // Draw p.groups groups side by side
+      var groupW = p.xs * (tileW + gap) - gap + (p.units ? gap + p.units * (uS + gap) - gap : 0) + gGap;
+      var allW = p.groups * groupW - gGap;
+      var sx = (W - allW) / 2, ty = (H - tileH) / 2;
+      for (var g = 0; g < p.groups; g++) {
+        var gx = sx + g * groupW;
+        for (var xi = 0; xi < p.xs; xi++) {
+          var bx = gx + xi * (tileW + gap);
+          s += '<rect x="' + bx + '" y="' + ty + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+          s += '<text x="' + (bx + tileW / 2 | 0) + '" y="' + (ty + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+        }
+        var ux0 = gx + p.xs * (tileW + gap);
+        for (var ui = 0; ui < p.units; ui++) {
+          var ux = ux0 + ui * (uS + gap), uy = ty + (tileH - uS) / 2;
+          s += '<rect x="' + ux + '" y="' + uy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        }
+      }
+    } else {
+      // Level 2+: rearranged — all x tiles together then all unit tiles
+      var xtW = totalXt * (tileW + gap) - gap, utW = totalU * (uS + gap) - (totalU ? gap : 0);
+      var totW = xtW + (totalU ? gGap + utW : 0);
+      var sx2 = (W - totW) / 2, ty2 = (H - tileH) / 2;
+      for (var xi2 = 0; xi2 < totalXt; xi2++) {
+        var bx2 = sx2 + xi2 * (tileW + gap);
+        s += '<rect x="' + bx2 + '" y="' + ty2 + '" width="' + tileW + '" height="' + tileH + '" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        s += '<text x="' + (bx2 + tileW / 2 | 0) + '" y="' + (ty2 + tileH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="11" fill="#fff">x</text>';
+      }
+      if (level < 3 || true) { // always show units in SVG
+        var ux2 = sx2 + xtW + gGap;
+        for (var ui2 = 0; ui2 < totalU; ui2++) {
+          var uux = ux2 + ui2 * (uS + gap), uuy = ty2 + (tileH - uS) / 2;
+          s += '<rect x="' + uux + '" y="' + uuy + '" width="' + uS + '" height="' + uS + '" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.3" rx="2"/>';
+        }
+      }
+    }
+
+    // Equation label
+    var addStr = p.units ? " + " + p.units : "";
+    var eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+    s += '<text x="' + (W / 2 | 0) + '" y="' + (H - 8) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="' + tone.ink + '">' + eq + '</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("algebra-tiles", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    // step: 0=grouped, 1=opened brackets (rearranged), 2=units removed, 3=shared
+    var step = level === 1 ? 0 : 1;
+    var totalX = p.groups * p.xs, totalU = p.groups * p.units;
+
+    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matU   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+
+    var tileW = 0.1, tileH = 0.16, tileD = 0.09, uS = 0.1, gap = 0.025, gGap = 0.07;
+    var tileMeshes = [], labels = [];
+
+    function clearAll() {
+      tileMeshes.forEach(function (m) {
+        if (m.geometry) m.geometry.dispose();
+        group.remove(m);
+      });
+      tileMeshes = [];
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+
+    function buildScene() {
+      clearAll();
+      var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+      var asp = st.w > 0 ? st.w / st.h : 1;
+
+      function w2xF(wx) { return (wx + asp) / (2 * asp); }
+      function w2yF(wy) { return (1 - wy) / 2; }
+
+      if (step === 0) {
+        // Grouped: p.groups groups side by side
+        var groupW = p.xs * (tileW + gap) + (p.units ? p.units * (uS + gap) : 0) + gGap;
+        var allW = p.groups * groupW - gGap;
+        var sx = -allW / 2;
+        for (var g = 0; g < p.groups; g++) {
+          var gx = sx + g * groupW;
+          for (var xi = 0; xi < p.xs; xi++) {
+            var mx = gx + xi * (tileW + gap) + tileW / 2;
+            var xm = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
+            xm.position.set(mx, 0, 0);
+            group.add(xm); tileMeshes.push(xm);
+            labels.push(addLabel(el, "x", w2xF(mx), w2yF(0), faceHex));
+          }
+          if (p.units) {
+            var ux0 = gx + p.xs * (tileW + gap);
+            for (var ui = 0; ui < p.units; ui++) {
+              var umx = ux0 + ui * (uS + gap) + uS / 2;
+              var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
+              um.position.set(umx, 0, 0);
+              group.add(um); tileMeshes.push(um);
+            }
+          }
+        }
+      } else {
+        // Rearranged: all x then all units
+        var showUnits = step < 2;
+        var xtW = totalX * (tileW + gap);
+        var utW = (totalU && showUnits) ? gGap + totalU * (uS + gap) : 0;
+        var totW = xtW + utW - (showUnits && totalU ? gap : (totalX ? gap : 0));
+        var sx2 = -totW / 2;
+        for (var xi2 = 0; xi2 < totalX; xi2++) {
+          var mx2 = sx2 + xi2 * (tileW + gap) + tileW / 2;
+          var xm2 = new THREE.Mesh(new THREE.BoxGeometry(tileW * 0.9, tileH, tileD), matX.clone());
+          xm2.position.set(mx2, 0, 0);
+          group.add(xm2); tileMeshes.push(xm2);
+          labels.push(addLabel(el, "x", w2xF(mx2), w2yF(0), faceHex));
+        }
+        if (showUnits && totalU) {
+          var ux2 = sx2 + xtW + gGap;
+          for (var ui2 = 0; ui2 < totalU; ui2++) {
+            var umx2 = ux2 + ui2 * (uS + gap) + uS / 2;
+            var um2 = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.9, uS, tileD), matU.clone());
+            um2.position.set(umx2, 0, 0);
+            group.add(um2); tileMeshes.push(um2);
+          }
+        }
+      }
+
+      // Equation/progress label at bottom
+      var addStr = p.units ? " + " + p.units : "";
+      var eq;
+      if (step === 0) eq = p.groups + "(" + p.xs + "x" + addStr + ") = " + p.total;
+      else if (step === 1) eq = (totalX) + "x" + (totalU ? " + " + totalU : "") + " = " + p.total;
+      else if (step === 2) eq = totalX + "x = " + (p.total - totalU);
+      else eq = "x = " + ((p.total - totalU) / totalX);
+      labels.push(addLabel(el, eq, 0.5, 0.88, inkHex));
+    }
+
+    buildScene();
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:12px/1.3 system-ui,sans-serif;cursor:pointer;";
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Open the brackets";
+      btn1.setAttribute("aria-label", "Expand the brackets and rearrange tiles");
+      btn1.style.cssText = bStyle + "bottom:8px;left:3%;max-width:30%;";
+      el.appendChild(btn1); btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Take away the units";
+      btn2.setAttribute("aria-label", "Remove unit tiles from both sides");
+      btn2.style.cssText = bStyle + "bottom:8px;left:35%;max-width:30%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2); btns.push(btn2);
+
+      var btn3 = el.ownerDocument.createElement("button");
+      btn3.textContent = "Share";
+      btn3.setAttribute("aria-label", "Divide both sides by the number of x-tiles");
+      btn3.style.cssText = bStyle + "bottom:8px;right:3%;max-width:25%;";
+      btn3.disabled = true; btn3.style.opacity = "0.38";
+      el.appendChild(btn3); btns.push(btn3);
+
+      function doAnim(after) {
+        if (reduced) { after(); return; }
+        var t0 = null;
+        function fr(now) {
+          if (!t0) t0 = now;
+          var prog = Math.min(1, (now - t0) / 200);
+          group.rotation.y = Math.sin(prog * Math.PI) * 0.12;
+          render();
+          if (prog < 1) raf = requestAnimationFrame(fr);
+          else { group.rotation.y = 0; after(); raf = 0; }
+        }
+        raf = requestAnimationFrame(fr);
+      }
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0 && step !== 1) return;
+        doAnim(function () {
+          step = 1;
+          btn1.disabled = true; btn1.style.opacity = "0.38";
+          btn2.disabled = false; btn2.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        doAnim(function () {
+          step = 2;
+          btn2.disabled = true; btn2.style.opacity = "0.38";
+          btn3.disabled = false; btn3.style.opacity = "1";
+          buildScene(); render();
+        });
+      });
+      btn3.addEventListener("click", function () {
+        if (step !== 2) return;
+        doAnim(function () {
+          step = 3;
+          btn3.disabled = true; btn3.style.opacity = "0.38";
+          buildScene(); render();
+        });
+      });
+    }
+
+    el.setAttribute("aria-label", algebraTiles.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearAll();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
 // ---- registry ---------------------------------------------------------------
 
 export var SCENES = {
   "fraction-bars": fractionBars,
   "clock": clock,
   "track": track,
+  "balance": balance,
+  "function-machine": functionMachine,
+  "bar-model": barModel,
+  "algebra-tiles": algebraTiles,
 };
 
 export function getScene(id) { return SCENES[id] || null; }
