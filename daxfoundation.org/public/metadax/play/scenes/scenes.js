@@ -102,6 +102,176 @@ function printTones(t) {
 }
 function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
 
+// ---- space theme (deep-space skin for every scene) --------------------------
+// The "space" theme is the one skin the player dresses the whole page in, so
+// every scene matches it inside the canvas: a dark sky, a starfield, a faint
+// nebula, a slowly turning ringed planet and a small moon — all drawn from
+// geometry, never hiding the mechanics. It changes only the look; params,
+// levels, answers, aria-labels and equation lines are untouched.
+function isSpace(theme) { return normalizeTheme(theme) === "space"; }
+// Space colours for the algebra scenes: violet for the unknown (x), cyan for
+// the known numbers (units, extras, machine in/out), light ink on the sky.
+var SPACE_X = 0x7b6cff, SPACE_UNIT = 0x3cc8d8, SPACE_INK = "#eef1ff", SPACE_DARK = "#0a1030";
+
+// Scene tones for the static SVG. For every theme but space this is exactly the
+// grayscale-safe print palette as before; for space it is light-on-dark so the
+// labels read on the night sky the svgFor() wrapper paints behind them.
+function sceneTones(theme) {
+  if (isSpace(theme)) return { on: "#5b6bff", off: "#20264d", ink: "#eef1ff", mid: "#9d7bff", space: true };
+  return printTones(themeOf(theme));
+}
+
+// A deep-space SVG backdrop: dark base, a soft nebula, scattered stars and a
+// small ringed planet tucked into a corner. Deterministic (a tiny seeded PRNG)
+// so repeated renders match. `uid` keeps gradient ids unique when scenes are
+// composed side by side.
+var _skyUid = 0;
+function spaceSkySvg(W, H) {
+  var id = "sky" + (++_skyUid), seed = 20240610 ^ (W * 131 + H);
+  function rnd() { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x7fffffff; }
+  var s = '<defs><radialGradient id="' + id + '" cx="30%" cy="22%" r="95%">' +
+    '<stop offset="0%" stop-color="#2b2566"/><stop offset="42%" stop-color="#141a3a"/>' +
+    '<stop offset="100%" stop-color="#06070f"/></radialGradient></defs>';
+  s += '<rect width="' + W + '" height="' + H + '" fill="#06070f"/>';
+  s += '<rect width="' + W + '" height="' + H + '" fill="url(#' + id + ')"/>';
+  s += '<ellipse cx="' + (W * 0.74).toFixed(0) + '" cy="' + (H * 0.72).toFixed(0) + '" rx="' + (W * 0.42).toFixed(0) +
+    '" ry="' + (H * 0.3).toFixed(0) + '" fill="#6a3bbf" opacity="0.14"/>';
+  var n = Math.max(24, Math.round(W * H / 2600));
+  for (var i = 0; i < n; i++) {
+    s += '<circle cx="' + (rnd() * W).toFixed(1) + '" cy="' + (rnd() * H).toFixed(1) + '" r="' +
+      (0.4 + rnd() * 1.3).toFixed(1) + '" fill="#eef2ff" opacity="' + (0.4 + rnd() * 0.6).toFixed(2) + '"/>';
+  }
+  // ringed planet, small, upper-left corner (clear of centred mechanics)
+  var px = W * 0.15, py = H * 0.19, pr = Math.min(W, H) * 0.065;
+  s += '<circle cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" r="' + pr.toFixed(1) + '" fill="#7c6be0"/>';
+  s += '<ellipse cx="' + px.toFixed(1) + '" cy="' + py.toFixed(1) + '" rx="' + (pr * 1.9).toFixed(1) +
+    '" ry="' + (pr * 0.5).toFixed(1) + '" fill="none" stroke="#b9a6ff" stroke-width="' + (pr * 0.2).toFixed(1) +
+    '" opacity="0.75" transform="rotate(-18 ' + px.toFixed(1) + ' ' + py.toFixed(1) + ')"/>';
+  return s;
+}
+
+// A block material: an emissive glowing panel for space, the flat Lambert
+// everywhere else. Keeps the exact geometry/positions — only the look changes.
+function blockMat(THREE, color, theme) {
+  if (isSpace(theme)) return new THREE.MeshStandardMaterial({ color: color, emissive: color, emissiveIntensity: 0.22, roughness: 0.45, metalness: 0.1 });
+  return new THREE.MeshLambertMaterial({ color: color });
+}
+
+// A tile body: a flat hexagonal solar-panel cell for space (a 6-gon prism with
+// its face toward the camera), a plain box everywhere else. Same footprint, so
+// counts and positions are unchanged.
+function tileGeo(THREE, w, h, d, space) {
+  if (space) {
+    var g = new THREE.CylinderGeometry(w * 0.6, w * 0.6, d, 6);
+    g.rotateX(Math.PI / 2);        // hex face points along +Z (at the camera)
+    g.scale(1, (h / w) * 0.92, 1); // stretch to the cell's height
+    return g;
+  }
+  return new THREE.BoxGeometry(w * 0.92, h, d);
+}
+
+// A soft additive glow sprite to sit just behind a glowing panel.
+function makeGlowSprite(THREE, colorInt, worldSize) {
+  worldSize = Math.min(worldSize, 0.42);
+  var r = (colorInt >> 16) & 255, g = (colorInt >> 8) & 255, b = colorInt & 255;
+  var cvs = document.createElement("canvas"); cvs.width = cvs.height = 64;
+  var c = cvs.getContext("2d");
+  var grad = c.createRadialGradient(32, 32, 0, 32, 32, 32);
+  grad.addColorStop(0, "rgba(" + r + "," + g + "," + b + ",0.32)");
+  grad.addColorStop(1, "rgba(" + r + "," + g + "," + b + ",0)");
+  c.fillStyle = grad; c.fillRect(0, 0, 64, 64);
+  var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cvs), blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, depthTest: false }));
+  sp.scale.set(worldSize, worldSize, 1);
+  return sp;
+}
+
+// Make a canvas-texture nebula sprite (one soft violet/blue cloud).
+function makeNebulaSprite(THREE) {
+  var cvs = document.createElement("canvas"); cvs.width = cvs.height = 128;
+  var c = cvs.getContext("2d");
+  function blob(x, y, r, col) { var g = c.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, "rgba(6,7,15,0)"); c.fillStyle = g; c.fillRect(0, 0, 128, 128); }
+  blob(44, 40, 78, "rgba(74,64,170,0.5)");
+  blob(92, 86, 64, "rgba(120,60,180,0.4)");
+  var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cvs), blending: THREE.AdditiveBlending, transparent: true, depthWrite: false, depthTest: false, opacity: 0.4 }));
+  return sp;
+}
+
+// A ringed planet drawn from geometry: an emissive sphere plus a tilted ring.
+function makeRingedPlanet(THREE) {
+  var grp = new THREE.Group();
+  var body = new THREE.Mesh(new THREE.SphereGeometry(0.2, 24, 18),
+    new THREE.MeshStandardMaterial({ color: 0x6a5bd6, emissive: 0x2a2060, emissiveIntensity: 0.6, roughness: 0.8 }));
+  grp.add(body);
+  var ring = new THREE.Mesh(new THREE.RingGeometry(0.28, 0.42, 48),
+    new THREE.MeshBasicMaterial({ color: 0xb9a6ff, transparent: true, opacity: 0.55, side: THREE.DoubleSide }));
+  ring.rotation.x = Math.PI * 0.46; ring.rotation.y = 0.3;
+  grp.add(ring);
+  return grp;
+}
+
+// Add the deep-space backdrop to a stage and animate a gentle idle drift. It
+// owns a self-terminating rAF loop: once the stage canvas leaves the DOM (the
+// scene disposed), the loop stops, so no per-scene teardown is needed. Under
+// reduced motion it paints once and never loops.
+function addSpaceBackdrop(THREE, st, opts) {
+  var reduced = !!(opts && opts.reducedMotion);
+  var scene = st.scene, renderer = st.renderer, cam = st.cam;
+  scene.background = new THREE.Color(0x080c1f);
+  var grp = new THREE.Group();
+  grp.position.z = -1.2;
+  scene.add(grp);
+  // Place a body at a screen position (NDC) and a distance from the camera, so
+  // the planet and moon sit in the corners whatever the stage's framing.
+  cam.updateMatrixWorld();
+  function atScreen(nx, ny, d) {
+    var v = new THREE.Vector3(nx, ny, 0.5).unproject(cam).sub(cam.position).normalize();
+    return cam.position.clone().add(v.multiplyScalar(d));
+  }
+  // Soft fill so the emissive planet/standard materials read against the dark.
+  var fill = new THREE.AmbientLight(0x8899ff, 0.25); scene.add(fill);
+
+  var neb = makeNebulaSprite(THREE);
+  neb.scale.set(6, 4.4, 1); neb.position.set(0.3, 0.15, -0.3);
+  grp.add(neb);
+
+  var N = reduced ? 260 : 440;
+  var pos = new Float32Array(N * 3);
+  var s = 987654321 ^ N;
+  function r() { s = (s * 1103515245 + 12345) & 0x7fffffff; return s / 0x7fffffff; }
+  for (var i = 0; i < N; i++) {
+    pos[i * 3] = (r() * 2 - 1) * 3.2;
+    pos[i * 3 + 1] = (r() * 2 - 1) * 2.4;
+    pos[i * 3 + 2] = -r() * 1.1;
+  }
+  var geo = new THREE.BufferGeometry();
+  geo.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  var stars = new THREE.Points(geo, new THREE.PointsMaterial({ color: 0xeef2ff, size: 0.03, sizeAttenuation: true, transparent: true, opacity: 0.9 }));
+  grp.add(stars);
+
+  var planet = makeRingedPlanet(THREE);
+  planet.position.copy(atScreen(-0.74, 0.66, 2.6)); planet.scale.setScalar(0.5);
+  scene.add(planet);
+  var moon = new THREE.Mesh(new THREE.SphereGeometry(0.07, 16, 12),
+    new THREE.MeshStandardMaterial({ color: 0xaab2d6, emissive: 0x33406a, emissiveIntensity: 0.5, roughness: 1 }));
+  moon.position.copy(atScreen(0.88, 0.76, 2.6)); moon.scale.setScalar(0.8); scene.add(moon);
+
+  var running = true, raf = 0, t0 = 0;
+  function frame(now) {
+    if (!running || !renderer.domElement.isConnected) { running = false; return; }
+    if (!t0) t0 = now;
+    var e = (now - t0) / 1000;
+    planet.rotation.y = e * 0.18;
+    moon.rotation.y = e * 0.3;
+    grp.position.x = Math.sin(e * 0.12) * 0.04;
+    grp.position.y = Math.cos(e * 0.09) * 0.03;
+    renderer.render(scene, cam);
+    raf = requestAnimationFrame(frame);
+  }
+  if (reduced) renderer.render(scene, cam);
+  else raf = requestAnimationFrame(frame);
+  return { dispose: function () { running = false; if (raf) cancelAnimationFrame(raf); } };
+}
+
 // A small procedural prop glyph as an SVG <path>/<polygon>, drawn in `fill`.
 function propSvg(prop, cx, cy, r, fill) {
   if (!prop) return "";
@@ -242,7 +412,7 @@ function makeAlgebraStage(THREE, el, halfW, halfH) {
 
 // Canvas-texture Sprite: crisp text label positioned in 3D world space.
 // worldH is the world-space height; 0.14 ≈ 22 screen-px at 680 px canvas width.
-function makeTextSprite(THREE, text, worldH, inkHex, bgHex) {
+function makeTextSprite(THREE, text, worldH, inkHex, bgHex, outlineHex) {
   var pxH = 80, len = Math.max(1, text.length);
   var pxW = Math.max(pxH, Math.ceil(len * pxH * 0.65));
   pxW = Math.pow(2, Math.ceil(Math.log2(pxW)));
@@ -252,9 +422,11 @@ function makeTextSprite(THREE, text, worldH, inkHex, bgHex) {
   if (bgHex) { ctx.fillStyle = bgHex; ctx.fillRect(0, 0, pxW, pxH); }
   var fs = Math.round(pxH * 0.55);
   ctx.font = "bold " + fs + "px system-ui,sans-serif";
-  ctx.fillStyle = inkHex;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
+  // Space labels: a dark outline so white text stays crisp over a glowing panel.
+  if (outlineHex) { ctx.lineWidth = Math.max(3, fs * 0.16); ctx.lineJoin = "round"; ctx.strokeStyle = outlineHex; ctx.strokeText(text, pxW / 2, pxH / 2); }
+  ctx.fillStyle = inkHex;
   ctx.fillText(text, pxW / 2, pxH / 2);
   var tex = new THREE.CanvasTexture(cvs);
   var mat = new THREE.SpriteMaterial({ map: tex, depthTest: false, transparent: true });
@@ -311,7 +483,7 @@ var fractionBars = {
   svg: function (p, theme, level) {
     p = normalizeParams("fraction-bars", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var rows = fractionBars._rows(p, level);
     var W = 240, H = 240, pad = 20, barH = 34, gap = 24;
     var top = (H - (rows * barH + (rows - 1) * gap)) / 2;
@@ -339,6 +511,7 @@ var fractionBars = {
     var st = makeStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var labels = [];
     var rows = fractionBars._rows(p, level);
     var barH = 0.34, gap = 0.12;
@@ -412,7 +585,7 @@ var clock = {
   svg: function (p, theme, level) {
     p = normalizeParams("clock", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var mm = level === 1 ? 0 : p.minute;
     var hh = p.hour % 12;
     var cx = 120, cy = 120, R = 92;
@@ -442,6 +615,7 @@ var clock = {
     var st = makeStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var face = new THREE.Mesh(new THREE.CircleGeometry(0.85, 48), new THREE.MeshLambertMaterial({ color: t.face }));
     group.add(face);
     var ring = new THREE.Mesh(new THREE.RingGeometry(0.85, 0.92, 48), new THREE.MeshBasicMaterial({ color: t.ink }));
@@ -593,7 +767,7 @@ var track = {
   svg: function (p, theme, level) {
     p = normalizeParams("track", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var f = track._fracs(p);
     var W = 240, H = 240, cx = 120, cy = 120, S = 96, laneW = 12;
     var out = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(track.alt(p, theme, level)) + '">';
@@ -666,6 +840,7 @@ var track = {
     var st = makeStage(THREE, el);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var S = 0.72, laneW = 0.11;
     // A flat two-row ribbon following the lap from t0 to t1 on the given oval.
     function ribbon(t0, t1, R, color, y) {
@@ -804,7 +979,7 @@ var balance = {
   svg: function (p, theme, level) {
     p = normalizeParams("balance", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var W = 480, H = 220;
     var beamY = 82, panY = 158, cx = 240;
     var lx = 90, rx = 390;
@@ -863,23 +1038,40 @@ var balance = {
     var st = makeAlgebraStage(THREE, el, 1.10, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
 
     var state = { lx: p.left_x, lc: p.left_c, rx: p.right_x, rc: p.right_c };
     var solved = false;
     var reduced = !!(opts && opts.reducedMotion);
 
-    // Beam (thick box with real depth for perspective shadow)
-    var beam = new THREE.Mesh(new THREE.BoxGeometry(1.44, 0.06, 0.1),
-      new THREE.MeshLambertMaterial({ color: t.shadeOn }));
-    beam.castShadow = true;
-    group.add(beam);
+    var spaceSkin = isSpace(opts && opts.theme), spOutline = spaceSkin ? "#0a1030" : null;
+    // Beam — a sleek lit truss in space, otherwise a thick box with real depth.
+    var beam;
+    if (spaceSkin) {
+      beam = new THREE.Group();
+      var trussMat = new THREE.MeshStandardMaterial({ color: t.shadeOn, emissive: t.shadeOn, emissiveIntensity: 0.5, roughness: 0.4, metalness: 0.3 });
+      [0.032, -0.032].forEach(function (cy) {
+        var chord = new THREE.Mesh(new THREE.BoxGeometry(1.44, 0.013, 0.035), trussMat.clone());
+        chord.position.set(0, cy, 0); chord.castShadow = true; beam.add(chord);
+      });
+      for (var ti = -6; ti <= 6; ti++) {
+        var diag = new THREE.Mesh(new THREE.BoxGeometry(0.009, 0.08, 0.025), trussMat.clone());
+        diag.position.set(ti * 0.11, 0, 0); diag.rotation.z = (ti % 2 ? 1 : -1) * 0.52; beam.add(diag);
+      }
+      group.add(beam);
+    } else {
+      beam = new THREE.Mesh(new THREE.BoxGeometry(1.44, 0.06, 0.1),
+        new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+      beam.castShadow = true;
+      group.add(beam);
+    }
     // Fulcrum cone + base bar
     var fCone = new THREE.Mesh(new THREE.CylinderGeometry(0, 0.075, 0.29, 8),
-      new THREE.MeshLambertMaterial({ color: t.ink }));
+      new THREE.MeshLambertMaterial({ color: spaceSkin ? 0x4a5396 : t.ink }));
     fCone.position.set(0, -0.175, 0); fCone.castShadow = true;
     group.add(fCone);
     var baseBar = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.042, 0.16),
-      new THREE.MeshLambertMaterial({ color: t.ink }));
+      new THREE.MeshLambertMaterial({ color: spaceSkin ? 0x4a5396 : t.ink }));
     baseBar.position.set(0, -0.32, 0); baseBar.receiveShadow = true;
     group.add(baseBar);
     // Chains + pans
@@ -890,7 +1082,7 @@ var balance = {
       ch.position.set(px, -0.2, 0.04);
       group.add(ch);
       var pan = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.032, 0.28),
-        new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+        new THREE.MeshLambertMaterial({ color: spaceSkin ? 0x2c3468 : t.shadeOn }));
       pan.position.set(px, panY3, 0);
       pan.castShadow = pan.receiveShadow = true;
       group.add(pan);
@@ -925,10 +1117,11 @@ var balance = {
         for (var i = 0; i < numX; i++) {
           var mx = sx + i * (bW + gap) + bW / 2;
           var box = new THREE.Mesh(new THREE.BoxGeometry(bW * 0.88, bH, bD),
-            new THREE.MeshLambertMaterial({ color: t.shadeOn }));
+            blockMat(THREE, spaceSkin ? SPACE_X : t.shadeOn, opts && opts.theme));
           box.position.set(mx, iy, 0.04); box.castShadow = true;
+          if (spaceSkin) { var glb = makeGlowSprite(THREE, SPACE_X, bH * 1.8); glb.position.set(mx, iy, 0.08 - 0.06); dynGroup.add(glb); }
           dynGroup.add(box);
-          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, "#ffffff", null);
+          var sp = makeTextSprite(THREE, showQ ? "?" : "x", 0.12, "#ffffff", null, spOutline);
           sp.position.set(mx, iy + bH / 2 + 0.07, 0.08);
           dynGroup.add(sp);
         }
@@ -936,13 +1129,13 @@ var balance = {
         for (var j = 0; j < showU; j++) {
           var umx = ux + j * (uS + gap) + uS / 2;
           var um = new THREE.Mesh(new THREE.BoxGeometry(uS * 0.88, uS, uS),
-            new THREE.MeshLambertMaterial({ color: t.shadeOff }));
+            blockMat(THREE, spaceSkin ? SPACE_UNIT : t.shadeOff, opts && opts.theme));
           um.position.set(umx, panY3 + uS / 2 + 0.025, -0.02);
           um.castShadow = true;
           dynGroup.add(um);
         }
         if (numC > 4) {
-          var sp2 = makeTextSprite(THREE, "+" + (numC - 4), 0.11, inkHex, null);
+          var sp2 = makeTextSprite(THREE, "+" + (numC - 4), 0.11, spaceSkin ? SPACE_INK : inkHex, null, spOutline);
           sp2.position.set(ux + showU * (uS + gap) + 0.06, iy, 0.08);
           dynGroup.add(sp2);
         }
@@ -1068,7 +1261,7 @@ var functionMachine = {
   svg: function (p, theme, level) {
     p = normalizeParams("function-machine", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var W = 480, H = 180, out = functionMachine._output(p);
     var showIn = level === 1;
     var addStr = (p.add >= 0 ? "+" : "") + p.add;
@@ -1112,13 +1305,15 @@ var functionMachine = {
     var st = makeAlgebraStage(THREE, el, 1.30, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     var out = functionMachine._output(p);
 
-    var matIn   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
-    var matBody = new THREE.MeshLambertMaterial({ color: t.shadeOn });
-    var matOut  = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var spaceSkin = isSpace(opts && opts.theme), spOutline = spaceSkin ? "#0a1030" : null;
+    var matIn   = blockMat(THREE, spaceSkin ? SPACE_UNIT : t.shadeOff, opts && opts.theme);
+    var matBody = blockMat(THREE, spaceSkin ? SPACE_X : t.shadeOn, opts && opts.theme);   // the docking module
+    var matOut  = blockMat(THREE, spaceSkin ? SPACE_UNIT : t.shadeOff, opts && opts.theme);
 
     // Input box — thick for perspective depth
     var inBox = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.3, 0.16), matIn);
@@ -1144,9 +1339,9 @@ var functionMachine = {
     var addStrFM = (p.add >= 0 ? "+" : "") + p.add;
     var shadeOffHex = toHex(t.shadeOff);
     // Static machine op labels (on body face)
-    var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, "#ffffff", null);
+    var spMul = makeTextSprite(THREE, "×" + p.mul, 0.13, "#ffffff", null, spOutline);
     spMul.position.set(0, 0.06, 0.12); group.add(spMul);
-    var spAdd = makeTextSprite(THREE, addStrFM, 0.13, "#ffffff", null);
+    var spAdd = makeTextSprite(THREE, addStrFM, 0.13, "#ffffff", null, spOutline);
     spAdd.position.set(0, -0.09, 0.12); group.add(spAdd);
     // "out" label — solid shadeOff background so ink reads at full opacity
     var spOutLabel = makeTextSprite(THREE, "out", 0.09, inkHex, shadeOffHex);
@@ -1172,7 +1367,7 @@ var functionMachine = {
       spOut.position.set(0.76, 0, 0.12); group.add(spOut); dynSprites.push(spOut);
       if (step >= 1 && step < 2) {
         var inter = out - p.add;
-        var spMid = makeTextSprite(THREE, String(inter), 0.13, inkHex, null);
+        var spMid = makeTextSprite(THREE, String(inter), 0.13, spaceSkin ? SPACE_INK : inkHex, null, spOutline);
         spMid.position.set(-0.5, -0.28, 0.12); group.add(spMid); dynSprites.push(spMid);
       }
     }
@@ -1183,8 +1378,12 @@ var functionMachine = {
 
     // Token animation: token sphere runs from inBox to outBox over 0.5 s
     var token = new THREE.Mesh(new THREE.SphereGeometry(0.06, 12, 8),
-      new THREE.MeshLambertMaterial({ color: t.accent }));
+      spaceSkin ? new THREE.MeshStandardMaterial({ color: t.accent, emissive: t.accent, emissiveIntensity: 1.1, roughness: 0.3 })
+                : new THREE.MeshLambertMaterial({ color: t.accent }));
     token.visible = false; group.add(token);
+    // Docking-module port light: a glow sprite on the body that pulses as a token passes.
+    var portLight = spaceSkin ? makeGlowSprite(THREE, t.accent, 0.5) : null;
+    if (portLight) { portLight.position.set(0, 0.2, 0.14); portLight.material.opacity = 0.25; group.add(portLight); }
 
     function runToken(after) {
       if (reduced) { after(); return; }
@@ -1195,9 +1394,14 @@ var functionMachine = {
         var prog = Math.min(1, (now - t0) / 500);
         token.position.x = -0.76 + prog * 1.52;
         token.position.y = 0.08 * Math.sin(prog * Math.PI);
+        if (spaceSkin) {
+          var pulse = Math.sin(prog * Math.PI);
+          body.material.emissiveIntensity = 0.6 + 0.9 * pulse;
+          if (portLight) { portLight.material.opacity = 0.25 + 0.6 * pulse; portLight.scale.setScalar(0.5 + 0.35 * pulse); }
+        }
         render();
         if (prog < 1) raf = requestAnimationFrame(fr);
-        else { token.visible = false; after(); render(); raf = 0; }
+        else { token.visible = false; if (spaceSkin) { body.material.emissiveIntensity = 0.6; if (portLight) { portLight.material.opacity = 0.25; portLight.scale.setScalar(0.5); } } after(); render(); raf = 0; }
       }
       raf = requestAnimationFrame(fr);
     }
@@ -1290,7 +1494,7 @@ var barModel = {
   svg: function (p, theme, level) {
     p = normalizeParams("bar-model", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var n = p.extras.length;
     var W = 480, rowH = 34, gap = 12, pad = 22;
     var totalH = pad * 2 + n * rowH + (n - 1) * gap + 32;
@@ -1334,16 +1538,18 @@ var barModel = {
     var st = makeAlgebraStage(THREE, el, 1.10, 0.55);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     var n = p.extras.length;
     var sum = barModel._sumExtras(p);
     var step = 0; // 0=initial, 1=extras removed, 2=shared
 
-    var matX   = new THREE.MeshLambertMaterial({ color: t.shadeOn });
-    var matE   = new THREE.MeshLambertMaterial({ color: t.shadeOff });
-    var matInk = new THREE.MeshBasicMaterial({ color: t.ink });
-    var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+    var spaceSkin = isSpace(opts && opts.theme), spOutline = spaceSkin ? "#0a1030" : null;
+    var matX   = blockMat(THREE, spaceSkin ? SPACE_X : t.shadeOn, opts && opts.theme);   // x-bars as violet light-bars in space
+    var matE   = blockMat(THREE, spaceSkin ? SPACE_UNIT : t.shadeOff, opts && opts.theme);
+    var matInk = new THREE.MeshBasicMaterial({ color: spaceSkin ? 0xbca6ff : t.ink });
+    var inkHex = spaceSkin ? "#eef1ff" : toHex(t.ink), faceHex = toHex(t.face);
 
     var rowH = 0.18, rowGap = 0.07, barLen = 1.24;
     var totalBH = n * rowH + (n - 1) * rowGap;
@@ -1371,14 +1577,14 @@ var barModel = {
         var xM = new THREE.Mesh(new THREE.BoxGeometry(xLen * 0.97, rowH * 0.9, 0.12), matX.clone());
         xM.position.set(-barLen / 2 + xLen / 2, ry, 0); xM.castShadow = true;
         group.add(xM); meshes.push(xM);
-        var spX = makeTextSprite(THREE, showQ ? "?" : "x", 0.13, "#ffffff", null);
+        var spX = makeTextSprite(THREE, showQ ? "?" : "x", 0.13, "#ffffff", null, spOutline);
         spX.position.set(-barLen / 2 + xLen / 2, ry, 0.1); group.add(spX); sprites.push(spX);
         if (eShow) {
           var ex = -barLen / 2 + xLen + eLen / 2 + 0.02;
           var eM = new THREE.Mesh(new THREE.BoxGeometry(eLen * 0.97, rowH * 0.9, 0.12), matE.clone());
           eM.position.set(ex, ry, 0); eM.castShadow = true;
           group.add(eM); meshes.push(eM);
-          var spE = makeTextSprite(THREE, (e > 0 ? "+" : "") + e, 0.12, inkHex, null);
+          var spE = makeTextSprite(THREE, (e > 0 ? "+" : "") + e, 0.12, spaceSkin ? SPACE_DARK : inkHex, null);
           spE.position.set(ex, ry, 0.1); group.add(spE); sprites.push(spE);
         }
       }
@@ -1497,7 +1703,7 @@ var algebraTiles = {
   svg: function (p, theme, level) {
     p = normalizeParams("algebra-tiles", p);
     level = normalizeLevel(level);
-    var t = themeOf(theme), tone = printTones(t);
+    var t = themeOf(theme), tone = sceneTones(theme);
     var W = 480, H = 200;
     var tileW = 34, tileH = 46, uS = 28, gap = 6, gGap = 16;
 
@@ -1561,6 +1767,7 @@ var algebraTiles = {
     var st = makeAlgebraStage(THREE, el, 0.80, 0.40);
     var group = new THREE.Group();
     st.scene.add(group);
+    if (isSpace(opts && opts.theme)) addSpaceBackdrop(THREE, st, opts);
     var reduced = !!(opts && opts.reducedMotion);
     var raf = 0;
     // step: 0=grouped, 1=opened brackets (rearranged), 2=units removed, 3=shared
@@ -1568,9 +1775,10 @@ var algebraTiles = {
     var step = level === 2 ? 1 : 0;
     var totalX = p.groups * p.xs, totalU = p.groups * p.units;
 
-    var matX = new THREE.MeshLambertMaterial({ color: t.shadeOn });
-    var matU = new THREE.MeshLambertMaterial({ color: t.shadeOff });
-    var inkHex = toHex(t.ink), faceHex = toHex(t.face);
+    var spaceSkin = isSpace(opts && opts.theme), spOutline = spaceSkin ? "#0a1030" : null;
+    var matX = blockMat(THREE, spaceSkin ? SPACE_X : t.shadeOn, opts && opts.theme);
+    var matU = blockMat(THREE, spaceSkin ? SPACE_UNIT : t.shadeOff, opts && opts.theme);
+    var inkHex = spaceSkin ? "#eef1ff" : toHex(t.ink), faceHex = toHex(t.face);
     var tileMeshes = [], sprites = [];
 
     function clearAll() {
@@ -1605,11 +1813,12 @@ var algebraTiles = {
           var rW = nInRow * sz + (nInRow - 1) * gp;
           var tx = -rW / 2 + col * (sz + gp) + sz / 2;
           var ty = startY - row * rPitch;
-          var m = new THREE.Mesh(new THREE.BoxGeometry(sz * 0.92, h, d), mat.clone());
+          var m = new THREE.Mesh(tileGeo(THREE, sz, h, d, spaceSkin), mat.clone());
           m.position.set(tx, ty, 0); m.castShadow = true;
           group.add(m); tileMeshes.push(m);
+          if (spaceSkin && mat === matX) { var gl = makeGlowSprite(THREE, SPACE_X, sz * 1.5); gl.position.set(tx, ty, -0.05); group.add(gl); sprites.push(gl); }
           if (labelFn) {
-            var sp = makeTextSprite(THREE, labelFn(i), 0.11, labelColor, null);
+            var sp = makeTextSprite(THREE, labelFn(i), 0.11, labelColor, null, spOutline);
             sp.position.set(tx, ty, d / 2 + 0.04); group.add(sp); sprites.push(sp);
           }
         }
@@ -1627,17 +1836,18 @@ var algebraTiles = {
           var gy = startY - gr * rPitch;
           for (var xi = 0; xi < p.xs; xi++) {
             var mx = gx + xi * (tW + gp) + tW / 2;
-            var xm = new THREE.Mesh(new THREE.BoxGeometry(tW * 0.92, tH, tD), matX.clone());
+            var xm = new THREE.Mesh(tileGeo(THREE, tW, tH, tD, spaceSkin), matX.clone());
             xm.position.set(mx, gy, 0); xm.castShadow = true;
             group.add(xm); tileMeshes.push(xm);
-            var spx = makeTextSprite(THREE, "x", 0.11, "#ffffff", null);
+            if (spaceSkin) { var glxt = makeGlowSprite(THREE, SPACE_X, tW * 1.6); glxt.position.set(mx, gy, -0.05); group.add(glxt); sprites.push(glxt); }
+            var spx = makeTextSprite(THREE, "x", 0.11, "#ffffff", null, spOutline);
             spx.position.set(mx, gy, tD / 2 + 0.04); group.add(spx); sprites.push(spx);
           }
           if (p.units) {
             var ux0 = gx + p.xs * (tW + gp) + gGp - gp;
             for (var ui = 0; ui < p.units; ui++) {
               var umx = ux0 + ui * (uW + gp) + uW / 2;
-              var um = new THREE.Mesh(new THREE.BoxGeometry(uW * 0.92, uH, uD), matU.clone());
+              var um = new THREE.Mesh(tileGeo(THREE, uW, uH, uD, spaceSkin), matU.clone());
               um.position.set(umx, gy, 0); um.castShadow = true;
               group.add(um); tileMeshes.push(um);
             }
@@ -1774,5 +1984,15 @@ export function altFor(id, params, theme, level) {
 }
 export function svgFor(id, params, theme, level) {
   var def = SCENES[id];
-  return def && def.svg ? def.svg(normalizeParams(id, params), normalizeTheme(theme), normalizeLevel(level)) : "";
+  if (!def || !def.svg) return "";
+  var out = def.svg(normalizeParams(id, params), normalizeTheme(theme), normalizeLevel(level));
+  if (isSpace(theme)) {
+    // Swap the white print background for a night sky, and lift the one dark
+    // ink colour (space theme's t.ink) a scene may emit directly to a light tone.
+    var m = /viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"/.exec(out);
+    var W = m ? parseFloat(m[1]) : 240, H = m ? parseFloat(m[2]) : 240;
+    out = out.replace(/<rect width="[^"]*" height="[^"]*" fill="#fff"\/>/, spaceSkySvg(W, H));
+    out = out.replace(/#1a2150/gi, "#dfe4ff");
+  }
+  return out;
 }

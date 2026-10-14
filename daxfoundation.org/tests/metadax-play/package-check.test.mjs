@@ -322,6 +322,22 @@ test("minimal valid package has no errors", () => {
   assert.equal(errors.length, 0, "minimal package must have zero errors: " + JSON.stringify(errors));
 });
 
+// ── Package skin ──────────────────────────────────────────────────────────────
+test('skin "space" is accepted', () => {
+  const { errors } = checkPackage(minimalPkg({ skin: "space" }), lists);
+  assert.ok(!errors.some(e => e.path === "skin"), "skin:space must not error: " + JSON.stringify(errors.filter(e => e.path === "skin")));
+});
+
+test('skin "banana" is rejected', () => {
+  const { errors } = checkPackage(minimalPkg({ skin: "banana" }), lists);
+  assert.ok(errors.some(e => e.path === "skin" && /unknown skin/.test(e.msg)), "skin:banana must be an error");
+});
+
+test("no skin key leaves the package untouched", () => {
+  const { errors } = checkPackage(minimalPkg(), lists);
+  assert.ok(!errors.some(e => e.path === "skin"), "absent skin must never error");
+});
+
 // ── Fixtures: HS-DEMO-s1.package.json and EXAMPLE-package.json ───────────────
 // Note: do NOT change these fixtures; just report results.
 

@@ -98,6 +98,12 @@
   };
   var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1, football: 1, running: 1, sage: 1 };
 
+  // ── Package skins ─────────────────────────────────────────────────────────
+  // A top-level "skin" dresses the whole player (not the maths). The known
+  // values live in one array so adding a future skin is a one-line change; any
+  // other value is an error. A package with no skin is untouched.
+  var SKINS = ["space"];
+
   // Validate one { scene, params, theme?, level? } unit; push errors under `p`.
   function checkSceneUnit(unit, p, errors) {
     if (!unit || typeof unit !== "object") { errors.push({ path: p, msg: "scene entry must be an object" }); return; }
@@ -367,6 +373,11 @@
       errors.push({ path: "v", msg: "expected 1, got: " + (pkg && pkg.v) });
     }
     if (!pkg) return { errors: errors, warnings: warnings };
+
+    // skin (optional): a known page skin, or nothing. Unknown values error.
+    if (pkg.skin !== undefined && SKINS.indexOf(pkg.skin) === -1) {
+      errors.push({ path: "skin", msg: "unknown skin (expected one of: " + SKINS.join(", ") + "): " + pkg.skin });
+    }
 
     var guide = pkg.guide || {};
     var learner = pkg.learner || {};

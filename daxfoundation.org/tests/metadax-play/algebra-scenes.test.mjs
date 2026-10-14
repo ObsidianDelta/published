@@ -139,6 +139,17 @@ for (const id of ALGEBRA_SCENES) {
   }
 }
 
+// ── 4b. svgFor(scene, params, "space", level) returns an <svg for ALL scenes ──
+for (const id of Object.keys(SCENES)) {
+  for (const level of [1, 2, 3]) {
+    test(`${id}: svgFor(level ${level}, space) returns <svg`, () => {
+      const svg = svgFor(id, {}, "space", level);
+      assert.ok(typeof svg === "string", "svgFor must return a string");
+      assert.ok(svg.trimStart().startsWith("<svg"), "svgFor must start with <svg");
+    });
+  }
+}
+
 // ── 5. package-check accepts valid scene blocks, rejects bad param values ─────
 function minPkg(sceneBlock) {
   return {

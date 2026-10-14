@@ -111,6 +111,106 @@
   .nexttime textarea { min-height:3rem; }
   .noteout textarea.note { min-height:9rem; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:.78rem; }
   .noteout .tagline { color:var(--muted); font-size:.85rem; margin:.4rem 0; }
+
+  /* ---- space skin (opt-in via package "skin":"space") -------------------- */
+  /* Without the skin none of the rules below ever match, so the player is
+     byte-for-byte unchanged. With it, a fixed starfield canvas sits behind
+     everything and the palette turns to deep space. Panels become translucent
+     "glass" derived from the surface colour, opaque enough (≈0.8) that text
+     keeps its ≥4.5:1 contrast against the panel, which is what the eye reads —
+     the stars never sit directly behind body text. */
+  html.skin-space {
+    --bg: transparent;
+    --fg: #eef1ff;
+    --muted: #aab3d8;
+    --line: rgba(170,185,255,.22);
+    --surface: #141a33;
+    --accent: #9d7bff;
+    --chip: rgba(120,140,235,.16);
+    --glass: rgba(20,26,52,.82);
+    --glass-soft: rgba(26,32,62,.66);
+    color-scheme: dark;
+  }
+  html.skin-space, html.skin-space body { background: transparent; }
+  #skin-space-stars {
+    position: fixed; inset: 0; width: 100%; height: 100%;
+    z-index: 0; pointer-events: none; display: block;
+  }
+  html.skin-space .wrap { position: relative; z-index: 1; }
+  /* Glass panels: translucent surface, light hairline, blur where supported. */
+  html.skin-space .card,
+  html.skin-space .scene,
+  html.skin-space .step,
+  html.skin-space .game,
+  html.skin-space .lvl,
+  html.skin-space .gnotes,
+  html.skin-space .nexttime,
+  html.skin-space details.answerkey,
+  html.skin-space textarea,
+  html.skin-space .qvisual {
+    background: var(--glass);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 6px 22px rgba(4,6,16,.35);
+    transition: box-shadow .25s ease, border-color .25s ease;
+  }
+  @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    html.skin-space .card,
+    html.skin-space .scene,
+    html.skin-space .step,
+    html.skin-space .game,
+    html.skin-space .lvl,
+    html.skin-space .gnotes,
+    html.skin-space .nexttime,
+    html.skin-space details.answerkey,
+    html.skin-space textarea,
+    html.skin-space .qvisual {
+      background: var(--glass-soft);
+      -webkit-backdrop-filter: blur(12px) saturate(1.1);
+      backdrop-filter: blur(12px) saturate(1.1);
+    }
+  }
+  /* A faint accent glow when a panel is focused within or hovered. */
+  html.skin-space .card:hover,
+  html.skin-space .scene:hover,
+  html.skin-space .game:hover,
+  html.skin-space .lvl:hover,
+  html.skin-space .card:focus-within,
+  html.skin-space .scene:focus-within,
+  html.skin-space .game:focus-within {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
+                0 8px 30px rgba(10,6,40,.5),
+                0 0 26px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  /* Headings: page font, a little more air between the letters. */
+  html.skin-space h1,
+  html.skin-space h2,
+  html.skin-space h3,
+  html.skin-space .sec > .label { letter-spacing: .035em; }
+  /* Buttons glow softly in the accent colour; more on hover/focus. */
+  html.skin-space button {
+    box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 30%, transparent);
+    transition: box-shadow .25s ease, transform .1s ease;
+  }
+  html.skin-space button:hover:not(:disabled),
+  html.skin-space button:focus-visible {
+    box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+  html.skin-space .scene-controls button,
+  html.skin-space .opt,
+  html.skin-space .chip { background: var(--glass); color: var(--fg); }
+  html.skin-space .badge,
+  html.skin-space .who { background: var(--chip); color: #d7ddff; }
+  /* Report banners stay legible when they sit over the starfield. */
+  html.skin-space .err  { color:#ffb3a8; background:rgba(70,16,12,.6); border-color:#ffb3a8; }
+  html.skin-space .warn { color:#ffd99b; background:rgba(66,48,10,.6); border-color:#ffd99b; }
+  html.skin-space .way  { background:var(--glass-soft); }
+  @media (prefers-reduced-motion: reduce) {
+    html.skin-space button,
+    html.skin-space .card,
+    html.skin-space .scene { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -303,6 +403,148 @@
   function clampLevel(n){ n = Math.round(Number(n)); return isFinite(n) ? Math.max(1,Math.min(3,n)) : 1; }
   function normAnswer(s){ return String(s==null?"":s).trim().toLowerCase().replace(/\s+/g," "); }
   function prefersReducedMotion(){ try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); } catch(e){ return false; } }
+
+  // ---- space skin (opt-in page dressing) --------------------------------
+  // One fixed canvas, one requestAnimationFrame loop. Three parallax layers of
+  // stars twinkle gently over a deep blue/violet nebula, with an occasional slow
+  // shooting star. Under prefers-reduced-motion it paints once and never loops;
+  // it pauses while the tab is hidden; on low-power devices the loop is capped
+  // at 30 fps. Pure decoration behind everything — pointer-events:none — and it
+  // tears itself down cleanly when a package without the skin is played.
+  var SpaceSkin = (function(){
+    var cvs=null, ctx=null, bg=null, bgctx=null, raf=0;
+    var W=0, H=0, dpr=1, stars=[], shoot=null, reduced=false, lowPower=false;
+    var t0=0, last=0, nextShoot=0, running=false;
+    function detectLowPower(){
+      try {
+        if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) return true;
+        if (navigator.deviceMemory && navigator.deviceMemory <= 4) return true;
+      } catch(e){}
+      return false;
+    }
+    function rnd(a, b){ return a + Math.random() * (b - a); }
+    function sizeTo(){
+      dpr = Math.min(2, window.devicePixelRatio || 1);
+      W = window.innerWidth; H = window.innerHeight;
+      [cvs, bg].forEach(function(c){ c.width = Math.round(W * dpr); c.height = Math.round(H * dpr); });
+      cvs.getContext("2d").setTransform(dpr,0,0,dpr,0,0);
+      bgctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function buildStars(){
+      stars = [];
+      var base = Math.min(460, Math.round(W * H / 6500));
+      // three parallax layers: far/dim/small → near/bright/large
+      var layers = [ {n:0.5, r:[0.4,0.9], a:[0.22,0.48], tw:0.5},
+                     {n:0.32, r:[0.7,1.4], a:[0.38,0.72], tw:0.9},
+                     {n:0.18, r:[1.1,2.0], a:[0.6,1.0],  tw:1.5} ];
+      for (var L=0; L<layers.length; L++){
+        var cnt = Math.round(base * layers[L].n);
+        for (var i=0;i<cnt;i++){
+          stars.push({ x:rnd(0,W), y:rnd(0,H), r:rnd(layers[L].r[0],layers[L].r[1]),
+            base:rnd(layers[L].a[0],layers[L].a[1]), tw:layers[L].tw, ph:rnd(0,Math.PI*2) });
+        }
+      }
+    }
+    function paintBg(){
+      // deep-space base + soft nebula clouds, painted once per resize.
+      bgctx.clearRect(0,0,W,H);
+      bgctx.fillStyle = "#06070f";
+      bgctx.fillRect(0,0,W,H);
+      function cloud(x,y,r,c0,c1){
+        var g = bgctx.createRadialGradient(x,y,0,x,y,r);
+        g.addColorStop(0,c0); g.addColorStop(1,c1);
+        bgctx.fillStyle = g; bgctx.fillRect(0,0,W,H);
+      }
+      cloud(W*0.28, H*0.22, Math.max(W,H)*0.7, "rgba(60,54,150,0.42)", "rgba(6,7,15,0)");
+      cloud(W*0.8,  H*0.72, Math.max(W,H)*0.6, "rgba(104,52,168,0.30)", "rgba(6,7,15,0)");
+      cloud(W*0.62, H*0.1,  Math.max(W,H)*0.45,"rgba(40,96,170,0.22)", "rgba(6,7,15,0)");
+    }
+    function spawnShoot(now){
+      var fromLeft = Math.random() < 0.5;
+      var y = rnd(H*0.05, H*0.5);
+      shoot = { x: fromLeft ? -40 : W+40, y:y, vx:(fromLeft?1:-1)*rnd(W*0.5,W*0.8), vy:rnd(H*0.12,H*0.3), t:now, life:rnd(0.7,1.1) };
+    }
+    function paint(now){
+      var el = (now - t0) / 1000;
+      ctx.clearRect(0,0,W,H);
+      ctx.drawImage(bg, 0, 0, W, H);
+      ctx.fillStyle = "#eef2ff";
+      for (var i=0;i<stars.length;i++){
+        var s = stars[i];
+        var a = reduced ? s.base : s.base * (0.72 + 0.28 * Math.sin(el * s.tw + s.ph));
+        ctx.globalAlpha = a < 0 ? 0 : a > 1 ? 1 : a;
+        ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (!reduced){
+        if (!shoot && now >= nextShoot){ spawnShoot(now); }
+        if (shoot){
+          var st = (now - shoot.t) / 1000;
+          var k = st / shoot.life;
+          if (k >= 1){ shoot = null; nextShoot = now + rnd(5000, 11000); }
+          else {
+            var hx = shoot.x + shoot.vx*st, hy = shoot.y + shoot.vy*st;
+            var tx = hx - shoot.vx*0.12, ty = hy - shoot.vy*0.12;
+            var grad = ctx.createLinearGradient(tx,ty,hx,hy);
+            grad.addColorStop(0,"rgba(230,238,255,0)");
+            grad.addColorStop(1,"rgba(230,238,255,"+(0.9*(1-k)).toFixed(3)+")");
+            ctx.strokeStyle = grad; ctx.lineWidth = 2; ctx.lineCap = "round";
+            ctx.beginPath(); ctx.moveTo(tx,ty); ctx.lineTo(hx,hy); ctx.stroke();
+          }
+        }
+      }
+    }
+    function loop(now){
+      raf = requestAnimationFrame(loop);
+      var interval = lowPower ? 1000/30 : 1000/60;
+      if (now - last < interval) return;
+      last = now;
+      paint(now);
+    }
+    function onVis(){
+      if (document.hidden){ if (raf){ cancelAnimationFrame(raf); raf = 0; } }
+      else if (running && !reduced && !raf){ last = 0; raf = requestAnimationFrame(loop); }
+    }
+    var resizeTimer = 0;
+    function onResize(){
+      if (resizeTimer) clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function(){ sizeTo(); paintBg(); buildStars(); if (reduced || !raf) paint(performance.now()); }, 120);
+    }
+    return {
+      start: function(){
+        if (running) return;
+        running = true;
+        reduced = prefersReducedMotion();
+        lowPower = detectLowPower();
+        cvs = document.createElement("canvas"); cvs.id = "skin-space-stars"; cvs.setAttribute("aria-hidden","true");
+        bg = document.createElement("canvas");
+        ctx = cvs.getContext("2d"); bgctx = bg.getContext("2d");
+        document.body.insertBefore(cvs, document.body.firstChild);
+        sizeTo(); paintBg(); buildStars();
+        t0 = performance.now(); last = 0; nextShoot = t0 + rnd(2500, 6000);
+        window.addEventListener("resize", onResize);
+        document.addEventListener("visibilitychange", onVis);
+        if (reduced){ paint(t0); }
+        else { raf = requestAnimationFrame(loop); }
+      },
+      stop: function(){
+        if (!running) return;
+        running = false;
+        if (raf){ cancelAnimationFrame(raf); raf = 0; }
+        window.removeEventListener("resize", onResize);
+        document.removeEventListener("visibilitychange", onVis);
+        if (cvs && cvs.parentNode) cvs.parentNode.removeChild(cvs);
+        cvs = ctx = bg = bgctx = null; stars = []; shoot = null;
+      }
+    };
+  })();
+
+  // Apply (or clear) a package skin. Called on every render; idempotent.
+  function applySkin(skin){
+    var isSpace = skin === "space";
+    document.documentElement.classList.toggle("skin-space", isSpace);
+    if (isSpace) SpaceSkin.start(); else SpaceSkin.stop();
+  }
 
   // ---- companion.json sidecar (optional) --------------------------------
   // Pure checks copied inline from companion/validate-companion.mjs, the same
@@ -973,6 +1215,7 @@
 
   function renderPackage(pkg, companion){
     loadSession(pkg);
+    applySkin(pkg.skin);
     translateStatic();
     var out = document.getElementById("out"); out.innerHTML="";
     out.appendChild(el("h2",null,inline(pkg.title||"Package")));
