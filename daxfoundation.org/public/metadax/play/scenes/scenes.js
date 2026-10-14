@@ -934,6 +934,214 @@ var balance = {
   },
 };
 
+// ---- scene: function-machine ------------------------------------------------
+// A three-box machine: input → ×mul → +add → output.
+// Level 1: input shown. Level 2: input hidden ("?"). Level 3: interactive undo.
+
+var functionMachine = {
+  title: "Function machine",
+  levels: [1, 2, 3],
+  params: {
+    mul:        { type: "int",  min: 1,   max: 12,  default: 2 },
+    add:        { type: "int",  min: -20, max: 20,  default: 5 },
+    input:      { type: "int",  min: 0,   max: 60,  default: 9 },
+    hide_input: { type: "bool",                     default: true },
+  },
+  _output: function (p) { return p.input * p.mul + p.add; },
+  alt: function (p, theme, level) {
+    level = normalizeLevel(level);
+    var out = functionMachine._output(p);
+    var addStr = (p.add >= 0 ? "add " : "subtract ") + Math.abs(p.add);
+    var base = "Function machine: multiply by " + p.mul + ", then " + addStr + ". Output: " + out + ".";
+    if (level === 1) return base + " Input: " + p.input + ".";
+    if (level === 2) return base + " Input hidden.";
+    return base + " Use undo buttons to find the input.";
+  },
+  svg: function (p, theme, level) {
+    p = normalizeParams("function-machine", p);
+    level = normalizeLevel(level);
+    var t = themeOf(theme), tone = printTones(t);
+    var W = 240, H = 200, out = functionMachine._output(p);
+    var showIn = level === 1;
+    var addStr = (p.add >= 0 ? "+" : "") + p.add;
+
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' + esc(functionMachine.alt(p, theme, level)) + '">';
+    s += '<rect width="' + W + '" height="' + H + '" fill="#fff"/>';
+
+    // Three boxes: input, machine-body, output
+    var bH = 48, bY = (H - bH) / 2;
+    // Input box
+    s += '<rect x="8" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="34" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + (showIn ? p.input : "?") + '</text>';
+    s += '<text x="34" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">in</text>';
+    // Arrow 1
+    s += '<line x1="60" y1="' + (bY + bH / 2) + '" x2="76" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<polygon points="76,' + (bY + bH / 2 - 5) + ' 86,' + (bY + bH / 2) + ' 76,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
+    // Machine body (two op labels inside)
+    s += '<rect x="86" y="' + (bY - 8) + '" width="68" height="' + (bH + 16) + '" rx="8" fill="' + tone.on + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="120" y="' + (bY + bH / 2 - 4) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">×' + p.mul + '</text>';
+    s += '<text x="120" y="' + (bY + bH / 2 + 11) + '" text-anchor="middle" font-family="Georgia,serif" font-size="12" fill="#fff">' + addStr + '</text>';
+    // Arrow 2
+    s += '<line x1="154" y1="' + (bY + bH / 2) + '" x2="170" y2="' + (bY + bH / 2) + '" stroke="' + tone.ink + '" stroke-width="2"/>';
+    s += '<polygon points="170,' + (bY + bH / 2 - 5) + ' 180,' + (bY + bH / 2) + ' 170,' + (bY + bH / 2 + 5) + '" fill="' + tone.ink + '"/>';
+    // Output box
+    s += '<rect x="180" y="' + bY + '" width="52" height="' + bH + '" rx="6" fill="' + tone.off + '" stroke="' + tone.ink + '" stroke-width="1.6"/>';
+    s += '<text x="206" y="' + (bY + bH / 2 + 5) + '" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="bold" fill="' + tone.ink + '">' + out + '</text>';
+    s += '<text x="206" y="' + (bY - 6) + '" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="' + tone.ink + '">out</text>';
+    s += propSvg(t.prop, W - 16, 16, 10, tone.ink);
+    s += '</svg>';
+    return s;
+  },
+  mount: function (THREE, el, params, opts) {
+    var p = normalizeParams("function-machine", params);
+    var level = normalizeLevel(opts && opts.level);
+    var t = themeOf(opts && opts.theme);
+    el.style.position = el.style.position || "relative";
+    var st = makeStage(THREE, el);
+    var group = new THREE.Group();
+    st.scene.add(group);
+    var reduced = !!(opts && opts.reducedMotion);
+    var raf = 0;
+    var out = functionMachine._output(p);
+
+    // Machine geometry: input box, body (two halves for ops), output box, arrows
+    var matIn  = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matBody = new THREE.MeshLambertMaterial({ color: t.shadeOn });
+    var matOut = new THREE.MeshLambertMaterial({ color: t.shadeOff });
+    var matArr = new THREE.MeshLambertMaterial({ color: t.ink });
+
+    // Input box
+    var inBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matIn);
+    inBox.position.set(-0.72, 0, 0);
+    group.add(inBox);
+    // Machine body (wider)
+    var body = new THREE.Mesh(new THREE.BoxGeometry(0.44, 0.36, 0.14), matBody);
+    body.position.set(0, 0, 0);
+    group.add(body);
+    // Output box
+    var outBox = new THREE.Mesh(new THREE.BoxGeometry(0.28, 0.28, 0.12), matOut);
+    outBox.position.set(0.72, 0, 0);
+    group.add(outBox);
+    // Arrows (thin boxes)
+    var arrowMat = new THREE.MeshBasicMaterial({ color: t.ink });
+    [-0.44, 0.44].forEach(function (ax) {
+      var arr = new THREE.Mesh(new THREE.BoxGeometry(0.17, 0.025, 0.04), arrowMat);
+      arr.position.set(ax, 0, 0.08);
+      group.add(arr);
+    });
+
+    var prop = makeProp(THREE, t.prop, t.accent);
+    if (prop) { prop.position.set(st.aspect - 0.18, 0.78, 0.2); group.add(prop); }
+
+    // Labels (added via HTML overlay)
+    var labels = [];
+    // step: 0=show output only, 1=undid +add, 2=undid xmul (input revealed)
+    var step = 0;
+
+    function clearLabels() {
+      labels.forEach(function (d) { if (d.parentNode) d.parentNode.removeChild(d); });
+      labels = [];
+    }
+    function buildLabels() {
+      clearLabels();
+      var inkHex = toHex(t.ink);
+      var faceHex = toHex(t.face);
+      var addStr = (p.add >= 0 ? "+" : "") + p.add;
+      // Machine op labels
+      labels.push(addLabel(el, "×" + p.mul, 0.5, 0.42, faceHex));
+      labels.push(addLabel(el, addStr, 0.5, 0.58, faceHex));
+      // Output label
+      labels.push(addLabel(el, String(out), 0.86, 0.5, inkHex));
+      // Input label
+      var showIn = level === 1 || step >= 2;
+      labels.push(addLabel(el, showIn ? String(p.input) : "?", 0.14, 0.5, inkHex));
+      // Intermediate label (after undo +add)
+      if (step >= 1 && step < 2) {
+        var inter = out - p.add;
+        labels.push(addLabel(el, "÷" + p.mul + " →", 0.5, 0.76, inkHex));
+        labels.push(addLabel(el, String(inter), 0.14, 0.76, inkHex));
+      }
+    }
+    buildLabels();
+
+    function render() { st.renderer.render(st.scene, st.cam); }
+    render();
+
+    var btns = [];
+    if (level >= 3) {
+      var bStyle = "position:absolute;bottom:8px;background:rgba(0,0,0,.72);color:#fff;" +
+        "border:1px solid rgba(255,255,255,.28);border-radius:6px;padding:5px 7px;" +
+        "font:13px/1.3 system-ui,sans-serif;cursor:pointer;max-width:44%;";
+      var addStr = (p.add >= 0 ? "+" : "") + p.add;
+      var btn1 = el.ownerDocument.createElement("button");
+      btn1.textContent = "Undo " + addStr;
+      btn1.setAttribute("aria-label", "Undo the addition step");
+      btn1.style.cssText = bStyle + "left:3%;";
+      el.appendChild(btn1);
+      btns.push(btn1);
+
+      var btn2 = el.ownerDocument.createElement("button");
+      btn2.textContent = "Undo ×" + p.mul;
+      btn2.setAttribute("aria-label", "Undo the multiply step");
+      btn2.style.cssText = bStyle + "right:3%;";
+      btn2.disabled = true; btn2.style.opacity = "0.38";
+      el.appendChild(btn2);
+      btns.push(btn2);
+
+      btn1.addEventListener("click", function () {
+        if (step !== 0) return;
+        step = 1;
+        btn1.disabled = true; btn1.style.opacity = "0.38";
+        btn2.disabled = false; btn2.style.opacity = "1";
+        buildLabels();
+        if (!reduced) {
+          var t0 = null;
+          function anim(now) {
+            if (!t0) t0 = now;
+            var prog = Math.min(1, (now - t0) / 180);
+            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
+            render();
+            if (prog < 1) raf = requestAnimationFrame(anim);
+            else { group.rotation.y = 0; render(); raf = 0; }
+          }
+          raf = requestAnimationFrame(anim);
+        } else render();
+      });
+      btn2.addEventListener("click", function () {
+        if (step !== 1) return;
+        step = 2;
+        btn2.disabled = true; btn2.style.opacity = "0.38";
+        buildLabels();
+        if (!reduced) {
+          var t0 = null;
+          function anim2(now) {
+            if (!t0) t0 = now;
+            var prog = Math.min(1, (now - t0) / 180);
+            group.rotation.y = Math.sin(prog * Math.PI) * 0.08;
+            render();
+            if (prog < 1) raf = requestAnimationFrame(anim2);
+            else { group.rotation.y = 0; render(); raf = 0; }
+          }
+          raf = requestAnimationFrame(anim2);
+        } else render();
+      });
+    }
+
+    el.setAttribute("aria-label", functionMachine.alt(p, opts && opts.theme, level));
+    return {
+      setReducedMotion: function (b) { reduced = b; render(); },
+      resize: st.resize,
+      dispose: function () {
+        if (raf) cancelAnimationFrame(raf);
+        clearLabels();
+        btns.forEach(function (b) { if (b.parentNode) b.parentNode.removeChild(b); });
+        st.renderer.dispose();
+        if (st.renderer.domElement.parentNode) st.renderer.domElement.parentNode.removeChild(st.renderer.domElement);
+      },
+    };
+  },
+};
+
 // ---- registry ---------------------------------------------------------------
 
 export var SCENES = {
@@ -941,6 +1149,7 @@ export var SCENES = {
   "clock": clock,
   "track": track,
   "balance": balance,
+  "function-machine": functionMachine,
 };
 
 export function getScene(id) { return SCENES[id] || null; }
