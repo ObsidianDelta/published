@@ -71,6 +71,8 @@ export var THEMES = {
   football: { label: "Football", shadeOn: 0x2f8f4e, shadeOff: 0xdcebd9, ink: 0x14301d, accent: 0xf6f8f2, face: 0xeaf3e6, prop: "ball", word: "pitch" },
   // running: track tartan (burnt orange) with pale lanes; the prop is a pennant.
   running:  { label: "Running",  shadeOn: 0xc0532a, shadeOff: 0xf0e1d6, ink: 0x3a1c10, accent: 0xf6f8f2, face: 0xf7ece3, prop: "flag", word: "track" },
+  // sage: earth-tone green (never brown). Soft muted palette; prop is a leaf shape.
+  sage:     { label: "Sage",     shadeOn: 0x4c6a41, shadeOff: 0xd8e8d0, ink: 0x1e2a1b, accent: 0x6a9e5a, face: 0xf3f5ee, prop: "leaf", word: "sage" },
 };
 
 export function normalizeTheme(theme) { return THEMES[theme] ? theme : "plain"; }
