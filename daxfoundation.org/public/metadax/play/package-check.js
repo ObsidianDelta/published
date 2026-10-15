@@ -95,6 +95,23 @@
         total:  { type: "int", min: 0, max: 200 },
       },
     },
+    "storage-stack": {
+      params: {
+        backend: { type: "enum", values: ["dir", "lvmthin", "zfs", "zfs-ct"] },
+        vmid:    { type: "int", min: 100, max: 999  },
+        disk_gb: { type: "int", min: 1,   max: 2048 },
+        lang:    { type: "enum", values: ["fr", "en"] },
+      },
+    },
+    "thin-pool": {
+      params: {
+        capacity_gb: { type: "int", min: 10, max: 10000 },
+        disks:       { type: "int-array", min: 1, max: 4096, maxLen: 6 },
+        written:     { type: "int-array", min: 0, max: 4096, maxLen: 6 },
+        discard:     { type: "bool" },
+        lang:        { type: "enum", values: ["fr", "en"] },
+      },
+    },
   };
   var SCENE_THEMES = { plain: 1, unicorn: 1, hockey: 1, dinosaur: 1, space: 1, football: 1, running: 1, sage: 1 };
 
@@ -102,7 +119,7 @@
   // A top-level "skin" dresses the whole player (not the maths). The known
   // values live in one array so adding a future skin is a one-line change; any
   // other value is an error. A package with no skin is untouched.
-  var SKINS = ["space"];
+  var SKINS = ["space", "lab"];
 
   // Validate one { scene, params, theme?, level? } unit; push errors under `p`.
   function checkSceneUnit(unit, p, errors) {
@@ -119,6 +136,8 @@
         else if (v < s.min || v > s.max) errors.push({ path: pp, msg: "out of range " + s.min + ".." + s.max + ": " + v });
       } else if (s.type === "bool") {
         if (typeof v !== "boolean") errors.push({ path: pp, msg: "must be a boolean" });
+      } else if (s.type === "enum") {
+        if (s.values.indexOf(v) === -1) errors.push({ path: pp, msg: "not one of " + s.values.join("|") + ": " + v });
       } else if (s.type === "int-array") {
         if (!Array.isArray(v)) { errors.push({ path: pp, msg: "must be an array" }); return; }
         if (v.length > s.maxLen) errors.push({ path: pp, msg: "more than " + s.maxLen + " entries" });

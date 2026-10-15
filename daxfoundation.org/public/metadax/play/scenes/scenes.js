@@ -29,6 +29,11 @@
 //   }
 // opts: { reducedMotion?, theme?, level? }. mount() owns one <canvas> inside `el`.
 
+// ---- external scene modules -------------------------------------------------
+// The storage scenes live in their own self-contained module (no circular
+// import; it never imports this file or three.js).
+import { storageStack, thinPool } from "./storage.js";
+
 // ---- small shared helpers ---------------------------------------------------
 
 function clampInt(v, lo, hi, dflt) {
@@ -49,6 +54,7 @@ export function normalizeParams(sceneId, params) {
     var v = params[k];
     if (s.type === "int") out[k] = clampInt(v, s.min, s.max, s.default);
     else if (s.type === "bool") out[k] = typeof v === "boolean" ? v : !!s.default;
+    else if (s.type === "enum") out[k] = (s.values && s.values.indexOf(v) >= 0) ? v : s.default;
     else if (s.type === "int-array") {
       var arr = Array.isArray(v) ? v : s.default.slice();
       arr = arr.slice(0, s.maxLen || 3).map(function (n) { return clampInt(n, s.min, s.max, s.min); });
@@ -1974,6 +1980,8 @@ export var SCENES = {
   "function-machine": functionMachine,
   "bar-model": barModel,
   "algebra-tiles": algebraTiles,
+  "storage-stack": storageStack,
+  "thin-pool": thinPool,
 };
 
 export function getScene(id) { return SCENES[id] || null; }

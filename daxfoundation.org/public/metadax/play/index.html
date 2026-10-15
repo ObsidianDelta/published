@@ -136,18 +136,42 @@
     position: fixed; inset: 0; width: 100%; height: 100%;
     z-index: 0; pointer-events: none; display: block;
   }
-  html.skin-space .wrap { position: relative; z-index: 1; }
+  /* ---- lab skin (opt-in via package "skin":"lab") ------------------------ */
+  /* A dark lab: deep navy, a faint blueprint grid and two soft light pools.
+     Same glass panels as the space skin, no canvas, nothing animated. */
+  html.skin-lab {
+    --bg: #070b18;
+    --fg: #e6eefc;
+    --muted: #a3b3cf;
+    --line: rgba(120,165,235,.22);
+    --surface: #0f1626;
+    --accent: #38c8ff;
+    --chip: rgba(56,200,255,.13);
+    --glass: rgba(15,22,38,.86);
+    --glass-soft: rgba(18,27,48,.74);
+    color-scheme: dark;
+  }
+  html.skin-lab body {
+    background:
+      radial-gradient(1100px 560px at 12% -8%, rgba(56,200,255,.11), transparent 62%),
+      radial-gradient(900px 520px at 100% 4%, rgba(139,108,255,.11), transparent 58%),
+      linear-gradient(rgba(120,165,235,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+      linear-gradient(90deg, rgba(120,165,235,.045) 1px, transparent 1px) 0 0 / 32px 32px,
+      #070b18;
+    background-attachment: fixed;
+  }
+  html.skin-space .wrap, html.skin-lab .wrap { position: relative; z-index: 1; }
   /* Glass panels: translucent surface, light hairline, blur where supported. */
-  html.skin-space .card,
-  html.skin-space .scene,
-  html.skin-space .step,
-  html.skin-space .game,
-  html.skin-space .lvl,
-  html.skin-space .gnotes,
-  html.skin-space .nexttime,
-  html.skin-space details.answerkey,
-  html.skin-space textarea,
-  html.skin-space .qvisual {
+  html.skin-space .card, html.skin-lab .card,
+  html.skin-space .scene, html.skin-lab .scene,
+  html.skin-space .step, html.skin-lab .step,
+  html.skin-space .game, html.skin-lab .game,
+  html.skin-space .lvl, html.skin-lab .lvl,
+  html.skin-space .gnotes, html.skin-lab .gnotes,
+  html.skin-space .nexttime, html.skin-lab .nexttime,
+  html.skin-space details.answerkey, html.skin-lab details.answerkey,
+  html.skin-space textarea, html.skin-lab textarea,
+  html.skin-space .qvisual, html.skin-lab .qvisual {
     background: var(--glass);
     border: 1px solid var(--line);
     border-radius: 10px;
@@ -155,67 +179,67 @@
     transition: box-shadow .25s ease, border-color .25s ease;
   }
   @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    html.skin-space .card,
-    html.skin-space .scene,
-    html.skin-space .step,
-    html.skin-space .game,
-    html.skin-space .lvl,
-    html.skin-space .gnotes,
-    html.skin-space .nexttime,
-    html.skin-space details.answerkey,
-    html.skin-space textarea,
-    html.skin-space .qvisual {
+    html.skin-space .card, html.skin-lab .card,
+    html.skin-space .scene, html.skin-lab .scene,
+    html.skin-space .step, html.skin-lab .step,
+    html.skin-space .game, html.skin-lab .game,
+    html.skin-space .lvl, html.skin-lab .lvl,
+    html.skin-space .gnotes, html.skin-lab .gnotes,
+    html.skin-space .nexttime, html.skin-lab .nexttime,
+    html.skin-space details.answerkey, html.skin-lab details.answerkey,
+    html.skin-space textarea, html.skin-lab textarea,
+    html.skin-space .qvisual, html.skin-lab .qvisual {
       background: var(--glass-soft);
       -webkit-backdrop-filter: blur(12px) saturate(1.1);
       backdrop-filter: blur(12px) saturate(1.1);
     }
   }
   /* A faint accent glow when a panel is focused within or hovered. */
-  html.skin-space .card:hover,
-  html.skin-space .scene:hover,
-  html.skin-space .game:hover,
-  html.skin-space .lvl:hover,
-  html.skin-space .card:focus-within,
-  html.skin-space .scene:focus-within,
-  html.skin-space .game:focus-within {
+  html.skin-space .card:hover, html.skin-lab .card:hover,
+  html.skin-space .scene:hover, html.skin-lab .scene:hover,
+  html.skin-space .game:hover, html.skin-lab .game:hover,
+  html.skin-space .lvl:hover, html.skin-lab .lvl:hover,
+  html.skin-space .card:focus-within, html.skin-lab .card:focus-within,
+  html.skin-space .scene:focus-within, html.skin-lab .scene:focus-within,
+  html.skin-space .game:focus-within, html.skin-lab .game:focus-within {
     border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 35%, transparent),
                 0 8px 30px rgba(10,6,40,.5),
                 0 0 26px color-mix(in srgb, var(--accent) 22%, transparent);
   }
   /* Headings: page font, a little more air between the letters. */
-  html.skin-space h1,
-  html.skin-space h2,
-  html.skin-space h3,
-  html.skin-space .sec > .label { letter-spacing: .035em; }
+  html.skin-space h1, html.skin-lab h1,
+  html.skin-space h2, html.skin-lab h2,
+  html.skin-space h3, html.skin-lab h3,
+  html.skin-space .sec > .label, html.skin-lab .sec > .label { letter-spacing: .035em; }
   /* Buttons glow softly in the accent colour; more on hover/focus. */
-  html.skin-space button {
+  html.skin-space button, html.skin-lab button {
     box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 30%, transparent);
     transition: box-shadow .25s ease, transform .1s ease;
   }
-  html.skin-space button:hover:not(:disabled),
-  html.skin-space button:focus-visible {
+  html.skin-space button:hover:not(:disabled), html.skin-lab button:hover:not(:disabled),
+  html.skin-space button:focus-visible, html.skin-lab button:focus-visible {
     box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 55%, transparent);
   }
-  html.skin-space .scene-controls button,
-  html.skin-space .opt,
-  html.skin-space .chip { background: var(--glass); color: var(--fg); }
-  html.skin-space .badge,
-  html.skin-space .who { background: var(--chip); color: #d7ddff; }
+  html.skin-space .scene-controls button, html.skin-lab .scene-controls button,
+  html.skin-space .opt, html.skin-lab .opt,
+  html.skin-space .chip, html.skin-lab .chip { background: var(--glass); color: var(--fg); }
+  html.skin-space .badge, html.skin-lab .badge,
+  html.skin-space .who, html.skin-lab .who { background: var(--chip); color: #d7ddff; }
   /* Report banners stay legible when they sit over the starfield. */
-  html.skin-space .err  { color:#ffb3a8; background:rgba(70,16,12,.6); border-color:#ffb3a8; }
-  html.skin-space .warn { color:#ffd99b; background:rgba(66,48,10,.6); border-color:#ffd99b; }
-  html.skin-space .way  { background:var(--glass-soft); }
+  html.skin-space .err, html.skin-lab .err  { color:#ffb3a8; background:rgba(70,16,12,.6); border-color:#ffb3a8; }
+  html.skin-space .warn, html.skin-lab .warn { color:#ffd99b; background:rgba(66,48,10,.6); border-color:#ffd99b; }
+  html.skin-space .way, html.skin-lab .way  { background:var(--glass-soft); }
   @media (prefers-reduced-motion: reduce) {
-    html.skin-space button,
-    html.skin-space .card,
-    html.skin-space .scene { transition: none; }
+    html.skin-space button, html.skin-lab button,
+    html.skin-space .card, html.skin-lab .card,
+    html.skin-space .scene, html.skin-lab .scene { transition: none; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <p class="way" id="banner">This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
+  <p class="way" id="banner">This is <strong>a way, never the way</strong>. You are the parent or teacher (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.</p>
   <h1 id="page-title">Play a MetaDAX package</h1>
   <p class="muted" id="intro">Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.</p>
   <textarea id="src" placeholder='{ "format": "metadax-package", "v": 1, ... }' aria-label="Package JSON"></textarea>
@@ -244,7 +268,7 @@
   // ---- player-owned UI strings (en / fr) ----------------------------------
   var UI = {
     en: {
-      banner:       'This is <strong>a way, never the way</strong>. You are the parent (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.',
+      banner:       'This is <strong>a way, never the way</strong>. You are the parent or teacher (18+); the page is a starting point you adapt. It names no diagnosis. Nothing here is saved or sent anywhere.',
       title:        'Play a MetaDAX package',
       intro:        'Paste a <code>metadax-package</code> JSON below and press Play. Everything runs in your browser.',
       companionSum: 'Companion notes (optional)',
@@ -282,10 +306,18 @@
       grownUpSay:   function(s){ return 'Grown-up, say this aloud: “'+s+'”'; },
       tapHear:      'Then tap the one you hear.',
       openFile:     'Open a file',
+      qo: '“', qc: '”', sayAloud: 'Say aloud (guide): ',
+      yourAnswer:   'Your answer',
+      thatsIt:      'That’s it.',
+      tryAgain:     'Not quite — have another go.',
+      levelN:       function(n){ return 'Level '+n; },
+      bestFmt:      function(x){ return ' (best: '+x+')'; },
+      game:         'Game',
+      diagramHere:  'A diagram goes here. Open the printable sheet to see it.',
       clockLabel:   function(h, m){ return 'Clock showing '+h+':'+(m<10?'0':'')+m; }
     },
     fr: {
-      banner:       'C’est <strong>une façon, jamais LA façon</strong>. Vous êtes le parent (18+) ; cette page est un point de départ que vous adaptez. Elle ne pose aucun diagnostic. Rien n’est enregistré ni envoyé.',
+      banner:       'C’est <strong>une façon, jamais LA façon</strong>. Vous êtes le parent ou l’enseignant (18+) ; cette page est un point de départ que vous adaptez. Elle ne pose aucun diagnostic. Rien n’est enregistré ni envoyé.',
       title:        'Jouer un paquet MetaDAX',
       intro:        'Collez le JSON d’un <code>metadax-package</code> ci-dessous et appuyez sur Jouer. Tout fonctionne dans votre navigateur.',
       companionSum: 'Notes d’accompagnement (facultatif)',
@@ -296,8 +328,8 @@
       hint:         'Indice',
       next:         'Suivant',
       nextStep:     'Étape suivante',
-      allDone:      'Terminé — appuie sur Recommencer pour rejouer.',
-      dragNote:     'Fais glisser chaque élément dans une case — ou touche-le, puis touche une case.',
+      allDone:      'Terminé — appuyez sur Recommencer pour rejouer.',
+      dragNote:     'Faites glisser chaque élément dans une case — ou touchez-le, puis touchez une case.',
       didIt:        'Bravo — toutes les étapes dans l’ordre.',
       check:        'Vérifier',
       seeResult:    'Voir le résultat',
@@ -305,7 +337,7 @@
       fbWrong:      'Pas tout à fait.',
       fbSoundRight: 'C’est bien ça.',
       fbSoundWrong: 'Encore une fois.',
-      fbSeqWrong:   'Pas celui-là — essaie encore.',
+      fbSeqWrong:   'Pas celui-là — essayez encore.',
       sortResult:   function(r,n){ return r+' sur '+n+' dans la bonne case.'; },
       startOver:    'Recommencer',
       startOverConfirm: 'Recommencer ? Cela efface les réponses enregistrées sur cet appareil.',
@@ -321,8 +353,16 @@
       printThis:    'Imprimer',
       pasteErr:     'Ce ne semble pas être un paquet complet. Copiez l’intégralité du bloc de code, du premier { au dernier }, et collez-le à nouveau.',
       grownUpSay:   function(s){ return 'Grand adulte, dites ceci à voix haute : « '+s+' »'; },
-      tapHear:      'Puis touche ce que tu entends.',
+      tapHear:      'Puis touchez ce que vous entendez.',
       openFile:     'Ouvrir un fichier',
+      qo: '« ', qc: ' »', sayAloud: 'À dire à voix haute (guide) : ',
+      yourAnswer:   'Votre réponse',
+      thatsIt:      'C’est ça.',
+      tryAgain:     'Pas tout à fait — essayez encore.',
+      levelN:       function(n){ return 'Niveau '+n; },
+      bestFmt:      function(x){ return ' (meilleure réponse : '+x+')'; },
+      game:         'Jeu',
+      diagramHere:  'Un schéma s’affiche ici. Ouvrez la fiche imprimable pour le voir.',
       clockLabel:   function(h, m){ return 'Horloge affichant '+h+'h'+(m<10?'0':'')+m; }
     }
   };
@@ -543,6 +583,7 @@
   function applySkin(skin){
     var isSpace = skin === "space";
     document.documentElement.classList.toggle("skin-space", isSpace);
+    document.documentElement.classList.toggle("skin-lab", skin === "lab");
     if (isSpace) SpaceSkin.start(); else SpaceSkin.stop();
   }
 
@@ -657,7 +698,7 @@
         case "step": {
           var s = el("div","step");
           s.appendChild(el("strong",null,(b.n?b.n+". ":"")+inline(b.do)));
-          if(b.say) s.appendChild(el("p","say","“"+inline(b.say)+"”"));
+          if(b.say) s.appendChild(el("p","say",t("qo")+inline(b.say)+t("qc")));
           if(b.why) s.appendChild(el("p","muted",inline(b.why))); wrap.appendChild(s); break; }
         case "ifthen": {
           var it = el("div","card");
@@ -671,7 +712,7 @@
           var l = el("div","card");
           l.appendChild(el("strong",null,inline(b.title||"A step ahead")));
           l.appendChild(el("p",null,inline(b.body)));
-          if(b.prompt) l.appendChild(el("p","say","“"+inline(b.prompt)+"”")); wrap.appendChild(l); break; }
+          if(b.prompt) l.appendChild(el("p","say",t("qo")+inline(b.prompt)+t("qc"))); wrap.appendChild(l); break; }
         case "copy": {
           var cp = el("div","card");
           cp.appendChild(el("strong",null,inline(b.title||"Copy")));
@@ -707,7 +748,7 @@
       case "spoken-sound": {
         var ss = el("div","blk");
         ss.appendChild(el("strong",null,inline(b.title||"Say and find")));
-        ss.appendChild(el("p","muted","Say aloud (guide): “"+inline(b.prompt_for_guide)+"”"));
+        ss.appendChild(el("p","muted",t("sayAloud")+t("qo")+inline(b.prompt_for_guide)+t("qc")));
         (b.options||[]).forEach(function(o){ ss.appendChild(el("div","choice"+(o===b.answer?" correct":""),inline(o))); });
         if(b.why) ss.appendChild(el("p","muted",inline(b.why)));
         container.appendChild(ss); break; }
@@ -747,12 +788,12 @@
 
   function renderQuizStatic(container, b, learnersByName){
     var q = el("div","blk");
-    q.appendChild(el("strong",null,inline(b.title||"Game")));
+    q.appendChild(el("strong",null,inline(b.title||t("game"))));
     if(b.intro) q.appendChild(el("p","muted",inline(b.intro)));
     (b.levels||[]).forEach(function(lv){
       var box = el("div","lvl");
       var head = el("div");
-      head.appendChild(el("strong",null,"Level "+lv.level+(lv.label?" — "+inline(lv.label):"")));
+      head.appendChild(el("strong",null,t("levelN")(lv.level)+(lv.label?" — "+inline(lv.label):"")));
       jobChip(head, lv, learnersByName);
       box.appendChild(head);
       (lv.items||[]).forEach(function(it){
@@ -1011,7 +1052,7 @@
         var pr = el("div","part-result "+(ok?"ok":"no"));
         pr.appendChild(el("strong",null,inline(p.label)+": "));
         pr.appendChild(document.createTextNode(chosen!=null?inline(chosen):"—"));
-        if(!ok) pr.appendChild(el("span","muted"," (best: "+inline(p.best)+")"));
+        if(!ok) pr.appendChild(el("span","muted",t("bestFmt")(inline(p.best))));
         if(p.why) pr.appendChild(el("div","why",inline(p.why)));
         g.appendChild(pr);
       });
@@ -1098,7 +1139,7 @@
           stage.innerHTML = SceneLib.svgFor(u.scene, u.params, theme, ulvl);
           stage.setAttribute("aria-label", SceneLib.altFor(u.scene, u.params, theme, ulvl));
         } else {
-          stage.appendChild(el("p","muted","A diagram goes here. Open the printable sheet to see it."));
+          stage.appendChild(el("p","muted",t("diagramHere")));
         }
       });
     }
@@ -1108,21 +1149,21 @@
     var streak = 0;
     if (b.answer !== undefined && b.answer !== null && b.answer !== ""){
       var row = el("div","ans");
-      var inp = el("input"); inp.type = "text"; inp.setAttribute("aria-label","Your answer"); inp.placeholder = "Your answer";
-      var btn = el("button","chk","Check");
-      var tag = el("span","lvl-tag","Level "+level);
+      var inp = el("input"); inp.type = "text"; inp.setAttribute("aria-label",t("yourAnswer")); inp.placeholder = t("yourAnswer");
+      var btn = el("button","chk",t("check"));
+      var tag = el("span","lvl-tag",t("levelN")(level));
       row.appendChild(inp); row.appendChild(btn); row.appendChild(tag);
       box.appendChild(row);
       var fb = el("p","fb"); box.appendChild(fb);
       function check(){
         if (normAnswer(inp.value) === normAnswer(b.answer)){
           streak++;
-          fb.textContent = "That’s it." + (b.why ? " " + inline(b.why) : "");
+          fb.textContent = t("thatsIt") + (b.why ? " " + inline(b.why) : "");
           fb.className = "fb ok";
         } else {
           streak = 0;
-          if (level > 1){ level--; mountAll(level); tag.textContent = "Level "+level; }
-          fb.textContent = "Not quite — have another go.";
+          if (level > 1){ level--; mountAll(level); tag.textContent = t("levelN")(level); }
+          fb.textContent = t("tryAgain");
           fb.className = "fb";
         }
       }
