@@ -1,0 +1,228 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { library, byKind } from '../../../data/library.js';
+
+// /metadax/showcases/ -- the library index, 2026-10-18 (PUBLISH-1018 D3). This
+// path used to redirect to /metadax/samples/#h-showcases (a meta-refresh set in
+// astro.config.mjs); that redirect is gone and this is a real page now. It
+// reads the one registry (src/data/library.js) and groups everything public:
+// showcases and kits (editions nested), the six family pages three steps in,
+// the sample packages, and the run reports. A new showcase lands in the
+// registry once and appears here with no edit to this file.
+//
+// The filter chips are a few lines of inline JS that hide cards; the page reads
+// in full with JS off (every card ships in the HTML; the chips just toggle).
+//
+// Rules: guide, learner, never "role"; a way, never the way; no AI vendor
+// named; no prices.
+
+const chairPages = {
+  parent: '/metadax/homeschool/',
+  tutor: '/metadax/tutor/',
+  teacher: '/metadax/teacher/',
+  trainer: '/metadax/trainer/',
+  researcher: '/metadax/research/',
+};
+const chairLabel = {
+  parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher',
+  trainer: 'Trainer', researcher: 'Researcher',
+};
+
+const byDateDesc = (a, b) => new Date(b.date) - new Date(a.date);
+const editions = byKind('edition');
+const editionsFor = (id) => editions.filter((e) => e.id.startsWith(id + '-'));
+
+const groups = [
+  { id: 'showcases', title: 'Showcases and kits', items: [...byKind('showcase'), ...byKind('kit')].sort(byDateDesc), nested: true },
+  { id: 'family', title: 'Three steps in', items: byKind('family') },
+  { id: 'samples', title: 'Sample packages', items: byKind('sample') },
+  { id: 'runs', title: 'Run reports', items: byKind('run') },
+];
+
+const allChairs = ['parent', 'tutor', 'teacher', 'trainer', 'researcher'];
+const allLangs = Array.from(
+  new Set(library.flatMap((e) => (e.lang ? e.lang.split('+') : []))),
+).sort();
+
+const fmtDate = (d) =>
+  new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const langTokens = (e) => (e.lang ? e.lang.split('+').join(' ') : '');
+---
+<Base title="Meta DAX: the library" description="The whole Meta DAX library in one place: immersive showcases, player kits and their editions, the six family pages three steps in, the sample packages and the run reports. Filter by chair or language. A way, never the way." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; The library</p>
+    <h1>The library</h1>
+    <p class="lede-text">
+      The same recipe built every one of these, from one sentence and what the
+      learner already loves. Pick your chair &mdash; parent, tutor, teacher,
+      trainer or researcher &mdash; and filter the library down to the work built
+      for it.
+    </p>
+  </section>
+
+  <section class="filters" aria-label="Filter the library">
+    <div class="chip-row">
+      <span class="chip-label">Chair</span>
+      {allChairs.map((c) => (
+        <button type="button" class="chip" data-chair={c}>{chairLabel[c]}</button>
+      ))}
+    </div>
+    <div class="chip-row">
+      <span class="chip-label">Language</span>
+      {allLangs.map((l) => (
+        <button type="button" class="chip" data-lang={l}>{l}</button>
+      ))}
+    </div>
+    <p class="chip-clear"><button type="button" id="clear" class="linkbtn" hidden>Clear filters</button></p>
+  </section>
+
+  {groups.map((g) => (
+    <section class="group" id={`g-${g.id}`} aria-labelledby={`h-${g.id}`}>
+      <h2 id={`h-${g.id}`}>{g.title}</h2>
+      <ul class="cards">
+        {g.items.map((e) => (
+          <li class="card" data-chairs={(e.chairs || []).join(' ')} data-lang={langTokens(e)}>
+            <p class="card-top">
+              <span class="kind">{e.kind}</span>
+              {e.lang && <span class="lang">{e.lang}</span>}
+            </p>
+            <h3 class="card-title">
+              {e.external
+                ? <a href={e.url} rel="noopener">{e.title}</a>
+                : <a href={e.url}>{e.title}</a>}
+            </h3>
+            {e.note && <p class="card-note">{e.note}</p>}
+            <p class="card-chairs">
+              {(e.chairs || []).map((c) => (
+                <a class="chair" href={chairPages[c]}>{chairLabel[c]}</a>
+              ))}
+            </p>
+            <p class="card-foot">
+              <span class="date">{fmtDate(e.date)}</span>
+              <span class="actions">
+                <a href={e.url} rel={e.external ? 'noopener' : undefined}>Open</a>
+                {e.play && <a href={e.play}>Play</a>}
+                {e.repo && <a href={e.repo} rel="noopener">Repo</a>}
+              </span>
+            </p>
+            {g.nested && editionsFor(e.id).length > 0 && (
+              <ul class="editions">
+                {editionsFor(e.id).map((ed) => (
+                  <li class="edition">
+                    <span class="kind">edition</span>
+                    <a class="ed-title" href={ed.url}>{ed.title}</a>
+                    {ed.note && <span class="ed-note">{ed.note}</span>}
+                    <span class="actions">
+                      <a href={ed.url}>Open</a>
+                      {ed.play && <a href={ed.play}>Play</a>}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="empty" hidden>Nothing in this group matches that filter.</p>
+    </section>
+  ))}
+
+  <section class="also">
+    <p>
+      Also: the <a href="https://daxfoundation.github.io/metadax-learner-record/" rel="noopener">learner-record
+      template</a> &mdash; the record a guide or learner can keep and publish.
+    </p>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var chairChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-chair]'));
+      var langChips = Array.prototype.slice.call(document.querySelectorAll('.chip[data-lang]'));
+      var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+      var groups = Array.prototype.slice.call(document.querySelectorAll('.group'));
+      var clear = document.getElementById('clear');
+      function active(chips) {
+        return chips.filter(function (c) { return c.classList.contains('on'); })
+          .map(function (c) { return c.dataset.chair || c.dataset.lang; });
+      }
+      function apply() {
+        var chairs = active(chairChips);
+        var langs = active(langChips);
+        cards.forEach(function (card) {
+          var cc = (card.dataset.chairs || '').split(' ').filter(Boolean);
+          var cl = (card.dataset.lang || '').split(' ').filter(Boolean);
+          var okChair = !chairs.length || chairs.some(function (x) { return cc.indexOf(x) !== -1; });
+          var okLang = !langs.length || langs.some(function (x) { return cl.indexOf(x) !== -1; });
+          card.hidden = !(okChair && okLang);
+        });
+        groups.forEach(function (g) {
+          var vis = g.querySelectorAll('.card:not([hidden])').length;
+          var empty = g.querySelector('.empty');
+          if (empty) empty.hidden = vis !== 0;
+        });
+        clear.hidden = !(chairs.length || langs.length);
+      }
+      chairChips.concat(langChips).forEach(function (chip) {
+        chip.addEventListener('click', function () { chip.classList.toggle('on'); apply(); });
+      });
+      clear.addEventListener('click', function () {
+        chairChips.concat(langChips).forEach(function (c) { c.classList.remove('on'); });
+        apply();
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 1.5rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; }
+  .lede-text { margin: 0; max-width: 42em; color: #cfcfcf; }
+
+  .filters { padding-block: 1.25rem 0.5rem; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 0.6rem; }
+  .chip-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.5rem; }
+  .chip-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-right: 0.3rem; min-width: 5rem; }
+  .chip { font: inherit; font-size: 0.8125rem; color: #cfcfcf; background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 0.2rem 0.75rem; cursor: pointer; }
+  .chip:hover, .chip:focus-visible { border-color: var(--muted); }
+  .chip.on { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .chip-clear { margin: 0.2rem 0 0.5rem; }
+  .linkbtn { font: inherit; font-size: 0.8125rem; color: var(--muted); background: none; border: 0; border-bottom: 1px solid var(--faint); padding: 0; cursor: pointer; }
+  .linkbtn:hover, .linkbtn:focus-visible { color: var(--fg); }
+
+  .group { padding-block: 2rem; border-top: 1px solid var(--line); }
+  .group:first-of-type { border-top: 0; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.1rem 1.1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .card[hidden] { display: none; }
+  .card-top { margin: 0; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .kind { font-size: 0.6875rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--faint); }
+  .lang { font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 0.02rem 0.45rem; }
+  .card-title { margin: 0; font-size: 1.05rem; font-weight: 500; line-height: 1.25; }
+  .card-title a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .card-title a:hover, .card-title a:focus-visible { border-bottom-color: currentColor; }
+  .card-note { margin: 0; font-size: 0.9rem; line-height: 1.45; color: #bdbdbd; }
+  .card-chairs { margin: 0.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .chair { font-size: 0.7rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.5rem; }
+  .chair:hover, .chair:focus-visible { border-color: var(--muted); color: var(--fg); }
+  .card-foot { margin: auto 0 0; padding-top: 0.5rem; display: flex; justify-content: space-between; align-items: baseline; gap: 0.75rem; flex-wrap: wrap; }
+  .date { font-size: 0.75rem; color: var(--faint); }
+  .actions { display: flex; gap: 0.75rem; font-size: 0.875rem; }
+  .actions a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .actions a:hover, .actions a:focus-visible { border-bottom-color: currentColor; }
+
+  .editions { list-style: none; margin: 0.6rem 0 0; padding: 0.6rem 0 0; border-top: 1px dashed var(--line); display: grid; gap: 0.4rem; }
+  .edition { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 0.6rem; font-size: 0.85rem; }
+  .ed-title { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); font-weight: 500; }
+  .ed-title:hover, .ed-title:focus-visible { border-bottom-color: currentColor; }
+  .ed-note { color: #bdbdbd; flex: 1 1 12rem; }
+
+  .empty { color: var(--muted); font-size: 0.9rem; }
+  .also { padding-block: 2rem 3rem; border-top: 1px solid var(--line); max-width: 42em; color: #cfcfcf; }
+  .also a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .also a:hover, .also a:focus-visible { border-bottom-color: currentColor; }
+
+  @media (max-width: 40rem) { .cards { grid-template-columns: 1fr; } }
+</style>

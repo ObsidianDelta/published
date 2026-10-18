@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="A tutor's kit for turning sentences into equations: five interactive 3D scenes, three routes for the time you have, and a pause built into every example. A MetaDAX showcase, built from one tutor's interview.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcases/words-into-algebra/">
+<meta property="og:title" content="Words into Algebra — a MetaDAX showcase">
+<meta property="og:description" content="The hardest step in algebra isn't solving the equation. It's writing it. A tutor's kit of five interactive 3D scenes, three routes, and a pause before every example.">
+<meta property="og:image" content="https://daxfoundation.org/og/cards/words-into-algebra.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A balance scale holding two scarves and a badge against one scarf and a programme — turning a sentence into an equation.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://daxfoundation.org/og/cards/words-into-algebra.png">
+<title>Words into Algebra — a MetaDAX showcase</title>
+<script>document.documentElement.classList.add("js");</script>
+<style>/* Words into Algebra — a calm tutor's kit. System fonts only, no web-font
+   fetch; plain HTML/CSS/SVG, with a live 3D scene imported from the player at
+   runtime. Mobile-first. The kit's own palette: earth-tone green, no brown. */
+:root {
+  --paper:  #f3f5ee;
+  --card:   #ffffff;
+  --wash:   #e6ecdf;
+  --ink:    #1e2a1b;
+  --muted:  #4f5e49;
+  --moss:   #4c6a41;
+  --sage:   #9dc08e;
+  --slate:  #3d5a6b;
+  --on-moss:#ffffff;
+  --line:   #dbe3d2;
+  --line-wash: #cdd8c1;
+  --radius: 14px;
+  --shadow: 0 1px 2px rgba(30,42,27,.05), 0 8px 24px rgba(30,42,27,.06);
+  --tap: 44px;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #141912; --card: #1c2319; --wash: #232b20; --ink: #e4ecdf; --muted: #a9b7a2;
+    --moss: #9dc08e; --sage: #9dc08e; --slate: #9cc0d4; --on-moss: #141912;
+    --line: #2d3728; --line-wash: #313c2c;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #141912; --card: #1c2319; --wash: #232b20; --ink: #e4ecdf; --muted: #a9b7a2;
+  --moss: #9dc08e; --sage: #9dc08e; --slate: #9cc0d4; --on-moss: #141912;
+  --line: #2d3728; --line-wash: #313c2c;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--font-sans); font-size: 1.0625rem; line-height: 1.6;
+  overflow-x: hidden;
+}
+h1, h2, h3, .serif { font-family: var(--font-serif); line-height: 1.15; font-weight: 600; }
+a { color: var(--moss); }
+a:hover { text-decoration: underline; }
+img, svg { max-width: 100%; }
+:focus-visible { outline: 3px solid var(--slate); outline-offset: 3px; border-radius: 6px; }
+.skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--paper); padding: 10px 14px; z-index: 50; border-radius: 0 0 8px 0; }
+.skip:focus { left: 0; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+@media (max-width: 480px) { .wrap { padding: 0 16px; } }
+
+/* Header strip */
+.bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark { width: 34px; height: 34px; flex: 0 0 auto; }
+.brand-name { font-family: var(--font-serif); font-weight: 600; font-size: 1.15rem; }
+.brand-sub { color: var(--muted); font-size: .82rem; }
+.bar-spacer { flex: 1 1 auto; }
+.ghost {
+  min-height: 40px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 9px;
+  background: var(--card); color: var(--ink); cursor: pointer; font: inherit; font-size: .95rem;
+}
+.ghost:hover { border-color: var(--moss); }
+
+/* Sections */
+section { padding: 56px 0; }
+@media (max-width: 600px) { section { padding: 40px 0; } }
+.section-kicker { font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 20px; }
+.lede-wide { max-width: 64ch; }
+
+/* Cards, generic */
+.card {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 26px; box-shadow: var(--shadow);
+}
+
+/* Reveal on scroll */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .js .reveal { opacity: 1 !important; transform: none !important; } }
+
+/* ---- Hero ------------------------------------------------------------- */
+.hero { padding-top: 48px; }
+/* Phones: title, then the live balance, then the rest, so the 3D scene is on
+   the first screen. Wide screens: text left, scene right, as before. */
+.hero-grid { display: grid; gap: 24px; align-items: center; }
+@media (max-width: 879px) { .hero { padding-top: 28px; } .hero-intro .hook { margin-bottom: 0; } }
+@media (min-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr 1fr; column-gap: 48px; row-gap: 0; grid-template-areas: "intro scene" "rest scene"; }
+  .hero-intro { grid-area: intro; align-self: end; }
+  .hero-rest { grid-area: rest; align-self: start; }
+  .hero-scene { grid-area: scene; }
+}
+.kicker { font-size: .82rem; letter-spacing: .08em; text-transform: uppercase; color: var(--moss); margin: 0 0 16px; font-weight: 600; }
+.hero h1 { font-size: clamp(2.4rem, 5vw, 4.2rem); margin: 0 0 18px; }
+.hook { font-family: var(--font-serif); font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; color: var(--ink); margin: 0 0 20px; }
+.sub { color: var(--muted); max-width: 52ch; margin: 0 0 28px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  min-height: var(--tap); padding: 12px 22px; border-radius: 11px; font: inherit; font-weight: 600;
+  text-decoration: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid transparent;
+}
+.btn.primary { background: var(--moss); color: var(--on-moss); border-color: var(--moss); }
+.btn.primary:hover { filter: brightness(1.06); text-decoration: none; }
+.btn.secondary { background: var(--card); color: var(--ink); border-color: var(--line); }
+.btn.secondary:hover { border-color: var(--moss); text-decoration: none; }
+.btn-link { color: var(--moss); font-weight: 600; min-height: var(--tap); display: inline-flex; align-items: center; }
+
+.scene-hero { background: var(--wash); border: 1px solid var(--line-wash); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow); }
+.stage { width: 100%; }
+.stage canvas, .stage > svg { width: 100%; aspect-ratio: 16 / 10; border-radius: 10px; display: block; background: var(--sage); }
+@media (min-width: 880px) { .stage canvas, .stage > svg { aspect-ratio: 4 / 3; } }
+.scene-caption { margin: 12px 4px 2px; color: var(--muted); font-size: .92rem; }
+.scene-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.scene-controls button {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  min-height: 40px; padding: 0 14px; font: inherit; color: var(--ink); cursor: pointer;
+}
+.scene-controls button:hover,
+.scene-controls button:focus-visible { border-color: var(--moss); }
+.scene-controls button:disabled { opacity: .4; cursor: default; }
+.scene-eq { font-family: var(--font-mono); font-size: 1.05rem; color: var(--ink); margin-top: 8px; }
+
+/* sage wash sections */
+.washed { background: var(--wash); }
+.washed .card { background: var(--card); }
+
+/* ---- Preface ---------------------------------------------------------- */
+.preface p { max-width: 68ch; }
+.preface ul { max-width: 68ch; margin: 18px 0; padding-left: 0; list-style: none; display: grid; gap: 12px; }
+.preface li { padding-left: 20px; position: relative; }
+.preface li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
+.preface li b, .preface li strong { color: var(--ink); }
+
+/* ---- The five sentences ---------------------------------------------- */
+.sentences-grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.scard { display: flex; flex-direction: column; gap: 10px; }
+.scard .thumb { width: 100%; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: var(--sage); border: 1px solid var(--line-wash); }
+.scard .thumb svg { width: 100%; height: 100%; display: block; }
+.scard h3 { font-size: 1.25rem; margin: 4px 0 0; }
+.scard .quote { font-style: italic; color: var(--ink); margin: 0; }
+.scard .eq { font-family: var(--font-mono); font-size: 1.1rem; color: var(--moss); background: var(--wash); border-radius: 8px; padding: 8px 12px; margin: 0; align-self: flex-start; }
+.scard .lesson { color: var(--muted); margin: 0; font-size: .95rem; }
+.scard .lesson b { color: var(--ink); }
+
+.pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.pill { font-size: .88rem; padding: 8px 16px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); color: var(--muted); }
+
+/* ---- About ------------------------------------------------------------ */
+.about-grid { display: grid; gap: 20px; }
+@media (min-width: 820px) { .about-grid { grid-template-columns: 1fr 1fr; gap: 24px; } }
+.panel h3 { font-size: 1.4rem; margin: 0 0 18px; color: var(--moss); }
+.panel .items { display: grid; gap: 16px; }
+.panel .items > div > b, .panel .items .lead { display: block; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.panel .items p { margin: 0; color: var(--muted); }
+
+/* ---- What only a person can do --------------------------------------- */
+.only-person { }
+.only-person .inner { max-width: 60ch; margin: 0 auto; text-align: left; }
+.only-person h2 { text-align: left; }
+.only-person p { font-family: var(--font-serif); font-size: clamp(1.25rem, 2.3vw, 1.6rem); line-height: 1.45; margin: 0 0 24px; }
+
+/* ---- How it was made -------------------------------------------------- */
+.timeline { display: grid; gap: 20px; counter-reset: step; }
+@media (min-width: 860px) { .timeline { grid-template-columns: repeat(4, 1fr); gap: 22px; } }
+.tstep { position: relative; padding-top: 50px; }
+.tstep::before {
+  counter-increment: step; content: counter(step);
+  position: absolute; top: 0; left: 0; width: 38px; height: 38px; border-radius: 50%;
+  background: var(--moss); color: var(--on-moss); font-family: var(--font-serif); font-weight: 600;
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+}
+.tstep h3 { font-size: 1.2rem; margin: 0 0 8px; }
+.tstep p { margin: 0; color: var(--muted); }
+
+/* ---- Make one --------------------------------------------------------- */
+.make-grid { display: grid; gap: 20px; }
+@media (min-width: 720px) { .make-grid { grid-template-columns: 1fr 1fr; } }
+.make-card { display: block; text-decoration: none; color: inherit; transition: border-color .2s; }
+.make-card:hover { border-color: var(--moss); text-decoration: none; }
+.make-card h3 { font-size: 1.3rem; margin: 0 0 8px; color: var(--moss); }
+.make-card p { margin: 0; color: var(--muted); }
+.make-link { margin-top: 24px; font-weight: 600; }
+
+/* ---- Footer ----------------------------------------------------------- */
+.footnote { text-align: center; padding: 48px 0 8px; }
+.footnote .serif-note { font-family: var(--font-serif); font-size: 1.3rem; color: var(--ink); margin: 0 0 12px; }
+.footnote p { color: var(--muted); margin: 0; max-width: 60ch; margin-left: auto; margin-right: auto; }
+.foot { border-top: 1px solid var(--line); padding: 24px 0 60px; color: var(--muted); font-size: .9rem; }
+.foot p { margin: 6px 0; }
+.badge { display: inline-block; font-size: .75rem; padding: 2px 9px; border-radius: 999px; background: var(--wash); border: 1px solid var(--line); color: var(--muted); margin-right: 6px; }
+
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+/* smooth scroll; disabled under reduced motion */
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---- Hero edition link -------------------------------------------------- */
+.hero-new-link { margin-top: 12px; font-size: .9rem; color: var(--muted); }
+.hero-new-link a { color: var(--moss); font-weight: 600; }
+
+/* ---- Editions ------------------------------------------------------------- */
+.editions-cards { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 759px) { .editions-cards { grid-template-columns: 1fr; } }
+.ecard { display: flex; flex-direction: column; gap: 14px; }
+.ecard .ehead { font-size: 1.3rem; margin: 0; font-family: var(--font-serif); font-weight: 600; color: var(--ink); }
+.ecard .etag { font-size: .8rem; color: var(--muted); font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin: 0; }
+.ecard .escene { width: 100%; aspect-ratio: 16/10; border-radius: 10px; overflow: hidden; background: var(--sage); border: 1px solid var(--line-wash); }
+.ecard .escene canvas, .ecard .escene > svg { width: 100%; height: 100%; display: block; }
+.ecard .equote { font-style: italic; color: var(--ink); margin: 0; font-family: var(--font-serif); font-size: 1rem; line-height: 1.45; }
+.ecard .etext { margin: 0; color: var(--muted); font-size: .95rem; }
+
+/* space card: fixed dark background in both light and dark modes */
+.space-card {
+  position: relative;
+  isolation: isolate;
+  background: #0a0f24 !important;
+  border-color: #1a2545 !important;
+}
+.space-card .ehead, .space-card .equote { color: #e8ecff; }
+.space-card .etag, .space-card .etext { color: #aab3dd; }
+.space-card .escene { background: #0b1226; border-color: #1a2545; }
+.space-card .btn.primary { background: #9db4ff; color: #0a0f24; border-color: #9db4ff; }
+.space-card::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  border-radius: var(--radius); pointer-events: none;
+  background:
+    radial-gradient(circle 1.2px at 13% 11%, rgba(255,255,255,.9)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 33%  7%, rgba(255,255,255,.6)  0%, transparent 100%),
+    radial-gradient(circle 1.4px at 71% 17%, rgba(255,255,255,.8)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 89%  6%, rgba(255,255,255,.65) 0%, transparent 100%),
+    radial-gradient(circle  .9px at  5% 44%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle 1.1px at 54% 34%, rgba(255,255,255,.75) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 91% 41%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 24% 64%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle 1.2px at 77% 57%, rgba(255,255,255,.7)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 43% 77%, rgba(255,255,255,.5)  0%, transparent 100%),
+    radial-gradient(circle  .9px at 61% 87%, rgba(255,255,255,.55) 0%, transparent 100%),
+    radial-gradient(circle   1px at  9% 89%, rgba(255,255,255,.45) 0%, transparent 100%),
+    radial-gradient(circle  .9px at 82% 81%, rgba(255,255,255,.6)  0%, transparent 100%);
+  animation: twinkle-stars 4s ease-in-out infinite alternate;
+}
+@keyframes twinkle-stars { from { opacity: 1; } to { opacity: .45; } }
+@media (prefers-reduced-motion: reduce) { .space-card::before { animation: none; } }
+
+/* editions comparison lists */
+.editions-lists { display: grid; gap: 24px; grid-template-columns: 1fr 1fr; margin-top: 32px; }
+@media (max-width: 480px) { .editions-lists { grid-template-columns: 1fr; } }
+.editions-list h3 { font-size: 1rem; font-weight: 700; color: var(--ink); margin: 0 0 10px; }
+.editions-list ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.editions-list li { padding-left: 18px; position: relative; color: var(--muted); font-size: .93rem; }
+.editions-list li::before { content: ""; position: absolute; left: 0; top: .66em; width: 6px; height: 6px; border-radius: 50%; background: var(--moss); }
+
+/* editions real-world hook */
+.hook-fact { background: var(--wash); border: 1px solid var(--line-wash); border-radius: var(--radius); padding: 24px 26px; margin-top: 28px; }
+.hook-fact h3 { font-size: 1.05rem; margin: 0 0 8px; color: var(--ink); font-weight: 700; }
+.hook-fact p { margin: 0; color: var(--muted); max-width: 68ch; }
+
+/* ---- How the pieces fit -------------------------------------------------- */
+.pieces-chain { display: flex; align-items: stretch; gap: 4px; margin: 32px 0 28px; }
+@media (max-width: 700px) { .pieces-chain { flex-direction: column; gap: 0; } }
+.pstep {
+  flex: 1; background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 18px 16px;
+}
+.pconn {
+  flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+  color: var(--muted); font-size: 1.1rem; width: 28px;
+}
+.pconn::after { content: "→"; }
+@media (max-width: 700px) { .pconn { width: auto; height: 28px; } .pconn::after { content: "↓"; } }
+.pstep-num { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 3px; }
+.pstep-label { font-weight: 700; color: var(--ink); font-size: .97rem; margin: 0 0 6px; }
+.pstep-desc { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.5; }
+
+/* copy box */
+.copy-box { position: relative; margin-top: 14px; }
+.copy-box pre {
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 16px 72px 16px 18px; font-family: var(--font-mono); font-size: .875rem;
+  color: var(--ink); white-space: pre-wrap; word-break: break-word; margin: 0; line-height: 1.6;
+}
+.copy-btn {
+  position: absolute; top: 10px; right: 10px; min-height: 36px; padding: 0 14px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px;
+  font: inherit; font-size: .85rem; color: var(--muted); cursor: pointer; white-space: nowrap;
+}
+.copy-btn:hover { border-color: var(--moss); color: var(--ink); }
+.copy-btn.copied { border-color: var(--moss); color: var(--moss); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="bar">
+  <div class="wrap" style="display:flex;align-items:center;gap:12px;width:100%;">
+    <span class="brand">
+      <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <path d="M20 6v26" stroke="#4c6a41" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M7 14h26" stroke="#4c6a41" stroke-width="2.4" stroke-linecap="round"/>
+        <circle cx="20" cy="6" r="2.4" fill="#4c6a41"/>
+        <path d="M7 14l-4 8a4 4 0 0 0 8 0z" fill="#9dc08e" stroke="#4c6a41" stroke-width="1.6" stroke-linejoin="round"/>
+        <path d="M33 14l-4 8a4 4 0 0 0 8 0z" fill="#9dc08e" stroke="#4c6a41" stroke-width="1.6" stroke-linejoin="round"/>
+      </svg>
+      <span>
+        <span class="brand-name">Words into Algebra</span><br>
+        <span class="brand-sub">A MetaDAX showcase</span>
+      </span>
+    </span>
+    <span class="bar-spacer"></span>
+    <button class="ghost" id="theme-btn" type="button">Theme</button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-intro">
+          <p class="kicker">A tutor's kit · O-level maths · ages 15 to 16</p>
+          <h1 id="hero-h">Words into Algebra</h1>
+          <p class="hook">The hardest step in algebra isn't solving the equation. It's writing it.</p>
+        </div>
+        <div class="hero-scene">
+          <div class="scene-hero">
+            <div class="stage" id="hero-stage" role="img" aria-label="A balance scale: two scarves and a 4 pound badge on one side, one scarf and an 11 pound programme on the other."></div>
+            <p class="scene-caption">Take the same off both sides. The balance never tips.</p>
+          </div>
+        </div>
+        <div class="hero-rest">
+          <p class="sub">A maths tutor told us the one topic he found hardest to teach: turning a sentence into algebra. He also told us his hardest problem as a tutor: the clock. This is what MetaDAX built from that conversation. A complete two-sided kit, five interactive 3D scenes, and a pause built into every example.</p>
+          <div class="cta">
+            <a class="btn primary" href="/metadax/play/?sample=words-into-algebra">Open the kit</a>
+            <button class="btn secondary" id="try-balance" type="button">Try the balance</button>
+            <a class="btn-link" href="#make">Make one for your learner</a>
+          </div>
+          <p class="hero-new-link">New: the same kit, re-made for one learner. <a href="#editions">Meet Nova's Edition</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. What you're looking at -->
+  <section class="washed" aria-labelledby="preface-h">
+    <div class="wrap">
+      <div class="card preface reveal">
+        <p class="section-kicker">What you're looking at</p>
+        <h2 id="preface-h">A kit one tutor could make in a sitting</h2>
+        <p>This is a showcase of something a tutor can make for one learner, in one sitting, on their own AI subscription.</p>
+        <p>It began as an interview. A tutor who taught maths in England, mostly to students of fifteen and sixteen at O-level standard, was asked a few plain questions: what learners find hardest, what he found hardest to teach, and what he wished he had. His answers shaped every part of this kit.</p>
+        <ul>
+          <li><b>The hardest topic: sentences into equations.</b> Learners who can solve 3x + 4 = 19 freeze when the same thing arrives as words.</li>
+          <li><b>The hardest problem: time.</b> He always felt he was racing the clock.</li>
+          <li><b>His first idea for fixing it: give the learner more time to explain.</b></li>
+        </ul>
+        <p>MetaDAX took those answers and built a kit with two sides: one page for the tutor, one for the learner. The learner's world here is football, but that is a setting, not a limit. One line rebuilds it for any interest.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The five sentences -->
+  <section aria-labelledby="five-h">
+    <div class="wrap">
+      <p class="section-kicker">Five sentences</p>
+      <h2 id="five-h">The five sentences</h2>
+      <div class="sentences-grid">
+
+        <article class="card scard reveal">
+          <div class="thumb" data-scene="function-machine" data-params='{"mul":2,"add":5,"input":9,"hide_input":true}'></div>
+          <h3>The number machine</h3>
+          <p class="quote">&ldquo;Double last season's goals, then add 5 cup goals, and you get 23.&rdquo;</p>
+          <p class="eq">2x + 5 = 23</p>
+          <p class="lesson"><b>Lesson:</b> undo the last step first.</p>
+        </article>
+
+        <article class="card scard reveal">
+          <div class="thumb" data-scene="balance" data-params='{"left_x":2,"left_c":4,"right_x":1,"right_c":11}'></div>
+          <h3>The balance</h3>
+          <p class="quote">&ldquo;Two scarves and a 4 pound badge cost the same as one scarf and an 11 pound programme.&rdquo;</p>
+          <p class="eq">2x + 4 = x + 11</p>
+          <p class="lesson"><b>Lesson:</b> &ldquo;costs the same as&rdquo; is the equals sign.</p>
+        </article>
+
+        <article class="card scard reveal">
+          <div class="thumb" data-scene="bar-model" data-params='{"extras":[0,1,2],"total":72}'></div>
+          <h3>Shirt numbers</h3>
+          <p class="quote">&ldquo;Three players have shirt numbers in a row. They add up to 72.&rdquo;</p>
+          <p class="eq">n + (n + 1) + (n + 2) = 72</p>
+          <p class="lesson"><b>Lesson:</b> one more each time, not double.</p>
+        </article>
+
+        <article class="card scard reveal">
+          <div class="thumb" data-scene="bar-model" data-params='{"extras":[0,30,0,30],"total":340}'></div>
+          <h3>The pitch</h3>
+          <p class="quote">&ldquo;A pitch is 30 m longer than it is wide. Its perimeter is 340 m.&rdquo;</p>
+          <p class="eq">2w + 2(w + 30) = 340</p>
+          <p class="lesson"><b>Lesson:</b> four sides, not two.</p>
+        </article>
+
+        <article class="card scard reveal">
+          <div class="thumb" data-scene="algebra-tiles" data-params='{"groups":4,"xs":1,"units":3,"total":56}'></div>
+          <h3>The tickets</h3>
+          <p class="quote">&ldquo;Each ticket costs x pounds plus a 3 pound booking fee. Four tickets cost 56 pounds.&rdquo;</p>
+          <p class="eq">4(x + 3) = 56</p>
+          <p class="lesson"><b>Lesson:</b> this is where brackets come from.</p>
+        </article>
+
+      </div>
+
+      <div class="pills" aria-label="The four games in the kit">
+        <span class="pill">Words to symbols</span>
+        <span class="pill">Build the equation</span>
+        <span class="pill">Solve it in order</span>
+        <span class="pill">Say it in algebra, three levels</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Editions -->
+  <section id="editions" class="washed" aria-labelledby="editions-h">
+    <div class="wrap">
+      <p class="section-kicker">Editions</p>
+      <h2 id="editions-h">The same kit, re-aimed</h2>
+      <p class="lede-wide">A kit is a starting point. An Edition is the same kit re-made for one learner. Every mechanic, slip, route and scene is kept. The world and the words change, and the tutor's page is rewritten around who that learner is.</p>
+
+      <div class="editions-cards">
+
+        <div class="card ecard reveal">
+          <div class="escene" id="edition-stage-base" role="img" aria-label="A balance scale: the base kit scene at level 2."></div>
+          <p class="etag">Sam &middot; football</p>
+          <h3 class="ehead">The base kit</h3>
+          <p class="equote">&ldquo;Two scarves and a 4 pound badge cost the same as one scarf and an 11 pound programme.&rdquo;</p>
+          <p class="etext">Built for any learner. Goals, shirt numbers, a pitch, ticket prices.</p>
+          <a class="btn primary" href="/metadax/play/?sample=words-into-algebra">Open the base kit</a>
+        </div>
+
+        <div class="card ecard space-card reveal">
+          <div class="escene" id="edition-stage-nova" role="img" aria-label="A balance scale: Nova's Edition scene at level 2."></div>
+          <p class="etag">Nova, 15 &middot; into space</p>
+          <h3 class="ehead">Nova&rsquo;s Edition</h3>
+          <p class="equote">&ldquo;Two mission patches and a 4 pound star map cost the same as one patch and an 11 pound telescope filter.&rdquo;</p>
+          <p class="etext">Moon photos, meteor nights, mission patches, a launch-pad safety zone, planetarium tickets. The same equations, in her world.</p>
+          <a class="btn primary" href="/metadax/play/?sample=words-into-algebra-nova">Open Nova&rsquo;s Edition</a>
+        </div>
+
+      </div>
+
+      <div class="editions-lists">
+        <div class="editions-list">
+          <h3>What stayed</h3>
+          <ul>
+            <li>The five equations and their answers</li>
+            <li>The six named slips</li>
+            <li>The three routes and the fast path</li>
+            <li>The say-it-back pause before every example</li>
+            <li>The four games and the three quiz levels</li>
+            <li>The scenes, from the same shared library</li>
+          </ul>
+        </div>
+        <div class="editions-list">
+          <h3>What changed</h3>
+          <ul>
+            <li>Every sentence, now from her world</li>
+            <li>The skin: a starfield page and space versions of every scene</li>
+            <li>The tutor&rsquo;s page: who Nova is, and how to meet her there. &ldquo;Don&rsquo;t explain space to her: let her correct you.&rdquo;</li>
+            <li>A checked real-world hook for the tutor</li>
+            <li>Her role: mission control, calling go or no-go before each move</li>
+            <li>Her own mission problem at the end</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hook-fact reveal">
+        <h3>The real-world hook</h3>
+        <p>In April 2026, Artemis II flew four astronauts around the Moon. Christina Koch became the first woman, and Jeremy Hansen the first Canadian, to travel around the Moon. That fact sits on the tutor&rsquo;s page, not in Nova&rsquo;s questions, so nothing she answers depends on news she might not have seen.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. About -->
+  <section aria-labelledby="about-h">
+    <div class="wrap">
+      <p class="section-kicker">About</p>
+      <h2 id="about-h">About this kit</h2>
+      <div class="about-grid">
+
+        <div class="card panel reveal">
+          <h3>From the tutor's chair: time, handed back</h3>
+          <div class="items">
+            <div><span class="lead">Three routes, chosen before you start.</span><p>Quick, Standard or Deep. Each is complete on its own, and each ends with a note that tells the next session where to begin. You never have to finish everything. You only have to stop well.</p></div>
+            <div><span class="lead">A fast path.</span><p>If the learner gets the first three right first time, skip ahead to the pitch. If they miss two in a row, drop back to the balance. The kit decides nothing for you; it shows you where the doors are.</p></div>
+            <div><span class="lead">A translation strip.</span><p>The phrases and their signs on one screen: more than, less than, twice, shared equally, costs the same as. The trap that catches everyone is in plain sight: 5 less than x is x - 5, never 5 - x.</p></div>
+            <div><span class="lead">Six slips, named in advance.</span><p>Every wrong choice in every game is a specific mistake, and your page tells you what to say when it happens: the reversed subtraction, the missing bracket, consecutive numbers written as multiples, the perimeter counted once, half a sentence, the wrong operation.</p></div>
+            <div><span class="lead">The pause, built in.</span><p>Before every example, the learner says the sentence back in their own words, and you wait. It was the tutor's own idea, and the kit treats it as the method, not a nicety. If you are short of time, cut an example, not the pause.</p></div>
+            <div><span class="lead">Continuity.</span><p>At the end, tick what happened and add a line in your own words. The page writes a short next-time note. Paste it in next time, and the next session is built from where this one stopped.</p></div>
+          </div>
+        </div>
+
+        <div class="card panel reveal">
+          <h3>From the learner's chair: your world, your pace, your turn</h3>
+          <div class="items">
+            <div><span class="lead">It starts with what you know.</span><p>You are the football expert here, and the page says so. Every sentence comes from that world: goals, shirt numbers, ticket prices, the size of a pitch.</p></div>
+            <div><span class="lead">One question at a time.</span><p>Nothing is marked right before you choose. When you choose, the page tells you what happened, and if it was a slip, which one. &ldquo;Wrong&rdquo; becomes &ldquo;here is the exact thing to fix.&rdquo;</p></div>
+            <div><span class="lead">You move the maths.</span><p>Five scenes you can press: a number machine you run backwards, a balance that never tips whatever you take off, bars that share out, and tiles whose brackets open in your hands. The equation changes as you go.</p></div>
+            <div><span class="lead">Time to think.</span><p>Before every example: say it back first. No timer, no rush.</p></div>
+            <div><span class="lead">Then you lead.</span><p>At the end you make up a sentence about your own team, and the tutor turns it into algebra while you check them.</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. What only a person can do -->
+  <section class="washed only-person" aria-labelledby="person-h">
+    <div class="wrap">
+      <div class="inner reveal">
+        <p class="section-kicker">The human delta</p>
+        <h2 id="person-h">What only a person can do</h2>
+        <p>The kit can hold the structure: the order, the examples, the slips, the routes. It cannot read a face. It cannot tell the silence of thinking from the silence of being stuck, wait a few seconds longer than is comfortable, praise the sentence instead of the answer, or decide that today should end on something the learner got right.</p>
+        <p>Those belong to the tutor, and the kit says so on the tutor's page, in a card called What only you can do. MetaDAX calls this the <a href="/definitions/">human delta value</a>: what the person brought that the system could not. This kit is built to hand the tutor more of it, not less.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: How the pieces fit -->
+  <section aria-labelledby="pieces-h">
+    <div class="wrap">
+      <p class="section-kicker">The pieces</p>
+      <h2 id="pieces-h">How the pieces fit</h2>
+
+      <div class="pieces-chain" role="list">
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">1</p>
+          <p class="pstep-label">Player</p>
+          <p class="pstep-desc">One page that plays any package.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">2</p>
+          <p class="pstep-label">Scene library</p>
+          <p class="pstep-desc">Shared 3D pieces. The numbers, the skin and the level are separate, so a new skin never changes the maths.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">3</p>
+          <p class="pstep-label">Package</p>
+          <p class="pstep-desc">One file: a page for the guide and a page for the learner.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">4</p>
+          <p class="pstep-label">Edition</p>
+          <p class="pstep-desc">A package re-made for one learner: same mechanics, new world.</p>
+        </div>
+        <span class="pconn" aria-hidden="true"></span>
+        <div class="pstep" role="listitem">
+          <p class="pstep-num">5</p>
+          <p class="pstep-label">Showcase</p>
+          <p class="pstep-desc">A page like this one, for the people deciding whether to use it.</p>
+        </div>
+      </div>
+
+      <p>Make an Edition for your learner. Paste this into the MetaDAX prompt or skill:</p>
+      <div class="copy-box">
+        <pre id="prompt-copy-text">Build an Edition of the MetaDAX Words into Algebra kit for my learner. Keep the five worked examples, the scenes, the games, the six named slips, the three routes and the say-it-back pause. Re-make every sentence and the tutor notes for this learner: [age], loves [their interest], and [one thing about how they learn].</pre>
+        <button class="copy-btn" id="copy-prompt-btn" type="button">Copy</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. How it was made -->
+  <section aria-labelledby="made-h">
+    <div class="wrap">
+      <p class="section-kicker">How it was made</p>
+      <h2 id="made-h">How it was made</h2>
+      <div class="timeline">
+        <div class="tstep reveal">
+          <h3>A conversation</h3>
+          <p>A tutor answered a few plain questions about one topic and one kind of learner.</p>
+        </div>
+        <div class="tstep reveal">
+          <h3>One kit, checked</h3>
+          <p>MetaDAX turned the answers into a package: an open file with a page for the tutor and a page for the learner, checked by the same checker that runs in the player. Every answer was worked out and verified before it went out.</p>
+        </div>
+        <div class="tstep reveal">
+          <h3>A shared scene library</h3>
+          <p>The balance, the number machine, the bar model and the algebra tiles are now part of the player, so the next kit, in any subject or interest, can use them.</p>
+        </div>
+        <div class="tstep reveal">
+          <h3>Yours to remake</h3>
+          <p>Paste one line into the MetaDAX prompt or skill with your learner's interest, and the same kit comes back in their world. It runs on your own AI subscription. MetaDAX is free.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Make one for your learner -->
+  <section id="make" aria-labelledby="make-h">
+    <div class="wrap">
+      <p class="section-kicker">Make one for your learner</p>
+      <h2 id="make-h">Make one for your learner</h2>
+      <div class="make-grid">
+        <a class="card make-card reveal" href="/metadax/guide/claude-skill/">
+          <h3>In Claude</h3>
+          <p>Install the MetaDAX skill once, then ask for a lesson.</p>
+        </a>
+        <a class="card make-card reveal" href="/metadax/guide/any-ai/">
+          <h3>In any AI chat</h3>
+          <p>Paste one plain prompt and answer its questions.</p>
+        </a>
+      </div>
+      <p class="make-link"><a href="/metadax/samples/">See every showcase &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- 8. Footer note -->
+  <div class="wrap">
+    <div class="footnote reveal">
+      <p class="serif-note">A way, never the way.</p>
+      <p>Built by MetaDAX from one tutor's interview. Model-generated, checked for accuracy, not certified. The learner's name is made up.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p><span class="badge">Showcase</span> Model-generated example; reviewed for safety, not certified.</p>
+    <p>A MetaDAX showcase for tutors. A way, never the way.</p>
+  </div>
+</footer>
+
+<script type="module">
+// Words into Algebra — mounts the live 3D balance in the hero and the two
+// edition cards, and paints the five static SVG thumbnails. The page is fully
+// readable before any of this runs; a missing module or missing WebGL leaves
+// each stage on its SVG fallback and the copy untouched.
+const SCENES_URL = "/metadax/play/scenes/scenes.js";
+const THREE_URL = "/metadax/play/vendor/three.module.min.js";
+
+const reducedMotion = (() => {
+  try { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); }
+  catch (e) { return false; }
+})();
+
+// --- theme toggle ---------------------------------------------------------
+function currentlyDark() {
+  const set = document.documentElement.getAttribute("data-theme");
+  if (set) return set === "dark";
+  return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+}
+const themeBtn = document.getElementById("theme-btn");
+if (themeBtn) {
+  themeBtn.addEventListener("click", () => {
+    document.documentElement.setAttribute("data-theme", currentlyDark() ? "light" : "dark");
+  });
+}
+
+// --- "Try the balance" scrolls to the hero scene --------------------------
+const tryBtn = document.getElementById("try-balance");
+const heroStage = document.getElementById("hero-stage");
+if (tryBtn && heroStage) {
+  tryBtn.addEventListener("click", () => {
+    heroStage.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "center" });
+  });
+}
+
+// --- copy prompt button ---------------------------------------------------
+const copyBtn = document.getElementById("copy-prompt-btn");
+const copyText = document.getElementById("prompt-copy-text");
+if (copyBtn && copyText) {
+  copyBtn.addEventListener("click", () => {
+    try {
+      navigator.clipboard.writeText(copyText.textContent.trim()).then(() => {
+        copyBtn.textContent = "Copied!";
+        copyBtn.classList.add("copied");
+        setTimeout(() => { copyBtn.textContent = "Copy"; copyBtn.classList.remove("copied"); }, 2000);
+      }).catch(() => {
+        const r = document.createRange();
+        r.selectNodeContents(copyText);
+        const sel = window.getSelection();
+        if (sel) { sel.removeAllRanges(); sel.addRange(r); }
+        copyBtn.textContent = "Selected";
+        setTimeout(() => { copyBtn.textContent = "Copy"; }, 2000);
+      });
+    } catch (e) {}
+  });
+}
+
+// --- reveal-on-scroll -----------------------------------------------------
+(function reveal() {
+  const els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    els.forEach((el) => el.classList.add("in"));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
+  els.forEach((el) => io.observe(el));
+})();
+
+// --- scenes: thumbnails + live balances (hero + editions) -----------------
+const BALANCE_PARAMS = { left_x: 2, left_c: 4, right_x: 1, right_c: 11 };
+
+(async function scenes() {
+  let Scenes;
+  try {
+    Scenes = await import(SCENES_URL);
+  } catch (e) {
+    // No scene library: thumbnails stay on their sage wash, stages on their
+    // fallback background. Nothing throws.
+    return;
+  }
+
+  // Five static SVG thumbnails from svgFor(scene, params, 'sage', 1).
+  Array.prototype.forEach.call(document.querySelectorAll(".thumb"), (thumb) => {
+    const scene = thumb.getAttribute("data-scene");
+    let params = {};
+    try { params = JSON.parse(thumb.getAttribute("data-params") || "{}"); } catch (e) {}
+    try {
+      const svg = Scenes.svgFor(scene, params, "sage", 1);
+      if (svg) {
+        thumb.innerHTML = svg;
+        thumb.setAttribute("role", "img");
+        thumb.setAttribute("aria-label", Scenes.altFor(scene, params, "sage", 1));
+      }
+    } catch (e) { /* leave the wash */ }
+  });
+
+  // Import THREE once for all three live balances (hero + two editions).
+  let THREE;
+  try {
+    THREE = await import(THREE_URL);
+  } catch (e) {
+    // No THREE: fall back each live stage to its SVG.
+    [["hero-stage", "sage"], ["edition-stage-base", "sage"], ["edition-stage-nova", "space"]].forEach((pair) => {
+      const stage = document.getElementById(pair[0]);
+      if (!stage) return;
+      try {
+        const svg = Scenes.svgFor("balance", BALANCE_PARAMS, pair[1], 2);
+        if (svg) stage.innerHTML = svg;
+      } catch (e) {}
+    });
+    return;
+  }
+
+  function mountBalance(stageId, theme) {
+    const stage = document.getElementById(stageId);
+    if (!stage) return;
+    function fallback() {
+      try {
+        const svg = Scenes.svgFor("balance", BALANCE_PARAMS, theme, 2);
+        if (svg) stage.innerHTML = svg;
+      } catch (e) {}
+    }
+    try {
+      const def = Scenes.getScene("balance");
+      if (!def) { fallback(); return; }
+      stage.setAttribute("aria-label", Scenes.altFor("balance", BALANCE_PARAMS, theme, 2));
+      const handle = def.mount(THREE, stage, BALANCE_PARAMS, {
+        theme: theme, level: 2, reducedMotion: reducedMotion
+      });
+      if (handle && handle.resize && typeof ResizeObserver !== "undefined") {
+        const ro = new ResizeObserver(() => { try { handle.resize(); } catch (e) {} });
+        ro.observe(stage);
+      }
+    } catch (e) { fallback(); }
+  }
+
+  mountBalance("hero-stage", "sage");
+  mountBalance("edition-stage-base", "sage");
+  mountBalance("edition-stage-nova", "space");
+})();
+</script>
+</body>
+</html>

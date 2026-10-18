@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts, formatDate } from '../_posts.js';
+
+// /writing/ -- the Foundation's own pieces, added 2026-10-01. The long-form
+// work behind the Foundation stays on jeyanandan.com (see Reading on the home
+// page); what is here is written in the Foundation's voice, around the
+// definitions: the reasoning, the measures, the consequences.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
+---
+<Base
+  title="Writing · DAX Foundation"
+  description="Pieces written in the Foundation's voice, around its definitions: the reasoning, the measures, the consequences. Versioned, in public."
+>
+  <section class="lede" aria-labelledby="writing">
+    <h1 id="writing">Writing</h1>
+    <p class="body">
+      Pieces in the Foundation&rsquo;s voice, around the
+      <a href="/definitions/">definitions</a>: the reasoning, the measures,
+      the consequences. Each one shows when it was first published and when it
+      last changed, and links its full history in the public record.
+    </p>
+  </section>
+
+  <section class="block" aria-label="Pieces">
+    <ul class="rows">
+      {posts.map((p) => (
+        <li class="row">
+          <span class="when">
+            <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+            {p.updated && new Date(p.updated) > new Date(p.date) && (
+              <span class="upd">Updated {formatDate(p.updated)}</span>
+            )}
+          </span>
+          <span class="text">
+            <a class="title" href={`/writing/${p.slug}/`}>{p.title}</a>
+            {p.description && <p>{p.description}</p>}
+          </span>
+        </li>
+      ))}
+    </ul>
+    {posts.length === 0 && <p class="body">Nothing published yet.</p>}
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+  }
+  .body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  .block { padding-block: 1.25rem 2.25rem; border-top: 1px solid var(--line); }
+  .rows { list-style: none; margin: 0; padding: 0; }
+  .row {
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    gap: 0.25rem 1.5rem;
+    align-items: baseline;
+    padding-block: 0.9rem;
+  }
+  .row + .row { border-top: 1px solid var(--line); }
+  .when { display: flex; flex-direction: column; gap: 0.2rem; font-size: 0.8125rem; letter-spacing: 0.04em; color: var(--muted); }
+  .upd { color: var(--faint); }
+  .text p { margin: 0.4rem 0 0; color: #cfcfcf; }
+  .title { font-weight: 500; color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .title:hover, .title:focus-visible { border-bottom-color: currentColor; }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 2.5rem 2rem; }
+    .row { grid-template-columns: 1fr; }
+  }
+</style>

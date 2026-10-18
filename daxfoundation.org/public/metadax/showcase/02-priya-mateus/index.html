@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Make Your Case: a sample page from Meta DAX for Priya, an English teacher, and Mateus, 15, on a persuasive paragraph: claim, evidence, reasoning. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/02-priya-mateus/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="Make Your Case">
+<meta property="og:description" content="Make Your Case: a sample page from Meta DAX for Priya, an English teacher, and Mateus, 15, on a persuasive paragraph: claim, evidence, reasoning. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/02-priya-mateus/">
+<title>Make Your Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@400;600&family=Oswald:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ── Tokens ── */
+:root{
+  color-scheme:light;
+  --sh-bg:#f5f2ef;--sh-text:#1a1218;--sh-border:#cec5d8;--sh-muted:#8a7a8e;
+  --p-bg:#faf7f2;--p-surf:#f0e8dc;--p-ruled:#e0cfbc;--p-ink:#2c1f28;--p-ink2:#5c4358;
+  --p-plum:#6b3a5e;--p-plum2:#9c6b8a;--p-green:#3d7a56;--p-amber:#a06820;
+  --p-border:#cec0c8;--p-hf:'Lora',Georgia,serif;--p-bf:'Source Sans 3',system-ui,sans-serif;
+  --m-bg:#0b2424;--m-surf:#143232;--m-line:#1c4848;--m-ink:#eef8f7;--m-ink2:#8ecdc6;
+  --m-orange:#ff6b1a;--m-teal:#00c4b4;--m-border:#1c4848;
+  --m-hf:'Oswald',Impact,sans-serif;--m-bf:'Barlow',system-ui,sans-serif;
+}
+@media(prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --sh-bg:#160f14;--sh-text:#f0eaf4;--sh-border:#3a2e3e;--sh-muted:#9e8eaa;
+    --p-bg:#211828;--p-surf:#2e1f38;--p-ruled:#3d2a4a;--p-ink:#f0e8ed;--p-ink2:#c498b8;
+    --p-plum:#c498b8;--p-plum2:#9c6b8a;--p-green:#60aa80;--p-amber:#d09040;--p-border:#3d2a4a;
+    --m-bg:#061414;--m-surf:#0e2626;--m-line:#143636;--m-border:#143636;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --sh-bg:#160f14;--sh-text:#f0eaf4;--sh-border:#3a2e3e;--sh-muted:#9e8eaa;
+  --p-bg:#211828;--p-surf:#2e1f38;--p-ruled:#3d2a4a;--p-ink:#f0e8ed;--p-ink2:#c498b8;
+  --p-plum:#c498b8;--p-plum2:#9c6b8a;--p-green:#60aa80;--p-amber:#d09040;--p-border:#3d2a4a;
+  --m-bg:#061414;--m-surf:#0e2626;--m-line:#143636;--m-border:#143636;
+}
+
+/* ── Reset & base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--sh-bg);color:var(--sh-text);font-family:var(--p-bf);line-height:1.6;min-height:100vh}
+*:focus-visible{outline:3px solid currentColor;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+[hidden]{display:none!important}
+
+/* ── Shell ── */
+#page{max-width:860px;margin:0 auto;padding:0 16px 48px}
+#sample-banner{font-size:.75rem;color:var(--sh-muted);text-align:center;padding:10px 0 6px;letter-spacing:.04em}
+
+/* ── Top tabs ── */
+#top-tabs{display:flex;border-bottom:2px solid var(--sh-border);margin-bottom:0}
+#top-tabs button{
+  flex:1;padding:12px 8px;font-size:1rem;font-weight:600;border:none;cursor:pointer;
+  background:transparent;color:var(--sh-text);opacity:.5;transition:opacity .15s,color .15s;
+  border-bottom:3px solid transparent;margin-bottom:-2px
+}
+#top-tabs button[aria-selected="true"]{opacity:1}
+#btn-priya{font-family:var(--p-hf)}
+#btn-mateus{font-family:var(--m-hf);letter-spacing:.04em}
+#btn-priya[aria-selected="true"]{color:var(--p-plum);border-bottom-color:var(--p-plum)}
+#btn-mateus[aria-selected="true"]{color:var(--m-orange);border-bottom-color:var(--m-orange)}
+
+/* ── Priya panel ── */
+#panel-priya{background:var(--p-bg);color:var(--p-ink);border:1px solid var(--p-border);border-top:none;border-radius:0 0 8px 8px;font-family:var(--p-bf)}
+.p-tabs{display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px 0;background:var(--p-surf);border-bottom:1px solid var(--p-border)}
+.p-tabs button{
+  font-family:var(--p-bf);font-size:.78rem;font-weight:600;padding:6px 11px;
+  background:transparent;border:1px solid var(--p-border);border-bottom:none;border-radius:4px 4px 0 0;
+  color:var(--p-ink2);cursor:pointer;transition:background .12s,color .12s;margin-bottom:-1px
+}
+.p-tabs button[aria-selected="true"]{background:var(--p-plum);color:#fff;border-color:var(--p-plum)}
+.p-tabs button:hover:not([aria-selected="true"]){color:var(--p-plum)}
+.p-body{
+  padding:22px 20px 30px;
+  background:
+    repeating-linear-gradient(to bottom,transparent,transparent 27px,var(--p-ruled) 27px,var(--p-ruled) 28px);
+  background-position:0 40px
+}
+#panel-priya h2{font-family:var(--p-hf);font-size:1.28rem;font-weight:700;color:var(--p-plum);margin-bottom:14px;line-height:1.3}
+#panel-priya h3{font-family:var(--p-hf);font-size:.97rem;font-weight:600;color:var(--p-plum2);margin:18px 0 7px}
+#panel-priya h3:first-child{margin-top:0}
+#panel-priya p{font-size:.9rem;line-height:1.75;margin-bottom:10px}
+#panel-priya ul,#panel-priya ol{padding-left:1.4em;margin-bottom:10px;font-size:.9rem}
+#panel-priya li{margin-bottom:4px;line-height:1.7}
+.p-lbl{font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--p-plum2);margin-bottom:4px}
+.p-card{background:var(--p-surf);border:1px solid var(--p-border);border-left:4px solid var(--p-plum);border-radius:4px;padding:12px 14px;margin-bottom:12px}
+.p-card.green{border-left-color:var(--p-green)}
+.p-card.amber{border-left-color:var(--p-amber)}
+.p-card p{margin-bottom:0}
+.p-ifthen{background:var(--p-surf);border:1px solid var(--p-border);border-radius:6px;padding:12px 14px;margin-bottom:10px}
+.if-line{font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--p-plum2);margin-bottom:5px}
+.then-line{font-size:.88rem;line-height:1.65;color:var(--p-ink)}
+.p-tl{list-style:none;padding:0}
+.p-tl li{display:flex;gap:12px;align-items:flex-start;margin-bottom:14px}
+.p-dot{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.78rem;flex-shrink:0;margin-top:2px;border:2px solid transparent}
+.p-dot.done{background:var(--p-green);color:#fff}
+.p-dot.now{background:var(--p-plum);color:#fff}
+.p-dot.soon{background:transparent;border-color:var(--p-plum2);color:var(--p-plum2)}
+.p-dot.maybe{background:transparent;border-color:var(--p-border);color:var(--p-ink2)}
+.p-tl-b{flex:1}
+.p-tl-b strong{display:block;font-weight:600;color:var(--p-plum);font-size:.9rem;font-family:var(--p-hf)}
+.p-tl-b span{font-size:.85rem;color:var(--p-ink2)}
+.p-slip{background:var(--p-plum);color:#fff;border-radius:6px;padding:16px 18px;margin-top:18px}
+.p-slip h3{color:#fff;font-family:var(--p-hf);font-size:.95rem;margin:0 0 8px}
+.p-slip ol{padding-left:1.4em;font-size:.87rem;color:rgba(255,255,255,.9)}
+.p-slip li{margin-bottom:4px}
+.p-textarea{width:100%;min-height:90px;padding:10px;font-family:var(--p-bf);font-size:.86rem;line-height:1.55;border:1px solid var(--p-border);border-radius:6px;background:var(--p-surf);color:var(--p-ink);resize:vertical;margin-bottom:8px;display:block}
+.p-btn{display:inline-flex;align-items:center;gap:6px;padding:7px 16px;font-family:var(--p-bf);font-size:.84rem;font-weight:600;background:var(--p-plum);color:#fff;border:none;border-radius:5px;cursor:pointer;transition:opacity .15s}
+.p-btn:hover{opacity:.85}
+.p-btn.sec{background:transparent;color:var(--p-plum);border:1.5px solid var(--p-plum)}
+.p-copy-status{font-size:.77rem;color:var(--p-plum2);margin-top:4px;min-height:1.1em}
+.p-yn{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.swing{background:var(--p-surf);border:1px solid var(--p-border);border-top:3px solid var(--p-plum2);border-radius:6px;padding:14px 16px;margin-top:16px}
+.swing h3{font-family:var(--p-hf);font-size:.97rem;color:var(--p-plum);margin-bottom:8px}
+.ff-table{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:8px}
+.ff-table th{text-align:left;padding:5px 8px;font-weight:600;color:var(--p-plum2);border-bottom:1px solid var(--p-border)}
+.ff-table td{padding:5px 8px;border-bottom:1px solid var(--p-ruled)}
+.ff-table td em{color:var(--p-plum);font-style:italic}
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<style>
+/* ── Mateus panel ── */
+#panel-mateus{
+  background:var(--m-bg);color:var(--m-ink);border:1px solid var(--m-border);
+  border-top:none;border-radius:0 0 8px 8px;font-family:var(--m-bf);
+  position:relative;overflow:hidden
+}
+/* Court-line texture */
+#panel-mateus::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    repeating-linear-gradient(90deg,transparent,transparent 59px,var(--m-line) 59px,var(--m-line) 60px),
+    repeating-linear-gradient(0deg,transparent,transparent 59px,var(--m-line) 59px,var(--m-line) 60px);
+  opacity:.35
+}
+#panel-mateus > *{position:relative}
+.m-tabs{display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px 0;background:rgba(0,0,0,.35);border-bottom:1px solid var(--m-border)}
+.m-tabs button{
+  font-family:var(--m-hf);font-size:.82rem;letter-spacing:.05em;padding:7px 13px;
+  background:transparent;border:1px solid var(--m-border);border-bottom:none;border-radius:4px 4px 0 0;
+  color:var(--m-ink2);cursor:pointer;transition:background .12s,color .12s;margin-bottom:-1px
+}
+.m-tabs button[aria-selected="true"]{background:var(--m-orange);color:#0b2424;border-color:var(--m-orange);font-weight:700}
+.m-tabs button:hover:not([aria-selected="true"]){color:var(--m-orange)}
+.m-body{padding:22px 20px 30px}
+#panel-mateus h2{font-family:var(--m-hf);font-size:1.4rem;letter-spacing:.04em;color:var(--m-orange);margin-bottom:14px;line-height:1.2}
+#panel-mateus h3{font-family:var(--m-hf);font-size:1rem;letter-spacing:.04em;color:var(--m-teal);margin:18px 0 8px}
+#panel-mateus h3:first-child{margin-top:0}
+#panel-mateus p{font-size:.9rem;line-height:1.75;margin-bottom:10px}
+#panel-mateus ul,#panel-mateus ol{padding-left:1.4em;margin-bottom:10px;font-size:.9rem}
+#panel-mateus li{margin-bottom:5px;line-height:1.7}
+#panel-mateus em{color:var(--m-teal)}
+.m-card{background:var(--m-surf);border:1px solid var(--m-border);border-left:4px solid var(--m-teal);border-radius:6px;padding:14px 16px;margin-bottom:14px}
+.m-card.orange{border-left-color:var(--m-orange)}
+.m-card p:last-child{margin-bottom:0}
+.m-lbl{font-family:var(--m-hf);font-size:.7rem;letter-spacing:.1em;color:var(--m-teal);margin-bottom:6px}
+.m-lbl.orange{color:var(--m-orange)}
+/* Game shell */
+.game-area{background:var(--m-surf);border:1px solid var(--m-border);border-radius:8px;padding:18px;margin-top:14px}
+.game-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.game-hdr h3{margin:0;font-family:var(--m-hf);font-size:1rem;letter-spacing:.04em;color:var(--m-orange)}
+.game-meta{font-size:.78rem;color:var(--m-ink2)}
+.game-prompt{font-size:.88rem;line-height:1.7;margin-bottom:14px}
+.game-prompt strong{color:var(--m-orange)}
+.game-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.game-opts button{
+  text-align:left;padding:10px 14px;font-family:var(--m-bf);font-size:.87rem;line-height:1.55;
+  background:var(--m-bg);border:1.5px solid var(--m-border);border-radius:6px;color:var(--m-ink);
+  cursor:pointer;transition:border-color .12s,background .12s
+}
+.game-opts button:hover:not(:disabled){border-color:var(--m-teal);background:rgba(0,196,180,.08)}
+.game-opts button.correct{border-color:var(--m-teal);background:rgba(0,196,180,.15);color:var(--m-teal)}
+.game-opts button.wrong{border-color:#e05555;background:rgba(224,85,85,.1);color:#ff8888}
+.game-opts button:disabled{cursor:default}
+.game-fb{font-size:.87rem;line-height:1.65;padding:10px 14px;border-radius:6px;margin-bottom:10px;background:rgba(0,0,0,.3)}
+.game-fb.ok{border-left:3px solid var(--m-teal)}
+.game-fb.no{border-left:3px solid #e05555}
+.game-next{padding:8px 18px;font-family:var(--m-hf);font-size:.85rem;letter-spacing:.05em;background:var(--m-orange);color:#0b2424;border:none;border-radius:5px;cursor:pointer;font-weight:700;transition:opacity .15s}
+.game-next:hover{opacity:.85}
+.game-done{text-align:center;padding:20px 10px}
+.game-done .score{font-family:var(--m-hf);font-size:2rem;color:var(--m-orange);display:block;margin-bottom:8px}
+.game-done p{font-size:.9rem;color:var(--m-ink2)}
+.streak-badge{display:inline-block;padding:3px 8px;background:var(--m-orange);color:#0b2424;border-radius:12px;font-size:.72rem;font-weight:700;font-family:var(--m-hf);letter-spacing:.06em}
+/* True/false word card */
+.word-card{text-align:center;padding:24px 16px 18px;background:var(--m-bg);border:1px solid var(--m-border);border-radius:8px;margin-bottom:16px}
+.word-card .pt-word{font-family:var(--m-hf);font-size:2rem;letter-spacing:.06em;color:var(--m-teal);margin-bottom:4px}
+.word-card .pt-hint{font-size:.82rem;color:var(--m-ink2)}
+.tf-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.tf-btns button{padding:10px 22px;font-family:var(--m-hf);font-size:.9rem;letter-spacing:.06em;border:2px solid;border-radius:6px;cursor:pointer;background:transparent;transition:background .12s,color .12s}
+.tf-yes{color:var(--m-teal);border-color:var(--m-teal)}
+.tf-yes:hover{background:rgba(0,196,180,.15)}
+.tf-no{color:var(--m-orange);border-color:var(--m-orange)}
+.tf-no:hover{background:rgba(255,107,26,.15)}
+.tf-yes.correct,.tf-no.correct{background:rgba(0,196,180,.2);color:var(--m-teal)}
+.tf-yes.wrong,.tf-no.wrong{background:rgba(224,85,85,.15);color:#ff8888;border-color:#e05555}
+/* Lead panel */
+.lead-card{background:var(--m-surf);border:2px solid var(--m-orange);border-radius:8px;padding:18px;margin-bottom:14px}
+.lead-card .fc-word{font-family:var(--m-hf);font-size:1.5rem;color:var(--m-teal);margin-bottom:4px;letter-spacing:.04em}
+.lead-card .fc-look{font-size:.82rem;color:var(--m-ink2);margin-bottom:6px}
+.lead-card .fc-truth{font-size:.92rem;color:var(--m-orange);font-weight:600}
+.lead-nav{display:flex;gap:10px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.lead-nav button{padding:7px 16px;font-family:var(--m-hf);font-size:.82rem;letter-spacing:.05em;background:transparent;border:1.5px solid var(--m-teal);color:var(--m-teal);border-radius:5px;cursor:pointer;transition:background .12s}
+.lead-nav button:hover{background:rgba(0,196,180,.12)}
+.lead-nav .progress{font-size:.78rem;color:var(--m-ink2)}
+/* Footer */
+footer{text-align:center;font-size:.75rem;color:var(--sh-muted);padding:20px 0 0;margin-top:24px;border-top:1px solid var(--sh-border)}
+/* Responsive */
+@media(max-width:500px){
+  .p-tabs button{font-size:.73rem;padding:5px 8px}
+  .m-tabs button{font-size:.76rem;padding:6px 9px}
+  #panel-priya h2,#panel-mateus h2{font-size:1.1rem}
+  .word-card .pt-word{font-size:1.5rem}
+}
+</style>
+
+<div id="page">
+<p id="sample-banner">Sample &middot; made-up people &middot; after three lessons with MetaDAX</p>
+
+<div id="top-tabs" role="tablist">
+  <button role="tab" id="btn-priya" aria-selected="true" aria-controls="panel-priya">For Priya</button>
+  <button role="tab" id="btn-mateus" aria-selected="false" aria-controls="panel-mateus">For Mateus</button>
+</div>
+
+<!-- ══ PRIYA PANEL ══ -->
+<div id="panel-priya" role="tabpanel" aria-labelledby="btn-priya">
+  <div class="p-tabs" role="tablist">
+    <button role="tab" id="pt-upnext" aria-selected="true" aria-controls="pp-upnext">Up next</button>
+    <button role="tab" id="pt-learned" aria-selected="false" aria-controls="pp-learned">What we&rsquo;ve learned</button>
+    <button role="tab" id="pt-steps" aria-selected="false" aria-controls="pp-steps">The steps</button>
+    <button role="tab" id="pt-tricky" aria-selected="false" aria-controls="pp-tricky">When it&rsquo;s tricky</button>
+    <button role="tab" id="pt-tell" aria-selected="false" aria-controls="pp-tell">Tell us &amp; ask</button>
+  </div>
+
+  <!-- Priya: Up next -->
+  <div id="pp-upnext" class="p-body" role="tabpanel" aria-labelledby="pt-upnext">
+    <h2>Lesson 4: the &ldquo;so what&rdquo;</h2>
+    <div class="p-card">
+      <p class="p-lbl">One focus only</p>
+      <p>This draft: reasoning. Claim and evidence are solid. The gap is explaining <em>how</em> the evidence proves the claim. Hold everything else.</p>
+    </div>
+    <h3>The worked example to build from</h3>
+    <p>Start here together, out loud first:</p>
+    <div class="p-card amber">
+      <p class="p-lbl">Claim</p>
+      <p>Our school should start a futsal team.</p>
+    </div>
+    <div class="p-card amber">
+      <p class="p-lbl">Evidence</p>
+      <p>40 students signed the petition in two days.</p>
+    </div>
+    <div class="p-card">
+      <p class="p-lbl">Weak reasoning (lesson 3)</p>
+      <p>&ldquo;because it is good.&rdquo;</p>
+    </div>
+    <div class="p-card green">
+      <p class="p-lbl">Strong reasoning to work towards</p>
+      <p>&ldquo;This shows there are already enough interested players for a full squad, so the team would not need extra recruiting to get started.&rdquo;</p>
+      <p style="font-size:.8rem;color:var(--p-ink2);margin-top:6px;margin-bottom:0">Futsal is 5-a-side. 40 signatures is far more than a squad needs. That is the link.</p>
+    </div>
+    <h3>Linking words to introduce</h3>
+    <ul>
+      <li><strong>therefore</strong></li>
+      <li><strong>this shows that</strong></li>
+      <li><strong>because of this</strong></li>
+      <li><strong>as a result</strong></li>
+    </ul>
+    <h3>Instead of red ink</h3>
+    <p>After he writes his reasoning, read it back to him and ask: <em>&ldquo;What does that number actually prove?&rdquo;</em> Let him talk. Then say: <em>&ldquo;Put that into one sentence.&rdquo;</em> Save corrections for after he has his own words down.</p>
+
+    <div class="swing">
+      <h3>Your turn to learn: Mateus leads</h3>
+      <p>Mateus has been keeping a false-friends list since lesson 2. In this lesson he teaches you five words. Credit the list to him when you use it with other newcomer students.</p>
+      <table class="ff-table">
+        <thead>
+          <tr><th>Portuguese</th><th>Looks like</th><th>Actually means</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><em>atualmente</em></td><td>actually</td><td>currently</td></tr>
+          <tr><td><em>pretender</em></td><td>to pretend</td><td>to intend</td></tr>
+          <tr><td><em>puxar</em></td><td>push</td><td>pull</td></tr>
+          <tr><td><em>livraria</em></td><td>library</td><td>bookstore (library = <em>biblioteca</em>)</td></tr>
+          <tr><td><em>eventualmente</em></td><td>eventually</td><td>occasionally / possibly</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="p-slip">
+      <h3>Exit slip after lesson 4</h3>
+      <p>Ask Mateus to answer these before he leaves:</p>
+      <ol>
+        <li>Write one sentence of reasoning using a linking word from today.</li>
+        <li>Teach back: what is the difference between evidence and reasoning?</li>
+        <li>One thing you want to try in your next draft.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Priya: What we've learned -->
+  <div id="pp-learned" class="p-body" role="tabpanel" aria-labelledby="pt-learned" hidden>
+    <h2>What MetaDAX has learned</h2>
+    <h3>About Mateus</h3>
+    <div class="p-card">
+      <p class="p-lbl">Lesson 1</p>
+      <p>He argued the case out loud, fluently. His written paragraph was two lines. The thinking is strong; the transfer to writing is the gap.</p>
+      <p><strong>So:</strong> always talk first, then write. Speaking unlocks his ideas.</p>
+    </div>
+    <div class="p-card">
+      <p class="p-lbl">Lesson 2</p>
+      <p>He wrote &ldquo;actually&rdquo; when he meant &ldquo;currently&rdquo; (<em>atualmente</em> in Portuguese). He spotted the pattern himself and started his own false-friends list.</p>
+      <p><strong>So:</strong> he owns the list. He is the expert on Portuguese-English traps. Use his list; credit him.</p>
+    </div>
+    <div class="p-card">
+      <p class="p-lbl">Lesson 3</p>
+      <p>Strong claim: school should have a futsal team. Strong evidence: 40 signatures in two days. Weak reasoning: &ldquo;because it is good.&rdquo; He went quiet when a draft came back covered in red marks.</p>
+      <p><strong>So:</strong> one focus per draft. Mark one thing; wait on everything else. He can hold more when he does not feel corrected on all fronts at once.</p>
+    </div>
+    <h3>About your approach</h3>
+    <div class="p-card green">
+      <p class="p-lbl">What is working</p>
+      <p>Naming a single focus before each draft. Talking first. Letting him build momentum.</p>
+    </div>
+    <div class="p-card amber">
+      <p class="p-lbl">What you are still building</p>
+      <p>Holding back corrections that are not the focus. His confidence in writing depends on this lesson by lesson.</p>
+    </div>
+  </div>
+
+  <!-- Priya: The steps -->
+  <div id="pp-steps" class="p-body" role="tabpanel" aria-labelledby="pt-steps" hidden>
+    <h2>The steps</h2>
+    <ul class="p-tl">
+      <li>
+        <div class="p-dot done">1</div>
+        <div class="p-tl-b">
+          <strong>Lesson 1 &mdash; The argument lives in his head</strong>
+          <span>He argued brilliantly out loud. He wrote two lines. Tried: talk first, then write. It worked.</span>
+        </div>
+      </li>
+      <li>
+        <div class="p-dot done">2</div>
+        <div class="p-tl-b">
+          <strong>Lesson 2 &mdash; Six sentences and the first false friend</strong>
+          <span>Six written sentences. Found <em>atualmente</em> / actually. Started his own false-friends list.</span>
+        </div>
+      </li>
+      <li>
+        <div class="p-dot done">3</div>
+        <div class="p-tl-b">
+          <strong>Lesson 3 &mdash; CER frame: claim and evidence land</strong>
+          <span>Strong claim and evidence. Reasoning still vague. Learned: one focus per draft after he went quiet under heavy red ink.</span>
+        </div>
+      </li>
+      <li>
+        <div class="p-dot now">4</div>
+        <div class="p-tl-b">
+          <strong>Lesson 4 &mdash; The &ldquo;so what&rdquo; (this lesson)</strong>
+          <span>Reasoning: how does the evidence prove the claim? Linking words. He teaches you his five false friends.</span>
+        </div>
+      </li>
+      <li>
+        <div class="p-dot soon">5</div>
+        <div class="p-tl-b">
+          <strong>Lesson 5 &mdash; Counter-arguments</strong>
+          <span>Sketch: &ldquo;some people say&hellip; but&hellip;&rdquo; structure. Widening the argument.</span>
+        </div>
+      </li>
+      <li>
+        <div class="p-dot maybe">+</div>
+        <div class="p-tl-b">
+          <strong>Where this could go</strong>
+          <span>A full five-paragraph essay. Mateus presenting the futsal case to the school principal.</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Priya: When it's tricky -->
+  <div id="pp-tricky" class="p-body" role="tabpanel" aria-labelledby="pt-tricky" hidden>
+    <h2>When it&rsquo;s tricky</h2>
+
+    <div class="p-ifthen">
+      <p class="if-line">If &rarr; he goes quiet after you return a draft</p>
+      <p class="then-line">Put the pen down. Ask: <em>&ldquo;Talk me through what you were trying to say.&rdquo;</em> Transcribe his words. Then say: <em>&ldquo;That. Write that.&rdquo;</em></p>
+    </div>
+
+    <div class="p-ifthen">
+      <p class="if-line">If &rarr; his reasoning is still vague after the first try</p>
+      <p class="then-line">Point to the evidence number. Ask: <em>&ldquo;What does 40 signatures in two days actually prove?&rdquo;</em> Wait. His answer is usually the reasoning.</p>
+    </div>
+
+    <div class="p-ifthen">
+      <p class="if-line">If &rarr; he says he doesn&rsquo;t know how to start</p>
+      <p class="then-line">Hand him a card with the four linking words. Ask him to pick one and read the evidence sentence aloud with that word tacked on. The sentence often follows.</p>
+    </div>
+
+    <div class="p-ifthen">
+      <p class="if-line">If &rarr; he adds new evidence instead of reasoning</p>
+      <p class="then-line">That is a common move. Say: <em>&ldquo;Good, that is more evidence. Now show me how <em>this</em> evidence proves the claim.&rdquo;</em> Keep the focus on the original sentence.</p>
+    </div>
+
+    <div class="p-ifthen">
+      <p class="if-line">If &rarr; you feel stuck mid-lesson</p>
+      <p class="then-line">The Tell us &amp; ask tab has a prompt ready for your own AI chat. Copy it, paste it, and ask. The session can wait two minutes.</p>
+    </div>
+
+    <div class="p-card green">
+      <p class="p-lbl">Anchor point</p>
+      <p>His evidence is specific and strong. When he loses confidence, come back to this: <em>&ldquo;You already have a number. That is hard evidence. Now we just explain what it proves.&rdquo;</em></p>
+    </div>
+  </div>
+
+  <!-- Priya: Tell us & ask -->
+  <div id="pp-tell" class="p-body" role="tabpanel" aria-labelledby="pt-tell" hidden>
+    <h2>Tell us &amp; ask</h2>
+
+    <h3>After lesson 4: send MetaDAX a note</h3>
+    <p>Copy this, edit it, and send it back. Short is fine.</p>
+    <div class="p-textarea-wrap">
+      <textarea id="priya-note" class="p-textarea">Lesson 4 done. Reasoning focus: [how did it go? / what surprised you?]. He used these linking words: [list them]. The false-friends teaching went [well / okay / skip next time]. One thing to try differently in lesson 5:</textarea>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="p-btn" id="copy-note-btn">Copy note</button>
+    </div>
+    <p class="p-copy-status" id="copy-note-status"></p>
+
+    <h3>Ask your own AI chat</h3>
+    <p>Paste this into your usual AI chat after the lesson. Edit the bracketed parts first.</p>
+    <div class="p-textarea-wrap">
+      <textarea id="priya-ai" class="p-textarea">I am an English teacher working one-on-one with a 15-year-old newcomer student from Brazil. We have done four support sessions on persuasive writing, using a claim-evidence-reasoning frame. The student argues well out loud and has strong evidence, but finds it hard to explain how the evidence proves the claim in writing. In lesson 4 I tried [describe what you tried]. He responded by [what happened]. What should I focus on in lesson 5, and what is one question I can ask to help him write his reasoning in his own words?</textarea>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="p-btn" id="copy-ai-btn">Copy prompt</button>
+    </div>
+    <p class="p-copy-status" id="copy-ai-status"></p>
+
+    <h3>Did lesson 4 help?</h3>
+    <div class="p-yn">
+      <button class="p-btn" id="yn-yes">Yes, it helped</button>
+      <button class="p-btn sec" id="yn-not">Not yet</button>
+    </div>
+    <p class="p-copy-status" id="yn-status"></p>
+  </div>
+</div><!-- /panel-priya -->
+
+<!-- ══ MATEUS PANEL ══ -->
+<div id="panel-mateus" role="tabpanel" aria-labelledby="btn-mateus" hidden>
+  <div class="m-tabs" role="tablist">
+    <button role="tab" id="mt-upnext" aria-selected="true" aria-controls="mp-upnext">Up next</button>
+    <button role="tab" id="mt-rally" aria-selected="false" aria-controls="mp-rally">Reasoning Rally</button>
+    <button role="tab" id="mt-ff" aria-selected="false" aria-controls="mp-ff">True or false friend?</button>
+    <button role="tab" id="mt-lead" aria-selected="false" aria-controls="mp-lead">Your turn to lead</button>
+  </div>
+
+  <!-- Mateus: Up next -->
+  <div id="mp-upnext" class="m-body" role="tabpanel" aria-labelledby="mt-upnext">
+    <h2>Lesson 4: The So-What Step</h2>
+    <div class="m-card orange">
+      <p class="m-lbl orange">Today&rsquo;s one thing</p>
+      <p>Reasoning. You have the claim. You have the evidence. Now you show <em>how</em> the evidence proves the claim. That link is the &ldquo;so what.&rdquo;</p>
+    </div>
+
+    <h3>What you already have</h3>
+    <div class="m-card">
+      <p><strong>Claim:</strong> Our school should start a futsal team.</p>
+      <p><strong>Evidence:</strong> 40 students signed the petition in two days.</p>
+      <p><strong>Old reasoning:</strong> &ldquo;because it is good.&rdquo;</p>
+    </div>
+    <p>That last sentence does not show the link. It just says something is good. Compare it to this:</p>
+    <div class="m-card">
+      <p><strong>Strong reasoning:</strong> &ldquo;This shows there are already enough interested players for a full squad, so the team would not need extra recruiting to get started.&rdquo;</p>
+      <p style="font-size:.82rem;color:var(--m-ink2);margin-top:6px;margin-bottom:0">Futsal is 5-a-side. 40 signatures is way more than a squad needs. That is the link between your evidence and your claim.</p>
+    </div>
+
+    <h3>Words that make the link</h3>
+    <ul>
+      <li><strong>therefore</strong></li>
+      <li><strong>this shows that</strong></li>
+      <li><strong>because of this</strong></li>
+      <li><strong>as a result</strong></li>
+    </ul>
+
+    <h3>What else is in this lesson</h3>
+    <ul>
+      <li><strong>Reasoning Rally</strong> &mdash; pick the reasoning that actually links claim and evidence. Gets harder as you go.</li>
+      <li><strong>True or false friend?</strong> &mdash; quick rounds with Portuguese words that look like English but are not.</li>
+      <li><strong>Your turn to lead</strong> &mdash; you teach Priya your false-friends list. She will use it with other students.</li>
+    </ul>
+  </div>
+
+  <!-- Mateus: Reasoning Rally game -->
+  <div id="mp-rally" class="m-body" role="tabpanel" aria-labelledby="mt-rally" hidden>
+    <h2>Reasoning Rally</h2>
+    <p>Claim and evidence are given. Pick the reasoning that really shows how the evidence proves the claim. Wrong picks get feedback on exactly what went wrong.</p>
+
+    <div class="game-area" id="rally-area">
+      <div class="game-hdr">
+        <h3 id="rally-round-label">Round 1</h3>
+        <span class="game-meta">
+          Level <span id="rally-level">1</span> &nbsp;|&nbsp;
+          Score <span id="rally-score">0</span> &nbsp;|&nbsp;
+          <span id="rally-streak-wrap"></span>
+        </span>
+      </div>
+      <div id="rally-prompt" class="game-prompt"></div>
+      <div id="rally-opts" class="game-opts" role="group" aria-label="Choose reasoning"></div>
+      <div id="rally-fb" class="game-fb" hidden></div>
+      <button id="rally-next" class="game-next" hidden>Next round &rarr;</button>
+      <div id="rally-done" class="game-done" hidden></div>
+    </div>
+  </div>
+
+  <!-- Mateus: True or false friend? game -->
+  <div id="mp-ff" class="m-body" role="tabpanel" aria-labelledby="mt-ff" hidden>
+    <h2>True or False Friend?</h2>
+    <p>A Portuguese word appears. Does it mean what the English-looking word suggests? Or is it a false friend (<em>falso amigo</em>)&thinsp;&mdash;&thinsp;a word that looks familiar but means something different?</p>
+
+    <div class="game-area" id="ff-area">
+      <div class="game-hdr">
+        <h3 id="ff-round-label">Word 1</h3>
+        <span class="game-meta">Score <span id="ff-score">0</span> &nbsp;|&nbsp; <span id="ff-streak-wrap"></span></span>
+      </div>
+      <div class="word-card" id="ff-word-card">
+        <div class="pt-word" id="ff-word"></div>
+        <div class="pt-hint" id="ff-hint"></div>
+      </div>
+      <div class="tf-btns" id="ff-btns">
+        <button class="tf-yes" id="ff-yes">True friend</button>
+        <button class="tf-no" id="ff-no">False friend</button>
+      </div>
+      <div id="ff-fb" class="game-fb" hidden></div>
+      <div style="margin-top:10px">
+        <button id="ff-next" class="game-next" hidden>Next word &rarr;</button>
+      </div>
+      <div id="ff-done" class="game-done" hidden></div>
+    </div>
+  </div>
+
+  <!-- Mateus: Your turn to lead -->
+  <div id="mp-lead" class="m-body" role="tabpanel" aria-labelledby="mt-lead" hidden>
+    <h2>Your Turn to Lead</h2>
+    <p>You built this list. Now you teach it. Present each word to Priya: say the Portuguese, say what it looks like in English, and then give the real meaning.</p>
+    <p>Priya will use this list with every newcomer student she works with. Your name stays on it.</p>
+
+    <div class="lead-card" id="lead-card">
+      <p class="m-lbl">Portuguese</p>
+      <div class="fc-word" id="lead-pt-word"></div>
+      <div class="fc-look" id="lead-looks"></div>
+      <div class="fc-truth" id="lead-truth"></div>
+    </div>
+
+    <div class="lead-nav">
+      <button id="lead-prev">&#8592; Prev</button>
+      <span class="progress" id="lead-progress"></span>
+      <button id="lead-next">Next &#8594;</button>
+    </div>
+
+    <div class="m-card" style="margin-top:20px">
+      <p class="m-lbl">Your full list</p>
+      <ul>
+        <li><em>atualmente</em> &rarr; currently (not actually)</li>
+        <li><em>pretender</em> &rarr; to intend (not to pretend)</li>
+        <li><em>puxar</em> &rarr; to pull (not push)</li>
+        <li><em>livraria</em> &rarr; bookstore (not library &mdash; library is <em>biblioteca</em>)</li>
+        <li><em>eventualmente</em> &rarr; occasionally / possibly (not eventually)</li>
+      </ul>
+    </div>
+  </div>
+</div><!-- /panel-mateus -->
+
+<footer>A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</footer>
+</div><!-- /page -->
+
+<script>
+(function(){
+  // ── Generic tab-switching helper ──
+  function setupTabs(tl){
+    tl.querySelectorAll('[role=tab]').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        tl.querySelectorAll('[role=tab]').forEach(function(b){
+          b.setAttribute('aria-selected','false');
+          var p=document.getElementById(b.getAttribute('aria-controls'));
+          if(p) p.hidden=true;
+        });
+        btn.setAttribute('aria-selected','true');
+        var panel=document.getElementById(btn.getAttribute('aria-controls'));
+        if(panel) panel.hidden=false;
+      });
+    });
+  }
+
+  setupTabs(document.getElementById('top-tabs'));
+  setupTabs(document.querySelector('.p-tabs'));
+  setupTabs(document.querySelector('.m-tabs'));
+
+  // ── Clipboard ──
+  function copyField(srcId,statId){
+    var el=document.getElementById(srcId);
+    var st=document.getElementById(statId);
+    var txt=el.value||el.textContent;
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(txt).then(function(){
+        st.textContent='Copied.';
+        setTimeout(function(){st.textContent='';},3000);
+      }).catch(function(){el.select();st.textContent='Select the text above and copy manually.';});
+    } else {
+      el.select();
+      st.textContent='Select the text above and copy manually.';
+    }
+  }
+  document.getElementById('copy-note-btn').addEventListener('click',function(){copyField('priya-note','copy-note-status');});
+  document.getElementById('copy-ai-btn').addEventListener('click',function(){copyField('priya-ai','copy-ai-status');});
+
+  // ── Did it help ──
+  document.getElementById('yn-yes').addEventListener('click',function(){
+    document.getElementById('yn-status').textContent='Noted. See you after lesson 5.';
+    try{localStorage.setItem('mdx-02-yn','yes');}catch(e){}
+  });
+  document.getElementById('yn-not').addEventListener('click',function(){
+    document.getElementById('yn-status').textContent='Noted. We will adjust for lesson 5.';
+    try{localStorage.setItem('mdx-02-yn','not');}catch(e){}
+  });
+
+  // ══ REASONING RALLY ══
+  var RR=[
+    {lv:1,
+     cl:'Our school should start a futsal team.',
+     ev:'40 students signed the petition in two days.',
+     opts:[
+       {t:'This shows how popular the idea already is and proves everyone agrees.',c:false,e:'Opinion with no link: "popular" and "everyone agrees" are vague. This does not explain how 40 signatures proves the claim.'},
+       {t:'This shows there are already enough interested players for a full squad, so the team would not need extra recruiting to get started.',c:true,e:''},
+       {t:'This means students want a futsal team.',c:false,e:'Restates the evidence: it repeats that students want the team, but does not show how that fact proves the school should act on it.'},
+       {t:'Futsal is popular in Brazil, Portugal, and many other countries.',c:false,e:'Adds new evidence: this introduces a new fact instead of explaining how the petition number proves the claim.'}
+     ]},
+    {lv:1,
+     cl:'The school cafeteria should offer more vegetarian options.',
+     ev:'In a recent survey, 6 out of 10 students said they would choose a vegetarian meal if one was available.',
+     opts:[
+       {t:'Vegetarian food is healthier and better for the planet.',c:false,e:'Opinion with no link: this may be true, but it does not connect the survey result to the argument at all.'},
+       {t:'Most students prefer vegetarian food.',c:false,e:'Restates the evidence: it repeats what the survey says without explaining what that proves for the cafeteria.'},
+       {t:'This shows most students are ready to choose plant-based food, so the cafeteria would not risk unsold meals by adding these options.',c:true,e:''},
+       {t:'Many countries have strong vegetarian food traditions.',c:false,e:'Off topic: this fact has nothing to do with this school or this survey.'}
+     ]},
+    {lv:2,
+     cl:'The school library should stay open until 6 pm.',
+     ev:'Last month, 30 students used the library between 4 pm and 5 pm on every school day.',
+     opts:[
+       {t:'This shows there is consistent demand after the final bell, so extending the hours would serve students who need a quiet study space once class is over.',c:true,e:''},
+       {t:'Students clearly want the library open longer.',c:false,e:'Restates the evidence with a jump: saying students "want it open longer" is not what the data measured. It measured who used it during a specific hour.'},
+       {t:'The local public library is also open in the evenings.',c:false,e:'Adds new evidence: what a different library does does not explain how these numbers prove the argument.'},
+       {t:'It would be very helpful for students with homework.',c:false,e:'Opinion with no link: "very helpful" is vague and does not connect the 30-student figure to the case for later hours.'}
+     ]},
+    {lv:2,
+     cl:'The school should hold a futsal tournament at the end of the year.',
+     ev:'The school already has an outdoor court and a storage room with six balls.',
+     opts:[
+       {t:'Everyone loves tournaments and it will be great fun.',c:false,e:'Opinion with no link: "great fun" is vague and does not connect the court and balls to the argument.'},
+       {t:'Futsal is a 5-a-side game played on a hard court.',c:false,e:'Off topic: this is a definition, not a link between the evidence and the claim.'},
+       {t:'The school already has what it needs for futsal.',c:false,e:'Restates the evidence: it repeats the fact without explaining how having the equipment proves a tournament should happen.'},
+       {t:'This shows the physical resources are already in place, so the tournament would not require extra spending on equipment or a venue.',c:true,e:''}
+     ]},
+    {lv:3,
+     cl:'Newcomer students should get a peer buddy in their first week.',
+     ev:'In a survey, 8 out of 10 newcomer students said their biggest challenge was not knowing who to ask for help.',
+     opts:[
+       {t:'This shows the problem is access to support, not knowledge, so a peer buddy who is easy to approach would directly solve what most newcomers find hardest.',c:true,e:''},
+       {t:'Most newcomers find it hard to settle in without a friend.',c:false,e:'Adds an assumption: the survey was about not knowing who to ask for help, not about needing a friend. These are different things.'},
+       {t:'Schools in other districts already run buddy programmes successfully.',c:false,e:'Adds new evidence: what other schools do does not explain how this survey result proves the claim.'},
+       {t:'Having a peer buddy makes everyone feel welcome and included.',c:false,e:'Opinion with no link: it is too general and does not connect the specific survey finding to the argument.'}
+     ]}
+  ];
+
+  var rs={round:0,score:0,streak:0,done:false};
+
+  function rrRender(){
+    if(rs.round>=RR.length){rrDone();return;}
+    var d=RR[rs.round];
+    document.getElementById('rally-round-label').textContent='Round '+(rs.round+1);
+    document.getElementById('rally-level').textContent=d.lv;
+    document.getElementById('rally-score').textContent=rs.score;
+    var sw=document.getElementById('rally-streak-wrap');
+    sw.innerHTML=rs.streak>=2?'<span class="streak-badge">Streak '+rs.streak+'</span>':'';
+    document.getElementById('rally-fb').hidden=true;
+    document.getElementById('rally-next').hidden=true;
+    document.getElementById('rally-done').hidden=true;
+    rs.done=false;
+    document.getElementById('rally-prompt').innerHTML=
+      '<strong>Claim:</strong> '+d.cl+'<br><strong>Evidence:</strong> '+d.ev+
+      '<br><br>Which reasoning best shows <em>how</em> the evidence proves the claim?';
+    var oel=document.getElementById('rally-opts');
+    oel.innerHTML='';
+    d.opts.forEach(function(opt){
+      var btn=document.createElement('button');
+      btn.textContent=opt.t;
+      btn.addEventListener('click',function(){
+        if(rs.done) return;
+        rs.done=true;
+        oel.querySelectorAll('button').forEach(function(b){b.disabled=true;});
+        var fb=document.getElementById('rally-fb');
+        var ci=d.opts.findIndex(function(o){return o.c;});
+        if(opt.c){
+          btn.classList.add('correct');
+          rs.score++;rs.streak++;
+          fb.className='game-fb ok';
+          fb.innerHTML='<strong>Right.</strong> The evidence links directly to the claim. That is CER working.';
+        } else {
+          btn.classList.add('wrong');
+          oel.querySelectorAll('button')[ci].classList.add('correct');
+          rs.streak=0;
+          fb.className='game-fb no';
+          fb.innerHTML='<strong>Not quite.</strong> '+opt.e;
+        }
+        document.getElementById('rally-score').textContent=rs.score;
+        sw.innerHTML=rs.streak>=2?'<span class="streak-badge">Streak '+rs.streak+'</span>':'';
+        fb.hidden=false;
+        document.getElementById('rally-next').hidden=false;
+      });
+      oel.appendChild(btn);
+    });
+  }
+
+  function rrDone(){
+    document.getElementById('rally-prompt').innerHTML='';
+    document.getElementById('rally-opts').innerHTML='';
+    document.getElementById('rally-fb').hidden=true;
+    document.getElementById('rally-next').hidden=true;
+    var d=document.getElementById('rally-done');
+    d.hidden=false;
+    d.innerHTML='<span class="score">'+rs.score+' / '+RR.length+'</span>'+
+      '<p>Good work. The reasoning step is the hardest part of CER. Keep asking: what does this evidence actually prove?</p>'+
+      '<button class="game-next" id="rr-again">Play again</button>';
+    document.getElementById('rr-again').addEventListener('click',function(){
+      rs={round:0,score:0,streak:0,done:false};
+      rrRender();
+    });
+  }
+
+  document.getElementById('rally-next').addEventListener('click',function(){rs.round++;rrRender();});
+  rrRender();
+
+  // ══ TRUE OR FALSE FRIEND ══
+  var FW=[
+    {pt:'atualmente',looks:'actually',isF:true, real:'It means <strong>currently</strong>. (<em>atualmente</em> = currently, right now)'},
+    {pt:'importante',looks:'important',isF:false,real:'<strong>True friend:</strong> <em>importante</em> does mean important.'},
+    {pt:'pretender',looks:'to pretend',isF:true, real:'It means <strong>to intend</strong> or to plan. Not to pretend.'},
+    {pt:'problema',looks:'problem',isF:false,real:'<strong>True friend:</strong> <em>problema</em> does mean problem.'},
+    {pt:'puxar',looks:'to push',isF:true, real:'It means <strong>to pull</strong>. To push = <em>empurrar</em>.'},
+    {pt:'família',looks:'family',isF:false,real:'<strong>True friend:</strong> <em>família</em> does mean family.'},
+    {pt:'livraria',looks:'library',isF:true, real:'It means <strong>bookstore</strong>. Library = <em>biblioteca</em>.'},
+    {pt:'natural',looks:'natural',isF:false,real:'<strong>True friend:</strong> <em>natural</em> does mean natural.'},
+    {pt:'eventualmente',looks:'eventually',isF:true, real:'It means <strong>occasionally</strong> or possibly. Not eventually.'},
+    {pt:'animal',looks:'animal',isF:false,real:'<strong>True friend:</strong> <em>animal</em> does mean animal.'},
+    {pt:'hospital',looks:'hospital',isF:false,real:'<strong>True friend:</strong> <em>hospital</em> does mean hospital.'}
+  ];
+
+  var fs={idx:0,score:0,streak:0,ans:false};
+
+  function ffRender(){
+    if(fs.idx>=FW.length){ffDone();return;}
+    var w=FW[fs.idx];
+    document.getElementById('ff-round-label').textContent='Word '+(fs.idx+1);
+    document.getElementById('ff-score').textContent=fs.score;
+    var sw=document.getElementById('ff-streak-wrap');
+    sw.innerHTML=fs.streak>=2?'<span class="streak-badge">Streak '+fs.streak+'</span>':'';
+    document.getElementById('ff-word').textContent=w.pt;
+    document.getElementById('ff-hint').textContent='Looks like "'+w.looks+'" in English';
+    document.getElementById('ff-fb').hidden=true;
+    document.getElementById('ff-next').hidden=true;
+    document.getElementById('ff-done').hidden=true;
+    document.getElementById('ff-word-card').hidden=false;
+    document.getElementById('ff-btns').hidden=false;
+    fs.ans=false;
+    var yb=document.getElementById('ff-yes');
+    var nb=document.getElementById('ff-no');
+    yb.className='tf-yes';nb.className='tf-no';
+    yb.disabled=false;nb.disabled=false;
+  }
+
+  function ffAnswer(saidFalse){
+    if(fs.ans) return;
+    fs.ans=true;
+    var w=FW[fs.idx];
+    var ok=(saidFalse===w.isF);
+    var yb=document.getElementById('ff-yes');
+    var nb=document.getElementById('ff-no');
+    yb.disabled=true;nb.disabled=true;
+    var fb=document.getElementById('ff-fb');
+    if(ok){
+      (saidFalse?nb:yb).classList.add('correct');
+      fs.score++;fs.streak++;
+      fb.className='game-fb ok';
+      fb.innerHTML='<strong>Right.</strong> '+w.real;
+    } else {
+      (saidFalse?nb:yb).classList.add('wrong');
+      (w.isF?nb:yb).classList.add('correct');
+      fs.streak=0;
+      fb.className='game-fb no';
+      fb.innerHTML='<strong>Not quite.</strong> '+w.real;
+    }
+    document.getElementById('ff-score').textContent=fs.score;
+    var sw=document.getElementById('ff-streak-wrap');
+    sw.innerHTML=fs.streak>=2?'<span class="streak-badge">Streak '+fs.streak+'</span>':'';
+    fb.hidden=false;
+    document.getElementById('ff-next').hidden=false;
+  }
+
+  function ffDone(){
+    document.getElementById('ff-word-card').hidden=true;
+    document.getElementById('ff-btns').hidden=true;
+    document.getElementById('ff-fb').hidden=true;
+    document.getElementById('ff-next').hidden=true;
+    var d=document.getElementById('ff-done');
+    d.hidden=false;
+    d.innerHTML='<span class="score">'+fs.score+' / '+FW.length+'</span>'+
+      '<p>You built that list yourself. You know exactly which ones to watch for.</p>'+
+      '<button class="game-next" id="ff-again">Play again</button>';
+    document.getElementById('ff-again').addEventListener('click',function(){
+      fs={idx:0,score:0,streak:0,ans:false};
+      ffRender();
+    });
+  }
+
+  document.getElementById('ff-yes').addEventListener('click',function(){ffAnswer(false);});
+  document.getElementById('ff-no').addEventListener('click',function(){ffAnswer(true);});
+  document.getElementById('ff-next').addEventListener('click',function(){fs.idx++;ffRender();});
+  ffRender();
+
+  // ══ LEAD PANEL ══
+  var LW=[
+    {pt:'atualmente',looks:'Looks like "actually" in English',truth:'Real meaning: currently. Right now, at the moment.'},
+    {pt:'pretender',looks:'Looks like "to pretend" in English',truth:'Real meaning: to intend, to plan. "Pretendo estudar" = "I plan to study."'},
+    {pt:'puxar',looks:'Looks like "to push" in English',truth:'Real meaning: to pull. Push = empurrar.'},
+    {pt:'livraria',looks:'Looks like "library" in English',truth:'Real meaning: bookstore. Library = biblioteca.'},
+    {pt:'eventualmente',looks:'Looks like "eventually" in English',truth:'Real meaning: occasionally, possibly. Not "in the end."'}
+  ];
+  var li=0;
+
+  function ldRender(){
+    var w=LW[li];
+    document.getElementById('lead-pt-word').textContent=w.pt;
+    document.getElementById('lead-looks').textContent=w.looks;
+    document.getElementById('lead-truth').textContent=w.truth;
+    document.getElementById('lead-progress').textContent=(li+1)+' of '+LW.length;
+    document.getElementById('lead-prev').disabled=(li===0);
+    document.getElementById('lead-next').disabled=(li===LW.length-1);
+  }
+  document.getElementById('lead-prev').addEventListener('click',function(){if(li>0){li--;ldRender();}});
+  document.getElementById('lead-next').addEventListener('click',function(){if(li<LW.length-1){li++;ldRender();}});
+  ldRender();
+
+})();
+</script>
+
+</body>
+</html>

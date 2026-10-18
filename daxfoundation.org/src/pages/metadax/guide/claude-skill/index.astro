@@ -1,0 +1,128 @@
+---
+import Base from '../../../../layouts/Base.astro';
+---
+<Base title="Install the Meta DAX skill in Claude" description="Add the metadax-homeschool skill to Claude — download the zip and upload it in Settings, or two lines in Claude Code — then build your child's lesson." wide>
+  <section class="lede">
+    <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/guide/">Help</a> &rsaquo; Claude skill</p>
+    <h1>Install the skill in Claude</h1>
+    <p class="lede-text">
+      A skill is a small folder Claude reads so it knows one job well. This one,
+      <code>metadax-homeschool</code>, interviews you and builds your child&rsquo;s
+      lesson. Add it once; use it whenever you like. It runs on your own Claude
+      subscription.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-app">
+    <h2 id="h-app">In the Claude app (web or desktop)</h2>
+    <p class="body"><strong>1.</strong> Download the skill: <a href="/metadax/downloads/metadax-homeschool.zip">metadax-homeschool.zip</a>. Do not unzip it.</p>
+    <p class="body"><strong>2.</strong> In Claude, open Settings, then Capabilities. Make sure &ldquo;Code execution and file creation&rdquo; is on. Under Skills, choose &ldquo;Upload skill&rdquo;, pick the zip, and switch it on.</p>
+    <p class="body">
+      Skills need a paid Claude plan. If the menu looks different, Claude&rsquo;s help
+      has the current steps:
+      <a href="https://support.claude.com/en/articles/12512180-using-skills-in-claude">support.claude.com &rarr;</a>
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-code">
+    <h2 id="h-code">In Claude Code</h2>
+    <p class="body">Never used a terminal? The Claude app steps above are easier. These steps are for Claude Code.</p>
+    <p class="body"><strong>1.</strong> Open a terminal. Mac: press Cmd and Space, type Terminal, press Enter. Windows: open PowerShell from the Start menu.</p>
+    <p class="body"><strong>2.</strong> Install Claude Code: paste the install line from Claude&rsquo;s install page (<a href="https://code.claude.com/docs/en/setup">code.claude.com/docs/en/setup</a>) and press Enter. Check it with <code>claude --version</code>; a number means it worked. Claude Code needs a paid Claude plan (Pro or Max).</p>
+    <p class="body"><strong>3.</strong> Make a folder for lessons and start there (Mac: <code>mkdir -p ~/Documents/Lessons &amp;&amp; cd ~/Documents/Lessons</code>; Windows PowerShell: <code>mkdir ~\Documents\Lessons; cd ~\Documents\Lessons</code>), then type <code>claude</code> and press Enter.</p>
+    <pre class="term"> Let's get started.
+
+ Choose the text style that looks best with your terminal
+ To change this later, run /theme
+
+     Auto (match terminal)
+ ❯ ✔ Dark mode
+     Light mode</pre>
+    <p class="body"><strong>4.</strong> First time only: press Enter to pick a look, sign in when your browser opens, press Enter on the safety notes, and choose &ldquo;Yes, I trust this folder&rdquo; (down arrow, then Enter).</p>
+    <p class="body"><strong>5.</strong> Add the skill:</p>
+    <pre><code>/plugin marketplace add daxfoundation/metadax
+/plugin install metadax-homeschool@metadax</code></pre>
+    <p class="body">Press Enter on &ldquo;Install for you&rdquo;.</p>
+    <pre class="term">❯ /plugin marketplace add daxfoundation/metadax
+  ⎿  Successfully added marketplace: metadax
+
+❯ /plugin install metadax-homeschool@metadax
+  ❯ Install for you (user scope)
+  ⎿  ✓ Installed metadax-homeschool. Plugin is now active.</pre>
+    <p class="body"><strong>6.</strong> Ask:</p>
+    <blockquote class="said">Use the metadax-homeschool skill. I homeschool and my child is stuck on something.</blockquote>
+    <p class="body">Answer its questions in your own words; nickname only.</p>
+    <p class="body"><strong>7.</strong> When it asks &ldquo;Do you want to proceed?&rdquo;, press 1 (Yes) and Enter. You will see a few of these while it reads its instructions, saves your lesson and checks it.</p>
+    <pre class="term"> Do you want to create family-package.json?
+ ❯ 1. Yes
+   2. Yes, and switch to accept edits (auto-approve file edits and common file commands) for this
+      session (shift+tab)
+   3. No</pre>
+    <p class="body"><strong>8.</strong> When it says it is done, your lesson is the file <code>family-package.json</code> in your Lessons folder. Open the player and press &ldquo;Open a file&rdquo;, then pick <code>family-package.json</code>.</p>
+    <pre class="term">● Sprout's package, "The Two Engines" (family-package.json), is built and passes the checker with no
+  errors.</pre>
+  </section>
+
+  <section class="block" aria-labelledby="h-then">
+    <h2 id="h-then">Then</h2>
+    <p class="body">Start a new chat and type:</p>
+    <blockquote class="said">Use the metadax-homeschool skill. I homeschool and my child is stuck on something.</blockquote>
+    <p class="body">
+      It asks about a dozen short questions, a few at a time: a nickname for your
+      child (never a real name), a rough age, the subject, the exact spot where it
+      goes wrong, a real wrong answer if you have one, and what they love. It builds
+      the lesson through that. If you type anything identifying, it tells you and
+      leaves it out.
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-next">
+    <h2 id="h-next">Open what it built</h2>
+    <p class="body">
+      Your answers go to Claude under your account&rsquo;s own privacy settings. The
+      package it builds is a file that stays with you. Open the player, press
+      &ldquo;Open a file&rdquo; and pick it (or paste it in), then press Play; read
+      your tab first.
+    </p>
+    <p class="out">
+      <a href="/metadax/play/">Open the player</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/play-and-print/">How to play and print</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/any-ai/">Prefer a different AI? Use the plain prompt</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href="/metadax/guide/">Back to the guide</a>
+    </p>
+  </section>
+</Base>
+
+<style>
+  .lede { padding-block: 3rem 2rem; }
+  .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .eyebrow a { color: inherit; text-decoration: none; }
+  .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+  h1 { margin: 0 0 1.25rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; max-width: 20em; text-wrap: balance; }
+  .lede-text { margin: 0; max-width: 40em; color: #cfcfcf; }
+
+  .block { padding-block: 2.5rem; border-top: 1px solid var(--line); scroll-margin-top: 1.5rem; }
+  h2 { margin: 0 0 1.25rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  strong { font-weight: 600; color: var(--fg); }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body, .body + .out, .out + .body { margin-top: 1rem; }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+
+  .said { margin: 1rem 0 0; padding: 0.9rem 1.1rem; max-width: 40em; border: 1px solid var(--line); border-left: 3px solid var(--muted); border-radius: 8px; color: var(--fg); font-style: italic; }
+
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: color-mix(in srgb, var(--fg) 8%, transparent); padding: 0.1em 0.35em; border-radius: 4px; }
+
+  pre { margin: 1rem 0 0; max-width: 40em; background: color-mix(in srgb, var(--fg) 6%, transparent); border: 1px solid var(--line); border-radius: 8px; padding: 0.9rem 1.1rem; overflow-x: auto; }
+  pre code { background: none; padding: 0; font-size: inherit; }
+  pre.term { background: #111; color: #d4d4d4; border-color: #2a2a2a; max-width: 100%; }
+  pre.term + .body { margin-top: 1rem; }
+
+  .out { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .out span { color: var(--faint); margin-inline: 0.5rem; }
+  .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+</style>

@@ -1,0 +1,126 @@
+{
+  "format": "metadax-package",
+  "v": 1,
+  "title": "Comparing fractions with bars",
+  "word": "session",
+  "session": 1,
+  "guide": {
+    "tab": "For you",
+    "sections": [
+      {
+        "id": "upnext",
+        "label": "Up next",
+        "blocks": [
+          { "type": "p", "text": "Today you and the learner compare two fraction bars and decide which has more shaded." }
+        ]
+      },
+      {
+        "id": "learned",
+        "label": "What came before",
+        "blocks": [
+          { "type": "p", "text": "The learner has met halves and quarters as equal parts of one whole." }
+        ]
+      },
+      {
+        "id": "steps",
+        "label": "How to run it",
+        "blocks": [
+          { "type": "step", "n": 1, "do": "Show the two bars together.", "say": "One bar is split into halves, the other into quarters.", "why": "Seeing both at once makes the lengths easy to compare." },
+          { "type": "human", "title": "What only you can do", "items": [ "Watch which bar the learner looks at first.", "Ask them to point before they say an answer." ] },
+          { "type": "lead", "title": "A step ahead", "body": "If this feels easy, ask them to name each shaded part as a fraction.", "prompt": "What fraction is shaded on each bar?" }
+        ]
+      },
+      {
+        "id": "tricky",
+        "label": "If it gets tricky",
+        "blocks": [
+          {
+            "type": "faq",
+            "q": "What if they guess by colour, not length?",
+            "a": "Cover the colour with a finger and compare how far each shaded part reaches.",
+            "more": [
+              {
+                "q": "What if the bars look the same length to them?",
+                "a": "Line the shaded ends up with a straight edge.",
+                "more": [
+                  { "q": "What if they still are not sure?", "a": "Drop back to one bar and count the shaded parts out loud." }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "tellus",
+        "label": "Tell us",
+        "blocks": [
+          { "type": "p", "text": "Note whether comparing by length or by counting parts worked better for this learner." }
+        ]
+      }
+    ]
+  },
+  "learner": {
+    "tab": "For the learner",
+    "sections": [
+      {
+        "id": "play",
+        "label": "Have a go",
+        "blocks": [
+          { "type": "lead", "title": "A step ahead", "body": "After you decide, try saying each shaded part as a fraction." },
+          {
+            "type": "scene",
+            "id": "s1",
+            "title": "Two fraction bars",
+            "scene": "fraction-bars",
+            "params": { "denominators": [2, 4], "shaded": [1, 3] },
+            "theme": "unicorn",
+            "level": 2,
+            "ask_learner": "Which bar has more shaded — the first or the second?",
+            "answer": "second",
+            "why": "Three quarters reaches further than one half, so the second bar has more shaded."
+          },
+          {
+            "type": "quiz",
+            "id": "q1",
+            "title": "Quick check",
+            "mistakes": {
+              "half-bigger": "Thinks a half is always more than quarters because its parts are bigger.",
+              "more-parts": "Thinks more parts always means more shaded."
+            },
+            "levels": [
+              {
+                "level": 1,
+                "label": "Warm up",
+                "items": [
+                  {
+                    "q": "One half and two quarters cover the same length. True or not?",
+                    "choices": [
+                      { "text": "They cover the same length.", "correct": true },
+                      { "text": "One half is always longer.", "mistake": "half-bigger" },
+                      { "text": "Two quarters is always longer.", "mistake": "more-parts" }
+                    ],
+                    "explain": "Two quarters join up to make one half."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "faq",
+            "q": "How do I compare two bars?",
+            "a": "Look at how far each shaded part reaches from the left.",
+            "more": [
+              {
+                "q": "What if they end at nearly the same place?",
+                "a": "Use a straight edge to line up the shaded ends.",
+                "more": [
+                  { "q": "What if I am still stuck?", "a": "Count the shaded parts on each bar out loud." }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

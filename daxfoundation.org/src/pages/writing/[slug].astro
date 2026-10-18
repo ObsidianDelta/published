@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import { formatDate, historyUrl } from '../_posts.js';
+
+// One piece under /writing/. Same shape as views/jeyanandan/src/pages/blog/
+// [slug].astro: two dates (first published, never moves; updated, by hand, shown
+// only when later), and a History link into the public record,
+// github.com/ObsidianDelta/published. Nothing is quietly edited.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../../posts/*.md', { eager: true });
+  return Object.entries(modules)
+    .filter(([, mod]) => !mod.frontmatter.draft)
+    .map(([file, mod]) => ({
+      params: { slug: file.split('/').pop().replace(/\.md$/, '') },
+      props: { frontmatter: mod.frontmatter, Content: mod.Content },
+    }));
+}
+
+const { frontmatter, Content } = Astro.props;
+const published = new Date(frontmatter.date);
+const revised = frontmatter.updated ? new Date(frontmatter.updated) : null;
+const showUpdated = revised && !Number.isNaN(revised.getTime()) && revised > published;
+const history = historyUrl(Astro.params.slug);
+---
+<Base title={`${frontmatter.title} · DAX Foundation`} description={frontmatter.description || frontmatter.title}>
+  <article>
+    <header class="lede">
+      <p class="meta">
+        <time datetime={published.toISOString()}>{formatDate(published)}</time>
+        {showUpdated && <span><span aria-hidden="true">&middot;</span> Updated <time datetime={revised.toISOString()}>{formatDate(revised)}</time></span>}
+        <span><span aria-hidden="true">&middot;</span> <a href={history} rel="noopener">History</a></span>
+      </p>
+      <h1>{frontmatter.title}</h1>
+    </header>
+    <div class="prose">
+      <Content />
+    </div>
+    <p class="back"><a href="/writing/">&larr; All writing</a></p>
+  </article>
+</Base>
+
+<style is:global>
+  .lede { padding-block: 3.5rem 1.5rem; }
+  .meta {
+    margin: 0 0 1rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .meta span { color: var(--faint); }
+  .meta a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .meta a:hover, .meta a:focus-visible { color: var(--fg); border-bottom-color: currentColor; }
+  article h1 {
+    margin: 0;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+    text-wrap: balance;
+  }
+  .prose { max-width: 40em; padding-bottom: 2rem; }
+  .prose p { margin: 0 0 1.25em; color: #d6d6d6; text-wrap: pretty; }
+  .prose > p:first-of-type { color: var(--muted); }
+  .prose h2 {
+    margin: 2.5rem 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    scroll-margin-top: 1.5rem;
+  }
+  .prose a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .prose a:hover, .prose a:focus-visible { border-bottom-color: currentColor; }
+  .prose strong { font-weight: 600; color: var(--fg); }
+  .prose em { font-style: italic; }
+  .prose blockquote {
+    margin: 1.75rem 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    border-left: 1px solid var(--muted);
+  }
+  .prose blockquote p { color: var(--fg); }
+  .prose blockquote p:last-child { margin-bottom: 0; }
+  .prose hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0 1.75rem; }
+  .prose ul, .prose ol { margin: 0 0 1.25em; padding-left: 1.25rem; color: #d6d6d6; }
+  .prose li { margin: 0 0 0.4em; }
+  .prose code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.875em;
+    color: var(--muted);
+  }
+  .back { margin: 0 0 1rem; font-size: 0.9375rem; }
+  .back a { color: var(--muted); text-decoration: none; }
+  .back a:hover, .back a:focus-visible { color: var(--fg); }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 2.5rem 1.25rem; }
+  }
+</style>

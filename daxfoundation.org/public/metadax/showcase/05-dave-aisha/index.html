@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="First On-Call: a sample page from Meta DAX for Dave, a site reliability engineer, and Aisha, on her first on-call rotation, on handling a live incident and the blameless review. Made-up people.">
+<link rel="canonical" href="https://daxfoundation.org/metadax/showcase/05-dave-aisha/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="First On-Call">
+<meta property="og:description" content="First On-Call: a sample page from Meta DAX for Dave, a site reliability engineer, and Aisha, on her first on-call rotation, on handling a live incident and the blameless review. Made-up people.">
+<meta property="og:url" content="https://daxfoundation.org/metadax/showcase/05-dave-aisha/">
+<title>First On-Call</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --d-bg:#232629; --d-sf:#2c3035; --d-sf2:#363b42;
+  --d-am:#f59e0b; --d-bl:#60a5fa; --d-gr:#34d399;
+  --d-tx:#d1d6de; --d-dim:#7e8996; --d-bd:#3d444d;
+  --d-er:#f87171;
+  --a-bg:#eef9f7; --a-nav:#0c3632; --a-sf:#ffffff;
+  --a-tl:#0d9488; --a-tlm:#14b8a6; --a-tll:#a7f3d0;
+  --a-tx:#1e293b; --a-dim:#607080; --a-bd:#c0d5d4;
+  --a-ok:#10b981; --a-ng:#ef4444; --a-acc:#0d9488;
+}
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) {
+    --d-bg:#0c0e10; --d-sf:#151819; --d-sf2:#1c2024;
+    --d-am:#fbbf24; --d-bl:#93c5fd; --d-gr:#34d399;
+    --d-tx:#dde3eb; --d-dim:#697580; --d-bd:#2c343c;
+    --a-bg:#051514; --a-nav:#031110; --a-sf:#091f1e;
+    --a-tl:#2dd4bf; --a-tlm:#5eead4; --a-tll:#0d4f48;
+    --a-tx:#def8f5; --a-dim:#6ec6bc; --a-bd:#123630;
+    --a-ok:#34d399; --a-ng:#f87171; --a-acc:#2dd4bf;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme:dark;
+  --d-bg:#0c0e10; --d-sf:#151819; --d-sf2:#1c2024;
+  --d-am:#fbbf24; --d-bl:#93c5fd; --d-gr:#34d399;
+  --d-tx:#dde3eb; --d-dim:#697580; --d-bd:#2c343c;
+  --a-bg:#051514; --a-nav:#031110; --a-sf:#091f1e;
+  --a-tl:#2dd4bf; --a-tlm:#5eead4; --a-tll:#0d4f48;
+  --a-tx:#def8f5; --a-dim:#6ec6bc; --a-bd:#123630;
+  --a-ok:#34d399; --a-ng:#f87171; --a-acc:#2dd4bf;
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { font-size:16px; line-height:1.5; overflow-x:hidden; }
+body.vd { background:var(--d-bg); color:var(--d-tx); font-family:'IBM Plex Sans Condensed',system-ui,sans-serif; }
+body.va { background:var(--a-bg); color:var(--a-tx); font-family:'Inter',system-ui,sans-serif; }
+.topbar { text-align:center; padding:7px 16px; font-size:0.71rem; letter-spacing:.02em; }
+body.vd .topbar { background:var(--d-sf2); color:var(--d-dim); font-family:'IBM Plex Mono',monospace; }
+body.va .topbar { background:var(--a-nav); color:var(--a-tll); }
+.mtbar { display:flex; border-bottom:2px solid; }
+body.vd .mtbar { border-color:var(--d-bd); background:var(--d-sf); }
+body.va .mtbar { border-color:var(--a-tl); background:var(--a-nav); }
+.mtbar button { flex:1; padding:11px 8px; border:none; cursor:pointer; font-size:0.95rem; font-weight:600; background:transparent; }
+body.vd .mtbar button { color:var(--d-dim); font-family:'IBM Plex Sans Condensed',sans-serif; }
+body.va .mtbar button { color:var(--a-tll); font-family:'Inter',sans-serif; }
+body.vd .mtbar button[aria-selected="true"] { color:var(--d-am); border-bottom:2px solid var(--d-am); margin-bottom:-2px; }
+body.va .mtbar button[aria-selected="true"] { color:#fff; border-bottom:2px solid #fff; margin-bottom:-2px; }
+.mtbar button:focus-visible { outline:2px solid currentColor; outline-offset:-2px; }
+.dst-bar { display:flex; flex-wrap:wrap; gap:4px; padding:10px 14px; background:var(--d-sf); border-bottom:1px solid var(--d-bd); }
+.dst { padding:5px 11px; border:1px solid var(--d-bd); border-radius:3px; cursor:pointer; font-size:0.73rem; font-family:'IBM Plex Mono',monospace; background:transparent; color:var(--d-dim); transition:background .12s,color .12s; }
+.dst:hover { background:var(--d-sf2); color:var(--d-tx); }
+.dst[aria-selected="true"] { background:var(--d-am); color:#130b00; border-color:var(--d-am); font-weight:600; }
+.dst:focus-visible { outline:2px solid var(--d-am); outline-offset:2px; }
+.dwrap { padding:18px 14px; max-width:720px; margin:0 auto; }
+.dsub { display:none; } .dsub.on { display:block; }
+.dh1 { font-size:1.1rem; font-weight:700; color:var(--d-am); margin-bottom:2px; font-family:'IBM Plex Mono',monospace; line-height:1.3; }
+.dh2 { font-size:0.7rem; font-weight:600; color:var(--d-dim); text-transform:uppercase; letter-spacing:.09em; margin:16px 0 6px; font-family:'IBM Plex Mono',monospace; }
+.dp { font-size:0.88rem; line-height:1.58; margin-bottom:8px; }
+.dc { background:var(--d-sf); border:1px solid var(--d-bd); border-radius:4px; padding:12px 14px; margin-bottom:9px; }
+.dca { border-left:3px solid var(--d-am); } .dcb { border-left:3px solid var(--d-bl); } .dcg { border-left:3px solid var(--d-gr); }
+.chip { display:inline-block; padding:1px 7px; border-radius:2px; font-size:0.65rem; font-family:'IBM Plex Mono',monospace; font-weight:700; letter-spacing:.04em; vertical-align:middle; }
+.ck { background:var(--d-gr); color:#051209; } .cn { background:var(--d-am); color:#130b00; } .cs { background:var(--d-sf2); color:var(--d-dim); border:1px solid var(--d-bd); }
+.dsr { display:flex; gap:10px; align-items:flex-start; padding:8px 0; border-bottom:1px solid var(--d-bd); }
+.dsr:last-child { border-bottom:none; }
+.dsrn { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--d-am); min-width:24px; padding-top:2px; font-weight:600; }
+.dsrb { flex:1; font-size:0.87rem; }
+.dift { background:var(--d-sf2); border-left:3px solid var(--d-bl); border-radius:3px; padding:9px 12px; margin-bottom:8px; }
+.dift-if { font-family:'IBM Plex Mono',monospace; font-size:0.7rem; color:var(--d-bl); font-weight:600; margin-bottom:3px; }
+.dift-th { font-size:0.87rem; }
+.dcopy { background:var(--d-sf2); border:1px solid var(--d-bd); border-radius:3px; padding:10px 12px; font-size:0.81rem; line-height:1.65; font-family:'IBM Plex Mono',monospace; white-space:pre-wrap; margin-bottom:8px; color:var(--d-tx); }
+.dbtn { padding:6px 12px; border-radius:3px; border:none; cursor:pointer; font-size:0.79rem; font-weight:600; font-family:'IBM Plex Sans Condensed',sans-serif; transition:opacity .15s; }
+.dba { background:var(--d-am); color:#130b00; } .dbb { background:var(--d-bl); color:#030d1f; }
+.dbtn:hover { opacity:.82; } .dbtn:focus-visible { outline:2px solid var(--d-am); outline-offset:2px; }
+.dfbr { display:flex; align-items:center; gap:8px; margin-top:11px; font-size:0.79rem; color:var(--d-dim); }
+.dfbr button { padding:3px 10px; border-radius:2px; border:1px solid var(--d-bd); background:transparent; color:var(--d-dim); cursor:pointer; font-size:0.76rem; font-family:'IBM Plex Mono',monospace; }
+.dfbr button.on { background:var(--d-gr); color:#051209; border-color:var(--d-gr); }
+.dfbr button:focus-visible { outline:2px solid var(--d-am); outline-offset:2px; }
+.dlrn { padding:10px 0; border-bottom:1px solid var(--d-bd); } .dlrn:last-child { border-bottom:none; }
+.dlsh { font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--d-bl); font-weight:600; margin-bottom:2px; }
+.dlfc { font-size:0.87rem; margin-bottom:3px; }
+.dlso { font-size:0.84rem; color:var(--d-am); }
+.swing { background:var(--d-sf2); border:1px solid var(--d-am); border-radius:4px; padding:12px 14px; margin:14px 0; }
+.swing-lbl { font-family:'IBM Plex Mono',monospace; font-size:0.67rem; color:var(--d-am); font-weight:700; letter-spacing:.06em; margin-bottom:4px; }
+.ast-bar { display:flex; flex-wrap:wrap; gap:6px; padding:14px 16px; background:var(--a-nav); border-bottom:2px solid var(--a-tl); }
+.ast { padding:6px 13px; border-radius:20px; border:1px solid var(--a-tll); background:transparent; color:var(--a-tll); cursor:pointer; font-size:0.82rem; font-weight:500; font-family:'Inter',sans-serif; transition:background .15s,color .15s; }
+.ast:hover { background:rgba(255,255,255,.1); }
+.ast[aria-selected="true"] { background:var(--a-tl); color:#fff; border-color:var(--a-tl); font-weight:600; }
+.ast:focus-visible { outline:2px solid var(--a-tll); outline-offset:2px; }
+.awrap { padding:20px 16px; max-width:700px; margin:0 auto; }
+.asub { display:none; } .asub.on { display:block; }
+.ah1 { font-size:1.2rem; font-weight:600; color:var(--a-tl); margin-bottom:4px; line-height:1.3; }
+.ah2 { font-size:0.78rem; font-weight:600; color:var(--a-dim); text-transform:uppercase; letter-spacing:.07em; margin:16px 0 7px; }
+.ap { font-size:0.92rem; line-height:1.62; margin-bottom:10px; }
+.ac { background:var(--a-sf); border:1px solid var(--a-bd); border-radius:8px; padding:16px 18px; margin-bottom:12px; box-shadow:0 1px 4px rgba(0,0,0,.06); }
+.act { border-left:4px solid var(--a-tl); }
+.sev { display:inline-block; padding:2px 9px; border-radius:12px; font-size:0.7rem; font-weight:600; letter-spacing:.03em; }
+.sev-hi { background:#fee2e2; color:#dc2626; }
+.sev-md { background:#fef3c7; color:#d97706; }
+.sev-lo { background:#dcfce7; color:#16a34a; }
+:root[data-theme="dark"] .sev-hi { background:#3d1515; color:#f87171; }
+:root[data-theme="dark"] .sev-md { background:#3d2f00; color:#fcd34d; }
+:root[data-theme="dark"] .sev-lo { background:#0d2c18; color:#4ade80; }
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .sev-hi { background:#3d1515; color:#f87171; }
+  :root:not([data-theme="light"]) .sev-md { background:#3d2f00; color:#fcd34d; }
+  :root:not([data-theme="light"]) .sev-lo { background:#0d2c18; color:#4ade80; }
+}
+.abtn { padding:8px 16px; border-radius:6px; border:none; cursor:pointer; font-size:0.88rem; font-weight:600; font-family:'Inter',sans-serif; transition:opacity .15s; }
+.abt { background:var(--a-tl); color:#fff; }
+.abtn:hover { opacity:.85; } .abtn:focus-visible { outline:2px solid var(--a-tl); outline-offset:2px; }
+.aswing { background:#dff7f3; border:2px solid var(--a-tl); border-radius:10px; padding:14px 16px; margin:14px 0; }
+:root[data-theme="dark"] .aswing { background:#0a2520; }
+@media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) .aswing { background:#0a2520; } }
+.aswing-lbl { font-size:0.71rem; font-weight:700; color:var(--a-tl); text-transform:uppercase; letter-spacing:.06em; margin-bottom:5px; }
+.drill-step { display:none; } .drill-step.on { display:block; }
+.drill-q { font-size:0.95rem; font-weight:600; line-height:1.5; margin-bottom:14px; }
+.drill-opts { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+.drill-opt { background:var(--a-sf); border:2px solid var(--a-bd); border-radius:8px; padding:11px 14px; cursor:pointer; font-size:0.88rem; text-align:left; width:100%; font-family:'Inter',sans-serif; color:var(--a-tx); transition:border-color .15s,background .15s; }
+.drill-opt:hover:not(:disabled) { border-color:var(--a-tl); }
+.drill-opt.correct { border-color:var(--a-ok); background:#f0fdf4; color:#15803d; }
+.drill-opt.wrong { border-color:var(--a-ng); background:#fef2f2; color:#b91c1c; }
+:root[data-theme="dark"] .drill-opt.correct { background:#052014; color:#4ade80; }
+:root[data-theme="dark"] .drill-opt.wrong { background:#1f0a0a; color:#fca5a5; }
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .drill-opt.correct { background:#052014; color:#4ade80; }
+  :root:not([data-theme="light"]) .drill-opt.wrong { background:#1f0a0a; color:#fca5a5; }
+}
+.drill-opt:disabled { cursor:default; }
+.drill-fb { margin-top:8px; padding:10px 13px; border-radius:6px; font-size:0.85rem; line-height:1.55; display:none; }
+.drill-fb.show { display:block; }
+.drill-fb.ok { background:#f0fdf4; border:1px solid #86efac; color:#15803d; }
+.drill-fb.no { background:#fef2f2; border:1px solid #fca5a5; color:#b91c1c; }
+:root[data-theme="dark"] .drill-fb.ok { background:#052014; border-color:#166534; color:#86efac; }
+:root[data-theme="dark"] .drill-fb.no { background:#1f0a0a; border-color:#7f1d1d; color:#fca5a5; }
+@media (prefers-color-scheme:dark) {
+  :root:not([data-theme="light"]) .drill-fb.ok { background:#052014; border-color:#166534; color:#86efac; }
+  :root:not([data-theme="light"]) .drill-fb.no { background:#1f0a0a; border-color:#7f1d1d; color:#fca5a5; }
+}
+.drill-nav { margin-top:10px; display:flex; gap:10px; align-items:center; }
+.drill-score { font-size:0.78rem; color:var(--a-dim); font-family:monospace; }
+.drill-bar { display:flex; gap:4px; margin-bottom:12px; }
+.drill-dot { width:28px; height:4px; border-radius:2px; background:var(--a-bd); }
+.drill-dot.done-ok { background:var(--a-ok); } .drill-dot.done-no { background:var(--a-ng); } .drill-dot.active { background:var(--a-tl); }
+.bsorter { display:flex; flex-direction:column; gap:8px; }
+.bitem { background:var(--a-sf); border:2px solid var(--a-bd); border-radius:8px; padding:11px 14px; font-size:0.88rem; line-height:1.5; transition:border-color .2s; }
+.bitem-text { margin-bottom:8px; }
+.bitem-btns { display:flex; gap:8px; }
+.bitem-btns button { padding:4px 13px; border-radius:5px; border:2px solid; cursor:pointer; font-size:0.8rem; font-weight:600; font-family:'Inter',sans-serif; transition:background .12s; background:transparent; }
+.bitem-btns .bbln { border-color:var(--a-ng); color:var(--a-ng); }
+.bitem-btns .bsys { border-color:var(--a-ok); color:var(--a-ok); }
+.bitem-btns button.picked-bl { background:var(--a-ng); color:#fff; }
+.bitem-btns button.picked-sy { background:var(--a-ok); color:#fff; }
+.bitem-btns button:disabled { opacity:.6; cursor:default; }
+.bitem-btns button:focus-visible { outline:2px solid var(--a-tl); outline-offset:2px; }
+.bitem-rewrite { display:none; margin-top:8px; padding:8px 11px; background:#f0fdf4; border-radius:5px; font-size:0.84rem; color:#15803d; border-left:3px solid var(--a-ok); }
+:root[data-theme="dark"] .bitem-rewrite { background:#052014; color:#86efac; }
+@media (prefers-color-scheme:dark) { :root:not([data-theme="light"]) .bitem-rewrite { background:#052014; color:#86efac; } }
+.bitem-rewrite.show { display:block; }
+.sbld-fields { display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
+.sbld-field label { display:block; font-size:0.8rem; font-weight:600; color:var(--a-dim); margin-bottom:4px; }
+.sbld-field input, .sbld-field select { width:100%; padding:8px 11px; border:2px solid var(--a-bd); border-radius:6px; font-size:0.88rem; font-family:'Inter',sans-serif; background:var(--a-sf); color:var(--a-tx); }
+.sbld-field input:focus, .sbld-field select:focus { outline:none; border-color:var(--a-tl); }
+.sbld-preview { background:var(--a-sf); border:2px solid var(--a-tl); border-radius:8px; padding:14px 16px; font-size:0.88rem; line-height:1.65; }
+.sbld-preview-lbl { font-size:0.7rem; font-weight:700; color:var(--a-tl); text-transform:uppercase; letter-spacing:.06em; margin-bottom:7px; }
+.faq details { border:1px solid var(--a-bd); border-radius:8px; margin-bottom:10px; overflow:hidden; }
+.faq summary { padding:12px 16px; cursor:pointer; font-size:0.9rem; font-weight:500; background:var(--a-sf); list-style:none; display:flex; justify-content:space-between; align-items:center; }
+.faq summary::after { content:'+'; font-size:1.2rem; color:var(--a-tl); font-weight:300; flex-shrink:0; margin-left:8px; }
+.faq details[open] > summary::after { content:'\2212'; }
+.faq summary::-webkit-details-marker { display:none; }
+.faq summary:focus-visible { outline:2px solid var(--a-tl); outline-offset:-2px; }
+.faq-body { padding:12px 16px; font-size:0.88rem; line-height:1.62; background:var(--a-sf); border-top:1px solid var(--a-bd); }
+.faq-body details { margin-top:10px; }
+.faq-body summary { font-size:0.85rem; border-radius:0; background:transparent; }
+footer { text-align:center; padding:20px 16px; font-size:0.74rem; }
+body.vd footer { color:var(--d-dim); border-top:1px solid var(--d-bd); margin-top:16px; }
+body.va footer { color:var(--a-dim); border-top:1px solid var(--a-bd); margin-top:16px; }
+@media (prefers-reduced-motion:reduce) { *,*::before,*::after { transition:none !important; } }
+@media (max-width:480px) { .dst-bar,.ast-bar { padding:8px 10px; } .dwrap,.awrap { padding:14px 12px; } }
+</style>
+<style>.dax-strip{background:#0a0a0a;color:#bdbdbd;font:12px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;margin:0}.dax-strip a{color:#e8e8e8;text-decoration:none;border-bottom:1px solid #444}.dax-strip a:hover,.dax-strip a:focus-visible{border-bottom-color:#e8e8e8}.dax-strip span{color:#5c5c5c}</style>
+</head>
+<body>
+<nav class="dax-strip" aria-label="DAX Foundation"><a href="/metadax/showcase/" target="_top">All six samples</a><span aria-hidden="true">·</span><a href="/metadax/" target="_top">Meta DAX</a><span aria-hidden="true">·</span><a href="/" target="_top">DAX Foundation</a></nav>
+<div class="topbar">Sample &middot; made-up people &middot; after three on-call shifts with MetaDAX</div>
+<div class="mtbar" role="tablist" aria-label="View">
+  <button role="tab" aria-selected="true" aria-controls="panel-dave" id="tab-dave">For Dave</button>
+  <button role="tab" aria-selected="false" aria-controls="panel-aisha" id="tab-aisha">For Aisha</button>
+</div>
+<div id="panel-dave" role="tabpanel" aria-labelledby="tab-dave">
+  <div class="dst-bar" role="tablist" aria-label="Dave sections">
+    <button class="dst" role="tab" aria-selected="true" aria-controls="d-upnext" id="d-t1">Up next</button>
+    <button class="dst" role="tab" aria-selected="false" aria-controls="d-learned" id="d-t2">What we've learned</button>
+    <button class="dst" role="tab" aria-selected="false" aria-controls="d-steps" id="d-t3">The steps</button>
+    <button class="dst" role="tab" aria-selected="false" aria-controls="d-tricky" id="d-t4">When it's tricky</button>
+    <button class="dst" role="tab" aria-selected="false" aria-controls="d-tellask" id="d-t5">Tell us &amp; ask</button>
+  </div>
+  <div class="dwrap">
+
+    <div id="d-upnext" class="dsub on" role="tabpanel" aria-labelledby="d-t1">
+      <div class="dh1">Shift 4 &mdash; Blameless reviews + status updates</div>
+      <div class="dp" style="color:var(--d-dim);font-size:0.8rem;">Aisha drafts first, you coach with questions</div>
+      <div class="dh2">What you need</div>
+      <div class="dc dca"><div class="dp">The checkout-errors incident from shift 3. Aisha knows it. Use it as the example throughout.</div></div>
+      <div class="dh2">How it goes</div>
+      <div class="dsr"><span class="dsrn">01</span><div class="dsrb">Ask Aisha to write a blameless review on her own first: impact, timeline, what went well, contributing factors (as system gaps, not names), actions.</div></div>
+      <div class="dsr"><span class="dsrn">02</span><div class="dsrb">Read her draft. Check: does it name people? Do the contributing factors describe conditions and missing safeguards?</div></div>
+      <div class="dsr"><span class="dsrn">03</span><div class="dsrb">For any person-blame sentence, ask a question instead of rewriting: <em style="color:var(--d-bl);">"What was missing in the system that let this reach production?"</em></div></div>
+      <div class="dsr"><span class="dsrn">04</span><div class="dsrb">Work through a status update together. She fills in the fields; you check it: what's affected, what we're doing, when's the next update.</div></div>
+      <div class="dsr"><span class="dsrn">05</span><div class="dsrb">Wrap up: ask what she'd do differently if this exact incident happened again next week.</div></div>
+      <div class="dh2">Say this</div>
+      <div class="dc dcb"><div class="dp">"Walk me through your review. Which contributing factor do you think did the most damage before we caught it?"</div></div>
+      <div class="dc dcb"><div class="dp">"Not wrong &mdash; but can you write that as a gap in the system, not a gap in a person?"</div></div>
+      <div class="dh2">Don't say this</div>
+      <div class="dc" style="border-left:3px solid var(--d-er);"><div class="dp">"Sam shouldn't have merged that." Even as an example of what to avoid, it puts Sam in the room. Use the system frame instead: "the change reached production without a check on the payment path."</div></div>
+      <div class="swing">
+        <div class="swing-lbl">Your turn to lead</div>
+        <div class="dp">Aisha found the bad commit in two minutes using the AI log-search tool in shift 3. You hadn't used it before. After the review, ask her to show you the query she ran. You're the learner here &mdash; tell her that.</div>
+      </div>
+    </div>
+
+    <div id="d-learned" class="dsub" role="tabpanel" aria-labelledby="d-t2">
+      <div class="dh1">What we've learned</div>
+      <div class="dh2">About Aisha</div>
+      <div class="dlrn">
+        <div class="dlsh">Shift 1</div>
+        <div class="dlfc">She froze when the pager went and didn't know where to look first.</div>
+        <div class="dlso">So: built the first-five-minutes card together. She used it in shift 2 and acknowledged in under a minute.</div>
+      </div>
+      <div class="dlrn">
+        <div class="dlsh">Shift 2</div>
+        <div class="dlfc">Her instinct under pressure was to read logs and find the bug before mitigating. She spent 25 minutes on the stack trace while errors were live.</div>
+        <div class="dlso">So: "roll back or dig in?" drill. The rule: if a deploy matches the spike, roll back first, investigate after.</div>
+      </div>
+      <div class="dlrn">
+        <div class="dlsh">Shift 3</div>
+        <div class="dlfc">She rolled back in 6 minutes and posted a clear status update. Her blameless review named the person who merged the change.</div>
+        <div class="dlso">So: blameless reviews are shift 4's focus. The rollback instinct is solid now.</div>
+      </div>
+      <div class="dh2">About Dave</div>
+      <div class="dlrn">
+        <div class="dlsh">Shift 2</div>
+        <div class="dlfc">When Aisha was slow, you grabbed the terminal. She stopped driving.</div>
+        <div class="dlso">So: narrate and ask questions. "What would you check next?" not "here, let me show you."</div>
+      </div>
+      <div class="dlrn">
+        <div class="dlsh">Shift 3</div>
+        <div class="dlfc">Aisha used the AI log-search tool to find the bad commit in two minutes. You hadn't used it.</div>
+        <div class="dlso">So: she demos it to you in shift 4. You are behind her on this one specific thing. Sit with that.</div>
+      </div>
+    </div>
+
+    <div id="d-steps" class="dsub" role="tabpanel" aria-labelledby="d-t3">
+      <div class="dh1">The on-call shifts</div>
+      <div class="dsr"><span class="dsrn"><span class="chip ck">1</span></span><div class="dsrb"><strong>Shadowing.</strong> Small incident; Aisha froze. Built the first-five-minutes card together.</div></div>
+      <div class="dsr"><span class="dsrn"><span class="chip ck">2</span></span><div class="dsrb"><strong>First solo page.</strong> Checkout errors after a deploy. She debugged instead of rolling back. You narrated; she typed. Built the "roll back or dig in?" drill.</div></div>
+      <div class="dsr"><span class="dsrn"><span class="chip ck">3</span></span><div class="dsrb"><strong>Clean rollback.</strong> Six minutes. Clear status update. Review named a person. She showed you the AI log tool for the first time.</div></div>
+      <div class="dsr"><span class="dsrn"><span class="chip cn">4</span></span><div class="dsrb"><strong>Blameless review + status update. (This shift.)</strong> She drafts. You coach with questions. She demos the log tool for you.</div></div>
+      <div class="dsr"><span class="dsrn"><span class="chip cs">5+</span></span><div class="dsrb" style="color:var(--d-dim);"><strong>Where this could go:</strong> Aisha guides the next new hire through their first on-call rotation. Then a game-day drill together &mdash; a practice incident, controlled, on purpose.</div></div>
+    </div>
+
+    <div id="d-tricky" class="dsub" role="tabpanel" aria-labelledby="d-t4">
+      <div class="dh1">When it's tricky</div>
+      <div class="dift"><div class="dift-if">IF: her review names a person</div><div class="dift-th">Ask: "What was missing in the system that let this change reach production?" Don't rewrite it for her.</div></div>
+      <div class="dift"><div class="dift-if">IF: she gets defensive about naming the person</div><div class="dift-th">Acknowledge it: "You're right that someone made the change. Blameless means we fix what the system was missing &mdash; not that we pretend the change didn't happen." Then ask the system question.</div></div>
+      <div class="dift"><div class="dift-if">IF: she's stuck and doesn't know how to start</div><div class="dift-th">Start with what went well: she rolled back in 6 minutes, the status update was clear. That unlocks the rest.</div></div>
+      <div class="dift"><div class="dift-if">IF: you want to rewrite her review</div><div class="dift-th">Ask instead: "What would a canary check have caught here?" You're not the author. She is.</div></div>
+      <div class="dift"><div class="dift-if">IF: the review is good but the status update is vague</div><div class="dift-th">Ask: "What did customers see? What are we doing right now? When will we update again?" Those three answers are the update.</div></div>
+      <div class="dift"><div class="dift-if">IF: Aisha asks Dave how to run a log query</div><div class="dift-th">Flip it: "Show me how you ran it in shift 3." You don't know this tool better than she does.</div></div>
+    </div>
+
+    <div id="d-tellask" class="dsub" role="tabpanel" aria-labelledby="d-t5">
+      <div class="dh1">Tell us &amp; ask</div>
+      <div class="dh2">Note to copy back to MetaDAX after shift 4</div>
+      <div class="dcopy" id="d-note">Shift 4 done. [Did Aisha draft the review before you gave feedback? yes / no] The review [stayed system-focused / named a person and we redirected]. Status update: [clear first draft / needed one round of questions]. Log-tool demo: [happened / skipped]. What surprised me: [your words here].</div>
+      <button class="dbtn dba" onclick="copyBlock('d-note','d-copy-msg1')" style="margin-bottom:6px;">Copy note</button>
+      <div id="d-copy-msg1" style="font-size:0.75rem;color:var(--d-gr);min-height:1.2em;"></div>
+      <div class="dh2">Ask your own AI tool</div>
+      <div class="dp">Copy this prompt into your AI chat when you need to think through a coaching moment.</div>
+      <div class="dcopy" id="d-aiprompt">I'm coaching a junior engineer on writing blameless incident reviews. She tends to name the person who made a change instead of the system gap that let it reach production. How do I redirect that without dismissing what she observed? Give me one reframing question I can ask her. Don't write the review for me.</div>
+      <button class="dbtn dbb" onclick="copyBlock('d-aiprompt','d-copy-msg2')" style="margin-bottom:6px;">Copy prompt</button>
+      <div id="d-copy-msg2" style="font-size:0.75rem;color:var(--d-gr);min-height:1.2em;"></div>
+      <div class="dfbr" id="d-fb-row">
+        <span>Did this help?</span>
+        <button onclick="dfb(this)" data-val="yes">Yes</button>
+        <button onclick="dfb(this)" data-val="notyet">Not yet</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div id="panel-aisha" role="tabpanel" aria-labelledby="tab-aisha" hidden>
+  <div class="ast-bar" role="tablist" aria-label="Aisha sections">
+    <button class="ast" role="tab" aria-selected="true" aria-controls="a-upnext" id="a-t1">Up next</button>
+    <button class="ast" role="tab" aria-selected="false" aria-controls="a-drill" id="a-t2">Pager Drill</button>
+    <button class="ast" role="tab" aria-selected="false" aria-controls="a-blame" id="a-t3">Blame or system?</button>
+    <button class="ast" role="tab" aria-selected="false" aria-controls="a-status" id="a-t4">Status builder</button>
+    <button class="ast" role="tab" aria-selected="false" aria-controls="a-faq" id="a-t5">Questions</button>
+  </div>
+  <div class="awrap">
+
+    <div id="a-upnext" class="asub on" role="tabpanel" aria-labelledby="a-t1">
+      <div class="ah1">Shift 4 &mdash; Your turn</div>
+      <div class="ap" style="color:var(--a-dim);">Three shifts done &middot; blameless reviews and status updates today</div>
+      <div class="ac act">
+        <div class="ah2" style="margin-top:0;">What you're doing</div>
+        <div class="ap">Write a full blameless review of the checkout-errors incident from shift 3. Then write a status update for it. Dave will read both &mdash; but you write the first draft on your own.</div>
+      </div>
+      <div class="ac">
+        <div class="ah2" style="margin-top:0;">The key idea</div>
+        <div class="ap"><strong>Blameless</strong> means you look at what the system was missing, not who made the mistake. Someone merged a change. The question is: what safeguard was absent that would have caught it before it reached production?</div>
+        <div class="ap">Your shift 3 review named the person. That's the one thing to change today.</div>
+      </div>
+      <div class="ac act">
+        <div class="ah2" style="margin-top:0;">The incident</div>
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px;"><span class="sev sev-hi">High</span><strong>Checkout errors after deploy</strong></div>
+        <div class="ap"><strong>Impact:</strong> Checkout error rate ~3&times; baseline. Many customers could not complete purchases from about 09:09 to 09:26 (17 minutes).</div>
+        <div class="ap"><strong>Timeline:</strong> Deploy at 09:00 &middot; Errors detected 09:09 &middot; Alert acknowledged 09:12 &middot; Rollback at 09:18 &middot; Resolved 09:26</div>
+        <div class="ap"><strong>What went well:</strong> Fast acknowledgment, clear status post, rollback in 6 minutes once you saw the pattern.</div>
+        <div class="ap"><strong>Contributing factors (write these as system gaps):</strong></div>
+        <ul style="font-size:0.88rem;padding-left:20px;line-height:1.8;margin-bottom:10px;">
+          <li>No automated canary check on the payment path before the deploy went live</li>
+          <li>The test suite didn't cover the checkout flow with the new payment method</li>
+          <li>No automatic rollback trigger on a sustained error-rate spike</li>
+        </ul>
+        <div class="ap"><strong>Actions to write:</strong> Add a payment-path smoke test to CI &middot; Add a canary stage to the deploy pipeline</div>
+      </div>
+      <div class="aswing">
+        <div class="aswing-lbl">Your turn to lead</div>
+        <div class="ap">You found the bad commit in two minutes in shift 3 using the AI log-search tool. Dave hadn't used it before. After you finish the review today, show him your query. He asked you to demo it to the team. You know something he doesn't &mdash; that's yours.</div>
+      </div>
+      <div class="ac">
+        <div class="ah2" style="margin-top:0;">Where this is going</div>
+        <div class="ap" style="color:var(--a-dim);">Once this lands: you guide the next new hire through their first on-call rotation. After that, a game-day drill with the team &mdash; a practice incident, controlled, on purpose.</div>
+      </div>
+    </div>
+
+    <div id="a-drill" class="asub" role="tabpanel" aria-labelledby="a-t2">
+      <div class="ah1">Pager Drill</div>
+      <div class="ap" style="color:var(--a-dim);">A simulated incident. Pick the best next action at each step. Wrong answers show you the pattern behind the mistake.</div>
+      <div class="ap" style="font-size:0.8rem;color:var(--a-dim);">Four decisions, in order. Each wrong answer shows the pattern behind the mistake.</div>
+      <div class="drill-bar" id="drill-dots" aria-hidden="true">
+        <div class="drill-dot active" id="dd0"></div><div class="drill-dot" id="dd1"></div>
+        <div class="drill-dot" id="dd2"></div><div class="drill-dot" id="dd3"></div>
+      </div>
+      <div class="drill-step on ac" id="ds0">
+        <div class="drill-q">The pager fires. Dashboard shows checkout error rate climbing &mdash; 3&times; baseline. A deploy went out 8 minutes ago. What do you do first?</div>
+        <div class="drill-opts">
+          <button class="drill-opt" data-correct="true" data-fb="Right. You own it, you're aware of it, and now you know where you stand. Acknowledge first, then check the full picture before you touch anything.">Acknowledge the alert, then check the dashboard for impact</button>
+          <button class="drill-opt" data-correct="false" data-fb="Investigating before you acknowledge means no one knows this incident is owned. And reading logs before you know the blast radius means you might spend 20 minutes on the wrong thing.">Open the error logs and start reading the stack trace</button>
+          <button class="drill-opt" data-correct="false" data-fb="The alert is yours. Asking if others see it delays ownership and muddies the incident thread. Acknowledge and check impact yourself.">Ask in chat whether anyone else is seeing this</button>
+          <button class="drill-opt" data-correct="false" data-fb="Good instinct on the rollback &mdash; but acting before you assess can make things worse. What if multiple deploys went out? Check the dashboard first.">Roll back the last deploy immediately</button>
+        </div>
+        <div class="drill-fb" id="dfb0"></div>
+        <div class="drill-nav"><button class="abtn abt drill-next" data-step="0" style="display:none;">Next</button><span class="drill-score" id="dscore0"></span></div>
+      </div>
+      <div class="drill-step ac" id="ds1">
+        <div class="drill-q">You've acknowledged. Dashboard confirmed: checkout errors 3&times; baseline, started 9 minutes ago. What's the right next move?</div>
+        <div class="drill-opts">
+          <button class="drill-opt" data-correct="true" data-fb="Yes. Your team and anyone watching the dashboard need to know this is owned and in progress. Post the update, then keep going.">Post a status update: what's affected, current state, when you'll update next</button>
+          <button class="drill-opt" data-correct="false" data-fb="You confirmed impact &mdash; but your team doesn't know yet. A 90-second status post doesn't slow down mitigation.">Read the stack trace to understand what's failing</button>
+          <button class="drill-opt" data-correct="false" data-fb="Close &mdash; rolling back is the right instinct. But post a status update first. The rollback takes 3 minutes; a status post takes 30 seconds.">Roll back the last deploy right now</button>
+          <button class="drill-opt" data-correct="false" data-fb="You don't need help yet, and escalating too early pulls in someone who wasn't on call. Work the problem first.">Page the senior engineer for backup</button>
+        </div>
+        <div class="drill-fb" id="dfb1"></div>
+        <div class="drill-nav"><button class="abtn abt drill-next" data-step="1" style="display:none;">Next</button><span class="drill-score" id="dscore1"></span></div>
+      </div>
+      <div class="drill-step ac" id="ds2">
+        <div class="drill-q">Status posted. The deploy at 09:00 and the error spike match almost exactly. What do you do?</div>
+        <div class="drill-opts">
+          <button class="drill-opt" data-correct="true" data-fb="Yes. Evidence is strong and errors are live. Roll back, then post a brief update as it runs. Certainty can wait; customers can't.">Roll back the deploy, then post: 'Attempting rollback to mitigate checkout errors'</button>
+          <button class="drill-opt" data-correct="false" data-fb="The correlation is already strong. Spending 10 more minutes costs real recovery time. Mitigate, then investigate.">Spend 10 more minutes in logs to be certain before rolling back</button>
+          <button class="drill-opt" data-correct="false" data-fb="A silent action leaves your team in the dark. Even one line &mdash; 'attempting rollback' &mdash; prevents confusion.">Quietly roll back without posting another update</button>
+          <button class="drill-opt" data-correct="false" data-fb="Even in your own notes, 'Sam's deploy' anchors blame. Write: 'deploy at 09:00 introduced a payment-path error.'">Note in the channel: 'Sam's deploy caused this, rolling back'</button>
+        </div>
+        <div class="drill-fb" id="dfb2"></div>
+        <div class="drill-nav"><button class="abtn abt drill-next" data-step="2" style="display:none;">Next</button><span class="drill-score" id="dscore2"></span></div>
+      </div>
+      <div class="drill-step ac" id="ds3">
+        <div class="drill-q">Error rate is back to baseline. Incident resolved. What do you write in the resolution update?</div>
+        <div class="drill-opts">
+          <button class="drill-opt" data-correct="true" data-fb="Yes. What happened, what you did, when it resolved, what comes next. That closes the loop.">Resolved 09:26. Rolled back deploy at 09:18. Checkout errors returned to baseline. Incident review to follow.</button>
+          <button class="drill-opt" data-correct="false" data-fb="Too vague. What was affected? What did you do? When did it resolve? Your team and future on-call engineers deserve the story.">Fixed. Everything is normal now.</button>
+          <button class="drill-opt" data-correct="false" data-fb="Close &mdash; but 'the change that caused this' is passive. Name the action and the time: 'rolled back deploy at 09:18, resolved at 09:26'.">Checkout errors resolved. The change that caused this will be investigated.</button>
+          <button class="drill-opt" data-correct="false" data-fb="Still naming a person. Write the action, not the actor: 'last deploy rolled back at 09:18'.">Checkout errors resolved. Sam's change rolled back.</button>
+        </div>
+        <div class="drill-fb" id="dfb3"></div>
+        <div class="drill-nav"><button class="abtn abt drill-next" data-step="3" style="display:none;">Done</button><span class="drill-score" id="dscore3"></span></div>
+      </div>
+      <div id="drill-result" class="ac" style="display:none;margin-top:8px;">
+        <div class="ah2" style="margin-top:0;">Drill complete</div>
+        <div id="drill-result-text" class="ap"></div>
+        <button class="abtn abt" onclick="restartDrill()" style="margin-top:4px;">Run it again</button>
+      </div>
+    </div>
+
+    <div id="a-blame" class="asub" role="tabpanel" aria-labelledby="a-t3">
+      <div class="ah1">Blame or system?</div>
+      <div class="ap" style="color:var(--a-dim);">For each sentence from a draft incident review, pick whether it's blame language or system language. Wrong answers explain why.</div>
+      <div class="bsorter" id="bsorter"></div>
+      <div id="bsort-result" style="display:none;margin-top:16px;" class="ac">
+        <div class="ah2" style="margin-top:0;color:var(--a-ok);">All sorted</div>
+        <div class="ap">System language points at conditions and missing safeguards &mdash; things you can actually change. Next time you write a review, run each contributing-factor sentence through this test.</div>
+        <button class="abtn abt" onclick="resetBlame()" style="margin-top:4px;">Try again</button>
+      </div>
+    </div>
+
+    <div id="a-status" class="asub" role="tabpanel" aria-labelledby="a-t4">
+      <div class="ah1">Status update builder</div>
+      <div class="ap" style="color:var(--a-dim);">Fill in the four fields and watch your update take shape. Copy it when it looks right.</div>
+      <div class="sbld-fields">
+        <div class="sbld-field">
+          <label for="sb-state">State</label>
+          <select id="sb-state" oninput="updatePreview()">
+            <option value="Investigating">Investigating</option>
+            <option value="Mitigating">Mitigating</option>
+            <option value="Resolved">Resolved</option>
+          </select>
+        </div>
+        <div class="sbld-field">
+          <label for="sb-affected">What's affected (service + customer impact)</label>
+          <input id="sb-affected" type="text" placeholder="e.g. Checkout service &mdash; customers may see errors completing purchases" oninput="updatePreview()">
+        </div>
+        <div class="sbld-field">
+          <label for="sb-doing">What we're doing right now</label>
+          <input id="sb-doing" type="text" placeholder="e.g. Rolling back the 09:00 deploy" oninput="updatePreview()">
+        </div>
+        <div class="sbld-field">
+          <label for="sb-next">When the next update comes</label>
+          <input id="sb-next" type="text" placeholder="e.g. 10 minutes" oninput="updatePreview()">
+        </div>
+      </div>
+      <div class="sbld-preview">
+        <div class="sbld-preview-lbl">Preview</div>
+        <div id="sbld-out" style="color:var(--a-tx);"><em style="color:var(--a-dim);">Fill in the fields above to see your update.</em></div>
+      </div>
+      <button class="abtn abt" onclick="copyBlock('sbld-out','sbld-msg')" style="margin-top:10px;">Copy update</button>
+      <div id="sbld-msg" style="font-size:0.75rem;color:var(--a-ok);min-height:1.3em;margin-top:4px;"></div>
+    </div>
+
+    <div id="a-faq" class="asub" role="tabpanel" aria-labelledby="a-t5">
+      <div class="ah1">Questions you might have</div>
+      <div class="faq">
+        <details>
+          <summary>What if I genuinely know who wrote the bad code?</summary>
+          <div class="faq-body">
+            <div class="ap">You can know. In the blameless review, the question is different: what made it possible for that code to reach production? That's the system gap.</div>
+            <div class="ap">A person making a mistake is not a safeguard. The test that didn't cover the payment path &mdash; that's a safeguard you can fix.</div>
+            <details>
+              <summary>But what if there was no system gap &mdash; someone just skipped the checklist?</summary>
+              <div class="faq-body">
+                <div class="ap">Then the system gap is: the checklist isn't enforced automatically. Why not? Could it be? That's the action item &mdash; not "person X needs to follow the checklist."</div>
+                <div class="ap">You can't build a reliable system by expecting individuals to never skip steps. You build the system so skipping a step is harder than doing it.</div>
+              </div>
+            </details>
+          </div>
+        </details>
+        <details>
+          <summary>What if rolling back would break something else?</summary>
+          <div class="faq-body">
+            <div class="ap">Check the rollback target before you run it. If you're unsure, post a quick update: "Assessing whether rollback is safe. Next update in 5 min." Then decide.</div>
+            <div class="ap">If rollback is genuinely risky, the path is a forward fix or a feature flag. But default to rollback &mdash; it's the fastest route to a known-good state.</div>
+            <details>
+              <summary>How do I know if a rollback is safe?</summary>
+              <div class="faq-body">
+                <div class="ap">Quick test: did this deploy touch the database schema or any shared state? If yes, rollback is riskier &mdash; check with a second engineer first. If no, rollback is usually safe to run.</div>
+              </div>
+            </details>
+          </div>
+        </details>
+        <details>
+          <summary>How long should a blameless review take to write?</summary>
+          <div class="faq-body">
+            <div class="ap">For an incident like shift 3, 30&ndash;45 minutes for a first draft is about right. Timeline and what-went-well are fast. Contributing factors take the most time &mdash; that's where the real work is.</div>
+            <div class="ap">If you're past an hour on a single incident review, you're probably going too deep. The review is a starting point for action items, not a forensic investigation.</div>
+            <details>
+              <summary>What makes a good action item vs a weak one?</summary>
+              <div class="faq-body">
+                <div class="ap">Good: specific, ownable, and tied to a system gap. "Add a payment-path smoke test to CI" &mdash; yes. "Be more careful next time" &mdash; no. If you can't assign it to a system or process, it's not an action item.</div>
+              </div>
+            </details>
+          </div>
+        </details>
+        <details>
+          <summary>What if a contributing factor sounds like an excuse?</summary>
+          <div class="faq-body">
+            <div class="ap">Good instinct. There's a real difference. "The test suite didn't cover the payment path" is a system gap. "We were moving fast" is a context note, not a gap you can fix.</div>
+            <div class="ap">Test: can you write a concrete action item for it? If yes, it's a contributing factor. If no, move it to context and keep going.</div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+  </div>
+</div>
+<footer>A sample made with MetaDAX, an open learning project, with help from AI. Everyone here is made up.</footer>
+<script>
+(function() {
+  function initMainTabs() {
+    var tabs = document.querySelectorAll('.mtbar button[role=tab]');
+    tabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tabs.forEach(function(t) {
+          t.setAttribute('aria-selected', 'false');
+          document.getElementById(t.getAttribute('aria-controls')).hidden = true;
+        });
+        btn.setAttribute('aria-selected', 'true');
+        document.getElementById(btn.getAttribute('aria-controls')).hidden = false;
+        document.body.className = btn.id === 'tab-dave' ? 'vd' : 'va';
+      });
+    });
+    document.body.className = 'vd';
+  }
+
+  function initSubTabs(barSel, tabClass) {
+    var bar = document.querySelector(barSel);
+    if (!bar) return;
+    bar.querySelectorAll('button[role=tab]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        bar.querySelectorAll('button[role=tab]').forEach(function(t) { t.setAttribute('aria-selected', 'false'); });
+        btn.setAttribute('aria-selected', 'true');
+        document.querySelectorAll('.' + tabClass).forEach(function(p) { p.classList.remove('on'); });
+        document.getElementById(btn.getAttribute('aria-controls')).classList.add('on');
+      });
+    });
+  }
+
+  window.copyBlock = function(id, msgId) {
+    var el = document.getElementById(id);
+    var text = el ? (el.innerText || el.textContent) : '';
+    var msg = document.getElementById(msgId);
+    function showMsg(t) { if (msg) { msg.textContent = t; setTimeout(function() { msg.textContent = ''; }, 2600); } }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function() { showMsg('Copied.'); }, function() { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      if (!el) return;
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      showMsg('Selected — press Ctrl+C or Cmd+C to copy.');
+    }
+  };
+
+  window.dfb = function(btn) {
+    var row = document.getElementById('d-fb-row');
+    if (!row) return;
+    row.querySelectorAll('button').forEach(function(b) { b.classList.remove('on'); });
+    btn.classList.add('on');
+    try { localStorage.setItem('d05-fb', btn.getAttribute('data-val')); } catch(e) {}
+  };
+
+  window.updatePreview = function() {
+    var state = document.getElementById('sb-state');
+    var affected = document.getElementById('sb-affected');
+    var doing = document.getElementById('sb-doing');
+    var next = document.getElementById('sb-next');
+    var out = document.getElementById('sbld-out');
+    if (!out) return;
+    var a = affected ? affected.value.trim() : '';
+    var d = doing ? doing.value.trim() : '';
+    var n = next ? next.value.trim() : '';
+    if (!a && !d && !n) { out.innerHTML = '<em style="color:var(--a-dim)">Fill in the fields above to see your update.</em>'; return; }
+    var parts = [(state ? state.value : 'Investigating') + '.'];
+    if (a) parts.push(a + '.');
+    if (d) parts.push('We are ' + d.replace(/\.$/, '') + '.');
+    if (n) parts.push('Next update in ' + n.replace(/\.$/, '') + '.');
+    out.textContent = parts.join(' ');
+  };
+
+  var drillState = { step: 0, streak: 0, scores: [] };
+
+  function showStep(n) {
+    document.querySelectorAll('.drill-step').forEach(function(el, i) { el.classList.toggle('on', i === n); });
+    document.querySelectorAll('.drill-dot').forEach(function(el, i) {
+      el.className = 'drill-dot';
+      if (i < n) el.classList.add(drillState.scores[i] ? 'done-ok' : 'done-no');
+      else if (i === n) el.classList.add('active');
+    });
+  }
+
+  function initDrill() {
+    document.querySelectorAll('.drill-opt').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var step = drillState.step;
+        var stepEl = document.getElementById('ds' + step);
+        if (!stepEl || btn.disabled) return;
+        stepEl.querySelectorAll('.drill-opt').forEach(function(b) { b.disabled = true; });
+        var correct = btn.getAttribute('data-correct') === 'true';
+        btn.classList.add(correct ? 'correct' : 'wrong');
+        var fbEl = document.getElementById('dfb' + step);
+        if (fbEl) { fbEl.textContent = btn.getAttribute('data-fb'); fbEl.className = 'drill-fb show ' + (correct ? 'ok' : 'no'); }
+        if (correct) { drillState.streak++; } else { drillState.streak = 0; }
+        drillState.scores[step] = correct;
+        var scoreEl = document.getElementById('dscore' + step);
+        if (scoreEl && drillState.streak > 1) scoreEl.textContent = 'Streak: ' + drillState.streak;
+        var dot = document.getElementById('dd' + step);
+        if (dot) { dot.className = 'drill-dot ' + (correct ? 'done-ok' : 'done-no'); }
+        var nextBtn = stepEl.querySelector('.drill-next');
+        if (nextBtn) nextBtn.style.display = 'inline-block';
+      });
+    });
+
+    document.querySelectorAll('.drill-next').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var step = parseInt(btn.getAttribute('data-step'), 10);
+        if (step < 3) {
+          drillState.step = step + 1;
+          showStep(step + 1);
+        } else {
+          var r = document.getElementById('drill-result');
+          var t = document.getElementById('drill-result-text');
+          if (r) r.style.display = 'block';
+          if (t) {
+            var got = drillState.scores.filter(Boolean).length;
+            t.textContent = 'You got ' + got + ' of 4 correct.' + (got === 4 ? ' All four steps clean.' : got >= 3 ? ' Review the one you missed.' : ' Keep at it — each mistake maps to a real pattern to catch.');
+          }
+        }
+      });
+    });
+  }
+
+  window.restartDrill = function() {
+    drillState = { step: 0, streak: 0, scores: [] };
+    document.querySelectorAll('.drill-opt').forEach(function(b) { b.disabled = false; b.className = 'drill-opt'; });
+    document.querySelectorAll('.drill-fb').forEach(function(el) { el.className = 'drill-fb'; el.textContent = ''; });
+    document.querySelectorAll('.drill-next').forEach(function(b) { b.style.display = 'none'; });
+    document.querySelectorAll('.drill-score').forEach(function(el) { el.textContent = ''; });
+    var r = document.getElementById('drill-result'); if (r) r.style.display = 'none';
+    showStep(0);
+  };
+
+  var blameItems = [
+    { text: 'Sam merged a broken change.', correct: 'blame', rewrite: 'The change reached production without a check on the payment path.' },
+    { text: 'The test suite didn\'t cover the checkout flow with the new payment method.', correct: 'system', rewrite: null },
+    { text: 'The on-call engineer didn\'t roll back fast enough.', correct: 'blame', rewrite: 'There was no documented rollback step in the on-call playbook for error-rate spikes.' },
+    { text: 'No automated canary check ran on the payment flow before the deploy.', correct: 'system', rewrite: null },
+    { text: 'Aisha should have caught the error in the logs sooner.', correct: 'blame', rewrite: 'Payment errors weren\'t surfaced on the main on-call dashboard — they required a separate log query.' },
+    { text: 'The deploy pipeline had no automatic rollback trigger on sustained error-rate spikes.', correct: 'system', rewrite: null }
+  ];
+
+  function buildBlame() {
+    var c = document.getElementById('bsorter');
+    if (!c) return;
+    c.innerHTML = '';
+    blameItems.forEach(function(item, i) {
+      var div = document.createElement('div');
+      div.className = 'bitem';
+      div.innerHTML =
+        '<div class="bitem-text">' + item.text + '</div>' +
+        '<div class="bitem-btns">' +
+          '<button class="bbln" data-i="' + i + '" data-pick="blame" onclick="pickBlame(this)">Blame</button>' +
+          '<button class="bsys" data-i="' + i + '" data-pick="system" onclick="pickBlame(this)">System</button>' +
+        '</div>' +
+        '<div class="bitem-rewrite" id="br' + i + '"></div>';
+      c.appendChild(div);
+    });
+  }
+
+  window.pickBlame = function(btn) {
+    var i = parseInt(btn.getAttribute('data-i'), 10);
+    var pick = btn.getAttribute('data-pick');
+    var item = blameItems[i];
+    var bitem = btn.closest('.bitem');
+    bitem.querySelectorAll('button').forEach(function(b) { b.classList.remove('picked-bl','picked-sy'); b.disabled = true; });
+    btn.classList.add(pick === 'blame' ? 'picked-bl' : 'picked-sy');
+    var rw = document.getElementById('br' + i);
+    var correct = pick === item.correct;
+    bitem.style.borderColor = correct ? 'var(--a-ok)' : 'var(--a-ng)';
+    if (rw) {
+      if (correct && item.correct === 'system') {
+        rw.textContent = 'Correct — this sentence points at a system gap.';
+      } else if (correct && item.correct === 'blame') {
+        rw.textContent = 'Correct — this names a person. System version: ' + item.rewrite;
+      } else if (!correct && pick === 'blame') {
+        rw.textContent = 'This sentence points at a system gap, not a person.';
+      } else {
+        rw.textContent = 'This sentence names a person.' + (item.rewrite ? ' System version: ' + item.rewrite : '');
+      }
+      rw.classList.add('show');
+    }
+    var allDone = Array.from(document.querySelectorAll('#bsorter .bitem')).every(function(el) {
+      return el.querySelectorAll('button.picked-bl,button.picked-sy').length > 0;
+    });
+    if (allDone) { var res = document.getElementById('bsort-result'); if (res) res.style.display = 'block'; }
+  };
+
+  window.resetBlame = function() {
+    buildBlame();
+    var res = document.getElementById('bsort-result'); if (res) res.style.display = 'none';
+  };
+
+  initMainTabs();
+  initSubTabs('.dst-bar', 'dsub');
+  initSubTabs('.ast-bar', 'asub');
+  initDrill();
+  buildBlame();
+  try {
+    var fb = localStorage.getItem('d05-fb');
+    if (fb) { var fbBtn = document.querySelector('#d-fb-row button[data-val="' + fb + '"]'); if (fbBtn) fbBtn.classList.add('on'); }
+  } catch(e) {}
+})();
+</script>
+
+</body>
+</html>
