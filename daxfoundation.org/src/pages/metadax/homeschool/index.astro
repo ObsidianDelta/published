@@ -1,6 +1,8 @@
 ---
 import Base from '../../../layouts/Base.astro';
 import { byId } from '../_showcase.js';
+import { byChair } from '../../../data/library.js';
+const built = byChair('parent');
 
 // /metadax/homeschool/ -- for parents who homeschool, 2026-10-05. The page
 // Jason points homeschooling groups at. Plain words throughout. The Megan and
@@ -48,6 +50,22 @@ const url = `/metadax/showcase/${s.id}/`;
       <span aria-hidden="true">&middot;</span>
       <a href="/metadax/showcase/">The other five samples</a>
     </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-built">
+    <h2 id="h-built">Built for this chair</h2>
+    <ul class="built">
+      {built.map((e) => (
+        <li class="bcard">
+          <a href={e.url} rel={e.external ? 'noopener' : undefined}>
+            <span class="bc-title">{e.title}</span>
+            <span class="bc-note">{e.note}</span>
+          </a>
+          {e.lang && <p class="bc-meta"><span class="lang">{e.lang}</span></p>}
+        </li>
+      ))}
+    </ul>
+    <p class="out"><a href="/metadax/showcases/">The whole library &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="h-you">
@@ -210,6 +228,17 @@ const url = `/metadax/showcase/${s.id}/`;
   .out span { color: var(--faint); margin-inline: 0.5rem; }
   .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+
+  /* "Built for this chair": small cards from the registry. */
+  .built { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .bcard { border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .bcard > a { display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none; color: inherit; }
+  .bcard > a:hover .bc-title, .bcard > a:focus-visible .bc-title { text-decoration: underline; text-underline-offset: 0.2em; }
+  .bc-title { font-weight: 500; }
+  .bc-note { font-size: 0.85rem; line-height: 1.4; color: #bdbdbd; }
+  .bc-meta { margin: auto 0 0; }
+  .lang { font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.45rem; }
+  @media (max-width: 34rem) { .built { grid-template-columns: 1fr; } }
 
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem 2rem; }
   .cols ul { margin: 0; padding-left: 1.1rem; color: #cfcfcf; font-size: 0.9875rem; }

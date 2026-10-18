@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import { byKind, newest } from '../../data/library.js';
 
 // /metadax/ -- "pick your chair", 2026-10-10 (five-chairs-doors).
 //
@@ -58,6 +59,19 @@ const moved = [
   'guides-and-learners', 'human-delta-value', 'how-it-works', 'underneath',
   'experiments', 'constraint-protocol', 'honest', 'ask', 'top',
 ];
+
+// The counts and the newest cards come from the one library registry
+// (src/data/library.js), so this hub never carries a hand-written number that
+// the library has outgrown.
+const counts = {
+  showcase: byKind('showcase').length,
+  kit: byKind('kit').length,
+  edition: byKind('edition').length,
+  sample: byKind('sample').length,
+  family: byKind('family').length,
+  run: byKind('run').length,
+};
+const latest = newest(3);
 ---
 <Base title="Meta DAX: pick your chair" description="Our initiative of universal learning. Every human being. Any subject. Any domain. Free, forever. Pick your chair: parent, tutor, teacher, trainer, researcher." image="cards/metadax" wide>
   <section class="lede" id="see-it-top">
@@ -90,15 +104,26 @@ const moved = [
     <h2 id="h-see">See it</h2>
     <p class="big">The same recipe built every one of these.</p>
     <p class="body">
-      Four deep showcases, nine sample packages, and six family pages three
-      steps in: a mom and her eleven-year-old on fractions, a teacher and a
-      newcomer, a grandson and his grandmother, a new manager, a first on-call
-      shift, a teacher of teachers. Open any of them. Everyone in them is made up.
+      {counts.showcase} immersive showcases, {counts.kit} player kits
+      ({counts.edition} with a learner&rsquo;s own edition), {counts.sample} sample
+      packages, {counts.family} family pages three steps in, and {counts.run} run
+      report. Open any of them. Everyone in them is made up.
     </p>
-    <p class="body">
-      The newest is a cultural showcase: <a href="/metadax/showcases/tamil-chicken-curry/">One dish, its story</a> &mdash; Sri Lankan Tamil chicken curry, Jaffna style, a 3D kitchen in three stations with a Tamil/English toggle, read by someone from the community.
-    </p>
-    <p class="out"><a href="/metadax/samples/">See it &rarr;</a></p>
+    <ul class="newest">
+      {latest.map((e) => (
+        <li class="card">
+          <a href={e.url}>
+            <span class="card-title">{e.title}</span>
+            <span class="card-note">{e.note}</span>
+          </a>
+          <p class="card-meta">
+            {e.lang && <span class="lang">{e.lang}</span>}
+            {(e.chairs || []).map((c) => <span class="chair">{c}</span>)}
+          </p>
+        </li>
+      ))}
+    </ul>
+    <p class="out"><a href="/metadax/showcases/">The whole library &rarr;</a> <span aria-hidden="true">&middot;</span> <a href="/metadax/samples/">See it &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="h-support">
@@ -145,6 +170,18 @@ const moved = [
   .out span { color: var(--faint); margin-inline: 0.5rem; }
   .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+
+  /* The three newest from the registry, as small cards. */
+  .newest { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+  .card { border: 1px solid var(--line); border-radius: 10px; padding: 0.9rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.4rem; }
+  .card > a { display: flex; flex-direction: column; gap: 0.25rem; text-decoration: none; color: inherit; }
+  .card > a:hover .card-title, .card > a:focus-visible .card-title { text-decoration: underline; text-underline-offset: 0.2em; }
+  .card-title { font-weight: 500; font-size: 0.95rem; line-height: 1.25; }
+  .card-note { font-size: 0.8rem; line-height: 1.4; color: #bdbdbd; }
+  .card-meta { margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .lang, .chair { font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.45rem; }
+  @media (max-width: 44rem) { .newest { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 34rem) { .newest { grid-template-columns: 1fr; } }
 
   /* Five doors. */
   .doors { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }

@@ -1,5 +1,7 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import { byChair } from '../../../data/library.js';
+const built = byChair('teacher');
 
 // /metadax/teacher/ -- the teacher's door, 2026-10-10 (five-chairs-doors).
 // One page, four blocks, in the teacher's words. The grade-6-science-year
@@ -31,6 +33,22 @@ import Base from '../../../layouts/Base.astro';
       <a href="/metadax/showcases/tutors-desk/">The Tutor&rsquo;s Desk</a> for the
       same shape on one learner. Everyone in these is made up.
     </p>
+  </section>
+
+  <section class="block" aria-labelledby="h-built">
+    <h2 id="h-built">Built for this chair</h2>
+    <ul class="built">
+      {built.map((e) => (
+        <li class="bcard">
+          <a href={e.url} rel={e.external ? 'noopener' : undefined}>
+            <span class="bc-title">{e.title}</span>
+            <span class="bc-note">{e.note}</span>
+          </a>
+          {e.lang && <p class="bc-meta"><span class="lang">{e.lang}</span></p>}
+        </li>
+      ))}
+    </ul>
+    <p class="body"><a href="/metadax/showcases/">The whole library &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="h-run">
@@ -92,4 +110,15 @@ import Base from '../../../layouts/Base.astro';
   .out span { color: var(--faint); margin-inline: 0.5rem; }
   .out a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .out a:hover, .out a:focus-visible { border-bottom-color: currentColor; }
+
+  /* "Built for this chair": small cards from the registry. */
+  .built { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .bcard { border: 1px solid var(--line); border-radius: 10px; padding: 0.85rem 1rem; display: flex; flex-direction: column; gap: 0.3rem; }
+  .bcard > a { display: flex; flex-direction: column; gap: 0.2rem; text-decoration: none; color: inherit; }
+  .bcard > a:hover .bc-title, .bcard > a:focus-visible .bc-title { text-decoration: underline; text-underline-offset: 0.2em; }
+  .bc-title { font-weight: 500; }
+  .bc-note { font-size: 0.85rem; line-height: 1.4; color: #bdbdbd; }
+  .bc-meta { margin: auto 0 0; }
+  .lang { font-size: 0.6875rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--faint); border: 1px solid var(--line); border-radius: 999px; padding: 0.05rem 0.45rem; }
+  @media (max-width: 34rem) { .built { grid-template-columns: 1fr; } }
 </style>

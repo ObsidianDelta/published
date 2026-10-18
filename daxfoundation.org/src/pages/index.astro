@@ -1,5 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
+import { home as libraryHome, byKind } from '../data/library.js';
+import { posts } from './_posts.js';
 
 // daxfoundation.org home, refocused 2026-10-10 (uniform-home) at Jason's
 // request: "a lot of stuff needs to be rearranged, more focused, continuity
@@ -55,16 +57,20 @@ const doors = [
     text: 'The benchmark, the measure, how it works underneath, the experiments with their results, the Constraint Protocol, and the ask.' },
 ];
 
-// The six showcases, in one row: the ceiling of what the recipe builds.
+// The "See it" row reads the one library registry (src/data/library.js),
+// newest first, so a new showcase lands once and shows up here automatically.
+// The external sample-report link is kept, pinned at the end of the row.
 const showcases = [
-  { href: '/metadax/showcases/tamil-chicken-curry/', name: 'One dish, its story', note: 'a Jaffna curry in a 3D kitchen, Tamil & English' },
-  { href: '/metadax/samples/stade-des-fractions/', name: 'Le Stade des Fractions', note: 'French fractions in a 3D stadium' },
-  { href: '/metadax/showcases/first-week-at-the-bakery/', name: 'First Week at the Bakery', note: 'a staff onboarding module' },
-  { href: '/metadax/showcases/proton-mill/', name: 'The Proton Mill', note: 'a 3D Biology 101 lesson' },
-  { href: '/metadax/showcases/tutors-desk/', name: "The Tutor's Desk", note: "one tutor's week" },
-  { href: '/metadax/showcases/grade-6-science-year/', name: 'The Year on the Wall', note: 'a whole Grade 6 science year' },
+  ...libraryHome().map((e) => ({ href: e.url, name: e.title, note: e.note })),
   { href: 'https://www.obsidiandelta.com/opportunities/sample-report/', name: 'A sample tutor report', note: 'what a tutor gets back', rel: 'noopener' },
 ];
+
+// The first run report the recipe produced, linked under the row (external).
+const newton = byKind('run').find((e) => e.id === 'newton-laws-test-run');
+
+// The newest three pieces from the writing index, so this row cannot drift
+// from what /writing/ actually publishes.
+const writing = posts.slice(0, 3);
 
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 ---
@@ -110,6 +116,10 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
         ))}
       </nav>
       <p class="out"><a href="/metadax/samples/">See it &mdash; every showcase and sample &rarr;</a></p>
+      <p class="newton">The first thing the recipe built, in September: the
+        <a href={newton.url} rel="noopener">Newton&rsquo;s laws run report</a>
+        <span class="tag">report; simulated learner</span>
+      </p>
     </div>
 
     <p class="sponsor">
@@ -157,6 +167,9 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <span aria-hidden="true">&middot;</span>
       <a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a>
     </p>
+    <p class="out">
+      <a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a>
+    </p>
   </section>
 
   <section class="block" aria-labelledby="coming">
@@ -182,8 +195,10 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <li class="row">
         <span class="name"><a href="/writing/">Writing</a></span>
         <span class="text">
-          The Foundation&rsquo;s own pieces, starting with
-          <a href="/writing/human-delta-value/">Human delta value: the measure</a>.
+          The Foundation&rsquo;s own pieces. Newest:
+          {writing.map((p, i) => (
+            <>{i > 0 ? ', ' : ' '}<a href={`/writing/${p.slug}/`}>{p.title}</a></>
+          ))}.
         </span>
       </li>
       <li class="row">
@@ -358,6 +373,23 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   .sc-note { font-size: 0.75rem; color: var(--faint); }
 
   .sponsor { margin: 2rem 0 0; max-width: 36em; color: #bdbdbd; }
+
+  /* The Newton run report, one quiet line under the row. */
+  .newton { margin: 1rem 0 0; font-size: 0.9375rem; color: #bdbdbd; }
+  .newton a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .newton a:hover, .newton a:focus-visible { border-bottom-color: currentColor; }
+  .tag {
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--faint);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.05rem 0.5rem;
+    vertical-align: middle;
+  }
 
   /* Five short links: one per chair, under the ask. */
   .chairs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9375rem; }
