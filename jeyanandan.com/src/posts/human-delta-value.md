@@ -70,8 +70,6 @@ So this is a demand, not a comfort. A guide whose plan arrives defaulted is not 
 
 For me, that curry will always be my mother. The package can teach a ten-year-old the fractions inside the bird and why the coconut milk goes in last. It cannot be her, and it was never meant to be.
 
-## Sources
-
 [^1]: Vaccaro, M., Almaatouq, A., & Malone, T. (2024). When combinations of humans and AI are useful: A systematic review and meta-analysis. *Nature Human Behaviour*, 8(12), 2293–2303. https://pmc.ncbi.nlm.nih.gov/articles/PMC11659167/
 
 [^2]: Brynjolfsson, E., Li, D., & Raymond, L. R. (2025). Generative AI at work. *Quarterly Journal of Economics*, 140(2), 889–942. https://www.nber.org/papers/w31161 ; Wang, R. E., Ribeiro, A. T., Robinson, C. D., Loeb, S., & Demszky, D. (2025). Tutor CoPilot: A human-AI approach for scaling real-time expertise. arXiv:2410.03017 (v2). https://arxiv.org/abs/2410.03017

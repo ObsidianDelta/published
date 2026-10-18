@@ -80,8 +80,6 @@ Until the route works for a stranger, the offer stands: send me a scenario, a di
 
 Thirty to one is how a guide gets that room back, for every learner. Tutoring has a scale problem the recipe has to beat: across 265 trials its effect fell from about 0.55 standard deviations in programmes under 100 students to about 0.15 in programmes over 1,000.[^6]
 
-## Sources
-
 [^1]: UNESCO Institute for Statistics (2016). *School resources and learning environment in Africa*. https://uis.unesco.org/sites/default/files/school-resources-and-learning-environment-in-africa-2016-en/school-resources-and-learning-environment-in-africa-2016-en.pdf ; World Bank, World Development Indicators: Pupil-teacher ratio, primary (SE.PRM.ENRL.TC.ZS). https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 
 [^2]: Bloom, B. S. (1984). The 2 sigma problem: The search for methods of group instruction as effective as one-to-one tutoring. *Educational Researcher*, 13(6), 4–16. https://www.gwern.net/doc/psychology/1984-bloom.pdf ; OECD (2026). *Education at a Glance 2026*, Indicator D2: How do student-teacher ratios and class sizes vary across education levels? https://www.oecd.org/en/publications/education-at-a-glance-2026_b4968bbc-en/full-report/how-do-student-teacher-ratios-and-class-sizes-vary-across-education-levels_30c0e06c ; UNESCO Institute for Statistics (2016). *School resources and learning environment in Africa*. https://uis.unesco.org/sites/default/files/school-resources-and-learning-environment-in-africa-2016-en/school-resources-and-learning-environment-in-africa-2016-en.pdf
