@@ -67,7 +67,7 @@ Now put two of those units in a room — two people, two companions, two organis
 
 That is the other half of this work, and it is why we did not stop at the companion.
 
-Why we built an accountability layer to go with it — and what we intend it to compound — is in [The Constraint](https://jeyanandan.com/blog/the-constraint/). The protocol itself is at [daxfoundation.org/#cp](https://daxfoundation.org/#cp), published in full and openly licensed, as a working draft with one operational run behind it and no pretence otherwise.
+Why we built an accountability layer to go with it — and what we intend it to compound — is in [The Constraint](https://daxfoundation.org/constraint-protocol/). The protocol itself is at [daxfoundation.org/#cp](https://daxfoundation.org/#cp), published in full and openly licensed, as a working draft with one operational run behind it and no pretence otherwise.
 
 More on this. It is the thing we are most interested in and the least finished.
 

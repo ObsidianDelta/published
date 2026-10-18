@@ -322,6 +322,15 @@
     .hero__logo:not(.alive) .hero__logo-still { animation: none; }
   }
 
+  /* DAX constraint section */
+  .dax-constraint { border-top: 1px solid var(--steel); padding: clamp(40px,7vw,72px) 32px; max-width: 1080px; margin: 0 auto; }
+  .dax-constraint__kicker { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; }
+  .dax-constraint__heading { font-family: var(--font-display); font-weight: 500; font-size: clamp(24px,3.4vw,36px); line-height: 1.1; letter-spacing: -.02em; color: var(--white); margin-bottom: 20px; text-wrap: balance; }
+  .dax-constraint__body { font-family: var(--font-body); color: var(--bone); font-size: 16px; line-height: 1.7; max-width: 680px; }
+  .dax-constraint__body + .dax-constraint__body { margin-top: 14px; }
+  .dax-constraint__body a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); }
+  .dax-constraint__body a:hover { color: var(--white); border-color: var(--white); }
+
 </style>
 </head>
 <body>
@@ -330,7 +339,7 @@
   <a class="brand" href="/"><img src="/logo-flat.png" alt="" width="28" height="28" /><span>Obsidian Delta</span></a>
   <nav class="nav" aria-label="Site">
     <a href="/blog/">blog</a>
-    <a href="/learning/">learning</a>
+    <a href="/opportunities/">opportunities</a>
     <a href="/blog/cognitive-companion/">the cognitive companion</a>
   </nav>
 </div></header>
@@ -359,8 +368,8 @@
     <!-- MetaDAX done-for-you -->
     <li class="item">
       <p class="item__date">2026  ·  MetaDAX done-for-you</p>
-      <h2 class="item__name"><a href="/learning/">Learning, done for you</a></h2>
-      <p class="item__body">The open MetaDAX recipe, built for you &mdash; tutor session reports, a custom learner pack, or a course for your team in about a week. <a href="/learning/">See what's on offer</a>.</p>
+      <h2 class="item__name"><a href="/opportunities/">Opportunities: packages built for you, French editions, build with us</a></h2>
+      <p class="item__body">The open MetaDAX recipe, built for you &mdash; tutor session reports, a custom learner pack, or a course for your team in about a week. <a href="/opportunities/">See what's on offer</a>.</p>
     </li>
 
     <!-- Delta Suite 2.0 -->
@@ -401,6 +410,12 @@
   </ol>
 </section>
 
+<section class="dax-constraint">
+  <p class="dax-constraint__kicker">Under the DAX constraint</p>
+  <h2 class="dax-constraint__heading">Under the DAX constraint</h2>
+  <p class="dax-constraint__body">Obsidian Delta operates under the DAX constraint: the preservation and expansion of life, humanity, and consciousness. The company has committed that everything it operates runs under a declared constraint, with the record kept under the <a href="https://daxfoundation.org/constraint-protocol/">Constraint Protocol</a> (<a href="https://github.com/daxfoundation/constraint-protocol">the specification</a>), a public working draft that has run in full once. What that means, and where it stands, is written up at <a href="https://daxfoundation.org/">the DAX Foundation</a>.</p>
+</section>
+
 <footer class="footer"><div class="shell">
   <div class="footer__left">
     <img src="/logo-flat.png" alt="" width="24" height="24" />
@@ -408,9 +423,9 @@
   </div>
   <span class="footer__right">
     <a href="/blog/">blog</a>
-    <a href="/learning/">learning</a>
+    <a href="/opportunities/">opportunities</a>
     <a href="https://github.com/ObsidianDelta/published/tree/main/obsidiandelta.com">versioned, in public</a>
-    <a href="https://jeyanandan.com/blog/how-i-publish/">how this is published</a>
+    <a href="https://github.com/ObsidianDelta/published">how this is published</a>
   </span>
 </div></footer>
 
