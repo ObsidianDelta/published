@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base
+  title="About the DAX Foundation"
+  description="The DAX Foundation is an open project set up by Jason Jeyanandan. DAX is preservation and expansion of life, humanity, and consciousness."
+  wide
+>
+  <article class="about">
+    <header class="lede">
+      <h1>About the DAX Foundation</h1>
+    </header>
+
+    <section>
+      <h2>Who we are</h2>
+      <p class="body">The DAX Foundation is an open project set up by Jason Jeyanandan. DAX is &ldquo;preservation and expansion of life, humanity, and consciousness.&rdquo; Everything published here comes from Jason working through his <a href="/definitions/#cognitive-companion">cognitive companion</a> as one unit. The Foundation is not incorporated.</p>
+    </section>
+
+    <section>
+      <h2>What lives here</h2>
+      <p class="body"><strong>Meta DAX</strong> is our initiative of universal learning: every human being, any subject, any domain, free, forever. <a href="/metadax/">The initiative</a> and the <a href="/metadax/showcases/">library</a>.</p>
+      <p class="body"><strong>The Constraint Protocol</strong> is a public working draft, v0.5, run in full once: on 4&nbsp;May&nbsp;2026. Meta DAX is meant to run on it; its protocol fields are reserved and empty today. <a href="/constraint-protocol/">How it stands</a> and <a href="https://github.com/daxfoundation/constraint-protocol">the specification on GitHub</a>.</p>
+      <p class="body"><strong>The research</strong> is a small body of what has run and what is planned: <a href="/metadax/research/">experiments and findings</a> and <a href="/writing/">the writing</a>.</p>
+      <p class="body">Meta DAX has two seats. Whoever is a step ahead, right now, on this, is the guide; everyone is a learner. &ldquo;The same lesson, any skin, built for one person.&rdquo; The <a href="/definitions/">definitions</a> say what we mean by each term.</p>
+    </section>
+
+    <section>
+      <h2>How it is built and paid for</h2>
+      <p class="body">The recipe &mdash; prompts, templates, tools &mdash; is open at <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a> under open licences (<a href="https://github.com/daxfoundation/metadax/blob/main/LICENSES.md">LICENSES.md</a>). The system that builds this is Jason&rsquo;s and is called Skippy. The public record of what it publishes is at <a href="https://github.com/ObsidianDelta/published">github.com/ObsidianDelta/published</a>. Everything is written with AI and read by a person before it goes live.</p>
+      <p class="body">Meta DAX is free and built on paid compute. Support goes to Jason directly through <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or <a href="https://github.com/sponsors/ObsidianDelta">GitHub&nbsp;Sponsors</a>; the Foundation takes none of it. <a href="https://www.obsidiandelta.com/">Obsidian Delta</a> is the company that builds on the open infrastructure, does done-for-you work, and operates under the DAX constraint.</p>
+    </section>
+
+    <section>
+      <h2>Where to write</h2>
+      <p class="body">Jason is on <a href="https://www.linkedin.com/in/jasonjeyanandan">LinkedIn</a>. For the learning initiative, raise an issue on <a href="https://github.com/daxfoundation/metadax/issues">the metadax repository</a>.</p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .lede { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+  }
+  .body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  section { padding-block: 1.25rem 0; border-top: 1px solid var(--line); }
+  section:first-of-type { margin-top: 1.25rem; }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .body a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid var(--faint);
+  }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  strong { font-weight: 600; color: var(--fg); }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 2.5rem 2rem; }
+  }
+</style>
