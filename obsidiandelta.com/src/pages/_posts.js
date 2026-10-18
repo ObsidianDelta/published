@@ -77,3 +77,40 @@ export const formatDate = (value) => {
     ? ''
     : d.toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 };
+
+/** Series registry. Each key matches the `series` frontmatter field. */
+export const SERIES = {
+  opportunities: {
+    title: 'Opportunities: built on open infrastructure',
+    blurb: 'Businesses that can be built on the open infrastructure today, one per article, with the showcase as proof.',
+    total: 5,
+  },
+};
+
+/**
+ * Known non-blog pages on this site, for resolving `related` URLs.
+ * Path -> display title.
+ */
+export const SITE_PAGES = {
+  '/': 'Obsidian Delta',
+  '/blog/': 'Blog',
+  '/opportunities/': 'Opportunities',
+  '/opportunities/sample-report/': 'Sample Report',
+};
+
+/**
+ * Map of part number -> post record for a series, built from indexablePosts
+ * (listed, non-draft). Unpublished parts are absent.
+ */
+export const seriesPartMap = (key) => {
+  const map = {};
+  for (const p of indexablePosts) {
+    if (p.series === key && p.part) map[p.part] = p;
+  }
+  return map;
+};
+
+/** Lookup indexable post by slug, for resolving /blog/ related URLs. */
+export const indexableBySlug = Object.fromEntries(
+  indexablePosts.map((p) => [p.slug, p])
+);

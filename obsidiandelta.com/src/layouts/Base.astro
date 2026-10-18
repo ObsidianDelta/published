@@ -27,6 +27,7 @@ const {
   title,
   description = 'Obsidian Delta.',
   noindex = false,
+  ogType = 'website',
 } = Astro.props;
 
 // 2026-10-08: a shared /blog/ link unfurled as a bare title because this layout
@@ -51,7 +52,7 @@ const ogImage = new URL('/og.png', Astro.site);
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:type" content="website" />
+<meta property="og:type" content={ogType} />
 <meta property="og:site_name" content="Obsidian Delta" />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
@@ -63,6 +64,7 @@ const ogImage = new URL('/og.png', Astro.site);
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 <meta name="theme-color" content="#000000" />
+<slot name="head" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

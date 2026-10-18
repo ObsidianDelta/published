@@ -1,10 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { postEntries, isNoindex, isDraft, formatDate } from '../_posts.js';
+import {
+  postEntries,
+  isNoindex,
+  isDraft,
+  formatDate,
+  SERIES,
+  SITE_PAGES,
+  seriesPartMap,
+  indexableBySlug,
+} from '../_posts.js';
 
-// One page per post that builds. Which posts build is decided in one place,
-// src/pages/_posts.js: a draft builds only in a review build (OD_SHOW_DRAFTS=1),
-// never in production. Slug is the filename in src/posts/.
 export async function getStaticPaths() {
   return postEntries.map((e) => ({
     params: { slug: e.slug },
@@ -16,50 +22,198 @@ const { frontmatter, Content } = Astro.props;
 const slug = Astro.params.slug;
 const draft = isDraft(frontmatter);
 
-// Title and optional deck rejoined for the tab and share cards.
 const fullTitle = frontmatter.subtitle
   ? `${frontmatter.title}: ${frontmatter.subtitle}`
   : frontmatter.title;
 
-// Unlisted or draft means noindex, nofollow -- the same rule the indexes use to
-// leave the post out, so the robots tag and the lists cannot disagree.
 const noindex = isNoindex(slug, frontmatter);
 
-// `date` is first published and never moves; `updated` is set by hand whenever
-// the text changes, and is shown only when it is later than `date`. The History
-// link beside them is this post's commit list in the public record,
-// github.com/ObsidianDelta/published (Jason, 2026-10-01).
 const published = new Date(frontmatter.date);
 const revised = frontmatter.updated ? new Date(frontmatter.updated) : null;
 const showUpdated = revised && !Number.isNaN(revised.getTime()) && revised > published;
 const history = `https://github.com/ObsidianDelta/published/commits/main/obsidiandelta.com/src/posts/${slug}.md`;
+
+// --- Series ---
+const seriesKey = frontmatter.series;
+const seriesInfo = seriesKey ? SERIES[seriesKey] : null;
+const seriesTotal = frontmatter.series_total || (seriesInfo ? seriesInfo.total : 0);
+const currentPart = frontmatter.part;
+
+const partMap = seriesInfo ? seriesPartMap(seriesKey) : {};
+
+// Parts list for the strip: indices 1..seriesTotal
+const partsList = seriesInfo
+  ? Array.from({ length: seriesTotal }, (_, i) => {
+      const n = i + 1;
+      return { n, post: partMap[n] || null };
+    })
+  : [];
+
+// Prev/next among published parts
+const publishedPartNums = partsList.filter((item) => item.post).map((item) => item.n);
+const currentIdx = publishedPartNums.indexOf(currentPart);
+const prevPost = currentIdx > 0 ? partMap[publishedPartNums[currentIdx - 1]] : null;
+const nextPost =
+  currentIdx >= 0 && currentIdx < publishedPartNums.length - 1
+    ? partMap[publishedPartNums[currentIdx + 1]]
+    : null;
+
+// --- Related links ---
+// Each `related` entry is a URL string or { url, label }. A link into /blog/
+// is resolved against the indexable posts and dropped when that post is not
+// published yet, so no dead link goes live; its text is the post's title.
+// Other site pages use SITE_PAGES; anything else uses the frontmatter label,
+// or hostname + path when there is none.
+const SITE = 'https://www.obsidiandelta.com';
+const relatedLinks = (frontmatter.related || []).flatMap((entry) => {
+  const url = typeof entry === 'string' ? entry : entry && entry.url;
+  const given = typeof entry === 'string' ? null : entry && entry.label;
+  if (!url) return [];
+  try {
+    const u = new URL(url, SITE);
+    const isInternal =
+      u.hostname === 'www.obsidiandelta.com' || u.hostname === 'obsidiandelta.com';
+    if (isInternal) {
+      const path = u.pathname;
+      if (path.startsWith('/blog/')) {
+        const s = path.replace(/^\/blog\//, '').replace(/\/$/, '');
+        const post = indexableBySlug[s];
+        if (!post) return [];
+        return [{ url, label: post.title }];
+      }
+      const label = given || SITE_PAGES[path];
+      return [{ url, label: label || u.hostname + path + (u.hash || '') }];
+    }
+    return [{ url, label: given || u.hostname + u.pathname + (u.hash || '') }];
+  } catch {
+    return [{ url, label: given || url }];
+  }
+});
+
+// --- JSON-LD ---
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: fullTitle,
+  description: frontmatter.description || fullTitle,
+  datePublished: published.toISOString().slice(0, 10),
+  dateModified: showUpdated
+    ? revised.toISOString().slice(0, 10)
+    : published.toISOString().slice(0, 10),
+  mainEntityOfPage: { '@type': 'WebPage', '@id': canonical.toString() },
+  author: {
+    '@type': 'Organization',
+    name: 'Obsidian Delta',
+    url: 'https://www.obsidiandelta.com/',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Obsidian Delta',
+    url: 'https://www.obsidiandelta.com/',
+  },
+  ...(seriesInfo && currentPart
+    ? {
+        isPartOf: {
+          '@type': 'CreativeWorkSeries',
+          name: seriesInfo.title,
+          position: currentPart,
+        },
+      }
+    : {}),
+};
+const jsonLdStr = JSON.stringify(jsonLd);
 ---
-<Base title={`${fullTitle} — Obsidian Delta`} description={frontmatter.description || fullTitle} noindex={noindex}>
+<Base
+  title={`${fullTitle} — Obsidian Delta`}
+  description={frontmatter.description || fullTitle}
+  noindex={noindex}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="Obsidian Delta: Blog" href="/blog/feed.xml" />
+    <script type="application/ld+json" set:html={jsonLdStr}></script>
+  </Fragment>
+
   {draft && (
     <div class="draft-banner" role="note"><div class="shell narrow">
       <strong>Draft</strong> — not published. This page exists only in review builds and is not indexed.
     </div></div>
   )}
+
+  {seriesInfo && (
+    <div class="series-strip"><div class="shell narrow">
+      <p class="series-label">Part {currentPart} of {seriesTotal} · {seriesInfo.title}</p>
+      <ol class="series-parts">
+        {partsList.map((item) => (
+          <li class:list={[{ current: item.n === currentPart }]}>
+            {item.post && item.n !== currentPart
+              ? <a href={`/blog/${item.post.slug}/`}>{item.post.title}</a>
+              : item.post
+              ? <span>{item.post.title}</span>
+              : <span>Part {item.n}</span>}
+          </li>
+        ))}
+      </ol>
+    </div></div>
+  )}
+
   <section class="hero"><div class="shell narrow">
     <p class="eyebrow">{[frontmatter.date && formatDate(frontmatter.date), showUpdated && `Updated ${formatDate(frontmatter.updated)}`, draft && 'Draft'].filter(Boolean).join(' · ')} <span aria-hidden="true">·</span> <a class="history" href={history} rel="noopener">History</a></p>
     <h1>{frontmatter.title}</h1>
     {frontmatter.subtitle && <p class="deck">{frontmatter.subtitle}</p>}
     <div class="rule"></div>
   </div></section>
+
   <article><div class="shell narrow prose">
     <Content />
   </div></article>
+
+  {(prevPost || nextPost) && (
+    <nav class="series-nav" aria-label="Series navigation"><div class="shell narrow">
+      {prevPost && (
+        <a class="series-nav__prev" href={`/blog/${prevPost.slug}/`}>
+          <span class="series-nav__dir">&larr; Part {prevPost.part}</span>
+          <span class="series-nav__title">{prevPost.title}</span>
+        </a>
+      )}
+      {nextPost && (
+        <a class="series-nav__next" href={`/blog/${nextPost.slug}/`}>
+          <span class="series-nav__dir">Part {nextPost.part} &rarr;</span>
+          <span class="series-nav__title">{nextPost.title}</span>
+        </a>
+      )}
+    </div></nav>
+  )}
+
+  {relatedLinks.length > 0 && (
+    <section class="related"><div class="shell narrow">
+      <p class="related__heading">Where this connects</p>
+      <ul class="related__list">
+        {relatedLinks.map((item) => (
+          <li><a href={item.url} rel="noopener">{item.label}</a></li>
+        ))}
+      </ul>
+    </div></section>
+  )}
+
   <div class="shell narrow"><p class="back"><a href="/blog/">&larr; All writing</a></p></div>
 </Base>
 
 <style is:global>
-/* Long-form typography for one post, in the Obsidian Delta dark system:
-   white headings, bone body text, orange as the single accent. Measures and
-   rhythm follow the front page's timeline items (680px body measure,
-   16-17px Inter at 1.7). */
 .draft-banner{background:var(--orange);color:var(--black)}
 .draft-banner .shell{padding-top:10px;padding-bottom:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em}
 .draft-banner strong{text-transform:uppercase;letter-spacing:.18em}
+
+/* Series strip */
+.series-strip{border-bottom:1px solid var(--steel);padding:20px 0}
+.series-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+.series-parts{list-style:none;display:flex;flex-wrap:wrap;gap:6px 0;flex-direction:column;padding:0;counter-reset:parts}
+.series-parts li{counter-increment:parts;font-size:15px;color:var(--ash);padding:4px 0;border-top:1px solid var(--steel);display:flex;gap:8px;align-items:baseline}
+.series-parts li::before{content:counter(parts) ".";font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--steel);min-width:18px;flex-shrink:0}
+.series-parts li.current span{color:var(--white)}
+.series-parts a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--steel)}
+.series-parts a:hover{color:var(--orange);border-color:var(--orange)}
 
 .hero{padding:clamp(56px,10vw,96px) 0 clamp(32px,6vw,48px)}
 .eyebrow .history{color:var(--ash);text-decoration:none;border-bottom:1px solid var(--steel)}
@@ -107,6 +261,22 @@ article{padding-bottom:clamp(24px,5vw,40px)}
   margin:1.6em 0;padding:16px;max-width:100%;overflow-x:auto;
 }
 .prose pre code{background:none;border:0;padding:0;font-size:inherit;white-space:pre}
+
+/* Series prev/next */
+.series-nav{border-top:1px solid var(--steel);padding:32px 0}
+.series-nav .shell{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.series-nav__prev,.series-nav__next{display:flex;flex-direction:column;gap:6px;text-decoration:none;max-width:48%}
+.series-nav__next{margin-left:auto;align-items:flex-end;text-align:right}
+.series-nav__dir{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.series-nav__title{font-family:var(--font-display);font-weight:500;font-size:17px;color:var(--bone);line-height:1.3}
+.series-nav__prev:hover .series-nav__title,.series-nav__next:hover .series-nav__title{color:var(--white)}
+
+/* Related */
+.related{border-top:1px solid var(--steel);padding:32px 0}
+.related__heading{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:16px}
+.related__list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.related__list a{color:var(--bone);text-decoration:none;border-bottom:1px solid var(--steel);font-size:15px}
+.related__list a:hover{color:var(--orange);border-color:var(--orange)}
 
 .back{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-top:8px}
 .back a{color:var(--ash);text-decoration:none}

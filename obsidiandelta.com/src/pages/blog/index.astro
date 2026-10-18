@@ -1,37 +1,114 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { listedPosts, formatDate } from '../_posts.js';
+import { listedPosts, indexablePosts, formatDate, SERIES, seriesPartMap } from '../_posts.js';
 
-// The reading list. It shows listedPosts: an unlisted post still has its own
-// URL and still serves, it is simply not advertised here. A draft appears here
-// only in a review build (OD_SHOW_DRAFTS=1), and is labelled as one.
-// src/pages/_posts.js holds the rules; /sitemap.xml reads the same module.
+// Build series groups: for each known series that has at least one indexable
+// post, collect the title, blurb, and all parts in ascending order.
+const seriesKeys = Object.keys(SERIES);
+const seriesGroups = seriesKeys.flatMap((key) => {
+  const info = SERIES[key];
+  const partMap = seriesPartMap(key);
+  if (Object.keys(partMap).length === 0) return [];
+  const parts = Array.from({ length: info.total }, (_, i) => {
+    const n = i + 1;
+    return { n, post: partMap[n] || null };
+  });
+  return [{ key, info, parts }];
+});
+
+// Posts not in any series, newest first
+const seriesPostSlugs = new Set(
+  indexablePosts.filter((p) => p.series).map((p) => p.slug)
+);
+const otherPosts = listedPosts.filter((p) => !seriesPostSlugs.has(p.slug));
 ---
-<Base title="Blog — Obsidian Delta" description="Writing from Obsidian Delta on cognition, cognitive companions, and where the work stands.">
+<Base
+  title="Blog — Obsidian Delta"
+  description="Writing from Obsidian Delta on cognition, cognitive companions, and where the work stands."
+>
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="Obsidian Delta: Blog" href="/blog/feed.xml" />
+  </Fragment>
+
   <section class="hero"><div class="shell narrow">
     <p class="eyebrow">Obsidian Delta · writing</p>
     <h1>Blog</h1>
     <div class="rule"></div>
   </div></section>
+
   <section><div class="shell narrow">
-    <ul class="posts">
-      {listedPosts.map((p) => (
-        <li>
-          <p class="meta">
-            {p.date && <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>}
-            {p.draft && <span class="tag">Draft</span>}
-          </p>
-          <a href={`/blog/${p.slug}/`}>{p.title}</a>
-          {p.description && <p class="desc">{p.description}</p>}
-        </li>
-      ))}
-    </ul>
-    {listedPosts.length === 0 && <p class="empty">Nothing published yet.</p>}
+
+    {seriesGroups.map((group) => (
+      <div class="series-group">
+        <p class="series-group__label">Series</p>
+        <h2 class="series-group__title">{group.info.title}</h2>
+        <p class="series-group__blurb">{group.info.blurb}</p>
+        <ol class="series-group__parts">
+          {group.parts.map((item) => (
+            <li>
+              {item.post
+                ? (
+                  <>
+                    <a href={`/blog/${item.post.slug}/`}>{item.post.title}</a>
+                    {item.post.description && <p class="part-desc">{item.post.description}</p>}
+                  </>
+                )
+                : <span class="part-placeholder">Part {item.n}</span>}
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+
+    {otherPosts.length > 0 && (
+      <ul class="posts">
+        {otherPosts.map((p) => (
+          <li>
+            <p class="meta">
+              {p.date && <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>}
+              {p.draft && <span class="tag">Draft</span>}
+            </p>
+            <a href={`/blog/${p.slug}/`}>{p.title}</a>
+            {p.description && <p class="desc">{p.description}</p>}
+          </li>
+        ))}
+      </ul>
+    )}
+
+    {seriesGroups.length === 0 && otherPosts.length === 0 && (
+      <p class="empty">Nothing published yet.</p>
+    )}
+
   </div></section>
 </Base>
 
 <style is:global>
 .hero{padding:clamp(56px,10vw,96px) 0 clamp(32px,6vw,56px)}
+
+/* Series group block */
+.series-group{border-top:1px solid var(--steel);padding:40px 0 32px}
+.series-group__label{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);margin-bottom:12px}
+.series-group__title{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(22px,3.2vw,30px);line-height:1.15;letter-spacing:-.02em;
+  color:var(--white);margin-bottom:10px;
+}
+.series-group__blurb{color:var(--ash);font-size:15px;line-height:1.6;margin-bottom:24px}
+.series-group__parts{list-style:none;counter-reset:parts;padding:0;display:flex;flex-direction:column;gap:0}
+.series-group__parts li{counter-increment:parts;padding:14px 0;border-top:1px solid var(--steel);display:flex;flex-direction:column;gap:4px}
+.series-group__parts li::before{content:counter(parts) ". ";font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--steel)}
+.series-group__parts a{
+  font-family:var(--font-display);font-weight:500;
+  font-size:clamp(17px,2.4vw,22px);line-height:1.2;letter-spacing:-.01em;
+  color:var(--white);text-decoration:none;
+  border-bottom:1px solid var(--orange);padding-bottom:1px;
+  transition:color .2s,border-color .2s;
+}
+.series-group__parts a:hover{color:var(--orange);border-color:var(--white)}
+.part-placeholder{color:var(--steel);font-size:15px;font-family:var(--font-mono);letter-spacing:.06em}
+.part-desc{color:var(--ash);font-size:14px;line-height:1.55;margin-top:2px}
+
+/* Non-series posts */
 .posts{list-style:none;display:flex;flex-direction:column}
 .posts li{border-top:1px solid var(--steel);padding:32px 0}
 .posts li:last-child{border-bottom:1px solid var(--steel)}
