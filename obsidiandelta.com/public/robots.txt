@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /demo/
-Disallow: /light
-
-Sitemap: https://www.obsidiandelta.com/sitemap.xml
