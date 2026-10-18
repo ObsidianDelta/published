@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { formatDate, historyUrl } from '../_posts.js';
+import { posts, formatDate, historyUrl, SERIES, seriesOf } from '../_posts.js';
 
 // One piece under /writing/. Same shape as views/jeyanandan/src/pages/blog/
 // [slug].astro: two dates (first published, never moves; updated, by hand, shown
@@ -20,12 +20,87 @@ export async function getStaticPaths() {
 }
 
 const { frontmatter, Content } = Astro.props;
+const slug = Astro.params.slug;
 const published = new Date(frontmatter.date);
 const revised = frontmatter.updated ? new Date(frontmatter.updated) : null;
 const showUpdated = revised && !Number.isNaN(revised.getTime()) && revised > published;
-const history = historyUrl(Astro.params.slug);
+const history = historyUrl(slug);
+
+// Series
+const seriesKey = frontmatter.series || null;
+const seriesMeta = seriesKey ? SERIES[seriesKey] : null;
+const seriesParts = seriesKey ? seriesOf(seriesKey) : [];
+const thisPartNum = frontmatter.part || null;
+const totalParts = frontmatter.series_total || 5;
+
+// All part slots 1..totalParts, each with its published post (or null).
+const partsList = seriesKey
+  ? Array.from({ length: totalParts }, (_, i) => {
+      const n = i + 1;
+      return { n, post: seriesParts.find((p) => p.part === n) || null };
+    })
+  : [];
+
+// Prev / next among published neighbours only.
+const seriesIdx = seriesParts.findIndex((p) => p.slug === slug);
+const prevPost = seriesIdx > 0 ? seriesParts[seriesIdx - 1] : null;
+const nextPost = seriesIdx >= 0 && seriesIdx < seriesParts.length - 1 ? seriesParts[seriesIdx + 1] : null;
+
+// Related links. Each entry is a URL string or { url, label }. A link into
+// /writing/ (relative or absolute) is resolved against the published posts and
+// dropped when that post is not published yet, so no dead link goes live; its
+// text is the post's title. Anything else uses the label given in the
+// frontmatter, or hostname + path when there is none.
+const relatedLinks = (frontmatter.related || [])
+  .map((entry) => {
+    const url = typeof entry === 'string' ? entry : entry && entry.url;
+    const label = typeof entry === 'string' ? null : entry && entry.label;
+    if (!url) return null;
+    let u;
+    try {
+      u = new URL(url, 'https://daxfoundation.org');
+    } catch {
+      return { href: url, text: label || url };
+    }
+    if (u.hostname === 'daxfoundation.org' && /^\/writing\/[^/]+\/?$/.test(u.pathname)) {
+      const relSlug = u.pathname.replace(/^\/writing\//, '').replace(/\/$/, '');
+      const found = posts.find((p) => p.slug === relSlug);
+      if (!found) return null;
+      return { href: '/writing/' + relSlug + '/' + (u.hash || ''), text: found.title };
+    }
+    return { href: url, text: label || u.hostname + u.pathname + (u.hash || '') };
+  })
+  .filter(Boolean);
+
+// JSON-LD Article
+const canonical = new URL('/writing/' + slug + '/', Astro.site).href;
+const datePublished = published.toISOString();
+const dateModified = (showUpdated ? revised : published).toISOString();
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: frontmatter.title,
+  description: frontmatter.description || frontmatter.title,
+  datePublished,
+  dateModified,
+  mainEntityOfPage: canonical,
+  author: { '@type': 'Organization', name: 'The DAX Foundation', url: 'https://daxfoundation.org/' },
+  publisher: { '@type': 'Organization', name: 'The DAX Foundation', url: 'https://daxfoundation.org/' },
+  ...(seriesMeta && thisPartNum
+    ? { isPartOf: { '@type': 'CreativeWorkSeries', name: seriesMeta.title }, position: thisPartNum }
+    : {}),
+};
 ---
-<Base title={`${frontmatter.title} · DAX Foundation`} description={frontmatter.description || frontmatter.title}>
+<Base
+  title={`${frontmatter.title} · DAX Foundation`}
+  description={frontmatter.description || frontmatter.title}
+  ogType="article"
+>
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="The DAX Foundation: Writing" href="https://daxfoundation.org/writing/feed.xml" />
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </Fragment>
+
   <article>
     <header class="lede">
       <p class="meta">
@@ -35,9 +110,45 @@ const history = historyUrl(Astro.params.slug);
       </p>
       <h1>{frontmatter.title}</h1>
     </header>
+
+    {seriesMeta && (
+      <div class="series-strip">
+        <p class="series-label">Part {thisPartNum} of {totalParts} &middot; {seriesMeta.title}</p>
+        <ol class="series-nav">
+          {partsList.map(({ n, post }) => (
+            <li>
+              {post
+                ? <a href={`/writing/${post.slug}/`}>{post.title}</a>
+                : <span>Part {n}</span>
+              }
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
+
     <div class="prose">
       <Content />
     </div>
+
+    {(prevPost || nextPost) && (
+      <nav class="series-prevnext" aria-label="Series navigation">
+        {prevPost && <a href={`/writing/${prevPost.slug}/`} class="prev">&larr; {prevPost.title}</a>}
+        {nextPost && <a href={`/writing/${nextPost.slug}/`} class="next">{nextPost.title} &rarr;</a>}
+      </nav>
+    )}
+
+    {relatedLinks.length > 0 && (
+      <section class="related" aria-labelledby="related-heading">
+        <h2 id="related-heading">Where this connects</h2>
+        <ul>
+          {relatedLinks.map(({ href, text }) => (
+            <li><a href={href}>{text}</a></li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     <p class="back"><a href="/writing/">&larr; All writing</a></p>
   </article>
 </Base>
@@ -62,6 +173,27 @@ const history = historyUrl(Astro.params.slug);
     letter-spacing: -0.012em;
     text-wrap: balance;
   }
+  .series-strip {
+    margin: 0 0 2rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--line);
+    font-size: 0.875rem;
+  }
+  .series-label {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .series-nav {
+    margin: 0;
+    padding-left: 1.25rem;
+    color: var(--muted);
+  }
+  .series-nav li { margin: 0 0 0.3em; }
+  .series-nav a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .series-nav a:hover, .series-nav a:focus-visible { border-bottom-color: currentColor; }
   .prose { max-width: 40em; padding-bottom: 2rem; }
   .prose p { margin: 0 0 1.25em; color: #d6d6d6; text-wrap: pretty; }
   .prose > p:first-of-type { color: var(--muted); }
@@ -93,6 +225,34 @@ const history = historyUrl(Astro.params.slug);
     font-size: 0.875em;
     color: var(--muted);
   }
+  .series-prevnext {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 2rem;
+    margin: 0 0 2rem;
+    font-size: 0.9375rem;
+  }
+  .series-prevnext a { color: var(--muted); text-decoration: none; }
+  .series-prevnext a:hover, .series-prevnext a:focus-visible { color: var(--fg); }
+  .series-prevnext .next { margin-left: auto; }
+  .related {
+    max-width: 40em;
+    margin: 0 0 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+  }
+  .related h2 {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .related ul { margin: 0; padding-left: 1.25rem; }
+  .related li { margin: 0 0 0.4em; }
+  .related a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .related a:hover, .related a:focus-visible { border-bottom-color: currentColor; }
   .back { margin: 0 0 1rem; font-size: 0.9375rem; }
   .back a { color: var(--muted); text-decoration: none; }
   .back a:hover, .back a:focus-visible { color: var(--fg); }

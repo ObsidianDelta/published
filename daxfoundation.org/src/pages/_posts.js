@@ -16,6 +16,10 @@
 //
 // 2026-10-01: the first piece, human-delta-value.md, at Jason's request ("one
 // of the first blog posts on daxfoundation.org... more technical").
+//
+// 2026-10-18: series support added. Posts may carry series, part,
+// series_total (int), and related (list of URLs). SERIES names each series;
+// seriesOf(key) returns its published posts in part order.
 
 const modules = import.meta.glob('../posts/*.md', { eager: true });
 
@@ -25,7 +29,15 @@ const newestFirst = (a, b) => new Date(b.date) - new Date(a.date);
 export const posts = Object.entries(modules)
   .map(([file, mod]) => {
     const slug = file.split('/').pop().replace(/\.md$/, '');
-    return { ...(mod.frontmatter || {}), slug };
+    const fm = mod.frontmatter || {};
+    return {
+      ...fm,
+      slug,
+      series: fm.series ?? null,
+      part: fm.part ?? null,
+      series_total: fm.series_total ?? null,
+      related: fm.related ?? [],
+    };
   })
   .filter((p) => !p.draft)
   .sort(newestFirst);
@@ -39,3 +51,22 @@ export const formatDate = (value) =>
 
 export const historyUrl = (slug) =>
   `https://github.com/ObsidianDelta/published/commits/main/daxfoundation.org/src/posts/${slug}.md`;
+
+export const SERIES = {
+  'for-parents': {
+    title: 'For parents and tutors',
+    blurb: 'Five short pieces for a parent at the kitchen table, each pointing at a page that already exists.',
+  },
+  'results': {
+    title: 'What has run',
+    blurb: 'What has actually been run, with every number labelled.',
+  },
+  'accountability': {
+    title: 'Accountability: the Constraint Protocol',
+    blurb: 'A record, not a wall: what a declared constraint is and what one run of it showed.',
+  },
+};
+
+/** Published posts of a named series, sorted by part ascending. */
+export const seriesOf = (key) =>
+  posts.filter((p) => p.series === key).sort((a, b) => (a.part || 0) - (b.part || 0));

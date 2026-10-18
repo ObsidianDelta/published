@@ -1,18 +1,34 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { posts, formatDate } from '../_posts.js';
+import { posts, formatDate, SERIES, seriesOf } from '../_posts.js';
 
 // /writing/ -- the Foundation's own pieces, added 2026-10-01. The long-form
 // work behind the Foundation stays on jeyanandan.com (see Reading on the home
 // page); what is here is written in the Foundation's voice, around the
 // definitions: the reasoning, the measures, the consequences.
 //
+// 2026-10-18: series support. Published posts with a series field are grouped
+// under their series block (title, blurb, parts in order). Posts without a
+// series appear under "Other writing", newest first.
+//
 // Comments in the markup below are {/* ... */}, never <!-- ... -->.
+
+// Series that have at least one published post.
+const activeSeriesKeys = Object.keys(SERIES).filter(
+  (k) => seriesOf(k).length > 0,
+);
+
+// Posts that belong to no series.
+const otherPosts = posts.filter((p) => !p.series);
 ---
 <Base
   title="Writing · DAX Foundation"
   description="Pieces written in the Foundation's voice, around its definitions: the reasoning, the measures, the consequences. Versioned, in public."
 >
+  <Fragment slot="head">
+    <link rel="alternate" type="application/rss+xml" title="The DAX Foundation: Writing" href="https://daxfoundation.org/writing/feed.xml" />
+  </Fragment>
+
   <section class="lede" aria-labelledby="writing">
     <h1 id="writing">Writing</h1>
     <p class="body">
@@ -23,25 +39,56 @@ import { posts, formatDate } from '../_posts.js';
     </p>
   </section>
 
-  <section class="block" aria-label="Pieces">
-    <ul class="rows">
-      {posts.map((p) => (
-        <li class="row">
-          <span class="when">
-            <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
-            {p.updated && new Date(p.updated) > new Date(p.date) && (
-              <span class="upd">Updated {formatDate(p.updated)}</span>
-            )}
-          </span>
-          <span class="text">
-            <a class="title" href={`/writing/${p.slug}/`}>{p.title}</a>
-            {p.description && <p>{p.description}</p>}
-          </span>
-        </li>
-      ))}
-    </ul>
-    {posts.length === 0 && <p class="body">Nothing published yet.</p>}
-  </section>
+  {activeSeriesKeys.map((key) => {
+    const meta = SERIES[key];
+    const parts = seriesOf(key);
+    return (
+      <section class="block series-block" aria-labelledby={`series-${key}`}>
+        <h2 id={`series-${key}`} class="series-title">{meta.title}</h2>
+        <p class="series-blurb">{meta.blurb}</p>
+        <ul class="rows">
+          {parts.map((p) => (
+            <li class="row">
+              <span class="when">
+                <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+                {p.updated && new Date(p.updated) > new Date(p.date) && (
+                  <span class="upd">Updated {formatDate(p.updated)}</span>
+                )}
+              </span>
+              <span class="text">
+                <a class="title" href={`/writing/${p.slug}/`}>{p.title}</a>
+                {p.description && <p>{p.description}</p>}
+              </span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    );
+  })}
+
+  {otherPosts.length > 0 && (
+    <section class="block" aria-label={activeSeriesKeys.length > 0 ? 'Other writing' : 'Pieces'}>
+      {activeSeriesKeys.length > 0 && <h2 class="other-heading">Other writing</h2>}
+      <ul class="rows">
+        {otherPosts.map((p) => (
+          <li class="row">
+            <span class="when">
+              <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}</time>
+              {p.updated && new Date(p.updated) > new Date(p.date) && (
+                <span class="upd">Updated {formatDate(p.updated)}</span>
+              )}
+            </span>
+            <span class="text">
+              <a class="title" href={`/writing/${p.slug}/`}>{p.title}</a>
+              {p.description && <p>{p.description}</p>}
+            </span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {posts.length === 0 && <p class="body">Nothing published yet.</p>}
 </Base>
 
 <style>
@@ -57,6 +104,23 @@ import { posts, formatDate } from '../_posts.js';
   .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
   .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
   .block { padding-block: 1.25rem 2.25rem; border-top: 1px solid var(--line); }
+  .series-title {
+    margin: 0 0 0.4rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .series-blurb { margin: 0 0 1rem; max-width: 36em; color: #cfcfcf; font-size: 0.9375rem; }
+  .other-heading {
+    margin: 0 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
   .rows { list-style: none; margin: 0; padding: 0; }
   .row {
     display: grid;
