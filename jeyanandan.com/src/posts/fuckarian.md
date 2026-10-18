@@ -2,7 +2,7 @@
 title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-10-01
+updated: 2026-10-18
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -326,7 +326,7 @@ What we have now is a new kind of electricity. Not a product — a substrate. So
 
 Nobody works live current bare-handed. What an electrician wears is not another appliance; it is the part of the kit that makes the person able to work the current directly and come home afterwards. And the training that lets them do it is, once you strip the syllabus off, a list of what not to touch and in what order — which is to say, a declared constraint.
 
-That is how I ended up with a [cognitive companion](https://daxfoundation.org/#cognitive-companion). Not an assistant; an assistant is another party in the room, and another party in the room is someone I would have to get the world across to every morning, which, as this post may have made clear, is not my strong suit. Not an agent either, because agents act in your place, and the whole point is that this one does not. A cognitive companion is a new category: an extension of a person, part of them, through which they work with nonbiological intelligence and direct it. Not an appliance plugged into the grid. The part of the person that is wired in. It holds the context. It keeps the trail. It is how I direct the agents that do the actual work. It answers to no one but me.
+That is how I ended up with a [cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion). Not an assistant; an assistant is another party in the room, and another party in the room is someone I would have to get the world across to every morning, which, as this post may have made clear, is not my strong suit. Not an agent either, because agents act in your place, and the whole point is that this one does not. A cognitive companion is a new category: an extension of a person, part of them, through which they work with nonbiological intelligence and direct it. Not an appliance plugged into the grid. The part of the person that is wired in. It holds the context. It keeps the trail. It is how I direct the agents that do the actual work. It answers to no one but me.
 
 Earlier this year I finished my own. It now writes most of my code while I work on what the code is for. It also spells considerably better than I do. For most people I imagine all of that would be a convenience. For me it is the difference between the work existing and not existing. It is, among other things, the channel I never had.
 
@@ -481,8 +481,8 @@ Nothing above asks to be taken on trust. Here is all of it, in one place.
 
 **The definitions, all normative, all at the Foundation**
 
-- [Cognitive companion](https://daxfoundation.org/#cognitive-companion) · [AI as substrate](https://daxfoundation.org/#ai-as-substrate) · [Nonbiological intelligence](https://daxfoundation.org/#nonbiological-intelligence) · [Intelligence](https://daxfoundation.org/#intelligence) · [Knowledge](https://daxfoundation.org/#knowledge) · [Wisdom](https://daxfoundation.org/#wisdom) · [Consciousness](https://daxfoundation.org/#consciousness) · [Emergence](https://daxfoundation.org/#emergence) · [Top-down causation](https://daxfoundation.org/#top-down-causation) · [Constraint](https://daxfoundation.org/#constraint) · [Invariant constraint](https://daxfoundation.org/#invariant-constraint) · [The DAX constraint](https://daxfoundation.org/#dax-constraint)
-- Or the whole glossary: [daxfoundation.org/#definitions](https://daxfoundation.org/#definitions)
+- [Cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion) · [AI as substrate](https://daxfoundation.org/definitions/#ai-as-substrate) · [Nonbiological intelligence](https://daxfoundation.org/definitions/#nonbiological-intelligence) · [Intelligence](https://daxfoundation.org/definitions/#intelligence) · [Knowledge](https://daxfoundation.org/definitions/#knowledge) · [Wisdom](https://daxfoundation.org/definitions/#wisdom) · [Consciousness](https://daxfoundation.org/definitions/#consciousness) · [Emergence](https://daxfoundation.org/definitions/#emergence) · [Top-down causation](https://daxfoundation.org/definitions/#top-down-causation) · [Constraint](https://daxfoundation.org/definitions/#constraint) · [Invariant constraint](https://daxfoundation.org/definitions/#invariant-constraint) · [The DAX constraint](https://daxfoundation.org/definitions/#dax-constraint)
+- Or the whole glossary: [daxfoundation.org/definitions/](https://daxfoundation.org/definitions/)
 
 **The entities**
 
