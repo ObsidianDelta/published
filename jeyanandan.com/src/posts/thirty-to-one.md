@@ -2,6 +2,7 @@
 title: "Thirty to One"
 subtitle: "Thirty Seats Behind One Learner, and the One Nothing Else Can Fill"
 date: 2026-10-18
+updated: 2026-10-18
 description: "A classroom is twenty to thirty learners to one teacher. Meta DAX turns it over: one learner, and thirty seats behind them. The recipe fills most of them, people fill a few, and one belongs to the guide. What exists today, and what does not yet."
 draft: false
 tags: ["meta-dax", "learning", "human-delta-value"]
@@ -54,7 +55,7 @@ The guide's page in both of those is built so that the guide does not have to se
 
 Noticing that the learner has gone quiet. Deciding whether to push today or leave it until tomorrow. Holding the knife and the heat: the curry's guide page says knives, heat and allergens are the guide's call, every time. Knowing what this particular person needs, and bringing out the best in them.
 
-That seat is what I call [human delta value](/blog/human-delta-value/): what a person brings that nothing else brings. The inversion only works if the guide gets their cognition back and spends it there. **A bold claim, labelled as one: if the thirty seats are filled and the guide is gone, that is not the inversion. It is replacement.** Two recent trials kept a person in the seat and both reported gains: an AI that coached 900 tutors rather than their students raised topic mastery by four percentage points, with no significant gain in end-of-year scores, at about $20 per tutor a year, and a six-week after-school GPT-4 programme in Nigeria, with teachers guiding, gained 0.31 standard deviations.[^4]
+That seat is what I call [human delta value](/blog/human-delta-value/): what a person brings that nothing else brings. The inversion only works if the guide gets their cognition back and spends it there. **A bold claim, labelled as one: if the thirty seats are filled and the guide is gone, that is not the inversion. It is replacement.** Two recent trials kept a person in the seat and both reported gains: an AI that coached more than 700 tutors rather than their students raised topic mastery by four percentage points, with no significant gain in end-of-year scores, at about $20 per tutor a year, and a six-week after-school GPT-4 programme in Nigeria, with teachers guiding, gained 0.31 standard deviations.[^4]
 
 The seat is not a job title, either. In Meta DAX, whoever is a step ahead, right now, on this, is the guide; in the curry showcase the learner teaches her mother the rules of cricket. The lead swings.
 
@@ -86,7 +87,7 @@ Thirty to one is how a guide gets that room back, for every learner. Tutoring ha
 
 [^3]: Bloom, B. S. (1984). The 2 sigma problem: The search for methods of group instruction as effective as one-to-one tutoring. *Educational Researcher*, 13(6), 4–16. https://www.gwern.net/doc/psychology/1984-bloom.pdf ; Nickow, A., Oreopoulos, P., & Quan, V. (2020). The impressive effects of tutoring on PreK-12 learning: A systematic review and meta-analysis of the experimental evidence. NBER Working Paper 27476. https://www.nber.org/papers/w27476 ; von Hippel, P. T. (2024). Two-sigma tutoring: Separating science fiction from science fact. *Education Next*, 24(2), 22–31. https://www.educationnext.org/two-sigma-tutoring-separating-science-fiction-from-science-fact/
 
-[^4]: Wang, R. E., Ribeiro, A. T., Robinson, C. D., Loeb, S., & Demszky, D. (2025). Tutor CoPilot: A human-AI approach for scaling real-time expertise. arXiv:2410.03017 (v2). https://arxiv.org/abs/2410.03017 ; De Simone, M., Tiberti, F., Barron Rodriguez, M., Manolio, F., Mosuro, W., & Dikoru, E. J. (2025). From chalkboards to chatbots: Evaluating the impact of generative AI on learning outcomes in Nigeria. World Bank Policy Research Working Paper 11125. https://openknowledge.worldbank.org/entities/publication/15e1ff08-15ae-4f7a-b2a8-d146e6c113ee/full
+[^4]: Wang, R. E., Ribeiro, A. T., Robinson, C. D., Loeb, S., & Demszky, D. (2025). Tutor CoPilot: A human-AI approach for scaling real-time expertise. arXiv:2410.03017 (v3, 10 October 2026): more than 700 tutors and about 1,000 learners. https://arxiv.org/abs/2410.03017 ; De Simone, M., Tiberti, F., Barron Rodriguez, M., Manolio, F., Mosuro, W., & Dikoru, E. J. (2025). From chalkboards to chatbots: Evaluating the impact of generative AI on learning outcomes in Nigeria. World Bank Policy Research Working Paper 11125. https://openknowledge.worldbank.org/entities/publication/15e1ff08-15ae-4f7a-b2a8-d146e6c113ee/full
 
 [^5]: Bastani, H., Bastani, O., Sungu, A., Ge, H., Kabakı, Ö., & Mariman, R. (2025). Generative AI without guardrails can harm learning: Evidence from high school mathematics. *PNAS*, 122(26), e2422633122. https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html
 
