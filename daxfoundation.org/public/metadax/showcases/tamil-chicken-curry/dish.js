@@ -124,7 +124,7 @@
           },
           {
             h: { en: "One file, works offline", ta: "ஒரே கோப்பு, இணையமில்லாமல் வேலை செய்யும்" },
-            body: { en: "The plain package is a single JSON file; it comes down whole and runs in the player without a connection. That is the five-minutes-a-day benchmark made concrete." },
+            body: { en: "The plain package is a single JSON file; it comes down whole and runs in the player without a connection. That is the five-minutes-a-day benchmark made concrete. <b>We are developing this for all bandwidths!</b>" },
             links: [ { label: { en: "Open the plain package in the player" }, href: "/metadax/play/?sample=tamil-chicken-curry" } ]
           }
         ],
@@ -181,9 +181,9 @@
         h: { en: "The why", ta: "ஏன்" },
         paras: [
           /* what universal learning is — any human, any subject, any bandwidth; the benchmark */
-          { en: "This is the DAX Foundation's universal learning initiative. The aim is plain: any human being, any subject, any domain, any bandwidth — a lesson made of the one thing the learner already cares about, built for the one person doing it. The benchmark we hold it to is a hard one: a person who can communicate, to the equivalent of a master's degree, on five minutes of connectivity a day. <b>A way, never the way.</b>" },
-          /* the inversion — thirty roles behind one learner, a few of them shown on this page */
-          { en: "It turns the old ratio inside out. Not thirty learners to one teacher, but thirty roles behind one learner — and this page already shows a few of them: the cook, the historian, the translator, the examiner, and the family at the table." },
+          { en: "This is the DAX Foundation's universal learning initiative. The aim is plain: any human being, any subject, any domain, any bandwidth — a lesson made of the one thing the learner already cares about, built for the one person doing it. The benchmark we hold it to is a hard one: a person who can communicate, to the equivalent of a master's degree, on five minutes of connectivity a day. <b>We are developing this for all bandwidths!</b> <b>A way, never the way.</b>" },
+          /* the inversion — thirty seats behind one learner, a few of them shown on this page */
+          { en: "It turns the old ratio inside out. Not thirty learners to one teacher, but thirty seats behind one learner — and this page already shows a few of them: the cook, the historian, the translator, the examiner, and the family at the table." },
           /* what the recipe does, in one line; one link to the showcases index (not the five-item list) */
           { en: "What the recipe does, in one line: take the one thing a learner cares about and build the whole lesson through it, for that one learner — then do it again for the next, each from a short brief. The other showcases are built the same way — <a href=\"/metadax/showcases/\">the showcases</a>." },
           /* the formaddie thread, as it is now */

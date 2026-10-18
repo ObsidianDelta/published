@@ -39,8 +39,8 @@ const first14 = [
 ];
 
 const ran = [
-  ['X13', 'Does the follow-up engine reuse from a registry at a useful rate? 32 cases: 11 from the MP-05 eval set, the rest written for the run.', 'run 2026-10-10 — a negative'],
-  ['X14', 'X13b, a harder 40-case follow-up to the same question.', 'run 2026-10-10 — a negative'],
+  ['X13', 'Fast then slow: can a small model answer by default, with a larger one called in only when a turn needs it? 32 cases (11 from the MP-05 eval set, the rest written for the run), then X13b, a harder 40-case follow-up.', 'run 2026-10-10 — a negative'],
+  ['X14', 'Fetch the spot, not the course: does fetching only the matching piece of a course hold answer quality as the library grows? Three library sizes, six graded questions.', 'run 2026-10-10 — a positive: quality held at every size, about 75× fewer context tokens per turn at the large size'],
 ];
 
 const twelve = [
@@ -227,7 +227,7 @@ const profiles = [
 
   <section class="block" id="experiments" aria-labelledby="h-exp">
     <h2 id="h-exp">The experiments</h2>
-    <p class="big">Fourteen small ones first. Then the legwork. Then the twelve we can already picture. Two more have now run, and both came back a negative.</p>
+    <p class="big">Fourteen small ones first. Then the legwork. Then the twelve we can already picture. Two more have now run. One came back a negative, one a positive.</p>
     <p class="body">
       The small ones are how we earn the big ones: nothing in the third tier can
       run honestly until the first two have. A result appears only when an
@@ -249,12 +249,16 @@ const profiles = [
 
     <h3 class="sub">What has run since, and what it showed</h3>
     <p class="body">
-      Two experiments ran on 2026-10-10, both on whether the follow-up engine
-      reuses from a registry at a useful rate, and both came back a negative. A
-      negative is a result: it is written up, dated, and kept. The full account
-      &mdash; 32 cases, then a harder 40-case follow-up, what reused and what did
-      not, and what it means for the registry work in the legwork below &mdash;
-      is in the findings.
+      Two experiments ran on 2026-10-10. X13, with its harder follow-up X13b,
+      tested whether a small, fast model can answer by default while a larger,
+      slower one steps in only when a turn needs it. It came back a negative:
+      the small model matched the large one, so there was little for the
+      escalation to catch. X14 tested whether fetching only the piece of a
+      course a learner needs holds answer quality as the library grows. It came
+      back a positive: quality held at every library size, with about
+      75&times; fewer context tokens per turn at the large size (estimated), on
+      six graded questions, so read it as directional. A negative is a result:
+      it is written up, dated, and kept. The full account is in the findings.
     </p>
     <table class="exp">
       <thead><tr><th scope="col">Id</th><th scope="col">Question</th><th scope="col">Status</th></tr></thead>
@@ -381,7 +385,7 @@ const profiles = [
       before they went up; they show what the system is aiming to hand people,
       not what the automated pipeline produces today. What has run end to end is
       a client that works for a guide and a learner with a model in both chairs,
-      plus two reuse experiments that came back a negative. It does not yet show
+      plus two experiments on how a companion uses the commons, one a negative and one a positive. It does not yet show
       what a person experiences or learns, or whether anything compounds between
       two of them. Nothing here is production, and no element of the architecture
       is set in stone; several of the experiments will change it, and some will
