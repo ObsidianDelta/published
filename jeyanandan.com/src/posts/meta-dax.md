@@ -2,10 +2,12 @@
 title: "Meta DAX"
 subtitle: "An Introduction"
 date: 2026-09-28
-updated: 2026-09-29
+updated: 2026-10-18
 description: "The first was the mechanism, the second was the threat, the third was the person. This one is the point: what Meta DAX means to me, what it has the nerve to attempt, and why it compounds."
 draft: false
 ---
+
+*Meta DAX: An Introduction · [Two Weeks In](/blog/post-metadax-two-weeks/) · [Thirty to One](/blog/thirty-to-one/)*
 
 *The first was [the mechanism](/blog/snowflake-fuckari-in-action/). The second was [the threat](/blog/the-constraint/). The third was [the person](/blog/fuckarian/). This one is the point.*
 
@@ -117,6 +119,6 @@ I was the kid it did not exist for. **I would like to be the last one.**
 
 - [The repository](https://github.com/daxfoundation/metadax) · [the experiments](https://github.com/daxfoundation/metadax/tree/main/experiments) · [the run report](https://claude.ai/artifact/Nv4j2tpPh9PidXvLiAaP31)
 - [The 2024 prototype, the long version](https://youtu.be/kCtn0B7-OG0) — fifteen minutes, building a cell-biology course and asking what came after. [The short version](https://youtu.be/pMVwtGqUSh4) — fractions for an eleven-year-old, through baseball.
-- [Meta DAX at the Foundation](https://daxfoundation.org/#learning) · [Cognitive companion](https://daxfoundation.org/#cognitive-companion)
+- [Meta DAX at the Foundation](https://daxfoundation.org/#learning) · [Cognitive companion](https://daxfoundation.org/definitions/#cognitive-companion)
 - [The Snowflake](/blog/snowflake-fuckari-in-action/) · [The Constraint](/blog/the-constraint/) · [The Fuckarian](/blog/fuckarian/)
 - [LinkedIn](https://www.linkedin.com/in/jasonjeyanandan) — the working history behind all of it, Red October included.
