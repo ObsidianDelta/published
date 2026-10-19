@@ -963,6 +963,7 @@ window.pick = function(i) {
     awardBadge('first');
     if (q.id==='d') awardBadge('full');
     if (state.right >= 4) awardBadge('scorer');
+    if (q.choices.some(function(x){ return x.trap === true; })) awardBadge('dodger');
   } else {
     btn.classList.add('miss');
     state.streak = 0;
@@ -970,7 +971,6 @@ window.pick = function(i) {
     var prefix = c.trap ? '<strong>Decimal trap!</strong> ' : '<strong>Not quite.</strong> ';
     fb.innerHTML = prefix + (c.feedback||'');
     fb.classList.add('show');
-    if (c.trap) awardBadge('dodger');
   }
   nxt.classList.add('show');
   updateSB();

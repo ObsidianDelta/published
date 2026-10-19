@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { home as libraryHome, byKind } from '../data/library.js';
-import { posts } from './_posts.js';
+import { posts, SERIES, seriesOf } from './_posts.js';
 
 // daxfoundation.org home, refocused 2026-10-10 (uniform-home) at Jason's
 // request: "a lot of stuff needs to be rearranged, more focused, continuity
@@ -68,9 +68,23 @@ const showcases = [
 // The first run report the recipe produced, linked under the row (external).
 const newton = byKind('run').find((e) => e.id === 'newton-laws-test-run');
 
-// The newest three pieces from the writing index, so this row cannot drift
-// from what /writing/ actually publishes.
-const writing = posts.slice(0, 3);
+// The Writing row reads the same module as /writing/, so it cannot drift from
+// what is published. 2026-10-19: with fifteen pieces dated the same day, "the
+// newest three" was three arbitrary ones. The row now lists, in order, one
+// entry per active series (the series title linking to its anchor on
+// /writing/, its part count and its blurb), then the newest two pieces that
+// belong to no series.
+const partWords = ['No', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten'];
+const partCount = (n) => `${partWords[n] ?? n} ${n === 1 ? 'part' : 'parts'}`;
+const writingSeries = Object.keys(SERIES)
+  .filter((key) => seriesOf(key).length > 0)
+  .map((key) => ({
+    key,
+    title: SERIES[key].title,
+    blurb: SERIES[key].blurb,
+    count: partCount(seriesOf(key).length),
+  }));
+const writing = posts.filter((p) => !p.series).slice(0, 2);
 
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 ---
@@ -195,7 +209,13 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <li class="row">
         <span class="name"><a href="/writing/">Writing</a></span>
         <span class="text">
-          The Foundation&rsquo;s own pieces. Newest:
+          The Foundation&rsquo;s own pieces.
+          {writingSeries.map((s) => (
+            <>
+              <br /><a href={`/writing/#series-${s.key}`}>{s.title}</a> &middot; {s.count} &middot; {s.blurb}
+            </>
+          ))}
+          <br />Newest outside a series:
           {writing.map((p, i) => (
             <>{i > 0 ? ', ' : ' '}<a href={`/writing/${p.slug}/`}>{p.title}</a></>
           ))}.
