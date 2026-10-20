@@ -2,12 +2,13 @@
 title: "Twelve scenes, 1: The nurse's walkthrough"
 description: "A charge nurse in Enugu has forty minutes, and the first thing the walkthrough does is ask what she brings."
 date: 2026-10-18
+updated: 2026-10-20
 draft: false
 ---
 
 *A charge nurse in Enugu has forty minutes, and the first thing the walkthrough does is ask what she brings.*
 
-*Twelve scenes is a weekly series: one scene a week, from the twelve experiments we have planned for Meta DAX. Every one is planned, not run. Each is told through one person, because the scale is easier to see in one life; the people are fictional, first names only, and the places, languages and subjects are real.*
+*Twelve scenes is a weekly series: one scene a week, from the twelve experiments we have planned for Meta DAX. Every one is planned as a study with people, and none has run with people yet; where a model has played the people, the scene says so and the numbers are labelled SIMULATED. Each is told through one person, because the scale is easier to see in one life; the people are fictional, first names only, and the places, languages and subjects are real.*
 
 ## Forty minutes in Enugu
 
@@ -29,7 +30,7 @@ On reading the trend on a fluid balance chart, Ngozi is the guide: she has fourt
 
 The card asks whether a profile can declare, for each stage, who is in charge (the guide, the guide with her companion, or the system), and whether the guide can override the system mid-stage with the override recorded, not silently applied. If ownership is explicit and overrides are logged, human authority and machine help can sit together. If not, the system either overrules the guide or cannot help at all.
 
-Its status on the card is designed: planned, not run. The first version can be tested now, labelled simulated: a deterministic script sequences stages with declared owners, a model plays the guide and the learner, and the script injects an override at a stage the system owns. Three measures:
+With people, it is planned, not run. The first version ran on 18 October with a model in the chairs, labelled SIMULATED: five stages with declared owners, and a model playing the guide, four learners and an evaluator. It passed with a caveat. Review caught 3 of 3 planted commission errors and missed the 1 planted omission, so the module was not safe to deliver. Three measures:
 
 - Each stage is driven by its declared owner.
 - Every override produces a record (who, when, what was overridden, why) and the system yields.

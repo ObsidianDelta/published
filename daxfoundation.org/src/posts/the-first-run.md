@@ -2,6 +2,7 @@
 title: "The first run: a first page in eight minutes, and what it got wrong"
 description: "What the recipe built on 27 September, who played the learner, and the eight things we found."
 date: 2026-10-18
+updated: 2026-10-20
 draft: false
 series: results
 part: 1
@@ -35,7 +36,7 @@ The SIMULATED learner started in Module 2, asked six follow-up questions that we
 
 The more useful result is the list. [The learner run](https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E03/results/2026-09-27-newton-learner-run.md) logged eight findings, F-L1 to F-L8, four fixed and four open (counted). Three were bugs the unit tests had missed. The tool that records a reused page wrote something its own schema rejected. The step that grades a practice answer was given the page and no rubric. A follow-up tagged a concept that does not exist, and nothing checked. The other five are mostly gaps in what the specification says: the quiz climbed to an Apply question on an objective that targets Understand; a rule about prerequisites silently dropped a consolidation step. The earlier run had logged eight defects of its own (counted), mostly in our written instructions: the walkthrough never said git needs an identity set.
 
-None of this shows a person learning anything. The [E01 card](https://github.com/daxfoundation/metadax/blob/main/experiments/E01/README.md) calls the runs "not yet a human pilot", and the raw stacks and outputs are kept by the maintainers, not published; the write-ups are.
+None of this shows a person learning anything. The [E01 run note](https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E01/results/2026-09-27-newton-course-run.md) says "Not a human pilot", and the raw stacks and outputs are kept by the maintainers, not published; the write-ups are.
 
 ## What it means for you
 
@@ -48,7 +49,6 @@ Reading the map, where would a real learner have stopped, and what would they ha
 ## Sources
 
 - Newton's Laws Test Run, the illustrated report for experiments E01 and E03, run of 27 September 2026 (the report's UTC clock reads 28 September, 00:13 to 01:23): https://claude.ai/artifact/Nv4j2tpPh9PidXvLiAaP31
-- E01 run 2, the 21-objective course: https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E01/results/2026-09-27-newton-course-run.md
+- E01 run 2, the 21-objective course; its opening note says "Not a human pilot; human-facing metrics (minutes, approval dialogs, off-script help) are not measured here": https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E01/results/2026-09-27-newton-course-run.md
 - E01 run 1, the seven-objective cut and its defect list: https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E01/results/2026-09-27-teacher-run-newtons-laws.md
 - E03 run 2, the learner run and findings F-L1 to F-L8: https://raw.githubusercontent.com/daxfoundation/metadax/main/experiments/E03/results/2026-09-27-newton-learner-run.md
-- E01 card, status line ("done (first cut, 2026-09-27; automated runs … not yet a human pilot)"): https://github.com/daxfoundation/metadax/blob/main/experiments/E01/README.md
