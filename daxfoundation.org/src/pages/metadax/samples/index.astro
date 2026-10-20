@@ -93,6 +93,7 @@ const chairLabel = { parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher', train
               <span class="pkg-title">{s.title || s.id}</span>
               <span class="pkg-tags"><span class="tag">{s.subject}</span><span class="tag">Ages {s.age_band}</span></span>
             </summary>
+            <p class="open-page"><a href={`/metadax/samples/${s.id}/`}>Open as a page &rarr;</a></p>
             <p class="stuck"><strong>Stuck:</strong> {s.stuck}</p>
             <p class="meta"><strong>Loves:</strong> {s.loves} &nbsp;&middot;&nbsp; <strong>Approach:</strong> {s.approach}</p>
             {s.record && (
@@ -214,6 +215,8 @@ const chairLabel = { parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher', train
     .item summary { cursor:pointer; font-weight:600; }
     .item .body { margin-top:.75rem; }
     .item .body :global(h2) { font-size:1.05rem; margin:1rem 0 .3rem; }
+    .item .open-page { margin:.5rem 0 .2rem; font-size:.9rem; }
+    .item .open-page a { color:inherit; }
     .item .record { margin:.4rem 0; font-size:.95rem; }
     .item .record .note { opacity:.7; font-size:.85rem; }
     .item .src { margin-top:.5rem; font-size:.9rem; }

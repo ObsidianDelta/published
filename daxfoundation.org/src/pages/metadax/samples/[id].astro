@@ -1,0 +1,115 @@
+---
+import Base from '../../../layouts/Base.astro';
+import data from '../../../data/metadax-samples.json';
+import { readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+
+// One page per sample, 2026-10-20 (sample-pages-1020). OER Commons takes one
+// login-free rendered page per resource with a CC licence and an AI-use
+// disclosure; until now each sample rendered only inline on /metadax/samples/
+// (one long page, anchors #<id>). This route gives every entry in
+// src/data/metadax-samples.json its own URL at /metadax/samples/<id>/ and
+// picks up new entries automatically.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
+
+const SUFFIX = ' — a Meta DAX homeschool sample';
+
+export function getStaticPaths() {
+  const samples = data.samples || [];
+  // Skip any id that already has a static folder in public/metadax/samples/
+  // (the hand-built stade-des-fractions 3D page lives there and must not be
+  // clobbered by a generated route at the same path). Read at build time, so a
+  // new static folder drops out of the generated set on its own. Inlined here:
+  // Astro bundles getStaticPaths on its own, so it cannot call a module-scope
+  // helper.
+  let skip = new Set();
+  try {
+    const dir = fileURLToPath(new URL('../../../../public/metadax/samples', import.meta.url));
+    skip = new Set(
+      readdirSync(dir, { withFileTypes: true })
+        .filter((e) => e.isDirectory())
+        .map((e) => e.name),
+    );
+  } catch {
+    // no static samples folder; nothing to skip
+  }
+  return samples
+    .filter((s) => !skip.has(s.id))
+    .map((s) => ({ params: { id: s.id }, props: { sample: s } }));
+}
+
+const { sample } = Astro.props;
+
+// Title without the "— a Meta DAX homeschool sample" suffix (some entries, like
+// Le Stade des Fractions, never carried it); the <title> appends the sample
+// marker, the h1 shows the clean title on its own.
+const cleanTitle = sample.title.endsWith(SUFFIX)
+  ? sample.title.slice(0, -SUFFIX.length)
+  : sample.title;
+
+// Meta description: the "stuck" line, trimmed to ~155 chars on a word boundary.
+function trimDescription(text, max = 155) {
+  const s = (text || '').trim();
+  if (s.length <= max) return s;
+  const cut = s.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s,.;:]+$/, '') + '…';
+}
+const description = trimDescription(sample.stuck);
+
+// On a standalone page a sibling link written as `other-id.md` (how the repo
+// markdown links its neighbours) points at that sibling's own page. The inline
+// list on /metadax/samples/ rewrites the same links to #<id> instead.
+const html = (sample.html || '').replace(
+  /href="([a-z0-9-]+)\.md"/g,
+  'href="/metadax/samples/$1/"',
+);
+
+const repo = 'https://github.com/daxfoundation/metadax/blob/main';
+const sourceUrl = `${repo}/${sample.path}`;
+---
+<Base
+  title={`${cleanTitle} · Meta DAX sample`}
+  description={description}
+  ogType="article"
+  siteName="The DAX Foundation"
+>
+  <article class="sample">
+    <p class="eyebrow">
+      <a href="/metadax/">Meta DAX</a> &rsaquo; <a href="/metadax/samples/">Samples</a>
+    </p>
+    <h1>{cleanTitle}</h1>
+    <p class="tagline">{sample.subject} &middot; Ages {sample.age_band}</p>
+
+    <div class="body" set:html={html} />
+
+    <footer class="sample-foot">
+      <p>Made-up names. A way, never the way.</p>
+      <p>Licence: CC BY 4.0. Source: <a href={sourceUrl}>the markdown on GitHub</a>.</p>
+      <p>Written with AI from a parent&rsquo;s description and read by a person before publishing.</p>
+      <p class="back"><a href="/metadax/samples/">All samples &rarr;</a></p>
+    </footer>
+  </article>
+
+  <style>
+    .sample { padding-block: 2.5rem 1rem; }
+    .eyebrow { margin: 0 0 1rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+    .eyebrow a { color: inherit; text-decoration: none; }
+    .eyebrow a:hover, .eyebrow a:focus-visible { color: var(--fg); }
+    .sample h1 { margin: 0 0 0.5rem; font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem); font-weight: 400; line-height: 1.22; letter-spacing: -0.012em; text-wrap: balance; }
+    .tagline { margin: 0 0 2rem; font-size: 0.9rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); }
+    .body { max-width: 40em; }
+    .body :global(h2) { margin: 2.25rem 0 0.5rem; font-size: 1.1rem; font-weight: 500; color: var(--fg); }
+    .body :global(p) { margin: 0 0 1.1em; color: #d6d6d6; text-wrap: pretty; }
+    .body :global(p:first-child) { color: var(--muted); }
+    .body :global(a) { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+    .body :global(a:hover), .body :global(a:focus-visible) { border-bottom-color: currentColor; }
+    .body :global(strong) { font-weight: 600; color: var(--fg); }
+    .sample-foot { max-width: 40em; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: 0.9rem; color: var(--muted); }
+    .sample-foot p { margin: 0 0 0.5em; }
+    .sample-foot a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+    .sample-foot a:hover, .sample-foot a:focus-visible { color: var(--fg); border-bottom-color: currentColor; }
+    .sample-foot .back { margin-top: 1rem; }
+  </style>
+</Base>

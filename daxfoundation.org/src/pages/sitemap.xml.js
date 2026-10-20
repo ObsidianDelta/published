@@ -16,8 +16,11 @@
 // External URLs (the Newton artifact, GitHub) and the skill zip are left out:
 // a sitemap advertises this site's own pages.
 
+import { readdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { posts } from './_posts.js';
 import { library } from '../data/library.js';
+import samplesData from '../data/metadax-samples.json';
 
 const SITE = 'https://daxfoundation.org';
 
@@ -58,12 +61,32 @@ const registryPaths = library
   .map((u) => u.split('#')[0].split('?')[0])
   .filter((u) => u.startsWith('/'));
 
+// 4. One page per sample at /metadax/samples/<id>/ (the [id].astro route is a
+// dynamic route, so it is skipped by (1) above). Skip any id that instead has a
+// static folder in public/metadax/samples/ -- that page is advertised through
+// the registry, not from here.
+let staticSampleIds = new Set();
+try {
+  const dir = fileURLToPath(new URL('../../public/metadax/samples', import.meta.url));
+  staticSampleIds = new Set(
+    readdirSync(dir, { withFileTypes: true })
+      .filter((e) => e.isDirectory())
+      .map((e) => e.name),
+  );
+} catch {
+  // no static samples folder; nothing to skip
+}
+const samplePaths = (samplesData.samples || [])
+  .filter((s) => !staticSampleIds.has(s.id))
+  .map((s) => '/metadax/samples/' + s.id + '/');
+
 export async function GET() {
   const lastmodByPath = new Map(postEntries.map((p) => [p.path, p.lastmod]));
   const paths = new Set([
     ...routePaths,
     ...postEntries.map((p) => p.path),
     ...registryPaths,
+    ...samplePaths,
   ]);
 
   const entries = Array.from(paths)

@@ -5,6 +5,7 @@ interface Props {
   image?: string;
   wide?: boolean;
   ogType?: string;
+  siteName?: string;
 }
 const {
   title = 'DAX Foundation',
@@ -12,6 +13,10 @@ const {
   image,
   wide = false,
   ogType = 'website',
+  // The site mark reads "DAX Foundation"; the sample pages ask for the longer
+  // "The DAX Foundation" in og:site_name. Optional, default unchanged, so every
+  // other page emits exactly what it did before.
+  siteName = 'DAX Foundation',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.png', Astro.site);
@@ -49,7 +54,7 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="theme-color" content="#0a0a0a" />
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="DAX Foundation" />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
