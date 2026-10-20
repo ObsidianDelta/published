@@ -2,6 +2,7 @@
 title: A record, not a wall
 description: How aviation and nuclear power built their safety practice around kept records, and where AI's record is still missing.
 date: 2026-10-18
+updated: 2026-10-20
 draft: false
 series: accountability
 part: 1
@@ -35,7 +36,7 @@ Two instruments ask the operator for a record. [Article 73 of the EU AI Act](htt
 
 Read together, they show that the problem is not that nobody collects AI incidents. The record is held by someone else (the press, volunteers, a regulator under confidentiality) or is a process an operator documents for itself. None requires a record declared in advance, that nobody can quietly edit, and that a stranger can check.
 
-The protocol adds three things and claims nothing beyond them. Each party declares in advance what it will not do. An attempt to get round a blocking constraint is refused and recorded even though no harm followed; a refusal that held is rarely news, and the monitor above is built from news. And anyone can dispute any record. A public working draft (v0.5, 10 September 2026), it has run in full once, on 4 May 2026, between two instances operated by two organisations: about three and a half hours, about 34 witness-signed events, three bypass attempts refused and recorded. The event-level record is not public yet, so for now that is a claim you can read, not a record you can check. One run, the page says, "demonstrates that the mechanism runs, and nothing else."
+The protocol adds three things and claims nothing beyond them. Each party declares in advance what it will not do. An attempt to get round a blocking constraint is refused and recorded even though no harm followed; a refusal that held is rarely news, and the monitor above is built from news. And anyone can dispute any record. A public working draft (v0.5, 10 September 2026), it has run in full once, on 4 May 2026, across three instances all run by us: 44 signed events in about four hours, and three requests to do blocked work that were received, signed into the record and not acted on. The [event-level record](https://github.com/daxfoundation/constraint-protocol/tree/main/runs/2026-05-04) is public, with a script that re-checks every signature, so that is now a record you can check, not only a claim you can read. One run, the page says, "demonstrates that the mechanism runs, and nothing else."
 
 ## What it means for you
 

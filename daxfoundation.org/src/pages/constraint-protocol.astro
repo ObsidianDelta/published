@@ -30,9 +30,10 @@ import Base from '../layouts/Base.astro';
       <h2>Where it stands, honestly</h2>
       <ul class="body-list">
         <li><strong>Version.</strong> v0.5, dated 2026-09-10, a public working draft, with 47 decisions recorded.</li>
-        <li><strong>Runs.</strong> The protocol has run in full once: on 4 May 2026, between two instances operated by two different organisations across a network boundary. It ran for roughly three and a half hours.</li>
-        <li><strong>Events.</strong> Roughly thirty-four witness-signed events.</li>
-        <li><strong>Refused bypasses.</strong> Three attempts to bypass a blocking constraint, all refused and permanently recorded. One constraint moved from raised to resolved to reopened in about twenty minutes.</li>
+        <li><strong>Runs.</strong> The protocol has run in full once: on 4 May 2026, across three instances on separate machines, all run by us. The boundary between them was set up as if it lay between two organisations; no second organisation took part. An earlier version of this page said two organisations and roughly three and a half hours, and the record supports neither.</li>
+        <li><strong>Events.</strong> 44 signed events, from 13:42 to 17:46 UTC: 34 on the instance that received the work, 10 on the one that issued it.</li>
+        <li><strong>Bypass requests.</strong> Three requests to do work that a blocking constraint held up. Each was received and signed into the record, and none was acted on; the run kept no separately signed refusal, which v0.5 now requires. One constraint moved from raised to resolved to reopened in about twenty minutes.</li>
+        <li><strong>The record.</strong> Public since 20 October 2026, <a href="https://github.com/daxfoundation/constraint-protocol/tree/main/runs/2026-05-04">in the repository</a>, with a script that re-checks every hash and signature. Its signing keys are retired.</li>
         <li><strong>Permanent copy.</strong> The v0.5 publication is also on Arweave, where nothing can be edited or taken down. Each file was downloaded back and checked against its digest before the <a href="https://arweave.net/OPAkMj2v7NkQCRSxqo6VPy2ewEIpBw4inH63ViA2SG0">links</a> were written.</li>
         <li><strong>Idle, and not done.</strong> The ledger-only service deployed since is idle, and the rest is still to be built. A controlled A/B study of detecting manufactured consensus is committed and has not been run. Nobody hostile has tried to break the protocol.</li>
       </ul>

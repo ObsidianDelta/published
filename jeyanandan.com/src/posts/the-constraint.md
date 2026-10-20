@@ -2,7 +2,7 @@
 title: "The Constraint"
 subtitle: "Something Will Go Wrong. Keep the Record."
 date: 2026-09-21
-updated: 2026-10-02
+updated: 2026-10-20
 description: "The hypothetical, the global conversation, the cost that has come with every new power, and why Obsidian Delta built a record instead of a wall."
 draft: false
 ---
@@ -486,7 +486,7 @@ That is where Obsidian Delta is now. We needed a record nobody could quietly edi
 
 There is a second honest limit, and the specification states it rather than leaving it to be found: the protocol provides the capacity for retrospective accountability, not its exercise. A record is only as consequential as somebody's willingness to go and read it later.
 
-It is a public working draft. There has been one operational run, on 4 May 2026, between two instances operated by two organisations across a network boundary — about three and a half hours, roughly thirty-four witness-signed events, three attempts to bypass a blocking constraint which were refused and permanently recorded, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. The two instances were cognitive companions, one on each side. There is a great deal more to say about that run, and it will get its own write-up. That is what exists, and it shows that the thing runs. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
+It is a public working draft. There has been one operational run, on 4 May 2026, across three instances on separate machines, all of them mine, with the boundary between them set up as if it lay between two organisations — 44 signed events between 13:42 and 17:46 UTC, three requests to do blocked work that were received, signed into the record and not acted on, and one constraint that moved from raised to resolved to reopened in about twenty minutes when a later evaluator judged the resolution evidence inadequate. An earlier version of this paragraph said two organisations; no second organisation took part. The full record is public, with a script that checks every signature: [runs/2026-05-04](https://github.com/daxfoundation/constraint-protocol/tree/main/runs/2026-05-04). That is what exists, and it shows that the thing runs. It is not a controlled study, there was no comparison condition, and no party hostile to the protocol's aims has yet tried to break it.
 
 DAX is an example of a declared constraint. It is not the content of the protocol. The protocol has no opinion about which constraint you declare. That is the point of it.
 

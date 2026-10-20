@@ -40,9 +40,9 @@
 //   rendering into each of them:
 //
 //     fuckarian       I am not building a staircase.
-//     the-constraint  There has been one operational run, on 4 May 2026, between two
-//                     instances operated by two organisations across a network
-//                     boundary -- ... (the whole sentence, verbatim; the clock line it
+//     the-constraint  There has been one operational run, on 4 May 2026, across three
+//                     instances on separate machines, all of them mine -- ...
+//                     (corrected 2026-10-20 to match the published record) (the whole sentence, verbatim; the clock line it
 //                     replaced was removed from the essay on 2026-09-25)
 //
 //   deploy-jeyanandan.yml is the authority on the exact strings. If this comment

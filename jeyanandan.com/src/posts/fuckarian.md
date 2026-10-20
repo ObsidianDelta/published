@@ -2,7 +2,7 @@
 title: "The Fuckarian"
 subtitle: "Where the Argument Came From"
 date: 2026-09-21
-updated: 2026-10-18
+updated: 2026-10-20
 description: "The third of three. The first was the loop, the second was the threat. This one is the person who built them: why he has always been told to listen, what he thinks responsibility actually is, and who it is owed to."
 draft: false
 ---
@@ -392,7 +392,7 @@ Before the personal part closes this out, the practical part, because a post lik
 
 **Where it stands**, because I would rather you heard the limits from me than found them yourself.
 
-The specification describes the protocol as a substrate for compounding knowledge across entities, time and constraint frames. That is what it is *built to be*. What has actually been shown is one operational run: two cognitive-companion instances, two organisations, one afternoon, across a network boundary. Three attempts to get round a declared constraint, all three refused, all three permanently in the record with the briefs that asked for it. The specification's own evidence section puts the rest in a sentence I did not want to soften: *it demonstrates that the mechanisms operate; it does not demonstrate that they detect what they are designed to detect.* The controlled study that would test the real claim is designed and pre-registered. It has not been run.
+The specification describes the protocol as a substrate for compounding knowledge across entities, time and constraint frames. That is what it is *built to be*. What has actually been shown is one operational run: three instances on separate machines, all of them mine, one afternoon, with the boundary between them set up as if it lay between two organisations. Three requests to get round a declared constraint, all three received, signed into the record with the briefs that asked for it, and not acted on. The specification's own evidence section puts the rest in a sentence I did not want to soften: *it demonstrates that the mechanisms operate; it does not demonstrate that they detect what they are designed to detect.* The controlled study that would test the real claim is designed and pre-registered. It has not been run.
 
 So what I am asking for is not agreement, and it is not funding.
 

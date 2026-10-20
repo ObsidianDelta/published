@@ -2,6 +2,7 @@
 title: "Run it with us"
 description: "What the first run did not test, what a second run needs, and how to break the protocol on purpose."
 date: 2026-10-18
+updated: 2026-10-20
 draft: false
 series: accountability
 part: 5
@@ -25,9 +26,9 @@ A claim about accountability is worth what has been tried against it. The Constr
 
 ## What the first run did not test
 
-Open the [Constraint Protocol page](https://daxfoundation.org/constraint-protocol/) and read "Where it stands, honestly". On 4 May 2026 two instances, operated by two different organisations, ran the protocol for roughly three and a half hours and produced roughly thirty-four witness-signed events; three attempts to bypass a blocking constraint were refused and recorded. [The third piece, on refusing a bypass](https://daxfoundation.org/writing/refusing-a-bypass-and-keeping-the-receipt/) goes through those figures. The [README](https://github.com/daxfoundation/constraint-protocol) then lists what the run was not: "It was not a controlled study, there was no comparison condition, and nobody hostile has tried to break it."
+Open the [Constraint Protocol page](https://daxfoundation.org/constraint-protocol/) and read "Where it stands, honestly". On 4 May 2026 three instances, all run by us, ran the protocol across a boundary set up as if it lay between two organisations, and produced 44 signed events between 13:42 and 17:46 UTC; three requests to do work a blocking constraint held up were received, signed into the record and not acted on. [The third piece, on refusing a bypass](https://daxfoundation.org/writing/refusing-a-bypass-and-keeping-the-receipt/) goes through those figures. The [README](https://github.com/daxfoundation/constraint-protocol) then lists what the run was not: "It was not a controlled study, there was no comparison condition, and nobody hostile has tried to break it."
 
-The specification's evidence section ([§27](https://github.com/daxfoundation/constraint-protocol/blob/main/spec/CP-SPEC-v0_5.md)) adds that no hypothesis was fixed in advance, and that this was "one run, between two instances, in one afternoon, with placeholder cryptography". Section 27.1 names it: Ed25519 signatures and BLAKE2b-256 hashes, declared as Phase 1, on a build of the earlier v0.4 specification, with a post-quantum upgrade path recorded in each identity document. Version 0.5 is stricter: "A classical-only artifact — one with no PQ proof — MUST NOT be accepted at any time under this version" (§4.6.2). Two gaps show in the repository: the two organisations are described only as that, and it holds the specification, decision log, verification notes, provenance and licences but no event-level record of 4 May. That record is not public yet.
+The specification's evidence section ([§27](https://github.com/daxfoundation/constraint-protocol/blob/main/spec/CP-SPEC-v0_5.md)) adds that no hypothesis was fixed in advance, and that this was "one run, between two instances, in one afternoon, with placeholder cryptography". Section 27.1 names it: Ed25519 signatures and BLAKE2b-256 hashes, declared as Phase 1, on a build of the earlier v0.4 specification, with a post-quantum upgrade path recorded in each identity document. Version 0.5 is stricter: "A classical-only artifact — one with no PQ proof — MUST NOT be accepted at any time under this version" (§4.6.2). Two gaps showed in the repository until 20 October 2026: the two organisations were described only as that, and there was no event-level record of 4 May. The [record](https://github.com/daxfoundation/constraint-protocol/tree/main/runs/2026-05-04) is now public, and it shows one operator, not two organisations. That is the first thing a second run has to change.
 
 ## What a second run needs, and what to attack
 

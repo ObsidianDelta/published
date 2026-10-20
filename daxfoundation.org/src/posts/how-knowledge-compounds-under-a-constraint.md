@@ -46,7 +46,7 @@ Failures need deliberate keeping, because the default runs the other way. Among 
 
 Keep one dead end, and write it where someone else can find it. Four lines are enough: what you tried; what it looked like when it stopped working, which X01 calls the stuck signature; what you think happened, marked as a guess; and where you stopped. Date it, put it where colleagues already look, and do not edit it later to be right; add a line beneath. If you govern AI for a living, a good first candidate is a control that did not catch what it was meant to catch. At a family's kitchen table the same move is a few lines at the end of a session, which [Session two](https://daxfoundation.org/writing/session-two/) describes.
 
-this is the fourth of five pieces on the Constraint Protocol. [The third](https://daxfoundation.org/writing/refusing-a-bypass-and-keeping-the-receipt/) covers what the one run on 4 May 2026 recorded, including three refused bypasses, and [the fifth](https://daxfoundation.org/writing/run-it-with-us/) says what that run did not test and how to break the protocol on purpose.
+this is the fourth of five pieces on the Constraint Protocol. [The third](https://daxfoundation.org/writing/refusing-a-bypass-and-keeping-the-receipt/) covers what the one run on 4 May 2026 recorded, including three bypass requests that were never acted on, and [the fifth](https://daxfoundation.org/writing/run-it-with-us/) says what that run did not test and how to break the protocol on purpose.
 
 What did you try last month that did not work, and where is it written?
 
