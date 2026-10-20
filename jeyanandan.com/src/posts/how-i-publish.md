@@ -2,7 +2,7 @@
 title: "How I Publish"
 subtitle: "Thought Records, Not Pronouncements"
 date: 2026-10-01
-updated: 2026-10-09
+updated: 2026-10-20
 description: "Everything public on my surfaces is a versioned working log, published by me through my cognitive companion, and this is the page that explains how to read it."
 draft: false
 ---
@@ -41,4 +41,4 @@ More of these are going to come out of every public surface, left and right. Thi
 
 ---
 
-*This post is versioned like everything else here. It will be revised, the dates at the top will say when, and the earlier wording will be in the [History](https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/how-i-publish.md). First published 1 October 2026.*
+*This post is versioned like everything else here. It will be revised, the dates at the top will say when, and the earlier wording will be in the [History](https://github.com/ObsidianDelta/published/commits/main/jeyanandan.com/src/posts/how-i-publish.md). First published 1 October 2026. Visits to this site are counted with Cloudflare Web Analytics: no cookies, and no tracking of you from site to site.*
