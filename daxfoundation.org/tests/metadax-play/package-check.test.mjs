@@ -427,3 +427,23 @@ test("duration: '10 minutes' still triggers duration warning", () => {
   assert.ok(warnings.some(w => w.msg === "duration in minutes/hours"),
     "'10 minutes' must still trigger duration warning");
 });
+
+// ── The "a way, never the way" line (jay23606, daxfoundation/metadax#8) ──────
+function wayLinePkg(withWayLine) {
+  return {
+    format: "metadax-package",
+    v: 1,
+    guide: { sections: [{ blocks: [{ type: "p", text: withWayLine ? "A way, never the way." : "A sample lesson." }] }] },
+    learner: { sections: [] },
+  };
+}
+
+test("warns when package text omits the guiding line", () => {
+  const result = checkPackage(wayLinePkg(false), {});
+  assert.ok(result.warnings.some((w) => w.msg === 'missing "a way, never the way" line'));
+});
+
+test("accepts the guiding line regardless of case", () => {
+  const result = checkPackage(wayLinePkg(true), {});
+  assert.ok(!result.warnings.some((w) => w.msg === 'missing "a way, never the way" line'));
+});
