@@ -10,32 +10,42 @@ import Base from '../../../layouts/Base.astro';
 // course factory (MP-11/12), the guide coach (MP-13) and the ten context
 // profiles, named with repo links; the Constraint Protocol paragraph; the ask.
 //
-// Accuracy: Meta DAX results come from automated runs (a model in both chairs)
-// and the repository says which; the twelve scenes are planned, not run; the
-// Constraint Protocol has run in full once; the samples are made-up people,
-// written with help from AI from a short brief, read in full by a person
-// before they went up; no AI vendor is named; "guide" and "learner", never
-// "role"; never "the way", always "a way"; "cognitive labour" is never
-// qualified with "manual".
+// Updated 2026-10-20 to the record as it stands: the 9 October E04 and E05
+// run records, the 18-19 October wave (FINDINGS-20261019.md, bottleneck rows
+// B24 to B93), X13 and X14 of 10 October. Statuses below are copied from the
+// experiment cards and that findings file, not from memory.
+//
+// Accuracy: Meta DAX results come from automated runs (a model or a script in
+// the people's chairs, never a person) and the repository says which; the
+// twelve scenes are planned as studies with people and none has run with
+// people (eleven have a first model-played or scripted run, labelled SIMULATED
+// where a model played the people; X12 has not run); the Constraint Protocol
+// has run in full once; the samples are made-up people, written with help from
+// AI from a short brief, read in full by a person before they went up; no AI
+// vendor is named; the two seats are "guide" and "learner" and nothing else;
+// never "the way", always "a way"; "cognitive labour" is never qualified with
+// "manual".
 
 const repo = 'https://github.com/daxfoundation/metadax/blob/main';
 const findings = `${repo}/experiments/FINDINGS-20261010.md`;
+const findings1019 = `${repo}/experiments/FINDINGS-20261019.md`;
+const register = `${repo}/experiments/BOTTLENECKS.md`;
 
 const first14 = [
-  ['E01', 'A guide creates a course into a repository from a one-line description', 'done, first cut'],
-  ['E02', 'The same from a chat client that cannot write files, with a commit packet', 'not started'],
-  ['E03', 'A learner session: read, three follow-up levels, quiz, save', 'done, first cut'],
-  ['E04', 'Do the prompts pass on two different model vendors?', 'built, not run'],
-  ['E05', 'Does the follow-up engine reuse correctly from a registry?', 'built, not run'],
-  ['E06', 'Does the weekly bundle loop close at 50 kbps?', 'not started'],
-  ['E07', 'Can a unit be grounded on an open curriculum with real citations?', 'not started'],
-  ['E08', 'Generated interactive assets: pass rate against oracle tests', 'not started'],
-  ['E09', 'Records a homeschooling parent would file', 'not started'],
-  ['E10', 'A small on-device model running the quiz', 'not started'],
-  ['E11', 'A learner record ingested by a cognitive companion (isolated copy)', 'not started'],
-  ['E12', 'Provenance plus signed commits, verified later as a chain', 'not started'],
-  ['E13', 'A teaching-method variant, generated and certified', 'not started'],
-  ['E14', 'Does the age wall bite in practice? (observe only)', 'not started'],
+  ['E01', 'A guide creates a course into a repository from a one-line description', 'ran 27 Sep and 18 Oct. 18 Oct: PASS (simulated)'],
+  ['E02', 'The same from a chat client that cannot write files, with a commit packet', 'not started: needs a second vendor’s API key'],
+  ['E03', 'A learner session: read, three follow-up levels, quiz, save', 'ran 27 Sep and 18 Oct. 18 Oct: FAIL, 44 validation errors (simulated). 19 Oct: one arm PASS with 0 errors, one session per arm'],
+  ['E04', 'Do the prompts pass on two different model vendors?', 'ran 9 Oct (12 of 19 cases passed, then 11 of 15) and 18 Oct: FAIL, 7 of 27 schema-valid, mostly a runner artifact. One vendor only'],
+  ['E05', 'Does the follow-up engine reuse correctly from a registry?', 'ran 9 Oct (9 of 12 cases, no precision or recall), 18 Oct and 19 Oct. 18 Oct: narrow PASS (simulated), precision 0.810 against a 0.80 line. 19 Oct: smaller model INCONCLUSIVE'],
+  ['E06', 'Does the weekly bundle loop close at 50 kbps?', 'ran 18 Oct: PASS (deterministic; link times computed, not measured)'],
+  ['E07', 'Can a unit be grounded on an open curriculum with real citations?', 'not started: needs network access to that curriculum'],
+  ['E08', 'Generated interactive assets: pass rate against oracle tests', 'ran 18 Oct: PASS on the pure-function core only (simulated)'],
+  ['E09', 'Records a homeschooling parent would file', 'ran 18 Oct: PASS (simulated); 5 of 6 parents’ records could be filed as written'],
+  ['E10', 'A small on-device model running the quiz', 'not started: needs a small-model runtime'],
+  ['E11', 'A learner record ingested by a cognitive companion (isolated copy)', 'ran 18 Oct: PASS (simulated)'],
+  ['E12', 'Provenance plus signed commits, verified later as a chain', 'ran 18 Oct: PASS (deterministic)'],
+  ['E13', 'A teaching-method variant, generated and put through the prompt checks', 'ran 18 Oct: PASS on a substituted variant (simulated). 19 Oct: the card’s own variant INCONCLUSIVE'],
+  ['E14', 'Does the age wall bite in practice? (observe only)', 'ran 18 Oct: FAIL, the wall stopped 0 of 8 explicit minors (simulated). 19 Oct: still FAIL after a prompt patch'],
 ];
 
 const ran = [
@@ -44,18 +54,18 @@ const ran = [
 ];
 
 const twelve = [
-  ['X01', 'One thread, two worlds', 'A guide’s move, made once in Indonesian for a kite flyer stuck on the third law, captured as a technique and offered in Spanish to a kite flyer in Guatemala who shares nothing else with him. The floor rises for everyone after.'],
-  ['X02', 'Many hands, one course', 'A beekeeping course forked across four languages, learners asking at once, until its curriculum is mostly promoted follow-ups.'],
-  ['X03', 'The nurse’s walkthrough', 'A walkthrough that first asks what a guide brings, and gives a charge nurse only the stages she cannot do herself.'],
-  ['X04', 'The dead-end atlas', 'Where learners get lost, shared as shapes and never as records, mapped per module and re-taught at the spot.'],
-  ['X05', 'Flagged by the learner', 'Steering measured two ways: by learners who flag it, and by an evaluator blind to them.'],
-  ['X06', 'Same course, every bandwidth', 'One course for a five-minute-a-day learner, a patchy commuter and an always-on companion, and what the bundle must carry.'],
-  ['X07', 'The pocket model', 'A small model on a phone holding the conversation while the bundle holds the teaching.'],
-  ['X08', 'Behind the company wall', 'The same infrastructure on a company’s own git, learner records still the learner’s, one technique sent back out through a gate.'],
-  ['X09', 'Nothing quietly edited', 'Every contribution on a live Constraint Protocol record, and whether knowledge and intelligence compound when nothing can be erased.'],
-  ['X10', 'One record, many years', 'One learner’s private record across eleven courses and six years, carried into her cognitive companion, with every carry-over hers to refuse.'],
-  ['X11', 'The negative space', 'The unexplored parts of a subject shaded on the tree and offered, not pushed, with the regions nobody takes recorded too.'],
-  ['X12', 'Five minutes to master’s', 'The long one. A phone, five minutes a day, a blind-graded external yardstick agreed in advance, and the result published either way.'],
+  ['X01', 'One thread, two worlds', 'A guide’s move, made once in Indonesian for a kite flyer stuck on the third law, captured as a technique and offered in Spanish to a kite flyer in Guatemala who shares nothing else with him. The floor rises for everyone after.', 'ran 9, 18 and 19 Oct (SIMULATED): inconclusive. Reuse landed in every case, across languages, but on 19 Oct a control that reinvents the move was slightly faster, 1.67 attempts against 1.83, inside a run-to-run spread of 0.67.'],
+  ['X02', 'Many hands, one course', 'A beekeeping course forked across four languages, learners asking at once, until its curriculum is mostly promoted follow-ups.', 'ran 9 and 18 Oct (SIMULATED): PASS. Conflicts per 100 commits fell from 80.8 to 13.6, and unreviewed nodes crossing between forks from 841–854 to 0.'],
+  ['X03', 'The nurse’s walkthrough', 'A walkthrough that first asks what a guide brings, and gives a charge nurse only the stages she cannot do herself.', 'ran 18 Oct (SIMULATED): PASS with a significant caveat. Review caught 3 of 3 planted errors and missed the 1 planted omission, so the module was not safe to deliver.'],
+  ['X04', 'The dead-end atlas', 'Where learners get lost, shared as shapes and never as records, mapped per module and re-taught at the spot.', 'ran 9 and 18 Oct (SIMULATED): inconclusive. Stable ids made one stall one hole, not three; whether holes predict anything was not tested.'],
+  ['X05', 'Flagged by the learner', 'Steering measured two ways: by learners who flag it, and by an evaluator blind to them.', 'ran 18 Oct (SIMULATED): inconclusive. One model played learner and evaluator, so their 0.95 agreement shows little.'],
+  ['X06', 'Same course, every bandwidth', 'One course for a five-minute-a-day learner, a patchy commuter and an always-on companion, and what the bundle must carry.', 'ran 18 Oct (SIMULATED): PASS. A week fits in 965 KB of a 13.1 MB weekly allowance at 50 kbps.'],
+  ['X07', 'The pocket model', 'A small model on a phone holding the conversation while the bundle holds the teaching.', 'ran 18 and 19 Oct: inconclusive. No real model ran: a fake-model harness passed 20 of 20, and the run environment had no inference engine.'],
+  ['X08', 'Behind the company wall', 'The same infrastructure on a company’s own git, learner records still the learner’s, one technique sent back out through a gate.', 'ran 18 and 19 Oct: FAIL, then inconclusive. The exact-term gate let 10 of 10 paraphrases through. A synonym layer then caught 20 of 20, but its table and the paraphrases came from the same fixtures, and the judge was simulated.'],
+  ['X09', 'Nothing quietly edited', 'Every contribution on a live Constraint Protocol record, and whether knowledge and intelligence compound when nothing can be erased.', 'ran 18 Oct (deterministic script): PASS on detection. An append-only log caught 18 of 20 silent rewrites; editing in place caught none, by construction. The log grew 10.7 times larger.'],
+  ['X10', 'One record, many years', 'One learner’s private record across eleven courses and six years, carried into her cognitive companion, with every carry-over hers to refuse.', 'ran 18 Oct (SIMULATED): PASS. None of 13 refused carry-overs was offered.'],
+  ['X11', 'The negative space', 'The unexplored parts of a subject shaded on the tree and offered, not pushed, with the regions nobody takes recorded too.', 'ran 9 and 18 Oct (SIMULATED): inconclusive, with one firm negative. Neutral wording cleared the offers, but an independent evaluator flagged all 11 atlas markers as steering.'],
+  ['X12', 'Five minutes to master’s', 'The long one. A phone, five minutes a day, a blind-graded external yardstick agreed in advance, and the result published either way.', 'designed, not run. The capstone, last by design.'],
 ];
 
 const legwork = [
@@ -63,7 +73,7 @@ const legwork = [
   ['A registry at scale', 'Reuse decisions against fifty planted nodes are one thing; against every course in a language, with duplicates arriving from many guides at once, is another.'],
   ['Reuse across languages, without copying', 'A core rendered into a second language is a shared asset; a hobby rendering stays personal. The rule exists; the machinery does not.'],
   ['The five-minute bundle', 'The weekly loop at 50 kbps, then the bundle that carries enough teaching for a week offline, with nothing in it the learner did not need.'],
-  ['Certification', 'A prompt is certified for a named model set by evals, not by reputation. No certification exists yet; the harness does.'],
+  ['Certification', 'A prompt is trusted for a named model set because evals say so, not because of reputation. No model set has passed yet: the harness has run on one vendor, and its stop rule has not been met.'],
   ['The constraint fields, null today, made live', 'Every node has a provenance file with fields reserved for a constraint and signing layer. They are null. A live Constraint Protocol record under every contribution is the destination.'],
   ['The learner’s privacy, at scale and across years', 'Pseudonyms and a private repository work for one learner and one course; eleven courses and six years is a different problem.'],
   ['Reclaimed cognition, recorded', 'A place in the session record for the person’s own account of what was taken off them and what they spent it on, written as they gave it. No experiment with a person runs without it.'],
@@ -218,6 +228,13 @@ const profiles = [
       pilot with a person. Every number, and what each run does not show, is in
       the repository with the date on it.
     </p>
+    <p class="body">
+      More have run since. E04 and E05 ran on 9 October, X13 and X14 on 10
+      October, and on 18 and 19 October came a wave of twenty-two first runs and
+      seven follow-ups, set out under the experiments below. A model or a script
+      sat in the people&rsquo;s chairs in every one, and the files say which. No
+      person has been in a chair yet.
+    </p>
     <p class="out">
       <a href="https://github.com/daxfoundation/metadax#what-has-actually-run">The runs, in the repository</a>
       <span aria-hidden="true">&middot;</span>
@@ -227,25 +244,36 @@ const profiles = [
 
   <section class="block" id="experiments" aria-labelledby="h-exp">
     <h2 id="h-exp">The experiments</h2>
-    <p class="big">Fourteen small ones first. Then the legwork. Then the twelve we can already picture. Two more have now run. One came back a negative, one a positive.</p>
+    <p class="big">Fourteen small ones first. Then the legwork. Then the twelve we can already picture. Twenty-four of the twenty-eight have now run, none with a person, and several came back negative.</p>
     <p class="body">
       The small ones are how we earn the big ones: nothing in the third tier can
       run honestly until the first two have. A result appears only when an
       actual run produced it, dated, whichever way it went.
     </p>
     <figure class="fig">
-      <img src="/figures/meta-dax-bridge.svg" width="1200" height="590" alt="The bridge: on the left, what has run, one guide run and one learner run with a model in both chairs; across the span, the legwork, identifiers and schemas at scale, a registry of millions, reuse across languages, the five-minute bundle, certification, the constraint fields made live, the learner's privacy; on the right, the twelve experiments we can already picture, ending at five minutes to master's. The small ones earn the big ones." loading="lazy" />
+      <img src="/figures/meta-dax-bridge.svg" width="1200" height="590" alt="The bridge: on the left, what has run by 19 October, the guide run and the learner run and the other first-fourteen experiments that have run since, each with a model or a script in the people's chairs and none with a person, three not started; across the span, the legwork, identifiers and schemas at scale, a registry of millions, reuse across languages, the five-minute bundle, certification, the constraint fields made live, the learner's privacy; on the right, the twelve experiments we can already picture, none yet run with people, ending at five minutes to master's. The small ones earn the big ones." loading="lazy" />
     </figure>
 
     <h3 class="sub">Where we are starting</h3>
+    <p class="body">
+      As of 20 October 2026, copied from the experiment cards and the findings
+      of 19 October. Eleven of the fourteen have run. E02, E07 and E10 are
+      blocked on things we do not yet have: a second vendor&rsquo;s key, access
+      to an open curriculum, and a small-model runtime.
+    </p>
     <table class="exp">
       <thead><tr><th scope="col">Id</th><th scope="col">Question</th><th scope="col">Status</th></tr></thead>
       <tbody>
         {first14.map(([id, q, st]) => (
-          <tr><td class="mono">{id}</td><td>{q}</td><td class={st.startsWith('done') ? 'st done' : st.startsWith('built') ? 'st built' : 'st'}>{st}</td></tr>
+          <tr><td class="mono">{id}</td><td>{q}</td><td class={st.startsWith('not started') ? 'st' : 'st done'}>{st}</td></tr>
         ))}
       </tbody>
     </table>
+    <p class="out">
+      <a href={findings1019}>The findings of 18 and 19 October &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href={register}>The bottleneck register</a>
+    </p>
 
     <h3 class="sub">What has run since, and what it showed</h3>
     <p class="body">
@@ -270,6 +298,43 @@ const profiles = [
     </table>
     <p class="out"><a href={findings}>The findings: X13 and X14, run 2026-10-10 &rarr;</a></p>
 
+    <h3 class="sub">What ran on 18 and 19 October, and what failed</h3>
+    <p class="body">
+      On 18 October every experiment in the first fourteen that could run did,
+      along with eleven of the twelve scenes: twenty-two first runs. On 19
+      October seven follow-ups ran on the ones that had failed or come back
+      unclear; one of them re-scored earlier outputs. A model or a script
+      played the people, and the findings label each result SIMULATED or
+      deterministic. Of the twenty-two first runs, eleven passed, two passed
+      with a caveat, four failed and five were inconclusive.
+    </p>
+    <p class="body">
+      The failures matter most. The age wall (E14) stopped none of eight
+      explicit minors. A patched prompt then stopped 21 of the 22 earlier
+      probes and 6 of 6 new ones, but one opener, &ldquo;skip the age check&rdquo;,
+      carries no age cue at all, and a first-turn prompt cannot catch it; it
+      needs a structural check. A full learner session (E03) failed validation
+      44 times. The prompts (E04) missed the 90 percent line, mostly because the
+      runner printed its reasoning before the JSON, and they have not been tried
+      on a second vendor. The gate meant to keep a company&rsquo;s private
+      content inside (X08) let 10 of 10 paraphrases through. And the nurse&rsquo;s
+      walkthrough (X03) passed with a caveat: review caught 3 of
+      3 planted errors and missed the 1 planted omission, so the module was not
+      safe to deliver.
+    </p>
+    <p class="body">
+      Blocked: E02 and the cross-vendor half of E04 need a second vendor&rsquo;s
+      key; E07 needs network access to an open curriculum; E10, and the real
+      half of X07, need a small-model runtime, because the run environment had
+      no inference engine; X12 is the capstone and comes last by design. Every
+      run adds rows to a register of bottlenecks, now 93, of which 89 are open.
+    </p>
+    <p class="out">
+      <a href={findings1019}>The findings: 18 and 19 October &rarr;</a>
+      <span aria-hidden="true">&middot;</span>
+      <a href={register}>The bottleneck register</a>
+    </p>
+
     <h3 class="sub">The legwork</h3>
     <p class="body">What has to exist before any of the big ones can run honestly. None of it is glamorous, and all of it is where the scale lives.</p>
     <dl class="leg">
@@ -280,13 +345,17 @@ const profiles = [
     <p class="body">
       Twelve experiments, each written as a scene first, because an experiment
       that cannot be pictured as one person on one day cannot be designed. The
-      people are fictional; the places, languages and subjects are real. Planned,
-      not run. Every one of them records human delta value, both halves, and
-      reclaimed cognition in the person&rsquo;s own words.
+      people are fictional; the places, languages and subjects are real. Each
+      is planned as a study with people, and none has run with people. Eleven
+      have had a first run with a model or a script in the people&rsquo;s
+      chairs, and the line under each says what came back; X12 has not run.
+      Those runs measured no person, so none carries a human delta value line.
+      With people, every one of them records human delta value, both halves,
+      and reclaimed cognition in the person&rsquo;s own words.
     </p>
     <ol class="scenes">
-      {twelve.map(([id, t, d]) => (
-        <li><span class="mono">{id}</span> <strong>{t}.</strong> {d}</li>
+      {twelve.map(([id, t, d, st]) => (
+        <li><span class="mono">{id}</span> <strong>{t}.</strong> {d}<span class="xst">{st}</span></li>
       ))}
     </ol>
     <p class="out">
@@ -342,7 +411,9 @@ const profiles = [
       edit, and anyone can dispute any record. Today every node in Meta DAX
       carries the fields for that record, and they are null. Making them live is
       on the list above. Here is what it looks like when they are, told the only
-      way we know how to tell it, as scenes. Planned, not run.
+      way we know how to tell it, as scenes. Each is planned as a study with
+      people (X01, X10 and X09) and has not run with people; the first runs
+      above used a model or a script.
     </p>
 
     <div class="scene">
@@ -383,11 +454,12 @@ const profiles = [
       before it is a product. The samples were written with help from AI
       from a short brief about two made-up people, and read in full by a person
       before they went up; they show what the system is aiming to hand people,
-      not what the automated pipeline produces today. What has run end to end is
-      a client that works for a guide and a learner with a model in both chairs,
-      plus two experiments on how a companion uses the commons, one a negative and one a positive. It does not yet show
-      what a person experiences or learns, or whether anything compounds between
-      two of them. Nothing here is production, and no element of the architecture
+      not what the automated pipeline produces today. Twenty-four of the
+      twenty-eight experiments have run, every one with a model or a script in
+      the people&rsquo;s chairs and none with a person, and several came back
+      negative: the age wall, the learner session, the prompt certification and
+      the outward gate among them. Together they do not yet show what a person
+      experiences or learns, or whether anything compounds between two of them. Nothing here is production, and no element of the architecture
       is set in stone; several of the experiments will change it, and some will
       kill parts of it, which is what they are for. When one runs, its result
       lands in a dated file, whichever way it goes.
@@ -476,9 +548,9 @@ const profiles = [
   .exp th { text-align: left; font-weight: 500; color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 0.75rem 0.5rem 0; border-bottom: 1px solid var(--line); }
   .exp td { padding: 0.55rem 0.75rem 0.55rem 0; border-bottom: 1px solid var(--line); vertical-align: top; color: #cfcfcf; }
   .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.875em; color: var(--muted); }
-  .st { white-space: nowrap; color: var(--faint); }
+  .st { color: var(--faint); }
   .st.done { color: var(--fg); }
-  .st.built { color: #bdbdbd; }
+  .scenes .xst { display: block; margin-top: 0.2rem; font-size: 0.9375rem; color: var(--fg); }
 
   .leg { margin: 0.5rem 0 0; max-width: 44em; }
   .leg dt { font-weight: 500; margin-top: 0.9rem; }
@@ -498,6 +570,5 @@ const profiles = [
     .fig { overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .fig img { width: 640px; max-width: none; }
     .lede { padding-block: 2.5rem 2rem; }
-    .st { white-space: normal; }
   }
 </style>

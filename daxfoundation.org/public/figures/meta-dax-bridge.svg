@@ -1,26 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 590" width="1200" height="590" role="img" aria-labelledby="t d">
 <title id="t">From one run to twelve scenes: the small ones earn the big ones</title>
-<desc id="d">On the left, what has run: one teacher run and one learner run, with a model in both chairs, and two evals built but not run. Across the span, the legwork: identifiers and schemas at scale, a registry at scale, reuse across languages, the five-minute bundle, certification, the constraint fields made live, privacy at scale. On the right, the twelve experiments we can already picture, ending at five minutes to master's.</desc>
+<desc id="d">On the left, what has run by 19 October 2026: the guide run and the learner run, then eleven of the first fourteen experiments in all, each with a model or a script in the people's chairs and none with a person, several of them negative; three are not started. Across the span, the legwork: identifiers and schemas at scale, a registry at scale, reuse across languages, the five-minute bundle, certification, the constraint fields made live, privacy at scale. On the right, the twelve experiments we can already picture, planned with people and none yet run with people, ending at five minutes to master's.</desc>
 <rect width="1200" height="590" fill="#0a0a0a"/>
 <rect x="40" y="140" width="290" height="320" rx="12" fill="#111111" stroke="#262626"/>
 <text x="60" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8c8c8c" font-weight="600" text-anchor="start" letter-spacing="2">WHAT HAS RUN</text>
-<text x="60" y="198" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="13.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >27 September 2026, first cut</text>
+<text x="60" y="198" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="13.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >27 September to 19 October 2026</text>
 <circle cx="70" cy="235" r="6" fill="#e8e8e8"/>
-<text x="88" y="240" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="600" text-anchor="start" >E01  the teacher run</text>
-<text x="88" y="259" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >a model played the teacher</text>
+<text x="88" y="240" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="600" text-anchor="start" >E01  the guide run</text>
+<text x="88" y="259" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >a model played the guide</text>
 <circle cx="70" cy="287" r="6" fill="#e8e8e8"/>
 <text x="88" y="292" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="600" text-anchor="start" >E03  the learner run</text>
 <text x="88" y="311" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >a simulated adult, model self-play</text>
-<circle cx="70" cy="339" r="6" fill="none" stroke="#e8e8e8" stroke-width="1.8"/>
-<text x="88" y="344" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="400" text-anchor="start" >E04  evals on two vendors</text>
-<text x="88" y="363" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >built, not run</text>
-<circle cx="70" cy="391" r="6" fill="none" stroke="#e8e8e8" stroke-width="1.8"/>
-<text x="88" y="396" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="400" text-anchor="start" >E05  reuse engine vs registry</text>
-<text x="88" y="415" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >built, not run</text>
-<text x="60" y="444" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#5c5c5c" font-weight="400" text-anchor="start" >E02, E06–E14: not started</text>
+<circle cx="70" cy="339" r="6" fill="#e8e8e8"/>
+<text x="88" y="344" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="600" text-anchor="start" >E04  evals on two vendors</text>
+<text x="88" y="363" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >9 and 18 Oct: FAIL; one vendor only</text>
+<circle cx="70" cy="391" r="6" fill="#e8e8e8"/>
+<text x="88" y="396" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="14" fill="#e8e8e8" font-weight="600" text-anchor="start" >E05  reuse engine vs registry</text>
+<text x="88" y="415" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >9 and 18 Oct: narrow PASS</text>
+<text x="60" y="432" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >E06, E08, E09, E11–E14 ran 18 Oct</text>
+<text x="60" y="450" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12.5" fill="#5c5c5c" font-weight="400" text-anchor="start" >E02, E07, E10: not started</text>
 <rect x="790" y="80" width="372" height="416" rx="12" fill="none" stroke="#262626" stroke-dasharray="5 6"/>
 <text x="810" y="114" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="12" fill="#8c8c8c" font-weight="600" text-anchor="start" letter-spacing="2">WHERE WE WANT TO GET TO</text>
-<text x="810" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="13.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >twelve scenes, planned, none run</text>
+<text x="810" y="136" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="13.5" fill="#8c8c8c" font-weight="400" text-anchor="start" >twelve scenes, none yet run with people</text>
 <rect x="810" y="156" width="161" height="46" rx="7" fill="none" stroke="#5c5c5c" stroke-width="1" stroke-dasharray="3 4"/>
 <text x="820" y="174" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="10.5" fill="#8c8c8c" font-weight="600" text-anchor="start" >X01</text>
 <text x="820" y="191" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif" font-size="12" fill="#e8e8e8" font-weight="400" text-anchor="start" >One thread, two worlds</text>
