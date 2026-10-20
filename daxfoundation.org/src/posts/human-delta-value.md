@@ -1,7 +1,7 @@
 ---
 title: "Human delta value: the measure"
 date: 2026-10-01
-updated: 2026-10-18
+updated: 2026-10-20
 description: "We intend to measure what a person brings; this version says how, and what has changed since 1 October."
 draft: false
 ---
@@ -52,11 +52,11 @@ The first Meta DAX results, from 10 October, measured no person: a model sat in 
 
 ## How it will be measured
 
-Nothing in this section has been measured yet. All of it is designed, not run, and because a person's account is a self-report, the three records are read together, beside what happened to the learner.
+Nothing in this section has been measured with a person. The records are designed; the override record has had one first run with a model in the guide's chair, labelled SIMULATED, and no person's account has been recorded. Because a person's account is a self-report, the three records are read together, beside what happened to the learner.
 
 **The HDV record, designed, not built.** A place in the session record for the person's account, written as the person gave it, and a line in every result file that reports it. It MUST exist before any experiment with a person runs.
 
-**The X03 override record, designed, not run.** Each stage of the guide's walkthrough has a declared owner: the guide, the guide with their companion, or the system. When the guide overrides the system, the override is recorded as theirs (who, when, what, why) beside the proposal it replaced. It measures what the person brought and supplies an outcome to read it against: whether the override survives, meaning no learner shows the stumble the default was meant to prevent. Its kill line for real people, with no pass mark: if the overrides are no better for learners than the defaults, and the guide's report says their attention went nowhere new, the walkthrough gave nothing back.
+**The X03 override record, designed; first run with a model in the chair.** Each stage of the guide's walkthrough has a declared owner: the guide, the guide with their companion, or the system. When the guide overrides the system, the override is recorded as theirs (who, when, what, why) beside the proposal it replaced. It measures what the person brought and supplies an outcome to read it against: whether the override survives, meaning no learner shows the stumble the default was meant to prevent. Its kill line for real people, with no pass mark: if the overrides are no better for learners than the defaults, and the guide's report says their attention went nowhere new, the walkthrough gave nothing back. Its first run, on 18 October 2026 with a model playing the guide, showed the record works, and showed that review caught 3 of 3 planted errors and missed the 1 planted omission (SIMULATED).
 
 **The guide's own account.** At the end, the guide says what the system took off them and what they spent their attention on. In the fictional scene we use, a charge nurse reports the plan, the map, the targets and the checking, and says she spent the time on a learner who had gone quiet. The system did not infer that; she told it.
 
