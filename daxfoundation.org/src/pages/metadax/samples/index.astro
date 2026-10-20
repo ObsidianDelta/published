@@ -10,10 +10,13 @@ import { byKind } from '../../../data/library.js';
 // their existing /metadax/showcase/<slug>/ URLs). The six showcase pages did
 // not move; they are linked here. Everyone here is made up; no family data.
 const samples = data.samples || [];
-const sampleCount = samples.length; // the real samples/ folder: nine packages
+const sampleCount = samples.length; // the real samples/ folder, counted at build
 const subjects = Array.from(new Set(samples.map((s) => s.subject))).sort();
 const ageBands = Array.from(new Set(samples.map((s) => s.age_band))).sort();
 const repo = 'https://github.com/daxfoundation/metadax/blob/main';
+// A sample's markdown links to a sibling as `other-sample.md` (right in the
+// repo); on this page every sample sits at #<id>, so point there instead.
+const onPage = (html) => (html || '').replace(/href="([a-z0-9-]+)\.md"/g, 'href="#$1"');
 
 // The showcases and kits come from the one registry (src/data/library.js), so
 // this page cannot fall behind when a new showcase lands. Editions nest under
@@ -25,7 +28,7 @@ const editions = byKind('edition');
 const editionsFor = (id) => editions.filter((e) => e.id.startsWith(id + '-'));
 const chairLabel = { parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher', trainer: 'Trainer', researcher: 'Researcher' };
 ---
-<Base title="Meta DAX: see it" description="The same recipe built every one of these: four deep showcases, nine sample packages, and six family pages three steps in. Made-up names, nothing identifying. A way, never the way." wide>
+<Base title="Meta DAX: see it" description="The same recipe built every one of these: the showcases, the sample packages, and six family pages three steps in. Made-up names, nothing identifying. A way, never the way." wide>
   <section class="lede">
     <p class="eyebrow"><a href="/metadax/">Meta DAX</a> &rsaquo; See it</p>
     <h1>See it</h1>
@@ -103,7 +106,7 @@ const chairLabel = { parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher', train
             )}
             <details class="inner">
               <summary>Read the sample</summary>
-              <div class="body" set:html={s.html} />
+              <div class="body" set:html={onPage(s.html)} />
               <p class="src"><a href={`${repo}/${s.path}`}>View the source markdown &rarr;</a></p>
             </details>
           </details>
