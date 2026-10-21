@@ -1,8 +1,16 @@
 # jeyanandan.com. A personal site: an introduction, the writing, and one
 # outbound link to ko-fi.com. Nothing is submitted, and the only thing embedded
 # is YouTube video in the writing (see FRAMES below). Fonts are the system's,
-# there is no CDN and no analytics. img-src allows data: for the one-byte inline
-# favicon in Base.astro.
+# there is no CDN, and the only third-party script is the analytics beacon
+# (see ANALYTICS below). img-src allows data: for the one-byte inline favicon in
+# Base.astro.
+#
+# ANALYTICS, 2026-10-21. Base.astro has loaded Cloudflare Web Analytics
+# (cookieless) since 20 Oct, and /blog/how-i-publish/ says so, but this policy
+# blocked it: script-src did not allow static.cloudflareinsights.com and
+# connect-src did not allow cloudflareinsights.com, where the beacon reports. Both
+# are named now, and nothing else. Cloudflare documents these two origins for
+# Web Analytics under a CSP.
 #
 # FRAMES, 2026-09-28. frame-src was 'none'. It now names www.youtube.com (and
 # www.youtube-nocookie.com, so an embed can be switched to the no-cookie host
@@ -53,7 +61,7 @@
 # that never reset -- across a deployment whose purge step is best-effort. A cache
 # at the jeyanandan.com zone holds them. Only a Cloudflare purge clears it.
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://cloudflareinsights.com; frame-src https://www.youtube.com https://www.youtube-nocookie.com; media-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: microphone=(), camera=(), geolocation=(), interest-cohort=()
