@@ -2,7 +2,7 @@
 title: "Thirty to One"
 subtitle: "Thirty Seats Behind One Learner, and the One Nothing Else Can Fill"
 date: 2026-10-18
-updated: 2026-10-21
+updated: 2026-10-22
 description: "A classroom is twenty to thirty learners to one teacher. Meta DAX turns it over: one learner, and thirty seats behind them. The recipe fills most of them, people fill a few, and one belongs to the guide. What exists today, and what does not yet."
 draft: false
 tags: ["meta-dax", "learning", "human-delta-value"]
@@ -79,7 +79,9 @@ Until the route works for a stranger, the offer stands: send me a scenario, a di
 
 **Another bold claim, labelled:** the thirty seats are getting cheaper, and getting them right is real work, but it is work a recipe can carry; the one seat is the one it cannot. The hard part is the one seat, and it always was. That Grade 12 room was not magic because of the syllabus. It was magic because of a teacher who was genuinely excited and had the room to show it.
 
-Thirty to one is how a guide gets that room back, for every learner. Tutoring has a scale problem the recipe has to beat: across 265 trials its effect fell from about 0.55 standard deviations in programmes under 100 students to about 0.15 in programmes over 1,000.[^6]
+Thirty to one is how a guide gets that room back, for every learner.
+
+There is one catch: tutoring works brilliantly small and fades as it grows. Across 265 trials, programmes serving fewer than 100 students got gains more than three times larger than programmes serving more than 1,000.[^6] The recipe is built to go the other way, with every package making the next one easier to build. Whether it does is one of the things not yet measured.
 
 [^1]: UNESCO Institute for Statistics (2016). *School resources and learning environment in Africa*. https://uis.unesco.org/sites/default/files/school-resources-and-learning-environment-in-africa-2016-en/school-resources-and-learning-environment-in-africa-2016-en.pdf ; World Bank, World Development Indicators: Pupil-teacher ratio, primary (SE.PRM.ENRL.TC.ZS). https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS
 

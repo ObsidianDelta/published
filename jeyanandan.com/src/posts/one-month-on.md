@@ -2,8 +2,8 @@
 title: "One Month On"
 subtitle: "Three people pulled, how far we have come since my birthday, and the sentence I got wrong"
 date: 2026-10-21
-updated: 2026-10-21
-description: "A month ago, on my birthday, I put most of five years' work out in a week. This is the ledger: the three people who pulled on it without being asked, what is up now that was not, the sentence I got wrong and how the record caught it, and the three things that have not moved an inch."
+updated: 2026-10-22
+description: "A month ago, on my birthday, I put most of five years' work out in a week. This is the ledger: the three people who pulled on it without being asked, what is up now that was not, the sentence I got wrong and how the record caught it, and the two things that have not moved an inch."
 draft: false
 tags: ["meta-dax", "learning", "publishing"]
 ---
@@ -54,7 +54,6 @@ I would love to tell you I caught it myself. The record caught it, which is what
 
 1. **No person has sat in a chair.** Every run so far has had a model or a script in every seat. The stranger test in October was the nearest thing, and it found the shared player showing the learner the answers, which is one way to pass a quiz. That is fixed. The route from "here is my learner" to a finished package is still not reliable for someone starting cold.
 2. **The first ten are still the first ten,** which is a polite way of saying zero. Two Weeks In asked for a scenario in three lines. Three people pulled on the work this week, and nobody has sent one. The twenty-four samples came from what parents ask each other in the groups I read, which is fine, and is not the same.
-3. **The pile about the last three years is still a pile.** The Fuckarian said it was coming. It is not written. I know.
 
 ## The one thing I am asking
 
