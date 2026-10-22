@@ -2,7 +2,7 @@
 title: "Fourteen small experiments, and why small first"
 description: "What E01 to E14 each test, which have run, and the bottlenecks found before anyone was hurt by them."
 date: 2026-10-18
-updated: 2026-10-20
+updated: 2026-10-21
 draft: false
 series: results
 part: 2
@@ -14,6 +14,8 @@ related:
     label: "The stranger test"
   - url: https://daxfoundation.org/writing/field-note-twenty-nine-runs/
     label: "Twenty-nine runs in two days, and what failed"
+  - url: https://daxfoundation.org/writing/what-twenty-nine-runs-say-about-the-design/
+    label: "What twenty-nine runs say about the design"
   - url: https://daxfoundation.org/metadax/research/
     label: "The research"
   - url: https://daxfoundation.org/writing/twelve-scenes-01-the-nurses-walkthrough/
@@ -65,7 +67,7 @@ Every run feeds the [bottleneck register](https://github.com/daxfoundation/metad
 
 Pick the experiment closest to your work and read its stop rule. If you homeschool, E09 asks whether the records a provincial template requires could fall out of lessons already done. If your connection is thin, read E06 and E10. If you teach, E07 asks whether a unit can be grounded on an open curriculum with no invented citation. If the line sits in the wrong place, say so.
 
-This is part two of five on what has run. [The first run](https://daxfoundation.org/writing/the-first-run/) comes before it; [The stranger test](https://daxfoundation.org/writing/the-stranger-test/) comes next. The failures of 18 and 19 October, the age wall first, are in [Twenty-nine runs in two days, and what failed](https://daxfoundation.org/writing/field-note-twenty-nine-runs/). Obsidian Delta's [What is already solved](https://www.obsidiandelta.com/blog/what-is-already-solved/) reads the same stack from a business's side.
+This is part two of five on what has run. [The first run](https://daxfoundation.org/writing/the-first-run/) comes before it; [The stranger test](https://daxfoundation.org/writing/the-stranger-test/) comes next. The failures of 18 and 19 October, the age wall first, are in [Twenty-nine runs in two days, and what failed](https://daxfoundation.org/writing/field-note-twenty-nine-runs/), and what the whole wave says about the design, passes included, is in [What twenty-nine runs say about the design](https://daxfoundation.org/writing/what-twenty-nine-runs-say-about-the-design/). Obsidian Delta's [What is already solved](https://www.obsidiandelta.com/blog/what-is-already-solved/) reads the same stack from a business's side.
 
 Which of the fourteen would you run first, and why?
 
