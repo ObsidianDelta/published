@@ -2,7 +2,7 @@
 title: "Meta DAX, Two Weeks In"
 subtitle: "One Dish, Its Story, and the One You Send Me Next"
 date: 2026-10-11
-updated: 2026-10-18
+updated: 2026-10-21
 description: "My mother's Jaffna chicken curry, built by the open Meta DAX recipe from an eight-line brief into a 3D kitchen, Tamil and English on one click. Where Meta DAX stands two weeks in, and the package I want you to send me next."
 image: "/figures/metadax-two-weeks/tamil-poster.png"
 imageAlt: "One dish, its story: a 3D Jaffna kitchen table with rice, chicken curry and string hoppers, labelled in Tamil and English."
@@ -10,7 +10,7 @@ draft: false
 tags: ["meta-dax", "learning", "experiments"]
 ---
 
-*Meta DAX: [An Introduction](/blog/meta-dax/) · Two Weeks In · [Thirty to One](/blog/thirty-to-one/)*
+*Meta DAX: [An Introduction](/blog/meta-dax/) · Two Weeks In · [Thirty to One](/blog/thirty-to-one/) · [One Month On](/blog/one-month-on/)*
 
 *Two weeks ago I [introduced Meta DAX](/blog/meta-dax/). This is the update: the newest thing it made, what exists now, and the one thing I am asking of you.*
 

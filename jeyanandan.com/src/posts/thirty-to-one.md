@@ -2,13 +2,13 @@
 title: "Thirty to One"
 subtitle: "Thirty Seats Behind One Learner, and the One Nothing Else Can Fill"
 date: 2026-10-18
-updated: 2026-10-18
+updated: 2026-10-21
 description: "A classroom is twenty to thirty learners to one teacher. Meta DAX turns it over: one learner, and thirty seats behind them. The recipe fills most of them, people fill a few, and one belongs to the guide. What exists today, and what does not yet."
 draft: false
 tags: ["meta-dax", "learning", "human-delta-value"]
 ---
 
-*Meta DAX: [An Introduction](/blog/meta-dax/) · [Two Weeks In](/blog/post-metadax-two-weeks/) · Thirty to One*
+*Meta DAX: [An Introduction](/blog/meta-dax/) · [Two Weeks In](/blog/post-metadax-two-weeks/) · Thirty to One · [One Month On](/blog/one-month-on/)*
 
 *The second Meta DAX benchmark. The first, five minutes of connectivity a day, is in [the introduction](/blog/meta-dax/).*
 
