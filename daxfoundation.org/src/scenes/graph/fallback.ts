@@ -52,12 +52,23 @@ function str(v: string | string[] | undefined): string {
   return typeof v === "string" ? v : "";
 }
 
+// Definition-page anchors for concept nodes that have no run yet.
+const CONCEPT_HREFS: Record<string, string> = {
+  companion: "/definitions/#cognitive-companion",
+  hdv: "/definitions/#human-delta-value",
+};
+
 export function mount(host: HTMLElement, params: SceneParams, tokens: SceneTokens): SceneHandle {
   const reduced = !!params.reducedMotion;
   const P = (params.params || {}) as Record<string, unknown>;
   const graph = (P.graph || { nodes: [], edges: [] }) as Graph;
   const routes = (P.routes || {}) as Record<string, string>;
   let L: Labels = params.labels || {};
+
+  function nodeHrefOf(n: GNode): string {
+    if (n.chapter && routes[n.chapter]) return routes[n.chapter];
+    return CONCEPT_HREFS[n.id] || "";
+  }
 
   host.style.position = host.style.position || "relative";
   const canvas = document.createElement("canvas");
@@ -77,6 +88,29 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
   const capSub = document.createElement("span");
   caption.append(capMain, capSub);
   host.appendChild(caption);
+
+  // sr-only nav: real <a href> links so keyboard users can reach run nodes without
+  // navigating the canvas. Visually hidden but fully traversable.
+  const srNav = document.createElement("nav");
+  srNav.setAttribute("aria-label", "Graph node links");
+  srNav.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;";
+  const srNavList = document.createElement("ul");
+  srNavList.style.cssText = "list-style:none;margin:0;padding:0;";
+  for (const n of graph.nodes) {
+    const href = nodeHrefOf(n);
+    const li = document.createElement("li");
+    if (href) {
+      const a = document.createElement("a");
+      a.href = href;
+      a.textContent = n.label + " — " + n.line;
+      li.appendChild(a);
+    } else {
+      li.textContent = n.label + " — " + n.line;
+    }
+    srNavList.appendChild(li);
+  }
+  srNav.appendChild(srNavList);
+  host.appendChild(srNav);
 
   const cs = getComputedStyle(document.documentElement);
   const sans = cs.getPropertyValue("--font-sans").trim() || "sans-serif";
@@ -248,7 +282,8 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
     for (const n of liveNodes()) {
       if (n.shown < 0.5) continue;
       const d = Math.hypot(p.x - n.x, p.y - n.y);
-      if (d < radiusOf(n) + 8 && d < bd) { bd = d; best = n; }
+      // 24px touch target ensures reliable activation on all touch devices.
+      if (d < radiusOf(n) + 24 && d < bd) { bd = d; best = n; }
     }
     return best;
   }
@@ -280,16 +315,16 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
   function onUp(e: PointerEvent): void {
     const p = at(e);
     if (drag && !drag.moved) {
-      // a tap, not a drag: select the node; a second tap opens its run.
+      // a tap, not a drag: select the node; a second tap opens its run or definitions anchor.
       const n = byId.get(drag.id)!;
       if (n.id !== "dax") { n.fx = null; n.fy = null; }
       if (selected === n.id && lastTapId === n.id) {
-        const url = n.chapter ? routes[n.chapter] : "";
+        const url = nodeHrefOf(n);
         if (url) { window.location.href = url; drag = null; return; }
       }
       selected = n.id; lastTapId = n.id;
-      setCaption(nodeLabel(n), routes[n.chapter || ""] ? "  ·  tap again to open" : "");
       capMain.textContent = nodeLine(n);
+      capSub.textContent = nodeHrefOf(n) ? "  ·  tap again to open" : "";
       draw();
       drag = null;
       return;
@@ -351,7 +386,7 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
       canvas.removeEventListener("pointermove", onMove);
       canvas.removeEventListener("pointerup", onUp);
       canvas.removeEventListener("pointercancel", onUp);
-      canvas.remove(); caption.remove();
+      canvas.remove(); caption.remove(); srNav.remove();
     },
     setLabels(labels: Labels): void { L = labels || {}; if (!selected) baseCaption(); draw(); },
     setDepth(_d: number): void { /* the map uses levels, not ladder depth */ },
