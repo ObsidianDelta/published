@@ -10,12 +10,14 @@ canon:
   - "Every new power has come with costs: electricity, X-rays, nuclear power. AI is a new kind of electricity; the costs are the nature of the thing, not a reason to refuse it."
   - "You cannot fight a war, or any of its battles, without knowing what it is about and what is at stake; the record is how we know."
   - "It is the one thing everything the Foundation builds runs under: every interaction between any two entities, people, companions, agents, records, is recorded, accountable and signed."
+horizon_canon: "Trust that can grow with the power: every cost found and fixed, so the power can be used for everyone."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
-    answer: "When helpers do things for you, the Constraint Protocol writes it down. Not to stop things going wrong — things do go wrong. But so that when they do, the grown-ups can look back and figure out what happened and make it better."
+    horizon: "A logbook under every helper means mistakes get found and fixed, so the helpers get safer for everyone who uses them."
+    answer: "When helpers do things for you, the Constraint Protocol writes it down. Not to stop things going wrong — things do go wrong. But so that when they do, the grown-ups can look back and figure out what happened and make it better. The Foundation is here to bring out the best in you — and the logbook is how that stays true."
     more: "Think of it like a logbook on a ship. The ship still hits storms. But the logbook means you can always go back and learn from what happened. Every helper the Foundation builds keeps that logbook, for every person, every time."
     how: ""
     proof_intro: ""
@@ -47,7 +49,8 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is a record-keeping system. Every time a helper — an AI companion or agent — acts on behalf of a person, the action is logged, signed and kept. It is not a safety switch to stop bad things happening. It is the record that lets us understand what happened when they do."
+    horizon: "An accountability record under every helper is what lets the power grow without growing the risk. Every cost surfaced and fixed means the tools get better for everyone who uses them."
+    answer: "The Constraint Protocol is a record-keeping system. Every time a helper — an AI companion or agent — acts on behalf of a person, the action is logged, signed and kept. It is not a safety switch to stop bad things happening. It is the record that lets us understand what happened when they do. The Foundation's purpose is to bring out the best in every person, and a record that can trace and fix every mistake is what keeps that purpose more than a promise."
     more: "New powerful things have always come with costs. Electricity, X-rays, nuclear power — each one brought risks along with the benefits. The same is true here. The protocol does not pretend otherwise. It says: costs are real, so we need a record so we can learn and improve. That record is what the Foundation puts under everything it builds."
     how: "Every interaction between any two entities — people, companions, agents — is recorded, made accountable, and signed. The record says who acted, on whose behalf, and what happened. When something goes wrong, you can trace it back, find out how, and make sure it does not happen again."
     proof_intro: "The Foundation publishes the protocol itself, including its severity table, so anyone can read exactly what is being measured and how."
@@ -79,7 +82,8 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is what the Foundation puts under every helper it builds. Every action a helper takes — anything it does for your child, or for you — is logged, accountable and signed. It is not there to stop things going wrong. Things will go wrong. It is there so that when they do, you can find out exactly what happened."
+    horizon: "A record under every helper means every mistake is findable, ownable, and fixable — so the tools your family uses get safer over time, and trust can grow with the power rather than despite it."
+    answer: "The Constraint Protocol is what the Foundation puts under every helper it builds. Every action a helper takes — anything it does for your child, or for you — is logged, accountable and signed. It is not there to stop things going wrong. Things will go wrong. It is there so that when they do, you can find out exactly what happened. Its purpose is to bring out the best in every person, and a record that makes mistakes findable is what keeps that true."
     more: "Think of every new powerful thing families have brought into the home — the television, the internet. Each one brought real costs alongside the benefits. This is no different. The Foundation does not promise no mistakes. It promises a record, so mistakes can be understood, owned, and fixed. Your child's data stays yours. The record is what keeps it that way."
     how: "Every interaction involving your child — between them and a helper, between helpers — is recorded, signed and attributed. Who acted, under whose authority, what happened. That record belongs to the accountability chain that runs back to you, as the principal."
     proof_intro: "The protocol is published openly, including its table of severity levels, so you can see exactly how the Foundation measures what helpers do and what is at stake."
@@ -111,7 +115,8 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is the accountability record that runs under every helper the Foundation builds. When a helper acts in your session — with a learner, in your name, under your authority — the action is recorded, signed and attributable. It does not prevent errors. It ensures errors can be examined, owned and corrected."
+    horizon: "Accountability built into every helper means errors can be found and fixed — so the tools get better for every guide who uses them, and the relationship between teacher, learner, and helper becomes more trustworthy as it grows."
+    answer: "The Constraint Protocol is the accountability record that runs under every helper the Foundation builds. When a helper acts in your session — with a learner, in your name, under your authority — the action is recorded, signed and attributable. It does not prevent errors. It ensures errors can be examined, owned and corrected. The Foundation's purpose is to bring out the best in every learner — and accountability is what keeps that purpose real."
     more: "You keep your authority and your judgement. A helper is only as good as you. But helpers that act without a record are helpers that cannot be held to account. The Constraint Protocol is the condition under which helpers are allowed to act: every new power comes with costs, and the record is how those costs are managed honestly."
     how: "Each interaction is logged with who acted, on whose behalf, and under which guide authority. The severity of any failure is classified against a published table. When something goes wrong in your session, there is a chain of accountability you can follow — and one that follows back to you."
     proof_intro: "The protocol is published in full, with its severity table as Appendix A, so you can inspect exactly what is being tracked and what each level of severity means."
@@ -143,7 +148,8 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is the accountability record under every helper the Foundation builds. When a helper acts — for one of your people, in any domain, in any session — the action is logged, signed, and attributable. It does not prevent things going wrong. It ensures that when they do, you can find out how, and the record exists to demonstrate that."
+    horizon: "An accountability record under every helper is what lets organisations deploy at scale without hiding costs — every failure traceable, fixable, and a step toward tools that improve across every deployment."
+    answer: "The Constraint Protocol is the accountability record under every helper the Foundation builds. When a helper acts — for one of your people, in any domain, in any session — the action is logged, signed, and attributable. It does not prevent things going wrong. It ensures that when they do, you can find out how, and the record exists to demonstrate that. The Foundation's purpose is to bring out the best in every person — and a record under every action is how that purpose scales."
     more: "Onboarding, upskilling, the one new hire who needs to get up to speed fast — helpers change the economics of learning at work. But enterprise-grade means accountable, not just capable. The Constraint Protocol is what makes the capability trustworthy enough to deploy. Every new kind of power has come with costs; the record is how organisations manage them honestly rather than pretending they are not there."
     how: "Each action is recorded: who acted, on whose behalf, under whose authority, at what severity level if wrong. The chain of accountability runs through the operator — whoever deployed the helper — up to the individual and the Foundation. You can follow it. Auditors can follow it. That is what the record is for."
     proof_intro: "The protocol is published openly, including the severity table as Appendix A, so your compliance team can inspect exactly what is measured and how."
@@ -175,7 +181,8 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is the accountability layer built into everything the Foundation builds. Every helper action is recorded, signed, and attributable. It is not a constraint on what you can build — it is the foundation that makes what you build trustworthy enough to sell."
+    horizon: "Every cost found and fixed makes the platform more trustworthy with each product built on it — the accountability record is what lets you build on a foundation that compounds rather than corrodes."
+    answer: "The Constraint Protocol is the accountability layer built into everything the Foundation builds. Every helper action is recorded, signed, and attributable. It is not a constraint on what you can build — it is the foundation that makes what you build trustworthy enough to sell. The Foundation's purpose is to bring out the best in every person; the record is the condition that keeps what you build honest to that purpose."
     more: "Every new kind of power has come with costs. The record is how you manage them and show your customers you do. The platform stays free and open. What you build on it — the product, the experience, the trust — is yours. The Constraint Protocol is one thing every operator building on the Foundation inherits. That is a feature, not a burden: accountability is the trust layer that lets you charge for what you build."
     how: "As an operator, you build or run a helper for a principal. The protocol records every action the helper takes, under your operation, on behalf of that principal. The record is attributable back to you. You answer for how the helper is built and run. The Foundation provides the schema; you provide the product."
     proof_intro: "The protocol is published in full, including its severity table, so you and your customers can inspect the accountability structure before committing to it."
@@ -207,7 +214,8 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is the accountability record that every interaction runs under. Every action between any two entities — person, companion, agent — is recorded, attributable, and signed. It is not a prevention layer. It is a substrate: the thing you build on top of, the record that makes everything downstream auditable."
+    horizon: "A signed, attributable record under every interaction is the substrate the system learns from: every severity class reviewable, every failure pattern analysable, every schema revision traceable to a real event."
+    answer: "The Constraint Protocol is the accountability record that every interaction runs under. Every action between any two entities — person, companion, agent — is recorded, attributable, and signed. It is not a prevention layer. It is a substrate: the thing you build on top of, the record that makes everything downstream auditable. The Foundation's purpose is to bring out the best in every person, and the record is the substrate that keeps that purpose computable."
     more: "Every new power comes with costs. The schema does not hide them. It records them: who acted, on whose behalf, under what principal authority, at what severity classification if the action was wrong. The record is how the system learns. Every interaction logged, every edition signed. The Constraint Protocol is the one thing everything the Foundation ships runs under."
     how: "Each record holds: acting entity, principal, delegate chain, operator, severity class per Appendix A, and a signed edition hash. Companions are cognitive extensions of a person — one unit, all in domain under that person's control. Agents act as delegates. The contract is: no action without a record; no record without a signature; no signature without an accountable chain."
     proof_intro: "The Constraint Protocol post is published at daxfoundation.org/constraint-protocol/; Appendix A is the severity table. Definitions live at daxfoundation.org/definitions/."
@@ -239,7 +247,8 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is the accountability record the Foundation puts under everything it builds. Every action between any two entities is recorded, signed and attributable. It is not theoretical — it is what the Foundation ships, today, as the condition under which every helper operates."
+    horizon: "An accountability record running under every helper is what lets the power expand — every cost surfaced and fixed means the next phase serves more people without passing hidden risks to them."
+    answer: "The Constraint Protocol is the accountability record the Foundation puts under everything it builds. Every action between any two entities is recorded, signed and attributable. It is not theoretical — it is what the Foundation ships, today, as the condition under which every helper operates. Its purpose is to bring out the best in every person; the accountability record is what makes that purpose accountable as the system grows."
     more: "New powerful capabilities have always come with costs. The Foundation does not promise otherwise. It promises a record: when something goes wrong, there is a chain of accountability that can be followed, examined, and acted on. That is what is proven. What your support unlocks is the capacity to extend that record — more helpers, more domains, more people."
     how: "The protocol is the one thing everything the Foundation builds runs under. Every interaction is logged, attributable, and signed. The severity table classifies what is at stake in each action. The record is open and inspectable. No helper operates outside it."
     proof_intro: "The protocol is published in full, including Appendix A — the severity table — so any due-diligence review can inspect exactly what is measured and how."
@@ -271,7 +280,8 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
-    answer: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what principal, under whose authority, with what severity classification if the action was wrong. It is not a prevention mechanism. It is the substrate under which every entity interaction in the Foundation's stack is recorded, attributable, and signed."
+    horizon: "A complete accountability record across all non-biological helper action creates the empirical substrate for studying human-AI interaction at scale: every severity class reviewable, every failure pattern analysable, every intervention traceable."
+    answer: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what principal, under whose authority, with what severity classification if the action was wrong. It is not a prevention mechanism. It is the substrate under which every entity interaction in the Foundation's stack is recorded, attributable, and signed. The stated purpose is the preservation of life, humanity, and consciousness; the record is what makes that testable."
     more: "Every new power has come with costs — electricity, X-rays, nuclear power. The protocol does not suppress that claim; it operationalises it. The record is not aspirational. It is the condition under which helpers are permitted to act. Every interaction between any two entities — person, companion, agent — is logged with a signed edition hash. The open question is not whether costs exist, but whether the severity classification in Appendix A is fine-grained enough to support meaningful retrospective analysis."
     how: "Record schema: acting entity (typed: person | companion | agent), principal (the entity at which accountability terminates; not acting under delegation), delegate chain, operator (the entity that builds or runs the companion or delegate; not the principal), severity class (per Appendix A of the Constraint post), signed edition hash. A cognitive companion is a cognitive extension of a person — one unit; everything in its domain is under the person's control and the person's responsibility. Agents act as delegates. The operator answers for how the helper is built and run; building or running it does not make the operator the principal."
     proof_intro: "The Constraint Protocol post publishes the full protocol and its severity table as Appendix A. The definitions post establishes the vocabulary: principal, delegate, operator, cognitive companion, human delta value."
