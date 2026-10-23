@@ -1,0 +1,141 @@
+---
+// Click-to-load video (spec section 4, chapter 03). No YouTube iframe or script
+// loads until the visitor clicks: the poster is a plain button. On click a small
+// inline handler swaps in a youtube-nocookie.com iframe built from the id in
+// evidence[0].src. The caption and the evidence links render regardless, so the
+// chapter is complete with no third-party request at all.
+interface Evidence {
+  kind: string;
+  src?: string;
+  caption: { en: string; fr?: string };
+  source: string;
+}
+interface Props {
+  evidence: Evidence[];
+  caption: string;
+}
+const { evidence, caption } = Astro.props;
+const src = evidence[0]?.src ?? "";
+// youtu.be/<id>, watch?v=<id>, or a bare id.
+function youtubeId(u: string): string {
+  const be = u.match(/youtu\.be\/([\w-]{6,})/);
+  if (be) return be[1];
+  const v = u.match(/[?&]v=([\w-]{6,})/);
+  if (v) return v[1];
+  const last = u.split("/").pop() || "";
+  return /^[\w-]{6,}$/.test(last) ? last : "";
+}
+const id = youtubeId(src);
+---
+<figure class="video">
+  <div class="video-stage" data-video-id={id}>
+    <button type="button" class="video-poster" aria-label={`Play video: ${caption}`} data-video-play>
+      <span class="video-cue">Play</span>
+      <span class="video-cap">{caption}</span>
+    </button>
+  </div>
+  <figcaption class="video-caption">{caption}</figcaption>
+  <ul class="video-links">
+    {evidence.map((ev) => (
+      <li>
+        {ev.src ? (
+          <a href={ev.src} rel="noopener">{ev.caption.en}</a>
+        ) : (
+          <span>{ev.caption.en}</span>
+        )}
+        <span class="video-source">{ev.source}</span>
+      </li>
+    ))}
+  </ul>
+</figure>
+
+<script>
+  // Delegated: works for the one video on the page, and survives View Transitions.
+  function wire() {
+    document.querySelectorAll<HTMLButtonElement>("[data-video-play]").forEach((btn) => {
+      if (btn.dataset.wired === "1") return;
+      btn.dataset.wired = "1";
+      btn.addEventListener("click", () => {
+        const stage = btn.closest<HTMLElement>(".video-stage");
+        const id = stage?.dataset.videoId;
+        if (!stage || !id) return;
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        iframe.title = btn.getAttribute("aria-label") || "Video";
+        iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.className = "video-iframe";
+        stage.replaceChildren(iframe);
+      });
+    });
+  }
+  document.addEventListener("astro:page-load", wire);
+</script>
+
+<style>
+  .video { margin: 0; width: 100%; max-width: var(--measure-scene); }
+  .video-stage {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .video-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: var(--touch-min);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    background: var(--surface);
+    color: var(--ink);
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+  }
+  .video-cue {
+    font-family: var(--font-mono);
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    border: 1px solid var(--record);
+    border-radius: var(--radius-full);
+    padding: var(--space-2) var(--space-6);
+    min-height: var(--touch-min);
+    display: inline-flex;
+    align-items: center;
+  }
+  .video-cap {
+    max-width: var(--measure-text);
+    padding-inline: var(--space-6);
+    color: var(--ink-muted);
+    font-size: var(--text-small-size);
+    text-align: center;
+  }
+  .video-poster:hover .video-cue,
+  .video-poster:focus-visible .video-cue { color: var(--ink); border-color: var(--ink); }
+  .video-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .video-caption {
+    margin: var(--space-3) 0 0;
+    color: var(--ink-muted);
+    font-size: var(--text-small-size);
+  }
+  .video-links {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .video-links li { display: flex; flex-direction: column; gap: var(--space-1); }
+  .video-links a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); width: fit-content; }
+  .video-links a:hover, .video-links a:focus-visible { border-color: var(--ink); }
+  .video-source { color: var(--ink-faint); font-size: var(--text-mono-size); font-family: var(--font-mono); }
+</style>

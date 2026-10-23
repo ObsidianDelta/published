@@ -1,7 +1,335 @@
 ---
-// One chapter section (Explainer Kit v1, spec section 4). Placeholder; filled next.
+// One chapter section (Explainer Kit v1, spec section 4, items 1-5). Phone first.
+// Order of parts: masthead row; counter + tense tag; the sticky scene frame (or
+// the Video/Chairs component for modules 'video'/'chairs'); the question; the
+// line; the three depth pills; the 8-cell progress bar; the Next hint. Every depth
+// is in the HTML and the line is visible without JS, so the chapter is complete
+// and readable with the scene absent.
+import type { Chapter } from "../../lib/explain/chapters.js";
+import Video from "./Video.astro";
+import Chairs from "./Chairs.astro";
+
 interface Props {
-  chapter: unknown;
-  index: number;
+  chapter: Chapter;
+  total?: number;
 }
+const { chapter, total = 8 } = Astro.props;
+const d = chapter.data as Record<string, any>;
+
+const TENSE: Record<string, string> = {
+  solved: "Solved",
+  live: "Live now",
+  researched: "Researched",
+  ahead: "Where this goes",
+};
+const tenseLabel = TENSE[d.tense] + (d.tenseNote ? ` — ${d.tenseNote}` : "");
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const counterNum = pad(d.order);
+const counterDen = pad(total);
+
+const module = d.scene?.module as string;
+const isVideo = module === "video";
+const isChairs = module === "chairs";
+const isScene = !isVideo && !isChairs;
+const pin = typeof d.scene?.pin === "number" ? d.scene.pin : 1;
+const sceneParams = JSON.stringify(d.scene?.params ?? {});
+
+// Progress: the 8 Meta DAX cells. The current cell is record, the ones before it
+// ink-faint, the rest line. The foundation map (order 0) lights none.
+const current = chapter.collection === "metadax" ? d.order - 1 : -1;
+const cells = Array.from({ length: total }, (_, i) =>
+  i === current ? "now" : i < current ? "past" : "ahead"
+);
+
+const hasFr = Boolean(d.question?.fr);
+const masthead = chapter.collection === "metadax" ? "DAX Foundation — Meta DAX" : "DAX Foundation";
+
+const panelId = (k: string) => `d-${chapter.collection}-${d.id}-${k}`;
+const evidence = (d.evidence as any[]) ?? [];
 ---
+<section
+  class:list={["chapter", { "has-scene": isScene }]}
+  id={d.id}
+  data-explain-chapter={d.id}
+  style={`--pin:${pin}`}
+>
+  <div class="chapter-head">
+    <header class="masthead">
+      <span class="masthead-mark">{masthead}</span>
+      <span class="lang" aria-label="Reading language">
+        <span class="lang-on" aria-current="true">EN</span>
+        {hasFr ? (
+          <span class="lang-alt">FR</span>
+        ) : (
+          <span class="lang-off">not yet in French</span>
+        )}
+      </span>
+    </header>
+    <div class="meta-row">
+      <span class="counter"><span class="counter-n">{counterNum}</span> / {counterDen}</span>
+      <span class:list={["tag", d.tense === "solved" ? "tag-record" : "tag-line"]}>{tenseLabel}</span>
+    </div>
+  </div>
+
+  {isScene && (
+    <div class="scene-wrap">
+      <div
+        class="scene-frame"
+        data-scene={module}
+        data-scene-params={sceneParams}
+        aria-hidden="true"
+      ></div>
+    </div>
+  )}
+
+  <div class="chapter-content">
+    <h2 class="question">{d.question.en}</h2>
+
+    {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
+    {isChairs && <Chairs doors={d.scene.params.doors} labels={d.scene.params.labels} />}
+
+    <p class="line" id={panelId("line")}>{d.line.en}</p>
+
+    <div class="depths">
+      <div class="depth-pills" role="group" aria-label="Depth">
+        <button
+          type="button"
+          class="pill"
+          aria-expanded="true"
+          aria-controls={panelId("line")}
+          data-explain-depth="line"
+        >The line</button>
+        {d.paragraph && (
+          <button
+            type="button"
+            class="pill"
+            aria-expanded="false"
+            aria-controls={panelId("paragraph")}
+            data-explain-depth="paragraph"
+          >The paragraph</button>
+        )}
+        <button
+          type="button"
+          class="pill"
+          aria-expanded="false"
+          aria-controls={panelId("evidence")}
+          data-explain-depth="evidence"
+        >The evidence</button>
+      </div>
+
+      {d.paragraph && (
+        <p class="paragraph" id={panelId("paragraph")} hidden>{d.paragraph.en}</p>
+      )}
+
+      <ul class="evidence" id={panelId("evidence")} hidden>
+        {evidence.map((ev) => (
+          <li class="evidence-item">
+            {ev.src ? (
+              <a href={ev.src} rel="noopener">{ev.caption.en}</a>
+            ) : (
+              <span>{ev.caption.en}</span>
+            )}
+            {ev.value != null && <span class="evidence-value">{ev.value}</span>}
+            <span class="evidence-source">{ev.source}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="progress" aria-hidden="true">
+      {cells.map((state) => <span class:list={["cell", `cell-${state}`]}></span>)}
+    </div>
+
+    {d.next && <a class="next" href={`#${d.next}`}>Next</a>}
+  </div>
+</section>
+
+<script>
+  // Depth pills: toggle a panel's [hidden] and the button's aria-expanded. The
+  // line is visible by default; the other panels start collapsed but are in the
+  // HTML for SEO and no-JS. Delegated once for every chapter. Under
+  // .reduced-motion the CSS makes the reveal instant (no transition).
+  function wireDepths() {
+    document.querySelectorAll<HTMLButtonElement>("[data-explain-depth]").forEach((btn) => {
+      if (btn.dataset.wired === "1") return;
+      btn.dataset.wired = "1";
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("aria-controls");
+        const panel = id ? document.getElementById(id) : null;
+        const open = btn.getAttribute("aria-expanded") === "true";
+        btn.setAttribute("aria-expanded", open ? "false" : "true");
+        if (panel && panel.classList.contains("line")) return; // the line stays visible
+        if (panel) panel.hidden = open;
+      });
+    });
+  }
+  document.addEventListener("astro:page-load", wireDepths);
+  // The scene loader wires the sticky frames and the reduced-motion class.
+  import("./scene-loader.js");
+</script>
+
+<style>
+  .chapter {
+    position: relative;
+    border-top: 1px solid var(--line);
+    width: 100%;
+  }
+  .chapter.has-scene { min-height: calc((var(--pin) + 1) * 100vh); }
+
+  .chapter-head,
+  .chapter-content {
+    width: 100%;
+    max-width: var(--measure-scene);
+    margin: 0 auto;
+    padding-inline: var(--space-6);
+  }
+  .chapter-head { padding-top: var(--space-8); }
+
+  .masthead {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+  }
+  .masthead-mark,
+  .lang {
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .lang { display: inline-flex; gap: var(--space-2); align-items: baseline; }
+  .lang-on { color: var(--ink); }
+  .lang-off, .lang-alt { color: var(--ink-faint); }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3) var(--space-4);
+    margin-top: var(--space-4);
+  }
+  .counter {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-size);
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+  .counter-n { color: var(--ink); }
+  .tag {
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    min-height: var(--touch-min);
+    display: inline-flex;
+    align-items: center;
+  }
+  .tag-record { border: 1px solid var(--record); color: var(--ink); }
+  .tag-line { border: 1px solid var(--line); color: var(--ink-muted); }
+
+  .scene-wrap {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .scene-frame {
+    width: 100%;
+    height: 100%;
+    pointer-events: auto;
+  }
+  @media (min-width: 48rem) {
+    .scene-wrap { height: min(560px, 100vh); margin-top: var(--space-8); }
+    .scene-frame {
+      max-width: var(--measure-scene);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+  }
+
+  .chapter-content {
+    position: relative;
+    z-index: 1;
+    padding-block: var(--space-12) var(--space-24);
+  }
+  .has-scene .chapter-content { margin-top: calc(-50vh); }
+
+  .question {
+    font-family: var(--font-display);
+    font-weight: var(--text-title-weight);
+    font-size: var(--text-title-size);
+    line-height: var(--text-title-line);
+    letter-spacing: var(--text-title-tracking);
+    max-width: var(--measure-text);
+    margin: 0 0 var(--space-6);
+  }
+  @media (min-width: 48rem) {
+    .question { font-size: var(--text-display-l-size); line-height: var(--text-display-l-line); }
+  }
+
+  .line {
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    max-width: var(--measure-text);
+    margin: 0 0 var(--space-6);
+  }
+
+  .depths { max-width: var(--measure-text); }
+  .depth-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
+  .pill {
+    min-height: var(--touch-min);
+    padding: var(--space-2) var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-small-size);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .pill:hover, .pill:focus-visible { color: var(--ink); border-color: var(--ink); }
+  .pill[aria-expanded="true"] { border-color: var(--record); color: var(--ink); }
+
+  .paragraph {
+    font-size: var(--text-body-size);
+    line-height: var(--text-body-line);
+    margin: 0 0 var(--space-6);
+    color: var(--ink);
+  }
+  .evidence { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); }
+  .evidence-item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .evidence-item a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); width: fit-content; }
+  .evidence-item a:hover, .evidence-item a:focus-visible { border-color: var(--ink); }
+  .evidence-value { font-family: var(--font-mono); color: var(--ink); }
+  .evidence-source { font-family: var(--font-mono); font-size: var(--text-mono-size); color: var(--ink-faint); }
+
+  .progress { display: flex; gap: var(--space-2); margin: var(--space-8) 0 var(--space-6); }
+  .cell { height: var(--space-1); flex: 1; border-radius: var(--radius-full); }
+  .cell-past { background: var(--ink-faint); }
+  .cell-now { background: var(--record); }
+  .cell-ahead { background: var(--line); }
+
+  .next {
+    display: inline-flex;
+    align-items: center;
+    min-height: var(--touch-min);
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line);
+  }
+  .next:hover, .next:focus-visible { color: var(--ink); border-color: var(--ink); }
+
+  :global(.reduced-motion) .pill { transition: none; }
+</style>

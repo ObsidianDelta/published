@@ -1,0 +1,68 @@
+---
+// The chairs grid (spec section 4, chapter 08). Real <a href> doors from
+// scene.params.doors: a 3+3 grid, each door at least 72px tall, the showcase door
+// in a learner border. No scene module; this stands alone.
+interface Props {
+  doors: Record<string, string>;
+  labels: Record<string, string | string[]>;
+}
+const { doors, labels } = Astro.props;
+const chairLabels = (labels.chairs as string[]) || [];
+// Order: the five chairs in declared order, then the showcase last.
+const chairKeys = ["parent", "tutor", "teacher", "trainer", "researcher"];
+const entries = chairKeys
+  .filter((k) => doors[k])
+  .map((k, i) => ({ key: k, href: doors[k], label: chairLabels[i] || k, showcase: false }));
+if (doors.showcase) {
+  entries.push({ key: "showcase", href: doors.showcase, label: (labels.showcase as string) || "showcase", showcase: true });
+}
+const pick = (labels.pick as string) || "Pick your chair";
+---
+<nav class="chairs" aria-label={pick}>
+  <p class="chairs-lead">{pick}</p>
+  <ul class="chairs-grid">
+    {entries.map((d) => (
+      <li>
+        <a href={d.href} class:list={["door", { showcase: d.showcase }]}>{d.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .chairs { width: 100%; max-width: var(--measure-scene); }
+  .chairs-lead {
+    margin: 0 0 var(--space-4);
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .chairs-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+  @media (min-width: 40rem) {
+    .chairs-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .door {
+    display: flex;
+    align-items: center;
+    min-height: 72px;
+    padding: var(--space-4) var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--surface);
+    text-transform: capitalize;
+    font-size: var(--text-lead-size);
+  }
+  .door:hover, .door:focus-visible { border-color: var(--ink); }
+  .door.showcase { border-color: var(--learner); box-shadow: var(--glow-learner); }
+  .door.showcase:hover, .door.showcase:focus-visible { border-color: var(--learner); }
+</style>
