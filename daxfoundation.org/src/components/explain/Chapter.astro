@@ -234,7 +234,7 @@ const evidence = (d.evidence as any[]) ?? [];
   .scene-wrap {
     position: sticky;
     top: 0;
-    height: 100vh;
+    height: 56vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -258,9 +258,12 @@ const evidence = (d.evidence as any[]) ?? [];
   .chapter-content {
     position: relative;
     z-index: 1;
-    padding-block: var(--space-12) var(--space-24);
+    background: var(--ground);
+    padding-block: var(--space-8) var(--space-24);
   }
-  .has-scene .chapter-content { margin-top: calc(-50vh); }
+  /* 23 Oct preview: a -50vh pull-up put the text under the pinned scene on phones.
+     The scene pins in the top 56vh; the text sits below it and scrolls over it. */
+  .has-scene .chapter-content { margin-top: 0; }
 
   .question {
     font-family: var(--font-display);
@@ -306,6 +309,8 @@ const evidence = (d.evidence as any[]) ?? [];
     color: var(--ink);
   }
   .evidence { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); }
+  /* display: grid beats the hidden attribute; keep collapsed panels collapsed. */
+  .evidence[hidden], .paragraph[hidden] { display: none; }
   .evidence-item { display: flex; flex-direction: column; gap: var(--space-1); }
   .evidence-item a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); width: fit-content; }
   .evidence-item a:hover, .evidence-item a:focus-visible { border-color: var(--ink); }
