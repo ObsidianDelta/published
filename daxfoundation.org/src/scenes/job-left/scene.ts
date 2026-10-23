@@ -87,12 +87,12 @@ export function createJobLeftScene(
   el.appendChild(root);
 
   function render(t: number) {
-    // Three pillars fill staggered over 0..0.5.
+    // Done pillars are visible from the start; tick marks animate in as t increases.
     for (let i = 0; i < 3; i++) {
+      done[i].g.setAttribute("opacity", "1");
       const a = (i / 3) * 0.5;
       const b = ((i + 1) / 3) * 0.5;
       const k = segment(t, a, b);
-      done[i].g.setAttribute("opacity", String(k));
       done[i].tick.setAttribute("stroke-dashoffset", String(60 * (1 - k)));
     }
     left.setAttribute("opacity", String(segment(t, 0.5, 0.8)));
