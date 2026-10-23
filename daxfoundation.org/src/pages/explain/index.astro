@@ -1,18 +1,35 @@
 ---
-// /explain/ — the foundation board (00: the map) with the door into Meta DAX.
-// The map chapter renders with its scene; below it, three doors from the map's
-// evidence, with the Meta DAX door pointing into the explainer's own scroll.
+// /explain/ — the foundation board (00: the map) with the doors into the runs.
+// PART D: the doors are the runs listed from the signed graph (src/data/graph.json):
+// one door per initiative node (Meta DAX, Nova DAX, Skippy DAX) plus the Protocol,
+// each door showing that node's own line. A door links to its run where one exists
+// today; the initiatives still ahead (Nova DAX, Skippy DAX) show their line and read
+// as "coming", never a dead link.
 import Explain from "../../layouts/Explain.astro";
 import Chapter from "../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../lib/explain/chapters.js";
+import graph from "../../data/graph.json";
 
 const chapters = await getCollectionChapters("foundation");
 const map = chapters[0];
-const evidence = (map?.data.evidence as any[]) ?? [];
-// The Meta DAX door leads into the explainer, not the marketing section.
-const doors = evidence.map((ev) => ({
-  label: ev.caption.en,
-  href: ev.src && ev.src.includes("/metadax/") ? "/explain/metadax/" : ev.src,
+
+// The runs that have a destination today. An initiative with no entry here is
+// still ahead: its door shows the line and is not a link.
+const routes: Record<string, string> = {
+  metadax: "/explain/metadax/",
+  "constraint-protocol": "/constraint-protocol/",
+};
+
+// One door per initiative node, then the Protocol — in the graph's own order.
+const doorNodes = [
+  ...graph.nodes.filter((n) => n.kind === "initiative"),
+  ...graph.nodes.filter((n) => n.kind === "protocol"),
+];
+const doors = doorNodes.map((n) => ({
+  id: n.id,
+  label: n.label,
+  line: n.line,
+  href: n.chapter ? routes[n.chapter] ?? null : null,
 }));
 ---
 <Explain
@@ -20,10 +37,23 @@ const doors = evidence.map((ev) => ({
   description="DAX: the preservation and expansion of life, humanity, and consciousness. The Constraint Protocol and Meta DAX."
 >
   {map && <Chapter chapter={map} total={8} />}
-  <nav class="doors" aria-label="Where to go">
+  <nav class="doors" aria-label="The runs">
     <ul>
       {doors.map((d) => (
-        <li><a href={d.href} class="door">{d.label}</a></li>
+        <li>
+          {d.href ? (
+            <a href={d.href} class="door">
+              <span class="door-label">{d.label}</span>
+              <span class="door-line">{d.line}</span>
+            </a>
+          ) : (
+            <span class="door door-ahead">
+              <span class="door-label">{d.label}</span>
+              <span class="door-line">{d.line}</span>
+              <span class="door-tag">Ahead</span>
+            </span>
+          )}
+        </li>
       ))}
     </ul>
   </nav>
@@ -44,10 +74,11 @@ const doors = evidence.map((ev) => ({
     gap: var(--space-3);
     grid-template-columns: 1fr;
   }
-  @media (min-width: 40rem) { .doors ul { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 40rem) { .doors ul { grid-template-columns: repeat(2, 1fr); } }
   .door {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: var(--space-2);
     min-height: 72px;
     padding: var(--space-4) var(--space-6);
     border: 1px solid var(--line);
@@ -55,7 +86,14 @@ const doors = evidence.map((ev) => ({
     background: var(--surface);
     color: var(--ink);
     text-decoration: none;
-    font-size: var(--text-lead-size);
   }
-  .door:hover, .door:focus-visible { border-color: var(--ink); }
+  a.door:hover, a.door:focus-visible { border-color: var(--ink); }
+  .door-label { font-size: var(--text-lead-size); font-weight: 500; }
+  .door-line { color: var(--ink-muted); font-size: var(--text-body-size); }
+  .door-ahead { opacity: 0.72; position: relative; }
+  .door-tag {
+    position: absolute; top: var(--space-4); right: var(--space-6);
+    font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
 </style>
