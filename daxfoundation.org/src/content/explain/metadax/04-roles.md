@@ -319,7 +319,7 @@ editions:
       record: "record: reached · tried · not yet"
       packages: "schema-validated bundle"
       built: "2024 · built once"
-      boundary: "accountability record (CP, Appendix A)"
+      boundary: "accountability record (CP)"
       tapChild: "Tap a node. It becomes the learner."
       dragGuide: "Drag the guide. The fan-out stays on the learner."
       roles: ["guide (authority node)", "subject helper", "record agent", "review helper", "learner (current role)"]
