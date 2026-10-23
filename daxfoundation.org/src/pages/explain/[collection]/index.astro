@@ -8,7 +8,6 @@ import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
 
-const COLLECTIONS = ["constraint-protocol", "nova-dax", "skippy-dax"];
 const META: Record<string, { title: string; description: string }> = {
   "constraint-protocol": {
     title: "The Constraint Protocol",
@@ -28,6 +27,7 @@ const META: Record<string, { title: string; description: string }> = {
 };
 
 export function getStaticPaths() {
+  const COLLECTIONS = ["constraint-protocol", "nova-dax", "skippy-dax"];
   return COLLECTIONS.map((collection) => ({ params: { collection } }));
 }
 
