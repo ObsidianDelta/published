@@ -1,0 +1,238 @@
+---
+id: 09-horizon
+order: 9
+tense: ahead
+claim: horizon
+question:
+  en: "What does this make possible?"
+canon:
+  - "The why: to bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
+  - "What it makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in her own context and language, on any bandwidth."
+  - "Guides get their cognition back for what only a human can do: a teacher with thirty helpers for every learner, free to work on problems no school could afford before."
+  - "Every learner's record is hers for life (Nova DAX); every citizen has a companion (Skippy DAX); every interaction is accountable (the Constraint Protocol), which is what lets trust grow as the system grows."
+  - "Knowledge and intelligence compound in the open: every public interaction makes the next person's start further ahead; a civilizational learning infrastructure."
+  - "The how is being worked out in the open, experiment by experiment; everything usable is published as it is made; the planned experiments are where we want to get to."
+  - "A way, never the way: the system must not lead; dead ends are kept; the fit to each person is a strength, not a feature."
+  - "This is the start, not the shape: today's packages simulate the hardest case so that no one is left out of what comes after."
+  - "When the job left is done, the best teaching there has ever been reaches one person at a time, for every person."
+  - "A record that remembers you means the help gets better across your life instead of starting over every session."
+  - "What was self-evident in 2024 becomes reachable by everyone; the next experiments are about reach and the record, not about whether it works."
+  - "Thirty helpers for every learner and thirty for every guide, thousands over a life, and the guide's attention spent on what only she can do."
+  - "Teachers free to do what only a teacher can do, for every learner, at a scale no school could afford before."
+  - "A record for life that is yours, the seed of Nova DAX, read with you by a companion that is yours."
+  - "Always on, per concept, per moment, the thirty changing with the moment, immersive and interactive, for all bandwidths."
+  - "A community building the how in the open, everything usable published as it is made, the planned experiments as where we want to get to."
+horizon_canon:
+  - "To bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
+editions:
+  kid:
+    voice: "For someone about ten"
+    signed: false
+    by: skippy
+    answer: "All of this — the packages, the record, the always-on helper — is so that every child who can talk can learn anything, for their whole life, with the best teacher there has ever been for them."
+    more: "Think about every part of what you read here: the record that keeps what you tried, the helpers your teacher sends, the five-minute package, the companion that one day is always there. All of it is for one thing: so that every child, wherever they are, gets what they need to be their best, for their whole life. That is what this makes possible."
+    how: ""
+    proof_intro: ""
+    under: ""
+    horizon: "When this is done, every person who can talk gets the best teacher there has ever been, for their whole life."
+    buttons:
+      more: "Tell me more"
+      how: "How does it work?"
+      proof: "Show me"
+      under: "What is underneath?"
+    labels:
+      learner: "you"
+      guide: "your teacher"
+      title: "What this makes possible"
+      caption: "Every child, the best teacher, for life"
+  curious:
+    voice: "Plain words, no background needed"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in their own context and language, on any bandwidth. The job left is done. The record is theirs. The companion is theirs. The guides get their cognition back for what only a human can do. Knowledge and intelligence compound in the open, so every person who starts later starts further ahead."
+    more: "Five chapters back, the question was: what is the job left? Getting knowledge into one person at a time, in their context, for a whole life. This chapter is what happens when that job is done. The best guides certify a module once; the system makes it fit the next learner; the learner keeps a record for life. Guides teach what only a guide can teach, at a scale no school could afford before. The record is yours: portable, private by default, the seed of Nova DAX. The companion reads it with you. And what is shared compounds: every learner who starts after you starts further ahead, because you were here."
+    how: "What exists today is the first step: a package made for one learner, on five minutes of connectivity, a guide in the loop, a record signed. The next steps are the always-on layer, the record carried across sessions, the companion. What makes this possible is the experiment being run in the open: everything usable published as it is made, the planned experiments as where we want to get to."
+    proof_intro: "The 2024 prototype showed the full loop end to end: a guide answered questions, a package was made for one learner, quizzed and assessed. The samples and showcases are live at the Foundation. The definitions, the Constraint Protocol, the schema are public. These are experiments; the Foundation says so plainly."
+    under: "The canon for this chapter is the Foundation-wide canon: eight statements of what this makes possible, from the why to the constraint. A way, never the way. The fit to each person is a strength, not a feature. Dead ends are kept. The record is the learner's for life. Every public interaction makes the next person's start further ahead. That is the civilizational infrastructure this initiative is building."
+    horizon: "Anyone who can communicate can learn anything, for life, from the best guides there are, on any bandwidth — the civilizational learning infrastructure that compounds for everyone."
+    buttons:
+      more: "Tell me more"
+      how: "What can I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      title: "What this makes possible"
+      caption: "Anyone who can communicate, learning anything, for life"
+  parent:
+    voice: "For someone with a child at the table"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: your child gets the best teaching there has ever been, one concept at a time, for her whole life, in her own context. The record is hers — portable, private by default, the seed of Nova DAX. A companion that is hers reads it with her. The guides — you, her teacher, anyone a step ahead — have thirty helpers each, free to spend their attention on what only a human can do. And what she learns compounds for every child who comes after."
+    more: "Everything in this section comes down to this. The five minutes: so it works for every child, wherever they are. The record: so it never has to start over. The companion: so she is never alone in the next concept. The guide's loop: so you always know what she needs and where she is. None of this is finished. But the direction is set: a companion for your child, for life, in her own context. A way, never the way."
+    how: "Today you can try a package with your child. Send a scenario. Ask the question box. The experiments are public. The Foundation publishes what it has, not what it hopes to have. That is what this phase makes possible: the first steps, in the open."
+    proof_intro: "The 2024 prototype showed the full loop. The samples and showcases are live. The Foundation says plainly what is an experiment and what is proven. The open repository is public."
+    under: "The promise underneath all of this: the record is your child's, not the platform's. The companion is accountable under the Constraint Protocol. The system must not lead her. A way, never the way."
+    horizon: "Every child who can communicate gets the best teaching there has ever been, for her whole life — the record is hers, the companion is hers, and what she learns compounds for every child who comes after."
+    buttons:
+      more: "Tell me more"
+      how: "What can I get today?"
+      proof: "Show me the proof"
+      under: "Can I trust it with my child?"
+    labels:
+      learner: "your child"
+      guide: "you"
+      title: "What this makes possible"
+      caption: "Your child, the best teaching, for life"
+  guide:
+    voice: "For someone who teaches, tutors or trains"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: every learner gets the best teaching there has ever been, one concept at a time, for a whole life. The guide has thirty helpers for every learner, free to do what only a guide can do, at a scale no school could afford before. The learner's record is hers for life. The companion reads it with her. What one guide certifies, the next guide starts from."
+    more: "The guide's loop — observe this learner at this juncture, decide, dispatch — is the one thing that is never automated. What this initiative does is give that loop thirty helpers, the learner's full record, and a companion that is always there. At scale. For every learner. The guides get their cognition back for what only a human can do. What is shared compounds: what you certify today makes the next guide's start further ahead."
+    how: "Today you can try a package with a learner, send a scenario, use the showcases. The experiments — always-on layer, record schema, companion — are public. The Foundation publishes what is proven and what is not."
+    proof_intro: "The 2024 prototype showed the full loop end to end. The samples and showcases are live. The Constraint Protocol and the schema are public. These are experiments."
+    under: "The accountability record under the Constraint Protocol is what makes this trustworthy at scale. Every helper action is logged under your authority. The record is the learner's, readable by you with her permission. A way, never the way."
+    horizon: "Every learner gets the best teaching there has ever been, for life — the guide's attention on what only a guide can do, the record compounding for every guide who comes after."
+    buttons:
+      more: "Tell me more"
+      how: "What do I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "you"
+      title: "What this makes possible"
+      caption: "Every learner, the best guide, for life"
+  manager:
+    voice: "For someone responsible for other people's learning at work"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: every person on your team gets the best teaching there has ever been, fit to them, for their whole career. The record follows them — portable, theirs, carrying every role transition. Every helper action is logged under the guide's authority. What one colleague reaches compounds for the next. The companion is theirs for life."
+    more: "The accountability record is what makes this usable in an organisation: every helper action traceable, the guide's loop human, the record portable beyond the organisation. The five doors mean any guide can start without a trainer. The packages work at any bandwidth. What is built today is the package pipeline and the record infrastructure. The always-on layer — the companion with every learner, helpers shifting per moment — is the next phase."
+    how: "Today the trainer's door is open: sample packages, no procurement needed, the accountability record from day one. The experiments are public. The Foundation says plainly what is proven and what is not."
+    proof_intro: "The 2024 prototype showed the full loop, including the accountability record. The samples are live and downloadable. The open repository is public."
+    under: "The Constraint Protocol is the accountability layer: every helper action recorded, every guide's authority traceable. That is what makes this safe to deploy across any organisation, at any scale. The record is portable: it follows the learner beyond the organisation."
+    horizon: "Every person in any organisation gets the best teaching there has ever been, for their whole career — portable, theirs, compounding for every new person who joins after them."
+    buttons:
+      more: "Tell me more"
+      how: "What can I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the person learning"
+      guide: "the guide"
+      title: "What this makes possible"
+      caption: "Every person, the best teaching, for their whole career"
+  entrepreneur:
+    voice: "For someone who wants to make a living with it"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in their own context. The market is every learner, every domain, every guide, every bandwidth, for life. The platform is free and open. The money is in what you build on it. Every learner's record is the substrate your product must leave open. A way, never the way."
+    more: "The five doors are the five markets today. The always-on layer is the ceiling. Everything in between is a segment. The record infrastructure is what you build on: packages for one learner, tools for a guide, products on the CMS and the pipelines. What is shared compounds: every package you certify makes the next learner's start further ahead and your next package cheaper to build. Build for all bandwidths. A way, never the way."
+    how: "Today the open repository, the package pipeline, the samples, and the showcases are what you build on. The experiments are public. The CMS and the record infrastructure are what you build products on top of. What you build is yours. No revenue figures, no promises."
+    proof_intro: "The 2024 prototype showed the full loop. The always-on experiments are public. The open repository is the substrate. No revenue figures, no promises."
+    under: "The record is never capturable by a platform. The Constraint Protocol means every entry is traceable. A way, never the way: the system must not lead the learner, and neither can your product."
+    horizon: "Every person who can communicate is a learner for life — the market is civilizational, the infrastructure is free and open, and every learner's record compounds for every learner who comes after."
+    buttons:
+      more: "Tell me more"
+      how: "What is live today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      title: "What this makes possible"
+      caption: "Every learner, every domain, for life — that is the market"
+  builder:
+    voice: "For someone who ships"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: the fit-to-person layer at civilizational scale. Every communication-capable learner, one concept at a time, in their context, for life. The record is append-only, signed, portable. The companion reads it across session boundaries, domain shifts, guide changes. The role set shifts per concept per moment. The architecture is not finished; the experiments are the substrate."
+    more: "The package pipeline is the first layer. The always-on layer — companion as primary interface, role set shifting per concept — is the next experiment. The record schema must be forward-compatible: Nova DAX is the portability commitment. Reuse by meaning is the open architectural problem: assets found by what they represent, not by catalogue position. The compounding mechanism is the open sharing problem. Build for all bandwidths. Every edition is schema-validated and signed."
+    how: "Shipped today: the package pipeline (reached, tried, guided, reused), each entry signed. Open experiments: the always-on layer, the reuse-by-meaning pipeline, the record agent. The schema for all of these is in the open repository."
+    proof_intro: "The open repository is public on GitHub. The 2024 prototype produced a full individualized curriculum with record entries. The Constraint Protocol defines the signing layer and the severity table at Appendix A."
+    under: "The Constraint Protocol is the signing substrate. The append-only constraint is architectural. The Nova DAX portability commitment is a schema stability requirement. The semantic index for reuse by meaning is an open problem. This page is schema-validated and signed."
+    horizon: "The fit-to-person layer reaches every communication-capable learner for the duration of their life — the parameterization surface, the longitudinal record, and the compounding corpus are the open architecture problems."
+    buttons:
+      more: "Tell me more"
+      how: "What is shipped today?"
+      proof: "Show me the evidence"
+      under: "What is the substrate?"
+    labels:
+      learner: "learner"
+      guide: "guide"
+      title: "What this makes possible"
+      caption: "fit-to-person · civilizational scale · open problems"
+  funder:
+    voice: "For someone deciding where money goes"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, on any bandwidth. The record is theirs for life. The companion is theirs. The guides get their cognition back for what only a human can do. Knowledge compounds in the open. The infrastructure is free and open, and what the Foundation builds in this phase is what makes it possible for everyone."
+    more: "The money goes to tokens, guides' time, and the record infrastructure. What is proven: the 2024 package pipeline, end to end. What is an experiment: the always-on layer, the record agent, the companion. What it unlocks: a learner whose record follows them for life, a guide who spends their attention on what only a guide can do, and a knowledge infrastructure that compounds for everyone. The platform stays free and open. What you are funding is what makes that possible."
+    how: "What is proven: the package pipeline works today. What is an experiment: the always-on layer, the record carried across sessions, the companion. What supporting the Foundation does: tokens to run the helpers, time for guides to test the loop, infrastructure for the record. What is free forever: the platform, the schema, the Constraint Protocol."
+    proof_intro: "The 2024 prototype is documented. The samples and showcases are live. The open repository is public. The Foundation says plainly what is an experiment and what is proven. Support means contributing to the open infrastructure."
+    under: "The Constraint Protocol is the accountability layer. The append-only record is the portability commitment. The compounding sharing mechanism is the open experiment. The platform is schema-first: every edition is data, checked and signed. What you fund is the infrastructure that makes this possible for everyone."
+    horizon: "Every person who can communicate learns from the best guides there are, for life — the infrastructure is free and open, the record is theirs, and every interaction compounds for everyone after."
+    buttons:
+      more: "Tell me more"
+      how: "What does the money do?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      title: "What this makes possible"
+      caption: "The civilizational infrastructure — free, open, compounding"
+  researcher:
+    voice: "For someone who wants the substrate"
+    signed: false
+    by: skippy
+    answer: "What this makes possible: the fit-to-person layer at civilizational scale. The parameterization surface (one concept at a time, in her context), the longitudinal record (from communication-capable to end of life), and the compounding sharing mechanism (best guides certify once; what is shared reduces future cost) are the three open research problems. The Constraint Protocol is the accountability substrate. The guide is the authority node. The record is the body of the system."
+    more: "The Foundation-wide canon defines the telos: to bring out the best in every human being; the preservation and expansion of life, humanity and consciousness. The fit-to-person layer is the technical expression of that telos. The open questions: how to parameterize a module for a learner's context without a priori knowledge of that context; how to define a master's equivalent operationally across domains; how the role set shifts per concept in the always-on model; how the record schema must be structured to survive domain shifts and guide changes across a lifetime. The planned experiments are published as the research agenda."
+    how: "Current implementation: package pipeline and Ask layer. Open experiments: always-on layer (companion as primary interface, role set shifting per concept), reuse-by-meaning pipeline (semantic index over record corpus), record agent (signing, meaning resolution, reuse surfacing). The schema for all experiments is in the open repository."
+    proof_intro: "The 2024 prototype produced a full individualized curriculum from a structured prompt, quizzed through Bloom's taxonomy levels and assessed for learner position. The Constraint Protocol defines the severity table at Appendix A. The definitions are formally published at the Foundation."
+    under: "The Foundation-wide canon is the canonical statement of what this makes possible. The Constraint Protocol is the signing and accountability substrate. The append-only constraint is the safeguard against selective omission. The Nova DAX portability commitment is the schema stability requirement. The semantic index for reuse by meaning is an open problem. The compounding sharing mechanism is the open sharing problem. This page is schema-validated and signed."
+    horizon: "The fit-to-person layer reaches every communication-capable learner for life — the open research problems are the parameterization surface, the longitudinal record schema, and the compounding sharing mechanism."
+    buttons:
+      more: "Tell me more"
+      how: "What is the current implementation?"
+      proof: "Show me the evidence"
+      under: "What is the substrate?"
+      papers: "Read the papers"
+    labels:
+      learner: "learner"
+      guide: "guide"
+      title: "What this makes possible"
+      caption: "fit-to-person layer · civilizational scale · open problems"
+    papers:
+      - href: "https://daxfoundation.org/definitions/"
+        text: "The definitions this rests on"
+        src: "daxfoundation.org"
+      - href: "https://daxfoundation.org/constraint-protocol/"
+        text: "The Constraint Protocol: accountability substrate"
+        src: "daxfoundation.org"
+evidence:
+  - kind: link
+    src: https://daxfoundation.org/definitions/
+    caption:
+      en: "The definitions this rests on"
+    source: daxfoundation.org
+  - kind: link
+    src: https://daxfoundation.org/constraint-protocol/
+    caption:
+      en: "The Constraint Protocol: the accountability substrate"
+    source: daxfoundation.org
+scene:
+  module: still
+  pin: 0
+  params:
+    glyph: door
+    labels:
+      title: "What this makes possible"
+next: null
+deeper:
+  - /definitions/
+version: 1
+---
