@@ -106,6 +106,17 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
 
   // ---- geometry ----
   let W = 1, H = 1, dpr = 1, cx = 0, cy = 0, scale = 1;
+  function clampNodes(): void {
+    for (const n of all) {
+      if (!nodeShown(n, level) && n.shown < 0.01) continue;
+      const r = radiusOf(n) + 16; // node radius + label clearance
+      if (n.x < r) n.x = r;
+      if (n.x > W - r) n.x = W - r;
+      const rt = radiusOf(n) + 4;
+      if (n.y < rt) n.y = rt;
+      if (n.y > H - 40 - rt - 18) n.y = H - 40 - rt - 18;
+    }
+  }
   function measure(): void {
     const r = canvas.getBoundingClientRect();
     W = Math.max(1, r.width); H = Math.max(1, r.height);
@@ -147,6 +158,7 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
       .stop();
     if (reduced || !animate) {
       for (let i = 0; i < 300; i++) sim.tick();
+      clampNodes();
       for (const n of nodes) n.shown = 1;
       draw();
     } else {
@@ -301,6 +313,7 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
     if (!visible) return;
     if (!reduced && sim) {
       sim.tick();
+      clampNodes();
       for (const n of liveNodes()) if (n.shown < 1 && nodeShown(n, level)) n.shown = Math.min(1, n.shown + 0.06);
       for (const n of all) if (!nodeShown(n, level) && n.shown > 0) n.shown = Math.max(0, n.shown - 0.08);
     }

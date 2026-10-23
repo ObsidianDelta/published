@@ -16,8 +16,8 @@
 // and no route is baked. setLevel(n) shows nodes/edges with level <= n and births new ones
 // from their nearest visible neighbour. t (scroll) drives the camera from a wide
 // establishing shot to a closer framing around the core.
-import * as THREE from "three";
-import { WebGPURenderer } from "three/webgpu";
+import type * as THREE from "three";
+import type { WebGPURenderer } from "three/webgpu";
 import type { SceneHandle, SceneModule, SceneParams, SceneTokens } from "../contract";
 import { clamp01 } from "../contract";
 
@@ -70,39 +70,6 @@ const POS: Record<string, [number, number, number]> = {
 const CP_SHELL: [number, number, number] = [0, 0.1, 3.6];
 const LATTICE_R = 3.55;
 
-// A soft radial halo sprite texture in a CSS colour.
-function haloTexture(color: string): THREE.CanvasTexture {
-  const size = 128;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const g = c.getContext("2d")!;
-  const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  grad.addColorStop(0, color);
-  grad.addColorStop(0.5, color);
-  grad.addColorStop(1, "rgba(0,0,0,0)");
-  g.fillStyle = grad;
-  g.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
-}
-// A soft round dot sprite for the motes (kept to one Points draw call).
-function dotTexture(): THREE.CanvasTexture {
-  const size = 64;
-  const c = document.createElement("canvas");
-  c.width = c.height = size;
-  const g = c.getContext("2d")!;
-  const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  grad.addColorStop(0, "rgba(255,255,255,1)");
-  grad.addColorStop(0.4, "rgba(255,255,255,0.8)");
-  grad.addColorStop(1, "rgba(255,255,255,0)");
-  g.fillStyle = grad;
-  g.fillRect(0, 0, size, size);
-  const tex = new THREE.CanvasTexture(c);
-  tex.colorSpace = THREE.SRGBColorSpace;
-  return tex;
-}
-
 interface NodeView {
   n: GNode;
   home: THREE.Vector3;
@@ -128,6 +95,41 @@ export async function mount(
 
   // ---- fallback rule: no GPU path -> mount the 2D graph (identical labels and links).
   if (reducedData || !hasWebGL2()) return mountFallback(host, params, tokens);
+
+  // Dynamic imports: three.js only loads when the 3D graph is actually shown.
+  const THREE = await import("three");
+  const { WebGPURenderer } = await import("three/webgpu");
+
+  function haloTexture(color: string) {
+    const size = 128;
+    const c = document.createElement("canvas");
+    c.width = c.height = size;
+    const g = c.getContext("2d")!;
+    const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, color);
+    grad.addColorStop(0.5, color);
+    grad.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  }
+  function dotTexture() {
+    const size = 64;
+    const c = document.createElement("canvas");
+    c.width = c.height = size;
+    const g = c.getContext("2d")!;
+    const grad = g.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    grad.addColorStop(0, "rgba(255,255,255,1)");
+    grad.addColorStop(0.4, "rgba(255,255,255,0.8)");
+    grad.addColorStop(1, "rgba(255,255,255,0)");
+    g.fillStyle = grad;
+    g.fillRect(0, 0, size, size);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  }
 
   const P = (params.params || {}) as Record<string, unknown>;
   const graph = (P.graph || { nodes: [], edges: [] }) as Graph;
@@ -572,8 +574,9 @@ export async function mount(
       }
       if (hide) { v.btn.style.display = "none"; continue; }
       placed.push({ x: bx, y: by, w: approxW, h: 16 });
-      v.btn.style.left = x + "px";
-      v.btn.style.top = (y + 22) + "px";
+      const clampedX = Math.max(approxW / 2 + 4, Math.min(w - approxW / 2 - 4, x));
+      v.btn.style.left = clampedX + "px";
+      v.btn.style.top = Math.max(22, Math.min(h - 22, y + 22)) + "px";
       v.btn.style.display = "flex";
     }
   }
@@ -592,22 +595,30 @@ export async function mount(
   const _b = new THREE.Vector3();
 
   function updateEdges(): void {
-    // filaments
+    // filaments: park edges to hidden nodes off-screen to prevent stray lines.
     for (let i = 0; i < interEdges.length; i++) {
       const e = interEdges[i];
       const s = viewById.get(e.from)!, d = viewById.get(e.to)!;
       const o = i * 6;
-      filPos[o] = s.mesh.position.x; filPos[o + 1] = s.mesh.position.y; filPos[o + 2] = s.mesh.position.z;
-      filPos[o + 3] = d.mesh.position.x; filPos[o + 4] = d.mesh.position.y; filPos[o + 5] = d.mesh.position.z;
+      if (s.p < 0.05 || d.p < 0.05) {
+        filPos[o] = filPos[o + 1] = filPos[o + 2] = filPos[o + 3] = filPos[o + 4] = filPos[o + 5] = 9999;
+      } else {
+        filPos[o] = s.mesh.position.x; filPos[o + 1] = s.mesh.position.y; filPos[o + 2] = s.mesh.position.z;
+        filPos[o + 3] = d.mesh.position.x; filPos[o + 4] = d.mesh.position.y; filPos[o + 5] = d.mesh.position.z;
+      }
     }
     filGeo.attributes.position.needsUpdate = true;
-    // cp "runs under" edges: from the shell toward each node (the substrate runs under all)
+    // cp "runs under" edges: park when target node is hidden.
     for (let i = 0; i < cpEdges.length; i++) {
       const e = cpEdges[i];
       const d = viewById.get(e.to)!;
       const o = i * 6;
-      cpPos[o] = CP_SHELL[0]; cpPos[o + 1] = CP_SHELL[1]; cpPos[o + 2] = CP_SHELL[2];
-      cpPos[o + 3] = d.mesh.position.x; cpPos[o + 4] = d.mesh.position.y; cpPos[o + 5] = d.mesh.position.z;
+      if (d.p < 0.05) {
+        cpPos[o] = cpPos[o + 1] = cpPos[o + 2] = cpPos[o + 3] = cpPos[o + 4] = cpPos[o + 5] = 9999;
+      } else {
+        cpPos[o] = CP_SHELL[0]; cpPos[o + 1] = CP_SHELL[1]; cpPos[o + 2] = CP_SHELL[2];
+        cpPos[o + 3] = d.mesh.position.x; cpPos[o + 4] = d.mesh.position.y; cpPos[o + 5] = d.mesh.position.z;
+      }
     }
     cpGeo.attributes.position.needsUpdate = true;
     // scale links: the first SCALE_LINKS field points reach to citizen
