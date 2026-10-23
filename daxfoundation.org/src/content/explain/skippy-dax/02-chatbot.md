@@ -257,7 +257,7 @@ editions:
       change: "Accountability stays with the person"
       decide: "Foundation protects the definition"
       record: "Public, permanent record contract"
-      packages: "Open substrate, free forever"
+      packages: "Open substrate, free and open"
       built: "Not a product: a substrate"
       boundary: "Definition is the boundary"
       tapChild: "Tap to explore the thesis"
