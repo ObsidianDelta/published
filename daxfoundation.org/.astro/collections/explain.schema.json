@@ -50,6 +50,12 @@
           ],
           "additionalProperties": false
         },
+        "canon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "editions": {
           "type": "object",
           "additionalProperties": {
@@ -86,6 +92,9 @@
                     "type": "string"
                   },
                   "under": {
+                    "type": "string"
+                  },
+                  "papers": {
                     "type": "string"
                   }
                 },
@@ -154,9 +163,40 @@
                 },
                 "additionalProperties": true
               },
+              "papers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "href": {
+                      "type": "string"
+                    },
+                    "text": {
+                      "type": "string"
+                    },
+                    "src": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "href",
+                    "text",
+                    "src"
+                  ],
+                  "additionalProperties": false
+                }
+              },
               "signed": {
                 "type": "boolean",
                 "default": false
+              },
+              "by": {
+                "type": "string",
+                "enum": [
+                  "person",
+                  "skippy"
+                ],
+                "default": "skippy"
               }
             },
             "required": [
