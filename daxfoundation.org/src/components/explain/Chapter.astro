@@ -234,6 +234,8 @@ const evidence = (d.evidence as any[]) ?? [];
   .scene-wrap {
     position: sticky;
     top: 0;
+    z-index: 2;
+    background: var(--ground);
     height: 56vh;
     display: flex;
     align-items: center;
@@ -257,12 +259,13 @@ const evidence = (d.evidence as any[]) ?? [];
 
   .chapter-content {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     background: var(--ground);
     padding-block: var(--space-8) var(--space-24);
   }
   /* 23 Oct preview: a -50vh pull-up put the text under the pinned scene on phones.
-     The scene pins in the top 56vh; the text sits below it and scrolls over it. */
+     The scene pins in the top 56vh (above the text, on the ground colour); the
+     text starts below it and slides under it as the chapter scrolls. */
   .has-scene .chapter-content { margin-top: 0; }
 
   .question {
