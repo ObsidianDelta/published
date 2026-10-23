@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import MapHome from '../components/explain/MapHome.astro';
 import { home as libraryHome, byKind } from '../data/library.js';
 import { posts, SERIES, seriesOf } from './_posts.js';
 
@@ -89,6 +90,7 @@ const writing = posts.filter((p) => !p.series).slice(0, 2);
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 ---
 <Base>
+  <MapHome />
   <section class="lede" aria-labelledby="dax">
     <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
   </section>
