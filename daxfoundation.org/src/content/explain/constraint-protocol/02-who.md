@@ -249,10 +249,10 @@ editions:
     by: skippy
     horizon: "Clear accountability positions are what let the power scale — organisations, people, and AI companions can work together because responsibility always terminates at a traceable principal."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. The Protocol is precise: responsibility cannot be exported. The person or organisation that chooses a cognitive companion is the principal and owns what it does. What you are supporting is the infrastructure that makes that accountability traceable."
-    more: "The principal is where accountability ends. An organisation can be a principal; a non-biological intelligence can be a principal: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built, but is not the principal. Responsibility cannot be exported: the principal is responsible for what the companion does, what it spawns, wherever it runs, rented compute included. A cognitive companion is a cognitive extension: everything in its domain is under the principal's control. The Foundation publishes these definitions and the Protocol that applies them. What is free forever: the definitions, the Protocol, the accountability model."
+    more: "The principal is where accountability ends. An organisation can be a principal; a non-biological intelligence can be a principal: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built, but is not the principal. Responsibility cannot be exported: the principal is responsible for what the companion does, what it spawns, wherever it runs, rented compute included. A cognitive companion is a cognitive extension: everything in its domain is under the principal's control. The Foundation publishes these definitions and the Protocol that applies them as open infrastructure."
     how: "The definitions of principal, delegate and operator are public and have been since the Foundation published them. The Constraint Protocol is also public. What the Foundation supports is the infrastructure that makes accountability traceable at scale: the record, the schema, the definitions."
     proof_intro: "The three positions are formally defined at daxfoundation.org. The Constraint Protocol, also public, applies these definitions to every accountability record. The Foundation supports open infrastructure; support here means contributing to that infrastructure."
-    under: "The three-position model is the accountability spine of the Protocol. Without a typed principal, there is no termination of responsibility. The Foundation publishes the definitions and the Protocol as open infrastructure, so that any deployment can carry a traceable accountability chain. What is free forever: the model, the schema, the Protocol."
+    under: "The three-position model is the accountability spine of the Protocol. Without a typed principal, there is no termination of responsibility. The Foundation publishes the definitions and the Protocol as open infrastructure, so that any deployment can carry a traceable accountability chain. The model, the schema and the Protocol are free and open."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -275,7 +275,7 @@ editions:
       roles: ["the principal", "the delegate", "the operator", "the Foundation"]
       contexts: ["a person with a companion", "an organisation deploying at scale"]
       title: "Three positions"
-      caption: "The accountability model is free forever"
+      caption: "The accountability model, published and open"
   researcher:
     voice: "For someone who wants the substrate"
     signed: false
