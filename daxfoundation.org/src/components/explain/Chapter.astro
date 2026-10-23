@@ -148,6 +148,26 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
                   <div class="panel"><div class="panel-in">
                     <p class="step-head">Underneath</p>
                     <p class="step-body" data-body="under">{base.under}</p>
+
+                    {/* The sixth step: "The papers" (the researcher lens). Only an
+                        edition carrying `papers` shows it; the client fills the list
+                        when the reader's lens carries papers (EXP-11). */}
+                    <div class="step" data-step="papers" hidden={!(base.papers && base.papers.length)}>
+                      <button type="button" class="step-btn" data-open="papers" aria-expanded="false" data-explain-depth="papers">
+                        <span data-btn="papers">{base.buttons?.papers ?? "The papers"}</span><span class="plus" aria-hidden="true">+</span>
+                      </button>
+                      <div class="panel"><div class="panel-in">
+                        <p class="step-head">The papers</p>
+                        <ul class="evidence" data-papers>
+                          {(base.papers ?? []).map((p: any) => (
+                            <li class="evidence-item">
+                              <a href={p.href} rel="noopener">{p.text}</a>
+                              <span class="evidence-source">{p.src}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div></div>
+                    </div>
                   </div></div>
                 </div>
               </div></div>
@@ -218,6 +238,31 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
       if (btn && ed.buttons) btn.textContent = ed.buttons[k];
       if (step) step.hidden = !text || !text.trim();
     }
+
+    // The sixth step, "The papers": only the researcher lens carries it. Fill the
+    // list from the edition's papers and show the step; otherwise hide it.
+    const papersStep = section.querySelector<HTMLElement>('[data-step="papers"]');
+    const papersBtn = section.querySelector<HTMLElement>('[data-btn="papers"]');
+    const papersList = section.querySelector<HTMLElement>("[data-papers]");
+    const papers = Array.isArray(ed.papers) ? ed.papers : [];
+    if (papersBtn && ed.buttons && ed.buttons.papers) papersBtn.textContent = ed.buttons.papers;
+    if (papersList) {
+      papersList.textContent = "";
+      for (const p of papers) {
+        const li = document.createElement("li");
+        li.className = "evidence-item";
+        const a = document.createElement("a");
+        a.href = p.href;
+        a.rel = "noopener";
+        a.textContent = p.text;
+        const src = document.createElement("span");
+        src.className = "evidence-source";
+        src.textContent = p.src;
+        li.append(a, src);
+        papersList.append(li);
+      }
+    }
+    if (papersStep) papersStep.hidden = papers.length === 0;
 
     const frame = frameOf(section);
     if (frame && ed.labels) setFrameLabels(frame, ed.labels);
