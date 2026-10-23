@@ -56,6 +56,12 @@
             "type": "string"
           }
         },
+        "horizon_canon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "editions": {
           "type": "object",
           "additionalProperties": {
@@ -77,6 +83,9 @@
                 "type": "string"
               },
               "under": {
+                "type": "string"
+              },
+              "horizon": {
                 "type": "string"
               },
               "buttons": {
