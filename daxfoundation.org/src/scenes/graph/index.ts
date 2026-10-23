@@ -70,6 +70,12 @@ const POS: Record<string, [number, number, number]> = {
 const CP_SHELL: [number, number, number] = [0, 0.1, 3.6];
 const LATTICE_R = 3.55;
 
+// Definition-page anchors for concept nodes that have no run yet.
+const CONCEPT_HREFS: Record<string, string> = {
+  companion: "/definitions/#cognitive-companion",
+  hdv: "/definitions/#human-delta-value",
+};
+
 interface NodeView {
   n: GNode;
   home: THREE.Vector3;
@@ -80,7 +86,7 @@ interface NodeView {
   prio: number;        // label priority (lower = keep first)
   p: number;           // growth 0..1
   born: THREE.Vector3; // birth source position
-  btn: HTMLButtonElement;
+  btn: HTMLAnchorElement;
   labelText: HTMLSpanElement;
 }
 
@@ -139,6 +145,10 @@ export async function mount(
 
   const nodeLabel = (n: GNode): string => str(L["node_" + n.id]) || n.label;
   const nodeLine = (n: GNode): string => str(L["line_" + n.id]) || n.line;
+  const nodeHref = (n: GNode): string => {
+    if (n.chapter && routes[n.chapter]) return routes[n.chapter];
+    return CONCEPT_HREFS[n.id] || "";
+  };
 
   const colorOf = (n: GNode): string => {
     if (n.id === "dax") return tokens.record;
@@ -271,14 +281,17 @@ export async function mount(
     mesh.scale.setScalar(0.0001);
     group.add(mesh);
 
-    // the label IS the hit target and the accessible name: DOM text, never canvas text.
-    const btn = document.createElement("button");
-    btn.type = "button";
+    // the label IS the hit target and the accessible name: a real <a href> link so
+    // keyboard users can Tab to nodes and screen readers announce the destination.
+    const btn = document.createElement("a");
+    const href = nodeHref(n);
+    if (href) btn.href = href;
     btn.style.cssText =
       "position:absolute;transform:translate(-50%,-50%);display:none;align-items:center;" +
       "justify-content:center;min-width:44px;min-height:44px;padding:0;border:0;background:none;" +
-      // touch-action: pan-y so a touch that starts on a label still scrolls the page vertically.
-      "pointer-events:auto;touch-action:pan-y;cursor:pointer;color:" + tokens.ink + ";font-family:" + sans + ";";
+      // touch-action:manipulation: allows single-tap to register as click (no 300ms delay,
+      // no pan gesture swallow); the canvas itself still has touch-action:pan-y for orbit.
+      "pointer-events:auto;touch-action:manipulation;cursor:pointer;color:" + tokens.ink + ";font-family:" + sans + ";text-decoration:none;";
     const labelText = document.createElement("span");
     labelText.style.cssText =
       "display:inline-block;font-size:13px;line-height:1.2;font-weight:500;letter-spacing:.01em;" +
@@ -287,7 +300,12 @@ export async function mount(
     overlay.appendChild(btn);
 
     const view: NodeView = { n, home, mesh, mat, base, bright, prio, p: 0, born: home.clone(), btn, labelText };
-    btn.addEventListener("click", (e) => { e.preventDefault(); onNodeActivate(view); });
+    btn.addEventListener("click", (e) => {
+      // Second tap of an already-selected node with a link: let the anchor navigate.
+      if (selected === n.id && nodeHref(n)) return;
+      e.preventDefault();
+      onNodeActivate(view);
+    });
     views.push(view);
     viewById.set(n.id, view);
   }
