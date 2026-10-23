@@ -11,6 +11,8 @@ canon:
   - "The record is the learner's: portable, private by default, published for good if she chooses, readable by her guides and her companion."
   - "Every entry is signed under the Constraint Protocol; the learning record is the seed of Nova DAX, a person's record for life."
   - "Reuse works by meaning: another learner's asset is found by what it means, not by browsing."
+horizon_canon:
+  - "A record for life that is yours, the seed of Nova DAX, read with you by a companion that is yours."
 editions:
   kid:
     voice: "For someone about ten"
@@ -21,6 +23,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "One day your record travels with you your whole life, and a companion that is yours reads it with you — all the things you tried and reached and the ones you have not got to yet."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -56,6 +59,7 @@ editions:
     how: "Today the record is the spine of every package: reached, tried, guided, reused. What is being built next is the always-on layer that keeps the record between sessions, so a guide picks up exactly where you left off. Every entry is signed under the Constraint Protocol. The record you build now is the first slice of Nova DAX."
     proof_intro: "The record schema and the append-only files in the learner's own repository are public at the Foundation. Sample packages show the format in practice. The Constraint Protocol defines how every entry is signed."
     under: "Reuse by meaning is the open experiment: finding another learner's asset by what it represents, not by browsing a catalogue. The Constraint Protocol is the signing layer: every entry is traceable to the guide and the moment. The seed of Nova DAX is a design commitment: nothing in this record will be locked into a platform you cannot leave."
+    horizon: "A record for life that is yours — the seed of Nova DAX, read with you by a companion that is yours, carrying what you reached, what you tried, and what you have not found yet, for every concept, for life."
     buttons:
       more: "Tell me more"
       how: "How does it work today?"
@@ -91,6 +95,7 @@ editions:
     how: "Today the record is the spine of every package she works through: what she reached, what she tried, who guided her, what was reused. What is being built next is the layer that keeps the record between sessions, so you or a guide picks up where she left off without asking her to repeat herself. The record she builds now is the first slice of Nova DAX."
     proof_intro: "The record format — append-only files in the learner's own repository — is public. Sample packages show what it looks like in practice. The Constraint Protocol is the signing layer for every entry."
     under: "Reuse by meaning is the open experiment: when another learner's work means what she needs, the system can find it without a catalogue. The signing under the Constraint Protocol means every entry is traceable. The commitment to Nova DAX means her record is hers for life, not tied to a version of the platform."
+    horizon: "Your child's record travels with her for life — portable, hers, read by a companion that is hers, carrying what she reached, what she tried and what she has not found yet."
     buttons:
       more: "Tell me more"
       how: "What can we get today?"
@@ -126,6 +131,7 @@ editions:
     how: "Today the record is part of every package: reached, tried, guided, reused, with each entry signed. What is being built is the always-on layer that keeps the record live between sessions, so you pick up exactly where you left off. Your loop — observe this learner at this juncture, decide — is the one thing that is never automated. The record is what makes that loop sharp."
     proof_intro: "The record format — append-only files in the learner's own repository — is public. The Constraint Protocol defines the signing layer for every entry. Sample packages show what the record looks like in practice."
     under: "Reuse by meaning is the open experiment: finding another learner's asset by what it represents rather than browsing a catalogue. The Constraint Protocol is the accountability layer: every entry is traceable to the guide and the moment, so if something went wrong you can see it. The commitment to Nova DAX means the record is portable and stays the learner's."
+    horizon: "A record for life that belongs to your learner — portable, hers, read by a companion that is hers — and what one of your learners reaches is shared, so the next guide starts further ahead."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -161,6 +167,7 @@ editions:
     how: "Today the record is the spine of every package: reached, tried, guided, reused, each entry signed. What is being built is the always-on layer that keeps the record live between sessions and between guides. The loop that matters — observe this learner at this juncture, decide — stays with the guide. The record is what makes that loop accountable at scale."
     proof_intro: "The record format — append-only files in the learner's own repository — is public. The Constraint Protocol defines the signing layer. Sample packages show the format. The 2024 prototype demonstrated the full loop end to end."
     under: "Reuse by meaning is the open experiment: assets found by what they represent, not by browsing. The accountability record under the Constraint Protocol means every entry is traceable to the guide and the moment. That traceability is what makes the system usable in an organization that needs to know what happened and who decided it."
+    horizon: "A record for life that belongs to each person on your team — portable, theirs, carrying every role transition — and the accountability layer that makes it safe to build on."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -196,6 +203,7 @@ editions:
     how: "Today the record is part of every package: reached, tried, guided, reused, with entries signed. What is being built is the always-on layer and the reuse-by-meaning pipeline. The record format and the schema are public. The experiments for the next stage are open. The Foundation's infrastructure is what you build products on; what you build is yours."
     proof_intro: "The record format is public. Sample packages show the schema in practice. The Constraint Protocol is the signing layer. The 2024 prototype demonstrated the full loop, including record entries, end to end."
     under: "Reuse by meaning is the open experiment: finding an asset by meaning, not browsing. The Constraint Protocol means every entry in a learner's record is signed and traceable. The commitment to Nova DAX means no platform captures the learner's record. Your product must respect that. A way, never the way."
+    horizon: "A record for life that is the learner's — Nova DAX, portable, not capturable by a platform — and the companion that reads it with her is the product-adjacent space your architecture must leave open."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -231,6 +239,7 @@ editions:
     how: "Shipped today: record entries per package (reached, tried, guided, reused), each signed. The append-only file lives in the learner's repository. The open experiments: reuse-by-meaning pipeline, always-on record layer, record agent (signs entries, resolves meaning, surfaces reuse candidates). The schema for rowKinds is fixed: reached, tried, guided, reused, reached. The scene module is record; states are rows and seed."
     proof_intro: "The record format — append-only files in the learner's own repository — is public at the Foundation. Sample packages show the schema. The Constraint Protocol defines the signing layer and the severity table at Appendix A."
     under: "Reuse by meaning requires a semantic index over the record corpus: entries indexed by the concept they represent, not their string content. The Constraint Protocol is the signing substrate: every entry carries guide authority, helper action, and severity. The append-only constraint is architectural: no entry is ever deleted or revised, only superseded by a new entry. Nova DAX is the portability commitment: the record schema must be stable enough to outlast any one version of the platform."
+    horizon: "The record schema must be forward-compatible across platform versions: that is the Nova DAX commitment; the append-only constraint and the semantic index are the two open architectural problems."
     buttons:
       more: "Tell me more"
       how: "What is shipped today?"
@@ -266,6 +275,7 @@ editions:
     how: "What is proven: the 2024 prototype built the package pipeline end to end, with record entries for each session. What is an experiment: the always-on layer, the reuse-by-meaning pipeline, the record agent. What the money does in this phase: tokens for helpers, guides' time, the record infrastructure. What it unlocks: a learner whose record follows her across sessions, guides, and organizations. What is free forever: the record schema, the Constraint Protocol, the platform."
     proof_intro: "The record format is public. Sample packages show the schema in practice. The Constraint Protocol defines the signing layer. The 2024 prototype demonstrated the full loop, including record entries. The Foundation supports open infrastructure; support here means contributing to it."
     under: "The Constraint Protocol is the signing and accountability layer: every entry traceable to the guide and the moment. The append-only constraint means the record is never revised, only extended. The commitment to Nova DAX is a design constraint on the platform: the record must be portable enough to outlast any one version of the software. Reuse by meaning is the open research question."
+    horizon: "A record for life that is yours, the seed of Nova DAX — the infrastructure to keep it portable and the companion to read it with you is what this phase of the Foundation builds toward."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -301,6 +311,7 @@ editions:
     how: "Current implementation: record entries per package (reached, tried, guided, reused), each signed. The append-only file lives in the learner's own repository. Open experiments: reuse-by-meaning pipeline (semantic index over entry corpus), always-on record layer (record agent across sessions), meaning-resolution for the reuse kind. The rowKinds array is fixed: reached, tried, guided, reused, reached. Scene module: record; states: rows, seed."
     proof_intro: "The record format — append-only files in the learner's own repository — is public at the Foundation. Sample packages show the schema in practice. The Constraint Protocol defines the signing layer and the severity table at Appendix A. The 2024 prototype produced a full individualized curriculum with record entries, quizzed through Bloom's levels."
     under: "The reuse-by-meaning index requires a representation of each record entry at the concept level, not the string level, so that entries authored by different learners under different guides can be matched by what they represent. The Constraint Protocol is the signing substrate: every entry carries guide authority, helper action, and severity. The append-only constraint is a safeguard against selective omission: the system cannot steer the learner by hiding what failed. Nova DAX is the schema stability commitment: a person's record for life implies the entry format must be forward-compatible across platform versions."
+    horizon: "The forward-compatibility requirement (Nova DAX) and the semantic index (reuse by meaning) are the two open schema problems; the append-only constraint is the safeguard against selective omission in the record."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
