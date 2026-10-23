@@ -4,11 +4,15 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
+    "tokens": "node scripts/explain/tokens-to-css.mjs",
+    "prebuild": "npm run tokens",
     "dev": "astro dev",
     "build": "astro build && node tools/cf-beacon.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.13.0"
+    "astro": "^5.13.0",
+    "d3": "^7.9.0",
+    "three": "^0.186.0"
   }
 }
