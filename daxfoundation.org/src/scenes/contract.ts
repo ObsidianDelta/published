@@ -50,6 +50,17 @@ export interface SceneHandle {
   resize(): void;
   /** Release every resource: renderer, contexts, observers, animation frames, listeners. */
   destroy(): void;
+  /**
+   * Optional (EXP-8a): the reader changed lens, so the chapter's labels changed.
+   * A scene that bakes captions from labels re-reads them here. Appended to the
+   * contract; existing scenes that omit it are unaffected (the layout feature-tests).
+   */
+  setLabels?(labels: Record<string, string | string[]>): void;
+  /**
+   * Optional (EXP-8a): the reader opened depth n of the ladder (1..5). A scene
+   * that adds a layer per depth reacts here. Appended; optional for every scene.
+   */
+  setDepth?(depth: number): void;
 }
 
 /** A scene module: `src/scenes/<name>/index.ts` and `src/scenes/<name>/fallback.ts` both export this. */
