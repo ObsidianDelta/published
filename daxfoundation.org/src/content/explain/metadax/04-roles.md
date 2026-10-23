@@ -15,6 +15,8 @@ canon:
   - "Today this is a package, not a building: the guide answers a few plain questions and gets lessons made for one learner, with quizzes and follow-up questions built in, which the guide reads first. It is built to work on five minutes of internet a day, on purpose: the hardest case, so everyone can have it. Where it goes: helpers connected all day, one idea at a time, the moment it is needed."
   - "Proof: in 2024 a working application generated a whole course for one learner, taught it, quizzed through Bloom's levels and said where the learner stood; a video exists and sits under your words. What is public now are experiments for the next part (a record that remembers, reuse that works by meaning, guides in the loop), not a finished product."
   - "Underneath: every helper's action is recorded under the Constraint Protocol, an accountability record for non-biological intelligence, so when something goes wrong we can find out how and stop it recurring; what one learner's interactions teach is shared so knowledge compounds. Every edition of this page is data checked against a schema and signed."
+horizon_canon:
+  - "Thirty helpers for every learner and thirty for every guide, thousands over a life, and the guide's attention spent on what only she can do."
 editions:
   kid:
     voice: "For someone about ten"
@@ -25,6 +27,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "One day every learner gets thirty helpers of their own, and every teacher gets thirty too — thousands over a life, all there the moment you need them."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -145,6 +148,7 @@ editions:
     how: "Today it is a package. You answer a few questions about the learner and what she needs to reach, and you get lessons, quizzes and follow-up questions made for her, follow-ups of follow-ups, as deep as she goes. You read and edit before anything reaches her. It is built for five minutes of connectivity a day, on purpose the hardest case, so everyone stays in. The loop that stays yours, because it cannot be automated: notice this learner at this juncture, decide. Where it goes: helpers connected all day, per concept, per moment, and your attention freed for what only you can do."
     proof_intro: "In 2024 a working application built a whole course for one learner, taught it, quizzed through Bloom's levels and said where she stood. The video is below. What is public now are the experiments for the record that remembers, reuse by meaning, and guides in the loop, not a finished product."
     under: "Every helper action is recorded under the Constraint Protocol, an accountability record for non-biological intelligence: who acted, on whose authority, with what severity if wrong. When a helper gets something wrong, the record shows how, so it does not recur. What one learner's helpers learn is shared, so the next guide starts further ahead. Every edition of this page is data, checked against a schema and signed, including the one you are reading."
+    horizon: "Thirty helpers for every person on your team and thirty for every guide, all day, all domains — the guide's attention spent on what only she can do, not on what a helper can handle."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -175,6 +179,7 @@ editions:
     how: "Today it is a package. The guide answers a few plain questions about the learner and what they need to reach, and gets lessons, quizzes and follow-up questions made for that person, which the guide reads first. It works on five minutes of internet a day. What stays with the guide is the part no helper can do: noticing this person at this juncture and judging what they need. Every helper action is recorded, so you can see what happened and who decided it. That accountability record is what makes this usable at the scale of an organisation. Where it goes: helpers connected all day, one idea at a time, and the guide's attention on what only a human can do."
     proof_intro: "In 2024 a working application generated a full course for one learner, taught, quizzed through Bloom's levels, assessed. The video is below. What is public now are the experiments for the next part, not a finished product."
     under: "Every helper action is logged under the Constraint Protocol: who acted, on whose authority, what the learner reached. That record is what makes the system safe to run inside an organisation. What one learner's interactions teach is shared, so the next guide starts further ahead. This page is schema data, checked and signed."
+    horizon: "Thirty helpers for every learner and thirty for every guide, thousands over a life, all day — that is the platform scale your product addresses, and the guide's attention spent on what only she can do is the human moat."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -265,6 +270,7 @@ editions:
     how: "What is proven: in 2024 the Foundation built the package pipeline end to end. A guide answered questions; a course was made for one learner; it was quizzed through Bloom's levels and assessed. What is an experiment: the always-on layer, the record schema, the guide loop instrumented. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the record. What it unlocks: a guide who can spend her attention on what only she can do, and a learner who gets that attention at the moment she needs it. What is free forever: the platform, the schema, the Constraint Protocol."
     proof_intro: "The 2024 prototype is documented. The definitions of guide, learner, and a step ahead are public. The current experiments are open. The Foundation supports open infrastructure; support here means contributing to that infrastructure."
     under: "The Constraint Protocol is the accountability layer: every helper action recorded, every guide's authority traceable. It is the reason the Foundation can say the helpers are safe to use with a learner. What one guide's learner teaches the system is shared. The platform is schema-first: every edition is data, checked and signed. The Foundation calls it the record."
+    horizon: "Thirty helpers for every learner and thirty for every guide, thousands over a life — the guide's attention freed for what only she can do is the return on the record and the helper infrastructure."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -295,6 +301,7 @@ editions:
     how: "Current implementation: the package pipeline. The guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes and recursive follow-ups for one learner; the guide edits; it ships as a bundle designed for five minutes of connectivity a day. The guide's loop is the one unautomated step. Public experiments address: the learner record schema (reached, tried, not yet), reuse by meaning, and guides in the loop. The Constraint Protocol severity table is at Appendix A of the Constraint post."
     proof_intro: "The 2024 prototype generated a full individualized curriculum from a structured prompt, quizzed through Bloom's taxonomy levels and assessed for learner position. The definitions of guide, learner, and a step ahead are formally specified at the Foundation. The Constraint Protocol defines the severity table at Appendix A."
     under: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what learner, under whose guide authority, with what severity if wrong (Appendix A). Human delta value is defined there as a first-order signal. The record encodes reached, tried, not yet per learner per concept; it is the state that makes the system coherent across sessions and across helper instances. What one learner's interactions teach is shared so knowledge compounds. Every edition of this page is schema-validated and signed; the edition you are reading is an instance of the same discipline the researcher edition describes."
+    horizon: "Thirty helpers around a learner, thirty around the guide, thousands across a life — the guide's human delta value is the first-order signal in the architecture, and what compounds is knowledge and intelligence in the open."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
