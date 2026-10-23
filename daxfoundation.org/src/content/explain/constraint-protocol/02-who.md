@@ -324,14 +324,14 @@ evidence:
       en: "Principal, delegate, operator: the three accountability positions"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "edge"
-    labels:
-      title: "Three positions"
-      caption: "Accountability terminates at the principal"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: citizen
+    level: 4
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 03-record
 version: 1
 ---

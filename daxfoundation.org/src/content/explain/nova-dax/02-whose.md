@@ -9,11 +9,13 @@ canon:
   - "The person's: portable, private by default, published for good only if she chooses."
   - "Readable by her guides and her companion, on her terms."
   - "Every entry is signed under the Constraint Protocol."
+horizon_canon: "Your whole life's learning and memory as one record you own and your companion reads with you."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "Your record is yours, from your first word for your whole life. You decide, and your helper reads it with you."
     answer: "It belongs to you. You keep it. You decide who can see it. Your helpers can only look if you say yes."
     more: "Think of it like your own notebook that you carry everywhere. Nobody can read it unless you open it for them. Your teacher can see it if you want them to. A helper that remembers you can see it too, but only on your say-so. Every time something is written in it, it gets a special mark so you know it is real."
     how: ""
@@ -46,6 +48,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "Ownership means the record of everything you learn and remember is yours for life, read with you by a companion that is yours, so it goes wherever you go."
     answer: "The record belongs to the person. It is portable, private by default, and published only when she chooses. Her guides and her companion can read it on her terms. Every entry is signed under the Constraint Protocol."
     more: "When you learn something, the record of that is yours — not the platform's, not the teacher's. You carry it with you if you move schools, switch jobs, or just want a fresh start somewhere else. Nobody gets to look unless you say so. Your teacher or tutor gets access only if you open that door. The same goes for your cognitive companion, the AI-like extension that works with you day to day. Everything in it is under your control. The Constraint Protocol is the rule-set that makes sure every entry is accounted for: who wrote it, under whose authority, and what happens if something goes wrong."
     how: "You hold a key. Anyone who wants to read your record — a guide, a companion, a potential employer — needs you to turn it. You can grant read access for a session, a project, or permanently. You can also take it back. The signing happens automatically each time an entry is added; you do not have to do anything, but you can always check."
@@ -78,6 +81,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "Your child's record is hers, for life: everything she learns and remembers, read with her by a companion that is hers, wherever she goes."
     answer: "Your child's record is hers. It is private by default, portable so it follows her, and published only when she chooses. Her teachers can see it on her terms, and every entry is signed under the Constraint Protocol."
     more: "Think of the record as a learning diary that your child owns outright — not the school, not the app, not anyone else. If she moves to a new school or a new town, it goes with her. Nobody opens it without her permission. A teacher gets access only if she grants it, and she can take that access back. The companion — the AI assistant that works alongside her — also reads on her terms. Nothing is shared behind her back. Every entry carries a signature so you can always check what was added and when."
     how: "When a guide or companion needs to see the record, your child opens a door for them. That door can be for one conversation, one term, or longer — she sets the terms. The signing happens in the background each time an entry is written; it is automatic, and it creates an audit trail you can inspect if something ever feels wrong."
@@ -110,6 +114,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "Because the record belongs to the learner, everything you help her reach stays with her for life, read with her by her own companion."
     answer: "The record is the learner's. You get access on her terms, not automatically. She can open it for a session, a course, or longer — and she can close it again. Every entry is signed under the Constraint Protocol."
     more: "Your authority as a guide is real, but it does not extend to the learner's record without her consent. When she grants you access, you can read what is there, understand where she is, and bring better judgment to the room. When she closes that door, the record is no longer visible to you. That boundary is structural, not just a policy. The companion — if she uses one — operates the same way: it reads and writes on her terms, not yours. Your role is to bring the human judgment the companion cannot."
     how: "A learner grants access — for a session, a term, or a defined scope. You receive a view into the record for that window. If she updates her terms, your access updates too. The signing on each entry means you can trust what you are reading; nothing has been quietly changed since it was written."
@@ -142,6 +147,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "Because each person owns their record, what they learn with you stays theirs for life and travels with them, read with them by their own companion."
     answer: "The record belongs to the individual, not the organisation. It is private by default, portable, and published only on her terms. Every entry is signed under the Constraint Protocol, giving you an auditable trail without requiring you to own the data."
     more: "When you onboard someone new, her learning record comes with her — it is not locked to a previous employer's system. When someone leaves, her record leaves with her. You get access to what she chooses to share, for the period she defines. That consent is logged. The Constraint Protocol means every entry in the record has a signed provenance: who wrote it, under whose authority, and at what severity. That is your accountability layer without your team needing to build it."
     how: "An employee grants your organisation access to the parts of her record that are relevant to the role. That access has a scope and a term. If she leaves, the access ends. The signing on entries means you can verify the record has not been changed after the fact — useful for compliance and for dispute resolution."
@@ -174,6 +180,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "A record the person owns is the condition for building on it: products read and add to it with that person, and the value stays with them for life."
     answer: "Ownership stays with the person. The record is hers: portable, private by default, published only if she chooses. Every entry is signed under the Constraint Protocol. You build on that foundation — you do not own it."
     more: "The platform is open. The record layer is the person's. What you can build is the layer on top: tools that help her use her record, guides that access it on her terms, companions that extend her. The business model is in the value you create for her, not in holding her data. Because the record is portable, your customers can take it elsewhere — so your value has to be real, not just lock-in. The signing under the Constraint Protocol means every interaction your product touches is accountable. That is a feature, not a constraint."
     how: "Your product requests access to the parts of the record relevant to what you are building. The person grants or denies. Your helper reads and writes on her terms. The Constraint Protocol logs what your helper does. That log is not yours to delete. Build in a way that makes the log look good."
@@ -206,6 +213,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "Ownership is the design constraint: one record per person, held by that person for life, read with them by their companion, every access recorded under the Constraint Protocol."
     answer: "The record is the principal's: portable, private by default, published on her explicit consent. Access is scoped and logged. Every entry is signed under the Constraint Protocol. You ship on top of that contract."
     more: "The schema enforces ownership at the record level. Portability is structural: entries are not stored in a vendor-specific format. Privacy by default means your agent writes to the principal's record only with a valid grant. Published-for-good means a consent flag on individual entries; once set it cannot be quietly unset. The companion is a cognitive extension of the principal; everything in its domain is under her control and her responsibility. Your agent is a delegate acting under guide authority."
     how: "Your agent requests a scoped grant from the principal or an authorised guide. The grant specifies read, write, or both, and a scope (entries, topics, or time range). Every write appends a signed edition to the record. The Constraint Protocol schema defines the severity field: what happens if the action is wrong. Your agent is responsible for submitting a valid severity declaration on each write."
@@ -238,6 +246,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "A whole-life record each person owns, read with them by their own companion and accountable in every interaction, is the infrastructure that lets learning compound for everyone."
     answer: "Ownership of the record is with the person. That is proven at the protocol level, not asserted in a policy. Portability, consent, and signing under the Constraint Protocol are structural. The Foundation holds that infrastructure; support keeps it open."
     more: "The record is the person's from the moment it exists. It is portable — no lock-in to any one service. It is private by default — nothing is shared without explicit consent. Every entry is signed under the Constraint Protocol, which means the audit trail is verifiable, not just claimed. These are not features a product team decided to add; they are the foundation on which products are built. What your support does is keep that foundation free, maintained, and governed in the open. What it unlocks is every product and tool built on top — tools the Foundation does not build or own."
     how: "The Constraint Protocol is published and versioned. The definitions are published. The schema is open. Any operator, researcher, or builder can read exactly what the rules are and verify that an implementation follows them. Support enables the Foundation to maintain that published infrastructure and run the governance process that updates it responsibly."
@@ -270,6 +279,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "Ownership is held by the person: one lifelong record of learning and memory, read jointly with that person's companion, with every interaction attributable under the Constraint Protocol."
     answer: "The record is the principal's: portable, private by default, published on explicit per-entry consent. Every entry is signed under the Constraint Protocol. Access by guides and the cognitive companion is scoped and logged under the principal's grant."
     more: "Principal kind is unrestricted per the definitions schema. Portability is structural: the record format does not bind to an operator's storage. Privacy by default is the null state; a positive consent flag on an entry enables publication, and once set it is immutable in the audit log (the entry itself may be updated, but the consent-set event is not erasable). The companion is a cognitive extension of the principal; everything in its domain is under the principal's control and the principal's responsibility. Guide access is a scoped delegation: the guide is a delegate or an authorising principal depending on context."
     how: "Each record write appends a signed edition. The signing schema is defined in the Constraint Protocol. A severity declaration is required per write: it specifies the consequence class if the action is wrong. The delegation chain — principal → guide (authorising) → companion or agent (acting) — is explicit in each signed entry. Operators answer for how the companion is built and run; building it does not make the operator the principal."
@@ -313,14 +323,14 @@ evidence:
       en: "Every entry in the record is signed under the Constraint Protocol, creating a verifiable audit trail."
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "identity"
-    labels:
-      title: "Yours to keep"
-      caption: "Private, portable, signed"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: novadax
+    level: 3
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 03-start
 version: 1
 ---

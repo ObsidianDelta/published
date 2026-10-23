@@ -323,14 +323,14 @@ evidence:
       en: "The learning record in Meta DAX — the seed of Nova DAX"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "record"
-    labels:
-      title: "A whole-life record"
-      caption: "From first communication to the end of her life"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: novadax
+    level: 1
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 02-whose
 version: 1
 ---

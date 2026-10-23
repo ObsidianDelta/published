@@ -9,11 +9,13 @@ canon:
   - "No. A chat forgets; a companion has a record and a person it answers to."
   - "A person and her companion are one unit, and the unit is only as strong as the human bringing her best, however good the companion gets."
   - "Responsibility stays with the person; the definition is pinned so there is no confusion with companion chatbots."
+horizon_canon: "A companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "A chat forgets you when it ends. A companion reads your record with you and stays at your side, so it keeps helping you get further, and you are always the one in charge."
     answer: "No. A helper that remembers you is not a chat. A chat forgets you the moment you close it. Your helper keeps a record and knows it works for you."
     more: "Think of it like a notebook that also talks back. The notebook remembers what you told it. A chat is more like a sticky note — gone when you peel it off. Your helper stays and keeps answering to you, not to anyone else."
     how: ""
@@ -46,6 +48,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "Instead of a chat that starts over each time, a companion stays at your side for life, reading your record with you and acting for you in the open, only as good as the person it belongs to."
     answer: "No. A chat forgets everything the moment the window closes. A companion keeps a record and has one person it answers to. That is the whole difference."
     more: "When you type into a chat, you are talking to something with no memory of you. Every session starts from scratch. A cognitive companion is different: it holds a running record of what you have said and done, and it is bound to one person — you. It does not drift off to serve someone else. The unit is you and your companion together, and the unit is only as strong as you are bringing your best."
     how: "The record is what makes it a companion and not a chat. Your companion stores what matters, keeps it under your control, and uses it to give you answers that fit your situation. No record, no companion — just a chat with a fancy name."
@@ -78,6 +81,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "Instead of a chat that forgets her, your child has a companion that reads her record with her and acts for her, accountable for every step and only as good as she is."
     answer: "No. A chat forgets your child the moment the tab closes. A companion holds a record and is accountable to one person. Your child stays in charge; the companion answers to her."
     more: "At the kitchen table, the difference matters. A chat gives your child whatever it has — then forgets. A companion keeps track: what she has tried, what she knows, what she is working on. That record belongs to her, not to the tool. She and her companion are one unit, and the unit is only as strong as she is bringing her best."
     how: "You do not hand your child over to it. The companion is an extension of her, not a replacement for her thinking. She still does the work, makes the calls, and carries the responsibility. The companion just holds the thread so she does not lose it."
@@ -110,6 +114,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "Instead of a chat that resets each session, each learner has a companion that reads her record with her, so your guidance carries forward, and every step it takes is recorded and accountable."
     answer: "No. A chat forgets. A companion holds a record, answers to one person, and operates under your authority in any session you run."
     more: "The distinction matters in a room or a session. A chat has no memory of who the learner is or what they have tried. A companion keeps a running record — what the learner has done, where they are stuck, what they need next. That record sits under the learner's control and under your authority as guide. You are not handing the room to a tool."
     how: "You keep the lead. The companion dispatches only what you would dispatch, and only to the learner it belongs to. Helpers are only as good as the person running the session. The companion extends your reach; it does not replace your judgement."
@@ -142,6 +147,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "Instead of a chat tool that forgets each session, each person has a companion that reads their record with them and acts for them, every action recorded and accountable."
     answer: "No. A chat forgets the employee and answers to no one. A companion holds a record and is accountable to the person using it. That accountability is the difference at enterprise scale."
     more: "In onboarding, the gap between a chat and a companion is the whole value proposition. A chat gives the new hire whatever it has, then forgets. A companion tracks what the person has covered, where they are uncertain, and what they still need. That record belongs to the employee, not the platform. You get a consistent, accountable starting point for every person in every domain."
     how: "The companion does not replace your accountability as a manager — it extends the employee's. The person and her companion are one unit; the unit is only as strong as she is bringing her best. You can see the record; you cannot take over the unit. That boundary is what makes it trustworthy at scale."
@@ -174,6 +180,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "A companion that reads a person's record and acts for them, accountably, is a different product from a chat: it compounds with the person instead of starting over each session."
     answer: "No. A chat forgets and answers to no one. A companion holds a record and is accountable to one person. That distinction is the product."
     more: "The cognitive companion definition is pinned and public. It is not a chatbot, and it is not a companion chatbot — both of which are already crowded markets. The DAX platform gives you the schema, the record format, and the accountability layer. What you build on top is yours. The platform stays free and open; the value you create is your own."
     how: "Your product is the thing you build for a specific person in a specific domain. The companion is the substrate. A person and her companion are one unit; you build the unit's domain, its record shape, its interface. You are not selling a chat; you are selling something that stays with the person and answers to her."
@@ -206,6 +213,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "Not a session-scoped chat: a companion bound to one person, reading that person's record and acting under the Constraint Protocol, every action signed and attributable."
     answer: "No. A chat is stateless per session. A companion holds a persistent record keyed to one principal. That is the schema contract."
     more: "The DAX schema distinguishes a cognitive companion from a stateless interface by the presence of a record and a pinned principal. The record is not a chat log — it is a structured account of what the companion has done, under whose authority, and for which principal. The companion is a cognitive extension of the person; a person and her companion are one unit. The unit's record is owned by the principal, not the operator."
     how: "Implement the companion contract: a persistent record, a principal binding, and a delegation chain. The companion dispatches to helpers (agents, feeds, signed editions) under the principal's authority. The operator builds and runs the companion but does not become the principal. Responsibility stays with the principal; the record is the audit surface."
@@ -238,6 +246,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "The difference from a chatbot is the record and the accountability: a companion that reads a person's record with them and acts for them in the open, so the help compounds across a life."
     answer: "No. A chat forgets and is accountable to no one. A companion holds a record and answers to the person using it. That accountability is the investment thesis."
     more: "The distinction between a cognitive companion and a chat — or a companion chatbot — is pinned in a public definition. The Foundation holds that definition stable so the field does not drift. What is proven: the record contract works. What is an experiment: how fast adoption scales when the definition is trusted. What the money does: keeps the definition maintained, the schema open, and the platform free."
     how: "The Foundation is not building a product. It is maintaining the substrate — the definition, the schema, the Constraint Protocol — so that builders can build without re-litigating what a companion is every time. Your support keeps that substrate free and open. The companion chatbot market is large and growing; the Foundation's job is to make sure the definition of cognitive companion is not absorbed by it."
@@ -270,6 +279,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "The distinction from a chat interface: persistence through the person's own record and accountability through the Constraint Protocol, so the companion's help accumulates across a life instead of resetting per session."
     answer: "No. A cognitive companion is definitionally distinct from a stateless conversational interface. The distinction is structural: a companion holds a persistent record, binds to a principal, and operates under a delegation chain. A chat has none of these properties."
     more: "The daxfoundation.org/definitions page pins the term cognitive companion as a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control and the person's responsibility. This is not a marketing claim — it is a schema constraint. The companion chatbot category is large and loosely defined; the DAX definition is pinned precisely to prevent drift into that category. Responsibility stays with the person; the definition is pinned so there is no confusion with companion chatbots."
     how: "The structural properties that distinguish a companion from a chat: (1) a persistent record, not a session-scoped log; (2) a principal binding — the companion answers to one person, not to an operator or a session; (3) a delegation chain — helpers and agents act under the principal's authority, dispatched by the companion. The Constraint Protocol (daxfoundation.org/constraint-protocol) defines the accountability record for non-biological helper action: who acted, on what learner, under whose guide authority, with what severity if wrong. A companion chatbot has no equivalent structure."
@@ -313,14 +323,14 @@ evidence:
       en: "Pinned definition of cognitive companion, distinct from companion chatbots"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "companion"
-    labels:
-      title: "Not a chatbot"
-      caption: "A companion keeps a record and answers to one person"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: companion
+    level: 3
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 03-stand
 version: 1
 ---

@@ -10,11 +10,13 @@ canon:
   - "A cognitive companion is a cognitive extension: everything in its domain is under the person's control and is the person's responsibility."
   - "It is the hands and ears of the whole system, and the best way to use Meta DAX."
   - "It is one of the two big things to come."
+horizon_canon: "A companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "One day everyone can have a helper of their own that stays with them and helps them do things. It is only as good as the person it belongs to, so you are always the one in charge."
     answer: "Skippy is a helper that remembers you and helps you learn, provided for every person by the Foundation."
     more: "Your helper only does what you say. You are always in charge. Everything your helper does in your space is yours to decide."
     how: ""
@@ -53,6 +55,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "A companion for every citizen means everyone has the hands and ears of the whole system at their side, working on what they choose, and it is only ever as good as the person it belongs to."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — a personal thinking partner that is fully under your control."
     more: "A cognitive companion is a cognitive extension of you. Everything it does in your domain is yours to direct and yours to answer for. It is not a service you use; it is part of how you think and act. The Foundation provides it so that no one is left without one."
     how: "You set the scope. Your companion acts within it. Nothing moves without your say. If something goes wrong in your domain, the responsibility sits with you — and the record shows exactly what happened."
@@ -91,6 +94,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "A companion for every citizen means your child grows up with help that is hers, at her side, reading her record with her, and only as good as the person she is becoming."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — including your child. It is a thinking partner that stays fully under the person's control."
     more: "Think of it like a seat at the kitchen table that belongs to your child. The companion extends how your child thinks and acts. Everything it does in your child's space is your child's to direct. Nothing happens without their say. You keep your place at that table too."
     how: "Your child sets the scope of what the companion handles. The companion acts within it and no further. If something goes wrong, the record is clear and the responsibility is theirs — which means you can see exactly what happened and why."
@@ -129,6 +133,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "A companion beside every learner means the system's hands and ears reach each person you guide, and the human stays the measure: it is only as good as the person it belongs to."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — a cognitive extension that keeps each person in full control of their own domain."
     more: "In your room or session, each person's companion works within the scope that person sets. You retain your authority and judgement. The companion does not replace you; it extends the learner. Your helpers are only as good as you direct them."
     how: "You set the terms for your session. Each learner's companion operates within the learner's domain and within the space you define. Nothing overrides your authority. If a learner's companion acts, the record shows it — and accountability stays with the learner."
@@ -167,6 +172,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "A companion for every person on your team means the whole system's hands and ears at each person's side, under their own responsibility, only as good as the human it belongs to."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — a cognitive extension that keeps each person accountable for their own domain."
     more: "For onboarding or ongoing learning, each person's companion is theirs alone. Everything it does in their domain is under their control and their responsibility. That accountability is the point: you always know who did what, and so do they. It works across any domain."
     how: "Your organisation sets the scope. Each person's companion operates within it. The record of every action is clear. The new hire, the experienced hand — the same accountability applies. Nothing moves without the person's say."
@@ -205,6 +211,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "A companion for every citizen is a new surface to build on: the hands and ears of the whole system at one person's side, accountable under the Constraint Protocol, and only as good as that person."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — the platform on which you build."
     more: "The Foundation provides the companion. The platform stays free and open. What you build on top of it is where the work and the value live. A cognitive companion is a cognitive extension: every person's domain is theirs to control. That is the surface you build for."
     how: "You build tools, experiences, and services that work within a person's companion. The companion is a way, never the way. The person's accountability does not transfer to you — but the capability you add is real and immediate across every citizen who has one."
@@ -243,6 +250,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "One companion per citizen, acting as the system's hands and ears for that person, every action recorded and signed under the Constraint Protocol, and bounded by the human it belongs to."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — a schema-validated cognitive extension where the person is principal and everything in their domain is under their control and their responsibility."
     more: "The companion is a cognitive extension: person and companion are one unit. The person is the principal — accountability terminates there. Operators build or run companions for principals; building or running does not make the operator the principal. Agents are chain roles acting under delegation."
     how: "Every action in the companion's domain is recorded. The schema enforces who acted, on what, under whose authority, with what severity if wrong. Signed editions carry that contract forward. Skippy DAX is the hands and ears of Meta DAX — the canonical entry point for feeds, agents, and records across the system."
@@ -281,6 +289,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "Support for this is support for a companion at every citizen's side: the hands and ears of the whole system, accountable in every interaction, and only as good as the person it belongs to."
     answer: "Skippy DAX is a cognitive companion provided to every citizen by the Foundation — the part of the system that is closest to people and carries the most direct accountability."
     more: "The companion is proven as a concept: a cognitive extension of the person, with full accountability in their domain. What the Foundation is building now is the delivery — a companion for every citizen, not just those who seek one out. Support makes that reach possible."
     how: "The companion is free and stays free. What support unlocks is the infrastructure to reach every citizen, the tooling for operators who build on top of it, and the integrity of the open record. What is an experiment is the scale; what is proven is the model."
@@ -319,6 +328,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "A companion per citizen, acting as the system's hands and ears for one human, with every interaction recorded and accountable; its quality is bounded by the human it belongs to."
     answer: "Skippy DAX is a cognitive companion — a cognitive extension of the citizen — provided universally by the Foundation. The person is the principal; the companion is not a service layer but an extension of the person's agency, with everything in its domain under the person's control and the person's responsibility."
     more: "The cognitive companion definition at daxfoundation.org/definitions/ is the governing schema: person and companion are one unit; accountability terminates at the principal. Operator status (building or running the companion) does not transfer principal status. Delegate and agent roles are chain roles acting under delegation. Skippy DAX instantiates this schema for every citizen."
     how: "The companion is the hands and ears of the Meta DAX system — the primary interface for feeds, agent dispatch, and signed records across the whole. The Constraint Protocol (daxfoundation.org/constraint-protocol/) governs non-biological helper action within companion domains: who acted, on what principal, under whose authority, with what severity if wrong. Every edition of a companion record is schema-validated and signed."
@@ -368,14 +378,14 @@ evidence:
       en: "Definition of cognitive companion and cognitive extension from the Foundation"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "companion"
-    labels:
-      title: "Cognitive companion"
-      caption: "A cognitive companion for every citizen"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: skippydax
+    level: 1
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 02-chatbot
 version: 1
 ---

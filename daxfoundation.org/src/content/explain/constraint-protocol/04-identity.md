@@ -324,14 +324,14 @@ evidence:
       en: "Identity, genesis document, principal, and cognitive companion defined"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "identity"
-    labels:
-      title: "Your name, your key"
-      caption: "The Foundation reserves the name; only you hold the secret"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: cp
+    level: 5
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 05-horizon
 version: 1
 ---

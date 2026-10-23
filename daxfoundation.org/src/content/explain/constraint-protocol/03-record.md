@@ -378,14 +378,14 @@ evidence:
       en: "The Constraint Protocol, including the severity table at Appendix A, which grades the seriousness of any wrong action in the record."
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "record"
-    labels:
-      title: "The record"
-      caption: "Every interaction logged and signed"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: record
+    level: 4
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 04-identity
 version: 1
 ---

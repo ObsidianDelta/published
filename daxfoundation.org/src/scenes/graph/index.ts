@@ -458,7 +458,9 @@ export async function mount(
     capMain.style.fontWeight = "500";
     capSub.textContent = nodeLabel(v.n);
     const url = v.n.chapter ? routes[v.n.chapter] : "";
-    if (url) { capOpen.href = url; capOpen.style.display = "inline-block"; }
+    // no "Open" for the run the reader is already in
+    const here = typeof location !== "undefined" && url && location.pathname.startsWith(url);
+    if (url && !here) { capOpen.href = url; capOpen.style.display = "inline-block"; }
     else { capOpen.style.display = "none"; }
     if (reduced) { caption.style.opacity = "0"; requestAnimationFrame(() => { caption.style.opacity = "1"; }); }
   }
@@ -796,8 +798,19 @@ export async function mount(
   document.addEventListener("visibilitychange", onVis);
 
   // ---- first paint ----
+  // 2026-10-23: a chapter can open the graph at a reading level and on one node
+  // (params.level 1-5, params.focus = a node id), so a run's chapters show the
+  // live graph flown to their own part of it instead of a placeholder card.
+  const startLevel = Number(P.level);
+  if (startLevel >= 1 && startLevel <= 5) level = Math.round(startLevel);
   applyLevel(level, false);
   setBaseCaption();
+  const startFocus = typeof P.focus === "string" ? viewById.get(P.focus) : undefined;
+  if (startFocus && nodeShown(startFocus.n, level)) {
+    selected = startFocus.n.id;
+    showNodeCaption(startFocus);
+    flyTo(startFocus.n.id);
+  }
   updateSr();
   renderOnce();
   if (!reduced) start(); else renderOnce();

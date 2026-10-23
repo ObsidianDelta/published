@@ -324,14 +324,14 @@ evidence:
       en: "The Constraint Protocol post: the full accountability record specification, including the severity table as Appendix A"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "record"
-    labels:
-      title: "The Record"
-      caption: "Every helper action logged, accountable and signed"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: cp
+    level: 4
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 02-who
 version: 1
 ---

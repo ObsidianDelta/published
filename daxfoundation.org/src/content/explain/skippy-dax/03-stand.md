@@ -9,11 +9,13 @@ canon:
   - "The companion that helped build this site exists; yours is where this goes."
   - "In Meta DAX the thirty helpers will be sent through the companion, per concept, per moment."
   - "Today the way in is the question box on this site; a citizen's own companion comes later."
+horizon_canon: "A companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "Your helper stands right next to you. It listens and helps for you, and everything it does is written down so everyone can trust it."
     answer: "The helper that helped build this site is real. Yours is where this is going. In Meta DAX, thirty helpers will be sent through a helper that remembers you, one idea at a time."
     more: "Right now, the way in is the question box on this site. A grown-up who knows this can ask something and get an answer. Later, every person will have a helper that remembers them. The thirty helpers will come through it, for every idea you need, at the moment you need it. That is where this is going."
     how: ""
@@ -46,6 +48,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "The companion stands beside the person, as the hands and ears of the whole system for them, with every interaction recorded and accountable, which is what lets trust grow as the system grows."
     answer: "The companion that helped build this site exists. That is the proof of concept. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment. Today the way in is the question box on this site; a citizen's own companion comes later."
     more: "A cognitive companion is a cognitive extension of a person — a person and their companion are one unit. The companion that helped build this site is real and working. What Meta DAX will do is send thirty helpers through it, one concept at a time, at the moment the learner needs it. That changes the picture: instead of helpers arriving separately, they come through the companion that belongs to the learner. Today you reach this through the question box. The always-on companion for every person is the next step."
     how: "Use the question box on this site. That is the way in today. Ask something; the Ask layer responds. The companion that will carry the thirty helpers for you is what comes after. Nothing is hidden about where this is or where it is going."
@@ -78,6 +81,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "Your child's companion stands at her side, never over her: the hands and ears of the system for her, every action recorded, so trust can grow as she grows."
     answer: "The companion that helped build this site exists. That is where this is going for your child. In Meta DAX, thirty helpers will be sent through the companion, one concept at a time, at the moment she needs it. Today the way in is the question box on this site; a citizen's own companion comes later."
     more: "Think of a companion as a cognitive extension of your child — a helper that is hers, that keeps everything in its domain under her control. That is the picture Meta DAX is building toward. Right now, the question box on this site is the door. You or your child can ask something and get a response from the Ask layer. The thirty helpers that will be sent through the companion, per concept, per moment, is what comes next. Nothing about where this stands is hidden."
     how: "Use the question box on this site. That is how you reach the Ask layer today. The companion that will carry the helpers to your child, one concept at a time, is what comes later. The companion that helped build this site shows it is real; yours, and your child's, is where this goes."
@@ -110,6 +114,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "The companion stands beside each learner as the system's hands and ears for her; you stand with them, and every interaction between you is recorded and accountable."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment — through your learner's companion, aimed at her. Today the way in is the question box on this site; a citizen's own companion comes later."
     more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That means the learner's companion belongs to the learner, not to you, and not to the platform. What Meta DAX builds toward is thirty helpers sent through that companion, per concept, per moment — you are still the one who decides what the learner needs; the companion is how the helpers reach her. Today the question box is the door. The companion that carries this all the way comes next."
     how: "Use the question box on this site to reach the Ask layer today. The always-on companion for your learner — the one through which the thirty helpers will be sent, per concept, per moment — is what comes after. The companion that helped build this site is the evidence it is real."
@@ -142,6 +147,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "Each companion stands beside its person under the Constraint Protocol: clear responsibility for every action is what lets people and companions work together at scale."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment — one concept at a time, at the moment a person on your team needs it. Today the way in is the question box on this site; a citizen's own companion comes later."
     more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That is the architecture Meta DAX is building toward: thirty helpers sent through the companion that belongs to the learner, not the organisation. Today, for your team, the question box is the door. The ask layer is live. The companion for every person on your team comes after. The companion that helped build this site shows it is not a concept — it exists."
     how: "Use the question box on this site. That is the door today. For your team, the thirty helpers sent through the companion, per concept, per moment, is the architecture coming. Every helper action will be recorded, so you have an accountability trail. The question box is where this starts."
@@ -174,6 +180,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "The companion stands between a person and the whole system, acting for that person under the Constraint Protocol; that accountable position is what lets trust, and use, grow as the system grows."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment. Today the way in is the question box on this site; a citizen's own companion comes later. The platform is free and open. What you build on it is yours."
     more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That is the architecture your products live inside. The thirty helpers sent through the companion, per concept, per moment, is what Meta DAX delivers through the companion layer. Today the question box is the way in. The companion for every citizen is the next layer — build for what comes before it and what comes after it. A way, never the way."
     how: "Use the question box on this site to reach the Ask layer. That is the live surface today. The companion that carries the thirty helpers, per concept, per moment, is what you build products for. The companion that helped build this site is the evidence it is real. Open source and free stays free; your margin is the product you add on the companion layer."
@@ -206,6 +213,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "In the graph: one companion per citizen, connected to the person's record, every edge a Constraint Protocol interaction: who acted, on what, under whose authority, recorded and signed."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment: that is the architectural contract. Today the way in is the question box on this site; a citizen's own companion comes later."
     more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control and the person's responsibility. That is the schema constraint: the companion is not the platform's, it is the citizen's. The thirty helpers sent through the companion, per concept, per moment, is the helper-dispatch contract in the companion layer. Today the Ask layer is live via the question box. The companion schema is the next contract. The companion that helped build this site is the existence proof."
     how: "The question box is the Ask layer endpoint today. The companion contract — thirty helpers, per concept, per moment, dispatched through the companion that belongs to the citizen — is the next layer. The companion that helped build this site is the reference implementation. Nothing is set in stone; the architecture is not yet fixed for the citizen companion layer."
@@ -238,6 +246,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "The companion stands at each citizen's side and every action it takes is accountable; that is what lets trust grow as the system grows, and what support for the Foundation helps build."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment. Today the way in is the question box on this site; a citizen's own companion comes later. Supporting the Foundation is what builds what comes next."
     more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That is the architecture the Foundation is building toward. The companion that helped build this site is what is proven. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the companion layer. What it unlocks: a citizen with a companion through which thirty helpers are sent, per concept, per moment. The platform, the schema and the open infrastructure are free and open. A citizen's own companion comes later; that is the honest position."
     how: "What is proven: the companion that helped build this site exists and is in use. What is an experiment: the citizen companion layer, the dispatch of thirty helpers through the companion per concept per moment. What the money does: builds the companion layer. What it unlocks: a citizen's own companion. Today the question box is the door. Support the Foundation to build what comes next."
@@ -270,6 +279,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "Structurally, the companion is the citizen's agent within one typed graph: adjacent to the person and her record, every interaction an attributable Constraint Protocol event, so trust can scale with the system."
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment. Today the way in is the question box on this site; a citizen's own companion comes later. The companion is defined as a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control and the person's responsibility."
     more: "The cognitive companion definition (daxfoundation.org/definitions/): a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control and the person's responsibility. The architectural implication: the companion is the citizen's, not the operator's; the operator builds and runs it but does not become the principal. In Meta DAX, the thirty helpers are dispatched through the companion per concept per moment: the companion is the dispatch interface and the accountability anchor. The open questions: how the companion's schema differs from the package schema; how the record must be structured to support the companion; how the companion's domain is bounded and extended over a life. The Ask layer is the current live surface; the citizen companion layer is the next experiment."
     how: "Current implementation: the Ask layer via the question box. The companion that helped build this site is the reference implementation; its schema is not yet publicly documented. The citizen companion layer — thirty helpers dispatched per concept per moment through a companion that is owned by the citizen — is the next architectural layer. The definitions at daxfoundation.org/definitions/ specify the companion's accountability structure. Nothing is fixed; the schema is not yet published."
@@ -313,14 +323,14 @@ evidence:
       en: "Meta DAX: where thirty helpers are sent through the companion, per concept, per moment"
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "door"
-    labels:
-      title: "Where it stands"
-      caption: "The companion exists; yours is where this goes"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: skippydax
+    level: 4
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 04-horizon
 version: 1
 ---

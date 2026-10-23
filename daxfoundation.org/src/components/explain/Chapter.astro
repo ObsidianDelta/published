@@ -101,7 +101,9 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
     <p class="answer" data-answer>{base.answer}</p>
 
     {/* EXP-13: the horizon — always visible, not a ladder step. */}
-    <div class="horizon-block">
+    {/* 2026-10-23: hidden (server and client) when the edition has no horizon, so
+        the tag never stands over an empty line. */}
+    <div class="horizon-block" data-horizon-block hidden={!base.horizon}>
       <p class="horizon-tag">Where this goes</p>
       <p class="horizon-text" data-horizon>{base.horizon ?? ""}</p>
     </div>
@@ -238,6 +240,8 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
 
     const horizonEl = section.querySelector<HTMLElement>("[data-horizon]");
     if (horizonEl) horizonEl.textContent = ed.horizon || "";
+    const horizonBlock = section.querySelector<HTMLElement>("[data-horizon-block]");
+    if (horizonBlock) horizonBlock.hidden = !ed.horizon;
 
     for (const k of STEP_KEYS) {
       const text = k === "proof" ? ed.proof_intro : ed[k];
@@ -453,6 +457,7 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
     margin: 0 0 var(--space-6);
   }
   /* EXP-13 horizon block: hairline above, tag in muted, text at answer size. */
+  .horizon-block[hidden] { display: none; }
   .horizon-block {
     border-top: 1px solid var(--line);
     margin: 0 0 var(--space-6);

@@ -69,7 +69,16 @@ const frameLabels = new Map<HTMLElement, Record<string, string | string[]>>();
 export function setFrameLabels(frame: HTMLElement, labels: Record<string, string | string[]>): void {
   frameLabels.set(frame, labels);
   const h = handles.get(frame);
-  if (h && typeof h.setLabels === "function") h.setLabels(labels);
+  if (h && typeof h.setLabels === "function") h.setLabels({ ...declaredLabels(frame), ...labels });
+}
+
+// The chapter's own scene.params.labels (e.g. the graph's legend line). An edition's
+// labels are layered over them, never instead of them (2026-10-23).
+function declaredLabels(frame: HTMLElement): Record<string, string | string[]> {
+  try {
+    const p = JSON.parse(frame.dataset.sceneParams || "{}");
+    return (p && typeof p.labels === "object" && p.labels) || {};
+  } catch { return {}; }
 }
 
 // The ladder depth each frame's chapter has opened (1 = the answer only).
@@ -131,10 +140,10 @@ async function mountFrame(frame: HTMLElement): Promise<void> {
   }
   // Prefer the current edition's labels (lens-aware); fall back to the chapter's
   // declared scene.params.labels when the chapter has not pushed any yet.
-  const labels =
-    frameLabels.get(frame) ||
-    (params.labels as Record<string, string | string[]>) ||
-    {};
+  const labels = {
+    ...((params.labels as Record<string, string | string[]>) || {}),
+    ...(frameLabels.get(frame) || {}),
+  };
   const tokens = readTokens();
   const handle = await mod.mount(frame, {
     labels,

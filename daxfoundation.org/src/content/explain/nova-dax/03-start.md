@@ -8,11 +8,13 @@ question:
 canon:
   - "Today it starts as the learning record: reached, tried and kept, guided, reused, with the dead ends kept as carefully as the successes."
   - "Where it goes: a record a companion reads with you, for life."
+horizon_canon: "Your whole life's learning and memory as one record you own and your companion reads with you."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "It starts with the very first thing you learn, and it keeps growing with you for your whole life."
     answer: "It starts today, with everything you try. What you get right and what you get wrong both get kept. A helper that remembers you can read it with you, for as long as you want."
     more: "Think of it like a book that writes itself every time you learn something. Even the times you tried and got it wrong go in the book — because those matter too. Your teacher can help you use it. The helper that remembers you reads it alongside you. It does not stop when you grow up. It goes wherever you go."
     how: ""
@@ -45,6 +47,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "It starts with the learner record in Meta DAX, the first seed, and grows into one record of a whole life's learning and memory that you own."
     answer: "It starts now, as the learning record: what you reached for, what you tried and kept, where a guide helped, and how it gets reused — with the dead ends kept as carefully as the successes. Where it goes: a record a companion reads with you, for life."
     more: "Most records only keep what went well. This one keeps everything — the attempts, the wrong turns, the moments a guide stepped in, the breakthroughs. That makes it useful. A dead end you kept means you do not have to walk it again. A success you kept means someone else can build on it. The companion — the AI-like extension that works alongside you — reads the whole record, not just the highlights. It learns what you have already tried so it does not send you in circles. And it stays with you: not for one course, not for one job, but for life."
     how: "Every time you learn — a lesson, a project, a conversation with a guide — an entry goes into the record. The entry says what was tried, what happened, who was involved, and how it was guided. Dead ends are flagged, not deleted. When your companion reads the record with you, it uses that full picture to help you decide what to try next. Because the record is yours and portable, this works across schools, jobs, and decades."
@@ -77,6 +80,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "It starts with your child's learning record, from her first communication, and grows with her into one record of her whole life's learning and memory, hers."
     answer: "It starts today, with everything your child tries at the kitchen table and beyond. The record keeps what she reached for, what she tried, where a guide helped, and how it gets reused — with the dead ends kept as carefully as the successes. A companion reads it with her, for life."
     more: "The record is not a report card. It keeps the whole story: the thing she tried three times before it clicked, the wrong turn she took in maths last term, the moment a teacher helped her see it differently. Those dead ends are as valuable as the wins — they mean she will not waste time on the same path twice. As she grows, the record grows with her. The companion that works alongside her can read all of it, not just the parts that look good. When she moves schools, starts a new subject, or changes direction entirely, the record goes with her. Nobody else owns it."
     how: "Each time your child learns something — a lesson, a project, a conversation with a tutor — an entry is added. That entry records what was tried, what happened, who was involved, and what guidance was given. The companion reads those entries to understand where she is and what she has already attempted. Because the record is hers and portable, it follows her across years and institutions."
@@ -109,6 +113,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "It starts with the record your learners keep in Meta DAX, reached, tried, not yet, and grows into a lifelong record they own and read with their companion."
     answer: "It starts today as the learning record: what the learner reached for, tried and kept, where guidance made a difference, and how the record gets reused — with dead ends kept as carefully as successes. A companion reads it with the learner, for life."
     more: "The record is not a summary of outcomes. It keeps the attempts, the moments where guidance intervened, and the wrong turns — because those are the substrate of real learning. When you work with a learner who has an existing record, you are not starting from scratch. You can see what has been tried, what dead ends have already been walked, and where a previous guide made a difference. The companion that works with the learner reads the same record. Your authority as a guide is in the judgement you bring to what the companion cannot see: context, relationship, the thing the learner is not saying."
     how: "Each learning interaction can produce a record entry: what was tried, what guidance was given, what the result was. Dead ends are flagged so the learner and future guides know that path has been explored. The companion reads the record to understand what to suggest and what to avoid. You authorise what the companion can act on. The record is the learner's, portable and persistent; you access it on her terms."
@@ -141,6 +146,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "It starts with the learning record and grows into one record of a person's whole life's learning and memory, theirs, that their companion reads with them."
     answer: "It starts today as the learning record: what each person reached for, tried and kept, where guidance helped, and how the record is reused — with dead ends kept as carefully as successes. A companion reads it with the person, for life."
     more: "When a new hire joins your team, her learning record comes with her. You can see what she has already attempted in her domain, where she has been guided, and what dead ends she has already walked. That means onboarding can start from where she actually is, not from a blank slate. When someone moves roles or leaves, the record goes with her — it is not yours to keep. The companion that works with her reads the full record, including the attempts that did not work. That makes the companion useful for real work, not just for structured training. The record is the accountability layer for every guided interaction."
     how: "Each learning interaction — a training session, a guided project, a conversation with a domain expert — can produce a record entry. Dead ends are flagged so the next guide or companion does not repeat them. The person grants your organisation access to the parts relevant to her role. That access is scoped and logged. When she leaves, the access ends. The record and the companion stay hers."
@@ -173,6 +179,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "It starts as the Meta DAX learner record and grows into a whole-life record the person owns: the substrate products can build on, with the person."
     answer: "It starts today as the learning record: reached, tried and kept, guided, reused, with dead ends kept as carefully as successes. A companion reads it with the person, for life. The platform is open. The record is the person's. What you build is on top of that."
     more: "The learning record is the substrate. Every person who uses it accumulates a history of attempts, guidance, and dead ends — structured, portable, and readable by a companion. That record does not belong to you. But the tools you build to help people use it, navigate it, and act on it — those are yours to build. Because the record is portable, your customers are not captive. Your value has to be real. The dead ends in the record are a feature: a companion that knows what has already been tried is far more useful than one that does not. Build on that. A way, never the way."
     how: "Your product requests scoped access to the record from the person or an authorised guide. You read what has been tried, what guidance was given, and what the dead ends were. Your companion uses that to make better suggestions. You write new entries when your product contributes to learning. Every entry you write is logged under your operator identity. The record stays the person's. The log of what your product did stays in the audit trail."
@@ -205,6 +212,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "The seed is the Meta DAX learner record schema; it grows into one lifelong record of learning and memory, owned by the person and read with them by their companion."
     answer: "The record starts today: reached, tried and kept, guided, reused, with dead ends kept as carefully as successes. Schema: each entry carries attempt, outcome, guide reference, and reuse flag. A companion reads the full record with the principal, for life."
     more: "The learning record is not a transcript. It is a structured log: what was reached for, what was tried, what a guide contributed, whether the result is being reused, and whether the path was a dead end. Dead ends are first-class entries — they are flagged, not deleted, so agents do not recommend paths already walked. The companion reads the full record, not a summary, to provide genuinely context-aware assistance. The record is the principal's, portable across operators. Your agent writes to it under a scoped grant, signed, with a severity declaration per the Constraint Protocol. Reuse means the record is legible to future guides and agents; it does not mean the data is shared beyond the principal's consent."
     how: "Each record write appends a signed edition. Required fields per entry: what was tried, outcome class, guide reference if applicable, dead-end flag, reuse flag, severity declaration. The companion reads entries to build a picture of the principal's learning trajectory. Your agent requests a scoped grant (read, write, or both; scoped by topic or time range). Every write is logged under your operator identity. The Meta DAX schema at daxfoundation.org/metadax/ is the normative source for entry structure."
@@ -237,6 +245,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "It starts with the learner record in today's Meta DAX experiments and grows into a whole-life record each person owns; that path is what support helps build."
     answer: "It starts today as the learning record: reached, tried and kept, guided, reused, with dead ends kept as carefully as successes. A companion reads it with the person, for life. The Foundation holds this infrastructure open. Support keeps it that way."
     more: "The learning record is not a product feature. It is the foundation: a structured, portable, lifelong account of what a person has reached for, tried, been guided through, and reused — including the dead ends. Dead ends kept mean no future guide or companion sends the same person down the same failed path. Reuse means the record is legible across guides, companions, and decades. The companion reads the full record, not a curated version, to provide assistance that is genuinely useful. That infrastructure — the schema, the portability, the accountability layer — is what the Foundation maintains. What your support does is keep it free and open. What it unlocks is every product and tool built on top."
     how: "The learning record schema is published and versioned. The Meta DAX page at daxfoundation.org/metadax/ describes what exists today. Any operator, researcher, or builder can read exactly what the rules are. Support enables the Foundation to maintain that published infrastructure and run the governance process that updates it responsibly. What has been built is proven; what is experimental is labelled as such."
@@ -269,6 +278,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "The Meta DAX learner record is the seed; Nova DAX is its extension to a whole life's learning and memory, person-owned and read with the person's companion."
     answer: "The learning record starts today: reached, tried and kept, guided, reused, with dead ends kept as carefully as successes. Where it goes: a record a companion reads with the principal, for life. Schema, portability, and accountability are structural, not asserted."
     more: "The learning record is a structured log of learning events: attempt, outcome, guide reference, dead-end flag, reuse flag, signed edition per entry under the Constraint Protocol. Dead-end entries are first-class: flagged, not deleted, append-only in the audit context. Reuse flag controls legibility to future guides and agents; without it, the entry is private to the principal's record. The companion is a cognitive extension of the principal; everything in its domain is under the principal's control and the principal's responsibility. Portability is structural: the schema does not bind to an operator's storage. The companion reads the full record to provide context-aware assistance across the principal's lifetime."
     how: "Each record write appends a signed edition. Required fields per entry: attempt descriptor, outcome class, guide reference (nullable), dead-end flag (boolean), reuse flag (boolean), severity declaration per the Constraint Protocol schema. The companion reads entries in full to construct a learning trajectory. Agents request scoped grants (read, write, or both; scoped by topic, entry type, or time range) from the principal or an authorised guide. Every write is logged under the operator's identity. The Meta DAX schema at daxfoundation.org/metadax/ is the normative source for entry structure and field definitions."
@@ -312,14 +322,14 @@ evidence:
       en: "The learning record today: reached, tried and kept, guided, reused, with dead ends kept as carefully as successes."
     source: daxfoundation.org
 scene:
-  module: still
-  params:
-    glyph: "record"
-    labels:
-      title: "The learning record"
-      caption: "Reached, tried, guided, kept for life"
+  module: graph
   pin: 1
   states: [settle]
+  params:
+    focus: record
+    level: 3
+    labels:
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: 04-horizon
 version: 1
 ---

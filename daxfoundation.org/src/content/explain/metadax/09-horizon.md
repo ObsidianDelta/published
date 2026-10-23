@@ -342,12 +342,13 @@ evidence:
       en: "The Constraint Protocol: the accountability substrate"
     source: daxfoundation.org
 scene:
-  module: still
-  pin: 0
+  module: graph
+  pin: 1
+  states: [settle]
   params:
-    glyph: door
+    level: 5
     labels:
-      title: "What this makes possible"
+      legend: "Every line is the Constraint Protocol: every action recorded, accountable, signed."
 next: ""
 deeper:
   - /definitions/
