@@ -3,8 +3,9 @@
 // PART D: the doors are the runs listed from the signed graph (src/data/graph.json):
 // one door per initiative node (Meta DAX, Nova DAX, Skippy DAX) plus the Protocol,
 // each door showing that node's own line. A door links to its run where one exists
-// today; the initiatives still ahead (Nova DAX, Skippy DAX) show their line and read
-// as "coming", never a dead link.
+// today; an initiative with no run yet shows its line and reads as "Ahead", never a
+// dead link. 2026-10-23: all four runs exist (EXP-12 built Nova DAX and Skippy DAX),
+// and the Protocol door opens its explainer run, not the older /constraint-protocol/.
 import Explain from "../../layouts/Explain.astro";
 import Chapter from "../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../lib/explain/chapters.js";
@@ -17,7 +18,9 @@ const map = chapters[0];
 // still ahead: its door shows the line and is not a link.
 const routes: Record<string, string> = {
   metadax: "/explain/metadax/",
-  "constraint-protocol": "/constraint-protocol/",
+  "constraint-protocol": "/explain/constraint-protocol/",
+  "nova-dax": "/explain/nova-dax/",
+  "skippy-dax": "/explain/skippy-dax/",
 };
 
 // One door per initiative node, then the Protocol — in the graph's own order.
