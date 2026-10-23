@@ -1,0 +1,50 @@
+---
+// /explain/<collection>/<id>/ — one chapter of an EXP-12 collection, with the
+// same lens chooser and reading hairline the layout provides. Shareable per-chapter
+// URLs. Generic over the three EXP-12 collections; Meta DAX keeps its own pages.
+import Explain from "../../../layouts/Explain.astro";
+import Chapter from "../../../components/explain/Chapter.astro";
+import { getCollectionChapters } from "../../../lib/explain/chapters.js";
+
+const COLLECTIONS = ["constraint-protocol", "nova-dax", "skippy-dax"];
+const TITLE: Record<string, string> = {
+  "constraint-protocol": "The Constraint Protocol",
+  "nova-dax": "Nova DAX",
+  "skippy-dax": "Skippy DAX",
+};
+const DESCRIPTION: Record<string, string> = {
+  "constraint-protocol":
+    "The one thing everything the Foundation builds runs under: every interaction recorded, accountable and signed.",
+  "nova-dax":
+    "A person's whole record, from the time she can communicate for the rest of her life — one of the two big things to come.",
+  "skippy-dax":
+    "A cognitive companion for every citizen, provided by the Foundation — one of the two big things to come.",
+};
+
+export async function getStaticPaths() {
+  const paths: {
+    params: { collection: string; id: string };
+    props: { chapter: unknown; total: number; collection: string };
+  }[] = [];
+  for (const collection of COLLECTIONS) {
+    const chapters = await getCollectionChapters(collection);
+    for (const c of chapters) {
+      paths.push({
+        params: { collection, id: c.data.id },
+        props: { chapter: c, total: chapters.length, collection },
+      });
+    }
+  }
+  return paths;
+}
+
+const { chapter, total, collection } = Astro.props as {
+  chapter: { data: { question: { en: string } } };
+  total: number;
+  collection: string;
+};
+const title = `${chapter.data.question.en} — ${TITLE[collection]}`;
+---
+<Explain title={title} description={DESCRIPTION[collection]}>
+  <Chapter chapter={chapter} total={total} />
+</Explain>

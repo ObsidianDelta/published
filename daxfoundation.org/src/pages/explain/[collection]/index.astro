@@ -1,0 +1,40 @@
+---
+// /explain/<collection>/ — a whole collection as one continuous scroll, with the
+// lens chooser and reading hairline the Explain layout provides. Generic over the
+// EXP-12 collections (Constraint Protocol, Nova DAX, Skippy DAX); the foundation
+// map lives at /explain/ and Meta DAX keeps its own dedicated pages, so neither is
+// emitted here (no route collision).
+import Explain from "../../../layouts/Explain.astro";
+import Chapter from "../../../components/explain/Chapter.astro";
+import { getCollectionChapters } from "../../../lib/explain/chapters.js";
+
+const COLLECTIONS = ["constraint-protocol", "nova-dax", "skippy-dax"];
+const META: Record<string, { title: string; description: string }> = {
+  "constraint-protocol": {
+    title: "The Constraint Protocol",
+    description:
+      "The one thing everything the Foundation builds runs under: every interaction recorded, accountable and signed.",
+  },
+  "nova-dax": {
+    title: "Nova DAX",
+    description:
+      "A person's whole record, from the time she can communicate for the rest of her life — one of the two big things to come.",
+  },
+  "skippy-dax": {
+    title: "Skippy DAX",
+    description:
+      "A cognitive companion for every citizen, provided by the Foundation — one of the two big things to come.",
+  },
+};
+
+export function getStaticPaths() {
+  return COLLECTIONS.map((collection) => ({ params: { collection } }));
+}
+
+const { collection } = Astro.params;
+const chapters = await getCollectionChapters(collection as string);
+const m = META[collection as string];
+---
+<Explain title={m.title} description={m.description}>
+  {chapters.map((c) => <Chapter chapter={c} total={chapters.length} />)}
+</Explain>

@@ -2,7 +2,7 @@
 import type { APIRoute } from "astro";
 import { getCollectionChapters, toJson } from "../../../lib/explain/chapters.js";
 
-const COLLECTIONS = ["foundation", "metadax"];
+const COLLECTIONS = ["foundation", "metadax", "constraint-protocol", "nova-dax", "skippy-dax"];
 
 export function getStaticPaths() {
   return COLLECTIONS.map((collection) => ({ params: { collection } }));
