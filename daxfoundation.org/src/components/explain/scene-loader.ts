@@ -171,6 +171,12 @@ function schedule(): void {
       if (!section) continue;
       const rect = section.getBoundingClientRect();
       const span = rect.height - vh;
+      // The graph's t is camera framing (wide -> close), not a story: its resting
+      // picture is the whole graph at t = 0, so it keeps the pinned-only reading.
+      if (frame.dataset.scene === "graph") {
+        handle.setProgress(span > 0 ? clamp01(-rect.top / span) : 0);
+        continue;
+      }
       const scrollT = span > 0
         ? clamp01(-rect.top / span)
         : clamp01((vh * 0.9 - rect.top) / (vh * 0.8));
