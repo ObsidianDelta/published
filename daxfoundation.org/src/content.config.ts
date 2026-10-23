@@ -31,7 +31,14 @@ const editionLabels = z.object({
   contexts: z.array(z.string()),
 }).partial().passthrough();
 
-// One edition = one lens's view of the chapter. The sampler's shape, verbatim.
+// A paper: one row of the researcher lens's sixth step ("The papers").
+const paper = z.object({ href: z.string(), text: z.string(), src: z.string() });
+
+// One edition = one lens's view of the chapter. The sampler's shape, verbatim,
+// plus EXP-11 additions: `papers` (the researcher's sixth step), `signed`/`by`
+// (drafts are signed:false, by:"skippy"; the four sampler editions stay
+// signed:true, by:"person"). `how`/`proof_intro`/`under` may be the empty string
+// (the kid lens omits them; the step hides) -- the real gate is checkEdition().
 const edition = z.object({
   voice: z.string(),
   answer: z.string(),
@@ -44,9 +51,12 @@ const edition = z.object({
     how: z.string(),
     proof: z.string(),
     under: z.string(),
+    papers: z.string().optional(),
   }),
   labels: editionLabels,
+  papers: z.array(paper).optional(),
   signed: z.boolean().default(false),
+  by: z.enum(['person', 'skippy']).default('skippy'),
 });
 
 const explain = defineCollection({
@@ -58,6 +68,9 @@ const explain = defineCollection({
     tenseNote: z.string().optional(),
     claim: z.enum(['problem', 'proof', 'record', 'guide', 'roles', 'five', 'foundation', 'exists']),
     question: z.object({ en: z.string(), fr: z.string().optional() }),
+    // The facts every edition of this chapter must hold (the brain's decisions;
+    // never reworded). The validator runs a soft key-noun check against them.
+    canon: z.array(z.string()).optional(),
     // `editions` is the live content model (one per lens id). `line`/`paragraph`
     // are the deprecated alias: a chapter with no `editions` synthesises
     // editions.curious from them (see chapters.ts). One of the two MUST be present.
