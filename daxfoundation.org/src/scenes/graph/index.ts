@@ -507,7 +507,9 @@ export async function mount(
       const v = viewById.get(focusId)!;
       v.mesh.getWorldPosition(_wp);
       // sit in front of the node, in world space, close enough to read it.
-      return out.copy(_wp).add(new THREE.Vector3(0, 0.35 + v.base, 2.5 + v.base * 3));
+      // 2026-10-23: 2.5 sat so close that a big neighbour (the DAX core) filled the
+      // frame; 3.6 keeps the node centred with its neighbours readable around it.
+      return out.copy(_wp).add(new THREE.Vector3(0, 0.3 + v.base, 3.6 + v.base * 3));
     }
     return camHomePos(out);
   }

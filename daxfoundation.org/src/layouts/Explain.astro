@@ -289,4 +289,20 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
   .chip:hover { color: var(--fg); }
   .chip[aria-pressed="true"] { border-color: var(--record); color: var(--fg); }
   .chip:focus-visible { outline: 2px solid var(--record); outline-offset: 3px; }
+
+  /* 2026-10-23: on a phone the nine chips wrapped to four rows and filled the first
+     screen. Below 700px they are one swipeable row; the page itself never scrolls
+     sideways (the row scrolls inside its own box), and the right edge fades to say
+     there is more. */
+  @media (max-width: 700px) {
+    .chips {
+      flex-wrap: nowrap; overflow-x: auto; overscroll-behavior-x: contain; min-width: 0; max-width: 100%;
+      scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; padding-bottom: 2px;
+      -webkit-mask-image: linear-gradient(to right, #000 85%, transparent);
+      mask-image: linear-gradient(to right, #000 85%, transparent);
+    }
+    .chips::-webkit-scrollbar { display: none; }
+    .chip { flex: 0 0 auto; white-space: nowrap; scroll-snap-align: start; min-height: 36px; }
+  }
 </style>

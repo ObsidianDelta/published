@@ -75,7 +75,13 @@ export function createJobLeftScene(
   }));
   left.appendChild(svg("circle", { cx: lcx, cy: TOP + PH / 2, r: 24, fill: tokens.learnerSoft }));
   left.appendChild(svg("circle", { cx: lcx, cy: TOP + PH / 2, r: 14, fill: tokens.learner }));
-  left.appendChild(label(lcx, BOT + 20, str(L.left, "Into one person"), tokens.learner, 13, 500));
+  // 2026-10-23: the fourth label is a phrase, not a word ("fit-to-person layer
+  // (unsolved)", "Into her, one concept at a time"); centred under a 60px pillar it
+  // ran over "Spread". It now sits above the pillar row, right-aligned to the
+  // dashed pillar, where nothing else is drawn.
+  const leftLbl = label(X[3] + PW, TOP - 16, str(L.left, "Into one person"), tokens.learner, 13, 500);
+  leftLbl.setAttribute("text-anchor", "end");
+  left.appendChild(leftLbl);
   root.appendChild(left);
 
   // Captions.
