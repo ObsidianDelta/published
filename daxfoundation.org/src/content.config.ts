@@ -69,13 +69,19 @@ const explain = defineCollection({
     order: z.number(),
     tense: z.enum(['solved', 'live', 'researched', 'ahead']),
     tenseNote: z.string().optional(),
-    claim: z.enum(['problem', 'proof', 'record', 'guide', 'roles', 'five', 'foundation', 'exists']),
+    // 2026-10-23: 'horizon' added for the closing chapter of each run (EXP-13).
+    claim: z.enum(['problem', 'proof', 'record', 'guide', 'roles', 'five', 'foundation', 'exists', 'horizon']),
     question: z.object({ en: z.string(), fr: z.string().optional() }),
     // The facts every edition of this chapter must hold (the brain's decisions;
     // never reworded). The validator runs a soft key-noun check against them.
     canon: z.array(z.string()).optional(),
     // EXP-13: the chapter's horizon canon — the lines every horizon draws from.
-    horizon_canon: z.array(z.string()).optional(),
+    // 2026-10-23: a single string (one line, as the spec gives it) is accepted and
+    // normalised to a one-item list, so consumers always see string[].
+    horizon_canon: z
+      .union([z.string(), z.array(z.string())])
+      .transform((v) => (typeof v === 'string' ? [v] : v))
+      .optional(),
     // `editions` is the live content model (one per lens id). `line`/`paragraph`
     // are the deprecated alias: a chapter with no `editions` synthesises
     // editions.curious from them (see chapters.ts). One of the two MUST be present.
