@@ -5,10 +5,336 @@ tense: live
 claim: record
 question:
   en: "What is in the record?"
-line:
-  en: "What you reached. What you tried and where it went nowhere, kept on purpose. What others reused. Yours, and public only if you choose."
-paragraph:
-  en: "A learning record keeps four kinds of thing. What you reached, with the path that got you there. What you tried and where it went nowhere, kept on purpose, because a dead end is knowledge too and a system that hid them would be leading you. Who guided you, and on what. What of yours others reused, and what of theirs you did. The record lives in your own repository. You decide whether it is public. Where it goes next is Nova DAX, a person's lifelong record, of which this is the first slice."
+canon:
+  - "The record holds what was reached, what was tried and kept, who guided, what was reused; failures, dead ends and unexplored ground are kept as carefully as successes."
+  - "A way, never the way: the system must not lead the learner."
+  - "The record is the learner's: portable, private by default, published for good if she chooses, readable by her guides and her companion."
+  - "Every entry is signed under the Constraint Protocol; the learning record is the seed of Nova DAX, a person's record for life."
+  - "Reuse works by meaning: another learner's asset is found by what it means, not by browsing."
+editions:
+  kid:
+    voice: "For someone about ten"
+    signed: false
+    by: skippy
+    answer: "Your record keeps what you reached, what you tried that did not work, who helped you, and what other learners used from your work. It is yours. Nobody else can see it unless you say so."
+    more: "Think of a notebook that never loses anything. If you tried something and it did not go anywhere, the notebook keeps it. That is not a mistake to hide. A dead end is something you learned. The notebook keeps who helped you and what you borrowed from another learner's notes. It also keeps what you did reach, with the path you took to get there. One day all your notebooks together become something called Nova DAX, your record for your whole life."
+    how: ""
+    proof_intro: ""
+    under: ""
+    buttons:
+      more: "Tell me more"
+      how: "How does it work?"
+      proof: "Show me"
+      under: "What is underneath?"
+    labels:
+      learner: "you"
+      guide: "your teacher"
+      classroom: "One teacher, lots of children"
+      invert: "Helpers for you, sent by your teacher"
+      both: "Your teacher has helpers too"
+      change: "The lead swings"
+      decide: "Your teacher notices and decides"
+      record: "your notebook"
+      packages: "made for you"
+      built: "built and tested"
+      boundary: "every helper leaves a record"
+      tapChild: "Tap a child. She is the learner."
+      dragGuide: "Drag the teacher. She stays the guide."
+      title: "Your learning notebook"
+      rows: ["Reached - you got fractions", "Tried - decimals first. Did not work, kept.", "Helped by - your teacher on number lines", "Another learner used your number-line page", "Reached - Newton's law, with a sled"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Yours. Only you decide who sees it."
+      seed: "the start of Nova DAX, your record for life"
+      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      contexts: ["learning fractions", "a hard science question"]
+  curious:
+    voice: "Plain words, no background needed"
+    signed: false
+    by: skippy
+    answer: "The record keeps four things: what you reached and how you got there, what you tried that went nowhere (kept on purpose, because dead ends are knowledge too), who guided you and on what, and what others reused from your work and what of theirs you used. It is yours, private by default. You decide if it becomes public. Every entry is signed. It is the seed of Nova DAX, a person's record for life."
+    more: "A system that hid your dead ends would be steering you without telling you. So the record keeps them. What you tried and where it went nowhere sits alongside what you reached. Who guided you — which person was a step ahead on that thing, at that moment — is there too. Reuse works by meaning: if another learner made something that means what you need, the system can find it, not because you browsed for it but because the meaning matches. Your record lives in your own place, not on a platform's server. A guide and a companion can read what you let them read. Published for good only if you choose."
+    how: "Today the record is the spine of every package: reached, tried, guided, reused. What is being built next is the always-on layer that keeps the record between sessions, so a guide picks up exactly where you left off. Every entry is signed under the Constraint Protocol. The record you build now is the first slice of Nova DAX."
+    proof_intro: "The record schema and the append-only files in the learner's own repository are public at the Foundation. Sample packages show the format in practice. The Constraint Protocol defines how every entry is signed."
+    under: "Reuse by meaning is the open experiment: finding another learner's asset by what it represents, not by browsing a catalogue. The Constraint Protocol is the signing layer: every entry is traceable to the guide and the moment. The seed of Nova DAX is a design commitment: nothing in this record will be locked into a platform you cannot leave."
+    buttons:
+      more: "Tell me more"
+      how: "How does it work today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      classroom: "One guide, many learners"
+      invert: "Many helpers, one learner"
+      both: "The guide gets helpers too"
+      change: "The record grows with the learner"
+      decide: "The learner decides who sees it"
+      record: "reached, tried, guided, reused"
+      packages: "made for one learner"
+      built: "built in 2024"
+      boundary: "every entry signed"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["Reached - fractions as ratios", "Tried - decimals first. Dead end, kept.", "Guided by - a parent, a step ahead on number lines", "Reused by others - the number-line page", "Reached - Newton's second law, with a sled"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Yours. Public only if you choose."
+      seed: "the seed of Nova DAX, a record for life"
+      roles: ["a teacher", "a parent", "a guide", "the learner herself"]
+      contexts: ["a kitchen table", "a classroom", "working alone"]
+  parent:
+    voice: "For someone with a child at the table"
+    signed: false
+    by: skippy
+    answer: "Your child's record keeps what she reached, what she tried and where it went nowhere, who guided her and on what, and what others have reused from her work. Dead ends are kept on purpose: a system that hid them would be steering her without her knowing. The record is hers, private by default. She decides whether it becomes public. It is the seed of Nova DAX, a person's record for life."
+    more: "When she tries something and it does not work, the record keeps it. Not to show her up, but because a dead end is something she learned. It also keeps what she reached, with the path that got her there, and who guided her on each thing — which person was a step ahead at that moment. If another learner made something that she can use, the system finds it by meaning, not by browsing. Her record lives in her own place; you and her guide can read what she lets you read. It does not move to a platform that owns it. Every entry is signed under the Constraint Protocol."
+    how: "Today the record is the spine of every package she works through: what she reached, what she tried, who guided her, what was reused. What is being built next is the layer that keeps the record between sessions, so you or a guide picks up where she left off without asking her to repeat herself. The record she builds now is the first slice of Nova DAX."
+    proof_intro: "The record format — append-only files in the learner's own repository — is public. Sample packages show what it looks like in practice. The Constraint Protocol is the signing layer for every entry."
+    under: "Reuse by meaning is the open experiment: when another learner's work means what she needs, the system can find it without a catalogue. The signing under the Constraint Protocol means every entry is traceable. The commitment to Nova DAX means her record is hers for life, not tied to a version of the platform."
+    buttons:
+      more: "Tell me more"
+      how: "What can we get today?"
+      proof: "Show me the proof"
+      under: "Can I trust it with my child?"
+    labels:
+      learner: "your child"
+      guide: "you"
+      classroom: "You and your child, at the table"
+      invert: "Helpers for her, sent by you"
+      both: "You get helpers too"
+      change: "The record grows as she grows"
+      decide: "She decides who sees it"
+      record: "what she tried and what she reached"
+      packages: "made for her"
+      built: "built in 2024"
+      boundary: "every entry signed"
+      tapChild: "Tap your child. She is the learner."
+      dragGuide: "Drag yourself. The record stays on her."
+      title: "Her learning record"
+      rows: ["Reached - fractions as ratios", "Tried - decimals first. Dead end, kept.", "Guided by - you, on number lines", "Another learner reused her number-line page", "Reached - Newton's second law, with a sled"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Hers. Public only if she chooses."
+      seed: "the seed of Nova DAX, her record for life"
+      roles: ["you", "her teacher", "a tutor", "a classmate"]
+      contexts: ["the kitchen table", "a science project", "learning to read"]
+  guide:
+    voice: "For someone who teaches, tutors or trains"
+    signed: false
+    by: skippy
+    answer: "The record holds what the learner reached and how, what she tried and where it went nowhere, who guided her and on what, and what was reused and by whom. Dead ends are kept as carefully as successes: a system that hid them would be leading the learner, and a way must never become the way. The record is the learner's, not yours. You can read what she lets you read. Every entry is signed under the Constraint Protocol."
+    more: "The record is what makes your authority legible. You can see exactly what she tried, where she got stuck, what another guide already covered. You do not have to ask her to repeat herself or reconstruct what happened last session. Reuse works by meaning: if a learner in another guide's care made something that means what this learner needs, the system surfaces it, not by browsing but by meaning. What you contribute as guide — every session, every juncture you called, every package you sent — is in the record too, under your name. The record is the seed of Nova DAX, a person's record for life, and what you add to it matters."
+    how: "Today the record is part of every package: reached, tried, guided, reused, with each entry signed. What is being built is the always-on layer that keeps the record live between sessions, so you pick up exactly where you left off. Your loop — observe this learner at this juncture, decide — is the one thing that is never automated. The record is what makes that loop sharp."
+    proof_intro: "The record format — append-only files in the learner's own repository — is public. The Constraint Protocol defines the signing layer for every entry. Sample packages show what the record looks like in practice."
+    under: "Reuse by meaning is the open experiment: finding another learner's asset by what it represents rather than browsing a catalogue. The Constraint Protocol is the accountability layer: every entry is traceable to the guide and the moment, so if something went wrong you can see it. The commitment to Nova DAX means the record is portable and stays the learner's."
+    buttons:
+      more: "Tell me more"
+      how: "What do I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "you"
+      classroom: "You and the learner"
+      invert: "Helpers for the learner, sent by you"
+      both: "You get helpers too"
+      change: "The record grows with the learner"
+      decide: "She decides who sees it; you read what she lets you"
+      record: "reached, tried, guided, reused"
+      packages: "made for one learner"
+      built: "built in 2024"
+      boundary: "every entry signed (CP)"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag yourself. The record stays on her."
+      title: "Learning record"
+      rows: ["Reached - fractions as ratios", "Tried - decimals first. Dead end, kept.", "Guided by - you, a step ahead on number lines", "Reused by another learner - the number-line page", "Reached - Newton's second law, with a sled"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Hers. You read what she allows."
+      seed: "the seed of Nova DAX, her record for life"
+      roles: ["you as guide", "a specialist a step ahead", "the learner's peers", "the learner's record"]
+      contexts: ["a classroom session", "a one-to-one tutorial", "a training conversation"]
+  manager:
+    voice: "For someone responsible for other people's learning at work"
+    signed: false
+    by: skippy
+    answer: "The record holds what each learner reached, what they tried and where it went nowhere, who guided them and on what, and what was reused across the team. Dead ends are kept on purpose: a system that hid them would be steering the learner, and a way must never become the way. The record is the learner's, portable and private by default. Every entry is signed under the Constraint Protocol. That is what makes it enterprise-grade."
+    more: "Every helper action is in the record, under the guide's authority, with the entry signed. If something went wrong in a learning session, the record shows how and who decided it. A new hire's record follows them from day one: what they reached, where they got stuck, who guided them on what. Reuse works by meaning: when a colleague's worked example means what the new person needs, it surfaces without catalogue-browsing. The record is not yours to own; it belongs to the learner and is readable by the guides she authorizes. The record is the seed of Nova DAX, so what the learner builds here is portable beyond this organization."
+    how: "Today the record is the spine of every package: reached, tried, guided, reused, each entry signed. What is being built is the always-on layer that keeps the record live between sessions and between guides. The loop that matters — observe this learner at this juncture, decide — stays with the guide. The record is what makes that loop accountable at scale."
+    proof_intro: "The record format — append-only files in the learner's own repository — is public. The Constraint Protocol defines the signing layer. Sample packages show the format. The 2024 prototype demonstrated the full loop end to end."
+    under: "Reuse by meaning is the open experiment: assets found by what they represent, not by browsing. The accountability record under the Constraint Protocol means every entry is traceable to the guide and the moment. That traceability is what makes the system usable in an organization that needs to know what happened and who decided it."
+    buttons:
+      more: "Tell me more"
+      how: "What can I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the person learning"
+      guide: "the guide"
+      classroom: "A team with many learning moments"
+      invert: "Helpers for the learner, sent by the guide"
+      both: "The guide gets helpers too"
+      change: "The record follows the learner"
+      decide: "The learner decides who sees it"
+      record: "reached, tried, guided, reused"
+      packages: "made for one person"
+      built: "built in 2024"
+      boundary: "every entry signed (accountability)"
+      tapChild: "Tap a person. They are the learner."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["Reached - compliance module, first pass", "Tried - a different path. Dead end, kept.", "Guided by - a senior colleague, a step ahead", "Reused by a new hire - the onboarding notes", "Reached - project management, sprint planning"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Theirs. Readable by the guides they authorize."
+      seed: "the seed of Nova DAX, portable beyond this organization"
+      roles: ["the line manager", "a senior colleague", "a domain expert", "a peer"]
+      contexts: ["a new hire's first week", "a role change", "a compliance requirement"]
+  entrepreneur:
+    voice: "For someone who wants to make a living with it"
+    signed: false
+    by: skippy
+    answer: "The record holds what was reached, what was tried and where it went nowhere, who guided, and what was reused. Dead ends are kept on purpose. The record is the learner's, portable and private by default, signed under the Constraint Protocol. That is the substrate your product lives on. A way, never the way: the constraint applies to what you build too."
+    more: "Every learner's record is append-only and signed. Reuse works by meaning: when a learner's asset matches what another learner needs, the system surfaces it without browsing. That is the mechanism your product plugs into. The record is the seed of Nova DAX, which means the learner's data is portable — she leaves the platform, she takes the record. You build products that make the record more useful, not products that capture it. The money is in what you build on the record infrastructure: packages, tools, pipelines that guides and learners use. Educators sell where educators sell; the CMS and the record layer are what you build on top of."
+    how: "Today the record is part of every package: reached, tried, guided, reused, with entries signed. What is being built is the always-on layer and the reuse-by-meaning pipeline. The record format and the schema are public. The experiments for the next stage are open. The Foundation's infrastructure is what you build products on; what you build is yours."
+    proof_intro: "The record format is public. Sample packages show the schema in practice. The Constraint Protocol is the signing layer. The 2024 prototype demonstrated the full loop, including record entries, end to end."
+    under: "Reuse by meaning is the open experiment: finding an asset by meaning, not browsing. The Constraint Protocol means every entry in a learner's record is signed and traceable. The commitment to Nova DAX means no platform captures the learner's record. Your product must respect that. A way, never the way."
+    buttons:
+      more: "Tell me more"
+      how: "What is live today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      classroom: "Every guide-learner pair is a market"
+      invert: "Helpers for the learner, sent by the guide"
+      both: "The guide gets helpers too"
+      change: "The record is portable; the learner leaves with it"
+      decide: "The learner decides who sees it"
+      record: "the record infrastructure"
+      packages: "packages on the record layer"
+      built: "built in 2024"
+      boundary: "signed, portable, never captured"
+      tapChild: "Tap a learner. She is the segment."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["Reached - your package, first module", "Tried - an alternative path. Dead end, kept.", "Guided by - the guide you enabled", "Reused by another learner - a shared asset", "Reached - the next module, on schedule"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Theirs. Portable. Never captured by a platform."
+      seed: "the seed of Nova DAX — design it in from the start"
+      roles: ["a teacher", "a parent", "a manager", "a guide you built for"]
+      contexts: ["a package for one learner", "a tool for a segment", "a CMS product"]
+  builder:
+    voice: "For someone who ships"
+    signed: false
+    by: skippy
+    answer: "The record schema has five entry kinds: reached (with path), tried (dead ends kept as carefully as successes), guided (who, on what), reused (by meaning, not browsing), reached again. Every entry is signed under the Constraint Protocol. The record is append-only, lives in the learner's own repository, and is the seed of Nova DAX. The system must not lead the learner: dead ends stay in."
+    more: "Reuse by meaning is the open architectural question: an asset is found by what it represents, not by its position in a catalogue. The learner's record is not agent state; it is the persistent body of the system, portable and private by default. The guide and the companion read only what the learner authorizes. Every entry is signed: guide authority, helper action, juncture. The constraint — a way, never the way — is enforced at the schema level: the record keeps dead ends and unexplored ground alongside successes, so the system cannot silently steer the learner by omission. Nova DAX is the long arc: this record is the first slice of a person's lifelong record."
+    how: "Shipped today: record entries per package (reached, tried, guided, reused), each signed. The append-only file lives in the learner's repository. The open experiments: reuse-by-meaning pipeline, always-on record layer, record agent (signs entries, resolves meaning, surfaces reuse candidates). The schema for rowKinds is fixed: reached, tried, guided, reused, reached. The scene module is record; states are rows and seed."
+    proof_intro: "The record format — append-only files in the learner's own repository — is public at the Foundation. Sample packages show the schema. The Constraint Protocol defines the signing layer and the severity table at Appendix A."
+    under: "Reuse by meaning requires a semantic index over the record corpus: entries indexed by the concept they represent, not their string content. The Constraint Protocol is the signing substrate: every entry carries guide authority, helper action, and severity. The append-only constraint is architectural: no entry is ever deleted or revised, only superseded by a new entry. Nova DAX is the portability commitment: the record schema must be stable enough to outlast any one version of the platform."
+    buttons:
+      more: "Tell me more"
+      how: "What is shipped today?"
+      proof: "Show me the evidence"
+      under: "What is the substrate?"
+    labels:
+      learner: "learner"
+      guide: "guide"
+      classroom: "the fan-in before the inversion"
+      invert: "fan-out: helpers on one learner"
+      both: "the guide gets a fan-out too"
+      change: "record grows; no entry deleted"
+      decide: "learner decides visibility"
+      record: "record: reached · tried · guided · reused"
+      packages: "schema-validated bundle"
+      built: "2024 · built once"
+      boundary: "append-only, signed (CP)"
+      tapChild: "Tap a node. It becomes the learner."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["reached · fractions as ratios · path signed", "tried · decimals first · dead end · kept", "guided · a parent · number lines · signed", "reused · by 3 learners · number-line page · meaning match", "reached · Newton's second law · path signed"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "learner-owned · portable · private by default"
+      seed: "seed of Nova DAX · first slice of lifelong record"
+      roles: ["guide (authority node)", "record agent", "reuse agent", "learner (current)"]
+      contexts: ["a package session", "the always-on layer experiment"]
+  funder:
+    voice: "For someone deciding where money goes"
+    signed: false
+    by: skippy
+    answer: "The record holds what was reached, what was tried and kept, who guided, and what was reused. Dead ends are kept as carefully as successes. The record is the learner's, portable and private by default, signed under the Constraint Protocol. Every entry is signed. The record is the seed of Nova DAX, a person's record for life. That is the long-term asset the Foundation is building."
+    more: "The record is the reason the system can be trusted at scale. Every helper action is in the record, under the guide's authority, with entries signed. What the money does: tokens to run the helpers, guides' time to test the loop, and the record infrastructure — the append-only layer, the signing, the portability commitment. Reuse by meaning is the open experiment: when one learner's work matches what another learner needs, the system surfaces it, so knowledge built by one learner compounds across the next. The record is the seed of Nova DAX: what the Foundation is building is not a platform that captures learners but a record that the learner owns for life."
+    how: "What is proven: the 2024 prototype built the package pipeline end to end, with record entries for each session. What is an experiment: the always-on layer, the reuse-by-meaning pipeline, the record agent. What the money does in this phase: tokens for helpers, guides' time, the record infrastructure. What it unlocks: a learner whose record follows her across sessions, guides, and organizations. What is free forever: the record schema, the Constraint Protocol, the platform."
+    proof_intro: "The record format is public. Sample packages show the schema in practice. The Constraint Protocol defines the signing layer. The 2024 prototype demonstrated the full loop, including record entries. The Foundation supports open infrastructure; support here means contributing to it."
+    under: "The Constraint Protocol is the signing and accountability layer: every entry traceable to the guide and the moment. The append-only constraint means the record is never revised, only extended. The commitment to Nova DAX is a design constraint on the platform: the record must be portable enough to outlast any one version of the software. Reuse by meaning is the open research question."
+    buttons:
+      more: "Tell me more"
+      how: "What does the money do?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "the learner"
+      guide: "the guide"
+      classroom: "every guide-learner pair at scale"
+      invert: "helpers for the learner, sent by the guide"
+      both: "the guide gets helpers too"
+      change: "the record follows the learner across organizations"
+      decide: "the learner decides who sees it"
+      record: "the record infrastructure"
+      packages: "the package pipeline"
+      built: "built in 2024"
+      boundary: "Constraint Protocol"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["Reached - the first module, path kept", "Tried - an alternative path. Dead end, kept.", "Guided by - a guide, a step ahead", "Reused by another learner - a shared asset", "Reached - the next module, on schedule"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "Theirs. Portable. The Foundation does not own it."
+      seed: "the seed of Nova DAX — the long-term asset"
+      roles: ["the guide", "a domain helper", "the record", "the learner", "the Foundation"]
+      contexts: ["the package pipeline", "the record layer", "the always-on layer"]
+  researcher:
+    voice: "For someone who wants the substrate"
+    signed: false
+    by: skippy
+    answer: "The record schema has five entry kinds: reached (with path), tried (dead ends and unexplored ground, kept as carefully as successes), guided (authority, juncture), reused (by meaning, not by position), reached again. The constraint — a way, never the way — is enforced by keeping negative evidence. The record is append-only, learner-owned, private by default. Every entry is signed under the Constraint Protocol. The record is the seed of Nova DAX."
+    more: "Reuse by meaning is the open research problem: an asset in one learner's record is surfaced for another learner by semantic similarity to the concept the second learner needs, not by catalogue position or string matching. The learner's record is the persistent body of the system, not agent state: it survives session boundaries, guide changes, and platform versions. The guide and the companion read the record under the learner's authorization. The append-only constraint is architectural: dead ends and unexplored ground are preserved, so the record cannot be used to lead the learner by selective omission. The signing under the Constraint Protocol gives each entry a guide authority tag, a helper action log, and a severity rating per Appendix A. Nova DAX is the portability commitment: schema stability is a research and engineering constraint, not a product decision."
+    how: "Current implementation: record entries per package (reached, tried, guided, reused), each signed. The append-only file lives in the learner's own repository. Open experiments: reuse-by-meaning pipeline (semantic index over entry corpus), always-on record layer (record agent across sessions), meaning-resolution for the reuse kind. The rowKinds array is fixed: reached, tried, guided, reused, reached. Scene module: record; states: rows, seed."
+    proof_intro: "The record format — append-only files in the learner's own repository — is public at the Foundation. Sample packages show the schema in practice. The Constraint Protocol defines the signing layer and the severity table at Appendix A. The 2024 prototype produced a full individualized curriculum with record entries, quizzed through Bloom's levels."
+    under: "The reuse-by-meaning index requires a representation of each record entry at the concept level, not the string level, so that entries authored by different learners under different guides can be matched by what they represent. The Constraint Protocol is the signing substrate: every entry carries guide authority, helper action, and severity. The append-only constraint is a safeguard against selective omission: the system cannot steer the learner by hiding what failed. Nova DAX is the schema stability commitment: a person's record for life implies the entry format must be forward-compatible across platform versions."
+    buttons:
+      more: "Tell me more"
+      how: "What is the current implementation?"
+      proof: "Show me the evidence"
+      under: "What is the substrate?"
+      papers: "Read the papers"
+    labels:
+      learner: "learner"
+      guide: "guide"
+      classroom: "fan-in: many learners, one guide"
+      invert: "fan-out: helpers on one learner"
+      both: "the guide gets a fan-out too"
+      change: "append-only; no entry deleted"
+      decide: "learner controls visibility"
+      record: "record: reached · tried · guided · reused"
+      packages: "schema-validated bundle"
+      built: "2024 · built once"
+      boundary: "append-only · signed (CP) · Appendix A"
+      tapChild: "Tap a node. It becomes the learner."
+      dragGuide: "Drag the guide. The record stays on the learner."
+      title: "Learning record"
+      rows: ["reached · fractions as ratios · path signed", "tried · decimals first · dead end · kept · no deletion", "guided · a parent · number lines · authority tagged", "reused · 3 learners · number-line page · meaning match", "reached · Newton's second law · path signed"]
+      rowKinds: ["reached", "tried", "guided", "reused", "reached"]
+      yours: "learner-owned · private by default · portable"
+      seed: "seed of Nova DAX · schema-stable · lifelong"
+      roles: ["guide (authority holder)", "learner (current role)", "record agent", "reuse agent"]
+      contexts: ["a package pipeline session", "the always-on layer experiment"]
+    papers:
+      - href: "https://github.com/daxfoundation/metadax"
+        text: "How records are kept: append-only files in the learner's own repository"
+        src: "github.com/daxfoundation/metadax"
+      - href: "https://daxfoundation.org/metadax/samples/"
+        text: "Sample packages, each with the prompts that made it"
+        src: "daxfoundation.org"
 evidence:
   - kind: link
     src: https://github.com/daxfoundation/metadax
