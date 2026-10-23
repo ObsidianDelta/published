@@ -43,8 +43,21 @@ editions:
     labels:
       learner: "you"
       guide: "your teacher"
+      classroom: "One teacher, every child"
+      invert: "Helpers for every child"
+      both: "Your teacher gets helpers too"
+      change: "Every child, the best teacher, for life"
+      decide: "Your teacher picks what you need"
+      record: "what you reached"
+      packages: "made just for you"
+      built: "being built now"
+      boundary: "every helper leaves a record"
+      tapChild: "Tap yourself. You are the learner."
+      dragGuide: "Drag your teacher. She stays the guide."
       title: "What this makes possible"
       caption: "Every child, the best teacher, for life"
+      roles: ["your teacher", "a grown-up who knows this", "a helper", "you"]
+      contexts: ["learning anything", "your whole life"]
   curious:
     voice: "Plain words, no background needed"
     signed: false
@@ -53,7 +66,7 @@ editions:
     more: "Five chapters back, the question was: what is the job left? Getting knowledge into one person at a time, in their context, for a whole life. This chapter is what happens when that job is done. The best guides certify a module once; the system makes it fit the next learner; the learner keeps a record for life. Guides teach what only a guide can teach, at a scale no school could afford before. The record is yours: portable, private by default, the seed of Nova DAX. The companion reads it with you. And what is shared compounds: every learner who starts after you starts further ahead, because you were here."
     how: "What exists today is the first step: a package made for one learner, on five minutes of connectivity, a guide in the loop, a record signed. The next steps are the always-on layer, the record carried across sessions, the companion. What makes this possible is the experiment being run in the open: everything usable published as it is made, the planned experiments as where we want to get to."
     proof_intro: "The 2024 prototype showed the full loop end to end: a guide answered questions, a package was made for one learner, quizzed and assessed. The samples and showcases are live at the Foundation. The definitions, the Constraint Protocol, the schema are public. These are experiments; the Foundation says so plainly."
-    under: "The canon for this chapter is the Foundation-wide canon: eight statements of what this makes possible, from the why to the constraint. A way, never the way. The fit to each person is a strength, not a feature. Dead ends are kept. The record is the learner's for life. Every public interaction makes the next person's start further ahead. That is the civilizational infrastructure this initiative is building."
+    under: "The canon for this chapter is the Foundation-wide canon: eight statements of what this makes possible, from the why to the constraint. A way, never the way. The fit to each person is a strength, not a feature. Dead ends are kept. The record is the learner's for life. Every public interaction makes the next person's start further ahead."
     horizon: "Anyone who can communicate can learn anything, for life, from the best guides there are, on any bandwidth — the civilizational learning infrastructure that compounds for everyone."
     buttons:
       more: "Tell me more"
@@ -63,8 +76,21 @@ editions:
     labels:
       learner: "the learner"
       guide: "the guide"
+      classroom: "Any guide, any learner, any bandwidth"
+      invert: "Many helpers, one learner"
+      both: "The guide gets helpers too"
+      change: "Anyone can learn anything, for life"
+      decide: "The guide notices and decides"
+      record: "the record for life"
+      packages: "made for one person"
+      built: "built in 2024"
+      boundary: "every helper action recorded"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag the guide. The helpers stay on her."
       title: "What this makes possible"
-      caption: "Anyone who can communicate, learning anything, for life"
+      caption: "Anyone who can communicate, learning anything"
+      roles: ["a teacher", "a parent", "a guide", "a learner"]
+      contexts: ["any context", "any bandwidth"]
   parent:
     voice: "For someone with a child at the table"
     signed: false
@@ -83,8 +109,21 @@ editions:
     labels:
       learner: "your child"
       guide: "you"
+      classroom: "You and your child, for life"
+      invert: "Helpers for her, sent by you"
+      both: "You get helpers too"
+      change: "Her record travels with her for life"
+      decide: "You notice what she needs today"
+      record: "what she reached"
+      packages: "made for her"
+      built: "built in 2024"
+      boundary: "every helper leaves a record"
+      tapChild: "Tap your child. She is the learner."
+      dragGuide: "Drag yourself. The helpers stay on her."
       title: "What this makes possible"
       caption: "Your child, the best teaching, for life"
+      roles: ["you", "her teacher", "a tutor", "a grandparent"]
+      contexts: ["the kitchen table", "her whole life"]
   guide:
     voice: "For someone who teaches, tutors or trains"
     signed: false
@@ -103,8 +142,21 @@ editions:
     labels:
       learner: "the learner"
       guide: "you"
+      classroom: "You and the learner, for life"
+      invert: "Helpers for the learner, sent by you"
+      both: "You get helpers too"
+      change: "Thirty helpers, for every learner"
+      decide: "You see this learner and decide"
+      record: "what she reached"
+      packages: "made for one learner"
+      built: "built in 2024"
+      boundary: "every helper action recorded"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag yourself. The helpers stay on her."
       title: "What this makes possible"
       caption: "Every learner, the best guide, for life"
+      roles: ["you as guide", "a specialist a step ahead", "a helper", "the learner"]
+      contexts: ["a session", "a whole learner's life"]
   manager:
     voice: "For someone responsible for other people's learning at work"
     signed: false
@@ -123,8 +175,21 @@ editions:
     labels:
       learner: "the person learning"
       guide: "the guide"
+      classroom: "A team, any scale, any bandwidth"
+      invert: "Helpers for the learner, sent by the guide"
+      both: "The guide gets helpers too"
+      change: "The record follows the learner for life"
+      decide: "The guide notices and decides"
+      record: "what they reached"
+      packages: "made for one person"
+      built: "built in 2024"
+      boundary: "every action recorded (accountability)"
+      tapChild: "Tap a person. They are the learner."
+      dragGuide: "Drag the guide. The helpers stay on them."
       title: "What this makes possible"
-      caption: "Every person, the best teaching, for their whole career"
+      caption: "Every person, the best teaching, for life"
+      roles: ["the line manager", "a senior colleague", "a domain expert", "a peer"]
+      contexts: ["a new hire", "a whole career"]
   entrepreneur:
     voice: "For someone who wants to make a living with it"
     signed: false
@@ -143,8 +208,21 @@ editions:
     labels:
       learner: "the learner"
       guide: "the guide"
+      classroom: "Every guide-learner pair is a market"
+      invert: "Helpers for the learner, sent by the guide"
+      both: "The guide gets helpers too"
+      change: "The market: every person, for life"
+      decide: "The guide notices and decides"
+      record: "the learner's record"
+      packages: "packages for one learner"
+      built: "built in 2024"
+      boundary: "accountability record"
+      tapChild: "Tap a learner. She is the segment."
+      dragGuide: "Drag the guide. The helpers stay on her."
       title: "What this makes possible"
-      caption: "Every learner, every domain, for life — that is the market"
+      caption: "Every learner — that is the market"
+      roles: ["a teacher", "a parent", "a manager", "a guide"]
+      contexts: ["any domain", "any bandwidth"]
   builder:
     voice: "For someone who ships"
     signed: false
@@ -163,8 +241,21 @@ editions:
     labels:
       learner: "learner"
       guide: "guide"
+      classroom: "the fan-in before the inversion"
+      invert: "fan-out: helpers on one learner"
+      both: "the guide gets a fan-out too"
+      change: "fit-to-person: the open layer"
+      decide: "guide observes and decides"
+      record: "record: append-only · signed"
+      packages: "schema-validated bundle"
+      built: "2024 · built once"
+      boundary: "accountability record (CP)"
+      tapChild: "Tap a node. It becomes the learner."
+      dragGuide: "Drag the guide. The fan-out stays on her."
       title: "What this makes possible"
-      caption: "fit-to-person · civilizational scale · open problems"
+      caption: "fit-to-person · open problems"
+      roles: ["guide (authority node)", "helper agent", "record agent", "learner (current)"]
+      contexts: ["a package session", "civilizational scale"]
   funder:
     voice: "For someone deciding where money goes"
     signed: false
@@ -183,8 +274,21 @@ editions:
     labels:
       learner: "the learner"
       guide: "the guide"
+      classroom: "every guide-learner pair at scale"
+      invert: "helpers for the learner, sent by the guide"
+      both: "the guide gets helpers too"
+      change: "the record compounds for everyone"
+      decide: "the guide notices and decides"
+      record: "the record infrastructure"
+      packages: "the package pipeline"
+      built: "built in 2024"
+      boundary: "Constraint Protocol"
+      tapChild: "Tap a learner. She is the one."
+      dragGuide: "Drag the guide. The helpers stay on her."
       title: "What this makes possible"
-      caption: "The civilizational infrastructure — free, open, compounding"
+      caption: "Free, open, compounding for everyone"
+      roles: ["the guide", "a domain helper", "the record", "the learner"]
+      contexts: ["the package pipeline", "civilizational scale"]
   researcher:
     voice: "For someone who wants the substrate"
     signed: false
@@ -204,8 +308,21 @@ editions:
     labels:
       learner: "learner"
       guide: "guide"
+      classroom: "fan-in: many learners, one guide"
+      invert: "fan-out: helpers on one learner"
+      both: "the guide gets a fan-out too"
+      change: "fit-to-person layer (open problem)"
+      decide: "guide observes and decides"
+      record: "record: reached · tried · guided · reused"
+      packages: "schema-validated bundle"
+      built: "2024 · built once"
+      boundary: "accountability record (CP)"
+      tapChild: "Tap a node. It becomes the learner."
+      dragGuide: "Drag the guide. The fan-out stays on her."
       title: "What this makes possible"
-      caption: "fit-to-person layer · civilizational scale · open problems"
+      caption: "fit-to-person · open problems"
+      roles: ["guide (authority holder)", "learner (current role)", "helper agent", "record agent"]
+      contexts: ["a package session", "civilizational scale"]
     papers:
       - href: "https://daxfoundation.org/definitions/"
         text: "The definitions this rests on"
@@ -231,7 +348,7 @@ scene:
     glyph: door
     labels:
       title: "What this makes possible"
-next: null
+next: ""
 deeper:
   - /definitions/
 version: 1
