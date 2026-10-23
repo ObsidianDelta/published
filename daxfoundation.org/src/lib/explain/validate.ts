@@ -70,6 +70,18 @@ export function validateEditions(
           console.warn(`[explain] edition ${where} holds no canon key noun`);
         }
       }
+      // Soft horizon check: warn on 'will', 'soon', or any year other than 2024.
+      const h = (ed as Record<string, unknown>)['horizon'];
+      if (typeof h === 'string' && h.trim().length > 0) {
+        const horizonHits: string[] = [];
+        if (/\bwill\b/i.test(h)) horizonHits.push('"will"');
+        if (/\bsoon\b/i.test(h)) horizonHits.push('"soon"');
+        const yearMatches = h.match(/\b\d{4}\b/g)?.filter((y) => y !== '2024') ?? [];
+        if (yearMatches.length > 0) horizonHits.push('year ' + [...new Set(yearMatches)].join(', '));
+        if (horizonHits.length > 0) {
+          console.warn(`[explain] horizon ${where} soft-check: ${horizonHits.join('; ')}`);
+        }
+      }
     }
   }
 }

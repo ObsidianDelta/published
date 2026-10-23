@@ -99,6 +99,13 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
     {isChairs && <Chairs doors={d.scene.params.doors} labels={d.scene.params.labels} />}
 
     <p class="answer" data-answer>{base.answer}</p>
+
+    {/* EXP-13: the horizon — always visible, not a ladder step. */}
+    <div class="horizon-block">
+      <p class="horizon-tag">Where this goes</p>
+      <p class="horizon-text" data-horizon>{base.horizon ?? ""}</p>
+    </div>
+
     <p class="depthline" data-depthline>Depth 1 of 5</p>
 
     {/* The ladder: more -> how -> proof -> under, nested, opening in place. Each
@@ -228,6 +235,9 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
     }
     const answer = section.querySelector<HTMLElement>("[data-answer]");
     if (answer) answer.textContent = ed.answer;
+
+    const horizonEl = section.querySelector<HTMLElement>("[data-horizon]");
+    if (horizonEl) horizonEl.textContent = ed.horizon || "";
 
     for (const k of STEP_KEYS) {
       const text = k === "proof" ? ed.proof_intro : ed[k];
@@ -442,6 +452,27 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
     max-width: 34em;
     margin: 0 0 var(--space-6);
   }
+  /* EXP-13 horizon block: hairline above, tag in muted, text at answer size. */
+  .horizon-block {
+    border-top: 1px solid var(--line);
+    margin: 0 0 var(--space-6);
+    padding-top: var(--space-4);
+  }
+  .horizon-tag {
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 var(--space-2);
+  }
+  .horizon-text {
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 34em;
+    color: var(--ink);
+    margin: 0;
+  }
+
   .depthline {
     font-family: var(--font-mono);
     font-size: var(--text-mono-size);

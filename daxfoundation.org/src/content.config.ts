@@ -39,6 +39,8 @@ const paper = z.object({ href: z.string(), text: z.string(), src: z.string() });
 // (drafts are signed:false, by:"skippy"; the four sampler editions stay
 // signed:true, by:"person"). `how`/`proof_intro`/`under` may be the empty string
 // (the kid lens omits them; the step hides) -- the real gate is checkEdition().
+// EXP-13: `horizon` — one to three sentences (max 360 chars) in this lens's
+// register: what this chapter's idea makes possible and why it matters.
 const edition = z.object({
   voice: z.string(),
   answer: z.string(),
@@ -46,6 +48,7 @@ const edition = z.object({
   how: z.string(),
   proof_intro: z.string(),
   under: z.string(),
+  horizon: z.string().optional(),
   buttons: z.object({
     more: z.string(),
     how: z.string(),
@@ -71,6 +74,8 @@ const explain = defineCollection({
     // The facts every edition of this chapter must hold (the brain's decisions;
     // never reworded). The validator runs a soft key-noun check against them.
     canon: z.array(z.string()).optional(),
+    // EXP-13: the chapter's horizon canon — the lines every horizon draws from.
+    horizon_canon: z.array(z.string()).optional(),
     // `editions` is the live content model (one per lens id). `line`/`paragraph`
     // are the deprecated alias: a chapter with no `editions` synthesises
     // editions.curious from them (see chapters.ts). One of the two MUST be present.

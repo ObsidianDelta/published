@@ -6,7 +6,7 @@
 // A forbidden string is always an error (reported with `forbidden: true`); every
 // other failure is a plain miss the caller may downgrade to a warning.
 
-export const CAPS = { answer: 480, more: 1200, how: 1200, proof_intro: 460, under: 800 };
+export const CAPS = { answer: 480, more: 1200, how: 1200, proof_intro: 460, under: 800, horizon: 360 };
 export const STEPS = ['more', 'how', 'proof', 'under'];
 export const LABEL_KEYS = [
   'learner', 'guide', 'classroom', 'invert', 'both', 'change', 'decide',
@@ -40,6 +40,9 @@ export function checkEdition(ed) {
     const b = ed.buttons[k];
     if (typeof b !== 'string' || !b.trim() || b.length > 48) return { ok: false, why: 'button ' + k };
   }
+  // horizon: required, non-empty, max 360 chars (EXP-13).
+  if (typeof ed.horizon !== 'string' || !ed.horizon.trim()) return { ok: false, why: 'missing horizon' };
+  if (ed.horizon.length > CAPS.horizon) return { ok: false, why: 'horizon too long' };
   if (!ed.labels || typeof ed.labels !== 'object') return { ok: false, why: 'missing labels' };
   const L = ed.labels;
   for (const k of LABEL_KEYS) {
