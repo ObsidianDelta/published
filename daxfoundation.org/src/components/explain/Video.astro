@@ -26,10 +26,18 @@ function youtubeId(u: string): string {
   return /^[\w-]{6,}$/.test(last) ? last : "";
 }
 const id = youtubeId(src);
+// 2026-10-23: a poster frame, served from this site (public/figures/explain/
+// video-<id>.jpg), so the stage shows the video's picture instead of a flat grey
+// box -- still no third-party request until the click.
+import { existsSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+const posterPath = id ? `/figures/explain/video-${id}.jpg` : "";
+const hasPoster = !!posterPath && existsSync(fileURLToPath(new URL(`../../../public${posterPath}`, import.meta.url)));
 ---
 <figure class="video">
   <div class="video-stage" data-video-id={id}>
     <button type="button" class="video-poster" aria-label={`Play video: ${caption}`} data-video-play>
+      {hasPoster && <img class="video-still" src={posterPath} alt="" loading="lazy" decoding="async" />}
       <span class="video-cue">Play</span>
       <span class="video-cap">{caption}</span>
     </button>
@@ -83,6 +91,8 @@ const id = youtubeId(src);
     overflow: hidden;
     background: var(--surface);
   }
+  .video-still { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+  .video-poster > .video-cue, .video-poster > .video-cap { position: relative; }
   .video-poster {
     position: absolute;
     inset: 0;
@@ -111,8 +121,11 @@ const id = youtubeId(src);
     min-height: var(--touch-min);
     display: inline-flex;
     align-items: center;
+    background: color-mix(in srgb, var(--ground, #0a0a0a) 78%, transparent);
+    color: var(--fg, #fff);
   }
   .video-cap {
+    text-shadow: 0 1px 3px var(--ground, #0a0a0a);
     max-width: var(--measure-text);
     padding-inline: var(--space-6);
     color: var(--ink-muted);
@@ -121,7 +134,10 @@ const id = youtubeId(src);
   }
   .video-poster:hover .video-cue,
   .video-poster:focus-visible .video-cue { color: var(--ink); border-color: var(--ink); }
-  .video-iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  /* 2026-10-23: :global -- the iframe is created by script after the click, so it never
+     carries this component's scoped-style attribute; scoped, this rule never matched and
+     the video played at the browser default 300x150 in the corner of the stage. */
+  .video-stage :global(.video-iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
   .video-caption {
     margin: var(--space-3) 0 0;
     color: var(--ink-muted);

@@ -55,6 +55,14 @@ const empty = (s: string | undefined) => !s || !s.trim();
 
 const nextChapter = (chapter as any).nextChapter as { question: string; url: string } | null;
 const chapNo = chapter.collection === "metadax" ? d.order : d.order;
+// 2026-10-23: the depth line counts the steps this edition actually has (the
+// ladder is nested, so the first empty step ends it); the client repaints it per lens.
+const ladderTotal = (() => {
+  const seq = [base.more, base.how, base.proof_intro, base.under];
+  let n = 1;
+  for (const t of seq) { if (empty(t)) return n; n++; }
+  return base.papers && base.papers.length ? n + 1 : n;
+})();
 ---
 <section
   class:list={["chapter", { "has-scene": isScene }]}
@@ -108,7 +116,7 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
       <p class="horizon-text" data-horizon>{base.horizon ?? ""}</p>
     </div>
 
-    <p class="depthline" data-depthline>Depth 1 of 5</p>
+    <p class="depthline" data-depthline data-depth="1">Depth 1 of {ladderTotal}</p>
 
     {/* The ladder: more -> how -> proof -> under, nested, opening in place. Each
         depth stays in the HTML for no-JS and SEO. Empty bodies (from the alias)
@@ -201,7 +209,6 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
 
   const LENS_KEY = "dax-explain-lens";
   const STEP_KEYS = ["more", "how", "proof", "under"] as const;
-  const DEPTH_OF: Record<string, number> = { more: 2, how: 3, proof: 4, under: 5 };
 
   function readLens(): string {
     try {
@@ -280,6 +287,32 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
 
     const frame = frameOf(section);
     if (frame && ed.labels) setFrameLabels(frame, ed.labels);
+    paintDepth(section);
+  }
+
+  // 2026-10-23: the line said "Depth n of 5" for every reader, but the kid edition
+  // has two steps (answer, more) and the researcher six (with the papers), so the
+  // kid's ladder looked broken when it stopped at "2 of 5". The total is now the
+  // steps this reader can actually open; the steps are nested, so the first
+  // hidden one ends the ladder.
+  const LADDER = ["more", "how", "proof", "under", "papers"] as const;
+  function paintDepth(section: HTMLElement): void {
+    const line = section.querySelector<HTMLElement>("[data-depthline]");
+    let available = 0, opened = 0;
+    for (const k of LADDER) {
+      const step = section.querySelector<HTMLElement>(`[data-step="${k}"]`);
+      if (!step || step.hidden) break;
+      available++;
+      if (step.classList.contains("open")) opened++;
+    }
+    const depth = 1 + opened, total = 1 + available;
+    if (line) {
+      line.dataset.depth = String(depth);
+      line.textContent = `Depth ${depth} of ${total}`;
+    }
+    // the scene hears depth on a 1..5 scale whatever this reader's total is
+    const frame = frameOf(section);
+    if (frame && opened > 0) setFrameDepth(frame, 1 + Math.round((opened / Math.max(1, available)) * 4));
   }
 
   function applyLensEverywhere(lens: string): void {
@@ -289,7 +322,7 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
   }
 
   // The ladder: each button opens its step in place, hides itself, and deepens
-  // the "Depth n of 5" line. Delegated once; works across every chapter.
+  // the "Depth n of m" line (m = the steps this reader has). Delegated once; works across every chapter.
   function wireLadder(): void {
     if ((document.body as any).__daxLadder) return;
     (document.body as any).__daxLadder = true;
@@ -302,20 +335,7 @@ const chapNo = chapter.collection === "metadax" ? d.order : d.order;
       step.classList.add("open");
       btn.setAttribute("aria-expanded", "true");
       const section = btn.closest<HTMLElement>("[data-explain-chapter]");
-      const which = btn.dataset.open || "";
-      const depth = DEPTH_OF[which] || 1;
-      if (section) {
-        const line = section.querySelector<HTMLElement>("[data-depthline]");
-        const current = line ? Number(line.dataset.depth || "1") : 1;
-        if (depth > current) {
-          if (line) {
-            line.dataset.depth = String(depth);
-            line.textContent = `Depth ${depth} of 5`;
-          }
-          const frame = frameOf(section);
-          if (frame) setFrameDepth(frame, depth);
-        }
-      }
+      if (section) paintDepth(section);
     });
   }
 
