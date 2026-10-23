@@ -32,7 +32,8 @@
             "roles",
             "five",
             "foundation",
-            "exists"
+            "exists",
+            "horizon"
           ]
         },
         "question": {
@@ -57,10 +58,17 @@
           }
         },
         "horizon_canon": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
         },
         "editions": {
           "type": "object",
