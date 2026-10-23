@@ -1,0 +1,309 @@
+{
+  "$ref": "#/definitions/explain",
+  "definitions": {
+    "explain": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "order": {
+          "type": "number"
+        },
+        "tense": {
+          "type": "string",
+          "enum": [
+            "solved",
+            "live",
+            "researched",
+            "ahead"
+          ]
+        },
+        "tenseNote": {
+          "type": "string"
+        },
+        "claim": {
+          "type": "string",
+          "enum": [
+            "problem",
+            "proof",
+            "record",
+            "guide",
+            "roles",
+            "five",
+            "foundation",
+            "exists"
+          ]
+        },
+        "question": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ],
+          "additionalProperties": false
+        },
+        "editions": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "voice": {
+                "type": "string"
+              },
+              "answer": {
+                "type": "string"
+              },
+              "more": {
+                "type": "string"
+              },
+              "how": {
+                "type": "string"
+              },
+              "proof_intro": {
+                "type": "string"
+              },
+              "under": {
+                "type": "string"
+              },
+              "buttons": {
+                "type": "object",
+                "properties": {
+                  "more": {
+                    "type": "string"
+                  },
+                  "how": {
+                    "type": "string"
+                  },
+                  "proof": {
+                    "type": "string"
+                  },
+                  "under": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "more",
+                  "how",
+                  "proof",
+                  "under"
+                ],
+                "additionalProperties": false
+              },
+              "labels": {
+                "type": "object",
+                "properties": {
+                  "learner": {
+                    "type": "string"
+                  },
+                  "guide": {
+                    "type": "string"
+                  },
+                  "classroom": {
+                    "type": "string"
+                  },
+                  "invert": {
+                    "type": "string"
+                  },
+                  "both": {
+                    "type": "string"
+                  },
+                  "change": {
+                    "type": "string"
+                  },
+                  "decide": {
+                    "type": "string"
+                  },
+                  "record": {
+                    "type": "string"
+                  },
+                  "packages": {
+                    "type": "string"
+                  },
+                  "built": {
+                    "type": "string"
+                  },
+                  "boundary": {
+                    "type": "string"
+                  },
+                  "tapChild": {
+                    "type": "string"
+                  },
+                  "dragGuide": {
+                    "type": "string"
+                  },
+                  "roles": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "contexts": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "additionalProperties": true
+              },
+              "signed": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "voice",
+              "answer",
+              "more",
+              "how",
+              "proof_intro",
+              "under",
+              "buttons",
+              "labels"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "line": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ],
+          "additionalProperties": false
+        },
+        "paragraph": {
+          "type": "object",
+          "properties": {
+            "en": {
+              "type": "string"
+            },
+            "fr": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "en"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "video",
+                  "sample",
+                  "record",
+                  "number",
+                  "link"
+                ]
+              },
+              "src": {
+                "type": "string"
+              },
+              "value": {
+                "type": [
+                  "string",
+                  "number"
+                ]
+              },
+              "caption": {
+                "type": "object",
+                "properties": {
+                  "en": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "en"
+                ],
+                "additionalProperties": false
+              },
+              "source": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "kind",
+              "caption",
+              "source"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "scene": {
+          "type": "object",
+          "properties": {
+            "module": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object",
+              "additionalProperties": {}
+            },
+            "pin": {
+              "type": "number",
+              "default": 1
+            },
+            "states": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "module"
+          ],
+          "additionalProperties": false
+        },
+        "next": {
+          "type": "string"
+        },
+        "deeper": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "version": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "order",
+        "tense",
+        "claim",
+        "question",
+        "evidence",
+        "scene",
+        "version"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
