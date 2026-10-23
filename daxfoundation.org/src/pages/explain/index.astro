@@ -1,0 +1,61 @@
+---
+// /explain/ — the foundation board (00: the map) with the door into Meta DAX.
+// The map chapter renders with its scene; below it, three doors from the map's
+// evidence, with the Meta DAX door pointing into the explainer's own scroll.
+import Explain from "../../layouts/Explain.astro";
+import Chapter from "../../components/explain/Chapter.astro";
+import { getCollectionChapters } from "../../lib/explain/chapters.js";
+
+const chapters = await getCollectionChapters("foundation");
+const map = chapters[0];
+const evidence = (map?.data.evidence as any[]) ?? [];
+// The Meta DAX door leads into the explainer, not the marketing section.
+const doors = evidence.map((ev) => ({
+  label: ev.caption.en,
+  href: ev.src && ev.src.includes("/metadax/") ? "/explain/metadax/" : ev.src,
+}));
+---
+<Explain
+  title="What is the DAX Foundation?"
+  description="DAX: the preservation and expansion of life, humanity, and consciousness. The Constraint Protocol and Meta DAX."
+>
+  {map && <Chapter chapter={map} total={8} />}
+  <nav class="doors" aria-label="Where to go">
+    <ul>
+      {doors.map((d) => (
+        <li><a href={d.href} class="door">{d.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</Explain>
+
+<style>
+  .doors {
+    width: 100%;
+    max-width: var(--measure-scene);
+    margin: 0 auto;
+    padding: 0 var(--space-6) var(--space-24);
+  }
+  .doors ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 40rem) { .doors ul { grid-template-columns: repeat(3, 1fr); } }
+  .door {
+    display: flex;
+    align-items: center;
+    min-height: 72px;
+    padding: var(--space-4) var(--space-6);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--ink);
+    text-decoration: none;
+    font-size: var(--text-lead-size);
+  }
+  .door:hover, .door:focus-visible { border-color: var(--ink); }
+</style>
