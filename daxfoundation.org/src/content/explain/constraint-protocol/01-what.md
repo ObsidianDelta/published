@@ -252,7 +252,7 @@ editions:
     more: "New powerful capabilities have always come with costs. The Foundation does not promise otherwise. It promises a record: when something goes wrong, there is a chain of accountability that can be followed, examined, and acted on. That is what is proven. What your support unlocks is the capacity to extend that record — more helpers, more domains, more people."
     how: "The protocol is the one thing everything the Foundation builds runs under. Every interaction is logged, attributable, and signed. The severity table classifies what is at stake in each action. The record is open and inspectable. No helper operates outside it."
     proof_intro: "The protocol is published in full, including Appendix A — the severity table — so any due-diligence review can inspect exactly what is measured and how."
-    under: "The Foundation is the Foundation. People support it. The platform stays free and open. What support does is expand the surface over which the accountability record runs — more domains covered, more people served, more kinds of helper held to the same standard. What is free stays free forever. What your support enables is reach."
+    under: "The Foundation is the Foundation. People support it. The platform stays free and open. What support does is expand the surface over which the accountability record runs — more domains covered, more people served, more kinds of helper held to the same standard. The platform and the protocol are free and open. What your support enables is reach."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
