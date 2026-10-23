@@ -30,9 +30,10 @@ const id = youtubeId(src);
 // video-<id>.jpg), so the stage shows the video's picture instead of a flat grey
 // box -- still no third-party request until the click.
 import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { join } from "node:path";
 const posterPath = id ? `/figures/explain/video-${id}.jpg` : "";
-const hasPoster = !!posterPath && existsSync(fileURLToPath(new URL(`../../../public${posterPath}`, import.meta.url)));
+// the build runs from the site root; import.meta.url points into the build output
+const hasPoster = !!posterPath && existsSync(join(process.cwd(), "public", posterPath));
 ---
 <figure class="video">
   <div class="video-stage" data-video-id={id}>
