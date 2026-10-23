@@ -78,6 +78,12 @@ export function setFrameDepth(frame: HTMLElement, depth: number): void {
   if (h && typeof h.setDepth === "function") h.setDepth(depth);
 }
 
+/** A "Play it again" control fired: replay the frame's inversion, if the scene exports one. */
+export function replayFrame(frame: HTMLElement): void {
+  const h = handles.get(frame) as (SceneHandle & { replay?: () => void }) | undefined;
+  if (h && typeof h.replay === "function") h.replay();
+}
+
 async function mountFrame(frame: HTMLElement): Promise<void> {
   if (handles.has(frame) || frame.dataset.mounting === "1") return;
   frame.dataset.mounting = "1";
