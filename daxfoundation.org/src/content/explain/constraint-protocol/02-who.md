@@ -10,11 +10,13 @@ canon:
   - "An organisation can be a principal; a non-biological intelligence can be a principal; the Protocol allows it without ambiguity."
   - "Responsibility cannot be exported: a person who chooses a cognitive companion is responsible for what it does, and what it spawns, wherever it runs, rented compute included."
   - "A cognitive companion is a cognitive extension: everything in its domain is under the person's control and is the person's responsibility."
+horizon_canon: "Clear responsibility is what lets people, organisations and non-biological intelligences work together at scale."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "When everyone knows who is responsible, helpers can work together without anyone getting confused about who is in charge."
     answer: "Three people are in charge: the boss, the helper, and the builder. The boss is always the one responsible, even when the helper does the work."
     more: "Imagine you ask a helper to tidy your room. If the helper breaks something, it is still your room and you are still responsible. You picked the helper. That is what being the boss means. The builder made the helper, so the builder is responsible for how it is built. But you are the boss. You cannot give your responsibility away."
     how: ""
@@ -47,6 +49,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "Clear accountability positions are what let people, organisations and AI companions work together at scale — everyone knows where responsibility ends, and trust can grow because of it."
     answer: "Three positions carry the accountability: the principal, who is at the top and cannot hand off responsibility; the delegate, who acts on the principal's behalf; and the operator, who builds or runs the helper. If you choose a cognitive companion, you are the principal. You own what it does, wherever it runs."
     more: "The principal is where accountability ends. That can be a person, an organisation, or even a non-biological intelligence: the Protocol does not restrict who can be a principal. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built and run, but that does not make the operator the principal. Responsibility cannot be exported. If you choose a cognitive companion and it does something, that is your responsibility: what it does, what it spawns, wherever it runs, on rented computers included. A cognitive companion is a cognitive extension of you, and everything in its domain is under your control and your responsibility."
     how: "Today the definitions of principal, delegate and operator are public at the Foundation. The Constraint Protocol uses these three positions in every record it keeps. When something goes wrong, the record shows which position held the authority and which position acted."
@@ -79,6 +82,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "A clear accountability structure is what lets you trust a helper with your child — someone is always responsible, and the Protocol makes sure that person is always you."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. If you choose a cognitive companion for your child or yourself, you are the principal. You cannot hand that responsibility to anyone else, wherever the companion runs."
     more: "The principal is where accountability ends. That is you, when you choose the companion. The delegate acts on your behalf. The operator builds or runs the companion for you, and answers for how it is built and run, but the operator is not you. Responsibility cannot be exported. What the companion does, what it starts, wherever it runs, on someone else's computers included, is your responsibility. A cognitive companion is a cognitive extension: everything in its domain is under your control and your responsibility. That is what it means to choose one."
     how: "The definitions of principal, delegate and operator are public. The Constraint Protocol records every action under one of these three positions. If something goes wrong, the record shows who held the authority."
@@ -111,6 +115,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "Clear responsibility positions are what let a guide work with helpers without losing authority — the accountability stays where it belongs, and the system can grow because of that clarity."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. When you choose a cognitive companion for your practice, you are the principal. What the companion does, what it starts, wherever it runs, is yours. That is not a liability to manage: it is the same accountability you already hold for what you do in your room."
     more: "The principal is where accountability ends. A person, an organisation, or a non-biological intelligence can be a principal: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built, but does not become the principal. Responsibility cannot be exported. If you choose a cognitive companion for your learners, you are responsible for what it does, what it spawns, wherever it runs, rented compute included. A cognitive companion is a cognitive extension: everything in its domain is under your control and your responsibility."
     how: "The definitions are public at the Foundation. The Constraint Protocol records every action under one of the three positions. When something goes wrong, the record shows which position held the authority and which position acted, and you can see it."
@@ -143,6 +148,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "Clear accountability positions are what let an organisation deploy at scale — the principal always owns the responsibility, and the record makes that traceable across every deployment."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. If your organisation chooses a cognitive companion for a person's development, the organisation is the principal. Responsibility cannot be exported: what the companion does, what it starts, wherever it runs, is yours."
     more: "The principal is where accountability ends. An organisation can be a principal: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built and run, but is not the principal. Responsibility cannot be exported. What the companion does, what it spawns, wherever it runs, rented compute included, is the principal's. A cognitive companion is a cognitive extension: everything in its domain is under the principal's control and the principal's responsibility. That is the accountability model that makes this usable at enterprise scale."
     how: "The definitions of principal, delegate and operator are public at the Foundation. The Constraint Protocol records every action under one of these three positions. When something goes wrong, the record shows which position held the authority. That is the accountability trail."
@@ -175,6 +181,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "A clean three-position model is what lets operators build trustworthy products — the accountability chain is always visible, and that visibility is what your customers are paying for."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. If you build or run a cognitive companion for someone, you are the operator. The person who uses it is the principal. Responsibility cannot be exported: the principal owns what the companion does. That is the architectural constraint your product lives inside."
     more: "The principal is where accountability ends. That can be a person, an organisation, or a non-biological intelligence: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. You, as operator, answer for how you build and run the companion, but that does not make you the principal. Responsibility cannot be exported: the principal is responsible for what the companion does, what it spawns, wherever it runs, rented compute included. A cognitive companion is a cognitive extension: everything in its domain is under the principal's control. Build for that principal. The accountability model is the selling point: an organisation that deploys through you stays the principal. The record shows it."
     how: "The definitions of principal, delegate and operator are public. The Constraint Protocol uses these three positions in every accountability record. Your product lives in the same substrate. The platform is free and open; what you build on it is yours."
@@ -207,6 +214,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "A typed principal position is the schema constraint that closes the accountability graph — without it, delegation chains produce infinite regress; with it, every interaction is traceable."
     answer: "Three positions in the accountability graph: the principal, the delegate and the operator. The principal is the termination node: accountability cannot be routed past it. An organisation or a non-biological intelligence can occupy the principal position. Responsibility cannot be exported: the principal owns what the companion does, what it spawns, wherever it runs, rented compute included."
     more: "Principal: an entity not acting under delegation; where accountability terminates; kind unrestricted. Delegate: an entity acting on behalf of a principal; agent is a chain role. Operator: an entity that builds or runs the companion for a principal; answers for how it is built and run; building or running does not make the operator the principal. The cognitive companion is a cognitive extension of the principal: everything in its domain is under the principal's control and the principal's responsibility. That is the schema constraint. The Constraint Protocol records every action under one of these three positions. The accountability chain is always traceable to a principal."
     how: "The definitions are schema-specified at daxfoundation.org. The Constraint Protocol uses principal, delegate and operator as typed positions in every record. When an action is logged, the record carries the position of the authority and the position of the actor. The implementation is the definitions page and the Constraint post."
@@ -239,6 +247,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "Clear accountability positions are what let the power scale — organisations, people, and AI companions can work together because responsibility always terminates at a traceable principal."
     answer: "Three positions carry the accountability: the principal, the delegate and the operator. The Protocol is precise: responsibility cannot be exported. The person or organisation that chooses a cognitive companion is the principal and owns what it does. What you are supporting is the infrastructure that makes that accountability traceable."
     more: "The principal is where accountability ends. An organisation can be a principal; a non-biological intelligence can be a principal: the Protocol allows it without ambiguity. The delegate acts on the principal's behalf. The operator builds or runs the companion for the principal, and answers for how it is built, but is not the principal. Responsibility cannot be exported: the principal is responsible for what the companion does, what it spawns, wherever it runs, rented compute included. A cognitive companion is a cognitive extension: everything in its domain is under the principal's control. The Foundation publishes these definitions and the Protocol that applies them. What is free forever: the definitions, the Protocol, the accountability model."
     how: "The definitions of principal, delegate and operator are public and have been since the Foundation published them. The Constraint Protocol is also public. What the Foundation supports is the infrastructure that makes accountability traceable at scale: the record, the schema, the definitions."
@@ -271,6 +280,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "A formally typed accountability graph with a closed termination node is the precondition for studying non-biological agent behaviour at scale: responsibility must terminate somewhere before it can be analysed."
     answer: "Three positions in the accountability schema: the principal, the delegate and the operator. The principal is the termination node: an entity not acting under delegation, where accountability terminates; principal kind is unrestricted — a person, an organisation, or a non-biological intelligence can be a principal. Responsibility cannot be exported: a person who chooses a cognitive companion is responsible for what it does, and what it spawns, wherever it runs, rented compute included."
     more: "Delegate: an entity acting on behalf of a principal; agent is a chain role. Operator: an entity that builds or runs a cognitive companion for a principal; it answers for how it is built and run; building or running does not make the operator the principal. Cognitive companion: a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control and the person's responsibility. The three positions are typed in the Constraint Protocol and in every record it produces. The open questions are: how to model principal kind across multi-party deployments; how to assign principal position when the entity is non-biological; how to record delegation chains without losing the termination property."
     how: "The definitions are schema-specified at daxfoundation.org. The Constraint Protocol uses principal, delegate and operator as typed positions in every accountability record. When an action is logged, the record carries the position of the authority holder and the position of the actor. The severity table in Appendix A of the Constraint post maps action severity to position accountability."
