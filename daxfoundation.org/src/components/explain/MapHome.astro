@@ -19,9 +19,13 @@ const map = chapters[0];
 const editions = (map?.editions ?? {}) as Record<string, any>;
 
 // The runs each node opens: real destinations only (ahead runs have none yet).
+// 2026-10-23: all four runs exist (EXP-12 built Nova DAX and Skippy DAX); the
+// Protocol node opens its explainer run rather than the older /constraint-protocol/.
 const routes: Record<string, string> = {
   metadax: "/explain/metadax/",
-  "constraint-protocol": "/constraint-protocol/",
+  "constraint-protocol": "/explain/constraint-protocol/",
+  "nova-dax": "/explain/nova-dax/",
+  "skippy-dax": "/explain/skippy-dax/",
 };
 
 // The labels the scene reads, per lens: the edition's labels merged over the
