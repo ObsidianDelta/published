@@ -10,11 +10,13 @@ canon:
   - "The hash of a genesis document becomes a permanent identity."
   - "Citizenship entitles a person to Meta DAX, universal learning."
   - "A citizen holds her identity, her record and, in time, her companion."
+horizon_canon: "An identity that is yours for life, under your own name, that opens universal learning to you."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "Your name is yours for your whole life, and the helpers that know you grow with you."
     answer: "You get a name that is yours. Nobody else can use it. Your name is kept safe with a secret that only you know, made on your own device. With it you get to learn anything."
     more: "The Foundation keeps your name so no one else can take it. But the secret that proves it is really you lives only on your own device. You hold your name, what you have learned, and one day a helper that remembers you."
     how: ""
@@ -47,6 +49,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "An identity you hold for life, under your own name, is what opens universal learning to you — your record and your companion grow with you across every stage of your life."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves that name so no one else can take it, but the keys that prove it is really you are made on your own device, and only you have the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles you to Meta DAX, universal learning. You hold your identity, your record, and in time your companion."
     more: "Think of it as a name on a door that the Foundation holds, but you hold the only key. No one at the Foundation can open the door for you; only your secret, on your device, can do that. The genesis document is a starting record you create; once its fingerprint is written down, that fingerprint is you, permanently. Because you are a citizen, you get access to Meta DAX: learning for anyone, on any subject. Over time you build a record of what you have reached, and in time a helper grows alongside that record — a helper that remembers you."
     how: "Today a citizen can register a friendly name under the Foundation's domain and generate keys on their own device. The genesis document pins the identity. The record and the companion are the next layers being built."
@@ -79,6 +82,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "A name and an identity your child holds for life is what makes the learning record hers and hers alone — the companion that grows alongside it remembers who she is across every session and every year."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation keeps that name so no one else can take it, but the secret that proves it is really her is made on her own device, and only she has it. Citizenship entitles her to Meta DAX, universal learning. She holds her identity, her record, and in time her companion."
     more: "The name is a friendly address — something a person can share — but the key that unlocks it lives only on her device. The Foundation cannot open it for her; no one can. The genesis document is a starting record she creates; its fingerprint, once set, is her identity permanently. Because she is a citizen she gets access to Meta DAX: learning on any subject, at her pace. Over time she builds a record of what she has reached. In time a helper that remembers her grows alongside that record."
     how: "Today a citizen can register a name and generate keys on their own device. The genesis document pins the identity. The record and the companion are the next layers being built. What she gets today is the name and the anchor."
@@ -111,6 +115,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "A learner who holds her own identity for life means her record travels with her — across your session, across every guide she works with, across her whole life of learning."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves the name so no one else can take it, but the keys are made on the citizen's own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. The citizen holds her identity, her record, and in time her companion."
     more: "The name is a friendly address a learner can share with you. The key that proves it is really her lives only on her device; the Foundation cannot open it, and neither can you. The genesis document is a starting record she creates; its hash is her identity anchor, permanently. Because she is a citizen she gets access to Meta DAX: any subject, any pace, with helpers dispatched under your authority. Over time she builds a record of what she has reached. In time a helper that remembers her grows alongside that record, extending her in the domain."
     how: "Today a citizen can register a name and generate keys on their own device. The genesis document pins the identity. The record and the companion are the next layers. What your learner brings to the table today is a named, anchored identity and a learning record that is hers."
@@ -143,6 +148,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "A person who holds her own identity and record for life means her learning travels with her across every role — the companion that grows alongside it is hers, not the organisation's."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves the name, the keys are made on the citizen's own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record, and in time her companion."
     more: "Each person on your team has a named, anchored identity that is entirely theirs. The Foundation reserves the friendly name; the key that proves it lives only on the person's own device. The genesis document is the anchor; its hash is the identity, permanently. Because she is a citizen she gets access to Meta DAX: learning in any domain, at any pace. The record that grows over time is hers, not the organization's. The companion, when it arrives, is hers too. What you get as a manager is accountability: the helpers you dispatch through the guide role are recorded, under your authority, but the learner's identity and record remain with her."
     how: "Today a citizen can register a name and generate keys on their own device. The genesis document pins the identity. The record and the companion are the layers being built next. What you see as a manager today is a named, anchored learner whose record is her own."
@@ -175,6 +181,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "Citizens who hold their own identity and record for life are the durable foundation for every product you build — they bring a permanent, trustworthy identity to every interaction you design."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves the name, the keys are made on the citizen's own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record, and in time her companion."
     more: "Every learner you serve is a citizen with a named, anchored identity that is entirely hers. The Foundation reserves the friendly name; the key lives only on her device. That permanence is the trust layer: you build on an identity that cannot be revoked or replicated by a platform. The genesis document's hash is the anchor. Her record grows over time and is hers. The companion, when it arrives, is hers too. What you build sits on top of that: tools, packages, services that serve citizens who already hold their own identities. The platform is free and open; the money is in what you build on it."
     how: "Today a citizen can register a name and generate keys on their own device. The genesis document pins the identity. The record and the companion are the next layers. What your product can assume: a named, anchored identity, a learning record, and in time a companion — all held by the citizen, not by you."
@@ -207,6 +214,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "A citizen-held identity with a permanent genesis hash anchor is the schema constraint that makes a lifelong record possible — the principal holds her own state, and every interaction is traceable to her."
     answer: "A DAX citizen has a name under daxfoundation.org as a friendly name for an identity only she holds. The Foundation reserves the name; the keys are generated on the citizen's own device; only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record, and in time her companion."
     more: "The identity model: friendly name (Foundation-reserved, publicly addressable) plus key pair (generated on device, secret never leaves the device). The genesis document is a structured starting record; its hash is the identity anchor — immutable, chain-linked. The operator never holds the secret; the platform never holds the secret. The citizen is the principal. Citizenship entitles the principal to Meta DAX: the full learning stack, any domain. The record schema grows over time under the citizen's control. The companion, when shipped, is held by the citizen — a cognitive extension under her authority."
     how: "Today: name registration under daxfoundation.org, key generation on device, genesis document hash as identity anchor. Next layers in progress: the record schema (reached, tried, not yet) and the companion. The citizen is the principal node in the graph; operators and guides are delegates. The accountability layer is the Constraint Protocol; the identity layer is the genesis hash."
@@ -239,6 +247,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "An identity held for life, under a person's own name, is what makes universal learning a permanent resource — the record and companion that grow with it compound in value across a lifetime."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves the name, the keys are made on the citizen's own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record, and in time her companion."
     more: "The identity layer is what makes the rest trustworthy. A citizen's name is public and addressable, but the key that proves it is hers lives only on her device — the Foundation does not hold it, no operator holds it. The genesis document's hash is the permanent anchor: once set, it cannot be changed without breaking the chain. Citizenship opens Meta DAX: universal learning, any subject, any pace. What grows over time is a record that is entirely hers, and in time a companion that is entirely hers. What the Foundation is building is the infrastructure for that: the name registry, the genesis protocol, the record schema, the companion layer. What is free forever: the identity layer, the name, the genesis protocol. What the money does: build the record and companion layers that make citizenship meaningful over a lifetime."
     how: "What is proven: name registration under daxfoundation.org, key generation on device, genesis document hash as identity anchor. What is an experiment: the record schema and the companion layer. What the money does: build the record and companion infrastructure. What it unlocks: a citizen who holds her identity, her record, and in time her companion — not a platform's subscriber."
@@ -271,6 +280,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "A citizen-held identity with a genesis hash anchor provides the stable principal node across which longitudinal learning data can be studied: the same entity, traceable across interactions, with no platform dependency on the identity itself."
     answer: "A DAX citizen has a name under daxfoundation.org as a friendly name for an identity only she holds; the Foundation reserves the name, the keys are made on her own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record and, in time, her companion."
     more: "The identity model separates the name (Foundation-reserved, publicly addressable, human-readable) from the cryptographic identity (key pair generated on device, secret never held by any third party). The genesis document is a structured starting record; its hash is the identity anchor — content-addressed, immutable, chain-linked. The citizen is the principal: not acting under delegation; accountability terminates at her. Citizenship is the entitlement to Meta DAX: the full learning stack, universal. The record grows under the citizen's control. The companion, when shipped, is a cognitive extension of the principal — under her control and her responsibility, per the definitions of cognitive companion. The open questions are: how the record schema encodes the citizen's history across guides and operators; how the companion's delegation model is bounded by the citizen-as-principal; how the genesis hash chain is audited."
     how: "Current implementation: name registration under daxfoundation.org, key generation on device, genesis document hash as identity anchor. In progress: the record schema (reached, tried, not yet) and the companion layer. The citizen is the principal node in the delegation graph; operators and guides are delegates. The accountability substrate is the Constraint Protocol; the identity substrate is the genesis hash."
