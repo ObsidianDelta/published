@@ -264,7 +264,7 @@ editions:
       roles: ["Principal", "Foundation", "Operator", "Funder"]
       contexts: ["Infrastructure", "For life"]
       title: "The foundation of the record"
-      caption: "Proven today, open forever"
+      caption: "Proven today, open"
   researcher:
     voice: "For someone who wants the substrate"
     signed: false
@@ -320,5 +320,6 @@ scene:
       caption: "Reached, tried, guided, kept for life"
   pin: 1
   states: [settle]
+next: 04-horizon
 version: 1
 ---
