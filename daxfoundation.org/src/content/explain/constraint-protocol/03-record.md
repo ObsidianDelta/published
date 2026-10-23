@@ -10,11 +10,13 @@ canon:
   - "Interactions between agents are covered as fully as interactions with people; emergent behaviour among interacting agents is one of the reasons the record exists."
   - "Every entry is signed."
   - "What one interaction teaches is shared, so knowledge and intelligence compound, as defined on daxfoundation.org, instead of evaporating."
+horizon_canon: "Emergent behaviour among interacting agents studied in the open, with a record that makes it accountable."
 editions:
   kid:
     voice: "For someone about ten"
     signed: false
     by: skippy
+    horizon: "When helpers share what they learn, every child's helpers get better together, not just one at a time."
     answer: "Every time a helper does something, it writes it down — who did it, what they did, and if they got it wrong, how wrong."
     more: "Helpers write in a special book that nobody can secretly change. If one helper learns something, all helpers can learn it too, so they get better together instead of forgetting."
     how: ""
@@ -53,6 +55,7 @@ editions:
     voice: "Plain words, no background needed"
     signed: false
     by: skippy
+    horizon: "A signed record that covers agent-to-agent interactions is the substrate for studying emergent behaviour in the open — every chain traceable, every failure a lesson shared rather than lost."
     answer: "Every time a helper acts, the record captures who did it, what they did it to, who gave them permission, and — if something went wrong — how serious that was."
     more: "The record covers helper-to-helper interactions just as thoroughly as helper-to-person ones. That matters because helpers can interact with each other in ways nobody fully planned, and those chains need to be traceable. Every entry is signed, so nothing can be quietly altered after the fact. And when one interaction produces something worth knowing, that learning is shared rather than lost."
     how: "Each action writes a signed entry into the record. The severity of any mistake is graded on a published table — Appendix A of the Constraint Protocol — so there is a consistent measure, not a judgment call each time. Shared learning means the next interaction can draw on what the last one found out."
@@ -91,6 +94,7 @@ editions:
     voice: "For someone with a child at the table"
     signed: false
     by: skippy
+    horizon: "A record under every helper action means what is learned in your child's sessions makes the helpers better for all families — knowledge compounds rather than evaporating between interactions."
     answer: "Every time a helper does something with your child, the record notes who acted, what it was, who authorised it, and — if it went wrong — how serious that was."
     more: "This is not just about your child's interactions. Helpers can interact with other helpers, and those chains are recorded just as carefully. Every entry is signed, so the record cannot be quietly changed. What is learned in one interaction is shared, so helpers improve together rather than each starting from scratch."
     how: "A signed entry goes into the record for every helper action. Mistakes are graded on a published severity table — Appendix A of the Constraint Protocol — rather than judged differently each time. Shared learning means the system grows more capable across all the families using it, while the record keeps each action traceable back to who authorised it."
@@ -129,6 +133,7 @@ editions:
     voice: "For someone who teaches, tutors or trains"
     signed: false
     by: skippy
+    horizon: "A signed, shared record means what you learn in your sessions becomes part of a growing body of knowledge — helpers get sharper for every guide, while your authority over your own sessions stays intact."
     answer: "Every helper action in your session is recorded: who acted, on what, under whose authority — yours — and, if something was wrong, how serious the error was."
     more: "Your authority stays central. The record traces every action back to the authorisation you gave or withheld, which means accountability runs through you, not around you. Helper-to-helper interactions within your session are captured with the same rigour as helper-to-learner ones. Every entry is signed. What your session teaches is shared so the wider system improves, but what you decide for your learners stays yours."
     how: "Each helper action produces a signed record entry. Severity is graded on a published table — Appendix A of the Constraint Protocol — so there is a consistent standard rather than a fresh judgment each time. Shared learning means helpers get sharper across sessions while your judgement about what is right for this learner, right now, remains the controlling factor."
@@ -167,6 +172,7 @@ editions:
     voice: "For someone responsible for other people's learning at work"
     signed: false
     by: skippy
+    horizon: "A signed accountability record across agent-to-agent interactions means emergent behaviour at enterprise scale becomes traceable — what the system learns compounds into capability rather than evaporating with each deployment."
     answer: "Every helper action across your organisation is logged: who acted, on which employee, under whose authority, and — where something was wrong — how serious that was on a published severity scale."
     more: "The record covers helper-to-helper interactions as fully as helper-to-person ones. Emergent behaviour in agent chains is one of the exact problems the record exists to make visible and traceable. Every entry is signed, so the log cannot be altered after the fact. What any interaction teaches is shared, so the organisation's helpers compound in capability rather than each starting fresh."
     how: "A signed entry is created for each helper action. Severity is graded against Appendix A of the Constraint Protocol, giving you a consistent, auditable standard across every department and domain. Shared learning means your onboarding for the hundredth new hire draws on everything learned from the first ninety-nine."
@@ -205,6 +211,7 @@ editions:
     voice: "For someone who wants to make a living with it"
     signed: false
     by: skippy
+    horizon: "A record that covers agent-to-agent interactions is the substrate that makes emergent behaviour in your product traceable and improvable — what your product learns compounds into a durable competitive position."
     answer: "The record is what makes helpers trustworthy enough to sell. Every action is logged — who, what, under whose authority, how serious if wrong — and every entry is signed."
     more: "Your customers are not buying a helper that acts in the dark. They are buying one whose every action is traceable, whose errors are graded on a published severity table, and whose learning compounds across interactions rather than evaporating. That traceability is a feature you can put in front of any procurement team. The platform provides the record infrastructure; you build the product on top of it."
     how: "Each helper action creates a signed record entry graded against Appendix A of the Constraint Protocol. You do not have to build that accountability layer — it is part of what the platform provides. Shared learning means your product improves with use across your customer base, compounding value without compounding your costs."
@@ -243,6 +250,7 @@ editions:
     voice: "For someone who ships"
     signed: false
     by: skippy
+    horizon: "Agent-to-agent interactions as first-class signed entries means the record is the substrate for studying emergent multi-agent behaviour at scale — every chain traceable, every failure pattern analysable."
     answer: "The record schema captures: actor identity, target, authorising principal, and — on error — a severity grade from the table at Appendix A of the Constraint Protocol. Every entry is signed."
     more: "Agent-to-agent interactions are first-class record entries. The schema does not distinguish between a helper acting on a person and a helper acting on another helper; both produce a signed entry with the same four fields. Emergent behaviour in agent chains is one of the explicit motivations for the record. Shared learning is defined: what one interaction teaches is propagated, not siloed, so knowledge and intelligence compound as per daxfoundation.org/definitions."
     how: "Each interaction produces a record entry: actor, target, authorising principal, severity (if applicable). Severity maps to the published table — Appendix A of the Constraint Protocol — so your error-handling logic can branch on a stable enum rather than free text. Signatures cover the full entry; any post-write mutation is detectable. Shared learning feeds back into the system so downstream interactions draw on prior ones."
@@ -281,6 +289,7 @@ editions:
     voice: "For someone deciding where money goes"
     signed: false
     by: skippy
+    horizon: "A complete, signed record of every interaction — including agent-to-agent chains — is the infrastructure that makes studying emergent behaviour possible, and what support accelerates is that research into the open."
     answer: "The record is the accountability infrastructure: every helper action logged — who acted, on what, under whose authority, how serious if wrong — and every entry signed."
     more: "This is not aspirational. The schema exists, agent-to-agent interactions are covered, every entry is signed, and what one interaction teaches is shared so knowledge and intelligence compound rather than evaporate. The severity table at Appendix A of the Constraint Protocol gives a consistent, auditable grading — not a judgment call each time. That is the foundation on which everything else is built."
     how: "A signed record entry is produced for each helper action. Severity is graded against a published table. Shared learning propagates what any interaction teaches across the system. What support enables is deeper research into the open questions — emergent behaviour in agent chains, the conditions under which compounding knowledge translates into durable capability gains — and the infrastructure to keep the record open and freely accessible."
@@ -319,6 +328,7 @@ editions:
     voice: "For someone who wants the substrate"
     signed: false
     by: skippy
+    horizon: "A signed, first-class record of agent-to-agent interactions is the substrate for studying emergent multi-agent behaviour empirically: every chain traceable, every failure mode available for post-hoc analysis, shared learning quantifiable across interactions."
     answer: "The record captures four fields per interaction: actor identity, target, authorising principal, and severity grade if the action was wrong. Severity maps to the table at Appendix A of the Constraint Protocol. Every entry is signed. Agent-to-agent interactions are first-class entries; emergent behaviour among interacting agents is an explicit motivation for the record. What one interaction teaches is shared: knowledge and intelligence compound, as defined on daxfoundation.org/definitions, rather than evaporating between interactions."
     more: "Principal is defined at daxfoundation.org/definitions: an entity not acting under delegation; where accountability terminates; kind is unrestricted — person, organisation, or nonbiological intelligence. Delegate: an entity acting on behalf of a principal. Operator: an entity that builds or runs a cognitive companion for a principal; building or running does not make the operator the principal. Every record entry carries the authorising principal, making the accountability chain explicit regardless of how many delegates or operators sit between the actor and the principal."
     how: "Each interaction produces a signed record entry. The signature covers the full entry; any post-write mutation is detectable. Severity is an enum drawn from Appendix A of the Constraint Protocol — stable, published, machine-readable. Agent-to-agent entries use the same schema as agent-to-person entries; the record schema does not distinguish interaction type. Shared learning is defined operationally: what one interaction teaches is propagated to subsequent interactions, not siloed. The mechanism by which knowledge and intelligence compound is specified at daxfoundation.org/definitions."
