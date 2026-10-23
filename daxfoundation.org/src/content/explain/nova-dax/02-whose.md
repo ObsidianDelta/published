@@ -265,7 +265,7 @@ editions:
       roles: ["Principal", "Foundation", "Operator", "Funder"]
       contexts: ["Infrastructure", "Products"]
       title: "Structural ownership"
-      caption: "Proven, open, free forever"
+      caption: "Proven and open"
   researcher:
     voice: "For someone who wants the substrate"
     signed: false
