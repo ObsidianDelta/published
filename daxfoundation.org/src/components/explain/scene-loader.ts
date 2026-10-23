@@ -72,10 +72,17 @@ export function setFrameLabels(frame: HTMLElement, labels: Record<string, string
   if (h && typeof h.setLabels === "function") h.setLabels(labels);
 }
 
+// The ladder depth each frame's chapter has opened (1 = the answer only).
+const frameDepth = new Map<HTMLElement, number>();
+
 /** A depth opened: tell the frame's scene, if it reacts to depth. */
 export function setFrameDepth(frame: HTMLElement, depth: number): void {
+  frameDepth.set(frame, depth);
   const h = handles.get(frame);
   if (h && typeof h.setDepth === "function") h.setDepth(depth);
+  // 2026-10-23: opening a depth also moves the scene forward (see schedule()), so
+  // "Tell me more" visibly does something even when the reader does not scroll.
+  schedule();
 }
 
 /** A "Play it again" control fired: replay the frame's inversion, if the scene exports one. */
@@ -109,6 +116,19 @@ async function mountFrame(frame: HTMLElement): Promise<void> {
   } catch {
     params = {};
   }
+  // 2026-10-23: the graph scene reads its topology from params.graph. The home page
+  // (MapHome) passes it; a chapter that declares `scene: { module: graph }` (the map
+  // chapter, foundation/00-map, shown at /explain/) did not, so the scene mounted
+  // with no nodes and drew an empty box. Supply the signed graph and the run routes.
+  if (name === "graph" && !params.graph) {
+    try {
+      const [g, r] = await Promise.all([
+        import("../../data/graph.json"),
+        import("../../data/run-routes.json"),
+      ]);
+      params = { ...params, graph: (g as any).default ?? g, routes: params.routes ?? ((r as any).default ?? r) };
+    } catch { /* the page still reads without the scene */ }
+  }
   // Prefer the current edition's labels (lens-aware); fall back to the chapter's
   // declared scene.params.labels when the chapter has not pushed any yet.
   const labels =
@@ -125,9 +145,21 @@ async function mountFrame(frame: HTMLElement): Promise<void> {
   }, tokens);
   handles.set(frame, handle);
   delete frame.dataset.mounting;
+  schedule(); // give the scene its first t now, not on the first scroll event
 }
 
 // Scroll choreography: one rAF loop drives every mounted frame's setProgress(t).
+//
+// 2026-10-23: t was `span > 0 ? -top/span : 0`, so any chapter shorter than the
+// viewport (every chapter on a desktop monitor) stayed at t = 0 forever: the scene
+// never moved however the reader scrolled. Now:
+//   - a chapter taller than the viewport keeps the pinned reading: t runs 0 -> 1
+//     while its top travels from the viewport top to the point where its bottom
+//     meets the viewport bottom;
+//   - a chapter that fits on screen plays as it travels from entering the
+//     viewport (top at 90% of the height) to sitting near the top (top at 10%);
+//   - the ladder depth the reader opened is a floor: answer only = 0, each
+//     "Tell me more" moves the scene a quarter further, so clicking visibly works.
 let raf = 0;
 function schedule(): void {
   if (raf) return;
@@ -138,10 +170,13 @@ function schedule(): void {
       const section = frame.closest<HTMLElement>("[data-explain-chapter]");
       if (!section) continue;
       const rect = section.getBoundingClientRect();
-      const sectionTop = rect.top; // viewportTop(0) - sectionTop == -rect.top
       const span = rect.height - vh;
-      const t = span > 0 ? clamp01(-sectionTop / span) : 0;
-      handle.setProgress(t);
+      const scrollT = span > 0
+        ? clamp01(-rect.top / span)
+        : clamp01((vh * 0.9 - rect.top) / (vh * 0.8));
+      const depth = frameDepth.get(frame) ?? 1;
+      const depthT = clamp01((depth - 1) / 4);
+      handle.setProgress(Math.max(scrollT, depthT));
     }
   });
 }

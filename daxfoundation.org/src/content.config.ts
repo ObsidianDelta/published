@@ -95,7 +95,8 @@ const explain = defineCollection({
       pin: z.number().default(1),
       states: z.array(z.string()).optional(),
     }),
-    next: z.string().optional(),
+    // 2026-10-23: a run's closing chapter has no next one; `next: null` is allowed.
+    next: z.string().nullish(),
     deeper: z.array(z.string()).optional(),
     version: z.number(),
   }).strict().refine(

@@ -10,18 +10,14 @@ import Explain from "../../layouts/Explain.astro";
 import Chapter from "../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../lib/explain/chapters.js";
 import graph from "../../data/graph.json";
+import runRoutes from "../../data/run-routes.json";
 
 const chapters = await getCollectionChapters("foundation");
 const map = chapters[0];
 
 // The runs that have a destination today. An initiative with no entry here is
 // still ahead: its door shows the line and is not a link.
-const routes: Record<string, string> = {
-  metadax: "/explain/metadax/",
-  "constraint-protocol": "/explain/constraint-protocol/",
-  "nova-dax": "/explain/nova-dax/",
-  "skippy-dax": "/explain/skippy-dax/",
-};
+const routes: Record<string, string> = runRoutes;
 
 // One door per initiative node, then the Protocol — in the graph's own order.
 const doorNodes = [

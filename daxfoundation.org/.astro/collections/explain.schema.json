@@ -337,7 +337,10 @@
           "additionalProperties": false
         },
         "next": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "deeper": {
           "type": "array",

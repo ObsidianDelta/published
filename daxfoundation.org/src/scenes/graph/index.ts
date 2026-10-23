@@ -481,7 +481,8 @@ export async function mount(
   function onNodeActivate(v: NodeView): void {
     if (dragged) return;
     if (selected === v.n.id) {
-      const url = v.n.chapter ? routes[v.n.chapter] : "";
+      // same destination as the label link (runs, or a definitions anchor)
+      const url = nodeHref(v.n);
       if (url) { window.location.href = url; return; }
     }
     selected = v.n.id;
@@ -538,9 +539,17 @@ export async function mount(
   function onUp(e: PointerEvent): void {
     try { canvas.releasePointerCapture(e.pointerId); } catch { /* ignore */ }
     if (down && !dragged) {
-      const edge = pickEdge(e.clientX, e.clientY);
-      if (edge) { selected = null; showEdgeCaption(edge); flyTo(null); }
-      else onEmpty();
+      // 2026-10-23: a tap on a circle selects that node (and a second tap opens its
+      // run). Before, only the text label under each circle was a hit target; a tap
+      // on the circle fell through to the edge picker and showed a nearby line's
+      // caption, so tapping a node never opened anything.
+      const node = pickNode(e.clientX, e.clientY);
+      if (node) { onNodeActivate(node); }
+      else {
+        const edge = pickEdge(e.clientX, e.clientY);
+        if (edge) { selected = null; showEdgeCaption(edge); flyTo(null); }
+        else onEmpty();
+      }
     }
     down = false;
     setTimeout(() => { dragged = false; }, 0); // let a suppressed button-click settle first
@@ -549,6 +558,30 @@ export async function mount(
   canvas.addEventListener("pointermove", onMove);
   canvas.addEventListener("pointerup", onUp);
   canvas.addEventListener("pointercancel", onUp);
+
+  // A node under the pointer: the sphere itself (raycast), or failing that the
+  // nearest visible node centre within a finger's reach (26px), so small nodes are
+  // still easy to hit on a phone.
+  const _pick = new THREE.Vector3();
+  function pickNode(clientX: number, clientY: number): NodeView | null {
+    const rect = canvas.getBoundingClientRect();
+    ndc.x = ((clientX - rect.left) / rect.width) * 2 - 1;
+    ndc.y = -((clientY - rect.top) / rect.height) * 2 + 1;
+    raycaster.setFromCamera(ndc, camera);
+    const live = views.filter((v) => v.p > 0.5);
+    const hit = raycaster.intersectObjects(live.map((v) => v.mesh), false)[0];
+    if (hit) return live.find((v) => v.mesh === hit.object) || null;
+    let best: NodeView | null = null, bestD = 26;
+    for (const v of live) {
+      v.mesh.getWorldPosition(_pick).project(camera);
+      if (_pick.z > 1) continue; // behind the camera
+      const sx = rect.left + ((_pick.x + 1) / 2) * rect.width;
+      const sy = rect.top + ((1 - _pick.y) / 2) * rect.height;
+      const d = Math.hypot(sx - clientX, sy - clientY);
+      if (d < bestD) { bestD = d; best = v; }
+    }
+    return best;
+  }
 
   function pickEdge(clientX: number, clientY: number): GEdge | null {
     const rect = canvas.getBoundingClientRect();
