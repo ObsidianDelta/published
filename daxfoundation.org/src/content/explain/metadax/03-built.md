@@ -11,6 +11,8 @@ canon:
   - "It was self-evident, simulation after simulation: generating was the problem, not keeping or spreading."
   - "What it lacked is what the public experiments are for: a record that remembers, reuse by meaning, guides in the loop, and access for everyone, which is why five minutes a day is the start."
   - "The experiments are not a product; where we want to go and where we are must never be confused."
+horizon_canon:
+  - "What was self-evident in 2024 becomes reachable by everyone; the next experiments are about reach and the record, not about whether it works."
 editions:
   kid:
     voice: "For someone about ten"
@@ -21,6 +23,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "What the prototype showed in 2024 becomes the start for every learner — reaching anyone who can communicate, in any language, on five minutes a day."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -51,6 +54,7 @@ editions:
     how: "What you can see today is the video: the 2024 prototype running, generating a full individualized curriculum end to end. The public experiments now tackle the record that remembers, reuse by meaning rather than browsing, and guides in the loop. Five minutes a day is the access floor the experiments are designed around. Each experiment is open; none is a finished product."
     proof_intro: "The 2024 prototype is documented and the video is public. The guide is a person a step ahead of this learner; the learner is whoever is reaching. The experiments address what the prototype left open."
     under: "The prototype showed that generation works. It did not solve the record, the meaning-based reuse, or the guide's role in the loop. Those are the experiments. The Foundation keeps where we are and where we want to go as two distinct things. This page is schema data, checked and signed."
+    horizon: "What was self-evident in 2024 becomes the start for everyone — the next experiments are about reach and the record, not about whether it works."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -81,6 +85,7 @@ editions:
     how: "Today you can watch the video. It shows the 2024 prototype building a full course for one learner. The experiments now open to the public are working on the record, the guide's role, and access with five minutes of connectivity a day. Nothing yet is a finished product for your child's table. When it is, a guide who knows your child will be part of how it works."
     proof_intro: "The 2024 prototype is documented and the video is public. The experiments are open and honest about what is still being tested. The Foundation keeps the distance between proof and product clear."
     under: "The prototype proved generation. It did not prove the record that remembers across sessions, reuse by meaning, or guides reliably in the loop. Every helper action in the experiments is recorded under the Constraint Protocol. What one learner's sessions teach the system is shared, so the next learner's guide starts further ahead. This page is schema data, checked and signed."
+    horizon: "What the prototype showed becomes available to your child, on any bandwidth, with a record that travels with her — the next experiments are for reach, and reach includes her."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -111,6 +116,7 @@ editions:
     how: "Today the video is the proof. The experiments are open: the record that remembers, reuse by meaning, and the guide's place in the loop are what is being tested now. Five minutes a day is the access floor. You are the thing the 2024 prototype most clearly needed. What you get when the experiments land is your authority back, your attention freed, your loop supported."
     proof_intro: "The 2024 prototype produced a full individualized curriculum, quizzed through Bloom's levels and assessed. The video is public. The experiments for what comes next are open and documented."
     under: "The prototype proved generation. The experiments address the record, meaning-based reuse, and the guide's role as the human in the loop. Every helper action is recorded under the Constraint Protocol, under your authority. What one guide's learners teach the system is shared. This page is schema data, checked and signed."
+    horizon: "What the prototype showed becomes available to every learner, with the guide in the loop — the experiments are about reach and the record, not about whether generation works."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -141,6 +147,7 @@ editions:
     how: "Today the video is the proof of what generation can do. The experiments now running address the record, meaning-based reuse, and the guide role for workplace learning. Five minutes of connectivity a day is the access floor the design is built around. Every helper action in the experiments is recorded, so you can see what happened and who decided it. None of this is a finished enterprise product yet."
     proof_intro: "The 2024 prototype is documented and the video is public. The experiments for the record, reuse by meaning, and guides in the loop are open. The Foundation keeps what is proven and what is experimental clearly separate."
     under: "The prototype proved generation at the individual level. The experiments address the record that travels with the learner, reuse by meaning, and the guide's authority in the loop. Every helper action is recorded under the Constraint Protocol: who acted, on whose authority, what the learner reached. That accountability record is what makes this usable in an organization. This page is schema data, checked and signed."
+    horizon: "What the prototype showed becomes available at any scale in your organisation — the next experiments are about the record that travels with each person, and reach for every role."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -171,6 +178,7 @@ editions:
     how: "Today the deliverable is a package: a guide answers questions, a set of lessons and quizzes is made for one learner, the guide edits, it ships. The experiments for the record, meaning-based reuse, and the always-on layer are public. The Foundation's experiments are open; what you build on them is yours. No revenue figures, no promises: the architecture is the asset."
     proof_intro: "The 2024 prototype is documented and the video is public. The experiments for the record and the always-on layer are open. The distance between proof and product is kept clear — your product should keep it clear too."
     under: "Every helper action in the experiments is recorded under the Constraint Protocol. That accountability record is what lets an organization trust a guide-learner pair at scale. The platform is schema-first: every edition is data, checked and signed. Your product lives in the same substrate. A way, never the way."
+    horizon: "What was self-evident in 2024 becomes the platform your product builds on — the next experiments are about reach and the record, and both are the surface your product addresses."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -201,6 +209,7 @@ editions:
     how: "Shipped today: the package pipeline. A guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes and recursive follow-ups for one learner; the guide edits; it ships as a bundle. The open experiments are the record schema, meaning-based reuse, and the guide loop instrumented. The video is in the evidence block. The current experiments are public and the architecture is not frozen."
     proof_intro: "The 2024 prototype produced a full individualized curriculum from structured input, quizzed through Bloom's taxonomy and returned learner position. Video and README are in the evidence. The experiments are documented and public."
     under: "Every helper action is an entry in an accountability record under the Constraint Protocol: who acted, on what learner, under whose guide authority, with what severity if wrong. The guide's authority is not optional; it is a schema constraint. Generation is proven; the record, the meaning-layer, and the guide loop are the open contracts. This page is an instance: schema data, checked and signed."
+    horizon: "What the prototype proved is generation; what the open experiments address is the record, semantic reuse, the guide loop, and access at any bandwidth — the architectural surface is fully defined."
     buttons:
       more: "Tell me more"
       how: "What is shipped today?"
@@ -231,6 +240,7 @@ editions:
     how: "What is proven: the 2024 prototype, documented and on video. What is an experiment: the always-on layer, the record schema, reuse by meaning, guides in the loop. What the money does: tokens, guides' time, and record infrastructure. What it unlocks per phase: generation to record, record to reuse, reuse to access at five minutes a day. The Foundation keeps where we want to go and where we are as two distinct things. People support the Foundation; the Foundation supports open infrastructure."
     proof_intro: "The 2024 prototype is documented and the video is public. The experiments are open. The Foundation keeps the distance between proof and product clear and never invents figures."
     under: "The Constraint Protocol is the accountability layer: every helper action recorded, every guide's authority traceable. It is why the Foundation can claim the experiments are safe to run with real learners. What one learner's sessions teach the system is shared, so the next guide starts further ahead. The platform is schema-first: every edition is data, checked and signed. The Foundation calls it the record."
+    horizon: "What was self-evident in 2024 becomes reachable by everyone — the next experiments are about reach and the record, and that is what the Foundation's current phase is for."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -261,6 +271,7 @@ editions:
     how: "Current implementation: the package pipeline. A guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes, and recursive follow-ups for one learner; the guide edits; it ships as a bundle. That pipeline is the generation proof. The public experiments address the record schema, semantic reuse, and guide-loop instrumentation as open contracts. The video is in the evidence block. None of the experiments is a released product; current state and target state are formally separate."
     proof_intro: "The 2024 prototype produced a full individualized curriculum from a structured prompt, quizzed through Bloom's taxonomy levels and returned learner position. The video is primary evidence. The GitHub README documents the five-deep follow-up chain from 2024. The Constraint Protocol defines the severity table at Appendix A."
     under: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what learner, under whose guide authority, with what severity if wrong. Generation is the proven variable. The open variables — record persistence, semantic reuse, guide-loop integration, and access at five minutes a day — are the experiment targets. The schema encodes current state and target state as distinct fields; conflating them is a build failure. Every edition of this page is schema-validated and signed; the edition you are reading is an instance of the same discipline the researcher edition describes."
+    horizon: "What the prototype proved (generation) separates cleanly from what remains open (record persistence, semantic reuse, guide-loop integration, access at minimal bandwidth) — the variable set is defined."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
