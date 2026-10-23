@@ -239,7 +239,7 @@ editions:
     signed: false
     by: skippy
     answer: "The companion that helped build this site exists. Yours is where this goes. In Meta DAX, the thirty helpers will be sent through the companion, per concept, per moment. Today the way in is the question box on this site; a citizen's own companion comes later. Supporting the Foundation is what builds what comes next."
-    more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That is the architecture the Foundation is building toward. The companion that helped build this site is what is proven. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the companion layer. What it unlocks: a citizen with a companion through which thirty helpers are sent, per concept, per moment. What is free forever: the platform, the schema, the open infrastructure. A citizen's own companion comes later; that is the honest position."
+    more: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. That is the architecture the Foundation is building toward. The companion that helped build this site is what is proven. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the companion layer. What it unlocks: a citizen with a companion through which thirty helpers are sent, per concept, per moment. The platform, the schema and the open infrastructure are free and open. A citizen's own companion comes later; that is the honest position."
     how: "What is proven: the companion that helped build this site exists and is in use. What is an experiment: the citizen companion layer, the dispatch of thirty helpers through the companion per concept per moment. What the money does: builds the companion layer. What it unlocks: a citizen's own companion. Today the question box is the door. Support the Foundation to build what comes next."
     proof_intro: "The companion that helped build this site is real. The question box is live. Meta DAX is published at daxfoundation.org/metadax/. A citizen's own companion comes later; the Foundation states this plainly."
     under: "A cognitive companion is a cognitive extension of a person; a person and their companion are one unit; everything in its domain is under the person's control. The thirty helpers in Meta DAX come through that companion, per concept, per moment. The companion that helped build this site is the existence proof. The platform is schema-first: every edition is data, checked and signed. People support the Foundation; the Foundation supports open infrastructure."
@@ -321,5 +321,6 @@ scene:
       caption: "The companion exists; yours is where this goes"
   pin: 1
   states: [settle]
+next: 04-horizon
 version: 1
 ---
