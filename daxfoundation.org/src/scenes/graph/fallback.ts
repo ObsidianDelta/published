@@ -109,10 +109,14 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
   function clampNodes(): void {
     for (const n of all) {
       if (!nodeShown(n, level) && n.shown < 0.01) continue;
-      const r = radiusOf(n) + 16; // node radius + label clearance
-      if (n.x < r) n.x = r;
-      if (n.x > W - r) n.x = W - r;
-      const rt = radiusOf(n) + 4;
+      const r = radiusOf(n);
+      // Padding must cover the circle radius AND the label half-width so neither
+      // clips at the canvas edge. Label chars × 7.2 px / 2 ≥ 16 px minimum.
+      const lHalf = (nodeLabel(n).length * 7.2) / 2;
+      const padX = r + Math.max(16, lHalf);
+      if (n.x < padX) n.x = padX;
+      if (n.x > W - padX) n.x = W - padX;
+      const rt = r + 4;
       if (n.y < rt) n.y = rt;
       if (n.y > H - 40 - rt - 18) n.y = H - 40 - rt - 18;
     }
@@ -329,7 +333,9 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
   draw();
   if (!reduced) start();
 
-  const ro = new ResizeObserver(() => { measure(); if (reduced) { rebuild(false); } draw(); });
+  // Always rebuild on resize so the force centres (cx/cy) and scale track the
+  // new dimensions; rebuild(false) re-ticks and clamps, then calls draw().
+  const ro = new ResizeObserver(() => { measure(); rebuild(false); });
   ro.observe(host);
 
   const handle: SceneHandle & { setLevel(n: number): void } = {
@@ -338,7 +344,7 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
       if (name === "hidden") { visible = false; stop(); }
       else if (name === "visible") { visible = true; start(); if (reduced) draw(); }
     },
-    resize(): void { measure(); draw(); },
+    resize(): void { measure(); rebuild(false); },
     destroy(): void {
       stop(); ro.disconnect(); if (sim) sim.stop();
       canvas.removeEventListener("pointerdown", onDown);

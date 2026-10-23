@@ -380,12 +380,27 @@ export async function mount(
   }
 
   // ---- geometry / resize ----
+  // Base camera Z values at wide/close framing (sufficient at desktop aspect ≥ 1).
+  const CAM_WIDE_Z0 = 8.7;
+  const CAM_CLOSE_Z0 = 5.4;
   function fit(): void {
     const w = host.clientWidth || 600;
     const h = host.clientHeight || 480;
+    const aspect = w / h;
+    // On narrow viewports (portrait phone) the horizontal FOV shrinks, pushing
+    // the extreme level-1 nodes (novadax/skippydax at x=±2.05) toward the
+    // canvas edge. Pull the camera back so the node sphere + label half-width
+    // (≈56 px) stay inside the frame. At aspect ≥ 1 the base Z is sufficient.
+    const extentWorld = 2.05 + 0.24; // node x + sphere radius
+    const f = 1 / Math.tan(Math.PI / 8); // 1/tan(22.5°) ≈ 2.414
+    const labelNdc = Math.min(0.25, 56 / Math.max(w, 56)); // label half-width in NDC
+    const targetNdc = Math.max(0.1, 1 - labelNdc - 0.04);
+    const zMin = (extentWorld * f) / (aspect * targetNdc);
+    camWide.z = Math.max(CAM_WIDE_Z0, zMin);
+    camClose.z = Math.max(CAM_CLOSE_Z0, zMin * (CAM_CLOSE_Z0 / CAM_WIDE_Z0));
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, params.maxPixelRatio || 2));
     renderer.setSize(w, h, false);
-    camera.aspect = w / h;
+    camera.aspect = aspect;
     camera.updateProjectionMatrix();
   }
   const ro = new ResizeObserver(() => { fit(); renderOnce(); });
