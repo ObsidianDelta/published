@@ -29,7 +29,7 @@ export function validateScenes(entries: { data: { scene?: { module?: string } } 
 // the build and the node --test suite share it); a forbidden string is ALWAYS an
 // error, every other failure is a warning under STRICT.
 // @ts-ignore -- plain .mjs sibling, no .d.ts; the shape is simple and stable.
-import { checkEdition, canonCheck } from './check-edition.mjs';
+import { checkEdition, canonCheck, FORBIDDEN } from './check-edition.mjs';
 
 export interface EditionCheck {
   ok: boolean;
@@ -70,9 +70,18 @@ export function validateEditions(
           console.warn(`[explain] edition ${where} holds no canon key noun`);
         }
       }
-      // Soft horizon check: warn on 'will', 'soon', or any year other than 2024.
+      // Horizon enforcement: hard errors for cap and forbidden strings; soft
+      // check (warn only) for 'will', 'soon', or years other than 2024.
       const h = (ed as Record<string, unknown>)['horizon'];
       if (typeof h === 'string' && h.trim().length > 0) {
+        if (h.length > 360) {
+          throw new Error(`[explain] horizon ${where} exceeds 360-char cap (${h.length})`);
+        }
+        for (const re of FORBIDDEN as RegExp[]) {
+          if (re.test(h)) {
+            throw new Error(`[explain] forbidden string in horizon ${where}: ${re.source}`);
+          }
+        }
         const horizonHits: string[] = [];
         if (/\bwill\b/i.test(h)) horizonHits.push('"will"');
         if (/\bsoon\b/i.test(h)) horizonHits.push('"soon"');
