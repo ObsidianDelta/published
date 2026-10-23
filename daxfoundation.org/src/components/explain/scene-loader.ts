@@ -61,6 +61,22 @@ async function pickModule(name: string, reg: Resolver): Promise<SceneModule | nu
 }
 
 const handles = new Map<HTMLElement, SceneHandle>();
+// The current edition's labels per frame, set by the chapter when the lens is
+// applied (EXP-8a item 7). Used at mount, and pushed live via setLabels after.
+const frameLabels = new Map<HTMLElement, Record<string, string | string[]>>();
+
+/** The reader's lens changed: push the new labels to a frame (now or at mount). */
+export function setFrameLabels(frame: HTMLElement, labels: Record<string, string | string[]>): void {
+  frameLabels.set(frame, labels);
+  const h = handles.get(frame);
+  if (h && typeof h.setLabels === "function") h.setLabels(labels);
+}
+
+/** A depth opened: tell the frame's scene, if it reacts to depth. */
+export function setFrameDepth(frame: HTMLElement, depth: number): void {
+  const h = handles.get(frame);
+  if (h && typeof h.setDepth === "function") h.setDepth(depth);
+}
 
 async function mountFrame(frame: HTMLElement): Promise<void> {
   if (handles.has(frame) || frame.dataset.mounting === "1") return;
@@ -87,7 +103,12 @@ async function mountFrame(frame: HTMLElement): Promise<void> {
   } catch {
     params = {};
   }
-  const labels = (params.labels as Record<string, string | string[]>) || {};
+  // Prefer the current edition's labels (lens-aware); fall back to the chapter's
+  // declared scene.params.labels when the chapter has not pushed any yet.
+  const labels =
+    frameLabels.get(frame) ||
+    (params.labels as Record<string, string | string[]>) ||
+    {};
   const tokens = readTokens();
   const handle = await mod.mount(frame, {
     labels,

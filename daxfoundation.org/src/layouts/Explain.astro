@@ -60,6 +60,36 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <slot name="head" />
   </head>
   <body>
+    <!-- Reading hairline: a 2px bar, width = scroll fraction (EXP-8a item 5). -->
+    <div class="reading-rule" id="reading-rule" aria-hidden="true"></div>
+
+    <!-- The site's own masthead/nav, from Base.astro, so /explain reads as
+         daxfoundation.org and not a separate site (EXP-8a item 5). -->
+    <header class="site-top">
+      <a class="mark" href="/">DAX Foundation</a>
+      <nav class="site-nav" aria-label="Site">
+        <a class="mark" href="/metadax/">Meta DAX</a>
+        <a class="mark" href="/definitions/">Definitions</a>
+        <a class="mark" href="/writing/">Writing</a>
+      </nav>
+    </header>
+
+    <!-- The lens chooser: the chapter is written for whoever is reading. Chosen
+         lens is remembered in localStorage and applied to every chapter on the
+         page without a reload (the chapters listen for the "dax-lens" event). -->
+    <section class="chooser" aria-labelledby="chooser-h">
+      <p class="chooser-h" id="chooser-h">Who's reading? The chapter is written for you.</p>
+      <div class="chips" id="lens-chips" role="group" aria-label="Who's reading">
+        <button type="button" class="chip" data-lens="curious" aria-pressed="true">Just curious</button>
+        <button type="button" class="chip" data-lens="teacher" aria-pressed="false">I teach</button>
+        <button type="button" class="chip" data-lens="parent" aria-pressed="false">I'm a parent</button>
+        <button type="button" class="chip" data-lens="builder" aria-pressed="false">I build software</button>
+        {/* SLOT: "Someone else…" (a reader's own edition) is NOT shipped in this
+            ask -- it needs the widget sampling transport (EXP-6). Add the chip
+            and its panel here when that transport lands. */}
+      </div>
+    </section>
+
     <main>
       <slot />
     </main>
@@ -70,6 +100,81 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
         <a href="https://jeyanandan.com/blog/how-i-publish/">How this is published</a>
       </span>
     </footer>
+
+    <script>
+      // The lens chooser and the reading hairline. localStorage under
+      // `dax-explain-lens`, try/catch so private mode never throws. Changing the
+      // lens dispatches "dax-lens"; the chapters redraw themselves (no reload).
+      const LENS_KEY = "dax-explain-lens";
+      const LENSES = ["curious", "teacher", "parent", "builder"];
+
+      function readLens(): string {
+        try {
+          const v = localStorage.getItem(LENS_KEY);
+          return v && LENSES.includes(v) ? v : "curious";
+        } catch {
+          return "curious";
+        }
+      }
+      function writeLens(v: string): void {
+        try {
+          localStorage.setItem(LENS_KEY, v);
+        } catch {
+          /* private mode: the choice simply does not persist */
+        }
+      }
+
+      function paintChips(lens: string): void {
+        document.querySelectorAll<HTMLElement>("#lens-chips .chip").forEach((c) => {
+          c.setAttribute("aria-pressed", c.dataset.lens === lens ? "true" : "false");
+        });
+      }
+
+      function wireChooser(): void {
+        const chips = document.getElementById("lens-chips");
+        if (!chips || (chips as any).__wired) return;
+        (chips as any).__wired = true;
+        chips.addEventListener("click", (e) => {
+          const chip = (e.target as Element | null)?.closest<HTMLElement>(".chip");
+          const lens = chip?.dataset.lens;
+          if (!lens) return;
+          writeLens(lens);
+          paintChips(lens);
+          document.dispatchEvent(new CustomEvent("dax-lens", { detail: lens }));
+        });
+        paintChips(readLens());
+      }
+
+      // Reading hairline: width = how far down the page the reader is.
+      let ticking = false;
+      function onScroll(): void {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          ticking = false;
+          const rule = document.getElementById("reading-rule");
+          if (!rule) return;
+          const vh = window.innerHeight;
+          const sh = document.documentElement.scrollHeight;
+          const y = window.scrollY || document.documentElement.scrollTop;
+          rule.style.width = (sh > vh ? (y / (sh - vh)) * 100 : 0) + "%";
+        });
+      }
+
+      function boot(): void {
+        wireChooser();
+        onScroll();
+      }
+
+      window.addEventListener("scroll", onScroll, { passive: true });
+      window.addEventListener("resize", onScroll, { passive: true });
+      document.addEventListener("astro:page-load", boot);
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", boot, { once: true });
+      } else {
+        boot();
+      }
+    </script>
   </body>
 </html>
 
@@ -106,4 +211,63 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
   .foot a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--line); }
   .foot a:hover, .foot a:focus-visible { color: var(--fg); }
   :focus-visible { outline: 1px solid var(--focus); outline-offset: 3px; }
+
+  /* Reading hairline, fixed at the very top of the page. */
+  .reading-rule {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background: var(--record);
+    z-index: 20;
+  }
+
+  /* Site masthead/nav, matching Base.astro's quiet register. */
+  .site-top {
+    width: 100%;
+    max-width: var(--measure-scene);
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6) 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-4);
+  }
+  .site-top .mark {
+    text-decoration: none;
+    font-size: var(--text-label-size);
+    letter-spacing: var(--text-label-tracking);
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .site-top .mark:hover, .site-top .mark:focus-visible { color: var(--fg); }
+  .site-nav { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); justify-content: flex-end; }
+
+  /* The lens chooser. */
+  .chooser {
+    width: 100%;
+    max-width: var(--measure-scene);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-6) 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+  .chooser-h { margin: 0; font-size: var(--text-small-size); color: var(--ink-muted); }
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .chip {
+    min-height: 40px;
+    padding: var(--space-2) var(--space-5);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-full);
+    background: transparent;
+    color: var(--ink-muted);
+    font-family: var(--font-sans);
+    font-size: var(--text-small-size);
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .chip:hover { color: var(--fg); }
+  .chip[aria-pressed="true"] { border-color: var(--record); color: var(--fg); }
+  .chip:focus-visible { outline: 2px solid var(--record); outline-offset: 3px; }
 </style>

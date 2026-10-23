@@ -1,10 +1,10 @@
 ---
-// One chapter section (Explainer Kit v1, spec section 4, items 1-5). Phone first.
-// Order of parts: masthead row; counter + tense tag; the sticky scene frame (or
-// the Video/Chairs component for modules 'video'/'chairs'); the question; the
-// line; the three depth pills; the 8-cell progress bar; the Next hint. Every depth
-// is in the HTML and the line is visible without JS, so the chapter is complete
-// and readable with the scene absent.
+// One chapter section, ported to the approved sampler's shape (EXP-8a).
+// Jason's verdict (23 Oct): the depth pills and the Next carousel are gone. One
+// gesture: scroll. Depth is a ladder of plain questions (more -> how -> proof ->
+// under), each a full-width button that opens in place. The chapter is written
+// for the reader's lens; the server renders the curious edition so the no-JS
+// reading path is complete, and the client swaps text when the lens changes.
 import type { Chapter } from "../../lib/explain/chapters.js";
 import Video from "./Video.astro";
 import Chairs from "./Chairs.astro";
@@ -35,18 +35,26 @@ const isScene = !isVideo && !isChairs;
 const pin = typeof d.scene?.pin === "number" ? d.scene.pin : 1;
 const sceneParams = JSON.stringify(d.scene?.params ?? {});
 
-// Progress: the 8 Meta DAX cells. The current cell is record, the ones before it
-// ink-faint, the rest line. The foundation map (order 0) lights none.
-const current = chapter.collection === "metadax" ? d.order - 1 : -1;
-const cells = Array.from({ length: total }, (_, i) =>
-  i === current ? "now" : i < current ? "past" : "ahead"
-);
-
 const hasFr = Boolean(d.question?.fr);
 const masthead = chapter.collection === "metadax" ? "DAX Foundation — Meta DAX" : "DAX Foundation";
 
-const panelId = (k: string) => `d-${chapter.collection}-${d.id}-${k}`;
 const evidence = (d.evidence as any[]) ?? [];
+
+// The server renders the curious edition; the client re-renders for the reader's
+// lens on load and whenever the chooser changes it. Every depth is in the HTML.
+const editions = chapter.editions as Record<string, any>;
+const base = editions.curious;
+const STEPS = [
+  { key: "more", head: "More", body: base.more },
+  { key: "how", head: "Today, and where it goes", body: base.how },
+  { key: "proof", head: "The proof", body: base.proof_intro },
+  { key: "under", head: "Underneath", body: base.under },
+] as const;
+const bodyOf = (k: string) => (k === "proof" ? base.proof_intro : (base as any)[k]);
+const empty = (s: string | undefined) => !s || !s.trim();
+
+const nextChapter = (chapter as any).nextChapter as { question: string; url: string } | null;
+const chapNo = chapter.collection === "metadax" ? d.order : d.order;
 ---
 <section
   class:list={["chapter", { "has-scene": isScene }]}
@@ -84,89 +92,192 @@ const evidence = (d.evidence as any[]) ?? [];
   )}
 
   <div class="chapter-content">
+    <p class="kicker"><span>Chapter {chapNo} of {total}</span><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
     <h2 class="question">{d.question.en}</h2>
 
     {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
     {isChairs && <Chairs doors={d.scene.params.doors} labels={d.scene.params.labels} />}
 
-    <p class="line" id={panelId("line")}>{d.line.en}</p>
+    <p class="answer" data-answer>{base.answer}</p>
+    <p class="depthline" data-depthline>Depth 1 of 5</p>
 
-    <div class="depths">
-      <div class="depth-pills" role="group" aria-label="Depth">
-        <button
-          type="button"
-          class="pill"
-          aria-expanded="true"
-          aria-controls={panelId("line")}
-          data-explain-depth="line"
-        >The line</button>
-        {d.paragraph && (
-          <button
-            type="button"
-            class="pill"
-            aria-expanded="false"
-            aria-controls={panelId("paragraph")}
-            data-explain-depth="paragraph"
-          >The paragraph</button>
-        )}
-        <button
-          type="button"
-          class="pill"
-          aria-expanded="false"
-          aria-controls={panelId("evidence")}
-          data-explain-depth="evidence"
-        >The evidence</button>
-      </div>
+    {/* The ladder: more -> how -> proof -> under, nested, opening in place. Each
+        depth stays in the HTML for no-JS and SEO. Empty bodies (from the alias)
+        start hidden. The evidence list lives inside the proof step. */}
+    <div class="step" data-step="more" hidden={empty(base.more)}>
+      <button type="button" class="step-btn" data-open="more" aria-expanded="false" data-explain-depth="more">
+        <span data-btn="more">{base.buttons.more}</span><span class="plus" aria-hidden="true">+</span>
+      </button>
+      <div class="panel"><div class="panel-in">
+        <p class="step-head">More</p>
+        <p class="step-body" data-body="more">{base.more}</p>
 
-      {d.paragraph && (
-        <p class="paragraph" id={panelId("paragraph")} hidden>{d.paragraph.en}</p>
-      )}
+        <div class="step" data-step="how" hidden={empty(base.how)}>
+          <button type="button" class="step-btn" data-open="how" aria-expanded="false" data-explain-depth="how">
+            <span data-btn="how">{base.buttons.how}</span><span class="plus" aria-hidden="true">+</span>
+          </button>
+          <div class="panel"><div class="panel-in">
+            <p class="step-head">Today, and where it goes</p>
+            <p class="step-body" data-body="how">{base.how}</p>
 
-      <ul class="evidence" id={panelId("evidence")} hidden>
-        {evidence.map((ev) => (
-          <li class="evidence-item">
-            {ev.src ? (
-              <a href={ev.src} rel="noopener">{ev.caption.en}</a>
-            ) : (
-              <span>{ev.caption.en}</span>
-            )}
-            {ev.value != null && <span class="evidence-value">{ev.value}</span>}
-            <span class="evidence-source">{ev.source}</span>
-          </li>
-        ))}
-      </ul>
+            <div class="step" data-step="proof" hidden={empty(base.proof_intro)}>
+              <button type="button" class="step-btn" data-open="proof" aria-expanded="false" data-explain-depth="proof">
+                <span data-btn="proof">{base.buttons.proof}</span><span class="plus" aria-hidden="true">+</span>
+              </button>
+              <div class="panel"><div class="panel-in">
+                <p class="step-head">The proof</p>
+                <p class="step-body" data-body="proof">{base.proof_intro}</p>
+                <ul class="evidence">
+                  {evidence.map((ev) => (
+                    <li class="evidence-item">
+                      {ev.src ? (
+                        <a href={ev.src} rel="noopener">{ev.kind === "video" && <span class="play" aria-hidden="true">▶</span>}{ev.caption.en}</a>
+                      ) : (
+                        <span>{ev.caption.en}</span>
+                      )}
+                      {ev.value != null && <span class="evidence-value">{ev.value}</span>}
+                      <span class="evidence-source">{ev.source}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div class="step" data-step="under" hidden={empty(base.under)}>
+                  <button type="button" class="step-btn" data-open="under" aria-expanded="false" data-explain-depth="under">
+                    <span data-btn="under">{base.buttons.under}</span><span class="plus" aria-hidden="true">+</span>
+                  </button>
+                  <div class="panel"><div class="panel-in">
+                    <p class="step-head">Underneath</p>
+                    <p class="step-body" data-body="under">{base.under}</p>
+                  </div></div>
+                </div>
+              </div></div>
+            </div>
+          </div></div>
+        </div>
+      </div></div>
     </div>
 
-    <div class="progress" aria-hidden="true">
-      {cells.map((state) => <span class:list={["cell", `cell-${state}`]}></span>)}
-    </div>
-
-    {d.next && <a class="next" href={`#${d.next}`}>Next</a>}
+    {nextChapter && (
+      <p class="next">Next question: <a href={nextChapter.url}>{nextChapter.question}</a></p>
+    )}
   </div>
+
+  {/* The editions travel with the section as data (never markup): the client
+      draws the reader's lens from this, exactly as the sampler draws from EDITIONS. */}
+  <script type="application/json" data-editions set:html={JSON.stringify({ editions })} />
 </section>
 
 <script>
-  // Depth pills: toggle a panel's [hidden] and the button's aria-expanded. The
-  // line is visible by default; the other panels start collapsed but are in the
-  // HTML for SEO and no-JS. Delegated once for every chapter. Under
-  // .reduced-motion the CSS makes the reveal instant (no transition).
-  function wireDepths() {
-    document.querySelectorAll<HTMLButtonElement>("[data-explain-depth]").forEach((btn) => {
-      if (btn.dataset.wired === "1") return;
-      btn.dataset.wired = "1";
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("aria-controls");
-        const panel = id ? document.getElementById(id) : null;
-        const open = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", open ? "false" : "true");
-        if (panel && panel.classList.contains("line")) return; // the line stays visible
-        if (panel) panel.hidden = open;
-      });
+  import { setFrameLabels, setFrameDepth } from "./scene-loader.js";
+
+  const LENS_KEY = "dax-explain-lens";
+  const STEP_KEYS = ["more", "how", "proof", "under"] as const;
+  const DEPTH_OF: Record<string, number> = { more: 2, how: 3, proof: 4, under: 5 };
+
+  function readLens(): string {
+    try {
+      return localStorage.getItem(LENS_KEY) || "curious";
+    } catch {
+      return "curious";
+    }
+  }
+
+  function frameOf(section: Element): HTMLElement | null {
+    return section.querySelector<HTMLElement>("[data-scene]");
+  }
+
+  // Draw one chapter for a lens. A missing lens falls back to curious with the
+  // kicker "not yet written for you" (never leave a lens empty; never copy text).
+  function applyLens(section: HTMLElement, lens: string): void {
+    const tag = section.querySelector<HTMLScriptElement>("script[data-editions]");
+    if (!tag) return;
+    let editions: Record<string, any>;
+    try {
+      editions = JSON.parse(tag.textContent || "{}").editions || {};
+    } catch {
+      return;
+    }
+    const missing = !editions[lens];
+    const ed = editions[lens] || editions.curious;
+    if (!ed) return;
+
+    const voice = section.querySelector<HTMLElement>("[data-voice]");
+    if (voice) {
+      voice.textContent = missing ? "not yet written for you" : ed.voice;
+      voice.classList.toggle("faint", missing || !ed.voice);
+    }
+    const answer = section.querySelector<HTMLElement>("[data-answer]");
+    if (answer) answer.textContent = ed.answer;
+
+    for (const k of STEP_KEYS) {
+      const text = k === "proof" ? ed.proof_intro : ed[k];
+      const body = section.querySelector<HTMLElement>(`[data-body="${k}"]`);
+      const btn = section.querySelector<HTMLElement>(`[data-btn="${k}"]`);
+      const step = section.querySelector<HTMLElement>(`[data-step="${k}"]`);
+      if (body) body.textContent = text || "";
+      if (btn && ed.buttons) btn.textContent = ed.buttons[k];
+      if (step) step.hidden = !text || !text.trim();
+    }
+
+    const frame = frameOf(section);
+    if (frame && ed.labels) setFrameLabels(frame, ed.labels);
+  }
+
+  function applyLensEverywhere(lens: string): void {
+    document
+      .querySelectorAll<HTMLElement>("[data-explain-chapter]")
+      .forEach((section) => applyLens(section, lens));
+  }
+
+  // The ladder: each button opens its step in place, hides itself, and deepens
+  // the "Depth n of 5" line. Delegated once; works across every chapter.
+  function wireLadder(): void {
+    if ((document.body as any).__daxLadder) return;
+    (document.body as any).__daxLadder = true;
+    document.addEventListener("click", (e) => {
+      const target = e.target as Element | null;
+      const btn = target?.closest<HTMLElement>(".step-btn");
+      if (!btn) return;
+      const step = btn.parentElement;
+      if (!step) return;
+      step.classList.add("open");
+      btn.setAttribute("aria-expanded", "true");
+      const section = btn.closest<HTMLElement>("[data-explain-chapter]");
+      const which = btn.dataset.open || "";
+      const depth = DEPTH_OF[which] || 1;
+      if (section) {
+        const line = section.querySelector<HTMLElement>("[data-depthline]");
+        const current = line ? Number(line.dataset.depth || "1") : 1;
+        if (depth > current) {
+          if (line) {
+            line.dataset.depth = String(depth);
+            line.textContent = `Depth ${depth} of 5`;
+          }
+          const frame = frameOf(section);
+          if (frame) setFrameDepth(frame, depth);
+        }
+      }
     });
   }
-  document.addEventListener("astro:page-load", wireDepths);
-  // The scene loader wires the sticky frames and the reduced-motion class.
-  import("./scene-loader.js");
+
+  function boot(): void {
+    wireLadder();
+    applyLensEverywhere(readLens());
+  }
+
+  // The chooser (Explain.astro) fires this when the reader picks a lens; apply it
+  // to every chapter on the page without a reload.
+  document.addEventListener("dax-lens", (e) => {
+    const lens = (e as CustomEvent<string>).detail || "curious";
+    applyLensEverywhere(lens);
+  });
+
+  document.addEventListener("astro:page-load", boot);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot, { once: true });
+  } else {
+    boot();
+  }
 </script>
 
 <style>
@@ -175,7 +286,9 @@ const evidence = (d.evidence as any[]) ?? [];
     border-top: 1px solid var(--line);
     width: 100%;
   }
-  .chapter.has-scene { min-height: calc((var(--pin) + 1) * 100vh); }
+  /* Phone: the scene pins in the top 52vh and the words scroll under it (the
+     sampler's shape). The section is tall enough for that scroll. */
+  .chapter.has-scene { min-height: calc(52vh + 70vh); }
 
   .chapter-head,
   .chapter-content {
@@ -231,113 +344,146 @@ const evidence = (d.evidence as any[]) ?? [];
   .tag-record { border: 1px solid var(--record); color: var(--ink); }
   .tag-line { border: 1px solid var(--line); color: var(--ink-muted); }
 
+  /* Phone layout: scene sticky at the top 52vh, above the text (z-index), on the
+     ground colour; the text slides under it. Desktop (>= 64rem): two columns,
+     scene sticky left. */
   .scene-wrap {
     position: sticky;
     top: 0;
     z-index: 2;
     background: var(--ground);
-    height: 56vh;
+    height: 52vh;
     display: flex;
     align-items: center;
     justify-content: center;
     pointer-events: none;
   }
-  .scene-frame {
-    width: 100%;
-    height: 100%;
-    pointer-events: auto;
-  }
-  @media (min-width: 48rem) {
-    .scene-wrap { height: min(560px, 100vh); margin-top: var(--space-8); }
-    .scene-frame {
-      max-width: var(--measure-scene);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-    }
-  }
+  .scene-frame { width: 100%; height: 100%; pointer-events: auto; }
 
   .chapter-content {
     position: relative;
-    z-index: 0;
+    z-index: 1;
     background: var(--ground);
-    padding-block: var(--space-8) var(--space-24);
+    padding-block: var(--space-6) var(--space-24);
   }
-  /* 23 Oct preview: a -50vh pull-up put the text under the pinned scene on phones.
-     The scene pins in the top 56vh (above the text, on the ground colour); the
-     text starts below it and slides under it as the chapter scrolls. */
-  .has-scene .chapter-content { margin-top: 0; }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-size);
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin: 0 0 var(--space-3);
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+  .kicker b { color: var(--ink-muted); font-weight: 400; }
+  .kicker b.faint { color: var(--ink-faint); }
 
   .question {
     font-family: var(--font-display);
     font-weight: var(--text-title-weight);
-    font-size: var(--text-title-size);
-    line-height: var(--text-title-line);
-    letter-spacing: var(--text-title-tracking);
+    font-size: 36px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
     max-width: var(--measure-text);
     margin: 0 0 var(--space-6);
-  }
-  @media (min-width: 48rem) {
-    .question { font-size: var(--text-display-l-size); line-height: var(--text-display-l-line); }
+    text-wrap: balance;
   }
 
-  .line {
-    font-size: var(--text-body-size);
-    line-height: var(--text-body-line);
-    max-width: var(--measure-text);
+  .answer {
+    font-size: 19px;
+    line-height: 1.55;
+    max-width: 34em;
     margin: 0 0 var(--space-6);
   }
-
-  .depths { max-width: var(--measure-text); }
-  .depth-pills { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-4); }
-  .pill {
-    min-height: var(--touch-min);
-    padding: var(--space-2) var(--space-6);
-    border: 1px solid var(--line);
-    border-radius: var(--radius-full);
-    background: transparent;
-    color: var(--ink-muted);
-    font-family: var(--font-sans);
-    font-size: var(--text-small-size);
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+  .depthline {
+    font-family: var(--font-mono);
+    font-size: var(--text-mono-size);
+    letter-spacing: 0.06em;
+    color: var(--ink-faint);
+    margin: 0 0 var(--space-1);
   }
-  .pill:hover, .pill:focus-visible { color: var(--ink); border-color: var(--ink); }
-  .pill[aria-expanded="true"] { border-color: var(--record); color: var(--ink); }
 
-  .paragraph {
-    font-size: var(--text-body-size);
-    line-height: var(--text-body-line);
-    margin: 0 0 var(--space-6);
+  /* The ladder. Each step is a full-width button; the panel opens with a
+     grid-template-rows 0fr -> 1fr transition; the opened button hides. */
+  .step { margin: 0; }
+  .step[hidden] { display: none; }
+  .step-btn {
+    appearance: none;
+    background: none;
+    border: 0;
+    border-top: 1px solid var(--line);
+    width: 100%;
+    text-align: left;
     color: var(--ink);
-  }
-  .evidence { list-style: none; margin: 0 0 var(--space-6); padding: 0; display: grid; gap: var(--space-4); }
-  /* display: grid beats the hidden attribute; keep collapsed panels collapsed. */
-  .evidence[hidden], .paragraph[hidden] { display: none; }
-  .evidence-item { display: flex; flex-direction: column; gap: var(--space-1); }
-  .evidence-item a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); width: fit-content; }
-  .evidence-item a:hover, .evidence-item a:focus-visible { border-color: var(--ink); }
-  .evidence-value { font-family: var(--font-mono); color: var(--ink); }
-  .evidence-source { font-family: var(--font-mono); font-size: var(--text-mono-size); color: var(--ink-faint); }
-
-  .progress { display: flex; gap: var(--space-2); margin: var(--space-8) 0 var(--space-6); }
-  .cell { height: var(--space-1); flex: 1; border-radius: var(--radius-full); }
-  .cell-past { background: var(--ink-faint); }
-  .cell-now { background: var(--record); }
-  .cell-ahead { background: var(--line); }
-
-  .next {
-    display: inline-flex;
+    font-family: var(--font-sans);
+    font-size: 17px;
+    min-height: 54px;
+    padding: var(--space-3) 0;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    min-height: var(--touch-min);
+    gap: var(--space-3);
+    cursor: pointer;
+  }
+  .step-btn:hover .plus { color: var(--ink); }
+  .plus { color: var(--learner); font-size: 24px; line-height: 1; font-weight: 300; flex: none; }
+  .panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s ease; }
+  .panel-in { min-height: 0; overflow: hidden; }
+  .step.open > .panel { grid-template-rows: 1fr; }
+  .step.open > .step-btn { display: none; }
+  .step-head {
     font-size: var(--text-label-size);
     letter-spacing: var(--text-label-tracking);
     text-transform: uppercase;
-    color: var(--ink-muted);
-    text-decoration: none;
-    border-bottom: 1px solid var(--line);
+    color: var(--ink-faint);
+    margin: var(--space-5) 0 var(--space-2);
   }
-  .next:hover, .next:focus-visible { color: var(--ink); border-color: var(--ink); }
+  .step-body { margin: 0 0 var(--space-5); max-width: 34em; }
 
-  :global(.reduced-motion) .pill { transition: none; }
+  .evidence { list-style: none; margin: 0 0 var(--space-5); padding: 0; display: grid; gap: var(--space-4); }
+  .evidence-item { display: flex; flex-direction: column; gap: var(--space-1); }
+  .evidence-item a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); width: fit-content; }
+  .evidence-item a:hover, .evidence-item a:focus-visible { border-color: var(--ink); }
+  .play { color: var(--learner); margin-right: 6px; }
+  .evidence-value { font-family: var(--font-mono); color: var(--ink); }
+  .evidence-source { font-family: var(--font-mono); font-size: var(--text-mono-size); color: var(--ink-faint); }
+
+  .next {
+    border-top: 1px solid var(--line);
+    margin: var(--space-8) 0 0;
+    padding-top: var(--space-4);
+    color: var(--ink-muted);
+    font-size: var(--text-small-size);
+  }
+  .next a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .next a:hover, .next a:focus-visible { border-color: var(--ink); }
+
+  .step-btn:focus-visible { outline: 2px solid var(--record); outline-offset: 3px; }
+
+  @media (min-width: 64rem) {
+    .chapter.has-scene { min-height: 0; }
+    .chapter {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: var(--space-16);
+      align-items: start;
+    }
+    .chapter-head { grid-column: 1 / -1; }
+    .scene-wrap {
+      position: sticky;
+      top: calc(var(--space-6));
+      height: min(68vh, 640px);
+      margin-top: var(--space-6);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .chapter-content { padding-block: var(--space-10) var(--space-24); }
+    .question { font-size: 48px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) { .panel { transition: none; } }
+  :global(.reduced-motion) .panel { transition: none; }
 </style>

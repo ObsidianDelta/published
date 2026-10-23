@@ -1,32 +1,23 @@
 ---
-// /explain/metadax/<id>/ — the same continuous scroll, scrolled to <id> on load.
-// Shareable per-chapter URLs; one scroll. getStaticPaths enumerates the chapters;
-// the canonical is this page's own URL (the layout computes it from the path).
+// /explain/metadax/<id>/ — the single chapter whose id matches. Routing fix
+// (EXP-8a item 8): this used to render chapter 01 for every id; now each id
+// renders its own chapter, with the same lens chooser and reading hairline the
+// layout provides. Shareable per-chapter URLs; the sampler is one chapter deep.
 import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
 
 export async function getStaticPaths() {
   const chapters = await getCollectionChapters("metadax");
-  return chapters.map((c) => ({ params: { id: c.data.id }, props: { chapters, id: c.data.id } }));
+  return chapters.map((c) => ({ params: { id: c.data.id }, props: { chapter: c, total: chapters.length } }));
 }
 
-const { chapters, id } = Astro.props;
-const here = chapters.find((c) => c.data.id === id);
-const title = here ? `${here.data.question.en} — Meta DAX` : "Meta DAX";
+const { chapter, total } = Astro.props;
+const title = `${chapter.data.question.en} — Meta DAX`;
 ---
 <Explain
   title={title}
   description="The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative."
 >
-  {chapters.map((c) => <Chapter chapter={c} total={chapters.length} />)}
-  <script is:inline define:vars={{ id }}>
-    // Jump to the shared chapter without smooth animation (respect the pin).
-    const go = () => {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: "auto", block: "start" });
-    };
-    if (document.readyState !== "loading") go();
-    else document.addEventListener("DOMContentLoaded", go);
-  </script>
+  <Chapter chapter={chapter} total={total} />
 </Explain>
