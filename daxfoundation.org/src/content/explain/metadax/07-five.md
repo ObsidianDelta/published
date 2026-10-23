@@ -10,6 +10,8 @@ canon:
   - "Where it goes: always-on, per concept, per moment, with the companion as the primary interface and the helpers changing with the moment."
   - "The benchmark: take a person who can communicate to the equivalent of a master's degree on five minutes a day; it only has to be possible."
   - "Today's packages simulate the once-a-day case; this is the start, not the shape."
+horizon_canon:
+  - "Always on, per concept, per moment, the thirty changing with the moment, immersive and interactive, for all bandwidths."
 editions:
   kid:
     voice: "For someone about ten"
@@ -20,6 +22,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "One day the helper is always there, knowing exactly what you need at this moment, in any subject, for every child everywhere."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -58,6 +61,7 @@ editions:
     how: "Today a guide answers a few questions about a learner and what she needs to reach. A package is made: lessons, quizzes, follow-up questions. It works on five minutes of internet. The learner works through it offline. The record comes back. That loop is running now. The always-on layer is the next experiment."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed a full package made for one learner, quizzed and marked. The definitions of the companion, the benchmark, and all bandwidths are public."
     under: "Every helper action is recorded under the Constraint Protocol, so the guide can see what happened and why. That record is what lets the system work at any bandwidth: the connection is brief, but the accountability is complete. The platform is schema-first; every edition is checked and signed."
+    horizon: "Always-on, per concept, per moment — a companion that knows this learner, helpers shifting with what she needs, on any bandwidth, for life."
     buttons:
       more: "Tell me more"
       how: "How does it work today?"
@@ -96,6 +100,7 @@ editions:
     how: "Today you answer a few plain questions about your child and what she needs to reach. A package is made: lessons, quizzes, follow-up questions, made for her. It works on five minutes of internet a day. You read it first. She works through it. The record comes back to you. A cognitive companion is only as good as its human. That human is you."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed the full loop: a guide answered questions, a package was made for one learner, quizzed and marked. The definitions of the benchmark and the companion are public."
     under: "Every helper leaves a record of what it did and why. If a helper gets something wrong with your child, the record shows how. That is the Constraint Protocol, and it is the reason this can be trusted at any bandwidth, including yours. The platform is schema-first; every edition is checked and signed."
+    horizon: "Always-on for your child — a companion at every concept, helpers shifting with what she needs at this moment, for every bandwidth."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -134,6 +139,7 @@ editions:
     how: "Today you answer a few questions about a learner and what she needs to reach. A package is made: lessons, quizzes, follow-up questions, for her. It works on five minutes of internet a day. You edit before anything reaches her. The record comes back to you. That is the loop. The always-on layer is the next experiment."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed the full loop end to end: a guide answered questions, a package was made for one learner, quizzed and marked. The definitions of the benchmark and the companion are public."
     under: "Every helper action is recorded under the Constraint Protocol, under your authority. When a helper gets it wrong the record shows how. That record is what makes the system usable at every bandwidth, because the connection is brief but the accountability is complete. This page is schema data, checked and signed."
+    horizon: "Always-on, per concept, per moment — thirty helpers shifting with what the learner needs, your loop faster and finer, for every bandwidth and every learner."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -172,6 +178,7 @@ editions:
     how: "Today a guide answers a few questions about a person and what they need to reach. A package is made for that person. The guide reads it first. The person works through it on five minutes of internet. The record comes back. That loop is running now. The always-on layer is the next experiment. The record means accountability at enterprise scale, regardless of bandwidth."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed the full loop: a guide answered questions, a package was made for one learner, quizzed and marked. The definitions of the benchmark and the companion are public."
     under: "Every helper action is logged under the Constraint Protocol: who acted, on whose authority, what the learner reached. That accountability record is what makes this usable across an organization at any bandwidth. The platform is schema-first; every edition is checked and signed."
+    horizon: "Always-on per concept, per moment — the companion with every person on your team, helpers shifting per moment, for every bandwidth across any organisation."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -210,6 +217,7 @@ editions:
     how: "Today the deliverable is a package: a guide answers questions, a set of lessons and quizzes is made for one learner, the guide edits, it ships. That works on five minutes of internet. The pipeline is what you build on. The always-on experiments are public. The CMS and the record infrastructure are what you build products on top of. What you build on them is yours."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed the full loop. The always-on experiments are open. No revenue figures, no promises: the architecture is the asset."
     under: "Every helper action is recorded under the Constraint Protocol. That accountability record is what lets an organization trust the system at any bandwidth. The platform is schema-first: every edition is data, checked and signed. Your product lives in the same substrate. A way, never the way."
+    horizon: "Always-on per concept, per moment — the companion as primary interface, helpers shifting per segment, the product space from five minutes to immersive, for all bandwidths."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -248,6 +256,7 @@ editions:
     how: "Shipped today: the package pipeline. The guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes, and recursive follow-ups for one learner; the guide edits; it ships as a bundle. The bundle is offline-first. The record travels back on five minutes of connectivity. The always-on layer experiments are public: companion as primary interface, per-concept per-moment role dispatch. The guide's loop is the one unautomated step."
     proof_intro: "The 2024 prototype produced a full individualized package from a structured prompt, quizzed and assessed. The five-minute connectivity constraint was the design target. The always-on experiments are documented and open."
     under: "Every helper action is an entry in an accountability record under the Constraint Protocol: who acted, on what learner, under whose guide authority, with what severity if wrong. The offline-first architecture means the record and the bundle are separate artifacts, both schema-validated. The companion is the primary interface in the always-on model; the role set is not static. Every edition of this page is schema-validated and signed; the edition you are reading is an instance of the same discipline."
+    horizon: "Always-on per concept, per moment: companion as primary interface, role set shifting dynamically, offline-first to immersive, record continuous — the architectural ceiling."
     buttons:
       more: "Tell me more"
       how: "What is shipped today?"
@@ -286,6 +295,7 @@ editions:
     how: "What is proven: the 2024 package pipeline works on five minutes of internet. What is an experiment: the always-on layer. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the record. What it unlocks: a learner at any bandwidth who gets a package made for her, with a guide who can spend her attention on what only she can do."
     proof_intro: "The five-minute package loop is documented at the Foundation. The 2024 prototype showed the full loop. The definitions of the benchmark, the companion, and all bandwidths are public. Support here means contributing to that infrastructure."
     under: "The Constraint Protocol is the accountability layer: every helper action recorded, every guide's authority traceable, regardless of bandwidth. It is the reason the Foundation can claim the helpers are safe to use with a learner at any connectivity level. The platform is schema-first; every edition is checked and signed."
+    horizon: "Always-on, per concept, per moment — thirty helpers changing with the learner's need, immersive and interactive, for every bandwidth — the infrastructure this phase builds toward."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -324,6 +334,7 @@ editions:
     how: "Current implementation: the package pipeline. The guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes, and recursive follow-ups for one learner; the guide edits; it ships as a bundle that works offline. The record travels back on five minutes of sync. The always-on experiments are public: companion as primary interface, per-concept per-moment role dispatch. The guide's loop is the one unautomated step in both architectures."
     proof_intro: "The 2024 prototype produced a full individualized package from a structured prompt, quizzed through Bloom's taxonomy levels and assessed for learner position. The five-minute connectivity constraint was the design target. The definitions of the benchmark and the companion are formally specified at the Foundation. The Constraint Protocol defines the severity table at Appendix A."
     under: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what learner, under whose guide authority, with what severity if wrong. The offline-first architecture means the record and the bundle are separate schema artifacts, both validated. In the always-on model, the record compounds continuously; the role set is not static. The benchmark — master's equivalent on five minutes a day — is the stress-test condition that surfaces any assumption about bandwidth. Every edition of this page is schema-validated and signed; the edition you are reading is an instance of the same discipline the researcher edition describes."
+    horizon: "The always-on model: companion as primary interface, role set shifting per concept per moment — the open problems are the role dispatch contract and the record continuity across five-minute and always-on modes."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
