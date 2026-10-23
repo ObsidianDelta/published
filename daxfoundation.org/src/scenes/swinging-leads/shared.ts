@@ -64,6 +64,7 @@ export function mountSwingingLeads(
   const svg = document.createElementNS(SVGNS, 'svg');
   svg.setAttribute('width', '100%');
   svg.setAttribute('viewBox', '0 0 360 290');
+  svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   svg.style.maxWidth = '460px';
   svg.style.display = 'block';
   svg.style.overflow = 'visible';

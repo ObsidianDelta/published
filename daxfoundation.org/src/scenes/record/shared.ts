@@ -158,6 +158,7 @@ export function mountRecord(
   thread.setAttribute('width', '100%');
   thread.setAttribute('height', '48');
   thread.setAttribute('viewBox', '0 0 420 48');
+  thread.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   thread.style.display = 'block';
   thread.style.overflow = 'visible';
   const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');

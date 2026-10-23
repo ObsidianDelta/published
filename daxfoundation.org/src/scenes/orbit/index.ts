@@ -58,6 +58,18 @@ export async function mount(
 ): Promise<SceneHandle> {
   const count = typeof params.params.roles === "number" ? params.params.roles : ROLES;
   const guides = typeof params.params.guides === "number" ? params.params.guides : 3;
+  // Node sizes come from tokens (--node-learner 28px, --node-guide 18px, --node-role 10px),
+  // never literals. px → world scalar by a factor tuned so the defaults land where they were;
+  // fit() scales them to the frame so a phone never shows oversized nodes.
+  const cssRoot = getComputedStyle(document.documentElement);
+  const px = (name: string, fallback: number): number => {
+    const n = parseFloat(cssRoot.getPropertyValue(name));
+    return Number.isFinite(n) && n > 0 ? n : fallback;
+  };
+  const PX_TO_WORLD = 0.008;
+  const sizeLearner = px("--node-learner", 28) * PX_TO_WORLD;
+  const sizeGuide = px("--node-guide", 18) * PX_TO_WORLD;
+  const sizeRole = px("--node-role", 10) * PX_TO_WORLD;
   const counterStart =
     typeof params.params.counterStart === "number" ? params.params.counterStart : 0;
   const L = params.labels;
@@ -106,7 +118,10 @@ export async function mount(
     opacity: 0,
   });
   const ringGeoms: THREE.BufferGeometry[] = [];
-  const rings: THREE.LineLoop[] = [];
+  // THREE.Line, not a closed line-loop primitive: WebGPURenderer does not support that
+  // primitive (the 23 Oct preview logged ~288 warnings from it). The point list already
+  // repeats the first vertex at the end (s <= seg), so a Line draws the same closed ring.
+  const rings: THREE.Line[] = [];
   for (let r = 0; r < RINGS; r++) {
     const radius = r + 1;
     const seg = 96;
@@ -117,10 +132,10 @@ export async function mount(
     }
     const geo = new THREE.BufferGeometry();
     geo.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
-    const loop = new THREE.LineLoop(geo, ringMat);
+    const ring = new THREE.Line(geo, ringMat);
     ringGeoms.push(geo);
-    rings.push(loop);
-    group.add(loop);
+    rings.push(ring);
+    group.add(ring);
   }
 
   // ---- learner (centre) + halo ----
@@ -131,7 +146,7 @@ export async function mount(
     opacity: 0,
   });
   const learner = new THREE.Mesh(sphereGeo, learnerMat);
-  learner.scale.setScalar(0.22);
+  learner.scale.setScalar(sizeLearner);
   group.add(learner);
 
   const halo = haloTexture(tokens.learnerSoft || tokens.learner);
@@ -148,7 +163,7 @@ export async function mount(
   // ---- guide node ----
   const guideMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(tokens.guide) });
   const guide = new THREE.Mesh(sphereGeo, guideMat);
-  guide.scale.setScalar(0.14);
+  guide.scale.setScalar(sizeGuide);
   const guideFront = new THREE.Vector3(0, -0.4, 2.6);
   guide.position.copy(guideFront);
   group.add(guide);
@@ -165,7 +180,7 @@ export async function mount(
       opacity: 1,
     });
     const mesh = new THREE.Mesh(sphereGeo, m);
-    mesh.scale.setScalar(0.08);
+    mesh.scale.setScalar(sizeRole);
     roleMats.push(m);
     roleMeshes.push(mesh);
     group.add(mesh);
@@ -279,6 +294,12 @@ export async function mount(
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
+    // Scale the nodes to the frame so a 390px phone never shows oversized discs (600px ref).
+    const frameScale = Math.max(0.72, Math.min(1, w / 600));
+    learner.scale.setScalar(sizeLearner * frameScale);
+    haloSprite.scale.setScalar(1.6 * frameScale);
+    guide.scale.setScalar(sizeGuide * frameScale);
+    for (const mesh of roleMeshes) mesh.scale.setScalar(sizeRole * frameScale);
   }
   const ro = new ResizeObserver(() => fit());
   ro.observe(host);

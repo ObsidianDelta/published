@@ -78,6 +78,7 @@ export function mountFiveToAlways(
   ringSvg.setAttribute('width', '168');
   ringSvg.setAttribute('height', '168');
   ringSvg.setAttribute('viewBox', '0 0 168 168');
+  ringSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   ringSvg.style.position = 'absolute';
   ringSvg.style.left = '50%';
   ringSvg.style.top = '50%';
@@ -99,6 +100,7 @@ export function mountFiveToAlways(
   const arcSvg = document.createElementNS(SVGNS, 'svg');
   arcSvg.setAttribute('width', '100%');
   arcSvg.setAttribute('viewBox', '0 0 360 190');
+  arcSvg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
   arcSvg.style.maxWidth = '420px';
   arcSvg.style.display = 'block';
   arcSvg.style.overflow = 'visible';
