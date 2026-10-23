@@ -106,7 +106,7 @@ editions:
       dragGuide: "Drag yourself. The helpers stay on her."
       roles: ["her teacher", "a tutor", "you", "her grandmother", "the librarian", "a coach", "other parents", "a psychologist", "yesterday's try", "the thing she loves"]
       contexts: ["fractions", "a science fair", "reading aloud", "the driving test"]
-  guide:
+  teacher:
     voice: "For someone who runs a room"
     signed: true
     by: person
@@ -133,6 +133,36 @@ editions:
       built: "2024 · built once"
       boundary: "every action recorded"
       tapChild: "Tap a learner. She'll be the one."
+      dragGuide: "Drag yourself. The helpers stay on her."
+      roles: ["the subject specialist", "a tutor a step ahead", "her parents", "a classmate", "the librarian", "a coach", "the community", "a psychologist", "last week's record", "the misconception research"]
+      contexts: ["a proof", "a first lab", "the quiz she failed", "a first week at the bakery"]
+  guide:
+    voice: "For someone who teaches, tutors or trains"
+    signed: false
+    by: skippy
+    answer: "In your room, thirty learners share one of you. Meta DAX inverts it: thirty helpers attend to one learner, the moment she is stuck, and you are the one who sends them while you keep teaching. You hold the authority. What stays yours is what no helper can do: noticing this learner at this juncture and deciding what she needs."
+    more: "A learner stalls on one step. Today you choose between her and the room. Here you dispatch: one helper re-explains in the register she responds to, one pulls the worked example that fits her, one checks what she reached and tried last week, one briefs her parents in plain words. The thirty are roles, not people, and not fixed; a different thirty turns up for a proof than for a first lab. Over a life, thousands of them each spend a moment on this one learner. It runs both ways: you get thirty too, a colleague a step ahead, the research on this misconception, the pattern across your last classes. Human delta value is what you bring: you bring out the best in the helpers, so they bring out the best in the learner. A helper is only as good as the guide sending it."
+    how: "Today it is a package. You answer a few questions about the learner and what she needs to reach, and you get lessons, quizzes and follow-up questions made for her, follow-ups of follow-ups, as deep as she goes. You read and edit before anything reaches her. It is built for five minutes of connectivity a day, on purpose the hardest case, so everyone stays in. The loop that stays yours, because it cannot be automated: notice this learner at this juncture, decide. Where it goes: helpers connected all day, per concept, per moment, and your attention freed for what only you can do."
+    proof_intro: "In 2024 a working application built a whole course for one learner, taught it, quizzed through Bloom's levels and said where she stood. The video is below. What is public now are the experiments for the record that remembers, reuse by meaning, and guides in the loop, not a finished product."
+    under: "Every helper action is recorded under the Constraint Protocol, an accountability record for non-biological intelligence: who acted, on whose authority, with what severity if wrong. When a helper gets something wrong, the record shows how, so it does not recur. What one learner's helpers learn is shared, so the next guide starts further ahead. Every edition of this page is data, checked against a schema and signed, including the one you are reading."
+    buttons:
+      more: "Tell me more"
+      how: "What do I get today?"
+      proof: "Show me the proof"
+      under: "What is underneath?"
+    labels:
+      learner: "one learner"
+      guide: "you"
+      classroom: "Thirty learners, one of you"
+      invert: "Thirty helpers, one learner"
+      both: "You get thirty too"
+      change: "A different thirty each moment"
+      decide: "You notice this learner and decide"
+      record: "reached and tried"
+      packages: "5 min a day"
+      built: "2024 · built once"
+      boundary: "every action recorded"
+      tapChild: "Tap a learner. She is the one."
       dragGuide: "Drag yourself. The helpers stay on her."
       roles: ["the subject specialist", "a tutor a step ahead", "her parents", "a classmate", "the librarian", "a coach", "the community", "a psychologist", "last week's record", "the misconception research"]
       contexts: ["a proof", "a first lab", "the quiz she failed", "a first week at the bakery"]
