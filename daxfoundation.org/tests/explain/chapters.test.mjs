@@ -7,7 +7,10 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const contentDir = join(__dirname, '../../src/content/explain');
 
-const REQUIRED_KEYS = ['tense:', 'claim:', 'line:', 'version:'];
+// `line:` is the deprecated alias; a chapter that ships `editions:` need not
+// carry it (EXP-8a). Required keys are the always-present ones; the line/editions
+// choice is checked separately below.
+const REQUIRED_KEYS = ['tense:', 'claim:', 'version:'];
 const FORBIDDEN = [
   'non-profit',
   'charity',
@@ -53,6 +56,16 @@ test('each chapter file has required frontmatter keys', () => {
     for (const key of REQUIRED_KEYS) {
       assert.ok(fm.includes(key), `${file}: missing "${key}" in frontmatter`);
     }
+  }
+});
+
+test('each chapter has either the deprecated line: alias or editions:', () => {
+  for (const file of mdFiles) {
+    const fm = extractFrontmatter(readFileSync(file, 'utf8'));
+    assert.ok(
+      fm.includes('line:') || fm.includes('editions:'),
+      `${file}: needs either "line:" or "editions:"`,
+    );
   }
 });
 
