@@ -40,9 +40,13 @@ export function checkEdition(ed) {
     const b = ed.buttons[k];
     if (typeof b !== 'string' || !b.trim() || b.length > 48) return { ok: false, why: 'button ' + k };
   }
-  // horizon: required, non-empty, max 360 chars (EXP-13).
-  if (typeof ed.horizon !== 'string' || !ed.horizon.trim()) return { ok: false, why: 'missing horizon' };
-  if (ed.horizon.length > CAPS.horizon) return { ok: false, why: 'horizon too long' };
+  // horizon: optional (EXP-13 spec); when present, a non-empty string of at most 360 chars.
+  // 2026-10-23: was required, which failed every edition not yet given a horizon and
+  // kept the preview red while EXP-13b/13c filled them in chapter by chapter.
+  if (ed.horizon !== undefined && ed.horizon !== null) {
+    if (typeof ed.horizon !== 'string' || !ed.horizon.trim()) return { ok: false, why: 'empty horizon' };
+    if (ed.horizon.length > CAPS.horizon) return { ok: false, why: 'horizon too long' };
+  }
   if (!ed.labels || typeof ed.labels !== 'object') return { ok: false, why: 'missing labels' };
   const L = ed.labels;
   for (const k of LABEL_KEYS) {
