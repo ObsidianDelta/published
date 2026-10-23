@@ -275,7 +275,8 @@ export async function mount(
     btn.style.cssText =
       "position:absolute;transform:translate(-50%,-50%);display:none;align-items:center;" +
       "justify-content:center;min-width:44px;min-height:44px;padding:0;border:0;background:none;" +
-      "pointer-events:auto;cursor:pointer;color:" + tokens.ink + ";font-family:" + sans + ";";
+      // touch-action: pan-y so a touch that starts on a label still scrolls the page vertically.
+      "pointer-events:auto;touch-action:pan-y;cursor:pointer;color:" + tokens.ink + ";font-family:" + sans + ";";
     const labelText = document.createElement("span");
     labelText.style.cssText =
       "display:inline-block;font-size:13px;line-height:1.2;font-weight:500;letter-spacing:.01em;" +
@@ -343,7 +344,7 @@ export async function mount(
   capSub.style.cssText = "display:block;color:" + tokens.inkMuted + ";font-size:13px;margin-top:2px;";
   const capOpen = document.createElement("a");
   capOpen.style.cssText =
-    "display:none;margin-top:8px;pointer-events:auto;min-height:44px;line-height:44px;padding:0 18px;" +
+    "display:none;margin-top:8px;pointer-events:auto;touch-action:pan-y;min-height:44px;line-height:44px;padding:0 18px;" +
     "border:1px solid " + cpColor + ";border-radius:999px;color:" + tokens.ink + ";text-decoration:none;font-size:14px;";
   capOpen.textContent = "Open";
   const capWrap = document.createElement("span");
