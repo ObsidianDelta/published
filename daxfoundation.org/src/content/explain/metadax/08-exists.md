@@ -11,6 +11,8 @@ canon:
   - "Open source and free; the samples and showcases are what the platform makes from a few plain prompts."
   - "Ways in: try a package, send a scenario, support the Foundation."
   - "The question box on this site is the Ask layer; a citizen's own companion comes later."
+horizon_canon:
+  - "A community building the how in the open, everything usable published as it is made, the planned experiments as where we want to get to."
 editions:
   kid:
     voice: "For someone about ten"
@@ -21,6 +23,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "One day the companion is there for every child, and what the platform knows grows with every person who uses it."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -55,6 +58,7 @@ editions:
     how: "Pick your door. A parent's door opens on what a parent would use. A researcher's door opens on the evidence and the schema. Try a sample package to see what the platform makes. Send a scenario if you have a learning situation you want the platform to look at. The question box on this page will take your question to the Ask layer. Everything usable is free, open source, and there now."
     proof_intro: "The samples and showcases are live at the Foundation's site, published as they are made. The open repository is public. The question box is the Ask layer, live on this site. These are experiments; nothing is called a finished product."
     under: "Open source means the code and the schema are public. Free means no paywall for any learner or guide. The samples are what real packages look like. The showcases show what the platform generates from a few plain prompts. A citizen's own companion — an always-on guide for one person — is the next layer, not yet built."
+    horizon: "A community building the how in the open — everything usable published as it is made, every experiment one step toward a companion for every person."
     buttons:
       more: "Tell me more"
       how: "How do I get started?"
@@ -89,6 +93,7 @@ editions:
     how: "Go through the parent's door. You will find sample packages you can try with your child today, free and without an account. Send a scenario if you have a specific learning gap you want the platform to look at. The question box on this page is the Ask layer — ask anything. The showcases show what the platform builds from a few plain prompts, so you can see what quality looks like before you commit time."
     proof_intro: "The samples are live and downloadable. The showcases are published at the Foundation's site. The open repository is on GitHub. These are experiments; the Foundation says so plainly. Nothing is a finished product."
     under: "Open source means every parent can see how the packages are made. Free means no cost for the learner or the guide. The five doors exist so a stranger can walk in without needing a guide to the guide role. What the platform makes from a few plain prompts is the showcase: it is what you are trusting your child to. The question box is live. A citizen's own companion comes later."
+    horizon: "The platform grows in the open — everything usable published as it is made, and every step closer to a companion that is always there for your child."
     buttons:
       more: "Tell me more"
       how: "What can I try today?"
@@ -123,6 +128,7 @@ editions:
     how: "Pick the door that fits your role. Walk through and you see what a guide in that role would find: samples to use with a learner today, showcases to demonstrate the platform's range. Try a package: answer a few questions about a learner and what she needs to reach, and you get a set of lessons and quizzes made for her. Send a scenario if you have a harder case. The question box takes your question to the Ask layer now."
     proof_intro: "The samples are live and downloadable. The showcases are published at the Foundation's site. The open repository is public on GitHub. These are experiments; nothing is called a finished product. The question box is live."
     under: "Open source means the schema and the pipelines are visible. Free means no paywall between a guide and her learner. The five doors mean every guide role has a way in without needing someone to explain the system. The samples are what real packages look like. The showcases are what the platform generates from a few plain prompts. A citizen's own companion — a learner's always-on guide — comes later."
+    horizon: "A community building the how in the open — everything usable published as it is made, every experiment closer to a companion for every learner."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -157,6 +163,7 @@ editions:
     how: "Go through the trainer's door. You will find sample packages you can try with a learner on your team today, free. Send a scenario with a specific domain and a specific gap, and the platform will show you what it would make. The question box on this page takes your question to the Ask layer now. Every helper action is recorded, so you have an accountability trail for any learning that happens through the platform."
     proof_intro: "The samples are live and downloadable. The showcases are published at the Foundation's site. The open repository is public. These are experiments; nothing is called a finished product. The question box is live."
     under: "Open source and free means no licence cost and no vendor lock-in. The five doors mean any guide at any level can start without a trainer. The samples show what a package looks like in a real domain. The showcases are what a few plain prompts produce. The accountability record — every helper action logged under the guide's authority — is what makes this safe to deploy in an organization. A citizen's own companion comes later."
+    horizon: "A community building the how in the open — everything usable published as it is made, every experiment closer to always-on for every organisation."
     buttons:
       more: "Tell me more"
       how: "What can we try today?"
@@ -191,6 +198,7 @@ editions:
     how: "Try a package to understand the deliverable. Send a scenario to see the platform work on your domain. The open repository is the codebase you build on. The five doors are the five segments: a package for a parent, a tool for a trainer, a showcase for a teacher. The question box is live. Educators sell where educators sell; the CMS and the pipelines are what you build products on top of. Open source and free stays free; your margin is in the product you add."
     proof_intro: "The samples and showcases are live. The open repository is public. These are experiments; nothing is a finished product. The question box is the Ask layer, live now."
     under: "Open source means the substrate is yours to build on. Free means no per-learner fee eating your margin. The five doors are the five markets; each is a guide role with a distinct need. The samples are what a real package looks like — study them. The showcases are what a few prompts produce; your product is the layer on top. A citizen's own companion comes later: plan for it."
+    horizon: "A community building the how in the open — everything usable published as it is made, every experiment a layer closer to the companion market."
     buttons:
       more: "Tell me more"
       how: "What can I build on today?"
@@ -225,6 +233,7 @@ editions:
     how: "Fork the open repository. The five doors are instantiated in the chairs scene; the doors map is schema-defined. The samples show the output contract: what a package looks like at the leaf. The showcases show the same pipeline on a non-curriculum domain. Try a package run against your own scenario to see the pipeline's edge cases. The question box is the Ask layer end-to-end; the request and response schema are in the repo. Nothing is set in stone; send a scenario and you will see where the current edges are."
     proof_intro: "The open repository is public on GitHub. The samples and showcases are live at the Foundation's site. The Ask layer is live via the question box. These are experiments; the architecture is not called finished."
     under: "Open source: the schema, the pipelines, the scene definitions are in the repo. Free: no learner or guide pays a token cost. Five doors: five chairs-scene entries, each a signed configuration with a doors map. The samples are schema-validated bundles; the showcases are the same. The question box is the Ask layer: request in, schema-validated response out. A citizen's own companion is the next architectural layer; the current experiments are its substrate."
+    horizon: "A community building the how in the open — schema and experiments public as made, the planned experiments the substrate of what ships next."
     buttons:
       more: "Tell me more"
       how: "What is in the repo today?"
@@ -259,6 +268,7 @@ editions:
     how: "What is proven: the package pipeline runs today; the samples and showcases are evidence of what it produces. What is an experiment: the Ask layer, the always-on companion, the record infrastructure at scale. What supporting the Foundation does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the record. What it unlocks: five doors open to any stranger, and a citizen's own companion when the architecture is ready. What is free forever: the platform, the schema, the open repository."
     proof_intro: "The samples are live and downloadable. The showcases are published at the Foundation's site. The open repository is public. The question box is the Ask layer, live now. These are experiments; the Foundation says so plainly."
     under: "Open source and free means the platform's value is not extractable by a single actor. The five doors mean the investment reaches every guide role without a distribution cost. The samples and showcases are the evidence of what the platform produces today. A citizen's own companion — an always-on guide for one person — is what comes after the experiments work. Supporting the Foundation is how that gets built."
+    horizon: "A community building the how in the open — everything usable published as it is made, the planned experiments as where the Foundation wants to get to."
     buttons:
       more: "Tell me more"
       how: "What does supporting the Foundation do?"
@@ -293,6 +303,7 @@ editions:
     how: "Current implementation: package pipeline and Ask layer. The package pipeline takes a structured prompt from a guide, runs meta prompts to generate schema-validated lessons, quizzes and follow-ups for one learner, the guide edits, it ships as a bundle. The Ask layer takes a question from the question box, processes it against the current schema, returns a schema-validated response. The five doors are instantiated in the chairs scene; the doors map is signed. The showcases are the pipeline run on a novel domain: the research question is how far the pipeline generalizes. Nothing is set in stone; the experiments are the substrate."
     proof_intro: "The samples and showcases are live and downloadable at the Foundation's site. The open repository is public on GitHub. The question box is the Ask layer, live. These are experiments; the architecture is not called finished. The open repository is the primary source."
     under: "Open source: schema, pipelines, scene definitions, signed configurations are all in the repository. Free: no per-learner token cost. Five doors: five signed chairs-scene entries, each with a doors map; stranger-usable means no authentication required. The Ask layer: request schema, routing, response schema are in the repository. A citizen's own companion: the next architectural layer, design not yet published. The research questions are in the experiments; the current substrate is the package pipeline and the Ask layer."
+    horizon: "A community building the how in the open — schema, pipelines and experiments public as made, the planned experiments as the published research agenda."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
@@ -358,6 +369,7 @@ scene:
       trainer: /metadax/trainer/
       researcher: /metadax/research/
       showcase: /metadax/showcases/
+next: 09-horizon
 deeper:
   - /metadax/
   - /metadax/samples/
