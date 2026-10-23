@@ -249,10 +249,10 @@ editions:
     by: skippy
     horizon: "An identity held for life, under a person's own name, is what makes universal learning a permanent resource — the record and companion that grow with it compound in value across a lifetime."
     answer: "A DAX citizen has a name under daxfoundation.org. The Foundation reserves the name, the keys are made on the citizen's own device, and only she has the secret. The hash of a genesis document becomes a permanent identity. Citizenship entitles a person to Meta DAX, universal learning. A citizen holds her identity, her record, and in time her companion."
-    more: "The identity layer is what makes the rest trustworthy. A citizen's name is public and addressable, but the key that proves it is hers lives only on her device — the Foundation does not hold it, no operator holds it. The genesis document's hash is the permanent anchor: once set, it cannot be changed without breaking the chain. Citizenship opens Meta DAX: universal learning, any subject, any pace. What grows over time is a record that is entirely hers, and in time a companion that is entirely hers. What the Foundation is building is the infrastructure for that: the name registry, the genesis protocol, the record schema, the companion layer. What is free forever: the identity layer, the name, the genesis protocol. What the money does: build the record and companion layers that make citizenship meaningful over a lifetime."
+    more: "The identity layer is what makes the rest trustworthy. A citizen's name is public and addressable, but the key that proves it is hers lives only on her device — the Foundation does not hold it, no operator holds it. The genesis document's hash is the permanent anchor: once set, it cannot be changed without breaking the chain. Citizenship opens Meta DAX: universal learning, any subject, any pace. What grows over time is a record that is entirely hers, and in time a companion that is entirely hers. What the Foundation is building is the infrastructure for that: the name registry, the genesis protocol, the record schema, the companion layer. The identity layer, the name and the genesis protocol are free and open. What the money does: build the record and companion layers that make citizenship meaningful over a lifetime."
     how: "What is proven: name registration under daxfoundation.org, key generation on device, genesis document hash as identity anchor. What is an experiment: the record schema and the companion layer. What the money does: build the record and companion infrastructure. What it unlocks: a citizen who holds her identity, her record, and in time her companion — not a platform's subscriber."
     proof_intro: "The definitions of identity, genesis document, and citizenship are public at the Foundation. The architecture — name reserved by the Foundation, keys held by the citizen — is described in the definitions. The Foundation supports open infrastructure; support here means contributing to that infrastructure."
-    under: "The key pair is generated on the citizen's device; the Foundation never holds the secret. The genesis document's hash is the anchor. The record is the citizen's. The companion is the citizen's. The Constraint Protocol records what helpers did and under whose authority; that is the accountability layer. The identity layer is separate, and it is free forever."
+    under: "The key pair is generated on the citizen's device; the Foundation never holds the secret. The genesis document's hash is the anchor. The record is the citizen's. The companion is the citizen's. The Constraint Protocol records what helpers did and under whose authority; that is the accountability layer. The identity layer is separate, and it is free and open."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -269,7 +269,7 @@ editions:
       record: "her record"
       packages: "identity infrastructure"
       built: "built on her device"
-      boundary: "identity layer is free forever"
+      boundary: "identity layer, free and open"
       tapChild: "Tap a citizen. She holds her own key."
       dragGuide: "Drag the Foundation. The secret stays with her."
       roles: ["the citizen", "the Foundation", "an operator", "a guide"]
@@ -332,5 +332,6 @@ scene:
       caption: "The Foundation reserves the name; only you hold the secret"
   pin: 1
   states: [settle]
+next: 05-horizon
 version: 1
 ---
