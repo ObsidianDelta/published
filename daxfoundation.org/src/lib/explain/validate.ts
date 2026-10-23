@@ -29,7 +29,7 @@ export function validateScenes(entries: { data: { scene?: { module?: string } } 
 // the build and the node --test suite share it); a forbidden string is ALWAYS an
 // error, every other failure is a warning under STRICT.
 // @ts-ignore -- plain .mjs sibling, no .d.ts; the shape is simple and stable.
-import { checkEdition } from './check-edition.mjs';
+import { checkEdition, canonCheck } from './check-edition.mjs';
 
 export interface EditionCheck {
   ok: boolean;
@@ -44,22 +44,32 @@ export { checkEdition };
  * string throws (hard gate, always). Any other failure warns when STRICT is off.
  */
 export function validateEditions(
-  entries: { id?: string; data?: { editions?: Record<string, unknown> } }[],
+  entries: { id?: string; data?: { editions?: Record<string, unknown>; canon?: string[] } }[],
 ): void {
   for (const entry of entries) {
     const editions = entry.data?.editions;
     if (!editions) continue;
+    const canon = entry.data?.canon;
     for (const [lens, ed] of Object.entries(editions)) {
       const r = checkEdition(ed);
-      if (r.ok) continue;
       const where = `${entry.id ?? '?'} · ${lens}`;
-      if (r.forbidden) {
-        throw new Error(`[explain] forbidden string in edition ${where}: ${r.why}`);
+      if (!r.ok) {
+        if (r.forbidden) {
+          throw new Error(`[explain] forbidden string in edition ${where}: ${r.why}`);
+        }
+        if (STRICT) {
+          throw new Error(`[explain] edition ${where} failed checks: ${r.why}`);
+        }
+        console.warn(`[explain] edition ${where} incomplete: ${r.why}`);
       }
-      if (STRICT) {
-        throw new Error(`[explain] edition ${where} failed checks: ${r.why}`);
+      // Soft canon check: warn (never throw) when an edition holds none of the
+      // chapter's canon key nouns.
+      if (canon && canon.length) {
+        const c = canonCheck(ed, canon);
+        if (!c.ok) {
+          console.warn(`[explain] edition ${where} holds no canon key noun`);
+        }
       }
-      console.warn(`[explain] edition ${where} incomplete: ${r.why}`);
     }
   }
 }
