@@ -11,6 +11,8 @@ canon:
   - "Human delta value: bring out the best in the guide, so she brings out the best in the learner; measured at the moment: this guide, this learner, this juncture."
   - "A cognitive companion is only as good as its human."
   - "As cognition is handed back to the guide she gets to spend it on problems she could only dream about before; everybody has to step up."
+horizon_canon:
+  - "Teachers free to do what only a teacher can do, for every learner, at a scale no school could afford before."
 editions:
   kid:
     voice: "For someone about ten"
@@ -21,6 +23,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "One day every teacher has helpers for every question you have, so your teacher's attention is always there when only she can help."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -57,6 +60,7 @@ editions:
     how: "Today a guide answers a few plain questions about a learner and what she needs to reach, and gets a package of lessons, quizzes and follow-up questions made for that learner. The guide reads it first. The package works on five minutes of connectivity a day. The loop that matters is the guide's: observe this learner, at this juncture, decide. That loop is not automated, because it cannot be. A cognitive companion is only as good as its human."
     proof_intro: "The definitions of guide, learner, and a step ahead are public at the Foundation. The 2024 prototype showed the full loop: a guide answered questions, lessons were made for one learner, quizzed and marked. What is live now are the experiments for what comes next."
     under: "The Constraint Protocol records every helper action under the guide's authority. When a helper gets it wrong the record shows how. That is what lets a guide trust the helpers at all. What one guide's learner teaches the system is shared, so the next guide starts further ahead. Every edition of this page is schema-checked and signed."
+    horizon: "Teachers free to do what only a teacher can do, for every learner — guides who get their cognition back for the decisions no helper can make, at a scale no school could afford before."
     buttons:
       more: "Tell me more"
       how: "How does it work today?"
@@ -93,6 +97,7 @@ editions:
     how: "Today you can get a package. Answer a few plain questions about your child and what she needs to reach, and you get lessons, quizzes and follow-up questions made for her, that you read first. The package works on five minutes of internet a day. The loop that matters is yours: watch her, notice the juncture, decide. A cognitive companion is only as good as its human."
     proof_intro: "The definitions of guide, learner, and a step ahead are public. The 2024 prototype showed the full loop: guide answers questions, a course is made for one learner, quizzed and marked. What is live now are the experiments for what comes next, not a finished product."
     under: "Every helper leaves a record of what it did and why. If a helper gets something wrong with your child, the record shows how, and the guide can see it. That record, the Constraint Protocol, is the reason this can be trusted with a child. What her helpers learn is shared, so the next child's helpers start further ahead. This page is schema data, checked and signed."
+    horizon: "Your child's guide free to spend her attention where only she can help — no helper does the noticing; the guide does; and every guide gets that freedom, at a scale no school has had before."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -129,6 +134,7 @@ editions:
     how: "Today you answer a few questions about a learner and what she needs to reach, and you get lessons, quizzes and follow-up questions made for her. You edit before anything reaches her. The package works on five minutes of connectivity a day. The loop that matters is yours: observe this learner at this juncture, decide. That is not automated, because it cannot be. What you get back is your authority and your attention, free to do what only you can do."
     proof_intro: "The definitions of guide, learner, and a step ahead are public at the Foundation. The 2024 prototype showed the full loop end to end: a guide answered questions, a course was made for one learner, quizzed through Bloom's levels, assessed. What is live now are the experiments for the next stage."
     under: "Every helper action is recorded under the Constraint Protocol, under your authority. When a helper gets it wrong the record shows how, so it does not happen again. What your learners teach the system is shared, so the next guide starts further ahead. This page is schema data, checked and signed, including the edition you are reading."
+    horizon: "Free to spend your attention on what only you can do — the noticing, the decision, this learner at this juncture — for every learner, at a scale no school could afford before."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -165,6 +171,7 @@ editions:
     how: "Today a guide answers a few questions about a person and what they need to reach, and gets a package of lessons, quizzes and follow-up questions made for that person. The guide reads it first. The package works across any connectivity level. The loop that matters is the guide's: observe this learner at this juncture, decide. That loop is not automated. A cognitive companion is only as good as its human. The record means accountability at enterprise scale."
     proof_intro: "The definitions of guide, learner, and a step ahead are public at the Foundation. The 2024 prototype showed the full loop: a guide answered questions, a course was made for one learner, quizzed and assessed. What is live now are the experiments for the record and the always-on layer."
     under: "Every helper action is logged under the Constraint Protocol: who acted, on whose authority, what the learner reached. That accountability record is what makes this usable at scale in an organization. What one learner's interactions teach the system is shared, so the next guide starts further ahead. This page is schema data, checked and signed."
+    horizon: "Every guide on your team free to spend their attention on what only a human can do — the noticing, the decision — for every learner, at a scale no organisation could afford before."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -201,6 +208,7 @@ editions:
     how: "Today the deliverable is a package: a guide answers questions, a set of lessons and quizzes is made for one learner, the guide edits, it ships. The pipeline is what you build on. Educators already sell where educators sell; the CMS and the record infrastructure are what you build products on top of. The experiments for the always-on layer are public. The Foundation's experiments are public; what you build on them is yours."
     proof_intro: "The definitions are public. The 2024 prototype showed the full loop. The experiments for the record and the always-on layer are open. No revenue figures, no promises: the architecture is the asset."
     under: "Every helper action is recorded under the Constraint Protocol. That accountability record is what lets an organization trust a guide-learner pair at scale. The platform is schema-first: every edition is data, checked and signed. Your product lives in the same substrate. A way, never the way."
+    horizon: "Every guide free to do what only a guide can do — noticing, deciding — for every learner, at a scale no school could afford before; the product you build serves the guide, not around her."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -237,6 +245,7 @@ editions:
     how: "Shipped today: a package pipeline. The guide answers a structured set of questions; meta prompts generate lessons, quizzes and recursive follow-ups as schema-validated data for one learner; the guide edits; it ships as a bundle. The guide's loop is the one thing not automated. The record schema (reached, tried, not yet) and the role contracts are the next experiments, public now. The swinging-leads scene is the UI contract for the guide-learner relationship."
     proof_intro: "The 2024 prototype produced a full individualized curriculum, quizzed through Bloom's levels and assessed. Video and README are in the evidence. The current experiments are public; the architecture is not fixed."
     under: "Every helper action is an entry in an accountability record under the Constraint Protocol: who acted, on what, under whose authority, with what severity if wrong. The guide's authority is not optional; it is the schema constraint that makes agent-to-agent interaction safe at scale. This page is an instance: an edition is schema data, never markup, checked and signed. The one you are reading, included."
+    horizon: "The guide's authority as a schema constraint means the agent fan-out is bounded: only the human can notice and decide, and that is the architectural limit that makes the system safe at scale."
     buttons:
       more: "Tell me more"
       how: "What is shipped today?"
@@ -273,6 +282,7 @@ editions:
     how: "What is proven: in 2024 the Foundation built the package pipeline end to end. What is an experiment: the always-on layer, the record schema, the guide loop instrumented. What the money does in this phase: tokens to run the helpers, time for guides to test the loop, infrastructure for the record. What it unlocks: a guide who can spend her attention on what only she can do, and a learner who gets that attention at the moment she needs it. What is free forever: the platform, the schema, the Constraint Protocol."
     proof_intro: "The 2024 prototype is documented. The definitions of guide, learner, and a step ahead are public. The current experiments are open. The Foundation supports open infrastructure; support here means contributing to that infrastructure."
     under: "The Constraint Protocol is the accountability layer: every helper action recorded, every guide's authority traceable. It is the reason the Foundation can claim the helpers are safe to use with a learner. What one guide's learner teaches the system is shared. The platform is schema-first: every edition is data, checked and signed. The Foundation calls it the record."
+    horizon: "Teachers free to do what only a teacher can do, for every learner — the return on this is the quality of attention every learner gets, at a scale no school could afford before."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -309,6 +319,7 @@ editions:
     how: "Current implementation: a package pipeline. The guide answers a structured prompt; meta prompts generate schema-validated lessons, quizzes, and recursive follow-ups for one learner; the guide edits; it ships as a bundle. The guide's loop is the one unautomated step. The public experiments address: the learner record schema (reached, tried, not yet), reuse by meaning, and guides in the loop. The swinging-leads scene is the UI contract expressing the role model; label keys per lens are the data."
     proof_intro: "The 2024 prototype produced a full individualized curriculum from a structured prompt, quizzed through Bloom's taxonomy levels and assessed for learner position. The definitions of guide, learner, and a step ahead are formally specified at the Foundation. The Constraint Protocol defines the severity table at Appendix A."
     under: "The Constraint Protocol is an accountability record for non-biological helper action: who acted, on what learner, under whose guide authority, with what severity if wrong. Human delta value is defined there as a first-order signal. The swinging-leads model implies the record must track role, not just actor: the same entity may be guide on one pitch and learner on the next. The schema encodes this. Every edition of this page is schema-validated and signed; the edition you are reading is an instance of the same discipline the researcher edition describes."
+    horizon: "The guide's human delta value — noticing, deciding, this learner at this juncture — is the first-order signal; when cognition is handed back to the guide, the unsolved problems shift: what can she now do that no school could afford before."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
