@@ -90,7 +90,10 @@ export async function getCollectionChapters(collection: string) {
       ? {
           id: after.data.id as string,
           question: (after.data.question as LangMap).en,
-          url: collection === 'foundation' ? '/explain/' : `/explain/${collection}/${after.data.id}/`,
+          // 2026-10-23: the next question scrolls to the next chapter on the run page
+          // (/explain/<run>/#<id>) instead of opening the one-chapter page, which
+          // dropped the reader out of the run (Jason lost the context mid-run).
+          url: collection === 'foundation' ? '/explain/' : `/explain/${collection}/#${after.data.id}`,
         }
       : null;
     return { ...entry, collection, url, editions, nextChapter };

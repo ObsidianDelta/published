@@ -14,10 +14,22 @@ export async function getStaticPaths() {
 
 const { chapter, total } = Astro.props;
 const title = `${chapter.data.question.en} — Meta DAX`;
+const RUN_HREF = `/explain/metadax/#${chapter.data.id}`;
+const RUN_LABEL = "Meta DAX";
 ---
 <Explain
   title={title}
   description="The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative."
 >
+  {/* 2026-10-23: a one-chapter page (reached from a shared link) says which run it
+      belongs to and opens the whole run at this chapter, so the reader keeps context. */}
+  <p class="run-context"><a href={RUN_HREF}>&larr; {RUN_LABEL}: all {total} questions</a></p>
   <Chapter chapter={chapter} total={total} />
 </Explain>
+
+<style>
+  .run-context { width: 100%; max-width: var(--measure-scene); margin: 0 auto; padding: var(--space-4) var(--space-6) 0; font-size: var(--text-small-size); }
+  .run-context a { color: var(--ink-muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .run-context a:hover, .run-context a:focus-visible { color: var(--ink); border-color: var(--ink); }
+</style>
+
