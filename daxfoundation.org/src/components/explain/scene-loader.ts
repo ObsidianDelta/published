@@ -180,7 +180,24 @@ function teardown(): void {
 }
 
 // Release every resource on View Transitions navigation; re-init after each swap.
-// astro:page-load fires on the initial load too (ClientRouter is present), so it
-// is the single entry point.
-document.addEventListener("astro:before-swap", teardown);
-document.addEventListener("astro:page-load", init);
+// astro:page-load fires on the initial load too, but this module is reached by a
+// dynamic import from Chapter.astro, so on the first page it usually evaluates
+// AFTER that event has already fired (seen on the 23 Oct preview: every frame
+// empty). So: boot now when the document is already parsed, keep the listener
+// for every later navigation, and never boot twice for one page.
+let booted = false;
+function boot(): void {
+  if (booted) return;
+  booted = true;
+  init();
+}
+document.addEventListener("astro:before-swap", () => {
+  teardown();
+  booted = false;
+});
+document.addEventListener("astro:page-load", boot);
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", boot, { once: true });
+} else {
+  boot();
+}
