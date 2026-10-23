@@ -7,6 +7,10 @@
 // the token import ships inline.
 import "../styles/tokens.css";
 import { ClientRouter } from "astro:transitions";
+// The reading scale, as data (EXP-11): the chooser draws its chips from here, in
+// order, least background first. No hard-coded chips. `level` rides along on each
+// chip for the map (EXP-10 reads it).
+import lenses from "../data/lenses.json";
 
 interface Props {
   title?: string;
@@ -80,13 +84,15 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <section class="chooser" aria-labelledby="chooser-h">
       <p class="chooser-h" id="chooser-h">Who's reading? The chapter is written for you.</p>
       <div class="chips" id="lens-chips" role="group" aria-label="Who's reading">
-        <button type="button" class="chip" data-lens="curious" aria-pressed="true">Just curious</button>
-        <button type="button" class="chip" data-lens="teacher" aria-pressed="false">I teach</button>
-        <button type="button" class="chip" data-lens="parent" aria-pressed="false">I'm a parent</button>
-        <button type="button" class="chip" data-lens="builder" aria-pressed="false">I build software</button>
-        {/* SLOT: "Someone else…" (a reader's own edition) is NOT shipped in this
-            ask -- it needs the widget sampling transport (EXP-6). Add the chip
-            and its panel here when that transport lands. */}
+        {lenses.map((l) => (
+          <button
+            type="button"
+            class="chip"
+            data-lens={l.id}
+            data-level={l.level}
+            aria-pressed={l.id === "curious" ? "true" : "false"}
+          >{l.label}</button>
+        ))}
       </div>
     </section>
 
@@ -106,12 +112,18 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
       // `dax-explain-lens`, try/catch so private mode never throws. Changing the
       // lens dispatches "dax-lens"; the chapters redraw themselves (no reload).
       const LENS_KEY = "dax-explain-lens";
-      const LENSES = ["curious", "teacher", "parent", "builder"];
+      // The lens list is whatever the chooser rendered from lenses.json -- read it
+      // off the chips so there is one source of truth (the data file).
+      function allLenses(): string[] {
+        return Array.from(document.querySelectorAll<HTMLElement>("#lens-chips .chip"))
+          .map((c) => c.dataset.lens || "")
+          .filter(Boolean);
+      }
 
       function readLens(): string {
         try {
           const v = localStorage.getItem(LENS_KEY);
-          return v && LENSES.includes(v) ? v : "curious";
+          return v && allLenses().includes(v) ? v : "curious";
         } catch {
           return "curious";
         }
