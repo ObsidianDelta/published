@@ -10,6 +10,8 @@ canon:
   - "The chat is the hands and ears; the record is the body."
   - "Meta DAX is a record with guides in it, not a chat: the prompts are the small part; the schema, the record, the guide's edit and the check are the rest."
   - "Today's packages are made from open meta prompts on the guide's own account, on purpose: open, free, any model."
+horizon_canon:
+  - "A record that remembers you means the help gets better across your life instead of starting over every session."
 editions:
   kid:
     voice: "For someone about ten"
@@ -20,6 +22,7 @@ editions:
     how: ""
     proof_intro: ""
     under: ""
+    horizon: "When every learning record remembers you, the help gets better every time, your whole life — the teacher who knows what you tried last week, every week, is always there."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -55,6 +58,7 @@ editions:
     how: "Today a guide answers a short set of questions about a learner and what she needs to reach. Open meta prompts run on the guide's own account and produce lessons, quizzes and follow-up questions. The guide reads and edits before anything reaches the learner. What gets saved is the record: what the learner reached, what she tried, what she did not yet. That record is what the next session starts from, not zero."
     proof_intro: "Sample packages and the open repository are public. The record lives in the learner's own repository; git is the database. The meta prompts are open, free, and work on any model."
     under: "The record schema is the substrate. Every package is schema-validated data, not markup. The guide's edit is a step in the pipeline, not optional. The open prompts on the guide's own account mean no lock-in: any model, any time."
+    horizon: "When the record runs across a life, the help gets better every session instead of starting over — anyone who can communicate has a guide that knows where they are, now and in ten years."
     buttons:
       more: "Tell me more"
       how: "How does it work today?"
@@ -90,6 +94,7 @@ editions:
     how: "Today you answer a few plain questions about your child and what she needs to reach. Open meta prompts run on your own account and produce lessons, quizzes and follow-up questions made for her. You read and edit before anything reaches her. What gets saved is the record: what she reached, what she tried, what she did not yet. That is what the next session starts from."
     proof_intro: "Sample packages are public at the Foundation. The open repository shows how the record works: git is the database, the record lives in the learner's own repository. The prompts are open, free and work on any model."
     under: "The record lives in your child's own repository, not a third-party server. The guide's edit is a step in the pipeline, not optional. The open prompts mean no lock-in: you choose the AI, the account is yours, any model."
+    horizon: "When your child's record runs across her life, the guide who helps her next year knows what she reached last year — the help gets better every time, not worse."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -125,6 +130,7 @@ editions:
     how: "Today you answer a structured set of questions about a learner and what she needs to reach. Open meta prompts run on your own account and produce lessons, quizzes and follow-up questions as schema-validated data for that learner. You edit before anything reaches her. What gets saved is the record: reached, tried, not yet. The next session starts from the record, not from zero. The prompts are open and free; you bring the account, you choose the model."
     proof_intro: "Sample packages and the open repository are public. The record lives in the learner's own repository; git is the database. The meta prompts are open and work on any model, on your own account."
     under: "The record schema is the substrate. Every package is schema-validated data; your edit is a required step, not optional. The open prompts on your own account mean no lock-in and no third-party dependency on which model handles your learner's data."
+    horizon: "When every learner has a record across a life, you start the next session from where she ended the last one, not from scratch — the help compounds, and so does your judgement about what she needs next."
     buttons:
       more: "Tell me more"
       how: "What do I get today?"
@@ -160,6 +166,7 @@ editions:
     how: "Today a guide answers a structured set of questions about a learner and what they need to reach. Open meta prompts run on the guide's own account and produce lessons, quizzes and follow-up questions for that person. The guide reads and edits before anything reaches the learner. What gets saved is the record: what they reached, what they tried, what they did not yet. The next session starts from the record. The prompts are open and free; the guide brings the account and chooses the model."
     proof_intro: "Sample packages and the open repository are public. The record lives in the learner's own repository; git is the database, and every helper action is traceable. The meta prompts are open, free and work on any model."
     under: "The record is the accountability layer. Every helper action is logged under the guide's authority: what happened, what the learner reached, what the guide decided. That is what makes this usable at scale in an organization. The open prompts mean no vendor lock-in on which AI touches your team's data."
+    horizon: "When every person on your team has a record across their career, onboarding and role changes start from where they are, not from scratch — the help compounds across every transition."
     buttons:
       more: "Tell me more"
       how: "What can I get today?"
@@ -195,6 +202,7 @@ editions:
     how: "Today the deliverable is a package. A guide answers a short set of questions about a learner and what she needs to reach. Open meta prompts run on the guide's own account and produce lessons, quizzes and follow-up questions as schema-validated data. The guide edits before anything reaches the learner. What ships is the record: reached, tried, not yet. The pipeline is what you build on. Educators sell where educators sell; the record infrastructure is what you build products on top of."
     proof_intro: "Sample packages and the open repository are public. The record lives in the learner's own repository; git is the database. The meta prompts are open and work on any model. No revenue figures, no promises: the architecture is the asset."
     under: "The record schema is schema-first: every package is data, every edition is checked and signed. The open prompts on the guide's own account mean no platform dependency for your customers. A way, never the way: that constraint on the platform is a constraint on your product too."
+    horizon: "When every learner has a record that runs across a life, the product you build has the context to get better at every session, not reset — the record is the moat."
     buttons:
       more: "Tell me more"
       how: "What is live today?"
@@ -230,6 +238,7 @@ editions:
     how: "Shipped today: the package pipeline. A guide answers a structured prompt; open meta prompts on the guide's own account generate lessons, quizzes and recursive follow-ups as schema-validated data for one learner; the guide edits; it ships as a bundle. The record schema tracks: reached, tried, not yet. The chat module (chat-vs-record) is the UI contract for this state distinction. The open repository is public; git is the database."
     proof_intro: "The open repository is public. Sample packages are live. The record schema and the meta prompt structure are in the repository. Any model, any account: the generative step is not locked to a platform."
     under: "The record schema is the substrate: every package is schema-validated data, every edition checked and signed. The guide's edit is a contract step in the pipeline, not optional post-processing. The open meta prompts on the guide's own account mean the generative step has no platform dependency. The chat-vs-record scene encodes the state model as a UI contract: chat is stateless; record is the body."
+    horizon: "When the learner record persists across a life, the guide agent at session N has the full trajectory — reached, tried, not yet — not just session state; that is the architectural shift from chat to record."
     buttons:
       more: "Tell me more"
       how: "What is shipped today?"
@@ -265,6 +274,7 @@ editions:
     how: "What is proven: the package pipeline is live. A guide answers questions, open meta prompts generate a package, the guide edits, it ships. The record keeps reached, tried, not yet. What is an experiment: the always-on layer, the record schema at scale. What the money does: tokens for the generative step, guides' time to edit and verify, infrastructure for the record. What it unlocks: a learner who starts each session where the last one ended, and a guide who can see what to do next."
     proof_intro: "Sample packages and the open repository are public. The record lives in the learner's own repository; git is the database. The meta prompts are open, free and work on any model. The Foundation supports open infrastructure."
     under: "The record is the accountability substrate: every package is schema-validated, every guide's edit is traceable, every learner's record lives in their own repository. The open meta prompts on the guide's own account mean no platform dependency on the generative step. The Foundation calls it the record; support here means contributing to that infrastructure."
+    horizon: "When the record infrastructure runs across a life, the investment compounds — every session starts further ahead than the last, for every learner the Foundation reaches."
     buttons:
       more: "Tell me more"
       how: "What does the money do?"
@@ -300,6 +310,7 @@ editions:
     how: "Current implementation: the package pipeline. A guide answers a structured prompt; open meta prompts on the guide's own account generate lessons, quizzes and recursive follow-ups as schema-validated data for one learner; the guide edits; it ships as a bundle. The record schema tracks: reached, tried, not yet. The chat-vs-record scene (module chat-vs-record) is the UI contract encoding the state distinction. The open repository is public; git is the database. The experiments for record schema at scale and reuse by meaning are public."
     proof_intro: "The open repository is public. Sample packages are live. The record schema and meta prompt structure are in the repository. The chat-vs-record scene encodes the state model. Any model, any account: the generative step is architecturally unbound."
     under: "The record schema is the substrate: every package is schema-validated data, every edition checked and signed. The guide's edit is a contract step, not optional post-processing. The open meta prompts on the guide's own account mean the generative step has no platform dependency. The chat-vs-record state model is the first open question in learner-state persistence: what is the minimal record that makes a guide's decision at the next session better than chance?"
+    horizon: "When the learner record is longitudinal — reached, tried, not yet, across domain shifts and guide changes — the parameterization question changes from what does this learner know now to what does she know across time."
     buttons:
       more: "Tell me more"
       how: "What is the current implementation?"
