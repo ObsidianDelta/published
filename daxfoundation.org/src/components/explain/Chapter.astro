@@ -95,7 +95,9 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
       </span>
     </header>
     <div class="meta-row">
-      <span class="counter"><span class="counter-n">{counterNum}</span> / {counterDen}</span>
+      {(chapter as any).collection === "foundation"
+        ? <span class="counter"><span class="counter-n">MAP</span></span>
+        : <span class="counter"><span class="counter-n">{counterNum}</span> / {counterDen}</span>}
       <span class:list={["tag", d.tense === "solved" ? "tag-record" : "tag-line"]}>{tenseLabel}</span>
     </div>
   </div>
@@ -112,7 +114,7 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
   )}
 
   <div class="chapter-content">
-    <p class="kicker"><span>Chapter {chapNo} of {total}</span><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
+    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
     <h2 class="question">{d.question.en}</h2>
 
     {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
