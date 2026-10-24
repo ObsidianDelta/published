@@ -31,16 +31,18 @@ const RUN: Record<string, { label: string; colour: string }> = {
 };
 // short names for the section indexes a page can sit under
 const SECTION: Record<string, string> = {
+  // the names the Meta DAX pages already used in their own path lines
   "/writing/": "Writing",
   "/metadax/": "Meta DAX hub",
   "/metadax/samples/": "Samples",
-  "/metadax/showcase/": "Six samples",
+  "/metadax/showcase/": "Showcase",
   "/metadax/showcases/": "The library",
-  "/metadax/guide/": "Guide",
-  "/metadax/homeschool/": "Homeschool",
-  "/metadax/teacher/": "Teachers",
-  "/metadax/tutor/": "Tutors",
-  "/metadax/trainer/": "Trainers",
+  "/metadax/guide/": "Help",
+  "/metadax/homeschool/": "Homeschooling",
+  "/metadax/teacher/": "Teacher",
+  "/metadax/tutor/": "Tutor",
+  "/metadax/trainer/": "Trainer",
+  "/metadax/research/": "Research",
 };
 const clean = (t: string) => t.replace(/\s*[·|]\s*(DAX Foundation|Meta DAX sample|Meta DAX)\s*$/i, "").replace(/\s*—\s*Meta ?DAX\s*$/i, "").trim();
 
@@ -59,9 +61,13 @@ if (entry && path !== "/") {
     crumbs.push({ label: RUN[run].label, href: base, run: true });
     if (ch) crumbs.push({ label: ch.data.question.en, href: `${base}#${id}` });
   }
-  // the parent section index, when this page sits under one (not the page itself)
-  const parent = path.replace(/[^/]+\/$/, "");
-  if (parent !== path && SECTION[parent] && parent !== "/") crumbs.push({ label: SECTION[parent], href: parent });
+  // every section index above this page (e.g. the Meta DAX hub, then Help), so the
+  // links the pages' own path lines carried are kept here
+  const parts = path.split("/").filter(Boolean);
+  for (let i = 1; i < parts.length; i++) {
+    const up = "/" + parts.slice(0, i).join("/") + "/";
+    if (SECTION[up]) crumbs.push({ label: SECTION[up], href: up });
+  }
   crumbs.push({ label: SECTION[path] ?? clean(title) });
 }
 ---
@@ -77,6 +83,11 @@ if (entry && path !== "/") {
   </nav>
 )}
 
+<style is:global>
+  /* the Meta DAX pages' own path lines ("Meta DAX › Help › …") said the same thing
+     as this breadcrumb, which now carries their names and their hub link */
+  body:has(nav.crumbs) main .eyebrow:has(> a[href="/metadax/"]) { display: none; }
+</style>
 <style>
   .crumbs {
     width: 100%; max-width: 72rem; margin: 0 auto;
