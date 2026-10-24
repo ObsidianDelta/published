@@ -650,7 +650,8 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
   .chapter .horizon-tag { color: var(--chapter); }
   .chapter .next a { color: var(--run); border-bottom-color: color-mix(in oklch, var(--run) 50%, transparent); }
 
-  .depthbar { display: flex; gap: 4px; margin: calc(var(--space-2) * -1) 0 var(--space-4); }
+  .depthbar { display: flex; gap: 4px; margin: 0 0 var(--space-4); }
+  .chapter .depthline { margin-bottom: 6px; }
   /* :global -- the segments are redrawn by script on every lens and depth change,
      so they never carry this component's scoped-style attribute */
   .depthbar :global(i) { flex: 0 1 40px; height: 4px; border-radius: 2px; background: var(--ink-faint); opacity: 0.35; }
