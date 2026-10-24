@@ -283,6 +283,13 @@ const deeperLinks = (() => {
       voice.textContent = missing ? "not yet written for you" : ed.voice;
       voice.classList.toggle("faint", missing || !ed.voice);
     }
+    // an edition in another language carries its own question and language tag
+    const qEl = section.querySelector<HTMLElement>("h2.question");
+    if (qEl) {
+      if (!qEl.dataset.en) qEl.dataset.en = qEl.textContent || "";
+      qEl.textContent = (ed as any).question || qEl.dataset.en;
+    }
+    section.setAttribute("lang", (ed as any).lang || "en");
     const answer = section.querySelector<HTMLElement>("[data-answer]");
     if (answer) answer.textContent = ed.answer;
 

@@ -23,10 +23,11 @@ const mdFiles = readdirSync(metadaxDir).filter((f) => f.endsWith('.md')).sort();
 const feedOf = (id) => JSON.parse(read(join(dist, 'explain', 'metadax', `${id}.json`)));
 
 test('lenses.json: nine lenses, the reading order, unique ids, levels 1..5', () => {
-  assert.equal(lenses.length, 9, 'expected nine lenses');
+  // 2026-10-24: a tenth, Tamil "Give it to me straight" (lens ta), sits after the nine
+  assert.equal(lenses.length, 10, 'expected nine lenses plus Tamil');
   assert.deepEqual(lenses.map((l) => l.id), ORDER, 'lenses are not in the reading order');
   const ids = new Set(lenses.map((l) => l.id));
-  assert.equal(ids.size, 9, 'lens ids are not unique');
+  assert.equal(ids.size, 10, 'lens ids are not unique');
   const levels = lenses.map((l) => l.level);
   for (const lv of levels) {
     assert.ok(Number.isInteger(lv) && lv >= 1 && lv <= 5, `level out of 1..5: ${lv}`);

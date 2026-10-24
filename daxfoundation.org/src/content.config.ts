@@ -49,6 +49,10 @@ const edition = z.object({
   proof_intro: z.string(),
   under: z.string(),
   horizon: z.string().optional(),
+  // 2026-10-24: an edition in another language (Tamil) carries its own question
+  // and a BCP-47 tag; the chapter swaps the heading and sets lang= on the section.
+  question: z.string().optional(),
+  lang: z.string().optional(),
   buttons: z.object({
     more: z.string(),
     how: z.string(),
