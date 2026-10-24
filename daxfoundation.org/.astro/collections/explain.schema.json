@@ -96,6 +96,12 @@
               "horizon": {
                 "type": "string"
               },
+              "question": {
+                "type": "string"
+              },
+              "lang": {
+                "type": "string"
+              },
               "buttons": {
                 "type": "object",
                 "properties": {

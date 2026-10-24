@@ -25,7 +25,8 @@ const feedOf = (id) => JSON.parse(read(join(dist, 'explain', 'metadax', `${id}.j
 test('lenses.json: nine lenses, the reading order, unique ids, levels 1..5', () => {
   // 2026-10-24: a tenth, Tamil "Give it to me straight" (lens ta), sits after the nine
   assert.equal(lenses.length, 10, 'expected nine lenses plus Tamil');
-  assert.deepEqual(lenses.map((l) => l.id), ORDER, 'lenses are not in the reading order');
+  assert.deepEqual(lenses.slice(0, 9).map((l) => l.id), ORDER, 'lenses are not in the reading order');
+  assert.equal(lenses[9].id, 'ta', 'the tenth lens is the Tamil edition');
   const ids = new Set(lenses.map((l) => l.id));
   assert.equal(ids.size, 10, 'lens ids are not unique');
   const levels = lenses.map((l) => l.level);

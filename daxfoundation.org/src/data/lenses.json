@@ -131,5 +131,17 @@
     ],
     "brief": "The evidence, the schema, the experiments' design, the open questions, the severity table (Appendix A of the Constraint post), the definitions. Precise, no softening; the deepest ladder.",
     "hue": 288
+  },
+  {
+    "id": "ta",
+    "label": "தமிழில், நேரடியாக",
+    "voice": "முன்னறிவு தேவையில்லை, நேராக விஷயம்",
+    "level": 1,
+    "depths": [
+      "answer",
+      "more"
+    ],
+    "brief": "Tamil edition of \"Give it to me straight\": the same two steps, machine-translated (unsigned, not yet checked by a native speaker).",
+    "hue": 180
   }
 ]
