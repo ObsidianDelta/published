@@ -134,14 +134,14 @@
   },
   {
     "id": "ta",
-    "label": "தமிழில், நேரடியாக",
-    "voice": "முன்னறிவு தேவையில்லை, நேராக விஷயம்",
+    "label": "நிதானமாக, எளிய தமிழில்",
+    "voice": "நிதானமாக, எளிய சொற்களில்",
     "level": 1,
     "depths": [
       "answer",
       "more"
     ],
-    "brief": "Tamil edition of \"Give it to me straight\": the same two steps, machine-translated (unsigned, not yet checked by a native speaker).",
+    "brief": "Tamil, gently: Sri Lankan Tamil usage, respectful, meaning first, everyday images (the village teacher, palm-leaf records, family letters); no place names; machine-written, unsigned.",
     "hue": 180
   }
 ]
