@@ -148,6 +148,9 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       keeps it going.
     </p>
     <p class="guided"><a href="/explain/metadax/">The guided version: nine questions, written for your experience &rarr;</a></p>
+    {writingSeries.filter((x) => x.key === "for-parents").map((x) => (
+      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+    ))}
   </section>
 
   <section class="block run-block" aria-labelledby="research" style="--run: var(--run-metadax)">
@@ -169,6 +172,9 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261019.md">The 18&ndash;19 October findings</a>
     </p>
     <p class="guided"><a href="/explain/metadax/#03-built">The guided version: &ldquo;Built once already?&rdquo; &rarr;</a></p>
+    {writingSeries.filter((x) => x.key === "results").map((x) => (
+      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+    ))}
   </section>
 
   <section class="block feature run-block" aria-labelledby="cp" style="--run: var(--run-cp)">
@@ -196,78 +202,17 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a>
     </p>
     <p class="guided"><a href="/explain/constraint-protocol/">The guided version: five questions, written for your experience &rarr;</a></p>
+    {writingSeries.filter((x) => x.key === "accountability").map((x) => (
+      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+    ))}
   </section>
 
-  <section class="block" aria-labelledby="coming">
-    <h2 id="coming">Coming</h2>
-    <ul class="rows">
-      <li class="row run-row" style="--run: var(--run-skippydax)"><span class="name"><a href="/explain/skippy-dax/">Skippy DAX</a></span><span class="status">Coming soon</span><a class="row-guided" href="/explain/skippy-dax/">What it is, in four questions &rarr;</a></li>
-      <li class="row run-row" style="--run: var(--run-novadax)"><span class="name"><a href="/explain/nova-dax/">Nova DAX</a></span><span class="status">Coming soon</span><a class="row-guided" href="/explain/nova-dax/">What it is, in four questions &rarr;</a></li>
-    </ul>
-  </section>
-
-  <section class="block" aria-labelledby="more">
-    <h2 id="more">Definitions and reading</h2>
-    <ul class="rows">
-      <li class="row">
-        <span class="name"><a href="/definitions/">Definitions</a></span>
-        <span class="text">
-          The normative definitions used across the DAX ecosystem:
-          <a href="/definitions/#cognitive-companion">cognitive companion</a>,
-          <a href="/definitions/#human-delta-value">human delta value</a>,
-          constraint, knowledge, intelligence, wisdom, consciousness and the rest.
-        </span>
-      </li>
-      <li class="row">
-        <span class="name"><a href="/writing/">Writing</a></span>
-        <span class="text">
-          The Foundation&rsquo;s own pieces.
-          {writingSeries.map((s) => (
-            <>
-              <br /><a href={`/writing/#series-${s.key}`}>{s.title}</a> &middot; {s.count} &middot; {s.blurb}
-            </>
-          ))}
-          <br />Newest outside a series:
-          {writing.map((p, i) => (
-            <>{i > 0 ? ', ' : ' '}<a href={`/writing/${p.slug}/`}>{p.title}</a></>
-          ))}.
-        </span>
-      </li>
-      <li class="row">
-        <span class="name">On jeyanandan.com</span>
-        <span class="text">
-          The long-form work behind all of this, by Jason Jeyanandan, who set
-          this Foundation up:
-          <a href="https://jeyanandan.com/blog/meta-dax/">Meta DAX: An Introduction</a>,
-          <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>, and
-          <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>,
-          published in full with its dead ends left in.
-        </span>
-      </li>
-    </ul>
-  </section>
-
-  <section class="block" aria-labelledby="ask">
-    <h2 id="ask">The ask</h2>
-    <p class="big">Give us a real scenario. We will build you a sample.</p>
-    <p class="body">
-      A parent who homeschools, a teacher, a mentor, a manager, a nurse training
-      the next nurse: anyone who is a step ahead of someone on something. Pick
-      your chair, then tell us where the two of you are stuck, in a few lines,
-      with no names and nothing that identifies anyone, and we will hand you back
-      a page like the showcases above: one side for you, one for them. Free. You
-      read it before you use it.
-    </p>
-    <p class="chairs-lead">Pick your chair:</p>
-    <nav class="chairs" aria-label="Meta DAX doors">
-      <a href="/metadax/homeschool/">Parent</a>
-      <a href="/metadax/tutor/">Tutor</a>
-      <a href="/metadax/teacher/">Teacher</a>
-      <a href="/metadax/trainer/">Trainer</a>
-      <a href="/metadax/research/">Researcher</a>
-    </nav>
-    <p class="out"><a href="/metadax/">Everything Meta DAX &rarr;</a></p>
-
+  {/* 2026-10-23 (Jason): "Coming" and "Definitions and reading" are off the home
+      page (Nova DAX and Skippy DAX are in the map and the menu; Definitions and
+      About are in every footer; Writing is Publications in the menu). "The ask"
+      moved, word for word, to the Meta DAX hub beside "Pick your chair". The note
+      from the founder stays here, verbatim, id="founder" kept. */}
+  <section class="block founder-block" aria-label="A note from the founder">
     <div class="note" id="founder">
       <p class="note-head">A note from the founder</p>
       <p>I have been at this since I was 23. I am now 49.</p>
@@ -279,6 +224,20 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <p class="sig">&mdash; <a href="https://jeyanandan.com">Jason Jeyanandan</a></p>
     </div>
     <p class="out"><a href="/about/">Who is behind this: about the Foundation &rarr;</a></p>
+    <p class="out reading">
+      Newest outside a series:
+      {writing.map((p, i) => (
+        <>{i > 0 ? ', ' : ' '}<a href={`/writing/${p.slug}/`}>{p.title}</a></>
+      ))}.
+    </p>
+    <p class="out reading">
+      The long-form work behind all of this, by Jason Jeyanandan, who set
+      this Foundation up:
+      <a href="https://jeyanandan.com/blog/meta-dax/">Meta DAX: An Introduction</a>,
+      <a href="https://jeyanandan.com/blog/the-constraint/">The Constraint</a>, and
+      <a href="https://github.com/ObsidianDelta/Fuckery">Fuckery</a>,
+      published in full with its dead ends left in.
+    </p>
   </section>
 
   {/* Old links such as daxfoundation.org/#cognitive-companion still land:
@@ -473,6 +432,9 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   .run-block { border-left: 3px solid var(--run); padding-left: 1.25rem; }
   .run-block > h2 { color: var(--run); }
   .guided { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .guided.reading { margin-top: 0.5rem; color: var(--muted); }
+  .guided.reading a { color: var(--fg); }
+  .out.reading { color: var(--muted); }
   .guided a { color: var(--run); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--run) 45%, transparent); }
   .guided a:hover, .guided a:focus-visible { border-bottom-color: var(--run); }
   .run-row { border-left: 3px solid var(--run); padding-left: 0.85rem; flex-wrap: wrap; }

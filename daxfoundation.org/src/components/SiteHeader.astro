@@ -25,10 +25,13 @@ const RUNS = [
   { key: "skippy-dax", label: "Skippy DAX", colour: "--run-skippydax" },
   { key: "constraint-protocol", label: "Constraint Protocol", colour: "--run-cp" },
 ].map((r) => ({ ...r, href: (runRoutes as Record<string, string>)[r.key] }));
+// 2026-10-23 (Jason, late): only Meta DAX stands in the menu; Nova DAX, Skippy DAX
+// and the Constraint Protocol sit in one drop-down; Writing is called Publications
+// (the address stays /writing/); Definitions and About moved to every page's footer.
+const LEAD = RUNS[0];
+const DROP = RUNS.slice(1);
 const MORE = [
-  { label: "Definitions", href: "/definitions/" },
-  { label: "Writing", href: "/writing/" },
-  { label: "About", href: "/about/" },
+  { label: "Publications", href: "/writing/" },
 ];
 const here = (href: string) => path === href || (href !== "/" && path.startsWith(href));
 const curious = lenses.find((l) => l.id === "curious")!;
@@ -63,10 +66,20 @@ const curious = lenses.find((l) => l.id === "curious")!;
     </details>
   </div>
   <nav class="nav" aria-label="Site">
-    {RUNS.map((r) => (
-      <a class:list={["run", { on: here(r.href) }]} href={r.href} style={`--c: var(${r.colour})`}
-        aria-current={here(r.href) ? "page" : undefined}>{r.label}</a>
-    ))}
+    <a class:list={["run", { on: here(LEAD.href) }]} href={LEAD.href} style={`--c: var(${LEAD.colour})`}
+      aria-current={here(LEAD.href) ? "page" : undefined}>{LEAD.label}</a>
+    <details class:list={["drop", { on: DROP.some((r) => here(r.href)) }]} data-drop>
+      <summary>
+        <span class="drop-dots" aria-hidden="true">{DROP.map((r) => <i style={`--c: var(${r.colour})`}></i>)}</span>
+        More <span class="drop-caret" aria-hidden="true">▾</span>
+      </summary>
+      <div class="drop-panel">
+        {DROP.map((r) => (
+          <a class:list={["run", { on: here(r.href) }]} href={r.href} style={`--c: var(${r.colour})`}
+            aria-current={here(r.href) ? "page" : undefined}>{r.label}</a>
+        ))}
+      </div>
+    </details>
     <span class="sep" aria-hidden="true"></span>
     {MORE.map((m) => (
       <a class:list={["more", { on: here(m.href) }]} href={m.href}
@@ -122,11 +135,14 @@ const curious = lenses.find((l) => l.id === "curious")!;
   });
   // close the panel on Escape or a click elsewhere
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") { const d = document.querySelector<HTMLDetailsElement>("[data-xp]"); if (d) d.open = false; }
+    if (e.key === "Escape") document.querySelectorAll<HTMLDetailsElement>("[data-xp], [data-drop]").forEach((d) => { d.open = false; });
   });
   document.addEventListener("click", (e) => {
-    const d = document.querySelector<HTMLDetailsElement>("[data-xp]");
-    if (d && d.open && !(e.target as Element | null)?.closest("[data-xp]")) d.open = false;
+    const t = e.target as Element | null;
+    for (const d of Array.from(document.querySelectorAll<HTMLDetailsElement>("[data-xp], [data-drop]"))) {
+      if (d.open && !t?.closest("details") ) d.open = false;
+      else if (d.open && t?.closest("details") !== d) d.open = false;
+    }
   });
   document.addEventListener("astro:page-load", boot);
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
@@ -196,9 +212,27 @@ const curious = lenses.find((l) => l.id === "curious")!;
 
   @media (max-width: 700px) {
     .xp-k { display: none; }
-    .nav { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; gap: 0.35rem 0.9rem;
-      -webkit-mask-image: linear-gradient(to right, #000 88%, transparent);
-      mask-image: linear-gradient(to right, #000 88%, transparent); }
-    .nav::-webkit-scrollbar { display: none; }
+    .nav { gap: 0.35rem 0.9rem; }
   }
+
+  /* the drop-down: Nova DAX, Skippy DAX, the Constraint Protocol */
+  .drop { position: relative; }
+  .drop > summary {
+    list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem;
+    padding-block: 0.35rem; color: var(--ink-muted, #8c8c8c); border-bottom: 2px solid transparent;
+  }
+  .drop > summary::-webkit-details-marker { display: none; }
+  .drop > summary:hover, .drop[open] > summary, .drop.on > summary { color: var(--ink, #e8e8e8); }
+  .drop-dots { display: inline-flex; gap: 2px; }
+  .drop-dots i { width: 0.45em; height: 0.45em; border-radius: 50%; background: var(--c); }
+  .drop-caret { font-size: 0.75em; }
+  .drop[open] .drop-caret { transform: rotate(180deg); }
+  .drop-panel {
+    position: absolute; left: 0; top: calc(100% + 0.4rem); z-index: 50; min-width: 15rem;
+    display: grid; gap: 0.15rem; padding: 0.5rem;
+    border: 1px solid var(--line, #1e1e1e); border-radius: 12px;
+    background: var(--surface, #141414); box-shadow: 0 12px 32px rgb(0 0 0 / 0.45);
+  }
+  .drop-panel a { padding: 0.55rem 0.6rem; border-radius: 8px; border-bottom: 0; }
+  .drop-panel a:hover, .drop-panel a:focus-visible, .drop-panel a.on { background: color-mix(in oklch, var(--c) 14%, transparent); }
 </style>

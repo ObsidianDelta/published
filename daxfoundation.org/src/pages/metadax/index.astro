@@ -126,6 +126,30 @@ const latest = newest(3);
     <p class="out"><a href="/metadax/showcases/">The whole library &rarr;</a> <span aria-hidden="true">&middot;</span> <a href="/metadax/samples/">See it &rarr;</a></p>
   </section>
 
+  {/* 2026-10-23: "The ask", moved word for word from the home page (it was written
+      for the Facebook outreach); it sits here, beside the chairs and after the
+      showcases it refers to. */}
+  <section class="block ask" aria-labelledby="ask">
+    <h2 id="ask">The ask</h2>
+    <p class="ask-big">Give us a real scenario. We will build you a sample.</p>
+    <p class="ask-body">
+      A parent who homeschools, a teacher, a mentor, a manager, a nurse training
+      the next nurse: anyone who is a step ahead of someone on something. Pick
+      your chair, then tell us where the two of you are stuck, in a few lines,
+      with no names and nothing that identifies anyone, and we will hand you back
+      a page like the showcases above: one side for you, one for them. Free. You
+      read it before you use it.
+    </p>
+    <p class="ask-lead">Pick your chair:</p>
+    <nav class="ask-chairs" aria-label="Meta DAX doors">
+      <a href="/metadax/homeschool/">Parent</a>
+      <a href="/metadax/tutor/">Tutor</a>
+      <a href="/metadax/teacher/">Teacher</a>
+      <a href="/metadax/trainer/">Trainer</a>
+      <a href="/metadax/research/">Researcher</a>
+    </nav>
+  </section>
+
   <section class="block" aria-labelledby="h-support">
     <h2 id="h-support">Keep it going</h2>
     <p class="body sponsor">
@@ -193,4 +217,11 @@ const latest = newest(3);
 
   @media (max-width: 44rem) { .doors { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 34rem) { .doors { grid-template-columns: 1fr; } .lede { padding-block: 2.5rem 1.5rem; } }
+
+  .ask-big { margin: 0 0 1rem; font-size: clamp(1.25rem, 1rem + 1.2vw, 1.6rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); text-wrap: balance; }
+  .ask-body { margin: 0; max-width: 36em; color: #cfcfcf; }
+  .ask-lead { margin: 1.5rem 0 0.5rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .ask-chairs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem; font-size: 0.9375rem; }
+  .ask-chairs a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .ask-chairs a:hover, .ask-chairs a:focus-visible { border-bottom-color: currentColor; }
 </style>
