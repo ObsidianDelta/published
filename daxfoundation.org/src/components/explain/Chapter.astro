@@ -23,7 +23,7 @@ const TENSE: Record<string, string> = {
   solved: "Done",
   live: "Running today",
   researched: "Researched",
-  ahead: "Where this goes",
+  ahead: "Ahead",
 };
 const tenseLabel = TENSE[d.tense] + (d.tenseNote ? ` · ${d.tenseNote}` : "");
 
@@ -702,4 +702,11 @@ const deeperLinks = (() => {
     font-style: normal; color: var(--ink-faint); text-transform: none; letter-spacing: 0.02em;
   }
   .kicker .status::before { content: "·"; margin: 0 0.45em; color: var(--ink-faint); }
+
+  /* chapters without a scene column (the video, the chairs) were flush to the screen
+     edge; give them the same measure and gutter as the rest of the page */
+  .chapter:not(.has-scene) {
+    max-width: var(--measure-scene, 72rem); margin-inline: auto;
+    padding-inline: var(--space-6, 1.5rem);
+  }
 </style>
