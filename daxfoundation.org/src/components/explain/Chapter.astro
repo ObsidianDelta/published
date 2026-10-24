@@ -1,4 +1,5 @@
 ---
+import siteMap from "../../data/site-map.json";
 // One chapter section, ported to the approved sampler's shape (EXP-8a).
 // Jason's verdict (23 Oct): the depth pills and the Next carousel are gone. One
 // gesture: scroll. Depth is a ladder of plain questions (more -> how -> proof ->
@@ -75,6 +76,24 @@ const RUN_TOKEN: Record<string, string> = {
 const runVar = RUN_TOKEN[(chapter as any).collection as string] ?? "--run-foundation";
 const chPos = Math.min(Math.max(Number(d.order) || 1, 1), Math.max(total, 1));
 const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
+// 2026-10-23: "Go deeper" -- the detail pages that sit under this question
+// (src/data/site-map.json, the same map the "Where this fits" strip reads), its
+// extra links ("also") and the chapter's own `deeper` list, de-duplicated.
+const chKey = `${(chapter as any).collection}/${d.id}`;
+const SM = siteMap as { pages: { path: string; chapter: string; list: boolean; label?: string }[]; also: Record<string, { path: string; label: string }[]> };
+const labelOf = (p: string) => SM.pages.find((e) => e.path === p.split("#")[0])?.label ?? p;
+const deeperLinks = (() => {
+  const seen = new Set<string>();
+  const out: { href: string; label: string }[] = [];
+  const add = (href: string, label?: string) => {
+    if (!href || seen.has(href)) return;
+    seen.add(href); out.push({ href, label: label || labelOf(href) });
+  };
+  for (const e of SM.pages) if (e.list && e.chapter === chKey) add(e.path, e.label);
+  for (const x of SM.also[chKey] ?? []) add(x.path, x.label);
+  for (const p of ((d as any).deeper ?? []) as string[]) add(p);
+  return out;
+})();
 ---
 <section
   class:list={["chapter", { "has-scene": isScene }]}
@@ -212,6 +231,15 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
         </div>
       </div></div>
     </div>
+
+    {deeperLinks.length > 0 && (
+      <nav class="deeper" aria-label="Go deeper">
+        <p class="deeper-h">Go deeper</p>
+        <ul>
+          {deeperLinks.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+        </ul>
+      </nav>
+    )}
 
     {nextChapter && (
       <p class="next">Next question: <a href={nextChapter.url}>{nextChapter.question}</a></p>
@@ -668,4 +696,15 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
   .step > .step-btn { box-shadow: inset 3px 0 0 var(--step); padding-left: var(--space-3); }
   .step.open > .panel > .panel-in { border-left: 3px solid var(--step); padding-left: var(--space-4); }
   .step.open > .panel > .panel-in > .step-head { color: var(--step); }
+
+  /* Go deeper: the detail pages under this question (site-map.json) */
+  .deeper { margin: var(--space-6) 0 var(--space-4); padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  .deeper-h { margin: 0 0 var(--space-2); font-family: var(--font-mono); font-size: var(--text-mono-size); letter-spacing: 0.08em; text-transform: uppercase; color: var(--chapter); }
+  .deeper ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+  .deeper a {
+    display: inline-flex; align-items: center; min-height: 36px; padding: 0.2rem 0.8rem;
+    border: 1px solid color-mix(in oklch, var(--chapter) 40%, var(--line)); border-radius: 999px;
+    color: var(--ink); text-decoration: none; font-size: var(--text-small-size);
+  }
+  .deeper a:hover, .deeper a:focus-visible { border-color: var(--chapter); }
 </style>

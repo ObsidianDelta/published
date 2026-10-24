@@ -1,4 +1,6 @@
 ---
+import SiteHeader from "../components/SiteHeader.astro";
+import WhereThisFits from "../components/WhereThisFits.astro";
 interface Props {
   title?: string;
   description?: string;
@@ -69,14 +71,10 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     <slot name="head" />
   </head>
   <body>
-    <header class="wrap top">
-      <a class="mark" href="/">DAX Foundation</a>
-      <nav class="nav" aria-label="Site">
-        <a class="mark" href="/metadax/">Meta DAX</a>
-        <a class="mark" href="/definitions/">Definitions</a>
-        <a class="mark" href="/writing/">Writing</a>
-      </nav>
-    </header>
+    {/* 2026-10-23: one top menu for the whole site (runs, detail indexes, the
+        reader's experience), shared with the guided runs' layout. */}
+    <SiteHeader />
+    <WhereThisFits />
     <main class:list={['wrap', { wide }]}>
       <slot />
     </main>

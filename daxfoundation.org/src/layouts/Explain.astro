@@ -8,6 +8,7 @@
 import "../styles/tokens.css";
 import "../styles/colour.css";
 import { ClientRouter } from "astro:transitions";
+import SiteHeader from "../components/SiteHeader.astro";
 // The reading scale, as data (EXP-11): the chooser draws its chips from here, in
 // order, least background first. No hard-coded chips. `level` rides along on each
 // chip for the map (EXP-10 reads it).
@@ -68,36 +69,10 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <!-- Reading hairline: a 2px bar, width = scroll fraction (EXP-8a item 5). -->
     <div class="reading-rule" id="reading-rule" aria-hidden="true"></div>
 
-    <!-- The site's own masthead/nav, from Base.astro, so /explain reads as
-         daxfoundation.org and not a separate site (EXP-8a item 5). -->
-    <header class="site-top">
-      <a class="mark" href="/">DAX Foundation</a>
-      <nav class="site-nav" aria-label="Site">
-        <a class="mark" href="/metadax/">Meta DAX</a>
-        <a class="mark" href="/definitions/">Definitions</a>
-        <a class="mark" href="/writing/">Writing</a>
-      </nav>
-    </header>
-
-    <!-- The lens chooser: the chapter is written for whoever is reading. Chosen
-         lens is remembered in localStorage and applied to every chapter on the
-         page without a reload (the chapters listen for the "dax-lens" event). -->
-    <section class="chooser" aria-labelledby="chooser-h">
-      <p class="chooser-h" id="chooser-h">Who's reading? The chapter is written for you.</p>
-      <div class="chips" id="lens-chips" role="group" aria-label="Who's reading">
-        {lenses.map((l) => (
-          <button
-            type="button"
-            class="chip"
-            data-lens={l.id}
-            data-level={l.level}
-            data-hue={l.hue}
-            style={`--chip-h: ${l.hue}`}
-            aria-pressed={l.id === "curious" ? "true" : "false"}
-          >{l.label}</button>
-        ))}
-      </div>
-    </section>
+    {/* 2026-10-23: the shared top menu (SiteHeader) carries the runs, the
+        detail indexes and the reader's experience switcher on every page; the
+        separate masthead and the big chooser that used to sit here are gone. */}
+    <SiteHeader />
 
     <main>
       <slot />
@@ -117,58 +92,6 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
       const LENS_KEY = "dax-explain-lens";
       // The lens list is whatever the chooser rendered from lenses.json -- read it
       // off the chips so there is one source of truth (the data file).
-      function allLenses(): string[] {
-        return Array.from(document.querySelectorAll<HTMLElement>("#lens-chips .chip"))
-          .map((c) => c.dataset.lens || "")
-          .filter(Boolean);
-      }
-
-      function readLens(): string {
-        try {
-          const v = localStorage.getItem(LENS_KEY);
-          return v && allLenses().includes(v) ? v : "curious";
-        } catch {
-          return "curious";
-        }
-      }
-      function writeLens(v: string): void {
-        try {
-          localStorage.setItem(LENS_KEY, v);
-        } catch {
-          /* private mode: the choice simply does not persist */
-        }
-      }
-
-      function paintChips(lens: string): void {
-        document.querySelectorAll<HTMLElement>("#lens-chips .chip").forEach((c) => {
-          const on = c.dataset.lens === lens;
-          c.setAttribute("aria-pressed", on ? "true" : "false");
-          // the reader's lane colours the whole page (depth bars, step edges, band)
-          if (on && c.dataset.hue) document.documentElement.style.setProperty("--lane-h", c.dataset.hue);
-          // on a phone the chips are one swipeable row: bring the chosen one into it
-          // (scroll the row only, never the page)
-          if (on && c.parentElement) {
-            const row = c.parentElement;
-            row.scrollLeft = c.offsetLeft - row.offsetLeft - (row.clientWidth - c.offsetWidth) / 2;
-          }
-        });
-      }
-
-      function wireChooser(): void {
-        const chips = document.getElementById("lens-chips");
-        if (!chips || (chips as any).__wired) return;
-        (chips as any).__wired = true;
-        chips.addEventListener("click", (e) => {
-          const chip = (e.target as Element | null)?.closest<HTMLElement>(".chip");
-          const lens = chip?.dataset.lens;
-          if (!lens) return;
-          writeLens(lens);
-          paintChips(lens);
-          document.dispatchEvent(new CustomEvent("dax-lens", { detail: lens }));
-        });
-        paintChips(readLens());
-      }
-
       // Reading hairline: width = how far down the page the reader is.
       let ticking = false;
       function onScroll(): void {
@@ -186,7 +109,6 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
       }
 
       function boot(): void {
-        wireChooser();
         onScroll();
       }
 

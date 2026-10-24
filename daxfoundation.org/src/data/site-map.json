@@ -1,0 +1,359 @@
+{
+  "_about": "Where every regular page on daxfoundation.org sits in the guided runs (2026-10-23). One source of truth for both link directions: the 'Where this fits' strip on a page (Base.astro) and the 'Go deeper' row on a chapter (Chapter.astro). tests/explain/site-cohesion.test.mjs fails the build if a built page is missing here or unlinked. A trailing * matches every page under that path (not listed in Go deeper; its index page is). 'also' adds extra Go deeper links to a chapter.",
+  "exempt": [
+    "/404.html",
+    "/metadax/play/scenes/demo.html"
+  ],
+  "pages": [
+    {
+      "path": "/",
+      "chapter": "foundation/00-map",
+      "list": false,
+      "label": "DAX Foundation"
+    },
+    {
+      "path": "/about/",
+      "chapter": "foundation/00-map",
+      "list": true,
+      "label": "About the DAX Foundation"
+    },
+    {
+      "path": "/definitions/",
+      "chapter": "foundation/00-map",
+      "list": true,
+      "label": "Definitions"
+    },
+    {
+      "path": "/writing/",
+      "chapter": "foundation/00-map",
+      "list": true,
+      "label": "Writing"
+    },
+    {
+      "path": "/writing/how-this-is-paid-for-and-what-we-will-measure/",
+      "chapter": "foundation/00-map",
+      "list": true,
+      "label": "How this is paid for, and what we will measure"
+    },
+    {
+      "path": "/writing/twelve-scenes-01-the-nurses-walkthrough/",
+      "chapter": "metadax/01-job",
+      "list": true,
+      "label": "Twelve scenes, 1: The nurse's walkthrough"
+    },
+    {
+      "path": "/writing/twelve-scenes-02-one-body-one-receipt/",
+      "chapter": "metadax/01-job",
+      "list": true,
+      "label": "Twelve scenes, 2: One body, one receipt"
+    },
+    {
+      "path": "/writing/where-your-child-is-stuck-is-the-whole-brief/",
+      "chapter": "metadax/01-job",
+      "list": true,
+      "label": "Where your child is stuck is the whole brief"
+    },
+    {
+      "path": "/writing/the-game-has-no-ai-in-it/",
+      "chapter": "metadax/02-chat",
+      "list": true,
+      "label": "The game has no AI in it"
+    },
+    {
+      "path": "/metadax/research/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "Meta DAX: the research"
+    },
+    {
+      "path": "/writing/the-first-run/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "The first run: a first page in eight minutes, and what it got wrong"
+    },
+    {
+      "path": "/writing/the-stranger-test/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "The stranger test"
+    },
+    {
+      "path": "/writing/fourteen-small-experiments/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "Fourteen small experiments, and why small first"
+    },
+    {
+      "path": "/writing/field-note-twenty-nine-runs/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "Twenty-nine runs in two days, and what failed"
+    },
+    {
+      "path": "/writing/what-twenty-nine-runs-say-about-the-design/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "What twenty-nine runs say about the design"
+    },
+    {
+      "path": "/writing/the-slower-model-was-not-the-safer-model/",
+      "chapter": "metadax/03-built",
+      "list": true,
+      "label": "The slower model was not the safer model"
+    },
+    {
+      "path": "/writing/if-you-are-the-tutor-in-the-group/",
+      "chapter": "metadax/04-roles",
+      "list": true,
+      "label": "If you are the tutor in the group"
+    },
+    {
+      "path": "/metadax/showcases/tutors-desk/",
+      "chapter": "metadax/04-roles",
+      "list": true,
+      "label": "The Tutor's Desk"
+    },
+    {
+      "path": "/writing/human-delta-value/",
+      "chapter": "metadax/05-guide",
+      "list": true,
+      "label": "Human delta value: the measure"
+    },
+    {
+      "path": "/writing/read-your-page-first/",
+      "chapter": "metadax/05-guide",
+      "list": true,
+      "label": "Read your page before your child reads theirs"
+    },
+    {
+      "path": "/writing/session-two/",
+      "chapter": "metadax/06-record",
+      "list": true,
+      "label": "Session two"
+    },
+    {
+      "path": "/metadax/guide/next-session/",
+      "chapter": "metadax/06-record",
+      "list": true,
+      "label": "Session two, the learning record, and several kids"
+    },
+    {
+      "path": "/writing/how-knowledge-compounds-under-a-constraint/",
+      "chapter": "metadax/06-record",
+      "list": true,
+      "label": "How knowledge compounds under a constraint"
+    },
+    {
+      "path": "/metadax/showcases/",
+      "chapter": "metadax/07-five",
+      "list": true,
+      "label": "Meta DAX: the library"
+    },
+    {
+      "path": "/metadax/showcases/*",
+      "chapter": "metadax/07-five",
+      "list": false
+    },
+    {
+      "path": "/writing/how-a-showcase-is-made/",
+      "chapter": "metadax/07-five",
+      "list": true,
+      "label": "How a showcase is made"
+    },
+    {
+      "path": "/metadax/play/",
+      "chapter": "metadax/07-five",
+      "list": true,
+      "label": "Play a MetaDAX package"
+    },
+    {
+      "path": "/metadax/play/print.html",
+      "chapter": "metadax/07-five",
+      "list": false,
+      "label": "Print a MetaDAX package"
+    },
+    {
+      "path": "/metadax/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX: pick your chair"
+    },
+    {
+      "path": "/metadax/homeschool/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX for homeschooling"
+    },
+    {
+      "path": "/metadax/homeschool/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/teacher/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX for teachers"
+    },
+    {
+      "path": "/metadax/teacher/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/tutor/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX for tutors"
+    },
+    {
+      "path": "/metadax/tutor/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/trainer/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX for trainers"
+    },
+    {
+      "path": "/metadax/trainer/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/guide/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "How to use Meta DAX — a guide for parents"
+    },
+    {
+      "path": "/metadax/guide/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/samples/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX: see it"
+    },
+    {
+      "path": "/metadax/samples/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/metadax/showcase/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "Meta DAX: six samples"
+    },
+    {
+      "path": "/metadax/showcase/*",
+      "chapter": "metadax/08-exists",
+      "list": false
+    },
+    {
+      "path": "/writing/the-blending-hump/",
+      "chapter": "metadax/08-exists",
+      "list": true,
+      "label": "The blending hump"
+    },
+    {
+      "path": "/constraint-protocol/",
+      "chapter": "constraint-protocol/01-what",
+      "list": true,
+      "label": "The Constraint Protocol, honestly"
+    },
+    {
+      "path": "/writing/what-a-declared-constraint-is/",
+      "chapter": "constraint-protocol/01-what",
+      "list": true,
+      "label": "What a declared constraint is"
+    },
+    {
+      "path": "/writing/a-record-not-a-wall/",
+      "chapter": "constraint-protocol/02-who",
+      "list": true,
+      "label": "A record, not a wall"
+    },
+    {
+      "path": "/writing/refusing-a-bypass-and-keeping-the-receipt/",
+      "chapter": "constraint-protocol/03-record",
+      "list": true,
+      "label": "Refusing a bypass, and keeping the receipt"
+    },
+    {
+      "path": "/writing/run-it-with-us/",
+      "chapter": "constraint-protocol/05-horizon",
+      "list": true,
+      "label": "Run it with us"
+    }
+  ],
+  "also": {
+    "skippy-dax/01-what": [
+      {
+        "path": "/definitions/#cognitive-companion",
+        "label": "Definition: cognitive companion"
+      }
+    ],
+    "skippy-dax/02-chatbot": [
+      {
+        "path": "/writing/the-game-has-no-ai-in-it/",
+        "label": "The game has no AI in it"
+      }
+    ],
+    "nova-dax/03-start": [
+      {
+        "path": "/metadax/guide/next-session/",
+        "label": "Session two, the learning record, and several kids"
+      },
+      {
+        "path": "/writing/session-two/",
+        "label": "Session two"
+      }
+    ],
+    "nova-dax/02-whose": [
+      {
+        "path": "/writing/how-knowledge-compounds-under-a-constraint/",
+        "label": "How knowledge compounds under a constraint"
+      }
+    ],
+    "metadax/05-guide": [
+      {
+        "path": "/definitions/#human-delta-value",
+        "label": "Definition: human delta value"
+      }
+    ],
+    "constraint-protocol/04-identity": [
+      {
+        "path": "/constraint-protocol/",
+        "label": "The Constraint Protocol, honestly"
+      }
+    ],
+    "metadax/09-horizon": [
+      {
+        "path": "/about/",
+        "label": "About the DAX Foundation"
+      },
+      {
+        "path": "/writing/how-this-is-paid-for-and-what-we-will-measure/",
+        "label": "How this is paid for, and what we will measure"
+      }
+    ],
+    "skippy-dax/04-horizon": [
+      {
+        "path": "/about/",
+        "label": "About the DAX Foundation"
+      }
+    ],
+    "nova-dax/04-horizon": [
+      {
+        "path": "/about/",
+        "label": "About the DAX Foundation"
+      }
+    ]
+  }
+}

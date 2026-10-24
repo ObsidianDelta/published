@@ -53,8 +53,8 @@ const levelNames = [
 ---
 <section class="maphome" aria-labelledby="map-q" data-maphome>
   <div class="chooser">
-    <p class="chooser-h">Who&rsquo;s reading? The map is drawn for you.</p>
-    <div class="chips" id="map-chips" role="group" aria-label="Who's reading">
+    <p class="chooser-h">Choose your experience. The map, and every page after it, is written for you.</p>
+    <div class="chips" id="map-chips" role="group" aria-label="Choose your experience">
       {lenses.map((l) => (
         <button type="button" class="chip" data-lens={l.id} data-level={l.level}
           data-hue={(l as any).hue} style={`--chip-h: ${(l as any).hue}`}
@@ -179,9 +179,11 @@ const levelNames = [
       if (sceneEl) sceneEl.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    function applyLens(next: string): void {
+    function applyLens(next: string, announce = true): void {
       lens = next;
       try { localStorage.setItem(LENS_KEY, next); } catch { /* private mode */ }
+      // tell the top menu's experience switcher (SiteHeader) and anything else
+      if (announce) document.dispatchEvent(new CustomEvent("dax-lens", { detail: next }));
       paint("#map-chips .chip", "lens", next);
       if (typeof handle.setLabels === "function") handle.setLabels(labelsByLens[next] || {});
       setLevel(levelByLens[next] || 2, true);
@@ -199,6 +201,11 @@ const levelNames = [
     paint("#map-chips .chip", "lens", lens);
     paint("#map-ladder .rung", "level", String(curLevel));
 
+    // the experience was changed from the top menu: redraw the map for it
+    document.addEventListener("dax-lens", (e) => {
+      const next = (e as CustomEvent).detail;
+      if (typeof next === "string" && next !== lens && labelsByLens[next]) applyLens(next, false);
+    });
     root.querySelector("#map-chips")?.addEventListener("click", (e) => {
       const chip = (e.target as Element | null)?.closest<HTMLElement>(".chip");
       if (chip?.dataset.lens) applyLens(chip.dataset.lens);
