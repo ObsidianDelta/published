@@ -11,8 +11,15 @@ import lenses from "../../data/lenses.json";
 interface Props {
   run: "metadax" | "nova-dax" | "skippy-dax" | "constraint-protocol";
   chapters: any[];
+  /** 2 when the run sits under another page's H1 (the homepage, 2026-10-24) */
+  level?: 1 | 2;
+  /** one line under the run's name (the homepage: "Our initiative of universal learning, …") */
+  kicker?: string;
+  /** an id for the run's heading (the homepage keeps its old #metadax anchor) */
+  headingId?: string;
 }
-const { run, chapters } = Astro.props;
+const { run, chapters, level = 1, kicker, headingId } = Astro.props;
+const H = level === 2 ? "h2" : "h1";
 const NAME: Record<string, string> = {
   metadax: "Meta DAX", "nova-dax": "Nova DAX", "skippy-dax": "Skippy DAX", "constraint-protocol": "The Constraint Protocol",
 };
@@ -25,7 +32,8 @@ const items = chapters.map((c, i) => ({ n: i + 1, id: c.data.id as string, q: c.
 ---
 <div class="run-head" style={`--run: var(${COLOUR[run]})`} data-run-head>
   <div class="run-id">
-    <h1 class="run-name">{NAME[run]}</h1>
+    <H class="run-name" id={headingId}>{NAME[run]}</H>
+    {kicker && <p class="run-kicker">{kicker}</p>}
     <p class="run-line">{line}</p>
     <p class="run-lang">{anyFr ? "English · Français" : "English · French coming"}</p>
   </div>
@@ -145,6 +153,7 @@ const items = chapters.map((c, i) => ({ n: i + 1, id: c.data.id as string, q: c.
     font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.6rem); line-height: 1.1; color: var(--run);
   }
   .run-line { margin: 0.35rem 0 0; color: var(--ink); }
+  .run-kicker { margin: 0.35rem 0 0; color: var(--ink-muted); }
   .run-lang { margin: 0.25rem 0 0; font-size: 0.8125rem; color: var(--ink-faint); letter-spacing: 0.06em; }
 
   .run-strip {

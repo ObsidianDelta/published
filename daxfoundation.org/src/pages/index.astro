@@ -1,9 +1,23 @@
 ---
-import Base from '../layouts/Base.astro';
+import Explain from '../layouts/Explain.astro';
 import MapHome from '../components/explain/MapHome.astro';
+import RunHeader from '../components/explain/RunHeader.astro';
+import Chapter from '../components/explain/Chapter.astro';
+import { getCollectionChapters } from '../lib/explain/chapters.js';
 import { home as libraryHome, byKind } from '../data/library.js';
 import { posts, SERIES, seriesOf } from './_posts.js';
 
+// 2026-10-24 (Jason): "I want it to be like the default experience". The home page
+// IS the Meta DAX run: the DAX line, the map (with the other three runs as cards),
+// then Meta DAX's nine chapters right here, with the sticky question bar and the
+// experience switcher, no click needed. The three blocks that used to follow
+// (Meta DAX, The research, the Constraint Protocol) fold into one "Go further"
+// index after the run: every link they carried is kept, the research and Protocol
+// paragraphs verbatim; the Meta DAX paragraph and the door blurbs live on
+// /metadax/homeschool/, /metadax/research/ and the hub. The note from the founder
+// and everything under it are unchanged (linked from the top). /explain/metadax/
+// stays the run's own shareable page.
+//
 // daxfoundation.org home, refocused 2026-10-10 (uniform-home) at Jason's
 // request: "a lot of stuff needs to be rearranged, more focused, continuity
 // between the GitHub README and the front page." The home now mirrors the
@@ -87,124 +101,104 @@ const writingSeries = Object.keys(SERIES)
   }));
 const writing = posts.filter((p) => !p.series).slice(0, 2);
 
+const runChapters = await getCollectionChapters('metadax');
+
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 ---
-<Base>
-  <section class="lede" aria-labelledby="dax">
+<Explain>
+  <section class="home-w home-lede" aria-labelledby="dax">
     <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
+    <p class="to-founder"><a href="#founder">A note from the founder &darr;</a></p>
   </section>
-  {/* 2026-10-23 (Jason): the DAX line first, then the window into the Foundation:
-      choose your experience, the live graph, the runs. Every section below keeps
-      its place and its emphasis. */}
-  <MapHome />
 
-  <section class="block feature run-block" id="learning" aria-labelledby="metadax" style="--run: var(--run-metadax)">
-    <h2 id="metadax">Meta DAX</h2>
-    <p class="kicker">Our initiative of universal learning.</p>
-    <p class="body">
-      Meta DAX is a bet on one benchmark: take a person who can communicate, and
-      bring them to the equivalent of a master&rsquo;s degree from an Ivy League
-      university &mdash; on five minutes of connectivity a day. <strong>We are developing this for all bandwidths!</strong> The learning
-      cannot live on the network, so it does not: a bundle is generated for the
-      particular learner, comes down whole, and is worked through offline. Any
-      domain means any domain. It is built to be enterprise grade, and it stays
-      free &mdash; not freemium, not free-for-some, not free-until-funded.
-    </p>
+  {/* the window: choose your experience, the live graph, the other three runs */}
+  <div class="home-w">
+    <MapHome exclude={["metadax"]} />
+  </div>
 
-    <p class="chairs-lead">Pick your chair:</p>
-    <ul class="doors">
-      {doors.map((d) => (
-        <li>
-          <a href={d.href}>
-            <span class="door-kicker">{d.kicker}</span>
-            <span class="door-title">{d.title}</span>
-            <span class="door-text">{d.text}</span>
-          </a>
-        </li>
-      ))}
-    </ul>
+  {/* Meta DAX, the one being built now, plays right here. The question bar sticks
+      while the run is on screen and carries the experience switcher. */}
+  <section class="home-run" id="learning" aria-labelledby="metadax">
+    <RunHeader run="metadax" chapters={runChapters} level={2} headingId="metadax"
+      kicker="Our initiative of universal learning. The one being built now: nine questions, written for your experience." />
+    {runChapters.map((c) => <Chapter chapter={c} total={runChapters.length} inPage />)}
+  </section>
 
-    <div class="see-it">
-      <p class="big">The same recipe built every one of these.</p>
-      <nav class="showcases" aria-label="Showcases">
-        {showcases.map((s) => (
-          <a href={s.href} rel={s.rel}>
-            <span class="sc-name">{s.name}</span>
-            <span class="sc-note">{s.note}</span>
-          </a>
+  <section class="home-w further" aria-labelledby="further-h">
+    <h2 class="further-h" id="further-h">Go further</h2>
+    <div class="further-grid">
+      <div class="fcol" style="--run: var(--run-metadax)">
+        <h3>Meta DAX</h3>
+        <p class="fl"><a href="/metadax/">The Meta DAX hub</a>. Pick your chair:</p>
+        <ul class="chairs">
+          {doors.map((d) => (<li><a href={d.href} title={d.text}>{d.kicker}</a></li>))}
+        </ul>
+        <p class="fl">See it: the same recipe built each of these.</p>
+        <ul class="sc">
+          {showcases.map((x) => (<li><a href={x.href} rel={x.rel}>{x.name}</a> <span>{x.note}</span></li>))}
+        </ul>
+        <p class="fl"><a href="/metadax/samples/">Every showcase and sample &rarr;</a></p>
+        <p class="fl quiet">The first thing the recipe built, in September: the
+          <a href={newton.url} rel="noopener">Newton&rsquo;s laws run report</a> (report; simulated learner).</p>
+        <p class="fl quiet">
+          MetaDAX is free. It is built on paid compute. If it helped, a coffee on
+          <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
+          <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
+          keeps it going.
+        </p>
+        {writingSeries.filter((x) => x.key === "for-parents").map((x) => (
+          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
         ))}
-      </nav>
-      <p class="out"><a href="/metadax/samples/">See it &mdash; every showcase and sample &rarr;</a></p>
-      <p class="newton">The first thing the recipe built, in September: the
-        <a href={newton.url} rel="noopener">Newton&rsquo;s laws run report</a>
-        <span class="tag">report; simulated learner</span>
-      </p>
+      </div>
+
+      <div class="fcol" style="--run: var(--run-metadax)">
+        <h3 id="research">The research</h3>
+        <p class="body">
+          The benchmark &mdash; a person who can communicate to a master&rsquo;s on
+          five minutes a day &mdash; is audacious on purpose.
+          <strong>We are developing this for all bandwidths!</strong> It rests on
+          fourteen small experiments first, then the twelve scenes and X13 and X14.
+          Twenty-four of the twenty-eight have now run, with models or scripts and
+          never with a person, and several came back negative.
+          The small ones are how we earn the big ones.
+        </p>
+        <ul class="links">
+          <li><a href="/metadax/research/">The research, the measure and the experiments &rarr;</a></li>
+          <li><a href={findings}>The X13 / X14 findings</a></li>
+          <li><a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261019.md">The 18&ndash;19 October findings</a></li>
+          <li><a href="#03-built">In the run above: &ldquo;Built once already?&rdquo; &uarr;</a></li>
+        </ul>
+        {writingSeries.filter((x) => x.key === "results").map((x) => (
+          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+        ))}
+      </div>
+
+      <div class="fcol" style="--run: var(--run-cp)">
+        <h3 id="cp">Constraint Protocol</h3>
+        {/* #constraint-protocol is kept as a second landing point for the section. */}
+        <span id="constraint-protocol" aria-hidden="true"></span>
+        <p class="big">The ground everything here stands on.</p>
+        <p class="body">
+          A way for parties &mdash; people, companies or software &mdash; to declare
+          in advance what they will not do, and then be checked against it. It keeps
+          a signed record nobody can quietly edit, keeps witnessing and judging
+          separate, and lets anyone dispute any record. DAX is one constraint built
+          on it, and Meta DAX is meant to run on it; its protocol fields are reserved and empty today. The aim is that what one person works
+          out compounds for everyone after them. A public working draft, run in full
+          once so far.
+        </p>
+        <ul class="links">
+          <li><a href="/explain/constraint-protocol/">The guided version: five questions, written for your experience &rarr;</a></li>
+          <li><a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a></li>
+          <li><a href="/metadax/research/#constraint-protocol">What that looks like, scene by scene</a></li>
+          <li><a href="https://github.com/daxfoundation/constraint-protocol">The specification &mdash; CP-SPEC v0.5</a></li>
+          <li><a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a></li>
+        </ul>
+        {writingSeries.filter((x) => x.key === "accountability").map((x) => (
+          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+        ))}
+      </div>
     </div>
-
-    <p class="sponsor">
-      MetaDAX is free. It is built on paid compute. If it helped, a coffee on
-      <a href="https://ko-fi.com/jeyanandan">Ko-fi</a> or a
-      <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
-      keeps it going.
-    </p>
-    <p class="guided"><a href="/explain/metadax/">The guided version: nine questions, written for your experience &rarr;</a></p>
-    {writingSeries.filter((x) => x.key === "for-parents").map((x) => (
-      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
-    ))}
-  </section>
-
-  <section class="block run-block" aria-labelledby="research" style="--run: var(--run-metadax)">
-    <h2 id="research">The research</h2>
-    <p class="body">
-      The benchmark &mdash; a person who can communicate to a master&rsquo;s on
-      five minutes a day &mdash; is audacious on purpose.
-      <strong>We are developing this for all bandwidths!</strong> It rests on
-      fourteen small experiments first, then the twelve scenes and X13 and X14.
-      Twenty-four of the twenty-eight have now run, with models or scripts and
-      never with a person, and several came back negative.
-      The small ones are how we earn the big ones.
-    </p>
-    <p class="out">
-      <a href="/metadax/research/">The research, the measure and the experiments &rarr;</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href={findings}>The X13 / X14 findings</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261019.md">The 18&ndash;19 October findings</a>
-    </p>
-    <p class="guided"><a href="/explain/metadax/#03-built">The guided version: &ldquo;Built once already?&rdquo; &rarr;</a></p>
-    {writingSeries.filter((x) => x.key === "results").map((x) => (
-      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
-    ))}
-  </section>
-
-  <section class="block feature run-block" aria-labelledby="cp" style="--run: var(--run-cp)">
-    <h2 id="cp">Constraint Protocol</h2>
-    {/* #constraint-protocol is kept as a second landing point for the section. */}
-    <span id="constraint-protocol" aria-hidden="true"></span>
-    <p class="big">The ground everything here stands on.</p>
-    <p class="body">
-      A way for parties &mdash; people, companies or software &mdash; to declare
-      in advance what they will not do, and then be checked against it. It keeps
-      a signed record nobody can quietly edit, keeps witnessing and judging
-      separate, and lets anyone dispute any record. DAX is one constraint built
-      on it, and Meta DAX is meant to run on it; its protocol fields are reserved and empty today. The aim is that what one person works
-      out compounds for everyone after them. A public working draft, run in full
-      once so far.
-    </p>
-    <p class="out">
-      <a href="/metadax/research/#constraint-protocol">What that looks like, scene by scene &rarr;</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://github.com/daxfoundation/constraint-protocol">The specification &mdash; CP-SPEC v0.5</a>
-      <span aria-hidden="true">&middot;</span>
-      <a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a>
-    </p>
-    <p class="out">
-      <a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a>
-    </p>
-    <p class="guided"><a href="/explain/constraint-protocol/">The guided version: five questions, written for your experience &rarr;</a></p>
-    {writingSeries.filter((x) => x.key === "accountability").map((x) => (
-      <p class="guided reading">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
-    ))}
   </section>
 
   {/* 2026-10-23 (Jason): "Coming" and "Definitions and reading" are off the home
@@ -212,7 +206,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       About are in every footer; Writing is Publications in the menu). "The ask"
       moved, word for word, to the Meta DAX hub beside "Pick your chair". The note
       from the founder stays here, verbatim, id="founder" kept. */}
-  <section class="block founder-block" aria-label="A note from the founder">
+  <section class="home-w block founder-block" aria-label="A note from the founder">
     <div class="note" id="founder">
       <p class="note-head">A note from the founder</p>
       <p>I have been at this since I was 23. I am now 49.</p>
@@ -251,9 +245,36 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       }
     })();
   </script>
-</Base>
+
+</Explain>
 
 <style>
+  /* 2026-10-24: the home page uses the guided layout (the run plays here), so each
+     non-chapter section sets its own measure, matching the chapters' 72rem frame */
+  .home-w { width: 100%; max-width: var(--measure-scene, 72rem); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 1.5rem); }
+  .home-lede { padding-block: 3.5rem 1rem; }
+  .to-founder { margin: 1rem 0 0; font-size: 0.9375rem; }
+  .to-founder a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .to-founder a:hover, .to-founder a:focus-visible { color: var(--fg); }
+  .home-run { padding-bottom: 1rem; }
+  .further { padding-block: 2.5rem 1rem; border-top: 1px solid var(--line); }
+  .further-h { margin: 0 0 1.25rem; }
+  .further-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+  @media (min-width: 60rem) { .further-grid { grid-template-columns: repeat(3, 1fr); } }
+  .fcol { border-left: 3px solid var(--run); padding-left: 1rem; min-width: 0; }
+  .fcol h3 { margin: 0 0 0.75rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--run); scroll-margin-top: 4.5rem; }
+  .fcol .body { font-size: 0.9375rem; }
+  .fcol .big { font-size: 1.1rem; }
+  .fl { margin: 0.6rem 0 0; font-size: 0.9375rem; color: #cfcfcf; }
+  .fl.quiet, .fl.series { color: var(--muted); font-size: 0.875rem; }
+  .chairs, .sc, .links { list-style: none; margin: 0.4rem 0 0; padding: 0; }
+  .chairs { display: flex; flex-wrap: wrap; gap: 0.35rem 1rem; font-size: 0.9375rem; }
+  .sc li, .links li { padding-block: 0.2rem; font-size: 0.9rem; }
+  .sc span { color: var(--faint); font-size: 0.8rem; }
+  .fcol a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .fcol a:hover, .fcol a:focus-visible { border-bottom-color: var(--run); }
+  .founder-block { padding-bottom: 1rem; }
+
   .lede { padding-block: 5rem 4.5rem; }
   h1 {
     margin: 0;

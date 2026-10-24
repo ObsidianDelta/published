@@ -16,6 +16,9 @@ import runRoutes from "../../data/run-routes.json";
 import lenses from "../../data/lenses.json";
 import { getCollectionChapters } from "../../lib/explain/chapters.js";
 
+// 2026-10-24: the homepage plays the Meta DAX run right under the map, so it asks
+// for the other three cards only (exclude={["metadax"]}).
+const { exclude = [] } = Astro.props as { exclude?: string[] };
 const chapters = await getCollectionChapters("foundation");
 const map = chapters[0];
 const editions = (map?.editions ?? {}) as Record<string, any>;
@@ -51,7 +54,7 @@ const CARD_RUNS = [
   { key: "skippy-dax", node: "skippydax", colour: "--run-skippydax", name: "Skippy DAX" },
   { key: "constraint-protocol", node: "cp", colour: "--run-cp", name: "The Constraint Protocol" },
 ];
-const runCards = await Promise.all(CARD_RUNS.map(async (r) => {
+const runCards = await Promise.all(CARD_RUNS.filter((r) => !exclude.includes(r.key)).map(async (r) => {
   const chs = await getCollectionChapters(r.key);
   const first = chs[0] as any;
   return {
@@ -366,6 +369,8 @@ const levelNames = [
   /* the four runs, under the map */
   .run-cards { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
   @media (min-width: 40rem) { .run-cards { grid-template-columns: 1fr 1fr; } }
+  /* three cards (the homepage plays Meta DAX below) sit in one row */
+  @media (min-width: 52rem) { .run-cards:has(> li:nth-child(3):last-child) { grid-template-columns: repeat(3, 1fr); } }
   .run-cards a {
     display: grid; gap: 0.3rem; height: 100%; padding: 0.9rem 1rem;
     border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 10px;

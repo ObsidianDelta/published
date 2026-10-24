@@ -13,6 +13,8 @@ import Chairs from "./Chairs.astro";
 interface Props {
   chapter: Chapter;
   total?: number;
+  /** the whole run is on this page (the homepage): next-question links stay on it */
+  inPage?: boolean;
 }
 const { chapter, total = 8 } = Astro.props;
 const d = chapter.data as Record<string, any>;
@@ -61,6 +63,9 @@ const bodyOf = (k: string) => (k === "proof" ? base.proof_intro : (base as any)[
 const empty = (s: string | undefined) => !s || !s.trim();
 
 const nextChapter = (chapter as any).nextChapter as { question: string; url: string } | null;
+// 2026-10-24: the homepage carries the Meta DAX run inline; there "Next question"
+// stays on the page (#id) rather than opening /explain/metadax/.
+const nextHref = nextChapter ? ((Astro.props as any).inPage ? nextChapter.url.replace(/^\/explain\/[^#]*/, "") : nextChapter.url) : "";
 const chapNo = chapter.collection === "metadax" ? d.order : d.order;
 // 2026-10-23: the depth line counts the steps this edition actually has (the
 // ladder is nested, so the first empty step ends it); the client repaints it per lens.
@@ -231,7 +236,7 @@ const deeperLinks = (() => {
     )}
 
     {nextChapter && (
-      <p class="next">Next question: <a href={nextChapter.url}>{nextChapter.question}</a></p>
+      <p class="next">Next question: <a href={nextHref}>{nextChapter.question}</a></p>
     )}
   </div>
 
