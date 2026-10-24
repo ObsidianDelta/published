@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import data from '../../../data/metadax-samples.json';
 import { readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
@@ -81,6 +82,7 @@ const sourceUrl = `${repo}/${sample.path}`;
     </p>
     <h1>{cleanTitle}</h1>
     <p class="tagline">{sample.subject} &middot; Ages {sample.age_band}</p>
+    <NotFinal compact />
 
     <div class="body" set:html={html} />
 

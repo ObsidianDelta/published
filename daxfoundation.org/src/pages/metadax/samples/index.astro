@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import data from '../../../data/metadax-samples.json';
 import { samples as familySamples } from '../_showcase.js';
 import { byKind } from '../../../data/library.js';
@@ -39,6 +40,7 @@ const chairLabel = { parent: 'Parent', tutor: 'Tutor', teacher: 'Teacher', train
     </p>
     <p class="lib-line"><a href="/metadax/showcases/">The whole library, filterable by chair and language &rarr;</a></p>
   </section>
+  <NotFinal />
 
   <section class="block showcases" aria-labelledby="h-showcases">
     <h2 id="h-showcases">Showcases</h2>

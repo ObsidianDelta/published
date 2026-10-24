@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import { byId } from '../_showcase.js';
 import { byChair } from '../../../data/library.js';
 const built = byChair('parent');
@@ -29,6 +30,7 @@ const url = `/metadax/showcase/${s.id}/`;
     </p>
     <p class="cta"><a href="#offer">Tell us where your child is stuck and we will build you one, free &darr;</a></p>
   </section>
+  <NotFinal />
 
   <section class="block" aria-labelledby="h-sample">
     <h2 id="h-sample">A sample: {s.guide} and {s.learner}</h2>

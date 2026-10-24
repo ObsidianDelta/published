@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import { byChair } from '../../../data/library.js';
 const built = byChair('trainer');
 
@@ -15,6 +16,7 @@ const built = byChair('trainer');
     <h1>The process is in your head, and a new hire starts Monday.</h1>
     <p class="lede-text">First published 2026-10-10.</p>
   </section>
+  <NotFinal />
 
   <section class="block" aria-labelledby="h-thu">
     <h2 id="h-thu">Your Thursday night</h2>

@@ -1,5 +1,6 @@
 ---
 import Base from '../../../../layouts/Base.astro';
+import NotFinal from '../../../../components/NotFinal.astro';
 import homeschoolData from '../../../../data/homeschool.json';
 const sendTo: string[] = homeschoolData.send_to;
 ---
@@ -9,6 +10,7 @@ const sendTo: string[] = homeschoolData.send_to;
     <h1>Tell us where your child is stuck</h1>
     <p class="intro">About a dozen short questions. Nothing on this page is saved or sent anywhere. At the end you get a short note to copy and send to Jason. That note is everything he gets. Please leave out names, schools, towns and health details.</p>
   </section>
+  <NotFinal />
 
   <form id="intake-form" class="form" novalidate>
     <fieldset class="group">

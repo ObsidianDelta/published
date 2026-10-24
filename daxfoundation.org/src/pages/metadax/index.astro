@@ -1,5 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
+import NotFinal from '../../components/NotFinal.astro';
 import { byKind, newest } from '../../data/library.js';
 
 // /metadax/ -- "pick your chair", 2026-10-10 (five-chairs-doors).
@@ -84,6 +85,7 @@ const latest = newest(3);
       gets out of the way. One recipe, five chairs. Pick yours.
     </p>
   </section>
+  <NotFinal />
 
   <section class="block" aria-labelledby="h-doors">
     <h2 id="h-doors">Pick your chair</h2>

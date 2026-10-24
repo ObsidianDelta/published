@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import { library, byKind } from '../../../data/library.js';
 
 // /metadax/showcases/ -- the library index, 2026-10-18 (PUBLISH-1018 D3). This
@@ -59,6 +60,7 @@ const langTokens = (e) => (e.lang ? e.lang.split('+').join(' ') : '');
       for it.
     </p>
   </section>
+  <NotFinal />
 
   <section class="filters" aria-label="Filter the library">
     <div class="chip-row">

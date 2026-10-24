@@ -1,5 +1,6 @@
 ---
 import Base from '../../../layouts/Base.astro';
+import NotFinal from '../../../components/NotFinal.astro';
 import { byChair } from '../../../data/library.js';
 const built = byChair('tutor');
 
@@ -16,6 +17,7 @@ const built = byChair('tutor');
     <h1>You tutor one learner at a time, and the prep eats your evening.</h1>
     <p class="lede-text">First published 2026-10-10.</p>
   </section>
+  <NotFinal />
 
   <section class="block" aria-labelledby="h-thu">
     <h2 id="h-thu">Your Thursday night</h2>
