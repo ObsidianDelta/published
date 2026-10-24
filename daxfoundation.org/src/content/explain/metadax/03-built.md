@@ -15,15 +15,15 @@ horizon_canon:
   - "What was self-evident in 2024 becomes reachable by everyone; the next experiments are about reach and the record, not about whether it works."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "In 2024 they made a real thing. It taught a learner, asked questions at every level and told them where they stood. The video shows it. Now the experiments try to make it work for everyone."
-    more: "The first time they ran it, it made a whole course just for one learner, about exactly what that learner needed to reach. It asked questions to check understanding and said where the learner was up to. They ran it again and again and it kept working. The hard part was not making the lessons. The hard part is letting it remember, letting it work for everyone and making sure a grown-up who knows this is still in the loop. The experiments are trying to fix those things. They are not a finished thing yet."
+    answer: "Yes. In 2024 a working application built a whole course for one learner, from where she started to her goal. It quizzed her at every level of understanding and showed where she stood. There is a video of it. It worked, run after run. What it lacked is what today's public experiments are for. They are experiments, not a product."
+    more: "The surprise was where the hard part was. Generating good lessons for one person was the problem, and the prototype showed it could be done. What it did not have: a record that remembers you, a way to reuse good lessons by what they mean, a person who knows the subject checking the work, and access for everyone, even on a weak connection. That is why the start is five minutes of internet a day. The public experiments work on those gaps, one at a time. Where this wants to go and where it is today are kept apart, on purpose."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "What the prototype showed in 2024 becomes the start for every learner — reaching anyone who can communicate, in any language, on five minutes a day."
+    horizon: "What already worked for one learner reaches everyone. The open questions are about reach and the record, not about whether it works."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -31,22 +31,22 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "One teacher, lots of children"
+      guide: "the teacher"
+      classroom: "One teacher, a room of learners"
       invert: "Helpers made just for you"
-      both: "Your teacher has helpers too"
+      both: "The teacher has helpers too"
       change: "The helpers change as you grow"
-      decide: "Your teacher notices and decides"
+      decide: "The teacher notices and decides"
       record: "what you tried"
       packages: "made for you"
       built: "built and tested"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. She is the learner."
+      tapChild: "Tap a learner. She is the one learning."
       dragGuide: "Drag the teacher. She stays the guide."
-      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      roles: ["a teacher", "someone who knows this", "a colleague", "a parent"]
       contexts: ["learning fractions", "a hard question"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "In 2024 a working application built a whole individualized course from scratch — lessons, follow-up questions, quizzes through every level of understanding — and told the learner where they stood. The video is the proof. What came next was obvious: generating was solved. Keeping, spreading, and getting guides in the loop were not."

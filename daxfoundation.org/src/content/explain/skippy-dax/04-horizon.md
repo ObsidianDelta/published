@@ -19,15 +19,15 @@ horizon_canon:
   - "To bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "All of this — what Skippy is, how it works today, where it stands — is so that every child gets a helper that is truly theirs, that remembers them, and that only ever does what they say."
-    more: "Think about everything you read here. A helper that is yours. A helper that does what you say. A helper that is only as good as you want it to be. That is what Skippy DAX makes possible: a companion for every child, provided by the Foundation, that helps them learn anything, for their whole life."
+    answer: "Every person gets a companion that is truly theirs. It remembers them, carries the help they need, and acts only for them. With it, anyone who can communicate can learn anything, for life."
+    more: "Put the pieces together. A companion that is an extension of you. One that remembers, because it keeps your record. One that answers to you, and is only as good as the person it belongs to. Through it, the thirty helpers reach you, idea by idea. Every action is on the record, so trust grows as the system grows. The purpose under it all: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "A companion that is yours means you have thirty helpers whenever you need them — and it only ever does what you say."
+    horizon: "A companion that is yours, with thirty helpers behind it whenever you need them, acting only for you."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -35,10 +35,10 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "you and your teacher"
+      guide: "the teacher"
+      classroom: "you and the teacher"
       invert: "your companion, your helper"
-      both: "your teacher has helpers too"
+      both: "the teacher has helpers too"
       change: "your companion grows with you"
       decide: "you are always in charge"
       record: "what your companion remembers"
@@ -47,12 +47,12 @@ editions:
       boundary: "your companion only does what you say"
       tapChild: "Tap to see what this makes possible"
       dragGuide: "Drag the teacher. The companion stays yours."
-      roles: ["you", "your teacher", "a helper", "the Foundation"]
+      roles: ["you", "the teacher", "a companion", "the Foundation"]
       contexts: ["learning something new", "your whole life"]
       title: "What this makes possible"
-      caption: "Your companion, for every child"
+      caption: "A companion for every person"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "What this makes possible: a companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to. Thirty helpers sent through the companion, per concept, per moment. The companion reads your whole record with you. The guide's loop stays human. The system must not lead; the companion must not lead."

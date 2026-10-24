@@ -13,12 +13,12 @@ canon:
 horizon_canon: "Clear responsibility is what lets people, organisations and non-biological intelligences work together at scale."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "When everyone knows who is responsible, helpers can work together without anyone getting confused about who is in charge."
-    answer: "Three people are in charge: the boss, the helper, and the builder. The boss is always the one responsible, even when the helper does the work."
-    more: "Imagine you ask a helper to tidy your room. If the helper breaks something, it is still your room and you are still responsible. You picked the helper. That is what being the boss means. The builder made the helper, so the builder is responsible for how it is built. But you are the boss. You cannot give your responsibility away."
+    horizon: "With clear responsibility, people, organisations and AIs can work together at scale."
+    answer: "Three positions: the principal, who the work is for; the delegate, who does it; and the operator, who runs the system it happens on. If you choose a companion, you are responsible for what it does and what it starts, wherever it runs."
+    more: "If you send your companion to do a job, it is still your job. That does not change if the companion starts other agents, or runs on a computer rented somewhere else. Responsibility cannot be handed off. A companion is an extension of you: everything in its reach is under your control and is your responsibility. A principal does not have to be one person. An organisation can be a principal. So can an AI, a non-biological intelligence. The Protocol allows both, plainly, so nobody is left guessing who answers for what. The three positions are pinned on the definitions page."
     how: ""
     proof_intro: ""
     under: ""
@@ -29,24 +29,24 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your grown-up"
+      guide: "the person in charge"
       classroom: "Who is in charge?"
-      invert: "The helper works for the boss"
-      both: "The builder answers too"
-      change: "Responsibility stays with the boss"
-      decide: "The boss always decides"
-      record: "what the helper did"
+      invert: "The delegate works for the principal"
+      both: "The operator answers too"
+      change: "Responsibility stays with the principal"
+      decide: "The principal decides"
+      record: "what the delegate did"
       packages: "made for one person"
       built: "built and checked"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. She has a helper."
-      dragGuide: "Drag the boss. The helper stays."
-      roles: ["the boss", "the helper", "the builder", "you"]
+      tapChild: "Tap a person. She has a companion."
+      dragGuide: "Drag the principal. The delegate stays."
+      roles: ["the principal", "the delegate", "the operator", "you"]
       contexts: ["at home", "at school"]
       title: "Three positions"
-      caption: "The boss is always responsible"
+      caption: "The principal is always responsible"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "Clear accountability positions are what let people, organisations and AI companions work together at scale — everyone knows where responsibility ends, and trust can grow because of it."

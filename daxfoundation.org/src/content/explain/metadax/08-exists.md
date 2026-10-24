@@ -15,15 +15,15 @@ horizon_canon:
   - "A community building the how in the open, everything usable published as it is made, the planned experiments as where we want to get to."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "There are five doors, one for a parent, one for a tutor, one for a teacher, one for a trainer and one for a researcher. A stranger can walk through any door without help. Everything you can use is free, and it is put out as soon as it is made."
-    more: "This is not a finished thing. It is more like a workshop with the doors open. Your teacher or a grown-up who knows this can walk through the right door and see what is there for them. There are samples and showcases — things the platform made from just a few plain words. You can look at them too. The question box on the site is there if someone wants to ask something. More will come later."
+    answer: "Experiments, not a product. There are five doors: for a parent, a tutor, a teacher, a trainer and a researcher. A stranger can use any of them without help. Everything is open source and free, and anything usable is published as soon as it is made."
+    more: "Think of a workshop with the doors open. Nothing in the design is set in stone. Pick the door that fits you and try what is there. The samples and showcases show what the platform makes from a few plain prompts. You can try a lesson package, send in a real situation for the next experiment, or support the Foundation. A companion of your own comes later."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "One day the companion is there for every child, and what the platform knows grows with every person who uses it."
+    horizon: "A community builds the how in the open. Everything usable is published as it is made, and the planned experiments show where it is headed."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -31,26 +31,26 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "Five doors, one for each grown-up role"
-      invert: "Helpers for you, sent by your teacher"
-      both: "Your teacher has helpers too"
+      guide: "the teacher"
+      classroom: "Five doors, one for each role"
+      invert: "Helpers for you, sent by the teacher"
+      both: "The teacher has helpers too"
       change: "More comes as it is made"
-      decide: "Your teacher picks the door"
+      decide: "Pick the door that fits"
       record: "what you tried"
       packages: "free to try"
       built: "put out as it is made"
       boundary: "everything is open"
       tapChild: "Tap a door. See what is inside."
-      dragGuide: "Drag your teacher to her door."
+      dragGuide: "Drag the guide to her door."
       pick: "Pick a door"
       chairs: ["parent", "tutor", "teacher", "trainer", "researcher"]
       showcase: "a showcase to look at"
       deeper: "Go deeper"
-      roles: ["your teacher", "a parent", "a tutor", "a grown-up who knows this"]
+      roles: ["a teacher", "a parent", "a tutor", "someone who knows this"]
       contexts: ["at home", "at school"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "What exists today is an open set of experiments, not a finished product. Five doors: one each for a parent, a tutor, a teacher, a trainer and a researcher. Each door is usable by a stranger without help. Everything is open source and free. The samples and showcases show what the platform can make from a few plain prompts. The question box on this site is the Ask layer. A citizen's own companion comes later."

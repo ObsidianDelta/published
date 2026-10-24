@@ -15,15 +15,15 @@ horizon_canon:
   - "A record for life that is yours, the seed of Nova DAX, read with you by a companion that is yours."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Your record keeps what you reached, what you tried that did not work, who helped you, and what other learners used from your work. It is yours. Nobody else can see it unless you say so."
-    more: "Think of a notebook that never loses anything. If you tried something and it did not go anywhere, the notebook keeps it. That is not a mistake to hide. A dead end is something you learned. The notebook keeps who helped you and what you borrowed from another learner's notes. It also keeps what you did reach, with the path you took to get there. One day all your notebooks together become something called Nova DAX, your record for your whole life."
+    answer: "What you reached, what you tried that went nowhere, who guided you, and what others reused from your work. Dead ends are kept as carefully as successes. The record is yours. It is private unless you choose to share it, and it goes where you go."
+    more: "A failed attempt is not something to hide. It shows what you learned and saves the next person the same detour. The record keeps the path you took, not only where you ended up. The system offers a way, never the way, so it must not steer you. You decide who reads the record: your guides, your companion, or everyone, if you publish part of it for good. Every entry is signed under the Constraint Protocol, so it can be trusted. When you need something another learner made, it is found by what it means, not by scrolling. This learning record is the seed of Nova DAX, your record for life."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "One day your record travels with you your whole life, and a companion that is yours reads it with you — all the things you tried and reached and the ones you have not got to yet."
+    horizon: "Your record stays yours for life. It grows into Nova DAX, and a companion that is yours reads it with you."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -31,27 +31,27 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "One teacher, lots of children"
-      invert: "Helpers for you, sent by your teacher"
-      both: "Your teacher has helpers too"
+      guide: "the teacher"
+      classroom: "One teacher, a room of learners"
+      invert: "Helpers for you, sent by the teacher"
+      both: "The teacher has helpers too"
       change: "The lead swings"
-      decide: "Your teacher notices and decides"
-      record: "your notebook"
+      decide: "The teacher notices and decides"
+      record: "your record"
       packages: "made for you"
       built: "built and tested"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. She is the learner."
+      tapChild: "Tap a learner. She is the one learning."
       dragGuide: "Drag the teacher. She stays the guide."
-      title: "Your learning notebook"
-      rows: ["Reached - you got fractions", "Tried - decimals first. Did not work, kept.", "Helped by - your teacher on number lines", "Another learner used your number-line page", "Reached - Newton's law, with a sled"]
+      title: "Your learning record"
+      rows: ["Reached - fractions", "Tried - decimals first. Did not work, kept.", "Helped by - a tutor, on number lines", "Another learner used your number-line page", "Reached - Newton's law, with a sled"]
       rowKinds: ["reached", "tried", "guided", "reused", "reached"]
       yours: "Yours. Only you decide who sees it."
       seed: "the start of Nova DAX, your record for life"
-      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      roles: ["a teacher", "someone who knows this", "a colleague", "a parent"]
       contexts: ["learning fractions", "a hard science question"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "The record keeps four things: what you reached and how you got there, what you tried that went nowhere (kept on purpose, because dead ends are knowledge too), who guided you and on what, and what others reused from your work and what of theirs you used. It is yours, private by default. You decide if it becomes public. Every entry is signed. It is the seed of Nova DAX, a person's record for life."

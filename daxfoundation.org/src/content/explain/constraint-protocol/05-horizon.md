@@ -22,15 +22,15 @@ horizon_canon:
   - "To bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "All of this — the record under every helper, the name that is yours, the rule that everyone follows — is so that helpers get safer for everyone and every child gets to learn anything, for their whole life."
-    more: "Think about everything the Constraint Protocol does. The logbook means mistakes get found and fixed, so helpers get safer for everyone. The rule says who is in charge, and that cannot be passed to someone else. The record holds what every helper did. Your name is yours. With it you get to learn anything. That is what all of this makes possible: helpers that keep getting better, and a world where every child can learn."
+    answer: "Trust that can grow as fast as the power. Every cost is found and fixed. Everyone knows who answers for what. Every action is on the record, and every person holds a name of their own. That is what lets AI be used for everyone, and lets anyone learn anything, for life."
+    more: "Put the pieces together. The record means mistakes are found and fixed instead of repeated. Clear positions mean people, organisations and AIs can work together without confusion about who is responsible. Signed entries mean what agents do together, even what nobody planned, can be studied in the open. Your own identity opens universal learning to you. Underneath it all is the why: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "A record under every helper means the helpers get safer for everyone, and a name that is yours opens learning to you for your whole life."
+    horizon: "AI that gets safer as it gets stronger, used for everyone, and learning open to every person for life."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -38,10 +38,10 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
+      guide: "the teacher"
       classroom: "everyone together"
       invert: "your helper, your rule"
-      both: "you and your teacher"
+      both: "you and the teacher"
       change: "helpers get safer"
       decide: "you are always in charge"
       record: "the logbook"
@@ -50,12 +50,12 @@ editions:
       boundary: "every helper leaves a record"
       tapChild: "Tap to see what this makes possible"
       dragGuide: "Drag to see the guide"
-      roles: ["you", "your teacher", "a helper", "the Foundation"]
+      roles: ["you", "the teacher", "a companion", "the Foundation"]
       contexts: ["at home", "at school"]
       title: "What this makes possible"
-      caption: "Helpers that get safer, and learning for every child"
+      caption: "AI that gets safer, and learning for everyone"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "What this makes possible: trust that can grow with the power. Every cost found and fixed means helpers get safer for everyone. Clear responsibility means people, organisations and AI can work together at scale. Every citizen has a name that opens universal learning to them. Every interaction is accountable, which is what lets the system grow without growing the risk."

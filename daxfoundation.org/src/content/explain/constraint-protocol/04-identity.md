@@ -13,12 +13,12 @@ canon:
 horizon_canon: "An identity that is yours for life, under your own name, that opens universal learning to you."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Your name is yours for your whole life, and the helpers that know you grow with you."
-    answer: "You get a name that is yours. Nobody else can use it. Your name is kept safe with a secret that only you know, made on your own device. With it you get to learn anything."
-    more: "The Foundation keeps your name so no one else can take it. But the secret that proves it is really you lives only on your own device. You hold your name, what you have learned, and one day a helper that remembers you."
+    horizon: "An identity that is yours for life, under your own name, that opens learning to you."
+    answer: "A name under daxfoundation.org that only you can use. The Foundation reserves the name. The keys behind it are made on your own device, and only you hold the secret. Your name opens Meta DAX to you: learning, for life."
+    more: "The name is a friendly label. Underneath it is the real identity: a document made when you join, turned into a fingerprint that never changes. The Foundation keeps the name so no one else can take it, but it never has your secret. That stays on your device. Being a DAX citizen entitles you to Meta DAX, universal learning. You hold three things: your identity, your record and, in time, your companion."
     how: ""
     proof_intro: ""
     under: ""
@@ -29,7 +29,7 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
+      guide: "the teacher"
       classroom: "Everyone has their own name"
       invert: "Your name, your secret"
       both: "Your record is yours"
@@ -39,14 +39,14 @@ editions:
       packages: "made for you"
       built: "built for you"
       boundary: "only you have the secret"
-      tapChild: "Tap a child. She has her own name."
-      dragGuide: "Drag the teacher. The name stays with the child."
-      roles: ["you", "your teacher", "a classmate", "a parent"]
+      tapChild: "Tap a person. She has her own name."
+      dragGuide: "Drag the teacher. The name stays with the learner."
+      roles: ["you", "the teacher", "a colleague", "a parent"]
       contexts: ["learning to read", "a hard maths problem"]
       title: "Your name, your secret"
       caption: "Only you hold it"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "An identity you hold for life, under your own name, is what opens universal learning to you — your record and your companion grow with you across every stage of your life."

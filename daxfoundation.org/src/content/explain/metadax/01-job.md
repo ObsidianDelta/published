@@ -17,15 +17,15 @@ horizon_canon:
   - "When the job left is done, the best teaching there has ever been reaches one person at a time, for every person."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Since the first school, there have been three jobs: make knowledge, keep it, and spread it. Two are done. Your phone can reach almost everything people know. The job left is getting it into you, one thing at a time, the way you need it, your whole life. It is for bringing out the best in every person."
-    more: "Think about a library. People made the books. Then they kept them. Then they spread them everywhere. Now almost every book is on a phone. That part is done. But knowing a fact is in a phone is not the same as that fact getting into your head. Your teacher still has to find the right thing for you, today, one step at a time. That is the job left. It goes from when you can first talk all the way to when you are very old."
+    answer: "Since the first university there have been three jobs: make knowledge, keep it and spread it. Two are done. A phone reaches almost everything anyone knows. The job left is getting knowledge into one particular person, one idea at a time, in her own situation, for her whole life. Meta DAX is a universal learning platform, for all of us, built to do that job."
+    more: "Think of a library. People wrote the books. Libraries kept them. Printing, then the internet, spread them. Now almost every book is on your phone. But knowledge in your pocket is not knowledge in your head. Someone still has to find the right next step for you today, and the next one tomorrow. The best teachers can do that for a few people. Here, the best guides check a lesson once, the system fits it to each learner, the learner keeps a record, and what is shared builds up for the next person. It starts the day you can communicate and runs for the rest of your life."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "When the job left is done, every person who can talk or read gets the best teacher there has ever been, one step at a time, for their whole life — so every person can be their best."
+    horizon: "The job left gets done: the best teaching there has ever been reaches one person at a time, and it reaches every person."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -33,26 +33,26 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "your teacher and you"
+      guide: "the teacher"
+      classroom: "the teacher and you"
       invert: "helpers for you"
-      both: "your teacher has helpers too"
+      both: "the teacher has helpers too"
       change: "the job keeps going"
-      decide: "your teacher picks what you need"
+      decide: "the teacher picks what you need"
       record: "what you learned"
       packages: "made just for you"
       built: "being built now"
       boundary: "every helper leaves a record"
       tapChild: "Tap yourself. You are the learner."
-      dragGuide: "Drag your teacher. She stays the guide."
+      dragGuide: "Drag the teacher. She stays the guide."
       pillars: ["Make", "Keep", "Spread"]
       done: "done, a phone reaches it all"
       left: "Into you, one thing at a time"
       caption: "Three jobs, and the one left"
-      roles: ["your teacher", "a grown-up who knows this", "a helper", "you"]
+      roles: ["a teacher", "someone who knows this", "a helper", "you"]
       contexts: ["learning to read", "a hard maths problem"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "Since the first university there have been three jobs: make knowledge, keep it, spread it. Two are done. A phone reaches almost everything humanity has worked out. The job left is getting it into one particular person, one concept at a time, in her context, for a whole life. That is the job Meta DAX exists to do. It is a universal, civilizational learning platform initiative. The purpose is to bring out the best in every person."

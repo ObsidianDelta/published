@@ -13,12 +13,12 @@ canon:
 horizon_canon: "Emergent behaviour among interacting agents studied in the open, with a record that makes it accountable."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "When helpers share what they learn, every child's helpers get better together, not just one at a time."
-    answer: "Every time a helper does something, it writes it down — who did it, what they did, and if they got it wrong, how wrong."
-    more: "Helpers write in a special book that nobody can secretly change. If one helper learns something, all helpers can learn it too, so they get better together instead of forgetting."
+    horizon: "When agents act together in ways no one planned, it is studied in the open, and the record keeps it accountable."
+    answer: "Every interaction: who acted, on what, on whose authority, and how serious it would be if it went wrong. Every entry is signed."
+    more: "AIs working with each other are recorded as fully as AIs working with people. That matters, because when many agents interact, they can do things none of them was told to do. The record is how anyone can see that and answer for it. Entries are signed, so nobody can quietly change them later. And what one interaction teaches is shared, so knowledge and intelligence build up instead of disappearing. The severity scale is Appendix A of the Constraint post."
     how: ""
     proof_intro: ""
     under: ""
@@ -29,7 +29,7 @@ editions:
       under: "Go deeper"
     labels:
       learner: "The person learning"
-      guide: "The grown-up in charge"
+      guide: "The person in charge"
       classroom: "Where learning happens"
       invert: "Swap who leads"
       both: "Everyone together"
@@ -41,18 +41,14 @@ editions:
       boundary: "Rules about what helpers can do"
       tapChild: "Tap to learn more"
       dragGuide: "Drag to see the guide"
-      roles:
-        - "Learner"
-        - "Helper"
-        - "Grown-up"
-        - "Record"
+      roles: ["Learner", "Agent", "Person in charge", "Record"]
       contexts:
         - "At home"
         - "At school"
       title: "The record"
-      caption: "Every helper action, written down"
+      caption: "Every action, recorded and signed"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "A signed record that covers agent-to-agent interactions is the substrate for studying emergent behaviour in the open — every chain traceable, every failure a lesson shared rather than lost."

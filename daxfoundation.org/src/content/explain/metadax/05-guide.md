@@ -15,15 +15,15 @@ horizon_canon:
   - "Teachers free to do what only a teacher can do, for every learner, at a scale no school could afford before."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Your teacher knows this thing right now, and you are the learner. But your teacher is a learner too, with her own teacher. Helpers help, but only your teacher can really see you."
-    more: "Think of two people climbing a big rock. One goes first and finds the next good hold. Then the other one goes first for a while. That is how guides and learners work. Your teacher is a step ahead on this one thing. On something else, you might be a step ahead of her. The helper can answer a question, but only your teacher can notice that you are stuck and know what you need right now."
+    answer: "Noticing you, right now, and deciding what you need. No helper can do that. A guide is whoever is a step ahead of you on this one thing. Everyone is a learner, and the lead swaps back and forth. Helpers make the guide stronger, but they are only as good as she is."
+    more: "Think of two climbers. One leads and finds the next hold. Later, the other one leads. Guides and learners work the same way. Your manager may be a step ahead of you on one thing, and you a step ahead of her on another. A helper can answer a question. Only a person can see that you are stuck and know what you need at this moment. That is called human delta value: bring out the best in the guide, so she brings out the best in the learner. As the helpers take on the routine thinking, the guide gets her attention back for harder problems. Everybody has to step up."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "One day every teacher has helpers for every question you have, so your teacher's attention is always there when only she can help."
+    horizon: "Every guide is free to do what only a person can do, for every learner, at a scale no school could afford before."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -31,28 +31,28 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "One teacher, lots of children"
-      invert: "Helpers for you, sent by your teacher"
-      both: "Your teacher has helpers too"
+      guide: "the guide"
+      classroom: "One guide, a room of learners"
+      invert: "Helpers for you, sent by the guide"
+      both: "The guide has helpers too"
       change: "The lead swings"
-      decide: "Your teacher notices and decides"
+      decide: "The guide notices and decides"
       record: "what you tried"
       packages: "made for you"
       built: "built and tested"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. She is the learner."
-      dragGuide: "Drag the teacher. She stays the guide."
+      tapChild: "Tap a learner. She is the one learning."
+      dragGuide: "Drag the guide. She stays the guide."
       learnerNow: "learner right now"
       guideNow: "guide right now"
       gap: "a step ahead"
       next: "next, the lead swings"
       caption: "Everyone is a learner"
       tap: "Tap to swing the lead"
-      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      roles: ["a teacher", "someone who knows this", "a colleague", "a parent"]
       contexts: ["learning to read", "a hard maths problem"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "A guide is whoever is a step ahead on this one thing right now. That can be a teacher, a parent, a classmate, a manager. Everyone is also a learner somewhere. The lead swings, like climbing partners taking turns in front. What is left for the human guide is the part no helper can do: noticing this learner at this juncture and deciding what she needs."

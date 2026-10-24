@@ -19,15 +19,15 @@ horizon_canon:
   - "Thirty helpers for every learner and thirty for every guide, thousands over a life, and the guide's attention spent on what only she can do."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "In your classroom, your teacher shares her attention with everyone. Here it flips: thirty helpers for you, at the moment you are stuck, sent by your teacher. Your teacher is still there. She is the one who sends them."
-    more: "Think of being stuck on something hard — fractions, maybe. Usually you wait your turn. Here, your teacher can send thirty kinds of help to you while the lesson goes on. One explains it a different way. One finds the example that fits you. One remembers what you tried last time, so you do not start from scratch. The thirty helpers are not people and not always the same ones. A different thirty turns up for fractions than for learning to bake. Over your whole life, thousands of helpers will each have spent a moment on you. Your teacher gets thirty helpers too."
+    answer: "In a classroom, one teacher's attention is split across thirty people. Meta DAX turns that around: thirty helpers give their attention to one learner, at the moment she needs it. The teacher stays in the room. She sends the helpers and decides what they do, while she keeps teaching."
+    more: "Say you are stuck on something hard. Normally you wait your turn. Here, the teacher sends help to you while the lesson goes on. One helper explains it another way. One finds an example from your own life. One remembers what you tried last time. The helpers are not people, and they are not fixed. A different thirty shows up for fractions than for a first week at a bakery. Over a life, that is thousands. It works both ways: the teacher gets thirty helpers too. What is left for her is what no helper can do: notice you, now, and decide what you need. A helper is only as good as the person guiding it."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "One day every learner gets thirty helpers of their own, and every teacher gets thirty too — thousands over a life, all there the moment you need them."
+    horizon: "Thirty helpers for every learner and thirty for every teacher, thousands over a life. The teacher's attention goes to what only she can do."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -35,22 +35,22 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "Thirty children, one teacher"
+      guide: "the teacher"
+      classroom: "Thirty learners, one teacher"
       invert: "Thirty helpers, just for you"
-      both: "Your teacher gets helpers too"
+      both: "The teacher gets helpers too"
       change: "A different thirty each time"
-      decide: "Your teacher decides what you need"
+      decide: "The teacher decides what you need"
       record: "what you have tried"
       packages: "5 min a day"
       built: "2024 · built once"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. That one gets the helpers."
+      tapChild: "Tap a learner. That one gets the helpers."
       dragGuide: "Drag the teacher. The helpers stay on you."
-      roles: ["your teacher", "a tutor", "your mum or dad", "a classmate", "the librarian", "a coach", "your grandad", "a reader for your level"]
+      roles: ["a teacher", "a tutor", "a parent", "a colleague", "the librarian", "a coach", "a mentor", "a reader at your level"]
       contexts: ["fractions", "a science project", "learning to read", "the driving test"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: true
     by: person
     answer: "In a classroom, one teacher's attention is shared by thirty children. Meta DAX turns that around: thirty helpers give their attention to one child, the moment she needs it. The teacher is still there, and she is the one sending them."

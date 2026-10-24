@@ -19,15 +19,15 @@ horizon_canon:
   - "To bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "All of this — your record, who owns it, how it starts — is so that everything you learn stays with you for your whole life, and a helper who knows your whole record is always there to help you get further."
-    more: "Think about everything you read here. The record that holds what you reached and tried. The one who owns it is you. The seed that starts growing now. Your companion reads it all with you. That is what Nova DAX makes possible: a record that is yours, from the time you start talking to the end of your life, that no one can take away."
+    answer: "Everything you learn and remember stays with you, for life, in one record you own. A companion that knows the whole record helps you go further. And because records can be shared by choice, each person starts further ahead than the last."
+    more: "Put the pieces together. The record holds what you reached and what you tried. It is yours: portable, private by default, signed. It starts now with learning in Meta DAX and grows from there. A companion reads it with you. The purpose under all of it: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Your whole record — from your first word to the end of your life — means the helpers who read it always know where you are and can help you go further."
+    horizon: "Your whole life's learning and memory as one record you own, read with you by a companion that is yours."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -35,10 +35,10 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "you and your teacher"
+      guide: "the teacher"
+      classroom: "you and the teacher"
       invert: "your record, yours"
-      both: "your teacher has helpers too"
+      both: "the teacher has helpers too"
       change: "your record grows with you"
       decide: "you own your record"
       record: "your whole record"
@@ -47,12 +47,12 @@ editions:
       boundary: "every step is written down"
       tapChild: "Tap to see your record grow"
       dragGuide: "Drag the teacher. The record stays yours."
-      roles: ["you", "your teacher", "a companion", "a grown-up who knows this"]
+      roles: ["you", "the teacher", "a companion", "someone who knows this"]
       contexts: ["learning something new", "your whole life"]
       title: "What this makes possible"
       caption: "Your record, for life"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "What this makes possible: your whole life's learning and memory as one record you own and your companion reads with you. No learning is ever lost. Every guide who helped you is part of the record. The companion reads it across every stage of your life. The record compounds: every person who starts later starts further ahead, because what is shared grows the base that everyone builds on."

@@ -12,12 +12,12 @@ canon:
 horizon_canon: "Your whole life's learning and memory as one record you own and your companion reads with you."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Your whole record, from your first word to the end of your life, means the helpers that read it know exactly where you are and can always help you get further."
-    answer: "Nova DAX is your whole record. Everything you learned, tried, and did — from when you could talk all the way to the end of your life. It starts with what you learn in Meta DAX. The Foundation is here to bring out the best in you, and Nova DAX is how that stays with you for life."
-    more: "Think of a big book that is only about you. Every time you learned something new, tried something hard, or got help from a grown-up who knows this — it goes in the book. The book starts growing when you start learning. It never goes away. Meta DAX, the learning helper being built now, plants the first seed in that book. Nova DAX is the rest of the book — the whole thing, for your whole life."
+    horizon: "Your whole life's learning and memory in one record you own, read with you by a companion that is yours."
+    answer: "Your whole record, from the time you can communicate to the end of your life: what you reached, what you tried, who guided you, what you reused, and your memories. It starts with the learning record in Meta DAX. It is one of the two big things still to come."
+    more: "Think of one book that is only about you. Everything you learn, every hard thing you try, every person who helps you goes in. It starts when you start learning, and it never goes away. Meta DAX, the one being built now, writes the first pages: your learning record. Nova DAX is the rest of the book, your whole life in one record you own. A companion of your own reads it with you."
     how: ""
     proof_intro: ""
     under: ""
@@ -28,24 +28,24 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "you and your teacher"
+      guide: "the teacher"
+      classroom: "you and the teacher"
       invert: "helpers for you"
-      both: "your teacher has helpers too"
+      both: "the teacher has helpers too"
       change: "your record grows as you grow"
-      decide: "your teacher notices what you need"
+      decide: "the teacher notices what you need"
       record: "your whole record"
       packages: "made just for you"
-      built: "coming soon"
+      built: "still to come"
       boundary: "every step is written down"
       tapChild: "Tap to see your record grow"
       dragGuide: "Drag the teacher. The record stays yours."
-      roles: ["you", "your teacher", "a grown-up who knows this", "a helper"]
+      roles: ["you", "the teacher", "someone who knows this", "a companion"]
       contexts: ["learning something new", "trying something hard"]
       title: "Your whole record"
       caption: "Everything you learned, for your whole life"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "A whole-life record you own means no learning is ever lost — your companion reads it with you, and every session builds on every session before it."

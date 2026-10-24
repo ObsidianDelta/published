@@ -11,12 +11,12 @@ canon:
 horizon_canon: "Your whole life's learning and memory as one record you own and your companion reads with you."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "It starts with the very first thing you learn, and it keeps growing with you for your whole life."
-    answer: "It starts today, with everything you try. What you get right and what you get wrong both get kept. A helper that remembers you can read it with you, for as long as you want."
-    more: "Think of it like a book that writes itself every time you learn something. Even the times you tried and got it wrong go in the book — because those matter too. Your teacher can help you use it. The helper that remembers you reads it alongside you. It does not stop when you grow up. It goes wherever you go."
+    horizon: "It starts with the first thing you learn and keeps growing with you for the rest of your life."
+    answer: "It starts today as your learning record: what you reached, what you tried and kept, who guided you, and what you reused. Dead ends are kept as carefully as successes. Where it goes: a record a companion reads with you, for life."
+    more: "Every time you learn something, the record grows. The attempts that went nowhere go in too, because they show the path you took and save you repeating it. The person guiding you can help you use it. Later, a companion reads it alongside you. It does not stop at the end of a course or a job. It goes wherever you go."
     how: ""
     proof_intro: ""
     under: ""
@@ -27,7 +27,7 @@ editions:
       under: "Go deeper"
     labels:
       learner: "Your tries are kept"
-      guide: "Your teacher helps you use it"
+      guide: "Your guide helps you use it"
       classroom: "Starts today"
       invert: "Dead ends count too"
       both: "Kept for life"
@@ -38,13 +38,13 @@ editions:
       built: "Readable by your helper"
       boundary: "Yours from the start"
       tapChild: "Tap to see your record"
-      dragGuide: "Drag to share with teacher"
+      dragGuide: "Drag to share with your guide"
       roles: ["Learner", "Helper", "Teacher", "Guide"]
       contexts: ["Today", "For life"]
       title: "Starts today"
       caption: "Everything tried, everything kept"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "It starts with the learner record in Meta DAX, the first seed, and grows into one record of a whole life's learning and memory that you own."

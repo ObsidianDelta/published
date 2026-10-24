@@ -13,12 +13,12 @@ canon:
 horizon_canon: "Trust that can grow with the power: every cost found and fixed, so the power can be used for everyone."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "A logbook under every helper means mistakes get found and fixed, so the helpers get safer for everyone who uses them."
-    answer: "When helpers do things for you, the Constraint Protocol writes it down. Not to stop things going wrong — things do go wrong. But so that when they do, the grown-ups can look back and figure out what happened and make it better. The Foundation is here to bring out the best in you — and the logbook is how that stays true."
-    more: "Think of it like a logbook on a ship. The ship still hits storms. But the logbook means you can always go back and learn from what happened. Every helper the Foundation builds keeps that logbook, for every person, every time."
+    horizon: "Trust grows with the power. Every cost is found and fixed, so the power can be used for everyone."
+    answer: "An accountability record. Every interaction, between people, companions, agents or records, is written down, has someone accountable for it, and is signed. It is not there to prevent harm. Things will go wrong. It is there so that when they do, we can find out how and stop it happening again."
+    more: "Every new power came with costs: electricity, X-rays, nuclear power. AI is a new kind of electricity, and its costs come with it. That is not a reason to refuse it. It is a reason to keep a record. You cannot fight a war, or any battle in it, without knowing what it is about and what is at stake. The record is how we know. Think of a ship's logbook. The ship still hits storms, but you can always go back and learn from what happened. Everything the Foundation builds runs under this one rule."
     how: ""
     proof_intro: ""
     under: ""
@@ -29,8 +29,8 @@ editions:
       under: "Go deeper"
     labels:
       learner: "You"
-      guide: "Your teacher"
-      classroom: "Your class"
+      guide: "The teacher"
+      classroom: "Your group"
       invert: "Flip it"
       both: "Both sides"
       change: "What changes"
@@ -41,12 +41,12 @@ editions:
       boundary: "The line"
       tapChild: "Tap to learn"
       dragGuide: "Drag to see"
-      roles: ["You", "Your helper", "Your teacher", "The Foundation"]
+      roles: ["You", "Your companion", "An agent", "The Foundation"]
       contexts: ["At home", "At school"]
       title: "The Logbook"
       caption: "Every helper keeps a record, so we can learn from mistakes"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "An accountability record under every helper is what lets the power grow without growing the risk. Every cost surfaced and fixed means the tools get better for everyone who uses them."

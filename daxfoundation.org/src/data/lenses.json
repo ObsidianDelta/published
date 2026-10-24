@@ -1,20 +1,20 @@
 [
   {
     "id": "kid",
-    "label": "I'm a kid",
-    "voice": "For someone about ten",
+    "label": "Give it to me straight",
+    "voice": "Nothing assumed, just the point",
     "level": 1,
     "depths": [
       "answer",
       "more"
     ],
-    "brief": "One short sentence at a time, concrete, the picture does the work. No numbers except thirty, nothing a ten-year-old would not say. Helpers are helpers; the guide is \"your teacher\" or \"a grown-up who knows this\".",
+    "brief": "For an adult who knows nothing about this yet. The point first, in the shortest plain sentences, one idea each; then one everyday picture. No jargon without its plain meaning in the same line, no child framing, no promises. The guide is \"the teacher\" or \"your guide\"; helpers are helpers.",
     "hue": 95
   },
   {
     "id": "curious",
     "label": "Just curious",
-    "voice": "Plain words, no background needed",
+    "voice": "A little more detail, still plain words",
     "level": 2,
     "depths": [
       "answer",

@@ -12,12 +12,12 @@ canon:
 horizon_canon: "A companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "A chat forgets you when it ends. A companion reads your record with you and stays at your side, so it keeps helping you get further, and you are always the one in charge."
-    answer: "No. A helper that remembers you is not a chat. A chat forgets you the moment you close it. Your helper keeps a record and knows it works for you."
-    more: "Think of it like a notebook that also talks back. The notebook remembers what you told it. A chat is more like a sticky note — gone when you peel it off. Your helper stays and keeps answering to you, not to anyone else."
+    horizon: "A companion that reads your record with you and stays at your side, so the help keeps building, with you in charge."
+    answer: "No. A chat forgets you when it ends. A companion keeps a record and answers to one person: you. You and your companion are one unit, and the unit is only as strong as the person in it."
+    more: "A chatbot is a conversation. A companion is closer to a colleague who has worked with you for years and knows your history. It remembers because it has your record. It answers to you and nobody else. However good it gets, it cannot bring your best for you. Responsibility stays with you. The word is pinned on the definitions page, so it is not confused with companion chat apps."
     how: ""
     proof_intro: ""
     under: ""
@@ -27,25 +27,25 @@ editions:
       proof: "Show me proof"
       under: "Go deeper"
     labels:
-      learner: "You and your helper"
-      guide: "Your teacher keeps the lead"
-      classroom: "One helper per person"
-      invert: "Helper serves you"
+      learner: "You and your companion"
+      guide: "Your guide keeps the lead"
+      classroom: "One companion per person"
+      invert: "It works for you"
       both: "You both work together"
       change: "You stay in charge"
       decide: "You make the calls"
-      record: "Your helper remembers"
+      record: "Your companion remembers"
       packages: "Built for you"
       built: "Made to help"
-      boundary: "Your helper, your rules"
+      boundary: "Your companion, your rules"
       tapChild: "Tap to learn more"
-      dragGuide: "Your teacher guides you"
-      roles: ["You", "Your helper", "Your teacher", "Everyone together"]
+      dragGuide: "Your guide leads"
+      roles: ["You", "Your companion", "Your guide", "Everyone together"]
       contexts: ["At home", "At school"]
-      title: "Helper, not a chat"
-      caption: "Your helper remembers you"
+      title: "A companion, not a chat"
+      caption: "Your companion remembers you"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "Instead of a chat that starts over each time, a companion stays at your side for life, reading your record with you and acting for you in the open, only as good as the person it belongs to."

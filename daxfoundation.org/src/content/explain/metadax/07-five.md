@@ -14,15 +14,15 @@ horizon_canon:
   - "Always on, per concept, per moment, the thirty changing with the moment, immersive and interactive, for all bandwidths."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Some people can only connect for five minutes a day. So we made it work in five minutes. Your teacher picked the hardest case on purpose. It works for everyone."
-    more: "Imagine you only have five minutes to talk to a helper. That helper has to give you everything you need, and you do the work on your own until next time. That is the five-minute package. Your teacher sends it. You work through it. The record goes back. One day the companion will always be there, knowing what you need right at that moment. But first it had to work in five minutes."
+    answer: "Today it works on five minutes of internet a day. That is the hardest case, chosen on purpose, because everyone has to be able to use it. Where it goes is always on: help for each idea, at the moment you need it. Five minutes is the start, not the shape."
+    more: "Picture having five minutes online each day. In that time you get a lesson package made for you. You work through it offline. What you did goes back next time. That is what the packages do today. The test is simple: could someone who can communicate reach the level of a master's degree on five minutes a day? It only has to be possible. If it works there, it works on any connection. Where it goes, the companion is the way in, always on, with the helpers changing as you move from one idea to the next."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "One day the helper is always there, knowing exactly what you need at this moment, in any subject, for every child everywhere."
+    horizon: "Always on, idea by idea, moment by moment. The helpers change as you go, and it works on any connection."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -30,30 +30,30 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "One teacher, lots of children"
-      invert: "Helpers for you, sent by your teacher"
-      both: "Your teacher has helpers too"
+      guide: "the teacher"
+      classroom: "One teacher, a room of learners"
+      invert: "Helpers for you, sent by the teacher"
+      both: "The teacher has helpers too"
       change: "Five minutes today, always on one day"
-      decide: "Your teacher decides what to send"
+      decide: "The teacher decides what to send"
       record: "what you worked through"
       packages: "made for you"
       built: "built and tested"
       boundary: "every helper leaves a record"
-      tapChild: "Tap a child. She is the learner."
+      tapChild: "Tap a learner. She is the one learning."
       dragGuide: "Drag the teacher. She stays the guide."
       numeral: "5"
       unit: "minutes a day"
-      from: "you can talk"
-      to: "like a grown-up expert"
+      from: "you can communicate"
+      to: "a master's degree"
       today: "today: five minutes, once a day"
       then: "one day: always there"
       bandwidths: "works for everyone"
       all: "every bandwidth"
-      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      roles: ["a teacher", "someone who knows this", "a colleague", "a parent"]
       contexts: ["five minutes of internet", "working offline"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "The starting point was five minutes of connectivity a day. That is not an accident. It is the hardest case, chosen on purpose, so that whatever works there works everywhere. The benchmark is a person who can communicate, reaching the equivalent of a master's degree on five minutes a day. It only has to be possible. Always-on is where it goes: the companion there at every concept, every moment, the helpers shifting with what the learner needs."

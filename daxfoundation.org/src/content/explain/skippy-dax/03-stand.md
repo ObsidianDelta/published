@@ -12,12 +12,12 @@ canon:
 horizon_canon: "A companion for every citizen, the hands and ears of the whole system, only as good as the human it belongs to."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Your helper stands right next to you. It listens and helps for you, and everything it does is written down so everyone can trust it."
-    answer: "The helper that helped build this site is real. Yours is where this is going. In Meta DAX, thirty helpers will be sent through a helper that remembers you, one idea at a time."
-    more: "Right now, the way in is the question box on this site. A grown-up who knows this can ask something and get an answer. Later, every person will have a helper that remembers them. The thirty helpers will come through it, for every idea you need, at the moment you need it. That is where this is going."
+    horizon: "Every citizen has a companion of their own at their side, with everything it does on the record, so it can be trusted."
+    answer: "The companion that helped build this site exists and is in use. A companion of your own is where this goes; it does not exist yet. In Meta DAX, the plan is for the thirty helpers to reach you through your companion, one idea at a time, when you need them."
+    more: "Be clear on the difference. There is one working companion today, and it helped make the pages you are reading. Every citizen having their own is the goal, not the present. When that comes, the helpers do not arrive separately. They come through the companion that belongs to you, for each idea, at the moment you need it. Until then, you can try the Meta DAX lesson packages on this site."
     how: ""
     proof_intro: ""
     under: ""
@@ -28,24 +28,24 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "your teacher and you"
+      guide: "your guide"
+      classroom: "your guide and you"
       invert: "helpers for you"
-      both: "your teacher has helpers too"
-      change: "your own helper comes later"
-      decide: "your teacher decides"
+      both: "your guide has helpers too"
+      change: "your own companion comes later"
+      decide: "your guide decides"
       record: "what you learned"
       packages: "made just for you"
       built: "being built now"
       boundary: "every helper leaves a record"
       tapChild: "Tap to see where this is going"
-      dragGuide: "Drag your teacher to the door"
-      roles: ["you", "your teacher", "a helper that remembers you", "a grown-up who knows this"]
-      contexts: ["the question box", "a hard idea you need help with"]
+      dragGuide: "Drag your guide to the door"
+      roles: ["you", "your guide", "a companion", "someone who knows this"]
+      contexts: ["a lesson package", "a hard idea you need help with"]
       title: "Where it stands"
       caption: "The door is open; yours comes later"
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     horizon: "The companion stands beside the person, as the hands and ears of the whole system for them, with every interaction recorded and accountable, which is what lets trust grow as the system grows."

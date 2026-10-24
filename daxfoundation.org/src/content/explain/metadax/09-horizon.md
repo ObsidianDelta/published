@@ -26,15 +26,15 @@ horizon_canon:
   - "To bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "All of this — the packages, the record, the always-on helper — is so that every child who can talk can learn anything, for their whole life, with the best teacher there has ever been for them."
-    more: "Think about every part of what you read here: the record that keeps what you tried, the helpers your teacher sends, the five-minute package, the companion that one day is always there. All of it is for one thing: so that every child, wherever they are, gets what they need to be their best, for their whole life. That is what this makes possible."
+    answer: "Anyone who can communicate can learn anything, for life, from the best guides there are, in their own language and situation, on any connection. That is what all of this is for: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
+    more: "Put the pieces together. Lessons fit to one person. A record that is yours for life (Nova DAX). A companion of your own (Skippy DAX). One rule that makes every step accountable (the Constraint Protocol), so trust grows as the system grows. Teachers get thirty helpers for every learner, and their attention back for what only they can do. What one person learns in the open gives the next person a better start. The system offers a way, never the way. Dead ends are kept. Today's packages test the hardest case so no one is left out of what comes after. This is the start, not the shape."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "When this is done, every person who can talk gets the best teacher there has ever been, for their whole life."
+    horizon: "Every person brought to their best, and life, humanity and consciousness preserved and expanded."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -42,24 +42,24 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "One teacher, every child"
-      invert: "Helpers for every child"
-      both: "Your teacher gets helpers too"
-      change: "Every child, the best teacher, for life"
-      decide: "Your teacher picks what you need"
+      guide: "the teacher"
+      classroom: "One teacher, every learner"
+      invert: "Helpers for everyone"
+      both: "The teacher gets helpers too"
+      change: "Everyone, the best teacher, for life"
+      decide: "The teacher picks what you need"
       record: "what you reached"
       packages: "made just for you"
       built: "being built now"
       boundary: "every helper leaves a record"
       tapChild: "Tap yourself. You are the learner."
-      dragGuide: "Drag your teacher. She stays the guide."
+      dragGuide: "Drag the teacher. She stays the guide."
       title: "What this makes possible"
-      caption: "Every child, the best teacher, for life"
-      roles: ["your teacher", "a grown-up who knows this", "a helper", "you"]
+      caption: "Everyone, the best teacher, for life"
+      roles: ["a teacher", "someone who knows this", "a helper", "you"]
       contexts: ["learning anything", "your whole life"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "What this makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in their own context and language, on any bandwidth. The job left is done. The record is theirs. The companion is theirs. The guides get their cognition back for what only a human can do. Knowledge and intelligence compound in the open, so every person who starts later starts further ahead."

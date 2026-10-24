@@ -14,15 +14,15 @@ horizon_canon:
   - "A record that remembers you means the help gets better across your life instead of starting over every session."
 editions:
   kid:
-    voice: "For someone about ten"
+    voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "A chat is like talking to a helper. When you close it, it forgets you. A record is like a notebook that keeps everything: what you reached, what you tried and what you did not get yet. Your teacher uses a record, not just a chat."
-    more: "Think of it like this. You talk to a helper and it helps you today. But when you close the window, it is gone. It does not remember what you already know or what you tried last week. The record is different. It keeps all of that. So the next time you come back, you start where you left off, not from the beginning. Your teacher looks at the record and knows what you need next. The helper is just the hands and ears. The record is the body."
+    answer: "No. A chat forgets you when you close it. A record keeps what you reached, what you tried and what you have not got yet. In a chat, the prompts are everything. In Meta DAX they are the small part. The record, the guide who edits the lesson, and the checks are the rest."
+    more: "A chat helps you today and starts from zero tomorrow. It does not know what you already know or what you tried last week. A record does, so next time you pick up where you left off. The person guiding you reads the record and sees what you need next. Think of the chat as the hands and ears, and the record as the body. Today the lessons are made from open prompts that the guide runs on her own account, with any AI model. That is on purpose: open, free, and not tied to any one company."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "When every learning record remembers you, the help gets better every time, your whole life — the teacher who knows what you tried last week, every week, is always there."
+    horizon: "The record remembers you, so the help gets better across your whole life instead of starting over every session."
     buttons:
       more: "Tell me more"
       how: "How does it work?"
@@ -30,27 +30,27 @@ editions:
       under: "What is underneath?"
     labels:
       learner: "you"
-      guide: "your teacher"
-      classroom: "you and your teacher"
-      invert: "helpers for you, sent by your teacher"
-      both: "your teacher has helpers too"
+      guide: "the teacher"
+      classroom: "you and the teacher"
+      invert: "helpers for you, sent by the teacher"
+      both: "the teacher has helpers too"
       change: "the record grows as you learn"
-      decide: "your teacher looks at the record and decides"
+      decide: "the teacher looks at the record and decides"
       record: "what you tried and kept"
       packages: "made for you"
-      built: "made by your teacher"
+      built: "made by the teacher"
       boundary: "the record remembers"
       tapChild: "Tap the chat. It forgets."
       dragGuide: "Drag to the record. It keeps."
       chat: "A chat"
       chatNote: "closes, forgets"
       chatRole: "the hands and ears"
-      nodes: ["reached", "tried, kept", "your teacher guided", "used again later", "you, today"]
+      nodes: ["reached", "tried, kept", "the teacher guided", "used again later", "you, today"]
       recordRole: "the body"
-      roles: ["your teacher", "a grown-up who knows this", "a classmate", "a parent"]
+      roles: ["a teacher", "someone who knows this", "a colleague", "a parent"]
       contexts: ["learning something new", "a hard question at home"]
   curious:
-    voice: "Plain words, no background needed"
+    voice: "A little more detail, still plain words"
     signed: false
     by: skippy
     answer: "A chat forgets you when you close it. A record keeps what you reached, what you tried and what you did not. Meta DAX is a record with a guide in it, not just a chat. The AI part is the small part. The schema, the record, the guide's edit and the check are the rest."
