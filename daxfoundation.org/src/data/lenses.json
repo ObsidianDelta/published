@@ -4,71 +4,132 @@
     "label": "I'm a kid",
     "voice": "For someone about ten",
     "level": 1,
-    "depths": ["answer", "more"],
-    "brief": "One short sentence at a time, concrete, the picture does the work. No numbers except thirty, nothing a ten-year-old would not say. Helpers are helpers; the guide is \"your teacher\" or \"a grown-up who knows this\"."
+    "depths": [
+      "answer",
+      "more"
+    ],
+    "brief": "One short sentence at a time, concrete, the picture does the work. No numbers except thirty, nothing a ten-year-old would not say. Helpers are helpers; the guide is \"your teacher\" or \"a grown-up who knows this\".",
+    "hue": 95
   },
   {
     "id": "curious",
     "label": "Just curious",
     "voice": "Plain words, no background needed",
     "level": 2,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "The mum test: any age, no jargon, warm, concrete."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "The mum test: any age, no jargon, warm, concrete.",
+    "hue": 72
   },
   {
     "id": "parent",
     "label": "I'm a parent",
     "voice": "For someone with a child at the table",
     "level": 3,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "A child at the kitchen table, homeschooling welcome. What you can get today, what stays yours, trust."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "A child at the kitchen table, homeschooling welcome. What you can get today, what stays yours, trust.",
+    "hue": 52
   },
   {
     "id": "guide",
     "label": "I'm a guide",
     "voice": "For someone who teaches, tutors or trains",
     "level": 3,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "Runs a room or a session. What you keep (authority, judgement), what you get today, the helpers are only as good as you."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "Runs a room or a session. What you keep (authority, judgement), what you get today, the helpers are only as good as you.",
+    "hue": 32
   },
   {
     "id": "manager",
     "label": "I run a team",
     "voice": "For someone responsible for other people's learning at work",
     "level": 3,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "Onboarding, the one new hire, training that fits the person, enterprise-grade. Every helper's action recorded (accountability is the selling point), any domain."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "Onboarding, the one new hire, training that fits the person, enterprise-grade. Every helper's action recorded (accountability is the selling point), any domain.",
+    "hue": 8
   },
   {
     "id": "entrepreneur",
     "label": "I want to build on it",
     "voice": "For someone who wants to make a living with it",
     "level": 4,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "Meta DAX stays free and open; the money is in what you build on it: packages for one learner or one segment, sold where educators already sell, educators making and verifying their own packages, products built on the platform (the CMS and the pipelines) that others promote and sell. \"A way, never the way\" is a constraint on your product too. No revenue numbers, no promises."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "Meta DAX stays free and open; the money is in what you build on it: packages for one learner or one segment, sold where educators already sell, educators making and verifying their own packages, products built on the platform (the CMS and the pipelines) that others promote and sell. \"A way, never the way\" is a constraint on your product too. No revenue numbers, no promises.",
+    "hue": 346
   },
   {
     "id": "builder",
     "label": "I build software",
     "voice": "For someone who ships",
     "level": 4,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "Schema, record, agents, contracts, feeds, signed editions. The sampler's builder edition is the model."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "Schema, record, agents, contracts, feeds, signed editions. The sampler's builder edition is the model.",
+    "hue": 326
   },
   {
     "id": "funder",
     "label": "I fund things",
     "voice": "For someone deciding where money goes",
     "level": 4,
-    "depths": ["answer", "more", "how", "proof", "under"],
-    "brief": "What is proven (2024), what is an experiment, what the money does (tokens, guides' time, the record infrastructure), what it unlocks per phase, what is free forever. The Foundation is \"the Foundation\" and people \"support\" it; never a legal status word, never a figure."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under"
+    ],
+    "brief": "What is proven (2024), what is an experiment, what the money does (tokens, guides' time, the record infrastructure), what it unlocks per phase, what is free forever. The Foundation is \"the Foundation\" and people \"support\" it; never a legal status word, never a figure.",
+    "hue": 306
   },
   {
     "id": "researcher",
     "label": "I'm a researcher",
     "voice": "For someone who wants the substrate",
     "level": 5,
-    "depths": ["answer", "more", "how", "proof", "under", "papers"],
-    "brief": "The evidence, the schema, the experiments' design, the open questions, the severity table (Appendix A of the Constraint post), the definitions. Precise, no softening; the deepest ladder."
+    "depths": [
+      "answer",
+      "more",
+      "how",
+      "proof",
+      "under",
+      "papers"
+    ],
+    "brief": "The evidence, the schema, the experiments' design, the open questions, the severity table (Appendix A of the Constraint post), the definitions. Precise, no softening; the deepest ladder.",
+    "hue": 288
   }
 ]

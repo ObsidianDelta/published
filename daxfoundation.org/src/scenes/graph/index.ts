@@ -150,12 +150,18 @@ export async function mount(
     return CONCEPT_HREFS[n.id] || "";
   };
 
+  // 2026-10-23 colour system: each run has one colour everywhere (tokens --run-*):
+  // Meta DAX green, Nova DAX red, Skippy DAX blue, the Protocol gold.
+  const runColour = (name: string, fallback: string): string => {
+    try { return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback; }
+    catch { return fallback; }
+  };
   const colorOf = (n: GNode): string => {
     if (n.id === "dax") return tokens.record;
-    if (n.id === "metadax") return tokens.learner;
-    if (n.id === "novadax") return tokens.record;
-    if (n.id === "skippydax") return tokens.guide;
-    if (n.kind === "protocol") return tokens.sceneWire || tokens.inkMuted;
+    if (n.id === "metadax") return runColour("--run-metadax", tokens.learner);
+    if (n.id === "novadax") return runColour("--run-novadax", tokens.record);
+    if (n.id === "skippydax") return runColour("--run-skippydax", tokens.guide);
+    if (n.kind === "protocol") return runColour("--run-cp", tokens.sceneWire || tokens.inkMuted);
     return tokens.inkMuted; // concepts: neutral, they never compete with the bodies
   };
   const cpColor = tokens.guide; // every filament is the Protocol: one substrate colour

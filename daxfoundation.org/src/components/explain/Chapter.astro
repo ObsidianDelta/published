@@ -63,12 +63,24 @@ const ladderTotal = (() => {
   for (const t of seq) { if (empty(t)) return n; n++; }
   return base.papers && base.papers.length ? n + 1 : n;
 })();
+// 2026-10-23 colour system (src/styles/colour.css): the run is the page's colour,
+// each chapter a shade of it, light to deep through the run.
+const RUN_TOKEN: Record<string, string> = {
+  metadax: "--run-metadax",
+  "nova-dax": "--run-novadax",
+  "skippy-dax": "--run-skippydax",
+  "constraint-protocol": "--run-cp",
+  foundation: "--run-foundation",
+};
+const runVar = RUN_TOKEN[(chapter as any).collection as string] ?? "--run-foundation";
+const chPos = Math.min(Math.max(Number(d.order) || 1, 1), Math.max(total, 1));
+const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
 ---
 <section
   class:list={["chapter", { "has-scene": isScene }]}
   id={d.id}
   data-explain-chapter={d.id}
-  style={`--pin:${pin}`}
+  style={`--pin:${pin}; --run: var(${runVar}); --ch-mix: ${chMix}%`}
 >
   <div class="chapter-head">
     <header class="masthead">
@@ -117,6 +129,11 @@ const ladderTotal = (() => {
     </div>
 
     <p class="depthline" data-depthline data-depth="1">Depth 1 of {ladderTotal}</p>
+    <div class="depthbar" data-depthbar aria-hidden="true">
+      {Array.from({ length: ladderTotal }, (_, i) => (
+        <i class:list={{ on: i === 0 }} style={`--seg: var(--depth-${i + 1})`}></i>
+      ))}
+    </div>
 
     {/* The ladder: more -> how -> proof -> under, nested, opening in place. Each
         depth stays in the HTML for no-JS and SEO. Empty bodies (from the alias)
@@ -309,6 +326,16 @@ const ladderTotal = (() => {
     if (line) {
       line.dataset.depth = String(depth);
       line.textContent = `Depth ${depth} of ${total}`;
+    }
+    const bar = section.querySelector<HTMLElement>("[data-depthbar]");
+    if (bar) {
+      bar.textContent = "";
+      for (let i = 1; i <= total; i++) {
+        const seg = document.createElement("i");
+        seg.style.setProperty("--seg", `var(--depth-${i})`);
+        if (i <= depth) seg.classList.add("on");
+        bar.append(seg);
+      }
     }
     // the scene hears depth on a 1..5 scale whatever this reader's total is
     const frame = frameOf(section);
@@ -609,4 +636,31 @@ const ladderTotal = (() => {
 
   @media (prefers-reduced-motion: reduce) { .panel { transition: none; } }
   :global(.reduced-motion) .panel { transition: none; }
+
+  /* ---- colour (2026-10-23; the system is in src/styles/colour.css) ----
+     where you are: the run (--run) and this chapter's shade of it (--chapter);
+     who you are reading as: the lane's depth colours (--depth-1..6). */
+  .chapter { --chapter: color-mix(in oklch, var(--run), var(--ink) var(--ch-mix)); }
+  .chapter .masthead-mark { color: var(--run); }
+  .chapter .counter { border-color: color-mix(in oklch, var(--chapter) 60%, transparent); }
+  .chapter .counter-n { color: var(--chapter); }
+  .chapter .kicker > span { color: var(--chapter); }
+  .chapter .chapter-content { border-left: 3px solid var(--chapter); padding-left: var(--space-5); }
+  .chapter .scene-frame { box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--chapter) 45%, transparent); border-radius: var(--radius-md); }
+  .chapter .horizon-tag { color: var(--chapter); }
+  .chapter .next a { color: var(--run); border-bottom-color: color-mix(in oklch, var(--run) 50%, transparent); }
+
+  .depthbar { display: flex; gap: 4px; margin: calc(var(--space-2) * -1) 0 var(--space-4); }
+  .depthbar i { flex: 0 1 40px; height: 4px; border-radius: 2px; background: var(--line); }
+  .depthbar i.on { background: var(--seg); }
+
+  .step[data-step="more"]   { --step: var(--depth-2); }
+  .step[data-step="how"]    { --step: var(--depth-3); }
+  .step[data-step="proof"]  { --step: var(--depth-4); }
+  .step[data-step="under"]  { --step: var(--depth-5); }
+  .step[data-step="papers"] { --step: var(--depth-6); }
+  .step > .step-btn .plus { color: var(--step); }
+  .step > .step-btn { box-shadow: inset 3px 0 0 var(--step); padding-left: var(--space-3); }
+  .step.open > .panel > .panel-in { border-left: 3px solid var(--step); padding-left: var(--space-4); }
+  .step.open > .panel > .panel-in > .step-head { color: var(--step); }
 </style>

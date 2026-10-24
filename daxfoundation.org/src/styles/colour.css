@@ -1,0 +1,55 @@
+/* ---------------------------------------------------------------------------
+   The explainer's colour system (2026-10-23, Jason: "we need to know what lane
+   it is in", each run, chapter and depth its own colour).
+
+   Two axes, so colour always answers a question:
+   - WHERE you are: the run is the page's colour (Meta DAX green, Nova DAX red,
+     Skippy DAX blue, the Constraint Protocol gold; tokens --run-*). Each chapter
+     is a shade of its run, light to deep through the run (set per chapter as
+     --run and --ch-mix by Chapter.astro).
+   - WHO you are reading as: each lane (lens) has a hue (lenses.json "hue"),
+     warm to cool from kid to researcher. Each depth is a step of the lane's
+     colour: paler and nearer the lane hue at the answer, richer and turning
+     further round the wheel as the reader goes deeper.
+   The page sets --lane-h on <html> when the lens changes (Explain.astro,
+   MapHome.astro). Colours are oklch so every lane steps the same way.
+--------------------------------------------------------------------------- */
+:root {
+  --lane-h: 72;            /* "Just curious" until the chooser says otherwise */
+  --lane-l: 0.80;
+  --lane-c: 0.13;
+  --lane: oklch(var(--lane-l) var(--lane-c) var(--lane-h));
+  --lane-ink: #0a0a0a;     /* text on a filled lane chip */
+  --depth-1: oklch(calc(var(--lane-l) + 0.08) 0.05 var(--lane-h));
+  --depth-2: oklch(calc(var(--lane-l) + 0.04) 0.09 calc(var(--lane-h) + 14));
+  --depth-3: oklch(var(--lane-l) 0.12 calc(var(--lane-h) + 28));
+  --depth-4: oklch(calc(var(--lane-l) - 0.04) 0.15 calc(var(--lane-h) + 42));
+  --depth-5: oklch(calc(var(--lane-l) - 0.08) 0.17 calc(var(--lane-h) + 56));
+  --depth-6: oklch(calc(var(--lane-l) - 0.12) 0.18 calc(var(--lane-h) + 70));
+}
+[data-theme="light"] {
+  --lane-l: 0.55;
+  --lane-ink: #ffffff;
+}
+
+/* A chip carries its own lane colour (style="--chip-h: <hue>"): a dot and a
+   border at rest, filled when it is the reader's lane. */
+.chip[style*="--chip-h"] {
+  --chip: oklch(var(--lane-l) var(--lane-c) var(--chip-h));
+  border-color: color-mix(in oklch, var(--chip) 45%, transparent);
+}
+.chip[style*="--chip-h"]::before {
+  content: "";
+  display: inline-block;
+  width: 0.5em; height: 0.5em; margin-right: 0.45em;
+  border-radius: 50%;
+  background: var(--chip);
+  vertical-align: 0.08em;
+}
+.chip[style*="--chip-h"][aria-pressed="true"] {
+  background: var(--chip);
+  border-color: var(--chip);
+  color: var(--lane-ink);
+  font-weight: 600;
+}
+.chip[style*="--chip-h"][aria-pressed="true"]::before { background: var(--lane-ink); }

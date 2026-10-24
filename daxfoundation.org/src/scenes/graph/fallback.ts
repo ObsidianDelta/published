@@ -115,11 +115,18 @@ export function mount(host: HTMLElement, params: SceneParams, tokens: SceneToken
   const cs = getComputedStyle(document.documentElement);
   const sans = cs.getPropertyValue("--font-sans").trim() || "sans-serif";
 
-  const colorOf = (n: GNode): string =>
-    n.kind === "purpose" ? tokens.learner
+  // 2026-10-23 colour system: each run has one colour everywhere (tokens --run-*).
+  const RUN_VAR: Record<string, string> = {
+    metadax: "--run-metadax", novadax: "--run-novadax", skippydax: "--run-skippydax", cp: "--run-cp",
+  };
+  const colorOf = (n: GNode): string => {
+    const rv = RUN_VAR[n.id] && cs.getPropertyValue(RUN_VAR[n.id]).trim();
+    if (rv) return rv;
+    return n.kind === "purpose" ? tokens.learner
       : n.kind === "initiative" ? tokens.record
         : n.kind === "protocol" ? tokens.guide
           : tokens.sceneWire || tokens.inkMuted;
+  };
   const cpColor = tokens.guide; // every line is the Protocol: one colour for the substrate
 
   // ---- model ----

@@ -10,6 +10,7 @@
 // the kit contract (src/scenes/contract.ts). Tokens are imported so the scene can
 // read --learner/--guide/--record off :root.
 import "../../styles/tokens.css";
+import "../../styles/colour.css";
 import graph from "../../data/graph.json";
 import runRoutes from "../../data/run-routes.json";
 import lenses from "../../data/lenses.json";
@@ -56,6 +57,7 @@ const levelNames = [
     <div class="chips" id="map-chips" role="group" aria-label="Who's reading">
       {lenses.map((l) => (
         <button type="button" class="chip" data-lens={l.id} data-level={l.level}
+          data-hue={(l as any).hue} style={`--chip-h: ${(l as any).hue}`}
           aria-pressed={l.id === "curious" ? "true" : "false"}>{l.label}</button>
       ))}
     </div>
@@ -154,8 +156,16 @@ const levelNames = [
     ];
 
     function paint(sel: string, attr: string, val: string): void {
-      root!.querySelectorAll<HTMLElement>(sel).forEach((b) =>
-        b.setAttribute("aria-pressed", b.dataset[attr] === val ? "true" : "false"));
+      root!.querySelectorAll<HTMLElement>(sel).forEach((b) => {
+        const on = b.dataset[attr] === val;
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+        // the reader's lane colours the page (colour.css); keep the chosen chip in view
+        if (on && b.dataset.hue) {
+          document.documentElement.style.setProperty("--lane-h", b.dataset.hue);
+          const row = b.parentElement;
+          if (row) row.scrollLeft = b.offsetLeft - row.offsetLeft - (row.clientWidth - b.offsetWidth) / 2;
+        }
+      });
     }
 
     function showLevelNotice(n: number): void {
@@ -223,7 +233,7 @@ const levelNames = [
 
 <style>
   .maphome { padding-block: var(--space-10, 2.5rem) var(--space-8, 2rem); border-bottom: 1px solid var(--line); }
-  .chooser { display: grid; gap: 0.6rem; margin-bottom: 1.5rem; }
+  .chooser { display: grid; gap: 0.6rem; margin-bottom: 1.5rem; padding-bottom: 0.9rem; border-bottom: 2px solid var(--lane); }
   .chooser-h { margin: 0; font-size: 0.875rem; color: var(--ink-muted, #9a9a9a); }
   .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .chip {

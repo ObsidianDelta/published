@@ -24,11 +24,16 @@ const doorNodes = [
   ...graph.nodes.filter((n) => n.kind === "initiative"),
   ...graph.nodes.filter((n) => n.kind === "protocol"),
 ];
+// 2026-10-23 colour system: each door carries its run's colour (tokens --run-*).
+const RUN_VAR: Record<string, string> = {
+  metadax: "--run-metadax", novadax: "--run-novadax", skippydax: "--run-skippydax", cp: "--run-cp",
+};
 const doors = doorNodes.map((n) => ({
   id: n.id,
   label: n.label,
   line: n.line,
   href: n.chapter ? routes[n.chapter] ?? null : null,
+  run: RUN_VAR[n.id] ?? "--run-foundation",
 }));
 ---
 <Explain
@@ -41,12 +46,12 @@ const doors = doorNodes.map((n) => ({
       {doors.map((d) => (
         <li>
           {d.href ? (
-            <a href={d.href} class="door">
+            <a href={d.href} class="door" style={`--door: var(${d.run})`}>
               <span class="door-label">{d.label}</span>
               <span class="door-line">{d.line}</span>
             </a>
           ) : (
-            <span class="door door-ahead">
+            <span class="door door-ahead" style={`--door: var(${d.run})`}>
               <span class="door-label">{d.label}</span>
               <span class="door-line">{d.line}</span>
               <span class="door-tag">Ahead</span>
@@ -87,7 +92,9 @@ const doors = doorNodes.map((n) => ({
     text-decoration: none;
   }
   a.door:hover, a.door:focus-visible { border-color: var(--ink); }
-  .door-label { font-size: var(--text-lead-size); font-weight: 500; }
+  .door { border-left: 4px solid var(--door, var(--line)); }
+  a.door:hover, a.door:focus-visible { border-color: var(--door, var(--ink)); }
+  .door-label { font-size: var(--text-lead-size); font-weight: 500; color: var(--door, var(--ink)); }
   .door-line { color: var(--ink-muted); font-size: var(--text-body-size); }
   .door-ahead { opacity: 0.72; position: relative; }
   .door-tag {

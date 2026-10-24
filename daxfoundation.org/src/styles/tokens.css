@@ -18,6 +18,11 @@
   --link: var(--ink);
   --scene-fog: #0a0a0a;
   --scene-wire: #2a2a2a;
+  --run-metadax: #3fc37f;
+  --run-novadax: #f0595c;
+  --run-skippydax: #4d94ff;
+  --run-cp: #d9b44a;
+  --run-foundation: #d9d2c5;
   --font-display: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
@@ -100,4 +105,9 @@
   --signal: #a4121c;
   --scene-fog: #f6f4ee;
   --scene-wire: #cfcabf;
+  --run-metadax: #11703f;
+  --run-novadax: #b02028;
+  --run-skippydax: #1c55bd;
+  --run-cp: #7a5b00;
+  --run-foundation: #3a342c;
 }

@@ -6,6 +6,7 @@
 // chapter draws its own row. inlineStylesheets is 'always' in astro.config, so
 // the token import ships inline.
 import "../styles/tokens.css";
+import "../styles/colour.css";
 import { ClientRouter } from "astro:transitions";
 // The reading scale, as data (EXP-11): the chooser draws its chips from here, in
 // order, least background first. No hard-coded chips. `level` rides along on each
@@ -90,6 +91,8 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
             class="chip"
             data-lens={l.id}
             data-level={l.level}
+            data-hue={l.hue}
+            style={`--chip-h: ${l.hue}`}
             aria-pressed={l.id === "curious" ? "true" : "false"}
           >{l.label}</button>
         ))}
@@ -138,7 +141,16 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
 
       function paintChips(lens: string): void {
         document.querySelectorAll<HTMLElement>("#lens-chips .chip").forEach((c) => {
-          c.setAttribute("aria-pressed", c.dataset.lens === lens ? "true" : "false");
+          const on = c.dataset.lens === lens;
+          c.setAttribute("aria-pressed", on ? "true" : "false");
+          // the reader's lane colours the whole page (depth bars, step edges, band)
+          if (on && c.dataset.hue) document.documentElement.style.setProperty("--lane-h", c.dataset.hue);
+          // on a phone the chips are one swipeable row: bring the chosen one into it
+          // (scroll the row only, never the page)
+          if (on && c.parentElement) {
+            const row = c.parentElement;
+            row.scrollLeft = c.offsetLeft - row.offsetLeft - (row.clientWidth - c.offsetWidth) / 2;
+          }
         });
       }
 
@@ -273,6 +285,8 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     gap: var(--space-3);
   }
   .chooser-h { margin: 0; font-size: var(--text-small-size); color: var(--ink-muted); }
+  /* the reader's lane, as a band under the chooser (colour.css sets --lane) */
+  .chooser { padding-bottom: var(--space-4); border-bottom: 2px solid var(--lane); }
   .chips { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
   .chip {
     min-height: 40px;
