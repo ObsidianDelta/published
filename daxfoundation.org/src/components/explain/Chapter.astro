@@ -709,4 +709,23 @@ const deeperLinks = (() => {
     max-width: var(--measure-scene, 72rem); margin-inline: auto;
     padding-inline: var(--space-6, 1.5rem);
   }
+
+  /* 2026-10-23: the same frame and type as the rest of the site. Chapters sit in the
+     header's 72rem column (they ran edge to edge, the scene glued to the left edge of
+     the screen); the question is the site's sans at weight 400, like every page's
+     heading; the small labels use the site's uppercase label style, not monospace. */
+  .chapter {
+    max-width: var(--measure-scene, 72rem); margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 1.5rem); box-sizing: border-box;
+  }
+  .question { font-family: var(--font-sans); font-weight: 400; letter-spacing: -0.015em; }
+  @media (min-width: 64rem) {
+    .chapter { gap: var(--space-12, 3rem); }
+    .question { font-size: 44px; }
+  }
+  .kicker, .depthline, .deeper-h {
+    font-family: var(--font-sans); font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .kicker .status { text-transform: uppercase; letter-spacing: 0.12em; }
+  .evidence-value, .evidence-source { font-family: var(--font-sans); }
 </style>

@@ -54,14 +54,7 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <!-- Fraunces for the question and display numerals only; the body uses the
-         system stack. One css2 link, display=swap, variable optical size. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..600&display=swap"
-    />
+    {/* 2026-10-23: no webfont; the guided pages use the site's own sans like every other page */}
     <ClientRouter />
     <slot name="head" />
   </head>

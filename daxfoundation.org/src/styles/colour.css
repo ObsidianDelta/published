@@ -53,3 +53,13 @@
   font-weight: 600;
 }
 .chip[style*="--chip-h"][aria-pressed="true"]::before { background: var(--lane-ink); }
+
+/* 2026-10-23 (Jason: the guided pages "feel so different from everything else"):
+   the regular pages set every heading in the system sans at weight 400; the guided
+   pages used a separate display serif (Fraunces) and typewriter labels. One family
+   now: the display face is the site's sans. */
+:root {
+  --font-display: var(--font-sans);
+  /* the guided pages' frame matches the top menu's (72rem), not 1200px */
+  --measure-scene: 72rem;
+}
