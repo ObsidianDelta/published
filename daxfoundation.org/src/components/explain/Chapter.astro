@@ -47,6 +47,10 @@ const evidence = (d.evidence as any[]) ?? [];
 // lens on load and whenever the chooser changes it. Every depth is in the HTML.
 const editions = chapter.editions as Record<string, any>;
 const base = editions.curious;
+// 2026-10-24: a new visitor starts on "Give it to me straight" (kid), so the first
+// paint shows that edition's voice, answer and horizon (no swap on load); the
+// deeper steps stay the curious edition's, so a reader without scripts still has them.
+const first = editions.kid ?? base;
 const STEPS = [
   { key: "more", head: "More", body: base.more },
   { key: "how", head: "Today, and where it goes", body: base.how },
@@ -118,20 +122,20 @@ const deeperLinks = (() => {
   )}
 
   <div class="chapter-content">
-    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><i class="status">{tenseLabel}</i><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
+    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><i class="status">{tenseLabel}</i><b data-voice class:list={{ faint: empty(first.voice) }}>{first.voice}</b></p>
     <h2 class="question">{d.question.en}</h2>
 
     {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
     {isChairs && <Chairs doors={d.scene.params.doors} labels={d.scene.params.labels} />}
 
-    <p class="answer" data-answer>{base.answer}</p>
+    <p class="answer" data-answer>{first.answer}</p>
 
     {/* EXP-13: the horizon — always visible, not a ladder step. */}
     {/* 2026-10-23: hidden (server and client) when the edition has no horizon, so
         the tag never stands over an empty line. */}
-    <div class="horizon-block" data-horizon-block hidden={!base.horizon}>
+    <div class="horizon-block" data-horizon-block hidden={!first.horizon}>
       <p class="horizon-tag">Where this goes</p>
-      <p class="horizon-text" data-horizon>{base.horizon ?? ""}</p>
+      <p class="horizon-text" data-horizon>{first.horizon ?? ""}</p>
     </div>
 
     <p class="depthline" data-depthline data-depth="1">Depth 1 of {ladderTotal}</p>
@@ -244,9 +248,9 @@ const deeperLinks = (() => {
 
   function readLens(): string {
     try {
-      return localStorage.getItem(LENS_KEY) || "curious";
+      return localStorage.getItem(LENS_KEY) || "kid";
     } catch {
-      return "curious";
+      return "kid";
     }
   }
 
@@ -389,7 +393,7 @@ const deeperLinks = (() => {
   // The chooser (Explain.astro) fires this when the reader picks a lens; apply it
   // to every chapter on the page without a reload.
   document.addEventListener("dax-lens", (e) => {
-    const lens = (e as CustomEvent<string>).detail || "curious";
+    const lens = (e as CustomEvent<string>).detail || "kid";
     applyLensEverywhere(lens);
   });
 

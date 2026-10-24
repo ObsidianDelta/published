@@ -34,7 +34,8 @@ const MORE = [
   { label: "Publications", href: "/writing/" },
 ];
 const here = (href: string) => path === href || (href !== "/" && path.startsWith(href));
-const curious = lenses.find((l) => l.id === "curious")!;
+// 2026-10-24 (Jason): a new visitor starts on "Give it to me straight" (lens id kid)
+const start = lenses.find((l) => l.id === "kid")!;
 ---
 <header class="site-head">
   <div class="row">
@@ -43,7 +44,7 @@ const curious = lenses.find((l) => l.id === "curious")!;
       <summary aria-label="Your experience: choose who you are reading as">
         <span class="xp-dot" aria-hidden="true"></span>
         <span class="xp-k">Your experience</span>
-        <b class="xp-name" data-xp-name>{curious.label}</b>
+        <b class="xp-name" data-xp-name>{start.label}</b>
         <span class="xp-caret" aria-hidden="true">▾</span>
       </summary>
       <div class="xp-panel">
@@ -58,7 +59,7 @@ const curious = lenses.find((l) => l.id === "curious")!;
               data-hue={(l as any).hue}
               data-label={l.label}
               style={`--chip-h: ${(l as any).hue}`}
-              aria-pressed={l.id === "curious" ? "true" : "false"}
+              aria-pressed={l.id === "kid" ? "true" : "false"}
             >{l.label}</button>
           ))}
         </div>
@@ -95,8 +96,8 @@ const curious = lenses.find((l) => l.id === "curious")!;
   }
   function read(): string {
     const ids = chips().map((c) => c.dataset.lens || "");
-    try { const v = localStorage.getItem(KEY); return v && ids.includes(v) ? v : "curious"; }
-    catch { return "curious"; }
+    try { const v = localStorage.getItem(KEY); return v && ids.includes(v) ? v : "kid"; }
+    catch { return "kid"; }
   }
   function paint(lens: string): void {
     for (const c of chips()) {
@@ -109,10 +110,31 @@ const curious = lenses.find((l) => l.id === "curious")!;
       }
     }
   }
+  // The chapter the reader is on: the last one whose top has passed the upper third
+  // of the screen. Switching experience rewrites every chapter above it too, so the
+  // page grows or shrinks above the reader; we keep this one where it was.
+  function anchor(): HTMLElement | null {
+    const line = innerHeight * 0.35;
+    let at: HTMLElement | null = null;
+    for (const s of Array.from(document.querySelectorAll<HTMLElement>("[data-explain-chapter]"))) {
+      if (s.getBoundingClientRect().top <= line) at = s; else break;
+    }
+    return at;
+  }
   function choose(lens: string): void {
+    const at = anchor();
+    const before = at ? at.getBoundingClientRect().top : 0;
     try { localStorage.setItem(KEY, lens); } catch { /* private mode */ }
     paint(lens);
     document.dispatchEvent(new CustomEvent("dax-lens", { detail: lens }));
+    if (at) {
+      const settle = () => {
+        const drift = at.getBoundingClientRect().top - before;
+        if (Math.abs(drift) > 1) window.scrollBy({ top: drift, behavior: "instant" as ScrollBehavior });
+      };
+      settle();
+      requestAnimationFrame(() => { settle(); requestAnimationFrame(settle); });
+    }
   }
   function boot(): void {
     const row = document.getElementById("lens-chips");

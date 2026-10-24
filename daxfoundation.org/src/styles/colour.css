@@ -15,7 +15,7 @@
    MapHome.astro). Colours are oklch so every lane steps the same way.
 --------------------------------------------------------------------------- */
 :root {
-  --lane-h: 72;            /* "Just curious" until the chooser says otherwise */
+  --lane-h: 95;            /* "Give it to me straight" until the reader picks another */
   --lane-l: 0.80;
   --lane-c: 0.13;
   --lane: oklch(var(--lane-l) var(--lane-c) var(--lane-h));

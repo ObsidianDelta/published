@@ -78,7 +78,7 @@ const levelNames = [
       {lenses.map((l) => (
         <button type="button" class="chip" data-lens={l.id} data-level={l.level}
           data-hue={(l as any).hue} style={`--chip-h: ${(l as any).hue}`}
-          aria-pressed={l.id === "curious" ? "true" : "false"}>{l.label}</button>
+          aria-pressed={l.id === "kid" ? "true" : "false"}>{l.label}</button>
       ))}
     </div>
   </div>
@@ -148,8 +148,8 @@ const levelNames = [
     try { return JSON.parse(el?.textContent || "{}"); } catch { return {}; }
   }
   function storedLens(ids: string[]): string {
-    try { const v = localStorage.getItem(LENS_KEY); return v && ids.includes(v) ? v : "curious"; }
-    catch { return "curious"; }
+    try { const v = localStorage.getItem(LENS_KEY); return v && ids.includes(v) ? v : "kid"; }
+    catch { return "kid"; }
   }
 
   async function boot(): Promise<void> {
