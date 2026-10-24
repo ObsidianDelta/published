@@ -63,3 +63,10 @@
   /* the guided pages' frame matches the top menu's (72rem), not 1200px */
   --measure-scene: 72rem;
 }
+
+/* 2026-10-24: the Tamil edition reads larger and looser (its readers include
+   elders); set by Chapter.astro as lang="ta" on the chapter section */
+.chapter[lang="ta"] [data-answer],
+.chapter[lang="ta"] [data-horizon],
+.chapter[lang="ta"] .step-body { font-size: 1.15em; line-height: 1.85; }
+.chapter[lang="ta"] h2.question { line-height: 1.35; }
