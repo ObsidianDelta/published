@@ -1,16 +1,21 @@
 ---
-// WhereThisFits (2026-10-23): on every regular page, one quiet line saying which
-// run and which question it belongs to, in that run's colour, linking into the
-// guided run at that question. The other half of the two-way link: the run's
-// chapter lists this page under "Go deeper". Both read src/data/site-map.json.
+// WhereThisFits (2026-10-23, revised the same night): on every regular page, a
+// breadcrumb that reads like the site's own structure --
+//   Meta DAX › What exists today? › Samples › Grammar from your own book
+// The run is in its colour and opens the guided run; the question opens the run at
+// that question; the section (the page's parent index, when there is one) and the
+// page itself follow. Jason found the first version ("Part of Meta DAX · What exists
+// today?") mechanical. The other half of the two-way link: the run's chapter lists
+// this page under "Go deeper". Both read src/data/site-map.json.
 import siteMap from "../data/site-map.json";
 import runRoutes from "../data/run-routes.json";
 import { getCollectionChapters } from "../lib/explain/chapters.js";
 
+interface Props { title?: string }
+const { title = "" } = Astro.props;
 const path = Astro.url.pathname;
 type Entry = { path: string; chapter: string; list: boolean; label?: string };
 const pages = (siteMap as { pages: Entry[] }).pages;
-// exact match first, then the longest "prefix*" that covers this page
 const exact = pages.find((e) => !e.path.endsWith("*") && e.path === path);
 const prefix = pages
   .filter((e) => e.path.endsWith("*") && path.startsWith(e.path.slice(0, -1)) && path !== e.path.slice(0, -1))
@@ -18,46 +23,77 @@ const prefix = pages
 const entry = exact || prefix;
 
 const RUN: Record<string, { label: string; colour: string }> = {
-  foundation: { label: "The DAX Foundation", colour: "--run-foundation" },
+  foundation: { label: "The map", colour: "--run-foundation" },
   metadax: { label: "Meta DAX", colour: "--run-metadax" },
   "nova-dax": { label: "Nova DAX", colour: "--run-novadax" },
   "skippy-dax": { label: "Skippy DAX", colour: "--run-skippydax" },
   "constraint-protocol": { label: "Constraint Protocol", colour: "--run-cp" },
 };
+// short names for the section indexes a page can sit under
+const SECTION: Record<string, string> = {
+  "/writing/": "Writing",
+  "/metadax/": "Meta DAX hub",
+  "/metadax/samples/": "Samples",
+  "/metadax/showcase/": "Six samples",
+  "/metadax/showcases/": "The library",
+  "/metadax/guide/": "Guide",
+  "/metadax/homeschool/": "Homeschool",
+  "/metadax/teacher/": "Teachers",
+  "/metadax/tutor/": "Tutors",
+  "/metadax/trainer/": "Trainers",
+};
+const clean = (t: string) => t.replace(/\s*[·|]\s*(DAX Foundation|Meta DAX sample|Meta DAX)\s*$/i, "").replace(/\s*—\s*Meta ?DAX\s*$/i, "").trim();
 
-let fit: { run: string; colour: string; question: string; href: string } | null = null;
+type Crumb = { label: string; href?: string; run?: boolean };
+let crumbs: Crumb[] = [];
+let colour = "--run-foundation";
 if (entry && path !== "/") {
   const [run, id] = entry.chapter.split("/");
-  const chapters = await getCollectionChapters(run);
-  const ch = chapters.find((c: any) => c.data.id === id);
-  const base = run === "foundation" ? "/explain/" : (runRoutes as Record<string, string>)[run];
-  if (ch && base && RUN[run]) {
-    fit = {
-      run: RUN[run].label,
-      colour: RUN[run].colour,
-      question: (ch as any).data.question.en,
-      href: run === "foundation" ? base : `${base}#${id}`,
-    };
+  colour = RUN[run]?.colour ?? colour;
+  if (run === "foundation") {
+    crumbs.push({ label: RUN.foundation.label, href: "/explain/", run: true });
+  } else {
+    const chapters = await getCollectionChapters(run);
+    const ch = chapters.find((c: any) => c.data.id === id) as any;
+    const base = (runRoutes as Record<string, string>)[run];
+    crumbs.push({ label: RUN[run].label, href: base, run: true });
+    if (ch) crumbs.push({ label: ch.data.question.en, href: `${base}#${id}` });
   }
+  // the parent section index, when this page sits under one (not the page itself)
+  const parent = path.replace(/[^/]+\/$/, "");
+  if (parent !== path && SECTION[parent] && parent !== "/") crumbs.push({ label: SECTION[parent], href: parent });
+  crumbs.push({ label: SECTION[path] ?? clean(title) });
 }
 ---
-{fit && (
-  <p class="fit" style={`--c: var(${fit.colour})`}>
-    <span class="fit-dot" aria-hidden="true"></span>
-    <span class="fit-k">Part of {fit.run}</span>
-    <a href={fit.href}>{fit.question}</a>
-  </p>
+{crumbs.length > 0 && (
+  <nav class="crumbs" aria-label="Where this page sits" style={`--c: var(${colour})`}>
+    <ol>
+      {crumbs.map((c, i) => (
+        <li class:list={{ run: c.run }}>
+          {c.href && i < crumbs.length - 1 ? <a href={c.href}>{c.label}</a> : <span aria-current="page">{c.label}</span>}
+        </li>
+      ))}
+    </ol>
+  </nav>
 )}
 
 <style>
-  .fit {
+  .crumbs {
     width: 100%; max-width: 72rem; margin: 0 auto;
-    padding: 0.5rem clamp(1rem, 4vw, 1.5rem) 0;
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 0.6rem;
-    font-size: 0.8125rem; color: var(--ink-muted, #8c8c8c);
+    padding: 0.25rem clamp(1rem, 4vw, 1.5rem) 0;
+    font-size: 0.8125rem; color: var(--ink-faint, #6f6f6f);
   }
-  .fit-dot { width: 0.55em; height: 0.55em; border-radius: 50%; background: var(--c); align-self: center; }
-  .fit-k { color: var(--c); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.75rem; }
-  .fit a { color: var(--ink, #e8e8e8); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--c) 55%, transparent); }
-  .fit a:hover, .fit a:focus-visible { border-bottom-color: var(--c); }
+  .crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0; }
+  .crumbs li { display: inline-flex; align-items: baseline; min-width: 0; }
+  .crumbs li + li::before { content: "›"; margin: 0 0.5em; color: var(--ink-faint, #6f6f6f); }
+  .crumbs a { color: var(--ink-muted, #8c8c8c); text-decoration: none; }
+  .crumbs a:hover, .crumbs a:focus-visible { color: var(--ink, #e8e8e8); }
+  .crumbs li.run a { color: var(--c); }
+  .crumbs li.run::before { content: none; }
+  .crumbs li.run { padding-left: 0.9em; position: relative; }
+  .crumbs li.run::after {
+    content: ""; position: absolute; left: 0; top: 50%; translate: 0 -50%;
+    width: 0.5em; height: 0.5em; border-radius: 50%; background: var(--c);
+  }
+  .crumbs [aria-current] { color: var(--ink-muted, #8c8c8c); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 28ch; }
 </style>

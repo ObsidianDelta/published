@@ -43,6 +43,26 @@ const runLinks = graph.nodes.filter(
   (n) => n.chapter && routes[n.chapter as string],
 );
 
+// 2026-10-23: the four runs as cards under the map, each in its colour, with its
+// one line and its first question (the homepage's index into the guided layer).
+const CARD_RUNS = [
+  { key: "metadax", node: "metadax", colour: "--run-metadax", name: "Meta DAX" },
+  { key: "nova-dax", node: "novadax", colour: "--run-novadax", name: "Nova DAX" },
+  { key: "skippy-dax", node: "skippydax", colour: "--run-skippydax", name: "Skippy DAX" },
+  { key: "constraint-protocol", node: "cp", colour: "--run-cp", name: "The Constraint Protocol" },
+];
+const runCards = await Promise.all(CARD_RUNS.map(async (r) => {
+  const chs = await getCollectionChapters(r.key);
+  const first = chs[0] as any;
+  return {
+    ...r,
+    href: routes[r.key],
+    line: (graph.nodes as any[]).find((n) => n.id === r.node)?.line ?? "",
+    first: first?.data?.question?.en ?? "",
+    count: chs.length,
+  };
+}));
+
 const levelNames = [
   "DAX and the three it builds",
   "the same, in plain words",
@@ -53,7 +73,7 @@ const levelNames = [
 ---
 <section class="maphome" aria-labelledby="map-q" data-maphome>
   <div class="chooser">
-    <p class="chooser-h">Choose your experience. The map, and every page after it, is written for you.</p>
+    <p class="chooser-h">Read this site as</p>
     <div class="chips" id="map-chips" role="group" aria-label="Choose your experience">
       {lenses.map((l) => (
         <button type="button" class="chip" data-lens={l.id} data-level={l.level}
@@ -84,6 +104,19 @@ const levelNames = [
       <p class="map-more"><a href="/explain/">Open the map full-screen &rarr;</a></p>
     </div>
   </div>
+
+  <ul class="run-cards" aria-label="The runs">
+    {runCards.map((c) => (
+      <li style={`--c: var(${c.colour})`}>
+        <a href={c.href}>
+          <span class="rc-name">{c.name}</span>
+          <span class="rc-line">{c.line}</span>
+          <span class="rc-start">Start: {c.first} <span aria-hidden="true">&rarr;</span></span>
+          <span class="rc-count">{c.count} questions</span>
+        </a>
+      </li>
+    ))}
+  </ul>
 
   {/* Static sr-only fallback: real <a href> for every run node in the graph. This
       satisfies keyboard navigation and tests without depending on the JS scene. */}
@@ -323,4 +356,22 @@ const levelNames = [
     overflow: hidden;
   }
   .graph-nodes-sr ul { list-style: none; margin: 0; padding: 0; }
+
+  /* the chooser as one quiet row: "Read this site as" and the chips */
+  .chooser { grid-template-columns: auto 1fr; align-items: center; column-gap: 0.75rem; }
+  @media (max-width: 700px) { .chooser { grid-template-columns: 1fr; } }
+
+  /* the four runs, under the map */
+  .run-cards { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: 1fr; }
+  @media (min-width: 40rem) { .run-cards { grid-template-columns: 1fr 1fr; } }
+  .run-cards a {
+    display: grid; gap: 0.3rem; height: 100%; padding: 0.9rem 1rem;
+    border: 1px solid var(--line); border-left: 4px solid var(--c); border-radius: 10px;
+    background: var(--surface, #141414); color: var(--ink, #e8e8e8); text-decoration: none;
+  }
+  .run-cards a:hover, .run-cards a:focus-visible { border-color: var(--c); }
+  .rc-name { font-weight: 600; color: var(--c); }
+  .rc-line { font-size: 0.9375rem; color: var(--ink-muted, #9a9a9a); }
+  .rc-start { font-size: 0.875rem; }
+  .rc-count { font-size: 0.75rem; color: var(--ink-faint, #6f6f6f); letter-spacing: 0.06em; }
 </style>

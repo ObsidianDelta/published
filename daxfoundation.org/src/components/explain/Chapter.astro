@@ -17,13 +17,15 @@ interface Props {
 const { chapter, total = 8 } = Astro.props;
 const d = chapter.data as Record<string, any>;
 
+// 2026-10-23: the status used to be a pill beside a "01 / 09" counter on every
+// chapter; it is now said once, in plain words, in the chapter's small label.
 const TENSE: Record<string, string> = {
-  solved: "Solved",
-  live: "Live now",
+  solved: "Done",
+  live: "Running today",
   researched: "Researched",
   ahead: "Where this goes",
 };
-const tenseLabel = TENSE[d.tense] + (d.tenseNote ? ` — ${d.tenseNote}` : "");
+const tenseLabel = TENSE[d.tense] + (d.tenseNote ? ` · ${d.tenseNote}` : "");
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const counterNum = pad(d.order);
@@ -101,26 +103,9 @@ const deeperLinks = (() => {
   data-explain-chapter={d.id}
   style={`--pin:${pin}; --run: var(${runVar}); --ch-mix: ${chMix}%`}
 >
-  <div class="chapter-head">
-    <header class="masthead">
-      <span class="masthead-mark">{masthead}</span>
-      <span class="lang" aria-label="Reading language">
-        <span class="lang-on" aria-current="true">EN</span>
-        {hasFr ? (
-          <span class="lang-alt">FR</span>
-        ) : (
-          <span class="lang-off">not yet in French</span>
-        )}
-      </span>
-    </header>
-    <div class="meta-row">
-      {(chapter as any).collection === "foundation"
-        ? <span class="counter"><span class="counter-n">MAP</span></span>
-        : <span class="counter"><span class="counter-n">{counterNum}</span> / {counterDen}</span>}
-      <span class:list={["tag", d.tense === "solved" ? "tag-record" : "tag-line"]}>{tenseLabel}</span>
-    </div>
-  </div>
-
+  {/* 2026-10-23: the per-chapter masthead ("DAX Foundation — Meta DAX", the language
+      note) and the counter/status pills are gone: the run header says the run and
+      the language once, the strip shows the position, the kicker carries the status. */}
   {isScene && (
     <div class="scene-wrap">
       <div
@@ -133,7 +118,7 @@ const deeperLinks = (() => {
   )}
 
   <div class="chapter-content">
-    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
+    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><i class="status">{tenseLabel}</i><b data-voice class:list={{ faint: empty(base.voice) }}>{base.voice}</b></p>
     <h2 class="question">{d.question.en}</h2>
 
     {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
@@ -707,4 +692,14 @@ const deeperLinks = (() => {
     color: var(--ink); text-decoration: none; font-size: var(--text-small-size);
   }
   .deeper a:hover, .deeper a:focus-visible { border-color: var(--chapter); }
+
+  /* 2026-10-23 cleanup: chapters are separated by a hairline and air, not by a
+     repeated masthead; the status sits in the kicker; anchors land below the
+     run's sticky question strip. */
+  .chapter + .chapter { border-top: 1px solid var(--line); }
+  .chapter { padding-top: var(--space-8); scroll-margin-top: 4.5rem; }
+  .kicker .status {
+    font-style: normal; color: var(--ink-faint); text-transform: none; letter-spacing: 0.02em;
+  }
+  .kicker .status::before { content: "·"; margin: 0 0.45em; color: var(--ink-faint); }
 </style>

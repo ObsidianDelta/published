@@ -1,0 +1,122 @@
+---
+// RunHeader (2026-10-23): the top of a run's page, said once. Jason: the run pages
+// repeated "DAX Foundation", a counter pill and a "Live now" pill on every chapter.
+// Now: the run's name in its colour, its one line (graph.json), and a strip of its
+// questions (1..N) that shows where the reader is and jumps to any question. The
+// language note that sat on every chapter is said here once. Sticky under the
+// top menu, so the reader always knows which run and which question they are on.
+import graph from "../../data/graph.json";
+
+interface Props {
+  run: "metadax" | "nova-dax" | "skippy-dax" | "constraint-protocol";
+  chapters: any[];
+}
+const { run, chapters } = Astro.props;
+const NAME: Record<string, string> = {
+  metadax: "Meta DAX", "nova-dax": "Nova DAX", "skippy-dax": "Skippy DAX", "constraint-protocol": "The Constraint Protocol",
+};
+const COLOUR: Record<string, string> = {
+  metadax: "--run-metadax", "nova-dax": "--run-novadax", "skippy-dax": "--run-skippydax", "constraint-protocol": "--run-cp",
+};
+const line = (graph.nodes as any[]).find((n) => n.chapter === run)?.line ?? "";
+const anyFr = chapters.some((c) => Boolean(c.data?.question?.fr));
+const items = chapters.map((c, i) => ({ n: i + 1, id: c.data.id as string, q: c.data.question.en as string }));
+---
+<div class="run-head" style={`--run: var(${COLOUR[run]})`} data-run-head>
+  <div class="run-id">
+    <h1 class="run-name">{NAME[run]}</h1>
+    <p class="run-line">{line}</p>
+    <p class="run-lang">{anyFr ? "English · Français" : "English · French coming"}</p>
+  </div>
+</div>
+{/* a sibling of the chapters (not inside .run-head), so it stays pinned while the
+    whole run scrolls under it */}
+<nav class="run-strip" aria-label={`${NAME[run]}: the questions`} style={`--run: var(${COLOUR[run]})`} data-run-strip>
+    <ol>
+      {items.map((it) => (
+        <li><a href={`#${it.id}`} data-run-step={it.id} title={it.q}>
+          <span class="rs-n">{it.n}</span><span class="rs-q">{it.q}</span>
+        </a></li>
+      ))}
+    </ol>
+</nav>
+
+<script>
+  // Where am I: the question whose chapter crosses the upper third of the screen.
+  function boot(): void {
+    const head = document.querySelector<HTMLElement>("[data-run-strip]");
+    if (!head || (head as any).__spy) return;
+    (head as any).__spy = true;
+    const links = Array.from(head.querySelectorAll<HTMLAnchorElement>("[data-run-step]"));
+    const set = (id: string) => {
+      for (const a of links) {
+        const on = a.dataset.runStep === id;
+        a.classList.toggle("on", on);
+        if (on) {
+          a.setAttribute("aria-current", "step");
+          const row = a.closest("ol");
+          if (row) row.scrollLeft = a.offsetLeft - row.clientWidth / 2 + a.offsetWidth / 2;
+        } else a.removeAttribute("aria-current");
+      }
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) set((e.target as HTMLElement).id);
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    for (const a of links) {
+      const el = document.getElementById(a.dataset.runStep || "");
+      if (el) io.observe(el);
+    }
+    if (links[0]) set(location.hash ? location.hash.slice(1) : links[0].dataset.runStep || "");
+  }
+  document.addEventListener("astro:page-load", boot);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+</script>
+
+<style>
+  .run-head {
+    width: 100%; max-width: var(--measure-scene, 72rem); margin: 0 auto;
+    padding: var(--space-6, 1.5rem) var(--space-6, 1.5rem) 0;
+    display: grid; gap: var(--space-4, 1rem);
+  }
+  .run-id { border-left: 4px solid var(--run); padding-left: var(--space-4, 1rem); }
+  .run-name {
+    margin: 0; font-family: var(--font-display, Fraunces, Georgia, serif); font-weight: 400;
+    font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.6rem); line-height: 1.1; color: var(--run);
+  }
+  .run-line { margin: 0.35rem 0 0; color: var(--ink); }
+  .run-lang { margin: 0.25rem 0 0; font-size: 0.8125rem; color: var(--ink-faint); letter-spacing: 0.06em; }
+
+  .run-strip {
+    position: sticky; top: 0; z-index: 20;
+    width: 100%; max-width: var(--measure-scene, 72rem); margin: var(--space-4, 1rem) auto 0;
+    padding: 0.5rem var(--space-6, 1.5rem);
+    background: color-mix(in oklch, var(--ground, #0a0a0a) 92%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .run-strip ol {
+    list-style: none; margin: 0; padding: 0; display: flex; gap: 0.4rem;
+    overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth;
+  }
+  .run-strip ol::-webkit-scrollbar { display: none; }
+  .run-strip a {
+    display: inline-flex; align-items: center; gap: 0.45rem; min-height: 36px;
+    padding: 0.2rem 0.75rem 0.2rem 0.35rem; border-radius: 999px; white-space: nowrap;
+    border: 1px solid var(--line); color: var(--ink-muted); text-decoration: none; font-size: 0.8125rem;
+  }
+  .rs-n {
+    display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%;
+    font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.75rem;
+    border: 1px solid color-mix(in oklch, var(--run) 50%, transparent); color: var(--run);
+  }
+  .rs-q { max-width: 16rem; overflow: hidden; text-overflow: ellipsis; }
+  .run-strip a:hover, .run-strip a:focus-visible { color: var(--ink); border-color: color-mix(in oklch, var(--run) 50%, var(--line)); }
+  .run-strip a.on { color: var(--ink); border-color: var(--run); }
+  .run-strip a.on .rs-n { background: var(--run); color: var(--ground, #0a0a0a); border-color: var(--run); }
+  /* on a phone only the current question shows its words; the rest are numbers */
+  @media (max-width: 700px) {
+    .run-strip a:not(.on) .rs-q { display: none; }
+    .run-strip a:not(.on) { padding-right: 0.35rem; }
+  }
+</style>

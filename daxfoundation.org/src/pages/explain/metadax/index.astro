@@ -2,6 +2,7 @@
 // /explain/metadax/ — all eight Meta DAX chapters as one continuous scroll.
 import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
+import RunHeader from "../../../components/explain/RunHeader.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
 
 const chapters = await getCollectionChapters("metadax");
@@ -10,5 +11,6 @@ const chapters = await getCollectionChapters("metadax");
   title="Meta DAX — universal learning"
   description="The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative."
 >
+  <RunHeader run="metadax" chapters={chapters} />
   {chapters.map((c) => <Chapter chapter={c} total={chapters.length} />)}
 </Explain>

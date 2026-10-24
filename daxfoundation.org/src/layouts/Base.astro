@@ -74,7 +74,7 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     {/* 2026-10-23: one top menu for the whole site (runs, detail indexes, the
         reader's experience), shared with the guided runs' layout. */}
     <SiteHeader />
-    <WhereThisFits />
+    <WhereThisFits title={title} />
     <main class:list={['wrap', { wide }]}>
       <slot />
     </main>

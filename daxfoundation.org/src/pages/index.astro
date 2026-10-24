@@ -98,7 +98,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       its place and its emphasis. */}
   <MapHome />
 
-  <section class="block feature" id="learning" aria-labelledby="metadax">
+  <section class="block feature run-block" id="learning" aria-labelledby="metadax" style="--run: var(--run-metadax)">
     <h2 id="metadax">Meta DAX</h2>
     <p class="kicker">Our initiative of universal learning.</p>
     <p class="body">
@@ -147,9 +147,10 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
       keeps it going.
     </p>
+    <p class="guided"><a href="/explain/metadax/">The guided version: nine questions, written for your experience &rarr;</a></p>
   </section>
 
-  <section class="block" aria-labelledby="research">
+  <section class="block run-block" aria-labelledby="research" style="--run: var(--run-metadax)">
     <h2 id="research">The research</h2>
     <p class="body">
       The benchmark &mdash; a person who can communicate to a master&rsquo;s on
@@ -167,9 +168,10 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <span aria-hidden="true">&middot;</span>
       <a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261019.md">The 18&ndash;19 October findings</a>
     </p>
+    <p class="guided"><a href="/explain/metadax/#03-built">The guided version: &ldquo;Built once already?&rdquo; &rarr;</a></p>
   </section>
 
-  <section class="block feature" aria-labelledby="cp">
+  <section class="block feature run-block" aria-labelledby="cp" style="--run: var(--run-cp)">
     <h2 id="cp">Constraint Protocol</h2>
     {/* #constraint-protocol is kept as a second landing point for the section. */}
     <span id="constraint-protocol" aria-hidden="true"></span>
@@ -193,13 +195,14 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
     <p class="out">
       <a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a>
     </p>
+    <p class="guided"><a href="/explain/constraint-protocol/">The guided version: five questions, written for your experience &rarr;</a></p>
   </section>
 
   <section class="block" aria-labelledby="coming">
     <h2 id="coming">Coming</h2>
     <ul class="rows">
-      <li class="row"><span class="name">Skippy DAX</span><span class="status">Coming soon</span></li>
-      <li class="row"><span class="name">Nova DAX</span><span class="status">Coming soon</span></li>
+      <li class="row run-row" style="--run: var(--run-skippydax)"><span class="name"><a href="/explain/skippy-dax/">Skippy DAX</a></span><span class="status">Coming soon</span><a class="row-guided" href="/explain/skippy-dax/">What it is, in four questions &rarr;</a></li>
+      <li class="row run-row" style="--run: var(--run-novadax)"><span class="name"><a href="/explain/nova-dax/">Nova DAX</a></span><span class="status">Coming soon</span><a class="row-guided" href="/explain/nova-dax/">What it is, in four questions &rarr;</a></li>
     </ul>
   </section>
 
@@ -464,4 +467,16 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
     .lede { padding-block: 3rem 3rem; }
     .row { grid-template-columns: 1fr; }
   }
+
+  /* 2026-10-23: the existing sections keep their words and order; each now carries
+     its run's colour (the map's colours) and one link to its guided version. */
+  .run-block { border-left: 3px solid var(--run); padding-left: 1.25rem; }
+  .run-block > h2 { color: var(--run); }
+  .guided { margin: 1.25rem 0 0; font-size: 0.9375rem; }
+  .guided a { color: var(--run); text-decoration: none; border-bottom: 1px solid color-mix(in oklch, var(--run) 45%, transparent); }
+  .guided a:hover, .guided a:focus-visible { border-bottom-color: var(--run); }
+  .run-row { border-left: 3px solid var(--run); padding-left: 0.85rem; flex-wrap: wrap; }
+  .run-row .name a { color: var(--run); text-decoration: none; }
+  .row-guided { flex-basis: 100%; font-size: 0.875rem; color: var(--muted); text-decoration: none; }
+  .row-guided:hover, .row-guided:focus-visible { color: var(--run); }
 </style>

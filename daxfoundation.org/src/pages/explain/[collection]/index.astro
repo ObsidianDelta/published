@@ -6,6 +6,7 @@
 // emitted here (no route collision).
 import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
+import RunHeader from "../../../components/explain/RunHeader.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
 
 const META: Record<string, { title: string; description: string }> = {
@@ -36,5 +37,6 @@ const chapters = await getCollectionChapters(collection as string);
 const m = META[collection as string];
 ---
 <Explain title={m.title} description={m.description}>
+  <RunHeader run={collection as any} chapters={chapters} />
   {chapters.map((c) => <Chapter chapter={c} total={chapters.length} />)}
 </Explain>
