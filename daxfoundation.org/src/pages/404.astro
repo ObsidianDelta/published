@@ -6,6 +6,18 @@ import Base from '../layouts/Base.astro';
     <h1>Not found.</h1>
     <p><a href="/">Return to DAX Foundation</a></p>
   </section>
+  {/* 2026-10-25: Facebook glues the next word of a post onto a link
+      (/metadax/samples/Made, /metadax/samples/stade-des-fractions/Il). Drop the
+      last path segment and go to the parent page, keeping the query (utm tags).
+      Each hop is one level up, so it always ends at a real page or the home page. */}
+  <script is:inline>
+    (function () {
+      var p = location.pathname.replace(/\/+$/, "");
+      if (!p || p === "/") return;
+      var parent = p.replace(/\/[^\/]*$/, "/");
+      if (parent && parent !== location.pathname) location.replace(parent + location.search + location.hash);
+    })();
+  </script>
 </Base>
 
 <style>
