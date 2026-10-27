@@ -57,12 +57,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Noticing you, right now, and deciding what you need. No helper can do that. A guide is whoever is a step ahead of you on this one thing. Everyone is a learner, and the lead swaps back and forth. Helpers make the guide stronger, but they are only as good as she is."
-    more: "Think of two climbers. One leads and finds the next hold. Later, the other one leads. Guides and learners work the same way. Your manager may be a step ahead of you on one thing, and you a step ahead of her on another. A helper can answer a question. Only a person can see that you are stuck and know what you need at this moment. That is called human delta value: bring out the best in the guide, so she brings out the best in the learner. As the helpers take on the routine thinking, the guide gets her attention back for harder problems. Everybody has to step up."
+    answer: "Noticing you, right now, and figuring out what you need. No helper can do that. Your guide is just whoever's a step ahead of you on this one thing. Everybody's a learner, and who leads keeps switching. The helpers make your guide stronger, but they're only as good as she is."
+    more: "Picture two rock climbers. One goes first and finds the next handhold. Later, the other one leads. Learning works the same way. Your boss might be a step ahead of you on one thing, and you might be a step ahead of her on another. A helper can answer a question. Only a person can see that you're stuck and know what you need right then. We call that human delta value: help the guide be at her best, so she can help the learner be at theirs. As the helpers take on the routine stuff, the guide gets her time back for the hard problems. Everybody gets to step up."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Every guide is free to do what only a person can do, for every learner, at a scale no school could afford before."
+    horizon: "Every guide is free to do the part only a person can do, for every learner, at a scale no school could ever afford."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

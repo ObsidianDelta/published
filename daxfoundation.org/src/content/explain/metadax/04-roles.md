@@ -55,12 +55,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "In a classroom, one teacher's attention is split across thirty people. Meta DAX turns that around: thirty helpers give their attention to one learner, at the moment she needs it. The teacher stays in the room. She sends the helpers and decides what they do, while she keeps teaching."
-    more: "Say you are stuck on something hard. Normally you wait your turn. Here, the teacher sends help to you while the lesson goes on. One helper explains it another way. One finds an example from your own life. One remembers what you tried last time. The helpers are not people, and they are not fixed. A different thirty shows up for fractions than for a first week at a bakery. Over a life, that is thousands. It works both ways: the teacher gets thirty helpers too. What is left for her is what no helper can do: notice you, now, and decide what you need. A helper is only as good as the person guiding it."
+    answer: "In a normal classroom, one teacher splits her attention between thirty students. Meta DAX flips that around: thirty helpers focus on one person, right when they need it. The teacher's still in charge. She sends the helpers and tells them what to do, while she keeps teaching."
+    more: "Say you're stuck on something tough. Usually you'd wait your turn. Here, the teacher sends help your way while the lesson keeps going. One helper explains it a different way. Another finds an example from your own life. Another remembers what you tried last time. The helpers aren't people, and they change depending on what you're learning: fractions get a different thirty than a first week on a new job. Over a lifetime, that adds up to thousands. It works for the teacher too: she gets thirty helpers of her own. That frees her up for the part only a person can do: noticing you, right now, and deciding what you need. The helpers are only as good as the person guiding them."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Thirty helpers for every learner and thirty for every teacher, thousands over a life. The teacher's attention goes to what only she can do."
+    horizon: "Thirty helpers for every learner, thirty for every teacher, and the teacher's attention back on what only a person can do."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

@@ -56,12 +56,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "What you reached, what you tried that went nowhere, who guided you, and what others reused from your work. Dead ends are kept as carefully as successes. The record is yours. It is private unless you choose to share it, and it goes where you go."
-    more: "A failed attempt is not something to hide. It shows what you learned and saves the next person the same detour. The record keeps the path you took, not only where you ended up. The system offers a way, never the way, so it must not steer you. You decide who reads the record: your guides, your companion, or everyone, if you publish part of it for good. Every entry is signed under the Constraint Protocol, so it can be trusted. When you need something another learner made, it is found by what it means, not by scrolling. This learning record is the seed of Nova DAX, your record for life."
+    answer: "What you've learned, what you tried that didn't work out, who helped you, and what other people picked up from your work. The dead ends get saved just as carefully as the wins. The record is yours. It stays private unless you decide to share it, and it goes wherever you go."
+    more: "A failed try isn't something to hide. It shows what you learned, and it saves the next person from taking the same wrong turn. The record keeps the whole path, not just where you ended up. The system gives you a way to go, never the only way, so it shouldn't push you around. You decide who gets to look: your guides, your companion, or everybody, if you choose to make part of it public for good. Every entry is signed, so it can be trusted. And when you need something another learner made, you find it by what it's about, not by endless scrolling. This learning record is the first piece of Nova DAX, your record for life."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Your record stays yours for life. It grows into Nova DAX, and a companion that is yours reads it with you."
+    horizon: "Your record stays yours for life. It grows into Nova DAX, and one day a companion of your own reads it with you."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

@@ -55,12 +55,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "No. A chat forgets you when you close it. A record keeps what you reached, what you tried and what you have not got yet. In a chat, the prompts are everything. In Meta DAX they are the small part. The record, the guide who edits the lesson, and the checks are the rest."
-    more: "A chat helps you today and starts from zero tomorrow. It does not know what you already know or what you tried last week. A record does, so next time you pick up where you left off. The person guiding you reads the record and sees what you need next. Think of the chat as the hands and ears, and the record as the body. Today the lessons are made from open prompts that the guide runs on her own account, with any AI model. That is on purpose: open, free, and not tied to any one company."
+    answer: "Nope. A chat forgets you the moment you close it. Meta DAX keeps a record: what you've got, what you tried, and what you haven't got yet. In a chat, the instructions you type are everything. Here they're the small part. The record, a real person checking the lesson, and the checks along the way are the rest."
+    more: "A chat helps you today, then starts from scratch tomorrow. It doesn't know what you already know or what you tried last week. A record does, so next time you pick up right where you left off. The person guiding you can look at it and see what you need next. Think of the chat as the hands and ears, and the record as the memory. Right now the lessons are made from free, open instructions that your guide can use with whatever AI they already have. We did that on purpose: open, free, and not stuck with any one company."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "The record remembers you, so the help gets better across your whole life instead of starting over every session."
+    horizon: "Because it remembers you, the help keeps getting better over your whole life instead of starting over every time."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

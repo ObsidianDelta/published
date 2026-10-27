@@ -60,12 +60,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Trust that can grow as fast as the power. Every cost is found and fixed. Everyone knows who answers for what. Every action is on the record, and every person holds a name of their own. That is what lets AI be used for everyone, and lets anyone learn anything, for life."
-    more: "Put the pieces together. The record means mistakes are found and fixed instead of repeated. Clear positions mean people, organisations and AIs can work together without confusion about who is responsible. Signed entries mean what agents do together, even what nobody planned, can be studied in the open. Your own identity opens universal learning to you. Underneath it all is the why: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
+    answer: "Trust that keeps up with how powerful AI gets. Problems get found and fixed. Everyone knows who's responsible for what. Everything's on the record, and every person has a name of their own. That's what lets AI be used for everyone, and lets anyone learn anything, for life."
+    more: "Put it all together. Keeping a record means mistakes get found and fixed instead of repeated. Knowing who's who means people, organisations and AIs can work together without arguing about who's responsible. Signed entries mean that what AI programs do together, even the stuff nobody planned, can be looked at in the open. And your own identity is your way into learning, for life. Under all of it is the why: help every person be their best, and protect life, people and minds and help them grow."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "AI that gets safer as it gets stronger, used for everyone, and learning open to every person for life."
+    horizon: "AI that gets safer as it gets stronger, used for everyone, with learning open to every person for life."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

@@ -51,9 +51,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Every citizen has a companion of their own: the hands and ears of the whole system, only as good as the person it belongs to."
-    answer: "A cognitive companion: an AI that works for you, provided by the Foundation to every citizen. It is an extension of you. Everything in its reach is under your control and is your responsibility. It is the hands and ears of the whole system, and the best way to use Meta DAX."
-    more: "Think of it as a second pair of hands that remembers what you are working on. It acts for you and only for you. It reads your record with you, does what you ask, and records what it did. Because it is an extension of you, what it does is on you, the same as what your own hands do. It is one of the two big things still to come. Meta DAX is the one being built now."
+    horizon: "Everyone has a companion of their own, and it's only as good as the person it belongs to."
+    answer: "An AI companion: a helper that works just for you. The plan is for the Foundation to give one to every citizen. It's like an extension of you: whatever it can do is under your control, and it's on you. It's the hands and ears of the whole system, and the best way to use Meta DAX."
+    more: "Think of it as a second pair of hands that remembers what you're working on. It acts for you, and only for you. It reads your record with you, does what you ask and writes down what it did. Because it's an extension of you, what it does is on you, the same as what your own hands do. It's one of the two big things still to come. Meta DAX is the part we're building now."
     how: ""
     proof_intro: ""
     under: ""

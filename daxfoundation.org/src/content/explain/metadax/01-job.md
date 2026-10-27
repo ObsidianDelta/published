@@ -57,12 +57,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Since the first university there have been three jobs: make knowledge, keep it and spread it. Two are done. A phone reaches almost everything anyone knows. The job left is getting knowledge into one particular person, one idea at a time, in her own situation, for her whole life. Meta DAX is a universal learning platform, for all of us, built to do that job."
-    more: "Think of a library. People wrote the books. Libraries kept them. Printing, then the internet, spread them. Now almost every book is on your phone. But knowledge in your pocket is not knowledge in your head. Someone still has to find the right next step for you today, and the next one tomorrow. The best teachers can do that for a few people. Here, the best guides check a lesson once, the system fits it to each learner, the learner keeps a record, and what is shared builds up for the next person. It starts the day you can communicate and runs for the rest of your life."
+    answer: "People have always had three jobs with knowledge: make it, keep it and share it. We've pretty much nailed two of them. Your phone can reach almost anything anyone knows. The job that's left is the hard one: getting the right idea into your head, one idea at a time, in a way that fits your life, for your whole life. That's what Meta DAX is for. It's a learning platform meant for everyone."
+    more: "Think about a library. People wrote the books, libraries kept them, and printing and then the internet spread them around. Now nearly every book is on your phone. But having it in your pocket isn't the same as having it in your head. Somebody still has to figure out your next step today, and the one after that tomorrow. Great teachers do that, but only for a few people at a time. Here's the idea: the best teachers check a lesson once, the system shapes it to fit each person, you keep a record of how you're doing, and whatever gets shared makes it easier for the next person. It starts the day you can communicate and keeps going for life."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "The job left gets done: the best teaching there has ever been reaches one person at a time, and it reaches every person."
+    horizon: "The best teaching there's ever been, reaching one person at a time, until it's reached everyone."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

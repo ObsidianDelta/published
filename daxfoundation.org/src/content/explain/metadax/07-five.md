@@ -58,12 +58,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Today it works on five minutes of internet a day. That is the hardest case, chosen on purpose, because everyone has to be able to use it. Where it goes is always on: help for each idea, at the moment you need it. Five minutes is the start, not the shape."
-    more: "Picture having five minutes online each day. In that time you get a lesson package made for you. You work through it offline. What you did goes back next time. That is what the packages do today. The test is simple: could someone who can communicate reach the level of a master's degree on five minutes a day? It only has to be possible. If it works there, it works on any connection. Where it goes, the companion is the way in, always on, with the helpers changing as you move from one idea to the next."
+    answer: "Right now it works with just five minutes of internet a day. That's the toughest situation, and we picked it on purpose, because everyone needs to be able to use this. Where it's headed is help that's always there, the moment you need it. Five minutes is where it starts, not where it ends."
+    more: "Imagine you only get five minutes online each day. In those five minutes you download a lesson made just for you. You work on it offline. Next time you connect, what you did gets sent back. That's how the lesson packages work today. The test we hold ourselves to: could someone who can communicate reach the level of a master's degree on five minutes a day? It only has to be possible. If it works there, it works anywhere. Down the road, your own companion is the way in, always on, with different helpers stepping in as you move from one idea to the next."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Always on, idea by idea, moment by moment. The helpers change as you go, and it works on any connection."
+    horizon: "Help that's always there, one idea at a time, on any connection."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

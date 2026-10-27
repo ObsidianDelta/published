@@ -51,9 +51,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "When agents act together in ways no one planned, it is studied in the open, and the record keeps it accountable."
-    answer: "Every interaction: who acted, on what, on whose authority, and how serious it would be if it went wrong. Every entry is signed."
-    more: "AIs working with each other are recorded as fully as AIs working with people. That matters, because when many agents interact, they can do things none of them was told to do. The record is how anyone can see that and answer for it. Entries are signed, so nobody can quietly change them later. And what one interaction teaches is shared, so knowledge and intelligence build up instead of disappearing. The severity scale is Appendix A of the Constraint post."
+    horizon: "When AI programs do something together that nobody planned, it's looked at out in the open, and the record keeps someone responsible."
+    answer: "Everything that happens: who did it, what they did it to, who said they could, and how bad it would be if it went wrong. Every entry is signed."
+    more: "When AIs work with each other, that gets written down just as carefully as when they work with people. That really matters, because when lots of AI programs work together, they can end up doing things nobody told any of them to do. The record lets anyone see that and hold someone responsible. Entries are signed, so nobody can sneak back and change them later. And what one interaction teaches gets shared, so knowledge keeps building up instead of getting lost. How serious each thing is gets rated on a scale, in Appendix A of the Constraint post."
     how: ""
     proof_intro: ""
     under: ""

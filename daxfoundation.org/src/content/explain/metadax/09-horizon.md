@@ -64,12 +64,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Anyone who can communicate can learn anything, for life, from the best guides there are, in their own language and situation, on any connection. That is what all of this is for: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
-    more: "Put the pieces together. Lessons fit to one person. A record that is yours for life (Nova DAX). A companion of your own (Skippy DAX). One rule that makes every step accountable (the Constraint Protocol), so trust grows as the system grows. Teachers get thirty helpers for every learner, and their attention back for what only they can do. What one person learns in the open gives the next person a better start. The system offers a way, never the way. Dead ends are kept. Today's packages test the hardest case so no one is left out of what comes after. This is the start, not the shape."
+    answer: "Anyone who can communicate can learn anything, for life, from the best teachers out there, in their own language and their own situation, on any internet connection. That's what all of this is for: to help every person be their best, and to protect life, people and minds and help them grow."
+    more: "Put it all together. Lessons shaped to fit one person. A record that's yours for life (Nova DAX). A companion of your own (Skippy DAX). One simple rule that keeps every step honest (the Constraint Protocol), so trust grows as it all grows. Teachers get thirty helpers for every learner, and their time back for what only they can do. What one person learns out in the open gives the next person a head start. It gives you a way, never the only way, and the dead ends are kept too. Today's lessons are built for the hardest case so nobody gets left out later. This is the beginning, not the finished picture."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Every person brought to their best, and life, humanity and consciousness preserved and expanded."
+    horizon: "Every person at their best, and life, people and minds protected and growing."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

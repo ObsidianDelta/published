@@ -50,8 +50,8 @@ editions:
     signed: false
     by: skippy
     horizon: "It starts with the first thing you learn and keeps growing with you for the rest of your life."
-    answer: "It starts today as your learning record: what you reached, what you tried and kept, who guided you, and what you reused. Dead ends are kept as carefully as successes. Where it goes: a record a companion reads with you, for life."
-    more: "Every time you learn something, the record grows. The attempts that went nowhere go in too, because they show the path you took and save you repeating it. The person guiding you can help you use it. Later, a companion reads it alongside you. It does not stop at the end of a course or a job. It goes wherever you go."
+    answer: "It starts today as your learning record: what you learned, what you tried, who helped you, and what you used from others. The dead ends are saved just as carefully as the wins. Where it's headed: a record that a companion of your own reads with you, for life."
+    more: "Every time you learn something, the record grows. The tries that didn't work go in too, because they show the path you took and save you from doing them again. Whoever's guiding you can help you make use of it. Later on, your own companion reads it with you. It doesn't stop when a course or a job ends. It goes wherever you go."
     how: ""
     proof_intro: ""
     under: ""

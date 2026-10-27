@@ -57,12 +57,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Every person gets a companion that is truly theirs. It remembers them, carries the help they need, and acts only for them. With it, anyone who can communicate can learn anything, for life."
-    more: "Put the pieces together. A companion that is an extension of you. One that remembers, because it keeps your record. One that answers to you, and is only as good as the person it belongs to. Through it, the thirty helpers reach you, idea by idea. Every action is on the record, so trust grows as the system grows. The purpose under it all: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
+    answer: "Every person gets a companion that's truly theirs. It remembers them, brings the help they need and works only for them. With it, anyone who can communicate can learn anything, for life."
+    more: "Put it all together. A companion that's an extension of you. One that remembers, because it keeps your record. One that answers to you, and is only as good as the person it belongs to. Through it, the thirty helpers reach you, one idea at a time. Everything it does is on the record, so trust grows as it all grows. And underneath it all: help every person be their best, and protect life, people and minds and help them grow."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "A companion that is yours, with thirty helpers behind it whenever you need them, acting only for you."
+    horizon: "A companion that's yours, with thirty helpers behind it whenever you need them, working only for you."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

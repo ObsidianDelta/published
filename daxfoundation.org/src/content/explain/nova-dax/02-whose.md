@@ -50,9 +50,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Your life's learning and memory in one record you own, read with you by your companion, on your terms."
-    answer: "Yours. You carry it with you. It is private unless you choose to publish part of it, and what you publish stays public for good. Your guides and your companion can read it only on your terms. Every entry is signed under the Constraint Protocol."
-    more: "Think of your passport and your diary in one. It goes wherever you go, from one school, job or country to the next. Nobody reads it unless you open it to them. A teacher or mentor sees what you share with them. Your companion reads it with you, on your say-so. Every entry carries a signature, so you, and anyone you show it to, can trust it has not been changed."
+    horizon: "Your life's learning and memories, in one record you own, on your terms."
+    answer: "Yours. You take it with you. It stays private unless you choose to share part of it, and anything you make public stays public for good. Your teachers and your companion can only read it on your terms. Every entry is signed, so nobody can fiddle with it."
+    more: "Think of it like your passport and your diary rolled into one. It goes with you from school to school, job to job, country to country. Nobody reads it unless you open it up to them. A teacher or mentor sees only what you share. Your companion reads it with you, when you say so. Every entry is signed, so you, and anyone you show it to, can trust that nothing's been changed."
     how: ""
     proof_intro: ""
     under: ""

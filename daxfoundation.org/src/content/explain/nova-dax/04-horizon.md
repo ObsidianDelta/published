@@ -57,12 +57,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Everything you learn and remember stays with you, for life, in one record you own. A companion that knows the whole record helps you go further. And because records can be shared by choice, each person starts further ahead than the last."
-    more: "Put the pieces together. The record holds what you reached and what you tried. It is yours: portable, private by default, signed. It starts now with learning in Meta DAX and grows from there. A companion reads it with you. The purpose under all of it: to bring out the best in every person, and to preserve and expand life, humanity and consciousness."
+    answer: "Everything you learn and remember stays with you, for life, in one record you own. A companion that knows your whole story can help you go further. And because people can choose to share their records, each person starts a little further ahead than the last."
+    more: "Put it all together. The record holds what you learned and what you tried. It's yours: it goes with you, it's private unless you say otherwise, and it's signed. It starts now with learning in Meta DAX and grows from there. A companion of your own reads it with you. And underneath it all: help every person be their best, and protect life, people and minds and help them grow."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "Your whole life's learning and memory as one record you own, read with you by a companion that is yours."
+    horizon: "Your whole life's learning and memories, in one record you own, with a companion that's yours."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

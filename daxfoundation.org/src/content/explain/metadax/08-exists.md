@@ -56,12 +56,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Experiments, not a product. There are five doors: for a parent, a tutor, a teacher, a trainer and a researcher. A stranger can use any of them without help. Everything is open source and free, and anything usable is published as soon as it is made."
-    more: "Think of a workshop with the doors open. Nothing in the design is set in stone. Pick the door that fits you and try what is there. The samples and showcases show what the platform makes from a few plain prompts. You can try a lesson package, send in a real situation for the next experiment, or support the Foundation. A companion of your own comes later. None of it is indicative of a final product. It is here so the work is useful to people from the very start."
+    answer: "Experiments, not a finished product. There are five ways in: one each for parents, tutors, teachers, trainers and researchers. Anyone can walk in and try one without help. It's all free and open, and anything useful gets shared as soon as it's made."
+    more: "Think of a workshop with the doors wide open. Nothing's set in stone. Pick the door that fits you and try what's there. The samples show what the platform can make from a few plain sentences. You can try a lesson package, tell us about a real situation for the next experiment, or support the work. A companion of your own comes later. None of this is what the final thing will look like. It's here so the work is useful to real people from day one."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "A community builds the how in the open. Everything usable is published as it is made, and the planned experiments show where it is headed."
+    horizon: "People build it together, out in the open, and everything useful gets shared as it's made."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

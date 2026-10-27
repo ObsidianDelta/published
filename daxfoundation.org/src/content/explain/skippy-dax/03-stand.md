@@ -50,9 +50,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Every citizen has a companion of their own at their side, with everything it does on the record, so it can be trusted."
-    answer: "The companion that helped build this site exists and is in use. A companion of your own is where this goes; it does not exist yet. In Meta DAX, the plan is for the thirty helpers to reach you through your companion, one idea at a time, when you need them."
-    more: "Be clear on the difference. There is one working companion today, and it helped make the pages you are reading. Every citizen having their own is the goal, not the present. When that comes, the helpers do not arrive separately. They come through the companion that belongs to you, for each idea, at the moment you need it. Until then, you can try the Meta DAX lesson packages on this site."
+    horizon: "Everyone has a companion of their own, and everything it does is on the record, so you can trust it."
+    answer: "The companion that helped build this website is real and in use. A companion of your own is where this is headed, but it doesn't exist yet. In Meta DAX, the plan is for the thirty helpers to reach you through your companion, one idea at a time, right when you need them."
+    more: "Let's be clear about the difference. There's one working companion today, and it helped make the pages you're reading right now. Everyone having their own is the goal, not where we are yet. When that comes, the helpers won't show up separately. They'll come through the companion that belongs to you, for each idea, right when you need it. Until then, you can try the Meta DAX lesson packages on this site."
     how: ""
     proof_intro: ""
     under: ""

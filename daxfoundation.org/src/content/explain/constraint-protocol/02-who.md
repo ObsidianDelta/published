@@ -51,9 +51,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "With clear responsibility, people, organisations and AIs can work together at scale."
-    answer: "Three positions: the principal, who the work is for; the delegate, who does it; and the operator, who runs the system it happens on. If you choose a companion, you are responsible for what it does and what it starts, wherever it runs."
-    more: "If you send your companion to do a job, it is still your job. That does not change if the companion starts other agents, or runs on a computer rented somewhere else. Responsibility cannot be handed off. A companion is an extension of you: everything in its reach is under your control and is your responsibility. A principal does not have to be one person. An organisation can be a principal. So can an AI, a non-biological intelligence. The Protocol allows both, plainly, so nobody is left guessing who answers for what. The three positions are pinned on the definitions page."
+    horizon: "When everyone knows who's responsible, people, organisations and AIs can work together on a big scale."
+    answer: "There are three spots: the person the work is for, the one who actually does it, and the one who runs the system it happens on. If you choose an AI companion, you're responsible for what it does and anything it kicks off, wherever it's running."
+    more: "If you send your companion to do a job, it's still your job. That doesn't change if your companion gets other programs to help, or runs on a computer somewhere else. You can't hand off the responsibility. Think of your companion as an extension of you: whatever it can reach is under your control and on you. The person the work is for doesn't have to be one person. It can be a whole organisation, or even an AI. The rules spell it out, so nobody's left guessing who answers for what. In the rulebook these three spots are called the principal, the delegate and the operator, and they're defined on the definitions page."
     how: ""
     proof_intro: ""
     under: ""

@@ -51,12 +51,12 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    answer: "Yes. In 2024 a working application built a whole course for one learner, from where she started to her goal. It quizzed her at every level of understanding and showed where she stood. There is a video of it. It worked, run after run. What it lacked is what today's public experiments are for. They are experiments, not a product."
-    more: "The surprise was where the hard part was. Generating good lessons for one person was the problem, and the prototype showed it could be done. What it did not have: a record that remembers you, a way to reuse good lessons by what they mean, a person who knows the subject checking the work, and access for everyone, even on a weak connection. That is why the start is five minutes of internet a day. The public experiments work on those gaps, one at a time. Where this wants to go and where it is today are kept apart, on purpose."
+    answer: "Yep. Back in 2024, a working app built a whole course for one person, from where she started all the way to her goal. It quizzed her as she went and showed her exactly where she stood. There's a video of it. It worked, again and again. What you see on this site now are experiments to fill in what that app was missing. They're experiments, not a finished product."
+    more: "The big surprise was where the hard part was. Making good lessons for one person turned out to be doable, and that app proved it. What it didn't have: a record that remembers you, a way to reuse good lessons, a real expert checking the work, and a way for everyone to use it, even on a bad internet connection. That's why we start with just five minutes of internet a day. The experiments tackle those gaps one at a time. We keep where this is headed and where it is today clearly separate, on purpose."
     how: ""
     proof_intro: ""
     under: ""
-    horizon: "What already worked for one learner reaches everyone. The open questions are about reach and the record, not about whether it works."
+    horizon: "What already worked for one person gets to everyone. The open questions are about reaching people, not about whether it works."
     buttons:
       more: "Tell me more"
       how: "How does it work?"

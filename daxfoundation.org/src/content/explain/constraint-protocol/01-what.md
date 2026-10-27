@@ -51,9 +51,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Trust grows with the power. Every cost is found and fixed, so the power can be used for everyone."
-    answer: "An accountability record. Every interaction, between people, companions, agents or records, is written down, has someone accountable for it, and is signed. It is not there to prevent harm. Things will go wrong. It is there so that when they do, we can find out how and stop it happening again."
-    more: "Every new power came with costs: electricity, X-rays, nuclear power. AI is a new kind of electricity, and its costs come with it. That is not a reason to refuse it. It is a reason to keep a record. You cannot fight a war, or any battle in it, without knowing what it is about and what is at stake. The record is how we know. Think of a ship's logbook. The ship still hits storms, but you can always go back and learn from what happened. Everything the Foundation builds runs under this one rule."
+    horizon: "Trust grows as the power grows. Problems get found and fixed, so the power can be used for everyone."
+    answer: "It's a record that keeps everyone honest. Every time people, AI companions or computer programs do something together, it gets written down, someone's responsible for it, and it's signed. It isn't there to stop every mistake. Things will go wrong. It's there so that when they do, we can figure out what happened and stop it happening again."
+    more: "Every big new power came with a cost: electricity, X-rays, nuclear power. AI is like a new kind of electricity, and it comes with its own costs. That's not a reason to say no to it. It's a reason to keep good records. Think of a ship's logbook. The ship still runs into storms, but you can always go back, see what happened and learn from it. Everything the Foundation builds follows this one rule."
     how: ""
     proof_intro: ""
     under: ""

@@ -51,9 +51,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "An identity that is yours for life, under your own name, that opens learning to you."
-    answer: "A name under daxfoundation.org that only you can use. The Foundation reserves the name. The keys behind it are made on your own device, and only you hold the secret. Your name opens Meta DAX to you: learning, for life."
-    more: "The name is a friendly label. Underneath it is the real identity: a document made when you join, turned into a fingerprint that never changes. The Foundation keeps the name so no one else can take it, but it never has your secret. That stays on your device. Being a DAX citizen entitles you to Meta DAX, universal learning. You hold three things: your identity, your record and, in time, your companion."
+    horizon: "An identity that's yours for life, under your own name, and it opens up learning for you."
+    answer: "A name on daxfoundation.org that only you can use. The Foundation holds the name for you. The secret key behind it is made on your own phone or computer, and only you have it. Your name is your way into Meta DAX: learning, for life."
+    more: "The name is just a friendly label. Underneath it is your real identity: something made when you join and turned into a kind of fingerprint that never changes. The Foundation holds your name so nobody else can grab it, but it never gets your secret key. That stays with you, on your device. Being a DAX citizen (that's what we call it) gets you Meta DAX, learning for everyone. Three things are yours: who you are, your record and, later on, a companion of your own."
     how: ""
     proof_intro: ""
     under: ""

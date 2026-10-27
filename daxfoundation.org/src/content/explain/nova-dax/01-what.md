@@ -50,9 +50,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Your whole life's learning and memory in one record you own, read with you by a companion that is yours."
-    answer: "Your whole record, from the time you can communicate to the end of your life: what you reached, what you tried, who guided you, what you reused, and your memories. It starts with the learning record in Meta DAX. It is one of the two big things still to come."
-    more: "Think of one book that is only about you. Everything you learn, every hard thing you try, every person who helps you goes in. It starts when you start learning, and it never goes away. Meta DAX, the one being built now, writes the first pages: your learning record. Nova DAX is the rest of the book, your whole life in one record you own. A companion of your own reads it with you."
+    horizon: "Everything you've learned and remembered, in one record you own, read with you by a companion that's yours."
+    answer: "Your whole record, from the time you can communicate until the end of your life: what you learned, what you tried, who helped you, what you used from others, and your memories. It starts with your learning record in Meta DAX. It's one of the two big things still to come."
+    more: "Think of one book that's all about you. Everything you learn, every tough thing you try and every person who helps you goes in it. It starts when you start learning, and it never gets thrown away. Meta DAX, the part we're building now, writes the first pages: your learning record. Nova DAX is the rest of the book, your whole life in one record that you own. Later, a companion of your own can read it with you."
     how: ""
     proof_intro: ""
     under: ""

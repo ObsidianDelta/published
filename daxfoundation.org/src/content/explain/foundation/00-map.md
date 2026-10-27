@@ -72,9 +72,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "Learning, your record, your companion and the one rule build on each other, for everyone, together, as one map. Each person who comes in starts further ahead than the last."
-    answer: "The DAX Foundation exists for one purpose: to preserve and expand life, humanity and consciousness. It is building three things. Meta DAX is for learning, and it is the one being built now. Nova DAX is your record. Skippy DAX is a companion of your own. All of it runs under one rule, the Constraint Protocol: everything is recorded, accountable and signed."
-    more: "Picture a map. The purpose, DAX, is in the middle. Around it are the three things being built. Meta DAX helps one person learn one thing at a time, for life. Nova DAX is the record of what you learned and did, and it belongs to you. Skippy DAX is a companion that works for you and answers to you. Every line on the map, between people, companions, agents and records, follows the same rule: it is written down, someone is accountable for it, and it is signed. You hold three things of your own: your identity, your record and your companion. The more you read, the more of the map you see."
+    horizon: "Learning, your record, your companion and that one rule all build on each other. Everyone who comes in starts a little further ahead than the person before."
+    answer: "The DAX Foundation is here for one big reason: to protect life, people and minds, and help them grow. We're working on three things. Meta DAX helps you learn, and it's the one we're building right now. Nova DAX is your own record of what you've learned. Skippy DAX is an AI companion of your own that works for you. And one simple rule sits under all of it, called the Constraint Protocol: whatever happens gets written down, someone owns it, and it's signed."
+    more: "Think of it like a map. The big reason sits in the middle, and the three things we're building sit around it. Meta DAX helps one person learn one thing at a time, for their whole life. Nova DAX is the record of what you learned and did, and it belongs to you. Skippy DAX is a companion that works for you and answers to you. Every connection on the map follows the same rule: write it down, know who's responsible, sign it. Three things are yours: who you are, your record and your companion. Keep reading and more of the map fills in."
     how: ""
     proof_intro: ""
     under: ""

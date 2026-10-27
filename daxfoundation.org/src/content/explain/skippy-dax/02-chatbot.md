@@ -50,9 +50,9 @@ editions:
     voice: "Nothing assumed, just the point"
     signed: false
     by: skippy
-    horizon: "A companion that reads your record with you and stays at your side, so the help keeps building, with you in charge."
-    answer: "No. A chat forgets you when it ends. A companion keeps a record and answers to one person: you. You and your companion are one unit, and the unit is only as strong as the person in it."
-    more: "A chatbot is a conversation. A companion is closer to a colleague who has worked with you for years and knows your history. It remembers because it has your record. It answers to you and nobody else. However good it gets, it cannot bring your best for you. Responsibility stays with you. The word is pinned on the definitions page, so it is not confused with companion chat apps."
+    horizon: "A companion that knows your story and sticks by you, so the help keeps building, with you in charge."
+    answer: "Nope. A chatbot forgets you when the chat ends. Your companion keeps a record and answers to one person: you. You and your companion are a team, and the team is only as strong as the person in it."
+    more: "A chatbot is just a conversation. A companion is more like a coworker who's been with you for years and knows your history. It remembers because it has your record. It answers to you and nobody else. But however good it gets, it can't be your best for you. You're still the one responsible. We define the word carefully on the definitions page, so nobody mixes it up with those AI companion chat apps."
     how: ""
     proof_intro: ""
     under: ""
