@@ -4,7 +4,7 @@ order: 3
 tense: live
 claim: record
 question:
-  en: "Where does it start?"
+  en: "How does it start?"
 canon:
   - "Today it starts as the learning record: reached, tried and kept, guided, reused, with the dead ends kept as carefully as the successes."
   - "Where it goes: a record a companion reads with you, for life."
@@ -46,7 +46,7 @@ editions:
       title: "இன்றே தொடங்குகிறது"
       caption: "முயன்றவை அனைத்தும், வைக்கப்பட்டவை அனைத்தும்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "It starts with the first thing you learn and keeps growing with you for the rest of your life."

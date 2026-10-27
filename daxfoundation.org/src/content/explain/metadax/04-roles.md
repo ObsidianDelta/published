@@ -4,7 +4,7 @@ order: 4
 tense: researched
 claim: roles
 question:
-  en: "Who gets the attention?"
+  en: "What if you had thirty helpers?"
 canon:
   - "In a classroom today, one teacher's attention is shared across the whole room; thirty is the picture."
   - "Meta DAX turns this around: thirty helpers give their attention to one learner, at the moment she needs it."
@@ -52,7 +52,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "தனிப்பாட ஆசிரியர்", "பெற்றோர்", "அம்மம்மா", "நூலகர்", "ஒரு பயிற்றுநர்", "மூத்த வழிகாட்டி", "உங்கள் வகுப்புத் தோழர்"]
       contexts: ["பின்னங்கள்", "ஓர் அறிவியல் செயற்திட்டம்", "வாசிக்கப் பழகுதல்", "வாகனம் ஓட்டும் பரீட்சை"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "In a normal classroom, one teacher splits her attention between thirty students. Meta DAX flips that around: thirty helpers focus on one person, right when they need it. The teacher's still in charge. She sends the helpers and tells them what to do, while she keeps teaching."

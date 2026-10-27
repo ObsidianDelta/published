@@ -4,7 +4,7 @@ order: 2
 tense: live
 claim: roles
 question:
-  en: "Who is accountable?"
+  en: "Who's responsible when something goes wrong?"
 canon:
   - "Three positions, pinned on the definitions page: the principal, the delegate and the operator."
   - "An organisation can be a principal; a non-biological intelligence can be a principal; the Protocol allows it without ambiguity."
@@ -48,12 +48,12 @@ editions:
       title: "மூன்று நிலைகள்"
       caption: "முதன்மையரே எப்போதும் பொறுப்பு"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "When everyone knows who's responsible, people, organisations and AIs can work together on a big scale."
     answer: "There are three spots: the person the work is for, the one who actually does it, and the one who runs the system it happens on. If you choose an AI companion, you're responsible for what it does and anything it kicks off, wherever it's running."
-    more: "If you send your companion to do a job, it's still your job. That doesn't change if your companion gets other programs to help, or runs on a computer somewhere else. You can't hand off the responsibility. Think of your companion as an extension of you: whatever it can reach is under your control and on you. The person the work is for doesn't have to be one person. It can be a whole organisation, or even an AI. The rules spell it out, so nobody's left guessing who answers for what. In the rulebook these three spots are called the principal, the delegate and the operator, and they're defined on the definitions page."
+    more: "If you send your companion to do a job, it's still your job. That doesn't change if your companion gets other programs to help, or runs on a computer somewhere else. You can't hand off the responsibility. Think of your companion as an extension of you: whatever it can reach is under your control and on you. The person the work is for doesn't have to be one person. It can be a whole organisation, or even an AI. The rules spell it out, so nobody's left guessing who answers for what. In the rulebook they're called the principal, the delegate and the operator."
     how: ""
     proof_intro: ""
     under: ""

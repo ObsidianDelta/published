@@ -70,3 +70,12 @@
 .chapter[lang="ta"] [data-horizon],
 .chapter[lang="ta"] .step-body { font-size: 1.15em; line-height: 1.85; }
 .chapter[lang="ta"] h2.question { line-height: 1.35; }
+
+/* 2026-10-26 (Jason): "Give it to me straight" (lens id kid) sees only the basic,
+   friendly links and notes; the detailed ones stay one tap away ("show all").
+   Every other experience, and a reader without scripts, sees the detail as before. */
+html .lens-basic { display: none; }
+html[data-lens="kid"] .lens-basic { display: revert; }
+html[data-lens="kid"] [data-lens-scope]:not(.show-all) .lens-detail,
+html[data-lens="kid"] .kicker .lens-detail { display: none; }
+html[data-lens="kid"] [data-lens-scope].show-all .lens-basic { display: none; }

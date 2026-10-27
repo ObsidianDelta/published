@@ -37,6 +37,12 @@ const here = (href: string) => path === href || (href !== "/" && path.startsWith
 // 2026-10-24 (Jason): a new visitor starts on "Give it to me straight" (lens id kid)
 const start = lenses.find((l) => l.id === "kid")!;
 ---
+{/* 2026-10-26: say the reader's experience on <html> before the page paints, so
+    "Give it to me straight" never flashes the detailed links first. */}
+<script is:inline>
+  try { document.documentElement.dataset.lens = localStorage.getItem("dax-explain-lens") || "kid"; }
+  catch (e) { document.documentElement.dataset.lens = "kid"; }
+</script>
 <header class="site-head">
   <div class="row">
     <a class="mark" href="/">DAX Foundation</a>
@@ -100,6 +106,7 @@ const start = lenses.find((l) => l.id === "kid")!;
     catch { return "kid"; }
   }
   function paint(lens: string): void {
+    document.documentElement.dataset.lens = lens;
     for (const c of chips()) {
       const on = c.dataset.lens === lens;
       c.setAttribute("aria-pressed", on ? "true" : "false");
@@ -135,6 +142,15 @@ const start = lenses.find((l) => l.id === "kid")!;
       settle();
       requestAnimationFrame(() => { settle(); requestAnimationFrame(settle); });
     }
+  }
+  // 2026-10-26: "show all the links" in the basic view opens the detail in place.
+  if (!(document as any).__daxShowAll) {
+    (document as any).__daxShowAll = true;
+    document.addEventListener("click", (e) => {
+      const b = (e.target as Element | null)?.closest<HTMLElement>("[data-show-all]");
+      if (!b) return;
+      b.closest<HTMLElement>("[data-lens-scope]")?.classList.add("show-all");
+    });
   }
   function boot(): void {
     const row = document.getElementById("lens-chips");

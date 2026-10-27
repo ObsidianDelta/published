@@ -4,7 +4,7 @@ order: 2
 tense: ahead
 claim: problem
 question:
-  en: "Is it a chatbot?"
+  en: "Isn't that just a chatbot?"
 canon:
   - "No. A chat forgets; a companion has a record and a person it answers to."
   - "A person and her companion are one unit, and the unit is only as strong as the human bringing her best, however good the companion gets."
@@ -47,12 +47,12 @@ editions:
       title: "ஒரு துணை, வெறும் உரையாடல் அல்ல"
       caption: "உங்கள் துணை உங்களை நினைவில் வைக்கிறது"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "A companion that knows your story and sticks by you, so the help keeps building, with you in charge."
     answer: "Nope. A chatbot forgets you when the chat ends. Your companion keeps a record and answers to one person: you. You and your companion are a team, and the team is only as strong as the person in it."
-    more: "A chatbot is just a conversation. A companion is more like a coworker who's been with you for years and knows your history. It remembers because it has your record. It answers to you and nobody else. But however good it gets, it can't be your best for you. You're still the one responsible. We define the word carefully on the definitions page, so nobody mixes it up with those AI companion chat apps."
+    more: "A chatbot is just a conversation. A companion is more like a coworker who's been with you for years and knows your history. It remembers because it has your record. It answers to you and nobody else. But however good it gets, it can't be your best for you. You're still the one responsible. And no, it's not one of those AI companion chat apps."
     how: ""
     proof_intro: ""
     under: ""

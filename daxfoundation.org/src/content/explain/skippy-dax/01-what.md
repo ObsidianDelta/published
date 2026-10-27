@@ -4,7 +4,7 @@ order: 1
 tense: ahead
 claim: foundation
 question:
-  en: "What is Skippy DAX?"
+  en: "What's Skippy DAX?"
 canon:
   - "A cognitive companion for every citizen, provided by the Foundation."
   - "A cognitive companion is a cognitive extension: everything in its domain is under the person's control and is the person's responsibility."
@@ -48,7 +48,7 @@ editions:
       title: "உங்கள் துணை"
       caption: "ஒவ்வொரு குடிமகனுக்கும் ஒரு துணை"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Everyone has a companion of their own, and it's only as good as the person it belongs to."

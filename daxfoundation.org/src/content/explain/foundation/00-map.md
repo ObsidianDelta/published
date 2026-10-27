@@ -69,7 +69,7 @@ editions:
       node_citizen: "ஒரு மனிதர்"
       line_citizen: "தன் பெயர், பதிவு, துணை ஆகியவற்றுக்கு உரியவர்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Learning, your record, your companion and that one rule all build on each other. Everyone who comes in starts a little further ahead than the person before."

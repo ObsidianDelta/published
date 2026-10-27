@@ -127,18 +127,19 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   <section class="home-w further" aria-labelledby="further-h">
     <h2 class="further-h" id="further-h">Go further</h2>
     <div class="further-grid">
-      <div class="fcol" style="--run: var(--run-metadax)">
+      <div class="fcol" style="--run: var(--run-metadax)" data-lens-scope>
         <h3>Meta DAX</h3>
         <p class="fl"><a href="/metadax/">The Meta DAX hub</a>. Pick your chair:</p>
         <ul class="chairs">
           {doors.map((d) => (<li><a href={d.href} title={d.text}>{d.kicker}</a></li>))}
         </ul>
-        <p class="fl">See it: the same recipe built each of these.</p>
-        <ul class="sc">
+        <p class="fl lens-detail">See it: the same recipe built each of these.</p>
+        <ul class="sc lens-detail">
           {showcases.map((x) => (<li><a href={x.href} rel={x.rel}>{x.name}</a> <span>{x.note}</span></li>))}
         </ul>
         <p class="fl"><a href="/metadax/samples/">Every showcase and sample &rarr;</a></p>
-        <p class="fl quiet">The first thing the recipe built, in September: the
+        <p class="fl lens-basic"><a href="/metadax/guide/">Make your first lesson (about ten minutes) &rarr;</a></p>
+        <p class="fl quiet lens-detail">The first thing the recipe built, in September: the
           <a href={newton.url} rel="noopener">Newton&rsquo;s laws run report</a> (report; simulated learner).</p>
         <p class="fl quiet">
           MetaDAX is free. It is built on paid compute. If it helped, a coffee on
@@ -146,14 +147,18 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
           <a href="https://github.com/sponsors/ObsidianDelta">GitHub sponsorship</a>
           keeps it going.
         </p>
+        <p class="fl quiet lens-basic"><button type="button" class="show-all-btn" data-show-all>Show all the links</button></p>
         {writingSeries.filter((x) => x.key === "for-parents").map((x) => (
-          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+          <p class="fl series lens-detail">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
         ))}
       </div>
 
-      <div class="fcol" style="--run: var(--run-metadax)">
+      <div class="fcol" style="--run: var(--run-metadax)" data-lens-scope>
         <h3 id="research">The research</h3>
-        <p class="body">
+        <p class="body lens-basic">The short version: we try small things first and share every result, including the ones that didn&rsquo;t work out.</p>
+        <p class="fl lens-basic"><a href="#03-built">In the run above: &ldquo;Has anyone built this before?&rdquo; &uarr;</a></p>
+        <p class="fl quiet lens-basic"><button type="button" class="show-all-btn" data-show-all>Show the details</button></p>
+        <p class="body lens-detail">
           The benchmark &mdash; a person who can communicate to a master&rsquo;s on
           five minutes a day &mdash; is audacious on purpose.
           <strong>We are developing this for all bandwidths!</strong> It rests on
@@ -162,23 +167,26 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
           never with a person, and several came back negative.
           The small ones are how we earn the big ones.
         </p>
-        <ul class="links">
+        <ul class="links lens-detail">
           <li><a href="/metadax/research/">The research, the measure and the experiments &rarr;</a></li>
           <li><a href={findings}>The X13 / X14 findings</a></li>
           <li><a href="https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261019.md">The 18&ndash;19 October findings</a></li>
-          <li><a href="#03-built">In the run above: &ldquo;Built once already?&rdquo; &uarr;</a></li>
+          <li><a href="#03-built">In the run above: &ldquo;Has anyone built this before?&rdquo; &uarr;</a></li>
         </ul>
         {writingSeries.filter((x) => x.key === "results").map((x) => (
-          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+          <p class="fl series lens-detail">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
         ))}
       </div>
 
-      <div class="fcol" style="--run: var(--run-cp)">
+      <div class="fcol" style="--run: var(--run-cp)" data-lens-scope>
         <h3 id="cp">Constraint Protocol</h3>
         {/* #constraint-protocol is kept as a second landing point for the section. */}
         <span id="constraint-protocol" aria-hidden="true"></span>
         <p class="big">The ground everything here stands on.</p>
-        <p class="body">
+        <p class="body lens-basic">One simple rule under everything: write it down, know who&rsquo;s responsible, and sign it.</p>
+        <p class="fl lens-basic"><a href="/explain/constraint-protocol/">The short, friendly version: five questions &rarr;</a></p>
+        <p class="fl quiet lens-basic"><button type="button" class="show-all-btn" data-show-all>Show the details</button></p>
+        <p class="body lens-detail">
           A way for parties &mdash; people, companies or software &mdash; to declare
           in advance what they will not do, and then be checked against it. It keeps
           a signed record nobody can quietly edit, keeps witnessing and judging
@@ -187,7 +195,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
           out compounds for everyone after them. A public working draft, run in full
           once so far.
         </p>
-        <ul class="links">
+        <ul class="links lens-detail">
           <li><a href="/explain/constraint-protocol/">The guided version: five questions, written for your experience &rarr;</a></li>
           <li><a href="/constraint-protocol/">The Constraint Protocol, honestly: where v0.5 stands &rarr;</a></li>
           <li><a href="/metadax/research/#constraint-protocol">What that looks like, scene by scene</a></li>
@@ -195,7 +203,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
           <li><a href="https://jeyanandan.com/blog/the-constraint/">Why it matters: The Constraint</a></li>
         </ul>
         {writingSeries.filter((x) => x.key === "accountability").map((x) => (
-          <p class="fl series">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
+          <p class="fl series lens-detail">Publications: <a href={`/writing/#series-${x.key}`}>{x.title}</a> &middot; {x.count} &middot; {x.blurb}</p>
         ))}
       </div>
     </div>
@@ -206,7 +214,7 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       About are in every footer; Writing is Publications in the menu). "The ask"
       moved, word for word, to the Meta DAX hub beside "Pick your chair". The note
       from the founder stays here, verbatim, id="founder" kept. */}
-  <section class="home-w block founder-block" aria-label="A note from the founder">
+  <section class="home-w block founder-block" aria-label="A note from the founder" data-lens-scope>
     <div class="note" id="founder">
       <p class="note-head">A note from the founder</p>
       <p>I have been at this since I was 23. I am now 49.</p>
@@ -218,13 +226,13 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
       <p class="sig">&mdash; <a href="https://jeyanandan.com">Jason Jeyanandan</a></p>
     </div>
     <p class="out"><a href="/about/">Who is behind this: about the Foundation &rarr;</a></p>
-    <p class="out reading">
+    <p class="out reading lens-detail">
       Newest outside a series:
       {writing.map((p, i) => (
         <>{i > 0 ? ', ' : ' '}<a href={`/writing/${p.slug}/`}>{p.title}</a></>
       ))}.
     </p>
-    <p class="out reading">
+    <p class="out reading lens-detail">
       The long-form work behind all of this, by Jason Jeyanandan, who set
       this Foundation up:
       <a href="https://jeyanandan.com/blog/meta-dax/">Meta DAX: An Introduction</a>,
@@ -273,6 +281,8 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   .sc span { color: var(--faint); font-size: 0.8rem; }
   .fcol a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
   .fcol a:hover, .fcol a:focus-visible { border-bottom-color: var(--run); }
+  .show-all-btn { all: unset; cursor: pointer; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 0.875rem; }
+  .show-all-btn:hover, .show-all-btn:focus-visible { color: var(--fg); border-bottom-color: var(--run); }
   .founder-block { padding-bottom: 1rem; }
 
   .lede { padding-block: 5rem 4.5rem; }

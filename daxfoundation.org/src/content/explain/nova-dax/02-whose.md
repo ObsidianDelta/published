@@ -4,7 +4,7 @@ order: 2
 tense: ahead
 claim: record
 question:
-  en: "Whose is it?"
+  en: "Who owns it?"
 canon:
   - "The person's: portable, private by default, published for good only if she chooses."
   - "Readable by her guides and her companion, on her terms."
@@ -47,7 +47,7 @@ editions:
       title: "உங்களிடமே இருக்கும்"
       caption: "தனிப்பட்டது, கூடவே வருவது, உங்கள் நிபந்தனைகளின்படி"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Your life's learning and memories, in one record you own, on your terms."

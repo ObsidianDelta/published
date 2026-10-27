@@ -4,7 +4,7 @@ order: 6
 tense: live
 claim: record
 question:
-  en: "What is in the record?"
+  en: "What does it keep track of?"
 canon:
   - "The record holds what was reached, what was tried and kept, who guided, what was reused; failures, dead ends and unexplored ground are kept as carefully as successes."
   - "A way, never the way: the system must not lead the learner."
@@ -53,7 +53,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "அம்மம்மா", "பெற்றோர்"]
       contexts: ["பின்னங்களைக் கற்றல்", "ஒரு கடினமான அறிவியல் கேள்வி"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "What you've learned, what you tried that didn't work out, who helped you, and what other people picked up from your work. The dead ends get saved just as carefully as the wins. The record is yours. It stays private unless you decide to share it, and it goes wherever you go."

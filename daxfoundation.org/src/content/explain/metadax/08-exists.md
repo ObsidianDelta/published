@@ -4,7 +4,7 @@ order: 8
 tense: live
 claim: exists
 question:
-  en: "What exists today?"
+  en: "What can I try right now?"
 canon:
   - "Experiments, not a product; nothing in the architecture is set in stone; everything usable is published as it is made."
   - "Five doors, one each for a parent, a tutor, a teacher, a trainer and a researcher, each usable by a stranger without help."
@@ -53,7 +53,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "பெற்றோர்", "தனிப்பாட ஆசிரியர்", "இதை அறிந்த ஒருவர்"]
       contexts: ["வீட்டில்", "பாடசாலையில்"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Experiments, not a finished product. There are five ways in: one each for parents, tutors, teachers, trainers and researchers. Anyone can walk in and try one without help. It's all free and open, and anything useful gets shared as soon as it's made."

@@ -4,7 +4,7 @@ order: 5
 tense: ahead
 claim: horizon
 question:
-  en: "What does this make possible?"
+  en: "Why does this matter?"
 canon:
   - "The why: to bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
   - "What it makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in her own context and language, on any bandwidth."
@@ -57,7 +57,7 @@ editions:
       title: "இது சாத்தியமாக்குவது"
       caption: "பாதுகாப்பாகும் உதவியாளர்கள், எல்லோருக்கும் கற்றல்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Trust that keeps up with how powerful AI gets. Problems get found and fixed. Everyone knows who's responsible for what. Everything's on the record, and every person has a name of their own. That's what lets AI be used for everyone, and lets anyone learn anything, for life."

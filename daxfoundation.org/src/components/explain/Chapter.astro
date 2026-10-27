@@ -27,7 +27,8 @@ const TENSE: Record<string, string> = {
   researched: "Researched",
   ahead: "Ahead",
 };
-const tenseLabel = TENSE[d.tense] + (d.tenseNote ? ` · ${d.tenseNote}` : "");
+const tenseLabel = TENSE[d.tense];
+const tenseNote = d.tenseNote ? ` · ${d.tenseNote}` : "";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 const counterNum = pad(d.order);
@@ -91,7 +92,9 @@ const chMix = total > 1 ? Math.round(45 * (1 - (chPos - 1) / (total - 1))) : 0;
 // (src/data/site-map.json, the same map the "Where this fits" strip reads), its
 // extra links ("also") and the chapter's own `deeper` list, de-duplicated.
 const chKey = `${(chapter as any).collection}/${d.id}`;
-const SM = siteMap as { pages: { path: string; chapter: string; list: boolean; label?: string }[]; also: Record<string, { path: string; label: string }[]> };
+const SM = siteMap as { pages: { path: string; chapter: string; list: boolean; label?: string }[]; also: Record<string, { path: string; label: string }[]>; straight?: Record<string, any> };
+// 2026-10-26 (Jason): "Give it to me straight" links only to basic, friendly pages.
+const straightLinks = ((SM.straight?.[chKey] ?? SM.straight?.default ?? []) as { path: string; label: string }[]);
 const labelOf = (p: string) => SM.pages.find((e) => e.path === p.split("#")[0])?.label ?? p;
 const deeperLinks = (() => {
   const seen = new Set<string>();
@@ -127,7 +130,7 @@ const deeperLinks = (() => {
   )}
 
   <div class="chapter-content">
-    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><i class="status">{tenseLabel}</i><b data-voice class:list={{ faint: empty(first.voice) }}>{first.voice}</b></p>
+    <p class="kicker"><span>{(chapter as any).collection === "foundation" ? "The map" : `Chapter ${chapNo} of ${total}`}</span><i class="status">{tenseLabel}{tenseNote && <span class="lens-detail">{tenseNote}</span>}</i><b data-voice class:list={{ faint: empty(first.voice) }}>{first.voice}</b></p>
     <h2 class="question">{d.question.en}</h2>
 
     {isVideo && <Video evidence={evidence} caption={evidence[0]?.caption.en ?? ""} />}
@@ -226,12 +229,30 @@ const deeperLinks = (() => {
       </div></div>
     </div>
 
-    {deeperLinks.length > 0 && (
-      <nav class="deeper" aria-label="Go deeper">
-        <p class="deeper-h">Go deeper</p>
-        <ul>
-          {deeperLinks.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
-        </ul>
+    {(deeperLinks.length > 0 || straightLinks.length > 0) && (
+      <nav class="deeper" aria-label="Go deeper" data-lens-scope>
+        {/* 2026-10-26: "Give it to me straight" sees two friendly links; the full
+            list is one tap away ("Show all the links") and every other experience
+            sees it as before. */}
+        {straightLinks.length > 0 && (
+          <div class="lens-basic">
+            <p class="deeper-h">Want to try it?</p>
+            <ul>
+              {straightLinks.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+            </ul>
+            {deeperLinks.length > 0 && (
+              <p class="more-detail">Want more detail? Pick &ldquo;Just curious&rdquo; at the top, or <button type="button" class="show-all-btn" data-show-all>show all the links</button>.</p>
+            )}
+          </div>
+        )}
+        {deeperLinks.length > 0 && (
+          <div class="lens-detail">
+            <p class="deeper-h">Go deeper</p>
+            <ul>
+              {deeperLinks.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+            </ul>
+          </div>
+        )}
       </nav>
     )}
 
@@ -708,6 +729,9 @@ const deeperLinks = (() => {
     color: var(--ink); text-decoration: none; font-size: var(--text-small-size);
   }
   .deeper a:hover, .deeper a:focus-visible { border-color: var(--chapter); }
+  .more-detail { margin: var(--space-3) 0 0; font-size: var(--text-small-size); color: var(--ink-faint); }
+  .show-all-btn { all: unset; cursor: pointer; color: var(--ink); border-bottom: 1px solid var(--line); }
+  .show-all-btn:hover, .show-all-btn:focus-visible { border-bottom-color: var(--chapter); }
 
   /* 2026-10-23 cleanup: chapters are separated by a hairline and air, not by a
      repeated masthead; the status sits in the kicker; anchors land below the

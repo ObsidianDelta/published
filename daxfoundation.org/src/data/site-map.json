@@ -355,5 +355,18 @@
         "label": "About the DAX Foundation"
       }
     ]
+  },
+  "straight": {
+    "_about": "2026-10-26 (Jason): in \"Give it to me straight\" the links under each question point only to basic, friendly pages. 'default' applies to every chapter without its own entry; the full Go deeper list stays one tap away.",
+    "default": [
+      {
+        "path": "/metadax/guide/",
+        "label": "Make your first lesson (about ten minutes)"
+      },
+      {
+        "path": "/metadax/samples/",
+        "label": "See some examples"
+      }
+    ]
   }
 }

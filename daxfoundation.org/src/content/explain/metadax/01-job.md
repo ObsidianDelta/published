@@ -5,7 +5,7 @@ tense: ahead
 tenseNote: "the identity line"
 claim: problem
 question:
-  en: "What is the job that is left?"
+  en: "What's still missing in how we learn?"
 canon:
   - "Since the first university there have been three jobs: make knowledge, keep it, spread it."
   - "Two of the three are done: a phone reaches almost everything; keeping and spreading are no longer the problem."
@@ -54,7 +54,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "ஒரு கணினி உதவியாளர்", "நீங்கள்"]
       contexts: ["வாசிக்கப் பழகுதல்", "கடினமான ஒரு கணக்கு"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "People have always had three jobs with knowledge: make it, keep it and share it. We've pretty much nailed two of them. Your phone can reach almost anything anyone knows. The job that's left is the hard one: getting the right idea into your head, one idea at a time, in a way that fits your life, for your whole life. That's what Meta DAX is for. It's a learning platform meant for everyone."

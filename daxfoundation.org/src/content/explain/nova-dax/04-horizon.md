@@ -4,7 +4,7 @@ order: 4
 tense: ahead
 claim: horizon
 question:
-  en: "What does this make possible?"
+  en: "Why does this matter?"
 canon:
   - "The why: to bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
   - "What it makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in her own context and language, on any bandwidth."
@@ -54,7 +54,7 @@ editions:
       title: "இது சாத்தியமாக்குவது"
       caption: "உங்கள் பதிவு, வாழ்நாள் முழுவதும்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Everything you learn and remember stays with you, for life, in one record you own. A companion that knows your whole story can help you go further. And because people can choose to share their records, each person starts a little further ahead than the last."

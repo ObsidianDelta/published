@@ -4,7 +4,7 @@ order: 5
 tense: live
 claim: guide
 question:
-  en: "What is left for the human?"
+  en: "So what's left for people to do?"
 canon:
   - "A guide is whoever is a step ahead on this one thing, right now; everyone is a learner; guides swap like climbing partners swapping the lead."
   - "What is left for the human is what no helper can do: noticing this learner at this juncture and deciding what she needs."
@@ -54,7 +54,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "அப்பப்பா", "பேரப்பிள்ளை"]
       contexts: ["வாசிக்கப் பழகுதல்", "கடினமான ஒரு கணக்கு"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Noticing you, right now, and figuring out what you need. No helper can do that. Your guide is just whoever's a step ahead of you on this one thing. Everybody's a learner, and who leads keeps switching. The helpers make your guide stronger, but they're only as good as she is."

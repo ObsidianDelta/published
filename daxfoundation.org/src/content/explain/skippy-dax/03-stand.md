@@ -4,7 +4,7 @@ order: 3
 tense: ahead
 claim: exists
 question:
-  en: "Where does it stand?"
+  en: "Can I get one yet?"
 canon:
   - "The companion that helped build this site exists; yours is where this goes."
   - "In Meta DAX the thirty helpers will be sent through the companion, per concept, per moment."
@@ -47,7 +47,7 @@ editions:
       title: "இப்போதைய நிலை"
       caption: "கதவு திறந்திருக்கிறது; உங்களுடையது பின்னர்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Everyone has a companion of their own, and everything it does is on the record, so you can trust it."

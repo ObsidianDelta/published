@@ -4,7 +4,7 @@ order: 4
 tense: ahead
 claim: exists
 question:
-  en: "Who am I in it?"
+  en: "Where do I fit in?"
 canon:
   - "A DAX citizen has a name under daxfoundation.org as a friendly name for an identity only she holds; the Foundation reserves the name, the keys are made on her own device, and only she has the secret."
   - "The hash of a genesis document becomes a permanent identity."
@@ -48,7 +48,7 @@ editions:
       title: "உங்கள் பெயர், உங்கள் ரகசியம்"
       caption: "அது உங்களிடம் மட்டுமே"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "An identity that's yours for life, under your own name, and it opens up learning for you."

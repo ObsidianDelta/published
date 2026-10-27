@@ -4,7 +4,7 @@ order: 1
 tense: ahead
 claim: record
 question:
-  en: "What is Nova DAX?"
+  en: "What's Nova DAX?"
 canon:
   - "A person's whole record, from the time she can communicate for the rest of her life: what she reached, tried, was guided through, reused; the memories."
   - "The learning record in Meta DAX is its seed."
@@ -47,7 +47,7 @@ editions:
       title: "உங்கள் முழுப் பதிவு"
       caption: "நீங்கள் கற்ற அனைத்தும், வாழ்நாள் முழுவதும்"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Everything you've learned and remembered, in one record you own, read with you by a companion that's yours."

@@ -4,7 +4,7 @@ order: 3
 tense: researched
 claim: record
 question:
-  en: "What does the record hold?"
+  en: "What gets written down?"
 canon:
   - "Every interaction: who acted, on what, under whose authority, and the severity if it was wrong (the severity table is Appendix A of the Constraint post)."
   - "Interactions between agents are covered as fully as interactions with people; emergent behaviour among interacting agents is one of the reasons the record exists."
@@ -48,12 +48,12 @@ editions:
       title: "பதிவு"
       caption: "ஒவ்வொரு செயலும் பதிவாகி, கையொப்பமிடப்படுகிறது"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "When AI programs do something together that nobody planned, it's looked at out in the open, and the record keeps someone responsible."
     answer: "Everything that happens: who did it, what they did it to, who said they could, and how bad it would be if it went wrong. Every entry is signed."
-    more: "When AIs work with each other, that gets written down just as carefully as when they work with people. That really matters, because when lots of AI programs work together, they can end up doing things nobody told any of them to do. The record lets anyone see that and hold someone responsible. Entries are signed, so nobody can sneak back and change them later. And what one interaction teaches gets shared, so knowledge keeps building up instead of getting lost. How serious each thing is gets rated on a scale, in Appendix A of the Constraint post."
+    more: "When AIs work with each other, that gets written down just as carefully as when they work with people. That really matters, because when lots of AI programs work together, they can end up doing things nobody told any of them to do. The record lets anyone see that and hold someone responsible. Entries are signed, so nobody can sneak back and change them later. And what one interaction teaches gets shared, so knowledge keeps building up instead of getting lost."
     how: ""
     proof_intro: ""
     under: ""

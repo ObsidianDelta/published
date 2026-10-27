@@ -4,7 +4,7 @@ order: 2
 tense: live
 claim: record
 question:
-  en: "Isn't this just a chat with an AI?"
+  en: "Isn't this just chatting with an AI?"
 canon:
   - "A chat forgets you when you close it; a record keeps what you reached, what you tried and what you did not."
   - "The chat is the hands and ears; the record is the body."
@@ -52,7 +52,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "அம்மம்மா", "பெற்றோர்"]
       contexts: ["புதிதாக ஒன்றைக் கற்றல்", "வீட்டில் ஒரு கடினமான கேள்வி"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Nope. A chat forgets you the moment you close it. Meta DAX keeps a record: what you've got, what you tried, and what you haven't got yet. In a chat, the instructions you type are everything. Here they're the small part. The record, a real person checking the lesson, and the checks along the way are the rest."

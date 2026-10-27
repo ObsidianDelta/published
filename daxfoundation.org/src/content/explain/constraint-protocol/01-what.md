@@ -4,7 +4,7 @@ order: 1
 tense: live
 claim: foundation
 question:
-  en: "What is the Constraint Protocol?"
+  en: "What's the Constraint Protocol?"
 canon:
   - "It is not about preventing harm; things will go wrong. It is an accountability record, so that when something does go wrong we can find out how and make sure it does not happen again."
   - "Every new power has come with costs: electricity, X-rays, nuclear power. AI is a new kind of electricity; the costs are the nature of the thing, not a reason to refuse it."
@@ -48,7 +48,7 @@ editions:
       title: "பதிவேடு"
       caption: "தவறுகளிலிருந்து கற்க, ஒவ்வொரு உதவியாளரும் பதிவு வைக்கிறது"
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     horizon: "Trust grows as the power grows. Problems get found and fixed, so the power can be used for everyone."

@@ -4,7 +4,7 @@ order: 9
 tense: ahead
 claim: horizon
 question:
-  en: "What does this make possible?"
+  en: "Why does all this matter?"
 canon:
   - "The why: to bring out the best in every human being; the purpose is the preservation and expansion of life, humanity and consciousness."
   - "What it makes possible: anyone who can communicate can learn anything, for life, from the best guides there are, in her own context and language, on any bandwidth."
@@ -61,7 +61,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "ஒரு கணினி உதவியாளர்", "நீங்கள்"]
       contexts: ["எதையும் கற்றல்", "உங்கள் வாழ்நாள் முழுவதும்"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Anyone who can communicate can learn anything, for life, from the best teachers out there, in their own language and their own situation, on any internet connection. That's what all of this is for: to help every person be their best, and to protect life, people and minds and help them grow."

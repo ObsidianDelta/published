@@ -5,7 +5,7 @@ tense: solved
 tenseNote: "2024"
 claim: proof
 question:
-  en: "Built once already?"
+  en: "Has anyone built this before?"
 canon:
   - "In 2024 a working application generated an entire individualized curriculum from first communication to the learner's goal, quizzed through Bloom's levels and said where the learner stood; the video is the proof."
   - "It was self-evident, simulation after simulation: generating was the problem, not keeping or spreading."
@@ -48,7 +48,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "அப்பப்பா", "பெற்றோர்"]
       contexts: ["பின்னங்களைக் கற்றல்", "ஒரு கடினமான கேள்வி"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Yep. Back in 2024, a working app built a whole course for one person, from where she started all the way to her goal. It quizzed her as she went and showed her exactly where she stood. There's a video of it. It worked, again and again. What you see on this site now are experiments to fill in what that app was missing. They're experiments, not a finished product."

@@ -4,7 +4,7 @@ order: 7
 tense: researched
 claim: five
 question:
-  en: "Five minutes a day, or always on?"
+  en: "What if you only get five minutes online a day?"
 canon:
   - "Today: a package made for five minutes of connectivity a day, on purpose the hardest start, because everyone must have access; we build for all bandwidths."
   - "Where it goes: always-on, per concept, per moment, with the companion as the primary interface and the helpers changing with the moment."
@@ -55,7 +55,7 @@ editions:
       roles: ["ஓர் ஆசிரியர்", "இதை அறிந்த ஒருவர்", "அப்பப்பா", "பெற்றோர்"]
       contexts: ["ஐந்து நிமிட இணையம்", "இணையமின்றி வேலை செய்தல்"]
   kid:
-    voice: "Nothing assumed, just the point"
+    voice: "Plain and friendly"
     signed: false
     by: skippy
     answer: "Right now it works with just five minutes of internet a day. That's the toughest situation, and we picked it on purpose, because everyone needs to be able to use this. Where it's headed is help that's always there, the moment you need it. Five minutes is where it starts, not where it ends."
