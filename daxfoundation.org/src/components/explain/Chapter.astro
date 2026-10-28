@@ -238,7 +238,7 @@ const deeperLinks = (() => {
           <div class="lens-basic">
             <p class="deeper-h">Want to try it?</p>
             <ul>
-              {straightLinks.map((x) => <li><a href={x.href}>{x.label}</a></li>)}
+              {straightLinks.map((x) => <li><a href={x.path}>{x.label}</a></li>)}
             </ul>
             {deeperLinks.length > 0 && (
               <p class="more-detail">Want more detail? Pick &ldquo;Just curious&rdquo; at the top, or <button type="button" class="show-all-btn" data-show-all>show all the links</button>.</p>
