@@ -62,7 +62,7 @@ test('built chapter 04 carries all five depths and "Depth 1 of 5" without JS', (
 
 test('/explain/metadax/02-chat/ renders chapter 02, not chapter 01', () => {
   const html = read(join(dist, 'explain', 'metadax', '02-chat', 'index.html'));
-  assert.ok(html.includes('Isn&#39;t this just a chat with an AI?') || html.includes("Isn't this just a chat with an AI?"),
+  assert.ok(html.includes('Isn&#39;t this just chatting with an AI?') || html.includes("Isn't this just chatting with an AI?"),
     'chapter 02 question missing');
   assert.ok(!html.includes('The job AI leaves') && !/What is left for the human/i.test(html) ? true : true, 'sanity');
   // chapter 01's question must NOT appear on chapter 02's page.

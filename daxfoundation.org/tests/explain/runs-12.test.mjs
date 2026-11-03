@@ -20,16 +20,16 @@ const ORDER = ['kid', 'curious', 'parent', 'guide', 'manager', 'entrepreneur', '
 
 // The ten chapters and their questions, exactly as the ask gives them.
 const CHAPTERS = [
-  ['constraint-protocol', '01-what', 'What is the Constraint Protocol?'],
-  ['constraint-protocol', '02-who', 'Who is accountable?'],
-  ['constraint-protocol', '03-record', 'What does the record hold?'],
-  ['constraint-protocol', '04-identity', 'Who am I in it?'],
-  ['nova-dax', '01-what', 'What is Nova DAX?'],
-  ['nova-dax', '02-whose', 'Whose is it?'],
-  ['nova-dax', '03-start', 'Where does it start?'],
-  ['skippy-dax', '01-what', 'What is Skippy DAX?'],
-  ['skippy-dax', '02-chatbot', 'Is it a chatbot?'],
-  ['skippy-dax', '03-stand', 'Where does it stand?'],
+  ['constraint-protocol', '01-what', "What's the Constraint Protocol?"],
+  ['constraint-protocol', '02-who', "Who's responsible when something goes wrong?"],
+  ['constraint-protocol', '03-record', 'What gets written down?'],
+  ['constraint-protocol', '04-identity', 'Where do I fit in?'],
+  ['nova-dax', '01-what', "What's Nova DAX?"],
+  ['nova-dax', '02-whose', 'Who owns it?'],
+  ['nova-dax', '03-start', 'How does it start?'],
+  ['skippy-dax', '01-what', "What's Skippy DAX?"],
+  ['skippy-dax', '02-chatbot', "Isn't that just a chatbot?"],
+  ['skippy-dax', '03-stand', 'Can I get one yet?'],
 ];
 
 const COLLECTIONS = ['constraint-protocol', 'nova-dax', 'skippy-dax'];
