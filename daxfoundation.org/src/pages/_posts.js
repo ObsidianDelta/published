@@ -2,11 +2,21 @@
 //
 // /writing/ and each piece under it read this module, so they cannot disagree
 // about what is published. The shape is views/jeyanandan/src/pages/_posts.js,
-// cut down: no unlisted set, because nothing here is unlisted.
+// cut down: unlisted is a frontmatter flag only (see below).
 //
 // The leading underscore keeps this file out of the router.
 //
-//   draft: true   the piece does not build at all. No page, no URL, nothing.
+//   draft: true     the piece does not build at all. No page, no URL, nothing.
+//   unlisted: true  the piece builds and its URL serves in full, but it is on
+//                   no index: not /writing/, not the home page, not the feed,
+//                   not the sitemap. Its page carries a noindex robots tag.
+//
+// 2026-11-04: `unlisted` added, the shape of views/jeyanandan/src/pages/
+// _posts.js cut down to the frontmatter flag (no UNLISTED_SLUGS set). `posts`
+// below stays the one list every index reads, so leaving an unlisted piece out
+// of it keeps it off all of them at once; [slug].astro builds every non-draft
+// piece and asks isUnlisted() for the noindex tag. A /writing/ link to an
+// unlisted piece in another piece's `related` is dropped, like an unbuilt one.
 //
 // PUBLISHED AND UPDATED. `date` is first publication and never changes.
 // `updated` (optional, YYYY-MM-DD) is set by hand in the same commit as any
@@ -25,7 +35,10 @@ const modules = import.meta.glob('../posts/*.md', { eager: true });
 
 const newestFirst = (a, b) => new Date(b.date) - new Date(a.date);
 
-/** Every piece that builds, newest first. A draft is not a piece. */
+/** Unlisted: builds and serves, on no index, noindex for search engines. */
+export const isUnlisted = (frontmatter = {}) => frontmatter.unlisted === true;
+
+/** Every listed piece, newest first. A draft is not a piece; an unlisted one is not listed. */
 export const posts = Object.entries(modules)
   .map(([file, mod]) => {
     const slug = file.split('/').pop().replace(/\.md$/, '');
@@ -39,7 +52,7 @@ export const posts = Object.entries(modules)
       related: fm.related ?? [],
     };
   })
-  .filter((p) => !p.draft)
+  .filter((p) => !p.draft && !isUnlisted(p))
   .sort(newestFirst);
 
 export const formatDate = (value) =>

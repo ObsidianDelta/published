@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { posts, formatDate, historyUrl, SERIES, seriesOf } from '../_posts.js';
+import { posts, formatDate, historyUrl, SERIES, seriesOf, isUnlisted } from '../_posts.js';
 
 // One piece under /writing/. Same shape as views/jeyanandan/src/pages/blog/
 // [slug].astro: two dates (first published, never moves; updated, by hand, shown
@@ -25,6 +25,9 @@ const published = new Date(frontmatter.date);
 const revised = frontmatter.updated ? new Date(frontmatter.updated) : null;
 const showUpdated = revised && !Number.isNaN(revised.getTime()) && revised > published;
 const history = historyUrl(slug);
+// 2026-11-04: an unlisted piece builds and serves, but asks search engines to
+// keep it off their indexes too (see _posts.js).
+const noindex = isUnlisted(frontmatter);
 
 // Series
 const seriesKey = frontmatter.series || null;
@@ -99,6 +102,7 @@ const jsonLd = {
   <Fragment slot="head">
     <link rel="alternate" type="application/rss+xml" title="The DAX Foundation: Writing" href="https://daxfoundation.org/writing/feed.xml" />
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
   </Fragment>
 
   <article>
