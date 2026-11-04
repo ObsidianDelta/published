@@ -6,7 +6,7 @@ draft: false
 unlisted: true
 related:
   - url: /gift/
-    label: "What love sounds like (the gift)"
+    label: "Les deux cœurs · The Two Hearts (the gift)"
   - url: https://daxfoundation.org/metadax/research/#formerly-brunswicklab
     label: "DAX Foundation Research"
   - url: https://research.daxfoundation.org/
@@ -79,17 +79,17 @@ Today the DAX Foundation is incorporated. We are marking the day the way we mean
 
 ## First, a gift: what love sounds like
 
-The first thing the Foundation gives is about love. It is a page for anyone, in many languages, where you can discover what love sounds like, make your own, and share it.
+The first thing the Foundation gives is about love. It is called <em>Les deux cœurs</em>, The Two Hearts: a new language of love, where emotions become notes of love on a piano. It is for anyone, in French and English, and you can make your own and pass it on.
 
-<a class="gx-gift" href="/gift/"><strong>What love sounds like</strong><span>Pick an inspiration. Go from an emotion, to notes, to chords. Keep it, or share it.</span></a>
+<a class="gx-gift" href="/gift/"><strong>Les deux cœurs · The Two Hearts</strong><span>One heart calls, the other answers. Turn your emotions into notes, make your song, send it to someone you love.</span></a>
 
-It works like a small studio. You pick an inspiration. Then you go one step at a time: from an emotion, to the notes it suggests, to the chords that hold them. What comes out is yours. There is no account and nothing to install.
+It began with a piano piece, <em>Heartbeats</em>, composed by feel: each note chosen for the emotion it stirs. Two hearts are two notes: D calls, G answers. From there it works like a small studio. You pick your emotions, each one becomes a note, and the notes become your song. A small lab lets you play a note or a chord and say what it makes you feel. What comes out is yours. There is no account and nothing to install.
 
 Love comes first, and it means the whole range: family, friendship, belonging, care. After love come the things that grow beside it: creativity, ingenuity, curiosity, awe, hope, optimism, togetherness. We wanted the first gift to be about the best of us.
 
-What you make stays with you unless you choose to share it. If you do, it joins an open dataset of what love sounds like, free to anyone, anywhere. Short paid surveys at [research.daxfoundation.org](https://research.daxfoundation.org/) feed the same dataset.
+What you make stays on your device; nothing is sent anywhere. You share it by sending it yourself. The research behind it is building an open dataset of what love sounds like, free to anyone, anywhere: short paid surveys at [research.daxfoundation.org](https://research.daxfoundation.org/) feed it today.
 
-One rule for the music. Where a chord progression comes from a song or a tradition, the page names its source. It plays no copyrighted recordings, melodies or lyrics. Harmony is shared, and credit is given.
+One rule for the music. Every sound on the page is made in your browser from its own notes and chords. It plays no one else's recordings, melodies or lyrics, and when the work grows to chords from songs and traditions, each one will be credited to its source.
 
 ## An open call: Resonance UI
 
