@@ -179,6 +179,8 @@ The fourth thing is the lab itself: the research sampler we built to study nonve
 </div>
 <p class="gx-cap gx-wide">Each visitor gets a fresh room. <a id="gx-lab-start" href="https://re.ui.research.daxfoundation.org/reui-start">Open it on your own screens</a>, with a phone to drive it.</p>
 
+Your phone is only a remote control. Its camera is used for one thing: reading your hand's gestures and where you point, as 21 points per hand. No image, no video and no sound ever leaves the phone, and nothing shows your face. Voice is optional: if you speak a command, only the words arrive. Every phone has a “See the data” link that shows, live, each message it sends and receives, with a short guide to checking it yourself in your browser's own tools.
+
 It is purposely plain, because it is a laboratory. What matters is what passes from one person to another without words, not how the screen looks. The time-limited sampler links in the call-out above are for institutions; if yours needs something else, [message the founder on LinkedIn](https://www.linkedin.com/in/jasonjeyanandan).
 
 ## What today is
