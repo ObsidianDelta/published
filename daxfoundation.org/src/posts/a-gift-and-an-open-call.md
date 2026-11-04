@@ -112,7 +112,7 @@ The data will be an open dataset. Brunswick Lab, formerly brunswicklab.com, is n
 
 ## This is the call-out
 
-If you are at a university or college, write to us from your institution's address and we will email you a one-time sampler link. It opens the lab on your own screens for sixty minutes from the first time it is opened.
+If you are at a university or college, leave your institution's address below. You will be notified when we launch, and we will email you a one-time sampler link. It opens the lab on your own screens for sixty minutes from the first time it is opened.
 
 We are doing this so we can start sharing research data with you, in a collaborative effort, to be used globally. That means open research data. It does not mean newsletters.
 
@@ -127,9 +127,9 @@ We are doing this so we can start sharing research data with you, in a collabora
   <label>What interests you (optional)<textarea name="interest" maxlength="1000" placeholder="Gesture, gaze, prosody, shared displays, teacher education..."></textarea></label>
   <label class="gx-hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
   <label class="gx-consent"><input type="checkbox" name="consent" required><span>Participation is voluntary. What I share in this research is research data, published under an open licence.</span></label>
-  <button type="submit">Email me a sampler link</button>
+  <button type="submit">Notify me at launch</button>
   <p class="gx-status" id="gx-status" role="status" aria-live="polite"></p>
-  <p class="gx-small">The address must belong to a university or college; we check its domain against open lists of academic domains. It is used only to send your link. It is never published, and it joins no mailing list. If your college is not recognised, <a href="https://www.linkedin.com/in/jasonjeyanandan">message the founder on LinkedIn</a> and we will check it by hand.</p>
+  <p class="gx-small">The address must belong to a university or college; we check its domain against open lists of academic domains. It is used only to tell you when we launch and to send your link. It is never published, and it joins no mailing list. If your college is not recognised, <a href="https://www.linkedin.com/in/jasonjeyanandan">message the founder on LinkedIn</a> and we will check it by hand.</p>
 </form>
 
 ## We are experimenting with new ways of expressing cards
@@ -262,7 +262,7 @@ Which of the four would you try first?
       e.preventDefault();
       var status = document.getElementById('gx-status');
       var say = function (html) { status.innerHTML = html; };
-      var fallback = 'The request service is not open yet. <a href="' + LINKEDIN + '">Message the founder on LinkedIn</a> with your institutional address, and your sampler link will be emailed to it.';
+      var fallback = 'The request service is not open yet. <a href="' + LINKEDIN + '">Message the founder on LinkedIn</a> with your institutional address. You will be notified when we launch, and your sampler link will be emailed to it.';
       var email = form.email.value.trim();
       if (!form.email.checkValidity() || !email) { say('Please enter your institutional email address.'); form.email.focus(); return; }
       if (!form.consent.checked) { say('Please tick the consent box. Participation is voluntary.'); form.consent.focus(); return; }
@@ -279,8 +279,8 @@ Which of the four would you try first?
           var esc = email.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
           if (res.code === 200 && res.j && res.j.ok) {
             say(res.j.repeat
-              ? 'We already have a request from ' + esc + '. Your one-time sampler link will be emailed to that address.'
-              : 'Thank you. Your one-time sampler link will be emailed to ' + esc + '.');
+              ? 'We already have ' + esc + '. You will be notified there when we launch, with your one-time sampler link.'
+              : 'Thank you. You will be notified at ' + esc + ' when we launch, with your one-time sampler link.');
             form.reset();
           } else if (res.code === 422) {
             say('We could not recognise that address as a university or college. <a href="' + LINKEDIN + '">Message the founder on LinkedIn</a> and we will check it by hand.');
