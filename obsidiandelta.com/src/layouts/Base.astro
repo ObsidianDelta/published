@@ -72,7 +72,8 @@ const ogImage = new URL('/og.png', Astro.site);
 :root{
   --black:#000000; --ink:#0A0A0A; --shade:#1A1A1A; --steel:#222222;
   --ash:#888888; --bone:#E5E5E5; --white:#FAFAFA;
-  --orange:#E89339; --red:#C73E2D;
+  /* 2026-11-04 revision: the accent is gold (#c9a45a, the DAX opening cards); the token keeps its old name so every page follows. */
+  --gold:#c9a45a; --orange:var(--gold); --red:#C73E2D;
   --font-display:'Space Grotesk',system-ui,sans-serif;
   --font-body:'Inter',system-ui,sans-serif;
   --font-mono:'JetBrains Mono',ui-monospace,monospace;
@@ -104,7 +105,7 @@ a{color:inherit}
 .nav{display:flex;gap:24px}
 .nav a{font-family:var(--font-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ash);text-decoration:none;transition:color .2s}
 .nav a:hover,.nav a[aria-current]{color:var(--orange)}
-@media(max-width:559px){
+@media(max-width:799px){
   .strip .shell{flex-direction:column;align-items:flex-start;gap:10px}
   .brand span{white-space:nowrap}
   .nav{flex-wrap:wrap;gap:6px 16px}
@@ -144,6 +145,7 @@ h1{
       <a href="/blog/" aria-current={Astro.url.pathname.startsWith('/blog') && !Astro.url.pathname.startsWith('/blog/cognitive-companion') ? 'page' : undefined}>blog</a>
       <a href="/opportunities/" aria-current={Astro.url.pathname.startsWith('/opportunities') ? 'page' : undefined}>opportunities</a>
       <a href="/blog/cognitive-companion/" aria-current={Astro.url.pathname.startsWith('/blog/cognitive-companion') ? 'page' : undefined}>the cognitive companion</a>
+      <a href="https://daxfoundation.org/">DAX Foundation</a>
     </nav>
   </div></header>
 
@@ -159,6 +161,7 @@ h1{
     <span class="footer__right">
       <a href="/blog/">blog</a>
       <a href="/opportunities/">opportunities</a>
+      <a href="https://daxfoundation.org/">DAX Foundation</a>
       <a href="https://github.com/ObsidianDelta/published/tree/main/obsidiandelta.com">versioned, in public</a>
       <a href="https://github.com/ObsidianDelta/published">how this is published</a>
     </span>
