@@ -1,6 +1,7 @@
 ---
-title: "A gift, and an open call"
-description: "The DAX Foundation was incorporated on [INC-DATE], and two labs open with it: the Sound Lab, with a gift about what love sounds like, and the Gesture Lab, with an open call for research into nonverbal communication in learning."
+title: "Two labs open: a gift, and an open call"
+description: "The Sound Lab and the Gesture Lab open. The Sound Lab studies heartbeats and the language of love, and opens with a gift: what does love sound like? The Gesture Lab studies what passes between people without words, and opens with an open call to universities."
+image: opening/doors-open
 date: 2026-11-04
 draft: false
 unlisted: true
@@ -94,9 +95,9 @@ related:
   @media (max-width: 40rem) { .gx-labs { grid-template-columns: 1fr; } }
 </style>
 
-The DAX Foundation was incorporated on [INC-DATE] under the Canada Not-for-profit Corporations Act, corporation number [CORP-NO]. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
+Today the DAX Foundation opens two labs: the Sound Lab and the Gesture Lab.
 
-Two labs open with the Foundation.
+The Foundation was incorporated on [INC-DATE] under the Canada Not-for-profit Corporations Act, corporation number [CORP-NO]. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
 
 <div class="gx-labs">
   <a href="#the-sound-lab"><strong>The Sound Lab</strong><span>Heartbeats, and the language of love. It opens with a gift.</span></a>
@@ -231,7 +232,7 @@ The fourth thing is the lab itself: Re·UI, the research sampler we built to stu
 </div>
 <p class="gx-cap gx-wide">Each visitor gets a fresh room. <a id="gx-lab-start" href="https://re.ui.research.daxfoundation.org/reui-start">Open it on your own screens</a>, with a phone to drive it.</p>
 
-Your phone is only a remote control. It sends two things: 21 points for each hand, which trace the gesture and where you point, and, if you choose to speak a command, the words it recognised. Nothing else. Every phone has a “See the data” link that shows, live, each message it sends and receives, with a short guide to checking it yourself in your browser's own tools.
+Your phone is only a remote control. It sends two things: 21 points for each hand, which trace the gesture and where you point, and, if you choose to speak a command, the words it recognised. Nothing else. No image and no sound leave the phone. Every phone has a “See the data” link that shows, live, each message it sends and receives, with a short guide to checking it yourself in your browser's own tools.
 
 It is purposely plain, because it is a laboratory. What matters is what passes from one person to another without words, not how the screen looks. The time-limited sampler links in the call-out above are for institutions; if yours needs something else, [message the founder on LinkedIn](https://www.linkedin.com/in/jasonjeyanandan).
 
@@ -245,7 +246,7 @@ Both labs are open today, and both are early. Here is what is coming next.
 
 ## What today is
 
-A foundation, two labs, a gift and a question. Incorporation is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
+A foundation, two labs, a gift and a question. The certificate, number [CORP-NO], is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
 
 Which would you try first: the sound of love, or the lab?
 

@@ -104,6 +104,51 @@ const writing = posts.filter((p) => !p.series).slice(0, 2);
 const runChapters = await getCollectionChapters('metadax');
 
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
+
+// 2026-11-04 (Jason: "there's nothing happening on my homepage... show upcoming
+// and everything"). "Opening · Ouverture": the two labs and the call, right under
+// the DAX line, before the map. The DAX line stays first; the map and the run
+// follow unchanged. OPENED stays false until the certificate exists: the labels
+// say "Opening soon" and nothing here claims the Foundation is incorporated.
+// /home/claude/out/launch/fill-corp.sh --open flips it on launch day.
+// Privacy wording (launch rules): the phone is a remote control; 21 points per
+// hand and recognised words; no image and no sound leave the phone.
+const OPENED = false;
+const openState = OPENED
+  ? { en: 'Open now', fr: 'Ouvert' }
+  : { en: 'Opening soon', fr: 'Bientôt' };
+const CALL_OUT = '/writing/a-gift-and-an-open-call/#this-is-the-call-out';
+const labs = [
+  {
+    href: '/gift/', img: 'sound-lab',
+    en: 'The Sound Lab', fr: 'Le labo du son',
+    textEn: 'Heartbeats, and the language of love. Two hearts, two notes: D calls, G answers. It opens with a gift: make your own sound of love.',
+    textFr: 'Les battements de cœur et la langue de l’amour. Deux cœurs, deux notes : ré appelle, sol répond. Il s’ouvre sur un cadeau : crée ton propre son de l’amour.',
+    goEn: 'What does love sound like?', goFr: 'À quoi ressemble l’amour en musique ?',
+  },
+  {
+    href: 'https://re.ui.research.daxfoundation.org/reui-start', img: 'gesture-lab', ext: true,
+    en: 'The Gesture Lab', fr: 'Le labo des gestes',
+    textEn: 'What passes between people without words. Cards that move across screens. Your phone is the remote control: it sends 21 points per hand and the words it recognised. No image and no sound leave the phone.',
+    textFr: 'Ce qui passe entre les gens sans les mots. Des cartes qui voyagent d’un écran à l’autre. Ton téléphone est la télécommande : il envoie 21 points par main et les mots reconnus. Aucune image, aucun son ne quitte le téléphone.',
+    goEn: 'Step into the lab', goFr: 'Entrer dans le labo',
+  },
+  {
+    href: CALL_OUT, img: 'universities',
+    en: 'Universities: join the research', fr: 'Universités et collèges : participez',
+    textEn: 'Nonverbal, multimodal communication in learning. Open data, for everyone. We are looking for one partner site to be its home.',
+    textFr: 'La communication non verbale et multimodale en apprentissage. Des données ouvertes, pour tous. Nous cherchons un site partenaire pour l’accueillir.',
+    goEn: 'Answer the call', goFr: 'Répondre à l’appel',
+  },
+];
+const firstLook = [
+  { n: 1, w: 900, h: 506, en: 'The intro reel: the ideas fly in.', fr: 'L’intro : les idées arrivent.' },
+  { n: 2, w: 720, h: 520, en: 'Three screens, one wall.', fr: 'Trois écrans, un seul mur.' },
+  { n: 3, w: 900, h: 506, en: 'Three roles: guide, learner, observer.', fr: 'Trois rôles : guide, apprenant, observateur.' },
+  { n: 4, w: 900, h: 506, en: 'Pick up a card, drop it where it fits.', fr: 'Prends une carte, pose-la où elle va.' },
+  { n: 5, w: 900, h: 506, en: 'Standing up is part of the lesson.', fr: 'Se lever fait partie de la leçon.' },
+  { n: 6, w: 240, h: 520, en: 'The phone is a remote. See every message it sends.', fr: 'Le téléphone est une télécommande. Vois chaque message.' },
+];
 ---
 {/* 2026-11-04 (SEO launch): the home's own title and description for search
     results; the H1 below is unchanged. */}
@@ -114,6 +159,50 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   <section class="home-w home-lede" aria-labelledby="dax">
     <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
     <p class="to-founder"><a href="#founder">A note from the founder &darr;</a></p>
+  </section>
+
+  {/* Opening · Ouverture: the Sound Lab, the Gesture Lab and the call to
+      universities, bilingual, under the DAX line (see the note in the frontmatter). */}
+  <section class="home-w opening" id="opening" aria-labelledby="opening-h">
+    <p class="op-kicker"><span class="op-beat" aria-hidden="true"></span>Opening&nbsp;<span class="op-dot">·</span>&nbsp;<span lang="fr">Ouverture</span></p>
+    <h2 class="op-h" id="opening-h">Two labs and an open call.<span class="op-fr" lang="fr">Deux labos et un appel ouvert.</span></h2>
+    <p class="op-sub">{OPENED ? 'The doors are open. Come in.' : 'The doors open soon. You can already look inside.'}
+      <span class="op-fr" lang="fr">{OPENED ? 'Les portes sont ouvertes. Entrez.' : 'Les portes ouvrent bientôt. Vous pouvez déjà jeter un œil.'}</span></p>
+    <ul class="op-tiles">
+      {labs.map((l) => (
+        <li>
+          <a class="op-tile" href={l.href} rel={l.ext ? 'noopener' : undefined}>
+            <span class="op-img">
+              <img src={`/opening/${l.img}.webp`} srcset={`/opening/${l.img}-600.webp 600w, /opening/${l.img}.webp 1200w`}
+                sizes="(max-width: 40rem) 84vw, (max-width: 60rem) 40vw, 23rem"
+                width="1200" height="630" loading="lazy" decoding="async" alt="" />
+            </span>
+            <span class="op-body">
+              <span class="op-tag">{openState.en} · <span lang="fr">{openState.fr}</span></span>
+              <strong class="op-name">{l.en}</strong>
+              <span class="op-name-fr" lang="fr">{l.fr}</span>
+              <span class="op-text">{l.textEn}</span>
+              <span class="op-text op-fr" lang="fr">{l.textFr}</span>
+              <span class="op-go">{l.goEn} &rarr; <span class="op-fr-inline" lang="fr">{l.goFr}</span></span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <div class="op-look" aria-labelledby="op-look-h">
+      <p class="op-look-h" id="op-look-h">The Gesture Lab, a first look&nbsp;<span class="op-dot">·</span>&nbsp;<span lang="fr">Le labo des gestes, un premier regard</span></p>
+      <ol class="op-strip">
+        {firstLook.map((f) => (
+          <li class={f.w < 500 ? 'tall' : undefined}>
+            <figure>
+              <img src={`/opening/teaser-${f.n}.webp`} width={f.w} height={f.h} loading="lazy" decoding="async"
+                alt={`${f.en} ${f.fr}`} />
+              <figcaption><span class="op-n">{f.n}</span>{f.en}<span class="op-fr" lang="fr">{f.fr}</span></figcaption>
+            </figure>
+          </li>
+        ))}
+      </ol>
+    </div>
   </section>
 
   {/* the window: choose your experience, the live graph, the other three runs */}
@@ -289,6 +378,67 @@ const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments
   .show-all-btn { all: unset; cursor: pointer; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 0.875rem; }
   .show-all-btn:hover, .show-all-btn:focus-visible { color: var(--fg); border-bottom-color: var(--run); }
   .founder-block { padding-bottom: 1rem; }
+
+  /* Opening · Ouverture (2026-11-04): the labs' gold, the share cards' palette. */
+  .opening { --op-gold: #c9a45a; --op-gold-hi: #f1d9a0; --op-gold-line: #3a3222; padding-block: 1.25rem 2.5rem; }
+  .op-kicker { display: flex; align-items: center; gap: 0.55rem; margin: 0 0 0.6rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--op-gold); }
+  .op-dot { color: var(--faint); }
+  .op-beat { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--op-gold); box-shadow: 0 0 0 0 rgba(201, 164, 90, 0.55); animation: op-beat 0.909s ease-out infinite; }
+  @keyframes op-beat {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(201, 164, 90, 0.55); }
+    14% { transform: scale(1.35); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.2); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0.7rem rgba(201, 164, 90, 0); }
+  }
+  .opening h2.op-h { margin: 0; font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.2rem); font-weight: 400; letter-spacing: -0.01em; text-transform: none; line-height: 1.2; color: var(--fg); text-wrap: balance; }
+  .op-fr { display: block; color: var(--muted); }
+  .op-h .op-fr { font-size: 0.62em; margin-top: 0.3rem; color: var(--op-gold); opacity: 0.85; }
+  .op-sub { margin: 0.75rem 0 1.4rem; max-width: 40em; font-size: 0.9375rem; color: #cfcfcf; }
+  .op-sub .op-fr { font-size: 0.875rem; }
+  .op-tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .op-tiles li { min-width: 0; }
+  .op-tile { display: flex; flex-direction: column; height: 100%; border: 1px solid var(--op-gold-line); border-radius: 10px; overflow: hidden; background: linear-gradient(160deg, #17130b, #0d0d0d 65%); color: inherit; text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .op-tile:hover, .op-tile:focus-visible { border-color: #8a6d33; transform: translateY(-2px); }
+  .op-tile:focus-visible { outline: 2px solid var(--op-gold-hi); outline-offset: 2px; }
+  .op-img { display: block; aspect-ratio: 1200 / 630; background: #0d0b07; border-bottom: 1px solid var(--op-gold-line); }
+  .op-img img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .op-body { display: flex; flex-direction: column; gap: 0.25rem; padding: 0.95rem 1.05rem 1.1rem; flex: 1; }
+  .op-tag { align-self: flex-start; margin-bottom: 0.35rem; padding: 0.1rem 0.55rem; border: 1px solid var(--op-gold-line); border-radius: 999px; font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--op-gold); }
+  .op-name { font-size: 1.15rem; font-weight: 400; line-height: 1.25; color: var(--op-gold-hi); }
+  .op-name-fr { font-size: 0.875rem; color: var(--op-gold); opacity: 0.85; }
+  .op-text { margin-top: 0.45rem; font-size: 0.875rem; line-height: 1.5; color: #cfcfcf; }
+  .op-text.op-fr { margin-top: 0.3rem; font-size: 0.8125rem; color: var(--muted); }
+  .op-go { margin-top: auto; padding-top: 0.8rem; font-size: 0.875rem; color: var(--op-gold-hi); }
+  .op-fr-inline { color: var(--muted); }
+  .op-look { margin-top: 1.6rem; }
+  .op-look-h { margin: 0 0 0.6rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .op-strip { list-style: none; margin: 0; padding: 0 0 0.4rem; display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: thin; }
+  .op-strip li { flex: 0 0 13.5rem; scroll-snap-align: start; }
+  .op-strip li.tall { flex-basis: 4.2rem; }
+  .op-strip figure { margin: 0; }
+  .op-strip img { display: block; width: 100%; height: 7.6rem; object-fit: cover; object-position: top; border: 1px solid var(--line); border-radius: 6px; background: #000; }
+  .op-strip figcaption { margin-top: 0.45rem; font-size: 0.75rem; line-height: 1.4; color: #bdbdbd; }
+  .op-strip li.tall figcaption { font-size: 0.6875rem; }
+  .op-strip .op-fr { font-size: 0.6875rem; }
+  .op-n { display: inline-block; margin-right: 0.35rem; color: var(--op-gold); }
+  @media (max-width: 60rem) {
+    .op-tiles { grid-template-columns: 1fr; }
+    .op-tile { flex-direction: row; }
+    .op-img { flex: 0 0 40%; aspect-ratio: auto; border-bottom: 0; border-right: 1px solid var(--op-gold-line); }
+  }
+  /* Phone: the three tiles become one swipeable row, so the map is not pushed far down. */
+  @media (max-width: 40rem) {
+    .op-tiles { display: flex; gap: 0.75rem; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; padding-bottom: 0.4rem; scrollbar-width: thin; }
+    .op-tiles li { flex: 0 0 84%; scroll-snap-align: start; }
+    .op-tile { flex-direction: column; }
+    .op-img { flex: none; aspect-ratio: 1200 / 630; border-right: 0; border-bottom: 1px solid var(--op-gold-line); }
+    .op-strip li { flex-basis: 11rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .op-beat { animation: none; }
+    .op-tile, .op-tile:hover { transition: none; transform: none; }
+  }
 
   .lede { padding-block: 5rem 4.5rem; }
   h1 {

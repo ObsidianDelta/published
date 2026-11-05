@@ -2,9 +2,7 @@
   "_about": "Where every regular page on daxfoundation.org sits in the guided runs (2026-10-23). One source of truth for both link directions: the 'Where this fits' strip on a page (Base.astro) and the 'Go deeper' row on a chapter (Chapter.astro). tests/explain/site-cohesion.test.mjs fails the build if a built page is missing here or unlinked. A trailing * matches every page under that path (not listed in Go deeper; its index page is). 'also' adds extra Go deeper links to a chapter.",
   "exempt": [
     "/404.html",
-    "/metadax/play/scenes/demo.html",
-    "/gift/",
-    "/writing/a-gift-and-an-open-call/"
+    "/metadax/play/scenes/demo.html"
   ],
   "pages": [
     {
@@ -36,6 +34,18 @@
       "chapter": "foundation/00-map",
       "list": true,
       "label": "How this is paid for, and what we will measure"
+    },
+    {
+      "path": "/writing/a-gift-and-an-open-call/",
+      "chapter": "foundation/00-map",
+      "list": false,
+      "label": "Two labs open: the Sound Lab and the Gesture Lab"
+    },
+    {
+      "path": "/gift/",
+      "chapter": "foundation/00-map",
+      "list": false,
+      "label": "What does love sound like? (the Sound Lab)"
     },
     {
       "path": "/writing/twelve-scenes-01-the-nurses-walkthrough/",
