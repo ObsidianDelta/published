@@ -18,6 +18,12 @@
       "label": "About the DAX Foundation"
     },
     {
+      "path": "/preview/",
+      "chapter": "foundation/00-map",
+      "list": true,
+      "label": "Coming soon · Preview"
+    },
+    {
       "path": "/definitions/",
       "chapter": "foundation/00-map",
       "list": true,

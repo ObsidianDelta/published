@@ -1,0 +1,510 @@
+---
+import Base from '../layouts/Base.astro';
+
+// /preview/ -- "Coming soon · Preview" (2026-11-05, Jason, 14:17 ADT: "We're just
+// saying this is what's upcoming ... Say coming soon preview, on the DAX Foundation,
+// but give every single highlight of what we have and what it can do. So start
+// collecting names ... we have to wait for the incorporation document.")
+//
+// Rules that bind every word on this page:
+//   - NO DATES. Not a launch day, not a month. Jason rejected naming any date.
+//   - Never call the Foundation incorporated, a charity, registered; no tax receipts.
+//   - No AI vendor names, no personal names.
+//   - Never mention camera, video, streaming or audio capture: "your hands", "gestures";
+//     the phone sends hand points as numbers and the text of recognised words.
+//   - No endorsement claims (Oak National Academy's terms).
+//   - Only what is live or built. "In the works" says so.
+// One card per highlight: what it is, what it can do, "Try the preview" where a
+// public preview exists. The form posts to functions/api/preview-signup.js (same
+// origin, D1); nobody on the list is emailed until Jason says so.
+//
+// Comments in the markup below are {/* ... */}, never <!-- ... -->.
+
+type L = { href: string; en: string; fr: string; ext?: boolean };
+type Card = {
+  id: string; tag: 'try' | 'works' | 'invite';
+  en: string; fr: string; whatEn: string; whatFr: string;
+  can: [string, string][]; links?: L[];
+};
+
+const TAG = {
+  try: { en: 'Try the preview', fr: 'Essayer l’aperçu' },
+  works: { en: 'In the works', fr: 'En chantier' },
+  invite: { en: 'By invitation', fr: 'Sur invitation' },
+};
+
+const REUI = 'https://re.ui.research.daxfoundation.org/';
+
+const groups: { id: string; colour: string; en: string; fr: string; leadEn: string; leadFr: string; cards: Card[] }[] = [
+  {
+    id: 'labs', colour: '#a78bfa',
+    en: 'The labs', fr: 'Les labos',
+    leadEn: 'Research into what passes between people without words: hands, movement, sound.',
+    leadFr: 'Une recherche sur ce qui passe entre les gens sans les mots : les mains, le mouvement, le son.',
+    cards: [
+      {
+        id: 'reui', tag: 'try',
+        en: 'Re·UI: your hands and your voice as the classroom remote', fr: 'Re·UI : tes mains et ta voix comme télécommande de classe',
+        whatEn: 'A new way to handle information with no mouse. Cards sit on one, two or three screens, and your phone becomes the remote.',
+        whatFr: 'Une façon nouvelle de toucher l’information, sans souris. Des cartes sur un, deux ou trois écrans, et ton téléphone devient la télécommande.',
+        can: [
+          ['Twist your palm to move, pull to go in, push to back out. Grab a card and throw it to the next screen.', 'Tourne la paume pour te déplacer, tire pour entrer, pousse pour ressortir. Saisis une carte et lance-la vers l’écran d’à côté.'],
+          ['Only numbers leave the phone: 21 points per hand, and the text of the words it recognised. Your words become text on the phone itself.', 'Seuls des chiffres quittent le téléphone : 21 points par main, et le texte des mots reconnus. Tes mots deviennent du texte sur le téléphone même.'],
+          ['Voice is optional; mouse and keyboard work too. See every message the phone sends, live.', 'La voix est facultative ; la souris et le clavier marchent aussi. Vois chaque message envoyé, en direct.'],
+          ['Built for modest connections, in French and English, for every level from elementary school to university.', 'Pensé pour les connexions modestes, en français et en anglais, du primaire à l’université.'],
+        ],
+        links: [{ href: REUI, en: 'Try the preview', fr: 'Essayer l’aperçu', ext: true }],
+      },
+      {
+        id: 'gesture-lab', tag: 'try',
+        en: 'The Gesture Lab', fr: 'Le labo des gestes',
+        whatEn: 'Where Re·UI is tried and studied: three screens, one wall, and a lesson you stand up for.',
+        whatFr: 'Là où Re·UI est essayé et étudié : trois écrans, un seul mur, et une leçon qu’on vit debout.',
+        can: [
+          ['Rooms with a random code: screens and phones with the same code play together.', 'Des salles à code au hasard : les écrans et les téléphones qui ont le même code jouent ensemble.'],
+          ['Roles that rotate: guides and a learner, plus an observer. The challenge: explain an idea so someone else can live it.', 'Des rôles qui tournent : des guides et un apprenant, plus un observateur. Le défi : expliquer une idée pour qu’une autre personne la vive.'],
+          ['Movement is encouraged: the interface invites you to move a little more each time.', 'On encourage le mouvement : l’interface t’invite à bouger un peu plus à chaque fois.'],
+          ['A sound studio: hear what your gestures do.', 'Un studio des sons : écoute ce que font tes gestes.'],
+        ],
+        links: [
+          { href: REUI, en: 'Make a room', fr: 'Créer une salle', ext: true },
+          { href: REUI + 'reui-sound', en: 'The sound studio', fr: 'Le studio des sons', ext: true },
+        ],
+      },
+      {
+        id: 'research-rooms', tag: 'try',
+        en: 'Research rooms for colleges and universities', fr: 'Des salles de recherche pour les collèges et les universités',
+        whatEn: 'A room of your own for a study session, with a private research log only you can open.',
+        whatFr: 'Une salle à vous pour une séance d’étude, avec un journal de recherche privé que vous seul pouvez ouvrir.',
+        can: [
+          ['Run a 20-minute session with ready-made cards.', 'Lancez une séance de 20 minutes avec des cartes toutes prêtes.'],
+          ['Download the room’s log with its key (NDJSON) for your own analysis.', 'Téléchargez le journal de la salle avec sa clé (NDJSON) pour votre analyse.'],
+          ['What is logged is written down in plain words. No names, emails or ages are asked for.', 'Ce qui est noté est écrit en mots simples. On ne demande ni nom, ni courriel, ni âge.'],
+        ],
+        links: [{ href: REUI, en: 'Make a research room', fr: 'Créer une salle de recherche', ext: true }],
+      },
+      {
+        id: 'open-call', tag: 'invite',
+        en: 'An open call for research partners', fr: 'Un appel ouvert aux partenaires de recherche',
+        whatEn: 'Nonverbal, multimodal communication in learning, studied in the open. Open data, for everyone.',
+        whatFr: 'La communication non verbale et multimodale en apprentissage, étudiée au grand jour. Des données ouvertes, pour tous.',
+        can: [
+          ['Universities, colleges and schools anywhere: a session with your students, a room for your team, or research to do together.', 'Universités, collèges et écoles de partout : une séance avec vos élèves, une salle pour votre équipe, ou une recherche à faire ensemble.'],
+          ['We are looking for one partner site to be the research’s home.', 'Nous cherchons un site partenaire pour accueillir la recherche.'],
+        ],
+        links: [{ href: 'mailto:dax@daxfoundation.org', en: 'Write to us', fr: 'Écrivez-nous' }],
+      },
+      {
+        id: 'sound-lab', tag: 'try',
+        en: 'The Sound Lab: what does love sound like?', fr: 'Le labo du son : à quoi ressemble l’amour ?',
+        whatEn: 'Heartbeats, and the language of love. Two hearts, two notes: D calls, G answers. It opens with a gift: make your own sound of love.',
+        whatFr: 'Les battements de cœur et la langue de l’amour. Deux cœurs, deux notes : ré appelle, sol répond. Il s’ouvre sur un cadeau : crée ton propre son de l’amour.',
+        can: [
+          ['Design a small experiment, hear it, and share it.', 'Imagine une petite expérience, écoute-la, partage-la.'],
+          ['The studio makes its sounds on your device. Nothing is sent anywhere.', 'Le studio fait ses sons sur ton appareil. Rien n’est envoyé.'],
+        ],
+        links: [{ href: '/gift/', en: 'Try the preview', fr: 'Essayer l’aperçu' }],
+      },
+      {
+        id: 'research-pipeline', tag: 'invite',
+        en: 'DAX Research: how sound and love feel across cultures', fr: 'DAX Research : ce que le son et l’amour font ressentir, d’une culture à l’autre',
+        whatEn: 'Anonymous micro-surveys of about thirty seconds: hear a sound, say what you feel.',
+        whatFr: 'Des micro-sondages anonymes d’environ trente secondes : écoute un son, dis ce que tu ressens.',
+        can: [
+          ['The answers become a free, open dataset.', 'Les réponses deviennent un jeu de données libre et ouvert.'],
+          ['No name or platform ID is ever published.', 'Aucun nom ni identifiant n’est jamais publié.'],
+        ],
+      },
+    ],
+  },
+  {
+    id: 'learning', colour: 'var(--run-metadax, #3fc37f)',
+    en: 'Meta DAX: universal learning', fr: 'Meta DAX : l’apprentissage universel',
+    leadEn: 'Every human being. Any subject. Any domain. Free, forever. Today it is version 0.0.0.1, and it already works.',
+    leadFr: 'Chaque être humain. Tout sujet. Tout domaine. Gratuit, pour toujours. Aujourd’hui c’est la version 0.0.0.1, et ça marche déjà.',
+    cards: [
+      {
+        id: 'metadax', tag: 'try',
+        en: 'Any subject, built for one learner', fr: 'Tout sujet, bâti pour une seule personne',
+        whatEn: 'Say who the learner is, what they love and where they are stuck. Meta DAX builds the next session through what they love.',
+        whatFr: 'Dis qui apprend, ce qu’il aime et où il bloque. Meta DAX bâtit la prochaine séance à travers ce qu’il aime.',
+        can: [
+          ['Five chairs: a parent who homeschools, a tutor, a teacher with a class, a trainer at work, a researcher.', 'Cinq chaises : un parent qui fait l’école à la maison, un tuteur, un enseignant et sa classe, un formateur au travail, un chercheur.'],
+          ['Rough notes in; a plan for the next session and a report a parent can read come out.', 'Des notes en vrac à l’entrée ; un plan pour la prochaine séance et un rapport lisible par un parent à la sortie.'],
+        ],
+        links: [{ href: '/metadax/', en: 'Pick your chair', fr: 'Choisis ta chaise' }],
+      },
+      {
+        id: 'first-lesson', tag: 'try',
+        en: 'Your first lesson in about ten minutes', fr: 'Ta première leçon en dix minutes environ',
+        whatEn: 'A step-by-step guide to making a lesson package yourself, free.',
+        whatFr: 'Un guide pas à pas pour faire toi-même un paquet de leçon, gratuitement.',
+        can: [
+          ['Use any AI assistant you already have, or no AI at all.', 'Avec l’assistant d’IA que tu as déjà, ou sans IA du tout.'],
+          ['Pick up the next session from where the last one ended.', 'Reprends la séance suivante là où la dernière s’est arrêtée.'],
+        ],
+        links: [{ href: '/metadax/guide/', en: 'Try the preview', fr: 'Essayer l’aperçu' }],
+      },
+      {
+        id: 'play-print', tag: 'try',
+        en: 'Play it, or print it', fr: 'Joue-la, ou imprime-la',
+        whatEn: 'Open a lesson package in the player, or print it for the table.',
+        whatFr: 'Ouvre un paquet de leçon dans le lecteur, ou imprime-le pour la table.',
+        can: [
+          ['The learner plays one item at a time and is never shown an answer; the guide’s answer key stays separate.', 'L’apprenant joue un élément à la fois et ne voit jamais de réponse ; le corrigé du guide reste à part.'],
+          ['The game has no AI in it, and nothing is saved or sent.', 'Le jeu ne contient pas d’IA, et rien n’est gardé ni envoyé.'],
+        ],
+        links: [{ href: '/metadax/guide/play-and-print/', en: 'Try the preview', fr: 'Essayer l’aperçu' }],
+      },
+      {
+        id: 'library', tag: 'try',
+        en: 'The library: showcases and samples', fr: 'La bibliothèque : vitrines et exemples',
+        whatEn: 'Lessons the same recipe built, from fractions to grammar from your own book, in English and in French.',
+        whatFr: 'Des leçons bâties avec la même recette, des fractions à la grammaire tirée de ton propre livre, en anglais et en français.',
+        can: [
+          ['Each one is labelled for what it is, read by a person, and openly licensed (CC BY 4.0).', 'Chacune est étiquetée pour ce qu’elle est, lue par une personne, et sous licence ouverte (CC BY 4.0).'],
+          ['None is a final product: they show the commitment to be useful from the very start.', 'Aucune n’est un produit fini : elles montrent l’engagement d’être utile dès le départ.'],
+        ],
+        links: [
+          { href: '/metadax/samples/', en: 'See the samples', fr: 'Voir les exemples' },
+          { href: '/metadax/showcases/', en: 'The library', fr: 'La bibliothèque' },
+        ],
+      },
+      {
+        id: 'guides', tag: 'works',
+        en: 'Teachers stay in charge', fr: 'Les enseignants gardent la main',
+        whatEn: 'The cognition is handed back to the guide. A person reads every piece before it goes out.',
+        whatFr: 'La réflexion revient au guide. Une personne lit chaque pièce avant qu’elle ne sorte.',
+        can: [
+          ['Teachers review and approve the courses they put their name to, and own them.', 'Les enseignants revoient et approuvent les cours qu’ils signent, et ils en sont propriétaires.'],
+          ['Others can build on a course, with credit to the teacher who made it.', 'D’autres peuvent bâtir sur un cours, en citant l’enseignant qui l’a fait.'],
+        ],
+        links: [{ href: '/metadax/teacher/', en: 'For teachers', fr: 'Pour les enseignants' }],
+      },
+      {
+        id: 'record', tag: 'works',
+        en: 'A record the learner owns', fr: 'Un dossier qui appartient à l’apprenant',
+        whatEn: 'Not a platform that captures learners: a record that each learner owns for life. It starts with the learning record in Meta DAX.',
+        whatFr: 'Pas une plateforme qui capture les apprenants : un dossier que chaque apprenant possède pour la vie. Il commence par le dossier d’apprentissage dans Meta DAX.',
+        can: [
+          ['What you learned, what you tried and who helped you, in one place, yours.', 'Ce que tu as appris, ce que tu as essayé et qui t’a aidé, au même endroit, à toi.'],
+          ['What one guide certifies today, the next guide builds on.', 'Ce qu’un guide certifie aujourd’hui, le guide suivant s’en sert.'],
+        ],
+        links: [{ href: '/explain/nova-dax/', en: 'How it would work', fr: 'Comment ça marcherait' }],
+      },
+      {
+        id: 'curriculum', tag: 'works',
+        en: 'Built on open curriculum', fr: 'Bâti sur des programmes ouverts',
+        whatEn: 'Starter courses grounded on openly licensed national curriculum lessons, beginning with Oak National Academy (UK), credited under the Open Government Licence. Newton’s laws come first.',
+        whatFr: 'Des cours de départ ancrés dans des leçons de programmes nationaux sous licence ouverte, à commencer par Oak National Academy (R.-U.), citée selon l’Open Government Licence. Les lois de Newton d’abord.',
+        can: [
+          ['A teacher starts from real, published lessons instead of a blank page.', 'Un enseignant part de vraies leçons publiées plutôt que d’une page blanche.'],
+          ['Using openly licensed material does not mean its publisher endorses us.', 'Utiliser du contenu sous licence ouverte ne veut pas dire que son éditeur nous appuie.'],
+        ],
+      },
+      {
+        id: 'open-recipe', tag: 'try',
+        en: 'An open recipe', fr: 'Une recette ouverte',
+        whatEn: 'The prompts, schemas and graders that build every lesson are public, under open licences.',
+        whatFr: 'Les consignes, les schémas et les correcteurs qui bâtissent chaque leçon sont publics, sous licences ouvertes.',
+        can: [
+          ['Anyone can read them, run them on their own subscription, and improve them.', 'Tout le monde peut les lire, les lancer avec son propre abonnement, et les améliorer.'],
+        ],
+        links: [{ href: 'https://github.com/daxfoundation/metadax', en: 'The recipe on GitHub', fr: 'La recette sur GitHub', ext: true }],
+      },
+      {
+        id: 'research', tag: 'try',
+        en: 'The research, in the open', fr: 'La recherche, au grand jour',
+        whatEn: 'Universal learning is aspirational. If it were 1.0, Meta DAX is version 0.0.0.1.',
+        whatFr: 'L’apprentissage universel est une aspiration. Si c’était la version 1.0, Meta DAX en serait à la 0.0.0.1.',
+        can: [
+          ['A few dozen small tests: many simulated, some failed, every failure published.', 'Quelques dizaines de petits essais : beaucoup simulés, certains ratés, chaque échec publié.'],
+          ['Built for all bandwidths.', 'Pensé pour toutes les connexions.'],
+        ],
+        links: [
+          { href: '/metadax/epic/', en: 'Version 0.0.0.1', fr: 'La version 0.0.0.1' },
+          { href: '/metadax/research/', en: 'The experiments', fr: 'Les expériences' },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'window', colour: '#4d94ff',
+    en: 'Reading the Foundation', fr: 'Lire la Fondation',
+    leadEn: 'The way in: the whole site, written for the reader in front of it.',
+    leadFr: 'La porte d’entrée : tout le site, écrit pour la personne qui le lit.',
+    cards: [
+      {
+        id: 'experiences', tag: 'try',
+        en: 'Written for your experience', fr: 'Écrit pour ton expérience',
+        whatEn: 'Pick how you want to read: “Give it to me straight”, “Just curious”, a parent, a guide, someone who builds, funds or researches. There is a gentle edition in Tamil too.',
+        whatFr: 'Choisis comment tu veux lire : « Dis-le-moi simplement », « Juste curieux », un parent, un guide, quelqu’un qui bâtit, finance ou cherche. Il y a aussi une édition douce en tamoul.',
+        can: [
+          ['Switch any time, from wherever you are, without losing your place.', 'Change quand tu veux, d’où tu es, sans perdre ta place.'],
+        ],
+        links: [{ href: '/explain/', en: 'Start the explainer', fr: 'Commencer l’explication' }],
+      },
+      {
+        id: 'publications', tag: 'try',
+        en: 'Publications', fr: 'Publications',
+        whatEn: 'Short pieces, in series: for parents, the results as they come, and how accountability is kept.',
+        whatFr: 'Des textes courts, en séries : pour les parents, les résultats au fil de l’eau, et la façon de rendre des comptes.',
+        can: [
+          ['Everything is versioned in public, so you can see what changed and when.', 'Tout est versionné en public : on voit ce qui a changé.'],
+        ],
+        links: [{ href: '/writing/', en: 'Read', fr: 'Lire' }],
+      },
+    ],
+  },
+];
+
+const truths: [string, string][] = [
+  ['Free to try', 'Gratuit à essayer'],
+  ['Your hands, as numbers', 'Tes mains, en chiffres'],
+  ['French and English', 'Français et anglais'],
+  ['Built for modest connections', 'Pensé pour les connexions modestes'],
+  ['Open data, open recipes', 'Données ouvertes, recettes ouvertes'],
+  ['Read by a person before it goes out', 'Lu par une personne avant de sortir'],
+];
+
+const roles = [
+  { v: 'learner', en: 'Learner', fr: 'Apprenant·e' },
+  { v: 'parent', en: 'Parent', fr: 'Parent' },
+  { v: 'teacher', en: 'Teacher', fr: 'Enseignant·e' },
+  { v: 'school', en: 'School or university', fr: 'École ou université' },
+  { v: 'other', en: 'Other', fr: 'Autre' },
+];
+const total = groups.reduce((n, g) => n + g.cards.length, 0);
+---
+<Base
+  title="Coming soon · Preview"
+  description="What is coming from the DAX Foundation: Re·UI and the Gesture Lab, the Sound Lab, Meta DAX universal learning and more. Every highlight, what it can do, and a preview list to join. In English and French."
+  wide
+>
+  <Fragment slot="head">
+    {/* consent-first page: the analytics beacon stays off (tools/cf-beacon.mjs honours this) */}
+    <meta name="od-no-beacon" content="1" />
+  </Fragment>
+
+  <article class="pv">
+    <header class="pv-hero">
+      <p class="pv-kicker"><span class="pv-beat" aria-hidden="true"></span>Coming soon&nbsp;·&nbsp;Preview<span class="pv-sep" aria-hidden="true">/</span><span lang="fr">Bientôt&nbsp;·&nbsp;Aperçu</span></p>
+      <h1>Everything we are building, in one place.<span class="fr" lang="fr">Tout ce que nous construisons, au même endroit.</span></h1>
+      <p class="pv-sub">This is what is coming. Every highlight below exists today in some form, and much of it you can already try. Join the preview list and you will be among the first to know when the doors open.
+        <span class="fr" lang="fr">Voici ce qui s’en vient. Chaque élément ci-dessous existe déjà sous une forme ou une autre, et on peut en essayer une bonne partie. Inscris-toi sur la liste d’aperçu pour être parmi les premiers à savoir quand les portes s’ouvrent.</span></p>
+      <p class="pv-cta">
+        <a class="btn btn-main" href="#join">Join the preview list<span class="fr-in" lang="fr">S’inscrire</span></a>
+        <a class="btn" href="#labs">See the {total} highlights<span class="fr-in" lang="fr">Voir les {total} points forts</span></a>
+      </p>
+      <ul class="pv-truths" aria-label="What stays true · Ce qui reste vrai">
+        {truths.map(([en, fr]) => (<li>{en}<span class="fr" lang="fr">{fr}</span></li>))}
+      </ul>
+    </header>
+
+    <nav class="pv-toc" aria-label="On this page · Sur cette page">
+      {groups.map((g) => (<a href={`#${g.id}`} style={`--c:${g.colour}`}>{g.en}<span class="fr" lang="fr">{g.fr}</span></a>))}
+      <a href="#join" style="--c:#e8e8e8">The preview list<span class="fr" lang="fr">La liste d’aperçu</span></a>
+    </nav>
+
+    {groups.map((g) => (
+      <section class="pv-group" id={g.id} aria-labelledby={`${g.id}-h`} style={`--c:${g.colour}`}>
+        <h2 id={`${g.id}-h`}>{g.en}<span class="fr" lang="fr">{g.fr}</span></h2>
+        <p class="pv-lead">{g.leadEn}<span class="fr" lang="fr">{g.leadFr}</span></p>
+        <ul class="pv-cards">
+          {g.cards.map((c) => (
+            <li class="card" id={c.id}>
+              <p class={`chip chip-${c.tag}`}>{TAG[c.tag].en}<span aria-hidden="true"> · </span><span lang="fr">{TAG[c.tag].fr}</span></p>
+              <h3>{c.en}<span class="fr" lang="fr">{c.fr}</span></h3>
+              <p class="what">{c.whatEn}<span class="fr" lang="fr">{c.whatFr}</span></p>
+              <p class="can-h">What it can do<span aria-hidden="true"> · </span><span lang="fr">Ce que ça fait</span></p>
+              <ul class="can">
+                {c.can.map(([en, fr]) => (<li>{en}<span class="fr" lang="fr">{fr}</span></li>))}
+              </ul>
+              {c.links && c.links.length > 0 && (
+                <p class="go">
+                  {c.links.map((l) => (
+                    <a href={l.href} rel={l.ext ? 'noopener' : undefined}>{l.en} &rarr;<span class="fr-in" lang="fr">{l.fr}</span></a>
+                  ))}
+                </p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <section class="pv-join" id="join" aria-labelledby="join-h">
+      <h2 id="join-h">Join the preview list<span class="fr" lang="fr">Rejoindre la liste d’aperçu</span></h2>
+      <p class="pv-lead">No date yet. Leave your name and we will tell you when the preview opens. That is the only thing we will write to you about.
+        <span class="fr" lang="fr">Pas encore de date. Laisse ton nom et nous te dirons quand l’aperçu ouvre. C’est la seule chose dont nous t’écrirons.</span></p>
+
+      <form class="pv-form" method="post" action="/api/preview-signup" data-preview-form novalidate>
+        <div class="f">
+          <label for="pv-name">Name <span class="fr-in" lang="fr">Nom</span></label>
+          <input id="pv-name" name="name" type="text" required maxlength="100" autocomplete="name" />
+        </div>
+        <div class="f">
+          <label for="pv-email">Email <span class="fr-in" lang="fr">Courriel</span></label>
+          <input id="pv-email" name="email" type="email" required maxlength="254" autocomplete="email" inputmode="email" />
+        </div>
+        <fieldset class="f">
+          <legend>I am a… <span class="fr-in" lang="fr">Je suis…</span></legend>
+          <div class="roles">
+            {roles.map((r, i) => (
+              <label class="role"><input type="radio" name="role" value={r.v} required={i === 0} /> <span>{r.en}<span class="fr-in" lang="fr">{r.fr}</span></span></label>
+            ))}
+          </div>
+        </fieldset>
+        <div class="f">
+          <label for="pv-country">Country <span class="fr-in" lang="fr">Pays</span></label>
+          <input id="pv-country" name="country" type="text" required maxlength="60" autocomplete="country-name" />
+        </div>
+        <div class="f">
+          <label for="pv-message">Anything you would like to try? (optional) <span class="fr-in" lang="fr">Ce que tu aimerais essayer ? (facultatif)</span></label>
+          <textarea id="pv-message" name="message" rows="3" maxlength="1000"></textarea>
+        </div>
+        {/* a field people never see: bots fill it in */}
+        <div class="hp" aria-hidden="true">
+          <label for="pv-website">Leave this empty</label>
+          <input id="pv-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="t" value="" />
+        <input type="hidden" name="lang" value="en" />
+        <label class="consent">
+          <input type="checkbox" name="consent" value="yes" required />
+          <span>Yes, put me on the preview list. You may email me about the preview, and nothing else.
+            <span class="fr" lang="fr">Oui, inscrivez-moi sur la liste d’aperçu. Vous pouvez m’écrire au sujet de l’aperçu, et de rien d’autre.</span></span>
+        </label>
+        <p class="pv-err" data-err hidden role="alert"></p>
+        <button type="submit" class="btn btn-main">Join the list<span class="fr-in" lang="fr">M’inscrire</span></button>
+      </form>
+      <div class="pv-done" data-done hidden tabindex="-1" role="status">
+        <p><strong>You’re on the preview list. Thank you.</strong> We will write only about the preview.</p>
+        <p class="fr" lang="fr"><strong>Tu es sur la liste d’aperçu. Merci.</strong> Nous t’écrirons seulement au sujet de l’aperçu.</p>
+      </div>
+
+      <div class="pv-privacy" id="privacy">
+        <h3>Your privacy, plainly<span class="fr" lang="fr">Ta vie privée, simplement</span></h3>
+        <ul>
+          <li><strong>What we keep:</strong> your name, email, role, country, your message if you write one, and when you joined. Nothing else: we do not keep your IP address (a scrambled count, kept for an hour or two, stops spam), and this page has no trackers.
+            <span class="fr" lang="fr"><strong>Ce que nous gardons :</strong> ton nom, ton courriel, ton rôle, ton pays, ton message si tu en écris un, et la date d’inscription. Rien d’autre : nous ne gardons pas ton adresse IP (un compte brouillé, gardé une heure ou deux, bloque le pourriel), et cette page n’a aucun traceur.</span></li>
+          <li><strong>Why:</strong> to tell you when the preview opens, and to know who it is for. We email you only about the preview. The list is never sold or shared, and it is never public.
+            <span class="fr" lang="fr"><strong>Pourquoi :</strong> pour te dire quand l’aperçu ouvre, et savoir à qui il s’adresse. Nous t’écrivons seulement au sujet de l’aperçu. La liste n’est jamais vendue ni partagée, et elle n’est jamais publique.</span></li>
+          <li><strong>Where:</strong> in the Foundation’s own database, on Cloudflare’s servers.
+            <span class="fr" lang="fr"><strong>Où :</strong> dans la base de données de la Fondation, sur les serveurs de Cloudflare.</span></li>
+          <li><strong>To be removed:</strong> write to <a href="mailto:dax@daxfoundation.org">dax@daxfoundation.org</a> from the address you signed up with, and we delete your entry.
+            <span class="fr" lang="fr"><strong>Pour être retiré :</strong> écris à dax@daxfoundation.org depuis l’adresse inscrite, et nous effaçons ton inscription.</span></li>
+          <li><strong>Under 16?</strong> Please ask a parent or guardian to sign up for you. We do not knowingly collect children’s data.
+            <span class="fr" lang="fr"><strong>Moins de 16 ans ?</strong> Demande à un parent ou à un tuteur de t’inscrire. Nous ne recueillons pas sciemment de données d’enfants.</span></li>
+        </ul>
+      </div>
+    </section>
+  </article>
+
+  <script is:inline>
+    (function () {
+      var form = document.querySelector('[data-preview-form]');
+      if (!form || !window.fetch) return;
+      var done = document.querySelector('[data-done]');
+      var err = form.querySelector('[data-err]');
+      form.elements.t.value = String(Date.now());
+      try { if (/^fr\b/i.test(navigator.language || '')) form.elements.lang.value = 'fr'; } catch (e) {}
+      var NAMES = { name: 'your name · ton nom', email: 'a valid email · un courriel valide', role: 'who you are · qui tu es', country: 'your country · ton pays', consent: 'the consent box · la case de consentement' };
+      function show(msg) { err.textContent = msg; err.hidden = false; }
+      form.addEventListener('submit', function (ev) {
+        ev.preventDefault();
+        err.hidden = true;
+        var fd = new FormData(form);
+        var body = {};
+        fd.forEach(function (v, k) { body[k] = String(v); });
+        var missing = [];
+        if (!body.name || !body.name.trim()) missing.push('name');
+        if (!/^\S+@\S+\.\S+$/.test(body.email || '')) missing.push('email');
+        if (!body.role) missing.push('role');
+        if (!body.country || body.country.trim().length < 2) missing.push('country');
+        if (!body.consent) missing.push('consent');
+        if (missing.length) { show('Please add ' + missing.map(function (m) { return NAMES[m]; }).join(', ') + '.'); return; }
+        var btn = form.querySelector('button[type=submit]');
+        btn.disabled = true;
+        fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+          .then(function (r) { return r.json().catch(function () { return { ok: false }; }).then(function (j) { return { s: r.status, j: j }; }); })
+          .then(function (res) {
+            btn.disabled = false;
+            if (res.j && res.j.ok) { form.hidden = true; done.hidden = false; done.focus(); return; }
+            if (res.s === 429) return show('Too many tries from here. Please wait a little. · Trop d’essais d’ici. Attends un peu.');
+            if (res.s === 400 && res.j && res.j.errors) return show('Please check ' + res.j.errors.map(function (m) { return NAMES[m] || m; }).join(', ') + '.');
+            show('The list is not open yet. Please try again soon. · La liste n’est pas encore ouverte. Réessaie bientôt.');
+          })
+          .catch(function () { btn.disabled = false; show('No connection. Please try again. · Pas de connexion. Réessaie.'); });
+      });
+    })();
+  </script>
+</Base>
+
+<style>
+  .pv { --c: #a78bfa; padding-bottom: 1rem; }
+  .fr { display: block; color: var(--muted); font-size: 0.875em; font-weight: 400; margin-top: 0.15rem; }
+  .fr-in { color: var(--muted); font-weight: 400; margin-left: 0.4rem; font-size: 0.9em; }
+  .pv-hero { padding: 1.5rem 0 1rem; }
+  .pv-kicker { display: flex; align-items: center; flex-wrap: wrap; gap: 0.25rem 0.5rem; margin: 0 0 0.75rem; font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: #c9b8ff; }
+  .pv-sep { color: var(--faint); }
+  .pv-beat { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #a78bfa; box-shadow: 0 0 12px #a78bfa; animation: beat 1.6s ease-in-out infinite; }
+  @keyframes beat { 0%, 100% { transform: scale(1); opacity: 0.85; } 12% { transform: scale(1.35); opacity: 1; } 24% { transform: scale(1); } 36% { transform: scale(1.2); } 50% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) { .pv-beat { animation: none; } }
+  h1 { font-size: clamp(1.7rem, 6vw, 2.6rem); line-height: 1.15; margin: 0 0 1rem; letter-spacing: -0.01em; }
+  h1 .fr { font-size: 0.55em; margin-top: 0.5rem; line-height: 1.3; }
+  .pv-sub { margin: 0 0 1.25rem; max-width: 40rem; }
+  .pv-cta { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 0 0 1.5rem; }
+  .btn { display: inline-flex; align-items: baseline; flex-wrap: wrap; padding: 0.7rem 1.05rem; border-radius: 8px; border: 1px solid #333; color: var(--fg); text-decoration: none; font: inherit; font-size: 0.9375rem; background: #121212; cursor: pointer; min-height: 44px; }
+  .btn:hover, .btn:focus-visible { border-color: #a78bfa; }
+  .btn-main { background: linear-gradient(135deg, #5b3fd6, #7c3aed 60%, #4c1d95); border-color: #7c3aed; color: #fff; }
+  .btn-main .fr-in { color: #ddd3ff; }
+  .btn[disabled] { opacity: 0.6; cursor: progress; }
+  .pv-truths { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(9.25rem, 1fr)); gap: 0.5rem; }
+  .pv-truths li { border: 1px solid var(--line); border-radius: 8px; padding: 0.55rem 0.7rem; font-size: 0.875rem; background: #0f0f12; }
+  .pv-toc { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 0.5rem; position: sticky; top: 0; z-index: 2; padding: 0.6rem 0; background: linear-gradient(var(--bg) 80%, transparent); }
+  .pv-toc a { text-decoration: none; font-size: 0.8125rem; border: 1px solid color-mix(in oklab, var(--c) 45%, #222); border-radius: 999px; padding: 0.3rem 0.75rem; color: var(--fg); }
+  .pv-toc a .fr { display: none; }
+  .pv-toc a:hover, .pv-toc a:focus-visible { background: color-mix(in oklab, var(--c) 18%, transparent); }
+  .pv-group { padding-top: 2rem; scroll-margin-top: 3.5rem; }
+  .pv-group h2, .pv-join h2 { font-size: 1.45rem; margin: 0 0 0.4rem; border-left: 3px solid var(--c); padding-left: 0.7rem; }
+  .pv-lead { color: var(--fg); margin: 0 0 1.1rem; max-width: 40rem; }
+  .pv-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; grid-template-columns: 1fr; }
+  @media (min-width: 46rem) { .pv-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .card { min-width: 0; border: 1px solid color-mix(in oklab, var(--c) 30%, #1e1e1e); border-radius: 12px; padding: 1rem 1.05rem 1.1rem; background: linear-gradient(165deg, color-mix(in oklab, var(--c) 9%, #0d0d0d), #0d0d0d 60%); scroll-margin-top: 3.5rem; display: flex; flex-direction: column; }
+  .chip { align-self: flex-start; margin: 0 0 0.6rem; font-size: 0.75rem; letter-spacing: 0.04em; border-radius: 999px; padding: 0.15rem 0.6rem; border: 1px solid; }
+  .chip-try { color: #0a0a0a; background: var(--c); border-color: var(--c); }
+  .chip-try span[lang] { color: #1a1a1a; }
+  .chip-works { color: var(--fg); border-color: #3a3a3a; }
+  .chip-invite { color: var(--fg); border-color: color-mix(in oklab, var(--c) 60%, #333); border-style: dashed; }
+  .card h3 { font-size: 1.08rem; line-height: 1.3; margin: 0 0 0.5rem; }
+  .what { margin: 0 0 0.6rem; font-size: 0.97rem; }
+  .can-h { margin: 0 0 0.3rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+  .can { margin: 0 0 0.8rem; padding-left: 1.1rem; font-size: 0.93rem; }
+  .can li { margin-bottom: 0.4rem; }
+  .can li::marker { color: var(--c); }
+  .go { margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .go a { text-decoration: none; border-bottom: 1px solid var(--c); padding-bottom: 0.1rem; font-size: 0.93rem; min-height: 24px; }
+  .go a:hover, .go a:focus-visible { color: #fff; }
+  .pv-join { --c: #a78bfa; margin-top: 2.75rem; padding: 1.25rem 1.05rem 1.4rem; border: 1px solid #2e2648; border-radius: 14px; background: linear-gradient(170deg, #15112a, #0d0d0d 55%); scroll-margin-top: 3.5rem; }
+  .pv-form { display: grid; gap: 0.95rem; max-width: 34rem; }
+  .f { display: grid; gap: 0.3rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+  .f label, .f legend { font-size: 0.9375rem; font-weight: 600; padding: 0; }
+  input[type=text], input[type=email], textarea { width: 100%; font: inherit; font-size: 1rem; color: var(--fg); background: #0a0a0a; border: 1px solid #3a3a3a; border-radius: 8px; padding: 0.65rem 0.75rem; min-height: 44px; }
+  input:focus-visible, textarea:focus-visible { outline: 2px solid #a78bfa; outline-offset: 1px; border-color: #a78bfa; }
+  .roles { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.3rem; }
+  .role { display: inline-flex; align-items: center; gap: 0.45rem; border: 1px solid #3a3a3a; border-radius: 999px; padding: 0.45rem 0.8rem; font-weight: 400 !important; font-size: 0.9rem !important; cursor: pointer; min-height: 44px; }
+  .role:has(input:checked) { border-color: #a78bfa; background: #1d1636; }
+  .role input { accent-color: #a78bfa; width: 1.05rem; height: 1.05rem; margin: 0; }
+  .consent { display: flex; gap: 0.6rem; align-items: flex-start; font-size: 0.9375rem; cursor: pointer; }
+  .consent input { accent-color: #a78bfa; width: 1.25rem; height: 1.25rem; margin: 0.2rem 0 0; flex: none; }
+  .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+  .pv-err { margin: 0; color: #ffb4b4; border-left: 3px solid #f0595c; padding-left: 0.6rem; }
+  .pv-done { border: 1px solid #a78bfa; border-radius: 10px; padding: 0.9rem 1rem; background: #1d1636; max-width: 34rem; }
+  .pv-done p { margin: 0 0 0.4rem; }
+  .pv-privacy { margin-top: 1.5rem; border-top: 1px solid #2a2440; padding-top: 1rem; }
+  .pv-privacy h3 { font-size: 1rem; margin: 0 0 0.5rem; }
+  .pv-privacy ul { margin: 0; padding-left: 1.1rem; font-size: 0.9rem; }
+  .pv-privacy li { margin-bottom: 0.55rem; }
+  @media (max-width: 30rem) { .pv-join { padding-inline: 0.85rem; } .card { padding-inline: 0.9rem; } }
+</style>
