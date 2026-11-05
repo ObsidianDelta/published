@@ -1,6 +1,10 @@
 ---
 import Base from '../layouts/Base.astro';
 import { listedPosts, fullTitle, formatDate } from './_posts.js';
+import { ROLLING, FUNNY_BAG } from './_quotes.js';
+// 2026-11-05: the first two quote bands roll (Jason: "a rolling list of quotes, but the
+// second one should be funny ones"). The quotes live in ./_quotes.js; the funny ones are
+// the bag he keeps adding to. All of them are rendered; one shows at a time.
 
 // jeyanandan.com -- Jason's personal site, and only that.
 //
@@ -107,8 +111,12 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
     </div>
   </div></section>
 
-  <section class="quote-band"><div class="shell narrow">
-    <p class="quote"><a href="https://www.linkedin.com/in/jasonjeyanandan" title="Jason Jeyanandan on LinkedIn">"If you're not failing at something, you are not succeeding."</a></p>
+  <section class="quote-band"><div class="shell narrow roll" data-roll>
+    {ROLLING.map((q, i) => (
+      <p class="quote" hidden={i > 0}>{q.href
+        ? (q.html ? <a href={q.href} title={q.title} set:html={q.html} /> : <a href={q.href} title={q.title}>{q.text}</a>)
+        : (q.html ? <Fragment set:html={q.html} /> : q.text)}</p>
+    ))}
   </div></section>
 
   <section class="feature"><div class="shell narrow">
@@ -128,8 +136,10 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
     </div>
   </div></section>
 
-  <section class="quote-band"><div class="shell narrow">
-    <p class="quote"><em>Per aspera ad astra</em> — through hardship, to the stars. The hardship is the route.</p>
+  <section class="quote-band funny"><div class="shell narrow roll" data-roll>
+    {FUNNY_BAG.map((q, i) => (
+      <p class="quote" hidden={i > 0}>{q.text}</p>
+    ))}
   </div></section>
 
   <section><div class="shell">
@@ -216,9 +226,34 @@ import { listedPosts, fullTitle, formatDate } from './_posts.js';
   <section class="quote-band coda"><div class="shell narrow">
     <p class="quote">"I am a being that just happens to be human."</p>
   </div></section>
+
+  <script is:inline>
+    // Rolling quote bands: one quote shows; every 9 s (or on a tap) the next takes its place.
+    // Without JavaScript the first quote simply stays. Reduced motion: no fade, tap only.
+    (function () {
+      var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('[data-roll]').forEach(function (box) {
+        var qs = box.querySelectorAll('.quote');
+        if (qs.length < 2) return;
+        var i = 0;
+        function next() {
+          qs[i].hidden = true;
+          i = (i + 1) % qs.length;
+          qs[i].hidden = false;
+          if (!still) { qs[i].classList.remove('fade'); void qs[i].offsetWidth; qs[i].classList.add('fade'); }
+        }
+        box.addEventListener('click', function (e) { if (!e.target.closest('a')) next(); });
+        if (!still) setInterval(next, 9000);
+      });
+    })();
+  </script>
 </Base>
 
 <style is:global>
+/* ---------- rolling quote bands (2026-11-05) ---------- */
+.roll{cursor:default}
+.roll .quote.fade{animation:quotefade .7s ease both}
+@keyframes quotefade{from{opacity:0}to{opacity:1}}
 /* ---------- the hero: one name, one rule, one line ----------
    A faint warm glow sits above the name, the colour of the accent at a tenth
    of its strength: the only thing on the page that is not paper, ink or the
