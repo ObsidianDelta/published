@@ -1,466 +1,68 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Les deux cœurs · The Two Hearts — DAX Foundation</title>
-<meta name="description" content="Un cadeau de la DAX Foundation : un nouveau langage de l’amour, en notes de piano. A gift from the DAX Foundation: a new language of love, in piano notes.">
-<meta property="og:title" content="Les deux cœurs · The Two Hearts">
-<meta property="og:description" content="Un cadeau : découvre à quoi ressemble l’amour en musique. A gift: discover what love sounds like.">
-<meta property="og:url" content="https://daxfoundation.org/gift/">
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Nothing leaves the device without consent: only same-origin code runs, and the only allowed
+     outbound connection is the opt-in research endpoint (core/research.js ships it closed). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self' https://research.daxfoundation.org; media-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="od-no-beacon" content="consent-first: no analytics on this page">
+<title>What does love sound like?</title>
+<meta name="description" content="A research project of the DAX Foundation. Design a small experiment, hear what love sounds like, and share it.">
+<meta name="theme-color" content="#0d0b1d">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
 <meta property="og:type" content="website">
-<meta name="claude:viewport-fit-sides" content="cover">
-<style>
-  /* Layout: warm phone-first column. Bilingual (FR/EN). Portable CORE model (see script) so this same page can be re-emitted as plain HTML for daxfoundation.org and share the same data shapes. */
-  :root{
-    --bg:#fff4ef; --fg:#3a2230; --muted:#8a6b78; --card:#ffffff; --line:#f0d8d0;
-    --heart:#e4607a; --gold:#cf8f34; --heart-soft:#fde4ea; --gold-soft:#fae7cf;
-    --shadow:0 10px 30px rgba(120,40,70,.12);
-    --display:"Baloo 2","Trebuchet MS",system-ui,sans-serif;
-    --body:"Nunito","Segoe UI",system-ui,sans-serif;
-  }
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --bg:#241019; --fg:#f7eaef; --muted:#c7a0b0; --card:#341a26; --line:#4a2634;
-    --heart:#f37d95; --gold:#e7b45c; --heart-soft:#45202f; --gold-soft:#3c2d1c;
-    --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
-  }}
-  :root[data-theme="dark"]{
-    --bg:#241019; --fg:#f7eaef; --muted:#c7a0b0; --card:#341a26; --line:#4a2634;
-    --heart:#f37d95; --gold:#e7b45c; --heart-soft:#45202f; --gold-soft:#3c2d1c;
-    --shadow:0 12px 34px rgba(0,0,0,.45); color-scheme:dark;
-  }
-  *{box-sizing:border-box}
-  body{background:var(--bg);color:var(--fg);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:30rem;margin:0 auto;
-    padding-left:max(18px,env(safe-area-inset-left,0px));
-    padding-right:max(18px,env(safe-area-inset-right,0px));
-    padding-block:28px 44px;display:flex;flex-direction:column;gap:22px}
-  h1{font-family:var(--display);font-weight:700;font-size:2.1rem;line-height:1.05;margin:0;text-wrap:balance;letter-spacing:-.01em}
-  h2{font-family:var(--display);font-weight:600;font-size:1.2rem;margin:0;display:flex;align-items:center;gap:.5rem}
-  p{margin:0}
-  .topbar{display:flex;justify-content:flex-end}
-  .langtoggle{display:inline-flex;border:2px solid var(--line);border-radius:999px;overflow:hidden}
-  .langtoggle button{background:transparent;color:var(--fg);font-weight:800;padding:.35rem .8rem;font-size:.85rem;border:none;cursor:pointer}
-  .langtoggle button[aria-pressed="true"]{background:var(--heart);color:#fff}
-  .hello{color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase;font-size:.78rem}
-  .lede{font-size:1.06rem}
-  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:14px}
-  .card.locked{opacity:.55}
-  .sub{color:var(--muted);font-size:.98rem}
-  ol.how{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.5rem;font-size:1rem}
-  ol.how li::marker{color:var(--heart);font-weight:800}
-  button{font-family:var(--body);font-weight:800;cursor:pointer;border:none;color:inherit}
-  .video{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
-    background:linear-gradient(135deg,var(--heart-soft),var(--gold-soft));border:1px solid var(--line);border-radius:18px;padding:16px}
-  .video .pill{flex:none;width:54px;height:54px;border-radius:50%;background:var(--heart);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 6px 16px rgba(228,96,122,.45)}
-  .video .txt{min-width:0}
-  .video .txt b{font-family:var(--display);font-size:1.05rem}
-  .video .txt span{display:block;color:var(--muted);font-size:.85rem}
-  .story{list-style:none;margin:0;padding:0;max-height:15rem;overflow-y:auto;display:flex;flex-direction:column;gap:.55rem;border-top:1px dashed var(--line);padding-top:14px}
-  .story li{display:flex;gap:.6rem;font-size:.98rem}
-  .story li .n{flex:none;color:var(--gold);font-weight:800;font-variant-numeric:tabular-nums;width:1.4rem}
-  .hearts{display:flex;gap:12px;flex-wrap:wrap}
-  .big{flex:1 1 9rem;min-width:0;background:var(--heart);color:#fff;border-radius:18px;padding:18px 16px;font-size:1.05rem;display:flex;flex-direction:column;align-items:center;gap:.25rem;box-shadow:0 6px 16px rgba(228,96,122,.4);transition:transform .08s ease}
-  .big .note{font-weight:800;font-size:.78rem;opacity:.85;letter-spacing:.08em}
-  .big.answer{background:var(--gold);box-shadow:0 6px 16px rgba(207,143,52,.4)}
-  .big:active{transform:scale(.96)}
-  .again{align-self:flex-start;background:transparent;border:2px solid var(--line);color:var(--fg);border-radius:999px;padding:.6rem 1.1rem;font-size:.95rem}
-  .pad{display:grid;grid-template-columns:repeat(auto-fit,minmax(5.2rem,1fr));gap:10px}
-  .key{background:var(--heart-soft);color:var(--fg);border:1px solid var(--line);border-radius:16px;padding:14px 6px;font-size:.92rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;transition:transform .08s ease}
-  .key .emo{font-size:1.4rem;line-height:1}
-  .key .sol{font-size:.7rem;color:var(--muted);font-weight:800;letter-spacing:.06em}
-  .key:active{transform:scale(.94)}
-  .strip{min-height:3.4rem;border:2px dashed var(--line);border-radius:16px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-  .strip .empty{color:var(--muted);font-size:.92rem}
-  .chip{background:var(--heart);color:#fff;border-radius:999px;padding:.4rem .7rem;font-size:.88rem;font-weight:800;display:inline-flex;gap:.35rem;align-items:center;cursor:pointer;border:none}
-  .chip .x{opacity:.7}
-  .tempo{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted);flex-wrap:wrap}
-  .seg{display:inline-flex;border:2px solid var(--line);border-radius:999px;overflow:hidden}
-  .seg button{padding:.4rem .9rem;background:transparent;color:var(--fg);font-size:.9rem}
-  .seg button[aria-pressed="true"]{background:var(--gold);color:#fff}
-  .controls{display:flex;gap:10px;flex-wrap:wrap}
-  .ctl{border-radius:14px;padding:.75rem 1rem;font-size:1rem;flex:1 1 auto;min-width:0}
-  .ctl.play{background:var(--heart);color:#fff;box-shadow:0 6px 16px rgba(228,96,122,.4)}
-  .ctl.ghost{background:transparent;border:2px solid var(--line);color:var(--fg)}
-  .ctl:active{transform:scale(.97)}
-  .piano{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
-  .pk{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 2px;font-size:1.1rem;font-weight:800;display:flex;flex-direction:column;align-items:center;gap:.25rem;color:var(--fg);transition:transform .07s ease}
-  .pk small{color:var(--muted);font-size:.62rem;font-weight:800;letter-spacing:.04em}
-  .pk.heart{background:var(--heart-soft);border-color:var(--heart)}
-  .pk:active{transform:translateY(2px)}
-  .chords{display:flex;flex-wrap:wrap;gap:8px}
-  .chord{background:var(--gold-soft);border:1px solid var(--line);border-radius:12px;padding:.6rem .9rem;font-size:.9rem;color:var(--fg)}
-  .labsel{font-weight:800;color:var(--heart)}
-  .assocrow{display:flex;gap:8px;flex-wrap:wrap}
-  .assocrow input,.cult input{flex:1 1 9rem;min-width:0;border:2px solid var(--line);border-radius:12px;padding:.65rem .8rem;font-size:1rem;background:var(--card);color:var(--fg);font-family:var(--body)}
-  .assoclist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-  .assoclist li{display:flex;justify-content:space-between;gap:.6rem;align-items:center;background:var(--heart-soft);border-radius:12px;padding:.5rem .8rem;font-size:.95rem}
-  .assoclist li button{background:transparent;color:var(--muted);font-size:1.1rem;padding:0 .2rem}
-  .cult{display:flex;flex-direction:column;gap:10px}
-  .qrwrap{display:flex;flex-direction:column;align-items:center;gap:.5rem}
-  #qrbox{background:#fff;padding:12px;border-radius:14px;border:1px solid var(--line);line-height:0}
-  #qrbox svg{width:160px;height:auto;display:block}
-  .sharerow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-  #shareurl{flex:1 1 12rem;min-width:0;overflow-x:auto;white-space:nowrap;background:var(--heart-soft);border:1px solid var(--line);border-radius:12px;padding:.7rem .8rem;font-size:.84rem;font-family:ui-monospace,Menlo,Consolas,monospace}
-  footer{color:var(--muted);font-size:.9rem;text-align:center;display:flex;flex-direction:column;gap:.5rem;align-items:center}
-  .beat{width:10px;height:10px;border-radius:50%;background:var(--heart);display:inline-block}
-  @keyframes thump{0%,100%{transform:scale(1)}20%{transform:scale(1.5)}40%{transform:scale(1)}}
-  .live .beat{animation:thump 1.3s ease-in-out infinite}
-  .daxlink{color:var(--heart);font-weight:800;text-decoration:none;border-bottom:2px solid var(--heart-soft)}
-  @media (prefers-reduced-motion:reduce){.live .beat{animation:none}.big,.key,.ctl,.again,.pk,.chord{transition:none}}
-  :focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-</style>
+<meta property="og:site_name" content="DAX Foundation">
+<meta property="og:title" content="What does love sound like?">
+<meta property="og:description" content="A research project of the DAX Foundation. Discover what love sounds like, make your own, and share it.">
+<meta property="og:url" content="https://daxfoundation.org/gift/">
+<meta property="og:image" content="https://daxfoundation.org/gift/og/preview.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A card with the word &quot;love&quot; and a ring of musical notes. A research project of the DAX Foundation.">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="es_419">
+<meta property="og:locale:alternate" content="pt_BR">
+<meta property="og:locale:alternate" content="de_DE">
+<meta property="og:locale:alternate" content="ru_RU">
+<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale:alternate" content="ar_AR">
+<meta property="og:locale:alternate" content="hi_IN">
+<meta property="og:locale:alternate" content="bn_BD">
+<meta property="og:locale:alternate" content="ta_IN">
+<meta property="og:locale:alternate" content="id_ID">
+<meta property="og:locale:alternate" content="zh_CN">
+<meta property="og:locale:alternate" content="ja_JP">
+<meta property="og:locale:alternate" content="ko_KR">
+<meta property="og:locale:alternate" content="sw_KE">
+<meta property="og:locale:alternate" content="yo_NG">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What does love sound like?">
+<meta name="twitter:description" content="A research project of the DAX Foundation. Discover, make your own, and share.">
+<meta name="twitter:image" content="https://daxfoundation.org/gift/og/preview.jpg">
+<meta name="twitter:image:alt" content="A card with the word &quot;love&quot; and a ring of musical notes. A research project of the DAX Foundation.">
 
-<div class="wrap">
-
-  <div class="topbar">
-    <span class="langtoggle" id="langtoggle" role="group" aria-label="Language">
-      <button data-lang="fr" aria-pressed="true">FR</button>
-      <button data-lang="en" aria-pressed="false">EN</button>
-    </span>
-  </div>
-
-  <header style="display:flex;flex-direction:column;gap:12px">
-    <span class="hello" data-i18n="hello"></span>
-    <h1 data-i18n="h1"></h1>
-    <p class="lede" data-i18n-html="lede"></p>
-  </header>
-
-  <section class="card">
-    <h2 data-i18n-html="howH2"></h2>
-    <ol class="how">
-      <li data-i18n-html="how1"></li><li data-i18n-html="how2"></li><li data-i18n-html="how3"></li>
-      <li data-i18n-html="how4"></li><li data-i18n-html="how5"></li>
-    </ol>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="songH2"></h2>
-    <a class="video" href="https://www.youtube.com/watch?v=jZcWlh0idE8" target="_blank" rel="noopener">
-      <span class="pill">▶</span>
-      <span class="txt"><b>Heartbeats</b><span data-i18n="videoSub"></span></span>
-    </a>
-    <p class="sub" data-i18n="storyIntro"></p>
-    <ol class="story" id="story"></ol>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="bornH2"></h2>
-    <p class="sub" data-i18n-html="bornP1"></p>
-    <ol class="how">
-      <li data-i18n-html="born1"></li><li data-i18n-html="born2"></li><li data-i18n-html="born3"></li>
-    </ol>
-    <p class="sub" data-i18n="bornP2"></p>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="heartsH2"></h2>
-    <p class="sub" data-i18n-html="heartsSub"></p>
-    <div class="hearts">
-      <button class="big" data-note="D"><span data-i18n="callLabel"></span><span class="note" id="noteRe"></span></button>
-      <button class="big answer" data-note="G"><span data-i18n="answerLabel"></span><span class="note" id="noteSol"></span></button>
-    </div>
-    <button class="again" id="relove" data-i18n="again"></button>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="studioH2"></h2>
-    <p class="sub" data-i18n="studioSub"></p>
-    <div class="pad" id="pad"></div>
-    <div class="strip" id="strip"></div>
-    <div class="tempo">
-      <span data-i18n="tempoLabel"></span>
-      <span class="seg" id="tempo">
-        <button data-gap="0.6" aria-pressed="true" data-i18n="tempoSoft"></button>
-        <button data-gap="0.38" aria-pressed="false" data-i18n="tempoVif"></button>
-      </span>
-    </div>
-    <div class="controls">
-      <button class="ctl play" id="playmine" data-i18n="studioPlay"></button>
-      <button class="ctl ghost" id="surprise" data-i18n="studioSurprise"></button>
-      <button class="ctl ghost" id="clear" data-i18n="studioClear"></button>
-    </div>
-    <button class="ctl ghost" id="copysong" style="flex:none;align-self:flex-start" data-i18n="studioCopy"></button>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="labH2"></h2>
-    <p class="sub" data-i18n-html="labSub"></p>
-    <div class="piano" id="piano"></div>
-    <div class="chords" id="chords"></div>
-    <p class="sub"><span data-i18n="labSelPrefix"></span> <span class="labsel" id="labsel"></span><br><span data-i18n="labAsk"></span></p>
-    <div class="assocrow">
-      <input id="assocword" type="text" maxlength="24" />
-      <button class="ctl play" id="assocadd" type="button" style="flex:0 0 auto" data-i18n="labAdd"></button>
-    </div>
-    <ul class="assoclist" id="assoclist"></ul>
-    <button class="ctl ghost" id="assoccopy" type="button" style="flex:none;align-self:flex-start" data-i18n="labCopy"></button>
-  </section>
-
-  <section class="card locked" id="cultcard" hidden>
-    <h2 data-i18n-html="cultH2"></h2>
-    <p class="sub" data-i18n="cultSub"></p>
-    <div class="cult">
-      <input id="cultWhere" type="text" maxlength="40" />
-      <input id="cultWhat" type="text" maxlength="60" />
-      <button class="ctl play" id="cultsave" type="button" style="flex:none;align-self:flex-start" data-i18n="cultSave"></button>
-    </div>
-    <p class="sub" id="cultEcho"></p>
-    <p class="sub" data-i18n="cultNote"></p>
-  </section>
-
-  <section class="card">
-    <h2 data-i18n-html="circH2"></h2>
-    <p class="sub" data-i18n="circP"></p>
-    <div class="sharerow">
-      <code id="shareurl">https://daxfoundation.org/gift/</code>
-      <button class="ctl play" id="copylink" type="button" style="flex:0 0 auto" data-i18n="shareCopy"></button>
-    </div>
-    <div class="qrwrap">
-      <div id="qrbox" role="img" aria-label="QR"></div>
-      <span class="sub" data-i18n="qrSub"></span>
-    </div>
-    
-  </section>
-
-  <footer>
-    <span class="live"><span class="beat"></span></span>
-    <p data-i18n-html="footResearch"></p>
-    <p data-i18n="footTag"></p>
-  </footer>
-
+<link rel="stylesheet" href="./vendor/od-forms-core.css">
+<link rel="stylesheet" href="./studio.css">
+<script type="module" src="./app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the studio</a>
+<canvas id="field" class="field" aria-hidden="true"></canvas>
+<div id="app" class="studio">
+  <noscript>
+    <main class="noscript">
+      <h1>What does love sound like?</h1>
+      <p>The studio makes its sounds on your device, so it needs JavaScript. Nothing is sent anywhere.</p>
+      <p>A research project of the DAX Foundation.</p>
+    </main>
+  </noscript>
 </div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script>
-/* ===== PORTABLE CORE (shared by this Claude artifact and the future daxfoundation.org HTML port) =====
-   Data shapes kept stable so the sidecar can re-emit this page and gather comparable data across surfaces:
-   - EMOTIONS: {key, note}  note -> FREQ
-   - CHORDS:   {id, notes[]}
-   - user state: { song:[key], emotionMap:[{sound,word}], culture:{where,what}, lang }
-   Capture target (later, on the HTML version only): POST this state to the dax-research worker -> D1.
-   In the sandboxed artifact we only keep it in localStorage (per-viewer). No network writes here. */
-  var FREQ={C:523.25,D:587.33,E:659.25,F:349.23,G:392.00,A:440.00,B:493.88,C6:1046.50,G5:783.99};
-  var WORDS=[
-    {k:"amour",fr:"Amour",en:"Love",e:"❤️",n:"D"},{k:"reponse",fr:"Réponse",en:"Answer",e:"💛",n:"G"},
-    {k:"joie",fr:"Joie",en:"Joy",e:"☀️",n:"C"},{k:"espoir",fr:"Espoir",en:"Hope",e:"✨",n:"E"},
-    {k:"tendresse",fr:"Tendresse",en:"Tenderness",e:"🌙",n:"F"},{k:"paix",fr:"Paix",en:"Peace",e:"🕊️",n:"A"},
-    {k:"doute",fr:"Doute",en:"Doubt",e:"🌧️",n:"B"},{k:"reve",fr:"Rêve",en:"Dream",e:"🌟",n:"C6"}
-  ];
-  var BY={}; WORDS.forEach(function(x){BY[x.k]=x;});
-  var SOLF={C:"DO",D:"RÉ",E:"MI",F:"FA",G:"SOL",A:"LA",B:"SI",C6:"DO⁺"};
-  var PIANO=["C","D","E","F","G","A","B"];
-  var CHORDS=[{id:"do",fr:"Do majeur",en:"C major",notes:["C","E","G5"]},{id:"fa",fr:"Fa majeur",en:"F major",notes:["F","A","C"]},
-    {id:"lam",fr:"La mineur",en:"A minor",notes:["A","C","E"]},{id:"sol",fr:"Sol majeur",en:"G major",notes:["G","B","D"]}];
-  var STORY={fr:[
-    "Né de l'obscurité","Une nouvelle âme émerge","Découvrant le monde pour la première fois…",
-    "…il ressent l'espoir devant la promesse d'une belle vie","Un voyage commence","Dans le confort des bras de sa mère, où…",
-    "…la joie et l'amour sont partout","…il y a de la tristesse","À mesure que l'enfant grandit…","…la tristesse persiste…",
-    "La promesse d'une belle vie…","…vacille dans le doute","Même s'il essaie, quelque chose manque et…","…l'espoir se change en désespoir",
-    "Et puis un jour…","Il entend au loin un cœur qui bat","Son cœur bondit hors de sa poitrine et l'appelle",
-    "Porté par l'espoir, il sort du désespoir et leurs cœurs se mettent à battre à l'unisson","Leurs regards se croisent et une histoire d'amour naît",
-    "Il lui prend la main, et elle la lui serre en retour","Elle l'embrasse, et il l'embrasse à son tour",
-    "L'espoir et le désir dansent autour d'eux tandis qu'ils tombent amoureux",
-    "Ils laissent derrière eux la solitude et les deux âmes n'en font plus qu'une sous un saule baigné de lune",
-    "Les âmes dansent l'une avec l'autre et illuminent le monde de leur amour","Leur amour résonne jusqu'aux confins de l'univers et revient",
-    "De leur amour naît un nouvel être","Puis un autre…","Ils emplissent leurs petits de tout l'amour du monde et les regardent grandir avec joie",
-    "Leurs petites âmes grandissent et trouvent leur propre cœur qui bat",
-    "Assises sur une balancelle, leurs mains ridées entrelacées, les vieilles âmes regardent leurs petits-enfants jouer",
-    "Emplies de joie…","Emplies d'amour","Quelle belle vie",
-    "L'amour des âmes est éternel, mais leurs battements sont comptés… il est temps de se dire adieu",
-    "Allongées, tendrement enlacées, leurs cœurs se font leurs derniers adieux","Sur fond d'un univers désormais illuminé de leur amour"
-  ],en:[
-    "Born out of darkness","A new soul emerges","Experiencing the world for the first time…",
-    "…he feels hope at the promise of a beautiful life","A journey begins","In the comfort of his mother's arms where…",
-    "…joy and love are abundant","…there is sadness","As the boy grows up…","…the sadness lingers…",
-    "The promise of a beautiful life…","…comes into doubt","Though he tries, something is missing and…","…hope turns into despair",
-    "And then one day…","He hears in the distance a beating heart","His heart leaps out of his chest and calls out to her",
-    "Propelled by hope he climbs out of despair and their hearts begin to beat in sync","Their eyes meet and a romance is born",
-    "He holds her hand and she holds it back","She kisses him and he kisses her back",
-    "Hope and desire dance around them as they fall in love",
-    "They leave behind loneliness and the two souls merge into one under a moonlit willow tree",
-    "The souls dance with each other as they illuminate the world with their love","Their love reverberates to the edge of the universe and back",
-    "Out of their love a new being emerges","And then another…","They infuse their little ones with all the love in the world and joyfully watch them grow",
-    "Their little souls grow up and find their very own beating hearts",
-    "Sitting on a swinging chair, holding each other's wrinkled hands, the old souls watch their grandchildren play",
-    "Filled with joy…","Filled with love","What a beautiful life",
-    "The souls' love is eternal but their heartbeats are finite… time to say goodbye",
-    "Lying in bed, in each other's sweet embrace, their hearts say their final goodbye","Amongst the backdrop of a universe now glowing with their love"
-  ]};
-  var T={fr:{
-    hello:"Un nouveau langage de l'amour",h1:"Les deux cœurs",
-    lede:"On invente un nouveau <strong>langage de l'amour</strong> : au lieu de mots, des émotions chantées en douces notes de piano. Et pour le célébrer, on s'inspire de la plus belle des langues — le français, la langue de l'amour. 🎹❤️",
-    howH2:"✨ Comment ça marche",
-    how1:"Tout part d'un morceau de piano, <strong>« Heartbeats »</strong>, composé au feeling — chaque note choisie par l'émotion qu'elle fait ressentir.",
-    how2:"Deux cœurs apparaissent comme deux notes : <strong>Ré appelle</strong>, <strong>Sol répond</strong>.",
-    how3:"Quand les deux battent ensemble, c'est l'amour — à un moment, exactement 87 battements par minute.",
-    how4:"Chaque émotion devient une note. On met les notes bout à bout, et ça fait une chanson.",
-    how5:"Plus deux personnes se connaissent, moins elles ont besoin de parler — un regard suffit.",
-    songH2:"🎹 La chanson d'origine",videoSub:"Le morceau de piano · s'ouvre sur YouTube",storyIntro:"L'histoire racontée par la musique :",
-    bornH2:"🎼 Comment c'est né (sans solfège)",
-    bornP1:"Jason ne sait pas lire la musique. Pendant <strong>trois mois, 15 minutes par jour</strong>, il s'est entraîné à exprimer ses émotions au piano. Le procédé était tout simple :",
-    born1:"trouver quelle <strong>note</strong> correspond à une émotion ;",born2:"puis quel <strong>accord</strong> correspond à un groupe d'émotions ;",born3:"puis assembler les accords pour <strong>raconter une histoire</strong>.",
-    bornP2:"Aucune partition, aucune théorie. Et maintenant, c'est à ton tour 👇",
-    heartsH2:"❤️ Les deux cœurs",heartsSub:"Un cœur <strong>appelle</strong>, l'autre <strong>répond</strong>. À deux : toi tu appelles ❤️, ton amie répond 💛.",
-    callLabel:"❤️ Appelle",answerLabel:"💛 Répond",again:"↺ Les deux, encore et encore",
-    studioH2:"🎶 Ton atelier de chanson",studioSub:"À toi d'exprimer tes émotions : choisis-les, mets-les dans l'ordre que tu veux, puis écoute ta chanson. Touche une étiquette pour l'enlever.",
-    stripEmpty:"Ta chanson apparaîtra ici…",tempoLabel:"Rythme",tempoSoft:"Doux",tempoVif:"Vif",
-    studioPlay:"▶ Chante ma chanson",studioSurprise:"🎲 Surprise",studioClear:"↺ Efface",studioCopy:"📋 Copier ma chanson (pour l'envoyer)",
-    songCopyPrefix:"Ma chanson d'amour 🎵 : ",needSong:"Compose d'abord une chanson 🙂",copied:"Copié ! ✓",
-    labH2:"🔬 Le laboratoire des émotions",labSub:"Le procédé de Jason, à toi : touche une note ou un accord, écoute… puis dis ce que ça te fait ressentir. Pas de bonne réponse — c'est <strong>ta</strong> carte des émotions.",
-    labSelPrefix:"Son choisi :",labSelEmpty:"— touche un son —",labAsk:"Ça te fait penser à quoi ?",wordPH:"un mot, une émotion…",labAdd:"Ajouter",labCopy:"📋 Copier ma carte des émotions",
-    mapCopyPrefix:"Ma carte des émotions 🎵 : ",needBoth:"Choisis un son et un mot 🙂",noteWord:"Note ",chordWord:"Accord ",
-    cultH2:"🌍 D'où vient ton amour ?",cultSub:"Tu as commencé à jouer — alors ça se débloque. L'amour se dit autrement dans chaque culture. Raconte-nous le tien (le son reste le tien, c'est juste pour la recherche) :",
-    cultWherePH:"ta culture, ton pays…",cultWhatPH:"un film, une chanson, un lieu qui veut dire l'amour pour toi…",cultSave:"💛 Ajouter à ma carte",cultSaved:"Ajouté 💛",
-    cultEcho:"Ton amour vient de : ",cultNote:"Merci — ça nourrit un projet de recherche sur l'amour dans le monde.",
-    circH2:"💞 Fais-la circuler",circP:"C'est ça, les deux cœurs : un qui appelle, un qui répond. Compose ta chanson, envoie-la à quelqu'un que tu aimes… puis demande-lui de te répondre avec la sienne. 🎵➡️💌",
-    shareCopy:"Copier le lien",qrSub:"📱 Scanne pour l'ouvrir sur un téléphone",
-    commentP:"💬 Une émotion qui te manque ? Une chanson à partager ? Laisse un commentaire sur cette page — on lit tout, et ça nourrit la recherche.",
-    remixP:"✨ Faite avec Claude — tu peux lui demander de créer ta propre version.",
-    footResearch:"Un projet de recherche de la <a href=\"https://daxfoundation.org\" target=\"_blank\" rel=\"noopener\" class=\"daxlink\">DAX Foundation</a> — un nouveau langage de l'amour, inspiré du français.",
-    footTag:"Fait avec ❤️ · partage-le avec quelqu'un que tu aimes."
-  },en:{
-    hello:"A new language of love",h1:"The Two Hearts",
-    lede:"We're inventing a new <strong>language of love</strong>: instead of words, emotions sung as soft piano notes. And to celebrate it, we take our cue from the loveliest of languages — French, the language of love. 🎹❤️",
-    howH2:"✨ How it works",
-    how1:"It all starts with a piano piece, <strong>“Heartbeats”</strong>, composed by feel — each note chosen for the emotion it stirs.",
-    how2:"Two hearts appear as two notes: <strong>D calls</strong>, <strong>G answers</strong>.",
-    how3:"When the two beat together, that's love — at one point, exactly 87 beats per minute.",
-    how4:"Each emotion becomes a note. Put the notes end to end, and you get a song.",
-    how5:"The better two people know each other, the less they need to talk — a glance is enough.",
-    songH2:"🎹 The original song",videoSub:"The piano piece · opens on YouTube",storyIntro:"The story the music tells:",
-    bornH2:"🎼 How it was born (no sheet music)",
-    bornP1:"Jason can't read music. For <strong>three months, 15 minutes a day</strong>, he practised expressing his emotions at the piano. The process was simple:",
-    born1:"find which <strong>note</strong> matches an emotion;",born2:"then which <strong>chord</strong> matches a group of emotions;",born3:"then put the chords together to <strong>tell a story</strong>.",
-    bornP2:"No score, no theory. And now it's your turn 👇",
-    heartsH2:"❤️ The two hearts",heartsSub:"One heart <strong>calls</strong>, the other <strong>answers</strong>. Together: you call ❤️, your friend answers 💛.",
-    callLabel:"❤️ Call",answerLabel:"💛 Answer",again:"↺ Both, over and over",
-    studioH2:"🎶 Your song studio",studioSub:"Your turn to express your emotions: pick them, put them in any order, then hear your song. Tap a tag to remove it.",
-    stripEmpty:"Your song will appear here…",tempoLabel:"Tempo",tempoSoft:"Soft",tempoVif:"Lively",
-    studioPlay:"▶ Play my song",studioSurprise:"🎲 Surprise",studioClear:"↺ Clear",studioCopy:"📋 Copy my song (to send it)",
-    songCopyPrefix:"My love song 🎵 : ",needSong:"Compose a song first 🙂",copied:"Copied! ✓",
-    labH2:"🔬 The emotion lab",labSub:"Jason's process, now yours: tap a note or a chord, listen… then say what it makes you feel. No right answer — it's <strong>your</strong> emotion map.",
-    labSelPrefix:"Chosen sound:",labSelEmpty:"— tap a sound —",labAsk:"What does it make you think of?",wordPH:"a word, an emotion…",labAdd:"Add",labCopy:"📋 Copy my emotion map",
-    mapCopyPrefix:"My emotion map 🎵 : ",needBoth:"Pick a sound and a word 🙂",noteWord:"Note ",chordWord:"Chord ",
-    cultH2:"🌍 Where does your love come from?",cultSub:"You've started playing — so this unlocks. Love is said differently in every culture. Tell us yours (the sound stays yours, this is just for the research):",
-    cultWherePH:"your culture, your country…",cultWhatPH:"a film, a song, a place that means love to you…",cultSave:"💛 Add to my map",cultSaved:"Added 💛",
-    cultEcho:"Your love comes from: ",cultNote:"Thank you — this feeds a research project on love around the world.",
-    circH2:"💞 Pass it on",circP:"That's the two hearts: one calls, one answers. Compose your song, send it to someone you love… then ask them to answer with theirs. 🎵➡️💌",
-    shareCopy:"Copy link",qrSub:"📱 Scan to open it on a phone",
-    commentP:"💬 An emotion you're missing? A song to share? Leave a comment on this page — we read them all, and it feeds the research.",
-    remixP:"✨ Made with Claude — you can ask it to create your own version.",
-    footResearch:"A research project by the <a href=\"https://daxfoundation.org\" target=\"_blank\" rel=\"noopener\" class=\"daxlink\">DAX Foundation</a> — a new language of love, inspired by French.",
-    footTag:"Made with ❤️ · share it with someone you love."
-  }};
-
-  var LANG="fr";
-  try{ var sl=localStorage.getItem("deuxcoeurs_lang"); if(sl==="en"||sl==="fr") LANG=sl; }catch(e){}
-
-  // --- audio ---
-  var AC=null;
-  function ctx(){ if(!AC){ try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){} } return AC; }
-  function note(freq,t0,dur,peak){
-    var ac=ctx(); if(!ac) return;
-    var m=ac.createGain(); m.gain.setValueAtTime(0.0001,t0);
-    m.gain.exponentialRampToValueAtTime(peak||0.3,t0+0.012); m.gain.exponentialRampToValueAtTime(0.0001,t0+dur);
-    var lp=ac.createBiquadFilter(); lp.type="lowpass"; lp.frequency.value=2600; m.connect(lp); lp.connect(ac.destination);
-    var parts=[[1,1],[2,.32],[3,.14],[4,.06]];
-    for(var i=0;i<parts.length;i++){ var o=ac.createOscillator(),g=ac.createGain();
-      o.type="sine"; o.frequency.value=freq*parts[i][0]; o.detune.value=(i?6:0); g.gain.value=parts[i][1];
-      o.connect(g); g.connect(m); o.start(t0); o.stop(t0+dur+0.1); }
-  }
-  function playSeq(notes,gap,dur){ var ac=ctx(); if(!ac) return; if(ac.state==="suspended") ac.resume();
-    var t=ac.currentTime+0.04; notes.forEach(function(n,i){ note(FREQ[n],t,(i===notes.length-1)?3.0:(dur||2.4),0.3); t+=(gap||0.5); }); }
-  function playChord(notes,dur){ var ac=ctx(); if(!ac) return; if(ac.state==="suspended") ac.resume();
-    var t=ac.currentTime+0.04; notes.forEach(function(n){ note(FREQ[n],t,dur||3.4,0.17); }); unlock(); }
-
-  // --- progressive unlock (engage -> the culture card appears) ---
-  var unlocked=false;
-  function unlock(){ if(unlocked) return; unlocked=true;
-    var c=document.getElementById("cultcard"); c.hidden=false;
-    requestAnimationFrame(function(){ c.classList.remove("locked"); });
-  }
-
-  // --- state ---
-  var song=[], assoc=[], culture={where:"",what:""}, lastSound=null;
-  function save(){ try{ localStorage.setItem("deuxcoeurs_state",JSON.stringify({song:song,assoc:assoc,culture:culture})); }catch(e){} }
-  function load(){ try{ var s=JSON.parse(localStorage.getItem("deuxcoeurs_state")); if(s){ if(Array.isArray(s.song))song=s.song.filter(function(k){return BY[k];}).slice(0,24);
-    if(Array.isArray(s.assoc))assoc=s.assoc.slice(0,30); if(s.culture)culture=s.culture; } }catch(e){} }
-
-  // --- builders (language-aware) ---
-  function buildStudioPad(){ var pad=document.getElementById("pad"); pad.innerHTML="";
-    WORDS.forEach(function(x){ var b=document.createElement("button"); b.className="key"; b.setAttribute("data-add",x.k);
-      b.innerHTML='<span class="emo">'+x.e+'</span>'+x[LANG]+'<span class="sol">'+SOLF[x.n]+'</span>';
-      b.addEventListener("click",function(){ if(song.length<24){ song.push(x.k); renderSong(); } playSeq([x.n],0.5,2.2); unlock(); });
-      pad.appendChild(b); }); }
-  function renderSong(){ save(); var strip=document.getElementById("strip");
-    if(!song.length){ strip.innerHTML='<span class="empty">'+T[LANG].stripEmpty+'</span>'; return; }
-    strip.innerHTML=""; song.forEach(function(k,idx){ var x=BY[k]; var c=document.createElement("button"); c.className="chip"; c.type="button";
-      c.innerHTML=x.e+' '+x[LANG]+' <span class="x">×</span>'; c.addEventListener("click",function(){ song.splice(idx,1); renderSong(); }); strip.appendChild(c); }); }
-  function buildPiano(){ var el=document.getElementById("piano"); el.innerHTML=""; var EMOK={D:"❤️",G:"💛"};
-    PIANO.forEach(function(nn){ var b=document.createElement("button"); b.className="pk"+(EMOK[nn]?" heart":"");
-      b.innerHTML=(EMOK[nn]||"🎵")+'<small>'+SOLF[nn]+'</small>';
-      b.addEventListener("click",function(){ playSeq([nn],0.5,2.6); setSel((EMOK[nn]?EMOK[nn]+" ":"")+T[LANG].noteWord+SOLF[nn]); unlock(); }); el.appendChild(b); }); }
-  function buildChords(){ var el=document.getElementById("chords"); el.innerHTML="";
-    CHORDS.forEach(function(c){ var b=document.createElement("button"); b.className="chord"; b.textContent="🎹 "+c[LANG];
-      b.addEventListener("click",function(){ playChord(c.notes,3.4); setSel(T[LANG].chordWord+c[LANG]); }); el.appendChild(b); }); }
-  function setSel(s){ lastSound=s; document.getElementById("labsel").textContent=s; }
-  function renderAssoc(){ save(); var ul=document.getElementById("assoclist"); ul.innerHTML="";
-    assoc.forEach(function(a,idx){ var li=document.createElement("li"); var span=document.createElement("span"); span.textContent=a.sound+" → ";
-      var st=document.createElement("strong"); st.textContent=a.word; span.appendChild(st); li.appendChild(span);
-      var x=document.createElement("button"); x.type="button"; x.setAttribute("aria-label","x"); x.textContent="×";
-      x.addEventListener("click",function(){ assoc.splice(idx,1); renderAssoc(); }); li.appendChild(x); ul.appendChild(li); }); }
-  function renderStory(){ var ol=document.getElementById("story"); ol.innerHTML="";
-    STORY[LANG].forEach(function(line,i){ var li=document.createElement("li"); var n=document.createElement("span"); n.className="n"; n.textContent=(i+1);
-      var t=document.createElement("span"); t.textContent=line; li.appendChild(n); li.appendChild(t); ol.appendChild(li); }); }
-  function renderCultEcho(){ var e=document.getElementById("cultEcho");
-    if(culture.where||culture.what){ e.textContent=T[LANG].cultEcho+[culture.where,culture.what].filter(Boolean).join(" · "); e.style.display=""; } else { e.style.display="none"; } }
-
-  // --- i18n apply ---
-  function applyLang(){
-    document.documentElement.lang=LANG;
-    document.querySelectorAll("[data-i18n]").forEach(function(el){ var k=el.getAttribute("data-i18n"); if(T[LANG][k]!=null) el.textContent=T[LANG][k]; });
-    document.querySelectorAll("[data-i18n-html]").forEach(function(el){ var k=el.getAttribute("data-i18n-html"); if(T[LANG][k]!=null) el.innerHTML=T[LANG][k]; });
-    document.getElementById("noteRe").textContent=(LANG==="fr"?"RÉ":"D");
-    document.getElementById("noteSol").textContent=(LANG==="fr"?"SOL":"G");
-    document.getElementById("labsel").textContent=lastSound||T[LANG].labSelEmpty;
-    document.getElementById("assocword").placeholder=T[LANG].wordPH;
-    document.getElementById("cultWhere").placeholder=T[LANG].cultWherePH;
-    document.getElementById("cultWhat").placeholder=T[LANG].cultWhatPH;
-    document.querySelectorAll("#langtoggle button").forEach(function(b){ b.setAttribute("aria-pressed", b.getAttribute("data-lang")===LANG?"true":"false"); });
-    buildStudioPad(); renderSong(); buildPiano(); buildChords(); renderAssoc(); renderStory(); renderCultEcho();
-  }
-  document.getElementById("langtoggle").addEventListener("click",function(e){ var b=e.target.closest("button"); if(!b) return;
-    LANG=b.getAttribute("data-lang"); try{ localStorage.setItem("deuxcoeurs_lang",LANG); }catch(e2){} applyLang(); });
-
-  // --- fixed handlers ---
-  var gap=0.6;
-  document.querySelectorAll("[data-note]").forEach(function(b){ b.addEventListener("click",function(){ playSeq([b.getAttribute("data-note")],0.5,3.0); unlock(); }); });
-  document.getElementById("relove").addEventListener("click",function(){ playSeq(["D","G","D","G"],0.42,1.6); unlock(); });
-  document.getElementById("tempo").addEventListener("click",function(e){ var b=e.target.closest("button"); if(!b) return; gap=parseFloat(b.getAttribute("data-gap"));
-    this.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed",x===b?"true":"false"); }); });
-  document.getElementById("playmine").addEventListener("click",function(){ if(song.length) playSeq(song.map(function(k){return BY[k].n;}),gap,gap<0.5?1.6:2.4); });
-  document.getElementById("clear").addEventListener("click",function(){ song=[]; renderSong(); });
-  document.getElementById("surprise").addEventListener("click",function(){ var n=4+Math.floor(Math.random()*4); song=[];
-    for(var i=0;i<n;i++){ song.push(WORDS[Math.floor(Math.random()*WORDS.length)].k); } renderSong(); unlock(); playSeq(song.map(function(k){return BY[k].n;}),gap,gap<0.5?1.6:2.4); });
-  function copyText(text,btn,okLabel){ var old=btn.textContent; function ok(){ btn.textContent=okLabel; setTimeout(function(){btn.textContent=old;},1600); }
-    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(ok).catch(ok); } else { ok(); } }
-  document.getElementById("copysong").addEventListener("click",function(){ if(!song.length){ var t=this,o=t.textContent; t.textContent=T[LANG].needSong; setTimeout(function(){t.textContent=o;},1800); return; }
-    copyText(T[LANG].songCopyPrefix+song.map(function(k){return BY[k].e+" "+BY[k][LANG];}).join(" · "),this,T[LANG].copied); });
-  var assocWord=document.getElementById("assocword");
-  document.getElementById("assocadd").addEventListener("click",function(){ var w=(assocWord.value||"").trim(); if(!lastSound||!w){ var t=this,o=t.textContent; t.textContent=T[LANG].needBoth; setTimeout(function(){t.textContent=o;},1600); return; }
-    if(assoc.length<30) assoc.push({sound:lastSound,word:w}); assocWord.value=""; renderAssoc(); unlock(); });
-  assocWord.addEventListener("keydown",function(e){ if(e.key==="Enter") document.getElementById("assocadd").click(); });
-  document.getElementById("assoccopy").addEventListener("click",function(){ if(!assoc.length){ var t=this,o=t.textContent; t.textContent=T[LANG].needBoth; setTimeout(function(){t.textContent=o;},1600); return; }
-    copyText(T[LANG].mapCopyPrefix+assoc.map(function(a){return a.sound+" → "+a.word;}).join(" · "),this,T[LANG].copied); });
-  document.getElementById("cultsave").addEventListener("click",function(){ culture.where=(document.getElementById("cultWhere").value||"").trim();
-    culture.what=(document.getElementById("cultWhat").value||"").trim(); save(); renderCultEcho(); var t=this,o=t.textContent; t.textContent=T[LANG].cultSaved; setTimeout(function(){t.textContent=o;},1600); });
-  document.getElementById("copylink").addEventListener("click",function(){ copyText(document.getElementById("shareurl").textContent.trim(),this,T[LANG].copied); });
-
-  // --- boot ---
-  load();
-  if(culture.where){ document.getElementById("cultWhere").value=culture.where; }
-  if(culture.what){ document.getElementById("cultWhat").value=culture.what; }
-  if(song.length||assoc.length||culture.where||culture.what){ unlocked=true; var c=document.getElementById("cultcard"); c.hidden=false; c.classList.remove("locked"); }
-  applyLang();
-  (function(){ try{ var url=document.getElementById("shareurl").textContent.trim(); var qr=qrcode(0,"M"); qr.addData(url); qr.make();
-    document.getElementById("qrbox").innerHTML=qr.createSvgTag(4,2); }catch(e){ var w=document.getElementById("qrbox"); if(w&&w.parentNode) w.parentNode.style.display="none"; } })();
-</script>
-
-</body></html>
+<div id="live" class="sr" aria-live="polite"></div>
+<dialog id="knows" class="knows" aria-labelledby="knows-h"></dialog>
+</body>
+</html>

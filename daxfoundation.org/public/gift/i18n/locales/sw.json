@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "locale": "sw",
+    "name": "Kiswahili",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "sw_KE",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Kabla hatujaanza: una umri wa miaka 13 au zaidi?",
+    "age_yes": "Ndiyo, nina miaka 13 au zaidi",
+    "age_skip": "Ningependa kutosema",
+    "spark_q": "Upendo unakufanya ujisikie vipi sasa hivi?",
+    "spark_hint": "Chagua kinachokufaa. Hakuna jibu baya.",
+    "echo_intro": "Lugha nyingine zina neno la hisia hii:",
+    "see_others": "Ona wengine wanahisi nini",
+    "keep_going": "Endelea",
+    "dataset_title": "Haya ndiyo majibu ya watu hadi sasa.",
+    "dataset_meta": "Majibu {n} · Data ni wazi kwa umma · Husasishwa kila siku",
+    "dataset_link": "Tazama data yote iliyo wazi",
+    "consent_q": "Ungependa jibu lako lijumuishwe kwenye utafiti huu?",
+    "consent_yes": "Ndiyo, ongeza langu bila jina",
+    "consent_no": "Hapana, libaki hapa tu",
+    "consent_explain_q": "“Bila jina” inamaanisha nini hapa?",
+    "consent_explain": "Tunahifadhi neno ulilochagua, lugha yako, na takriban eneo la dunia ulipo. Hakuna kingine. Unaweza kulifuta wakati wowote.",
+    "when_q": "Mara ya mwisho ulihisi hivi lini?",
+    "toward_q": "Je, upendo huu unaelekezwa kwa mtu au kitu fulani?",
+    "composition_title": "Hii ndiyo sauti ya upendo wako.",
+    "hear_it": "Sikiliza (sekunde 5)",
+    "compare": "Linganisha na wengine",
+    "share_it": "Shiriki",
+    "share_title": "Mtumie mtu.",
+    "share_hint": "Kiungo chako kina neno na sauti uliyochagua tu. Hakina jina lako, wala chochote ulichoandika.",
+    "copy_link": "Nakili kiungo",
+    "copied": "Kiungo kimenakiliwa",
+    "save_image": "Hifadhi picha",
+    "save_story": "Hifadhi kwa ajili ya status",
+    "make_mine": "Tengeneza yangu",
+    "received_banner": "Mtu amekutumia upendo wake kama sauti. Hii ndiyo yake. Sasa tengeneza yako.",
+    "received_chain": "Sauti hii imepitishwa mara {n}.",
+    "answer_back": "Jibu kwa sauti yako",
+    "duet_title": "Sauti zenu mbili, pamoja.",
+    "circle_invite": "Uliza kundi lako",
+    "circle_title": "Upendo unasikikaje katika kundi lenu?",
+    "circle_hint": "Kila mtu anaongeza sauti moja. Hakuna anayeona nani amechagua nini; mnasikia tu muziki mnaounda pamoja.",
+    "try_another": "Jaribu hisia nyingine",
+    "start_over": "Anza upya",
+    "take_breath": "Pumzika kidogo",
+    "breath_body": "Unaweza kusimama hapa. Hakuna kinachopotea, na hakuna kilichotumwa isipokuwa ulikubali.",
+    "data_panel": "Ukurasa huu unajua nini kukuhusu",
+    "delete_mine": "Futa jibu langu",
+    "framing": "Mradi wa utafiti wa DAX Foundation",
+    "language": "Lugha",
+    "sound_credit": "Tunaicheza kwa sauti yetu wenyewe: mpatano wa sauti tu, kamwe si rekodi.",
+    "translate_invite": "Unazungumza lugha nyingine? Tusaidie kusema hivi ipasavyo."
+  },
+  "feelings": {
+    "warm": "joto",
+    "quiet": "utulivu",
+    "longing": "hamu",
+    "joyful": "furaha",
+    "tender": "upole",
+    "lost": "kuchanganyikiwa"
+  },
+  "letters": {
+    "love": "upendo",
+    "tenderness": "wororo",
+    "togetherness": "kuwa pamoja",
+    "trust": "kuaminiana",
+    "curiosity": "udadisi",
+    "adventure": "matukio mapya",
+    "creativity": "ubunifu",
+    "discovery": "ugunduzi",
+    "joy": "furaha",
+    "hope": "tumaini",
+    "birth": "mwanzo mpya",
+    "awe": "kustaajabu",
+    "gratitude": "shukrani",
+    "longing": "shauku",
+    "doubt": "shaka",
+    "re_love": "upendo uliojibiwa",
+    "empathy": "kuelewana",
+    "compassion": "huruma"
+  },
+  "tense": {
+    "was": "upendo uliokuwa",
+    "is": "upendo uliopo",
+    "will": "upendo utakaokuwa"
+  },
+  "when": {
+    "today": "leo",
+    "week": "wiki hii",
+    "ago": "zamani kidogo",
+    "unsure": "sina uhakika"
+  },
+  "toward": {
+    "person": "mtu",
+    "place": "mahali au wakati fulani",
+    "idea": "wazo",
+    "feeling": "hisia tu"
+  },
+  "card": {
+    "brand": "Zawadi",
+    "head_mine": "Hivi ndivyo upendo wangu unavyosikika.",
+    "head_gift": "Nimekutengenezea sauti hii.",
+    "head_answer": "Uliniita, nikaitikia.",
+    "head_circle": "Hivi ndivyo upendo wetu unavyosikika.",
+    "cta": "Tengeneza yako",
+    "chain": "imepitishwa mara {n}",
+    "alt": "Kadi yenye neno “{feeling}” na duara la alama za muziki. Mradi wa utafiti wa DAX Foundation."
+  },
+  "share": {
+    "og_title": "Upendo unasikikaje kwa lugha yako?",
+    "og_description": "Gundua sauti ya upendo wako, kisha mtumie mtu. Mradi wa utafiti wa DAX Foundation.",
+    "default": "Upendo unasikikaje? Wangu unasikika kama “{feeling}”. Tengeneza yako: {url}",
+    "whatsapp": "Nimekuandalia kitu 🎁 Ni sauti ya upendo wangu sasa hivi: “{feeling}”. Fungua, kisha nitumie chako 👉 {url}",
+    "whatsapp_status": "Sauti ya upendo wangu leo: “{feeling}” ✦ Tengeneza yako, kiungo kiko kwenye status yangu 👇",
+    "sms": "Sauti ya upendo wangu: \"{feeling}\". Tengeneza yako unitumie: {url}",
+    "x": "Upendo unasikikaje kwa lugha yako? Wangu leo: “{feeling}” 💛",
+    "telegram": "Upendo unasikikaje? Wangu: “{feeling}”. Tengeneza yako, kisha mpe mtu mwingine ukipenda → {url}",
+    "line": "Nimekutengenezea kitu: sauti ya “{feeling}”. Zamu yako → {url}",
+    "wechat": "Upendo unasikikaje? Wangu ni “{feeling}”. Tengeneza yako: {url}",
+    "kakao": "Sauti ya upendo wangu leo: “{feeling}”. Tengeneza yako unirudishie → {url}",
+    "story_caption": "upendo wangu unasikika kama “{feeling}” ✦ wako unasikikaje?",
+    "group_invite": "Jaribio dogo kwa kundi hili 😊: kila mmoja aongeze sauti ya upendo wake, tusikie tunavyosikika pamoja. Hakuna atakayeona nani amechagua nini. Anayetaka tu 🙌 {url}",
+    "answer_back": "Umenitumia yako, basi hili ndilo jibu langu 💛 {url}",
+    "email_subject": "Nimekuandalia kitu",
+    "email_body": "Hii ndiyo sauti ya upendo kwangu sasa hivi: “{feeling}”.\n\nIfungue, kisha tengeneza yako unirudishie:\n{url}\n\n(Mradi wa utafiti wa DAX Foundation. Hakuna kujisajili, hakuna cha kusakinisha.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "Jibu {n} · Data ni wazi kwa umma · Husasishwa kila siku",
+      "other": "Majibu {n} · Data ni wazi kwa umma · Husasishwa kila siku"
+    },
+    "ui.received_chain": {
+      "one": "Sauti hii imepitishwa mara moja.",
+      "other": "Sauti hii imepitishwa mara {n}."
+    },
+    "card.chain": {
+      "one": "imepitishwa mara moja",
+      "other": "imepitishwa mara {n}"
+    }
+  }
+}

@@ -13,6 +13,7 @@ const TAG = `<script defer src="https://static.cloudflareinsights.com/beacon.min
 const root = process.argv[2] || 'dist';
 
 let added = 0;
+let skipped = 0;
 async function walk(d) {
   for (const e of await readdir(d, { withFileTypes: true })) {
     const p = join(d, e.name);
@@ -20,6 +21,8 @@ async function walk(d) {
     if (!e.name.endsWith('.html')) continue;
     const html = await readFile(p, 'utf8');
     if (html.includes('static.cloudflareinsights.com/beacon.min.js')) continue;
+    // consent-first pages (the gift studio) opt out: nothing leaves the device before a yes
+    if (html.includes('name="od-no-beacon"')) { skipped++; continue; }
     const i = html.lastIndexOf('</body>');
     if (i < 0) continue;
     await writeFile(p, html.slice(0, i) + TAG + '\n' + html.slice(i));
@@ -27,4 +30,4 @@ async function walk(d) {
   }
 }
 await walk(root);
-console.log(`cf-beacon: added to ${added} HTML files in ${root}/`);
+console.log(`cf-beacon: added to ${added} HTML files in ${root}/ (${skipped} consent-first pages skipped)`);

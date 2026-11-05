@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "locale": "zh",
+    "name": "简体中文",
+    "dir": "ltr",
+    "script": "Hans",
+    "og_locale": "zh_CN",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "开始之前：你满13岁了吗？",
+    "age_yes": "是的，我已满13岁",
+    "age_skip": "我不想说",
+    "spark_q": "此刻，爱对你来说是什么感觉？",
+    "spark_hint": "选一个最贴切的就好，没有对错。",
+    "echo_intro": "在别的语言里，正好有个词说的就是这种感觉：",
+    "see_others": "看看大家的感受",
+    "keep_going": "继续",
+    "dataset_title": "这是目前大家留下的回答。",
+    "dataset_meta": "共{n}条回答 · 公开数据集 · 每日更新",
+    "dataset_link": "查看完整的开放数据集",
+    "consent_q": "愿意把你的回答加入这项研究吗？",
+    "consent_yes": "愿意，匿名加入",
+    "consent_no": "不了，只留在这里",
+    "consent_explain_q": "这里的“匿名”是什么意思？",
+    "consent_explain": "我们只保存你选的词、你使用的语言，以及你所在的大致地区，别的都不存。你随时可以删除。",
+    "when_q": "你上一次有这种感觉是什么时候？",
+    "toward_q": "这份爱，有没有想着的某个人，或惦记的某样东西？",
+    "composition_title": "这是你心里那份爱的声音。",
+    "hear_it": "听一听（5秒）",
+    "compare": "看看和别人有什么不同",
+    "share_it": "分享",
+    "share_title": "送给想送的人吧。",
+    "share_hint": "链接里只有你选的词和声音。不会有你的名字，也不会有你输入的任何内容。",
+    "copy_link": "复制链接",
+    "copied": "链接已复制",
+    "save_image": "保存图片",
+    "save_story": "保存为竖版海报",
+    "make_mine": "我也做一个",
+    "received_banner": "有人把自己的心意做成声音，送给了你。先听听，再做一个你自己的。",
+    "received_chain": "这份心意已经传递了{n}次。",
+    "answer_back": "用你的声音回应",
+    "duet_title": "你们俩的声音，合在一起。",
+    "circle_invite": "发到群里问问",
+    "circle_title": "在你们的圈子里，爱是什么声音？",
+    "circle_hint": "每人添一个声音。谁选了什么没人看得到，只听得到大家合成的和弦。",
+    "try_another": "换一种感觉试试",
+    "start_over": "重新开始",
+    "take_breath": "歇口气",
+    "breath_body": "可以在这里停下。什么都不会丢失；没有你的同意，什么也不会发出去。",
+    "data_panel": "这个页面知道你的哪些信息",
+    "delete_mine": "删除我的回答",
+    "framing": "DAX Foundation的一项研究",
+    "language": "语言",
+    "sound_credit": "用我们自己的音色演奏：只有和声，不用任何录音。",
+    "translate_invite": "会说别的语言？帮我们把这些话说得更地道。"
+  },
+  "feelings": {
+    "warm": "温暖",
+    "quiet": "安静",
+    "longing": "想念",
+    "joyful": "欢喜",
+    "tender": "温柔",
+    "lost": "迷茫"
+  },
+  "letters": {
+    "love": "爱",
+    "tenderness": "温情",
+    "togetherness": "相伴",
+    "trust": "信任",
+    "curiosity": "好奇",
+    "adventure": "冒险",
+    "creativity": "创造",
+    "discovery": "发现",
+    "joy": "喜悦",
+    "hope": "希望",
+    "birth": "新的开始",
+    "awe": "敬畏",
+    "gratitude": "感恩",
+    "longing": "思念",
+    "doubt": "迟疑",
+    "re_love": "有回应的爱",
+    "empathy": "共情",
+    "compassion": "关怀"
+  },
+  "tense": {
+    "was": "曾经的爱",
+    "is": "此刻的爱",
+    "will": "将来的爱"
+  },
+  "when": {
+    "today": "今天",
+    "week": "这周",
+    "ago": "有一阵子了",
+    "unsure": "说不清"
+  },
+  "toward": {
+    "person": "一个人",
+    "place": "一个地方，或一段时光",
+    "idea": "一个念想",
+    "feeling": "只是一种感觉"
+  },
+  "card": {
+    "brand": "一份心意",
+    "head_mine": "我的心意，听起来是这样的。",
+    "head_gift": "这个声音，是为你做的。",
+    "head_answer": "你呼唤，我回应。",
+    "head_circle": "我们的心意，合在一起是这样的。",
+    "cta": "你也做一个",
+    "chain": "已传递{n}次",
+    "alt": "一张卡片，上面写着“{feeling}”，周围环绕一圈音符。DAX Foundation的一项研究。"
+  },
+  "share": {
+    "og_title": "爱，在你的语言里是什么声音？",
+    "og_description": "找到你心里那份爱的声音，再送给想送的人。DAX Foundation的一项研究。",
+    "default": "爱是什么声音？我的是“{feeling}”。你也做一个吧：{url}",
+    "whatsapp": "给你做了个小东西 🎁 是我此刻的心意：“{feeling}”。打开听听，再回我一个你的 👉 {url}",
+    "whatsapp_status": "今天我的心意是“{feeling}”✦ 你也想做一个的话，链接在我的状态里👇",
+    "sms": "我把心意做成了声音：“{feeling}”。你也做一个回给我：{url}",
+    "x": "爱在你的语言里是什么声音？我今天的是“{feeling}”。",
+    "telegram": "爱是什么声音？我的是“{feeling}”。做一个你的，想送谁就送谁 → {url}",
+    "line": "给你做了个小东西：“{feeling}”的声音。轮到你啦 → {url}",
+    "wechat": "送你一份小心意 🎁 我把此刻的心情做成了一段声音：“{feeling}”。点开听听，也做一个回给我呀～ {url}",
+    "kakao": "今天我的心意：“{feeling}”。你也做一个回给我吧 → {url}",
+    "story_caption": "我的心意听起来像“{feeling}”✦ 你的呢？",
+    "group_invite": "群里来做个小实验 🙌 每人添一个自己的“爱的声音”，听听我们合在一起是什么样。谁选了什么没人看得到，想玩就来～ {url}",
+    "answer_back": "收到你的啦，这是我的回音 💛 {url}",
+    "email_subject": "给你做了一样小东西",
+    "email_body": "这是此刻我心里爱的声音：“{feeling}”。\n\n打开听听，再做一个你的回给我：\n{url}\n\n（DAX Foundation的一项研究。无需注册，无需安装。）"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "other": "共{n}条回答 · 公开数据集 · 每日更新"
+    },
+    "ui.received_chain": {
+      "other": "这份心意已经传递了{n}次。"
+    },
+    "card.chain": {
+      "other": "已传递{n}次"
+    }
+  }
+}

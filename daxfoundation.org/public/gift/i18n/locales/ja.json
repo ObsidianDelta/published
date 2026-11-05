@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "locale": "ja",
+    "name": "日本語",
+    "dir": "ltr",
+    "script": "Jpan",
+    "og_locale": "ja_JP",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "はじめる前に確認です。13歳以上ですか？",
+    "age_yes": "はい、13歳以上です",
+    "age_skip": "答えたくありません",
+    "spark_q": "いま感じている愛は、どんな気持ちですか？",
+    "spark_hint": "しっくりくるものを一つ選んでください。正解はありません。",
+    "echo_intro": "ほかの言語には、この気持ちを表す言葉があります：",
+    "see_others": "みんなの気持ちを見る",
+    "keep_going": "つづける",
+    "dataset_title": "これまでに寄せられた答えです。",
+    "dataset_meta": "{n}件の回答・公開データセット・毎日更新",
+    "dataset_link": "オープンデータセットをすべて見る",
+    "consent_q": "回答を、この研究に加えてもいいですか？",
+    "consent_yes": "はい、匿名で加えます",
+    "consent_no": "いいえ、ここだけにしておきます",
+    "consent_explain_q": "ここでの「匿名」とは？",
+    "consent_explain": "保存するのは、選んだ言葉、言語、だいたいの地域だけです。それ以外は何も保存しません。いつでも削除できます。",
+    "when_q": "最後にこう感じたのはいつですか？",
+    "toward_q": "この気持ちを向けている人や、ものはありますか？",
+    "composition_title": "これが、あなたの愛の音です。",
+    "hear_it": "聴いてみる（5秒）",
+    "compare": "ほかの音と比べてみる",
+    "share_it": "シェアする",
+    "share_title": "だれかに贈りましょう。",
+    "share_hint": "リンクに含まれるのは、選んだ言葉と音だけです。名前や入力した内容は一切含まれません。",
+    "copy_link": "リンクをコピー",
+    "copied": "コピーしました",
+    "save_image": "画像を保存",
+    "save_story": "ストーリー用に保存",
+    "make_mine": "自分のをつくる",
+    "received_banner": "だれかが、気持ちを音にして届けてくれました。まずはその音を。次はあなたの番です。",
+    "received_chain": "この音は、これまでに{n}回手渡されてきました。",
+    "answer_back": "自分の音で返す",
+    "duet_title": "ふたりの音を、いっしょに。",
+    "circle_invite": "グループに聞いてみる",
+    "circle_title": "あなたの仲間の「愛」は、どんな音？",
+    "circle_hint": "それぞれが音を一つずつ加えます。だれが何を選んだかは見えません。聞こえるのは、みんなでつくる和音だけです。",
+    "try_another": "ほかの気持ちで試す",
+    "start_over": "最初からやり直す",
+    "take_breath": "ひと息つく",
+    "breath_body": "ここでやめても大丈夫です。何も失われませんし、あなたが「はい」と言わない限り、何も送られていません。",
+    "data_panel": "このページがあなたについて知っていること",
+    "delete_mine": "自分の回答を削除する",
+    "framing": "DAX財団による研究プロジェクト",
+    "language": "言語",
+    "sound_credit": "わたしたち自身の音色で奏でています。ハーモニーだけで、録音は一切使っていません。",
+    "translate_invite": "ほかの言語を話せますか？ 正しい言い方を一緒に考えてください。"
+  },
+  "feelings": {
+    "warm": "あたたかい",
+    "quiet": "しずか",
+    "longing": "恋しい",
+    "joyful": "うれしい",
+    "tender": "やさしい",
+    "lost": "迷い"
+  },
+  "letters": {
+    "love": "愛",
+    "tenderness": "いとおしさ",
+    "togetherness": "寄り添い",
+    "trust": "信頼",
+    "curiosity": "好奇心",
+    "adventure": "冒険",
+    "creativity": "創造",
+    "discovery": "発見",
+    "joy": "よろこび",
+    "hope": "希望",
+    "birth": "はじまり",
+    "awe": "畏敬",
+    "gratitude": "感謝",
+    "longing": "恋しさ",
+    "doubt": "ためらい",
+    "re_love": "返ってきた愛",
+    "empathy": "共感",
+    "compassion": "思いやり"
+  },
+  "tense": {
+    "was": "かつての愛",
+    "is": "いまの愛",
+    "will": "これからの愛"
+  },
+  "when": {
+    "today": "今日",
+    "week": "今週",
+    "ago": "しばらく前",
+    "unsure": "よくわからない"
+  },
+  "toward": {
+    "person": "だれか",
+    "place": "ある場所、ある時間",
+    "idea": "ある考え",
+    "feeling": "気持ちそのもの"
+  },
+  "card": {
+    "brand": "おくりもの",
+    "head_mine": "わたしの気持ちは、こんな音。",
+    "head_gift": "この音、あなたに。",
+    "head_answer": "呼んでくれたから、こたえるね。",
+    "head_circle": "わたしたちの気持ちは、こんな音。",
+    "cta": "つくってみる",
+    "chain": "{n}回手渡されました",
+    "alt": "「{feeling}」という言葉と、音符の輪が描かれたカード。DAX財団による研究プロジェクト。"
+  },
+  "share": {
+    "og_title": "あなたの言葉で、愛はどんな音？",
+    "og_description": "あなたの愛の音を見つけて、だれかに贈ろう。DAX財団による研究プロジェクト。",
+    "default": "愛ってどんな音？ わたしのは「{feeling}」。よかったら、つくってみて → {url}",
+    "whatsapp": "ちょっとした贈りもの🎁 いまのわたしの気持ちを音にしたよ：「{feeling}」。聴いたら、そっちのも聞かせてね {url}",
+    "whatsapp_status": "今日のわたしの音は「{feeling}」✦ つくってみたい人はステータスのリンクから👇",
+    "sms": "気持ちを音にしてみた：「{feeling}」。よかったらそっちのも聞かせて → {url}",
+    "x": "あなたの言葉で、愛はどんな音？ 今日のわたしは「{feeling}」。",
+    "telegram": "愛ってどんな音？ わたしのは「{feeling}」。よかったらつくって、渡したい人に渡してみて → {url}",
+    "line": "ちょっとしたもの、つくってみたよ🎁 「{feeling}」の音。次はそっちの番 (*´▽`*) → {url}",
+    "wechat": "愛ってどんな音？ わたしのは「{feeling}」。よかったらつくってみて：{url}",
+    "kakao": "今日のわたしの気持ちの音：「{feeling}」。よかったら返してね → {url}",
+    "story_caption": "わたしの気持ちは「{feeling}」の音 ✦ みんなのは？",
+    "group_invite": "このグループで、ちょっと実験しない？ みんなで一つずつ「愛の音」を足して、合わせたらどんな音になるか聴いてみよう。だれが何を選んだかは見えないよ。よかったら🙌 {url}",
+    "answer_back": "届いたよ、ありがとう。これがわたしのお返し💛 {url}",
+    "email_subject": "ちょっとした贈りものです",
+    "email_body": "いまのわたしにとっての愛の音です：「{feeling}」。\n\n開いて聴いたら、よかったらあなたの音もつくって送ってくださいね：\n{url}\n\n（DAX財団による研究プロジェクトです。登録もインストールも不要です。）"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "other": "{n}件の回答・公開データセット・毎日更新"
+    },
+    "ui.received_chain": {
+      "other": "この音は、これまでに{n}回手渡されてきました。"
+    },
+    "card.chain": {
+      "other": "{n}回手渡されました"
+    }
+  }
+}

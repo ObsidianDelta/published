@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "locale": "pt",
+    "name": "Português",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "pt_BR",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Antes de começar: você tem 13 anos ou mais?",
+    "age_yes": "Sim, tenho 13 anos ou mais",
+    "age_skip": "Prefiro não dizer",
+    "spark_q": "Como você sente o amor agora?",
+    "spark_hint": "Escolha o que combina com você. Não existe resposta errada.",
+    "echo_intro": "Outras línguas têm uma palavra para isso:",
+    "see_others": "Ver o que os outros estão sentindo",
+    "keep_going": "Continuar",
+    "dataset_title": "Isto é o que as pessoas disseram até agora.",
+    "dataset_meta": "{n} respostas · Dados públicos · Atualizado diariamente",
+    "dataset_link": "Ver o conjunto de dados abertos completo",
+    "consent_q": "Você quer que sua resposta faça parte desta pesquisa?",
+    "consent_yes": "Sim, incluir a minha anonimamente",
+    "consent_no": "Não, deixar só aqui",
+    "consent_explain_q": "O que “anonimamente” quer dizer aqui?",
+    "consent_explain": "Guardamos a palavra que você escolheu, seu idioma e a região aproximada do mundo onde você está. Nada mais. Você pode apagar quando quiser.",
+    "when_q": "Quando foi a última vez que você sentiu isso?",
+    "toward_q": "Esse amor vai para alguém ou para alguma coisa?",
+    "composition_title": "Este é o som do seu amor.",
+    "hear_it": "Ouvir (5 segundos)",
+    "compare": "Ver como se compara",
+    "share_it": "Compartilhar",
+    "share_title": "Mande para alguém.",
+    "share_hint": "Seu link leva só as palavras e o som que você escolheu. Nunca seu nome, nunca nada que você digitou.",
+    "copy_link": "Copiar link",
+    "copied": "Link copiado",
+    "save_image": "Salvar a imagem",
+    "save_story": "Salvar como story",
+    "make_mine": "Fazer o meu",
+    "received_banner": "Alguém mandou amor para você, em forma de som. Ouça e depois faça o seu.",
+    "received_chain": "Este som já foi repassado {n} vezes.",
+    "answer_back": "Responder com o seu",
+    "duet_title": "Os dois sons, juntos.",
+    "circle_invite": "Chamar a sua turma",
+    "circle_title": "Como soa o amor na sua turma?",
+    "circle_hint": "Cada um adiciona um som. Ninguém vê quem escolheu o quê, só o acorde que vocês formam juntos.",
+    "try_another": "Tentar outro sentimento",
+    "start_over": "Começar de novo",
+    "take_breath": "Respire fundo",
+    "breath_body": "Você pode parar aqui. Nada se perde, e nada foi enviado sem o seu sim.",
+    "data_panel": "O que esta página sabe sobre você",
+    "delete_mine": "Apagar minha resposta",
+    "framing": "Um projeto de pesquisa da DAX Foundation",
+    "language": "Idioma",
+    "sound_credit": "Feito por nós: só harmonia, nunca uma gravação.",
+    "translate_invite": "Fala outra língua? Ajude a gente a dizer isso direito."
+  },
+  "feelings": {
+    "warm": "aconchego",
+    "quiet": "calma",
+    "longing": "saudade",
+    "joyful": "alegria",
+    "tender": "ternura",
+    "lost": "à deriva"
+  },
+  "letters": {
+    "love": "amor",
+    "tenderness": "ternura",
+    "togetherness": "estar junto",
+    "trust": "confiança",
+    "curiosity": "curiosidade",
+    "adventure": "aventura",
+    "creativity": "criatividade",
+    "discovery": "descoberta",
+    "joy": "alegria",
+    "hope": "esperança",
+    "birth": "recomeços",
+    "awe": "encantamento",
+    "gratitude": "gratidão",
+    "longing": "saudade",
+    "doubt": "dúvida",
+    "re_love": "amor que volta",
+    "empathy": "empatia",
+    "compassion": "compaixão"
+  },
+  "tense": {
+    "was": "o amor que foi",
+    "is": "o amor que é",
+    "will": "o amor que será"
+  },
+  "when": {
+    "today": "hoje",
+    "week": "esta semana",
+    "ago": "faz um tempo",
+    "unsure": "não tenho certeza"
+  },
+  "toward": {
+    "person": "uma pessoa",
+    "place": "um lugar ou uma época",
+    "idea": "uma ideia",
+    "feeling": "só um sentimento"
+  },
+  "card": {
+    "brand": "Um presente",
+    "head_mine": "Esse é o som do meu amor.",
+    "head_gift": "Fiz esse som pra você.",
+    "head_answer": "Você me mandou o seu. Aqui vai o meu.",
+    "head_circle": "Esse é o som do nosso amor.",
+    "cta": "Faça o seu",
+    "chain": "repassado {n} vezes",
+    "alt": "Um cartão com a palavra “{feeling}” e um círculo de notas musicais. Um projeto de pesquisa da DAX Foundation."
+  },
+  "share": {
+    "og_title": "Como soa o amor na sua língua?",
+    "og_description": "Descubra o som do seu amor e mande pra alguém. Um projeto de pesquisa da DAX Foundation.",
+    "default": "Como soa o amor? O meu soa assim: {feeling}. Faz o seu: {url}",
+    "whatsapp": "Fiz uma coisinha pra você 🎁 É o som do meu amor agora: {feeling} 💛 Abre e me manda o seu 👉 {url}",
+    "whatsapp_status": "O som do meu amor hoje: {feeling} ✦ Faz o seu, link no meu status 👇",
+    "sms": "Fiz o som do meu amor: {feeling}. Faz o seu e me manda de volta: {url}",
+    "x": "Como soa o amor na sua língua? O meu, hoje: {feeling}.",
+    "telegram": "Como soa o amor? O meu: {feeling}. Faz o seu e passa adiante → {url}",
+    "line": "Fiz uma coisa pra você: o som de “{feeling}”. Sua vez → {url}",
+    "wechat": "Como soa o amor? O meu: {feeling}. Faz o seu: {url}",
+    "kakao": "O som do meu amor hoje: {feeling}. Faz o seu e me manda → {url}",
+    "story_caption": "meu amor soa assim: {feeling} ✦ e o seu?",
+    "group_invite": "Experimento rapidinho pro grupo: cada um coloca o som do seu amor e a gente ouve como soa todo mundo junto. Ninguém vê quem escolheu o quê. {url}",
+    "answer_back": "Você me mandou o seu, então aqui vai a minha resposta 💛 {url}",
+    "email_subject": "Fiz uma coisa pra você",
+    "email_body": "É o som do amor pra mim agora: {feeling}.\n\nAbre, depois faz o seu e me manda de volta:\n{url}\n\n(Um projeto de pesquisa da DAX Foundation. Sem cadastro, nada pra instalar.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "{n} resposta · Dados públicos · Atualizado diariamente",
+      "many": "{n} respostas · Dados públicos · Atualizado diariamente",
+      "other": "{n} respostas · Dados públicos · Atualizado diariamente"
+    },
+    "ui.received_chain": {
+      "one": "Este som já foi repassado {n} vez.",
+      "many": "Este som já foi repassado {n} vezes.",
+      "other": "Este som já foi repassado {n} vezes."
+    },
+    "card.chain": {
+      "one": "repassado {n} vez",
+      "many": "repassado {n} vezes",
+      "other": "repassado {n} vezes"
+    }
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "locale": "tr",
+    "name": "Türkçe",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "tr_TR",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Başlamadan önce: 13 yaşında veya daha büyük müsünüz?",
+    "age_yes": "Evet, 13 yaşında veya daha büyüğüm",
+    "age_skip": "Söylememeyi tercih ederim",
+    "spark_q": "Şu anda sevgiyi nasıl hissediyorsunuz?",
+    "spark_hint": "Size en uygun olanı seçin. Yanlış cevap yok.",
+    "echo_intro": "Başka dillerde bunun için bir kelime var:",
+    "see_others": "Başkalarının hislerini gör",
+    "keep_going": "Devam et",
+    "dataset_title": "İşte şimdiye kadar söylenenler.",
+    "dataset_meta": "{n} yanıt · Veri seti herkese açık · Her gün güncellenir",
+    "dataset_link": "Açık veri setinin tamamını gör",
+    "consent_q": "Yanıtınızın bu araştırmaya eklenmesini ister misiniz?",
+    "consent_yes": "Evet, benimkini anonim olarak ekleyin",
+    "consent_no": "Hayır, sadece burada kalsın",
+    "consent_explain_q": "Burada “anonim” ne demek?",
+    "consent_explain": "Seçtiğiniz kelimeyi, dilinizi ve dünyanın hangi bölgesinde olduğunuzu kabaca kaydediyoruz. Başka hiçbir şey. İstediğiniz zaman silebilirsiniz.",
+    "when_q": "Bunu en son ne zaman hissettiniz?",
+    "toward_q": "Bu sevgiyi hissettiğiniz biri ya da bir şey var mı?",
+    "composition_title": "İşte sevginizin sesi.",
+    "hear_it": "Dinle (5 saniye)",
+    "compare": "Karşılaştır",
+    "share_it": "Paylaş",
+    "share_title": "Birine gönderin.",
+    "share_hint": "Bağlantınızda yalnızca seçtiğiniz kelimeler ve ses var. Adınız ya da yazdığınız hiçbir şey yok.",
+    "copy_link": "Bağlantıyı kopyala",
+    "copied": "Bağlantı kopyalandı",
+    "save_image": "Görseli kaydet",
+    "save_story": "Hikâye olarak kaydet",
+    "make_mine": "Benimkini oluştur",
+    "received_banner": "Biri size sevgisini bir ses olarak gönderdi. Dinleyin, sonra sıra sizde.",
+    "received_chain": "Bu ses şimdiye kadar {n} kez paylaşıldı.",
+    "answer_back": "Kendi sesimle yanıt ver",
+    "duet_title": "İki ses, bir arada.",
+    "circle_invite": "Gruba sor",
+    "circle_title": "Çevrenizde sevginin sesi nasıl?",
+    "circle_hint": "Herkes bir ses ekler. Kimin neyi seçtiğini kimse görmez, yalnızca birlikte oluşturduğunuz akor duyulur.",
+    "try_another": "Başka bir his dene",
+    "start_over": "Baştan başla",
+    "take_breath": "Bir nefes alın",
+    "breath_body": "Burada durabilirsiniz. Hiçbir şey kaybolmaz; siz onay vermedikçe hiçbir şey gönderilmez.",
+    "data_panel": "Bu sayfanın sizin hakkınızda bildikleri",
+    "delete_mine": "Yanıtımı sil",
+    "framing": "DAX Foundation'ın bir araştırma projesi",
+    "language": "Dil",
+    "sound_credit": "Bunu biz çalıyoruz: yalnızca armoni, asla bir kayıt değil.",
+    "translate_invite": "Başka bir dil mi konuşuyorsunuz? Bunu doğru söylememize yardım edin."
+  },
+  "feelings": {
+    "warm": "sıcaklık",
+    "quiet": "dinginlik",
+    "longing": "özlem",
+    "joyful": "neşe",
+    "tender": "şefkat",
+    "lost": "arayış"
+  },
+  "letters": {
+    "love": "sevgi",
+    "tenderness": "sevecenlik",
+    "togetherness": "bir arada olmak",
+    "trust": "güven",
+    "curiosity": "merak",
+    "adventure": "macera",
+    "creativity": "yaratıcılık",
+    "discovery": "keşif",
+    "joy": "sevinç",
+    "hope": "umut",
+    "birth": "yeni başlangıçlar",
+    "awe": "hayranlık",
+    "gratitude": "minnettarlık",
+    "longing": "özlem",
+    "doubt": "şüphe",
+    "re_love": "karşılık bulan sevgi",
+    "empathy": "empati",
+    "compassion": "merhamet"
+  },
+  "tense": {
+    "was": "geçmişteki sevgi",
+    "is": "şimdiki sevgi",
+    "will": "gelecekteki sevgi"
+  },
+  "when": {
+    "today": "bugün",
+    "week": "bu hafta",
+    "ago": "bir süre önce",
+    "unsure": "emin değilim"
+  },
+  "toward": {
+    "person": "bir insan",
+    "place": "bir yer ya da bir zaman",
+    "idea": "bir fikir",
+    "feeling": "sadece bir his"
+  },
+  "card": {
+    "brand": "Bir hediye",
+    "head_mine": "Sevgimin sesi bu.",
+    "head_gift": "Bu sesi senin için yaptım.",
+    "head_answer": "Sen seslendin, ben cevap verdim.",
+    "head_circle": "Sevgimizin sesi bu.",
+    "cta": "Seninkini yap",
+    "chain": "{n} kez paylaşıldı",
+    "alt": "“{feeling}” kelimesini ve bir nota halkasını gösteren bir kart. DAX Foundation'ın bir araştırma projesi."
+  },
+  "share": {
+    "og_title": "Senin dilinde sevginin sesi nasıl?",
+    "og_description": "Sevginin sesini bul, sonra birine gönder. DAX Foundation'ın bir araştırma projesi.",
+    "default": "Sevginin sesi nasıl? Benimki: {feeling}. Seninkini yap: {url}",
+    "whatsapp": "Sana bir şey hazırladım 🎁 Şu an sevgimin sesi: {feeling} 💛 Aç, sonra bana seninkini gönder 👉 {url}",
+    "whatsapp_status": "Bugün sevgimin sesi: {feeling} ✦ Seninkini yap, link durumumda 👇",
+    "sms": "Sevgimin sesi: {feeling}. Sen de yap, bana gönder: {url}",
+    "x": "Senin dilinde sevginin sesi nasıl? Benimki bugün: {feeling}.",
+    "telegram": "Sevginin sesi nasıl? Benimki: {feeling}. Seninkini yap, sen de paylaş → {url}",
+    "line": "Sana bir şey hazırladım: “{feeling}” sesi. Sıra sende → {url}",
+    "wechat": "Sevginin sesi nasıl? Benimki: {feeling}. Seninkini yap: {url}",
+    "kakao": "Bugün sevgimin sesi: {feeling}. Seninkini yap, bana gönder → {url}",
+    "story_caption": "sevgimin sesi: {feeling} ✦ seninki nasıl?",
+    "group_invite": "Grup için küçük bir deney: herkes kendi sevgisinin sesini eklesin, hep birlikte nasıl bir ses çıkardığımızı dinleyelim. Kimin neyi seçtiğini kimse görmüyor. {url}",
+    "answer_back": "Bana seninkini gönderdin, işte benim cevabım 💛 {url}",
+    "email_subject": "Sana bir şey hazırladım",
+    "email_body": "Şu an benim için sevginin sesi bu: {feeling}.\n\nAç, sonra sen de kendininkini yap ve bana gönder:\n{url}\n\n(DAX Foundation'ın bir araştırma projesi. Üyelik yok, hiçbir şey yüklemen gerekmiyor.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "{n} yanıt · Veri seti herkese açık · Her gün güncellenir",
+      "other": "{n} yanıt · Veri seti herkese açık · Her gün güncellenir"
+    },
+    "ui.received_chain": {
+      "one": "Bu ses şimdiye kadar bir kez paylaşıldı.",
+      "other": "Bu ses şimdiye kadar {n} kez paylaşıldı."
+    },
+    "card.chain": {
+      "one": "bir kez paylaşıldı",
+      "other": "{n} kez paylaşıldı"
+    }
+  }
+}

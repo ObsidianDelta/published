@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "locale": "yo",
+    "name": "Yorùbá",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "yo_NG",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Kí a tó bẹ̀rẹ̀: ṣé o ti pé ọmọ ọdún mẹ́tàlá tàbí jù bẹ́ẹ̀ lọ?",
+    "age_yes": "Bẹ́ẹ̀ ni, mo ti pé ọdún mẹ́tàlá tàbí jù bẹ́ẹ̀ lọ",
+    "age_skip": "Mi ò fẹ́ sọ",
+    "spark_q": "Báwo ni ìfẹ́ ṣe rí lára rẹ báyìí?",
+    "spark_hint": "Yan èyí tó bá ọ mu. Kò sí ìdáhùn tí kò tọ́.",
+    "echo_intro": "Àwọn èdè mìíràn ní ọ̀rọ̀ kan fún èyí:",
+    "see_others": "Wo ohun tí àwọn mìíràn ń rí lára",
+    "keep_going": "Máa bá a lọ",
+    "dataset_title": "Ohun tí àwọn ènìyàn ti sọ títí di báyìí nìyí.",
+    "dataset_meta": "Ìdáhùn {n} · Àkójọ dátà: ti gbogbo ènìyàn · À ń ṣe àfikún lójoojúmọ́",
+    "dataset_link": "Wo gbogbo àkójọ dátà tó ṣí sílẹ̀",
+    "consent_q": "Ṣé o fẹ́ kí a fi ìdáhùn rẹ kún ìwádìí yìí?",
+    "consent_yes": "Bẹ́ẹ̀ ni, ẹ fi tèmi kún un láìsí orúkọ",
+    "consent_no": "Rárá, ẹ jẹ́ kó wà níbí nìkan",
+    "consent_explain_q": "Kí ni “láìsí orúkọ” túmọ̀ sí níbí?",
+    "consent_explain": "Ọ̀rọ̀ tí o yàn, èdè rẹ, àti agbègbè ayé tí o wà ní ìwọ̀nba nìkan la máa ń tọ́jú. Kò sí nǹkan mìíràn. O lè pa á rẹ́ nígbàkígbà.",
+    "when_q": "Ìgbà wo ni o rí báyìí lára kẹ́yìn?",
+    "toward_q": "Ṣé ẹnìkan tàbí nǹkan kan wà tí o ní ìfẹ́ yìí sí?",
+    "composition_title": "Ohùn ìfẹ́ rẹ nìyí.",
+    "hear_it": "Gbọ́ ọ (ìṣẹ́jú-àáyá 5)",
+    "compare": "Fi wé ti àwọn mìíràn",
+    "share_it": "Pín in",
+    "share_title": "Fi ránṣẹ́ sí ẹnìkan.",
+    "share_hint": "Ọ̀rọ̀ àti ohùn tí o yàn nìkan ni ìjápọ̀ rẹ gbé. Kò gbé orúkọ rẹ, kò sì gbé ohunkóhun tí o tẹ̀.",
+    "copy_link": "Ṣe ẹ̀dà ìjápọ̀",
+    "copied": "A ti ṣe ẹ̀dà ìjápọ̀",
+    "save_image": "Fi àwòrán pamọ́",
+    "save_story": "Fi pamọ́ fún sítọ́rì",
+    "make_mine": "Ṣe tèmi",
+    "received_banner": "Ẹnìkan fi ìfẹ́ rẹ̀ ránṣẹ́ sí ọ gẹ́gẹ́ bí ohùn. Tirẹ̀ nìyí. Ní báyìí, ṣe tìrẹ.",
+    "received_chain": "Wọ́n ti fi èyí ránṣẹ́ síwájú ní ìgbà {n}.",
+    "answer_back": "Fi tìrẹ dá a lóhùn",
+    "duet_title": "Ohùn yín méjèèjì, papọ̀.",
+    "circle_invite": "Béèrè lọ́wọ́ ẹgbẹ́ rẹ",
+    "circle_title": "Báwo ni ìfẹ́ ṣe ń dún láàrín ẹgbẹ́ yín?",
+    "circle_hint": "Kálukú á fi ohùn kan kún un. Kò sí ẹni tó máa mọ ẹni tó yan kí ni; ohùn tí ẹ jọ ṣe papọ̀ nìkan ni ẹ ó gbọ́.",
+    "try_another": "Gbìyànjú ìmọ̀lára mìíràn",
+    "start_over": "Tún bẹ̀rẹ̀",
+    "take_breath": "Mí kanlẹ̀",
+    "breath_body": "O lè dúró síbí. Kò sí ohun tó sọnù, kò sì sí ohun tí a fi ránṣẹ́ àfi tí o bá gbà.",
+    "data_panel": "Ohun tí ojú-ewé yìí mọ̀ nípa rẹ",
+    "delete_mine": "Pa ìdáhùn mi rẹ́",
+    "framing": "Iṣẹ́ àkànṣe ìwádìí ti DAX Foundation",
+    "language": "Èdè",
+    "sound_credit": "Ohùn tiwa la fi ṣe é: ìbáramu ohùn nìkan, kì í ṣe àgbàsílẹ̀ rárá.",
+    "translate_invite": "Ṣé o ń sọ èdè mìíràn? Ràn wá lọ́wọ́ láti sọ èyí bó ṣe yẹ."
+  },
+  "feelings": {
+    "warm": "ọ̀yàyà",
+    "quiet": "ìdákẹ́jẹ́ẹ́",
+    "longing": "àárò",
+    "joyful": "inú dídùn",
+    "tender": "jẹ̀lẹ́ńkẹ́",
+    "lost": "àìdánilójú"
+  },
+  "letters": {
+    "love": "ìfẹ́",
+    "tenderness": "ìkẹ́",
+    "togetherness": "ìṣọ̀kan",
+    "trust": "ìgbẹ́kẹ̀lé",
+    "curiosity": "ìfẹ́ láti mọ̀",
+    "adventure": "ìrìnàjò tuntun",
+    "creativity": "àtinúdá",
+    "discovery": "àwárí",
+    "joy": "ayọ̀",
+    "hope": "ìrètí",
+    "birth": "ìbẹ̀rẹ̀ tuntun",
+    "awe": "ìyanu",
+    "gratitude": "ọpẹ́",
+    "longing": "àárò",
+    "doubt": "iyèméjì",
+    "re_love": "ìfẹ́ tí a dá lóhùn",
+    "empathy": "ìbánikẹ́dùn",
+    "compassion": "àánú"
+  },
+  "tense": {
+    "was": "ìfẹ́ tó ti wà",
+    "is": "ìfẹ́ tó wà báyìí",
+    "will": "ìfẹ́ tí yóò wà"
+  },
+  "when": {
+    "today": "lónìí",
+    "week": "ọ̀sẹ̀ yìí",
+    "ago": "ó ti pẹ́ díẹ̀",
+    "unsure": "kò dá mi lójú"
+  },
+  "toward": {
+    "person": "ẹnìkan",
+    "place": "ibì kan tàbí ìgbà kan",
+    "idea": "èrò kan",
+    "feeling": "ìmọ̀lára lásán"
+  },
+  "card": {
+    "brand": "Ẹ̀bùn",
+    "head_mine": "Báyìí ni ìfẹ́ mi ṣe ń dún.",
+    "head_gift": "Mo ṣe ohùn yìí fún ọ.",
+    "head_answer": "O pè mí, mo jẹ́.",
+    "head_circle": "Báyìí ni ìfẹ́ wa ṣe ń dún.",
+    "cta": "Ṣe tìrẹ",
+    "chain": "wọ́n ti fi ránṣẹ́ síwájú ní ìgbà {n}",
+    "alt": "Káàdì tí ọ̀rọ̀ náà “{feeling}” wà lórí rẹ̀, pẹ̀lú àwọn àmì orin tí ó yí i ká. Iṣẹ́ àkànṣe ìwádìí ti DAX Foundation."
+  },
+  "share": {
+    "og_title": "Báwo ni ìfẹ́ ṣe ń dún ní èdè rẹ?",
+    "og_description": "Wá ohùn ìfẹ́ rẹ, kí o sì fi ránṣẹ́ sí ẹnìkan. Iṣẹ́ àkànṣe ìwádìí ti DAX Foundation.",
+    "default": "Báwo ni ìfẹ́ ṣe ń dún? Tèmi ń dún bí “{feeling}”. Ṣe tìrẹ: {url}",
+    "whatsapp": "Mo ṣe nǹkan kékeré kan fún ọ 🎁 Ohùn ìfẹ́ mi lásìkò yìí ni: “{feeling}”. Ṣí i, kí o sì fi tìrẹ ránṣẹ́ sí mi 👉 {url}",
+    "whatsapp_status": "Ohùn ìfẹ́ mi lónìí: “{feeling}” ✦ Ṣe tìrẹ, link wà ní status mi 👇",
+    "sms": "Mo ṣe ohùn ìfẹ́ mi: “{feeling}”. Ṣe tìrẹ, fi ránṣẹ́ padà: {url}",
+    "x": "Báwo ni ìfẹ́ ṣe ń dún ní èdè rẹ? Tèmi lónìí: “{feeling}” ✨",
+    "telegram": "Báwo ni ìfẹ́ ṣe ń dún? Tèmi: “{feeling}”. Ṣe tìrẹ, kí o fi ránṣẹ́ sí ẹni tí o bá fẹ́ → {url}",
+    "line": "Mo ṣe nǹkan kan fún ọ: ohùn “{feeling}”. Ìwọ ló kàn → {url}",
+    "wechat": "Báwo ni ìfẹ́ ṣe ń dún? Tèmi ni “{feeling}”. Ṣe tìrẹ: {url}",
+    "kakao": "Ohùn ìfẹ́ mi lónìí: “{feeling}”. Ṣe tìrẹ kí o fi ránṣẹ́ padà → {url}",
+    "story_caption": "ìfẹ́ mi ń dún bí “{feeling}” ✦ tìrẹ ńkọ́?",
+    "group_invite": "Ẹ̀yin ẹgbẹ́ mi, ẹ jẹ́ ká ṣe little experiment kan 😄: kálukú fi ohùn ìfẹ́ rẹ̀ kún un, ká gbọ́ bí a ṣe ń dún papọ̀. Kò sí ẹni tó máa rí ẹni tó yan kí ni. Ẹni tó bá fẹ́ nìkan 🙌 {url}",
+    "answer_back": "O fi tìrẹ ránṣẹ́ sí mi, èsì mi nìyí 💛 {url}",
+    "email_subject": "Mo ṣe nǹkan kan fún ọ",
+    "email_body": "Bí ìfẹ́ ṣe ń dún sí mi lásìkò yìí nìyí: “{feeling}”.\n\nṢí i, lẹ́yìn náà ṣe tìrẹ kí o sì fi ránṣẹ́ padà sí mi:\n{url}\n\n(Iṣẹ́ àkànṣe ìwádìí ti DAX Foundation. Kò sí ìforúkọsílẹ̀, kò sí nǹkan láti fi sórí ẹ̀rọ.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "other": "Ìdáhùn {n} · Àkójọ dátà: ti gbogbo ènìyàn · À ń ṣe àfikún lójoojúmọ́"
+    },
+    "ui.received_chain": {
+      "other": "Wọ́n ti fi èyí ránṣẹ́ síwájú ní ìgbà {n}."
+    },
+    "card.chain": {
+      "other": "wọ́n ti fi ránṣẹ́ síwájú ní ìgbà {n}"
+    }
+  }
+}

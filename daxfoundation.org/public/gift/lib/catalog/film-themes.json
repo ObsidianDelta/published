@@ -1,0 +1,261 @@
+{
+  "version": "0.1.0",
+  "created": "2026-11-03",
+  "derived_from": "state/beep-lang/THEME-CATALOG-v0.md (seed rows, Love Tuning Fork 2026-10-31)",
+  "rule": "Harmony + attribution only. Chord movement and key are catalogued and credited; melody, lyrics and recordings are never stored or played. The studio voices these chords in its own synth.",
+  "status": "SEED -- every row carries the THEME-CATALOG confidence; verify against a published score, lead sheet or analysis before raising it.",
+  "themes": [
+    {
+      "id": "titanic-heart",
+      "title": "My Heart Will Go On (theme)",
+      "work": "Titanic",
+      "year": 1997,
+      "composer": "James Horner",
+      "culture": "US film",
+      "key": {
+        "tonic": "E",
+        "mode": "major"
+      },
+      "progression": [
+        "E",
+        "B",
+        "A",
+        "B"
+      ],
+      "letters": [
+        "longing",
+        "love",
+        "hope"
+      ],
+      "confidence": "medium",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "loveactually-glasgow",
+      "title": "Glasgow Love Theme",
+      "work": "Love Actually",
+      "year": 2003,
+      "composer": "Craig Armstrong",
+      "culture": "UK film",
+      "key": {
+        "tonic": "C",
+        "mode": "major"
+      },
+      "progression": [
+        "C",
+        "G/B",
+        "Am",
+        "Fmaj7"
+      ],
+      "letters": [
+        "tenderness",
+        "longing"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "braveheart-princess",
+      "title": "For the Love of a Princess",
+      "work": "Braveheart",
+      "year": 1995,
+      "composer": "James Horner",
+      "culture": "US/UK film, Scottish setting",
+      "key": {
+        "tonic": "D",
+        "mode": "major"
+      },
+      "progression": [
+        "Bm",
+        "G",
+        "D",
+        "A"
+      ],
+      "letters": [
+        "longing",
+        "love"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; key/mode to verify (Celtic modal flavour)",
+      "verified": false
+    },
+    {
+      "id": "superman-love",
+      "title": "Love Theme",
+      "work": "Superman",
+      "year": 1978,
+      "composer": "John Williams",
+      "culture": "US film",
+      "key": {
+        "tonic": "Eb",
+        "mode": "major"
+      },
+      "progression": [
+        "Eb",
+        "Gm/D",
+        "Cm",
+        "Abmaj7"
+      ],
+      "letters": [
+        "awe",
+        "tenderness"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "nottinghill-she",
+      "title": "She (as used in the film)",
+      "work": "Notting Hill",
+      "year": 1999,
+      "composer": "Charles Aznavour & Herbert Kretzmer",
+      "culture": "UK film / French chanson",
+      "key": {
+        "tonic": "G",
+        "mode": "major"
+      },
+      "progression": [
+        "G",
+        "Em",
+        "C",
+        "Cm"
+      ],
+      "letters": [
+        "tenderness",
+        "discovery"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "ghost-unchained",
+      "title": "Unchained Melody (as used in the film)",
+      "work": "Ghost",
+      "year": 1990,
+      "composer": "Alex North & Hy Zaret",
+      "culture": "US film",
+      "key": {
+        "tonic": "C",
+        "mode": "major"
+      },
+      "progression": [
+        "C",
+        "Am",
+        "F",
+        "G"
+      ],
+      "letters": [
+        "longing",
+        "love"
+      ],
+      "confidence": "high",
+      "source": "THEME-CATALOG-v0; the I-vi-IV-V movement is widely documented",
+      "verified": false
+    },
+    {
+      "id": "casablanca-timegoesby",
+      "title": "As Time Goes By (as used in the film)",
+      "work": "Casablanca",
+      "year": 1942,
+      "composer": "Herman Hupfeld",
+      "culture": "US film",
+      "key": {
+        "tonic": "Eb",
+        "mode": "major"
+      },
+      "progression": [
+        "Fm7",
+        "Bb7",
+        "Ebmaj7",
+        "Cm7"
+      ],
+      "letters": [
+        "longing",
+        "tenderness"
+      ],
+      "confidence": "medium",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "notebook-main",
+      "title": "Main Title",
+      "work": "The Notebook",
+      "year": 2004,
+      "composer": "Aaron Zigman",
+      "culture": "US film",
+      "key": {
+        "tonic": "F",
+        "mode": "major"
+      },
+      "progression": [
+        "F",
+        "Am",
+        "Bb",
+        "C"
+      ],
+      "letters": [
+        "tenderness",
+        "longing"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "lalaland-mia",
+      "title": "Mia & Sebastian's Theme",
+      "work": "La La Land",
+      "year": 2016,
+      "composer": "Justin Hurwitz",
+      "culture": "US film",
+      "key": {
+        "tonic": "D",
+        "mode": "major"
+      },
+      "progression": [
+        "Dmaj7",
+        "Bm7",
+        "Em7",
+        "A7"
+      ],
+      "letters": [
+        "longing",
+        "joy"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    },
+    {
+      "id": "up-married",
+      "title": "Married Life",
+      "work": "Up",
+      "year": 2009,
+      "composer": "Michael Giacchino",
+      "culture": "US film",
+      "key": {
+        "tonic": "F",
+        "mode": "major"
+      },
+      "progression": [
+        "F",
+        "Dm",
+        "Gm7",
+        "C7"
+      ],
+      "letters": [
+        "joy",
+        "tenderness",
+        "longing"
+      ],
+      "confidence": "low",
+      "source": "THEME-CATALOG-v0 memory sketch 2026-10-31; to verify",
+      "verified": false
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "version": "0.1.0",
+  "doc": "Game layer for the experiment library. State is ONE list: the ids of completed experiments. Everything else (rings, unlocked experiments, bonus stages) is derived by progression/unlock.mjs. Sensitive experiments (care.sensitive) are never required by any rule.",
+  "state_shape": {
+    "completed": [
+      "<template id>",
+      "..."
+    ]
+  },
+  "rule_dsl": {
+    "always": "{ \"always\": true }",
+    "ring": "{ \"ring\": \"echo\" } -- that ring's rule holds",
+    "completed": "{ \"completed\": \"<template id>\" }",
+    "completedCount": "{ \"completedCount\": 3 }",
+    "sourceCompleted": "{ \"sourceCompleted\": \"person\" } -- any experiment of that source type",
+    "sourceTypesCompleted": "{ \"sourceTypesCompleted\": 2 } -- distinct source types",
+    "depthCompleted": "{ \"depthCompleted\": { \"min\": 3, \"count\": 1 } }",
+    "all": "{ \"all\": [rule, ...] }",
+    "any": "{ \"any\": [rule, ...] }"
+  },
+  "rings": [
+    {
+      "id": "spark",
+      "name": "Spark",
+      "promise": "One tap, one minute. Hear what a feeling sounds like.",
+      "rule": {
+        "always": true
+      }
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "promise": "Your first sound opens the doors: places, people, seasons.",
+      "rule": {
+        "completedCount": 1
+      }
+    },
+    {
+      "id": "chorus",
+      "name": "Chorus",
+      "promise": "Blend two things you love into one sound.",
+      "rule": {
+        "all": [
+          {
+            "completedCount": 3
+          },
+          {
+            "sourceTypesCompleted": 2
+          }
+        ]
+      }
+    },
+    {
+      "id": "harmony",
+      "name": "Harmony",
+      "promise": "Words for love from other languages; harmony from other traditions.",
+      "rule": {
+        "all": [
+          {
+            "completedCount": 6
+          },
+          {
+            "depthCompleted": {
+              "min": 3,
+              "count": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "constellation",
+      "name": "Constellation",
+      "promise": "The deep experiments: two cultures, two films, your whole story in chords.",
+      "rule": {
+        "all": [
+          {
+            "ring": "harmony"
+          },
+          {
+            "completedCount": 10
+          },
+          {
+            "any": [
+              {
+                "sourceCompleted": "love-words"
+              },
+              {
+                "sourceCompleted": "culture-harmony"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "bonus_stages": [
+    {
+      "id": "make-it-yours",
+      "name": "Make it yours",
+      "what": "Sliders to nudge the feeling before it becomes chords.",
+      "rule": {
+        "completed": "movies-chords-emotions-notes"
+      }
+    },
+    {
+      "id": "tense",
+      "name": "Was, is, will be",
+      "what": "Hear the same feeling as a memory, as now, or as a hope (LOVE-VOCAB tense modifier).",
+      "rule": {
+        "completedCount": 2
+      }
+    },
+    {
+      "id": "re-love",
+      "name": "The answer",
+      "what": "Your sound is framed by the love call D and its answer G -- re-love.",
+      "rule": {
+        "sourceCompleted": "person"
+      }
+    }
+  ],
+  "design_notes": [
+    "Minimal: no points, no streaks, no timers, no loss. Progress only ever opens things; nothing is taken away.",
+    "Every ring is reachable without completing any sensitive experiment (tests/unlock.test.mjs enforces it).",
+    "A ring's promise is the only copy the visitor sees about the game; the studio shows the next locked ring's promise as a gentle 'next'.",
+    "Sequels (rule completed: X) make it feel like a path: the quick film theme opens the two-film blend, etc."
+  ]
+}

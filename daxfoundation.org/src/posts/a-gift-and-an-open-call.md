@@ -1,12 +1,14 @@
 ---
 title: "A gift, and an open call"
-description: "The DAX Foundation is incorporated. To mark it: a gift about what love sounds like, an open call for research into nonverbal communication in learning, and the lab where that research starts."
+description: "The DAX Foundation was incorporated on [INC-DATE], and two labs open with it: the Sound Lab, with a gift about what love sounds like, and the Gesture Lab, with an open call for research into nonverbal communication in learning."
 date: 2026-11-04
 draft: false
 unlisted: true
 related:
   - url: /gift/
-    label: "Les deux cœurs · The Two Hearts (the gift)"
+    label: "What does love sound like? (the gift, in the Sound Lab)"
+  - url: https://re.ui.research.daxfoundation.org/reui-start
+    label: "Re·UI, the research sampler (the Gesture Lab)"
   - url: https://daxfoundation.org/metadax/research/#formerly-brunswicklab
     label: "DAX Foundation Research"
   - url: https://research.daxfoundation.org/
@@ -73,25 +75,66 @@ related:
   @media (prefers-reduced-motion: reduce) {
     .gx-ballet.is-live li, .gx-ballet.is-live li.is-on { transition: none; }
   }
+  .gx-labs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin: 2rem 0; }
+  .gx-labs a { display: block; padding: 1.1rem 1.25rem; border: 1px solid var(--line); background: #0f0f0f; color: var(--fg); text-decoration: none; }
+  .prose .gx-labs a { border-bottom: 1px solid var(--line); }
+  .gx-labs a:hover, .gx-labs a:focus-visible { border-color: #8a6d33; }
+  .gx-labs strong { display: block; font-weight: 400; font-size: 1.125rem; color: #f1d9a0; }
+  .gx-labs span { display: block; margin-top: 0.3rem; font-size: 0.9375rem; color: var(--muted); }
+  .gx-form .gx-code { display: none; margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid #2c2c2c; }
+  .gx-form.is-code .gx-code { display: block; }
+  .gx-form.is-code .gx-step1 { display: none; }
+  .gx-form input[name="code"] { box-sizing: border-box; display: block; width: 100%; max-width: 12rem; margin-top: 0.35rem; padding: 0.6rem 0.7rem; border: 1px solid #2c2c2c; background: #0a0a0a; color: var(--fg); font: inherit; font-size: 1.4rem; letter-spacing: 0.35em; }
+  .gx-form .gx-link { all: unset; cursor: pointer; margin-left: 1rem; color: var(--muted); font-size: 0.875rem; text-decoration: underline; }
+  .gx-share { margin: 2rem 0; padding: 1.1rem 1.25rem; border: 1px solid #3a3222; background: #120f09; }
+  .gx-share p { margin: 0 0 0.75rem; }
+  .gx-share button { all: unset; box-sizing: border-box; cursor: pointer; padding: 0.45rem 0.8rem; border: 1px solid #8a6d33; color: #f1d9a0; font-size: 0.875rem; }
+  .gx-share button:hover, .gx-share button:focus-visible { background: #17130b; }
+  .gx-share .gx-copied { margin-left: 0.75rem; font-size: 0.875rem; color: var(--muted); }
+  @media (max-width: 40rem) { .gx-labs { grid-template-columns: 1fr; } }
 </style>
 
-Today the DAX Foundation is incorporated. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
+The DAX Foundation was incorporated on [INC-DATE] under the Canada Not-for-profit Corporations Act, corporation number [CORP-NO]. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
 
-## First, a gift: what love sounds like
+Two labs open with the Foundation.
 
-The first thing the Foundation gives is about love. It is called <em>Les deux cœurs</em>, The Two Hearts: a new language of love, where emotions become notes of love on a piano. It is for anyone, in French and English, and you can make your own and pass it on.
+<div class="gx-labs">
+  <a href="#the-sound-lab"><strong>The Sound Lab</strong><span>Heartbeats, and the language of love. It opens with a gift.</span></a>
+  <a href="#the-gesture-lab"><strong>The Gesture Lab</strong><span>Re·UI: what passes between people without words. It opens with a call.</span></a>
+</div>
 
-<a class="gx-gift" href="/gift/"><strong>Les deux cœurs · The Two Hearts</strong><span>One heart calls, the other answers. Turn your emotions into notes, make your song, send it to someone you love.</span></a>
+## The Sound Lab
 
-It began with a piano piece, <em>Heartbeats</em>, composed by feel: each note chosen for the emotion it stirs. Two hearts are two notes: D calls, G answers. From there it works like a small studio. You pick your emotions, each one becomes a note, and the notes become your song. A small lab lets you play a note or a chord and say what it makes you feel. What comes out is yours. There is no account and nothing to install.
+### First, a gift: what does love sound like?
 
-Love comes first, and it means the whole range: family, friendship, belonging, care. After love come the things that grow beside it: creativity, ingenuity, curiosity, awe, hope, optimism, togetherness. We wanted the first gift to be about the best of us.
+The first thing the Foundation gives is a small studio for one question: what does love sound like? It runs in your browser. There is no account and nothing to install.
 
-What you make stays on your device; nothing is sent anywhere. You share it by sending it yourself. The research behind it is building an open dataset of what love sounds like, free to anyone, anywhere: short paid surveys at [research.daxfoundation.org](https://research.daxfoundation.org/) feed it today.
+<a class="gx-gift" href="/gift/"><strong>What does love sound like?</strong><span>Tap love in your language, hold the heart, and make your own sound of love. Then share it, or remix someone else's.</span></a>
 
-One rule for the music. Every sound on the page is made in your browser from its own notes and chords. It plays no one else's recordings, melodies or lyrics, and when the work grows to chords from songs and traditions, each one will be credited to its source.
+Here is what happens when you open it.
 
-## An open call: Resonance UI
+1. **A heartbeat.** A field of light gathers into a heart that beats, slowly, at 66 beats a minute. It starts without colour.
+2. **Your language.** You tap the word for love in your language. There are 17 to choose from, from *amour* and *amor* to *حب* and *प्यार*. The tap rings a bell, and the colour blooms in.
+3. **One question.** You hold the beating heart if you are 13 or older; its ring fills and its heartbeat quickens. “I'd rather not say” is always there as a button, and either answer is fine.
+4. **The first experiment.** A film's love theme becomes its chords, the chords become the feelings you hear in them, the feelings become notes, and the notes become your sound. The studio guesses the feelings first; you decide. Every step plays as you go, and the light follows the sound and takes the colours of the feelings you chose.
+5. **The reveal.** The light gathers into a ring of the twelve notes around your card, and your sound plays. It ends the way the language begins: love called and answered, D then G.
+6. **Pass it on.** You can send it to someone, or remix it in one tap: one answer turns to its next choice, and the remix is a new generation of the same idea.
+
+After the first one, there are 150 more experiments, in five rings that open as you go: Spark, Echo, Chorus, Harmony and Constellation. Some take a minute and some go deep. Or you can design your own: start from a song, a memory, a place, a person, the weather, a word in your language, and build the stages yourself. You pick the voice (bell, soft, glass or pulse) and the tempo. A notebook keeps what you made and what was sent to you, and you collect the letters of a small alphabet of love as you discover them.
+
+It began with a piano piece the founder composed by feel, each note chosen for the emotion it stirs. Two hearts are two notes: D calls, G answers. Love comes first, and it means the whole range: family, friendship, belonging, care. Beside it grow the things we wanted the first gift to be about: tenderness, longing, hope, awe, curiosity, togetherness.
+
+**What stays with you.** Everything you make stays in your browser. Nothing is sent anywhere. A link you share carries your experiment inside the link itself, after the “#”, and browsers do not send that part to any server. Words you type stay on your device unless you choose to put them in a link. There is no tracking on the page. One button erases everything it kept.
+
+**The music.** Every sound is made in your browser from its own notes and chords. When an experiment starts from a film, it uses the chords only, credited to their composer: never the tune, never the words, never a recording.
+
+**The languages.** The page and its 17 languages are new. Most translations are drafts awaiting review by native speakers, and the experiment texts are in English for now. The page says so where it applies.
+
+The research behind it is building an open dataset of what love sounds like, free to anyone, anywhere. Short paid surveys at [research.daxfoundation.org](https://research.daxfoundation.org/) feed it today. Adding your own experiment to it will be optional, for people 16 or older, and you will see exactly what would be sent before anything is. That round is not open yet.
+
+## The Gesture Lab
+
+### An open call: Resonance UI
 
 The second thing is a request. We are opening research into what we are calling Resonance UI, and we are looking for partners.
 
@@ -106,33 +149,40 @@ It is research into nonverbal communication. Learning has never been only words.
 
 We are also assessing teacher receptivity: how ready teachers are to equip themselves, explicitly, to better enable learning in their students.
 
-In the founder's words: "we're looking for a specific site where it could be the center of research for resonance UI." One place, a college, a university, a lab or a teacher-education program, anywhere in the world, where the work can live and be studied over time. Research partners are welcome. So is funding.
+In the founder's words: "we're looking for a specific site where it could be the center of research for resonance UI." One place, a college, a university, a lab or a teacher-education program, anywhere in the world, where the work can live and be studied over time. Research partners are welcome. So is support for the work.
 
 The data will be an open dataset. Brunswick Lab, formerly brunswicklab.com, is now part of [DAX Foundation Research](/metadax/research/#formerly-brunswicklab), and this is its work now.
 
-## This is the call-out
+### This is the call-out
 
-If you are at a university or college, leave your institution's address below. You will be notified when we launch, and we will email you a one-time sampler link. It opens the lab on your own screens for sixty minutes from the first time it is opened.
+If you are at a university or college, leave your institution's address below. We'll email you a code to confirm it's you. Then you will be notified when we launch, with a one-time sampler link. It opens the lab on your own screens for sixty minutes from the first time it is opened.
 
 We are doing this so we can start sharing research data with you, in a collaborative effort, to be used globally. That means open research data. It does not mean newsletters.
 
 <form class="gx-form" id="gx-form" action="https://research.daxfoundation.org/api/sampler-request" method="post" novalidate>
-  <label><b>Your institutional email address</b> (required)
-    <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@university.edu"></label>
-  <div class="gx-row">
-    <label>Name (optional)<input type="text" name="name" autocomplete="name" maxlength="120"></label>
-    <label>Institution (optional)<input type="text" name="institution" autocomplete="organization" maxlength="200"></label>
+  <div class="gx-step1">
+    <label><b>Your institutional email address</b> (required)
+      <input type="email" name="email" required autocomplete="email" inputmode="email" placeholder="you@university.edu"></label>
+    <div class="gx-row">
+      <label>Name (optional)<input type="text" name="name" autocomplete="name" maxlength="120"></label>
+      <label>Institution (optional)<input type="text" name="institution" autocomplete="organization" maxlength="200"></label>
+    </div>
+    <label>Role (optional)<input type="text" name="role" autocomplete="organization-title" maxlength="120" placeholder="Lecturer, researcher, teacher educator, student"></label>
+    <label>What interests you (optional)<textarea name="interest" maxlength="1000" placeholder="Gesture, gaze, prosody, shared displays, teacher education..."></textarea></label>
+    <label class="gx-hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+    <label class="gx-consent"><input type="checkbox" name="consent" required><span>Participation is voluntary. What I share in this research is research data, published under an open licence.</span></label>
+    <button type="submit">Email me a code</button>
   </div>
-  <label>Role (optional)<input type="text" name="role" autocomplete="organization-title" maxlength="120" placeholder="Lecturer, researcher, teacher educator, student"></label>
-  <label>What interests you (optional)<textarea name="interest" maxlength="1000" placeholder="Gesture, gaze, prosody, shared displays, teacher education..."></textarea></label>
-  <label class="gx-hp" aria-hidden="true">Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-  <label class="gx-consent"><input type="checkbox" name="consent" required><span>Participation is voluntary. What I share in this research is research data, published under an open licence.</span></label>
-  <button type="submit">Notify me at launch</button>
+  <div class="gx-code" id="gx-code">
+    <label><b>The 6-digit code</b> we emailed you
+      <input type="text" name="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]{6}" maxlength="6"></label>
+    <button type="button" id="gx-verify">Confirm</button><button type="button" class="gx-link" id="gx-again">Use another address</button>
+  </div>
   <p class="gx-status" id="gx-status" role="status" aria-live="polite"></p>
-  <p class="gx-small">The address must belong to a university or college; we check its domain against open lists of academic domains. It is used only to tell you when we launch and to send your link. It is never published, and it joins no mailing list. If your college is not recognised, <a href="https://www.linkedin.com/in/jasonjeyanandan">message the founder on LinkedIn</a> and we will check it by hand.</p>
+  <p class="gx-small">The code works for 15 minutes. University and college addresses get the sampler link; any other address is kept and checked by hand. Your address is used only for the code, to tell you when we launch and to send your link. It is never published, and it joins no mailing list. Questions? <a href="https://www.linkedin.com/in/jasonjeyanandan">Message the founder on LinkedIn</a>.</p>
 </form>
 
-## We are experimenting with new ways of expressing cards
+### We are experimenting with new ways of expressing cards
 
 The third thing is a look at the work. Much of what we show is cards: a small surface that holds one idea. Here is how we have shown them until now.
 
@@ -167,9 +217,11 @@ Here is where they are going. The same kind of cards, in a scene that runs acros
 
 None of this is finished. It is how we are learning what a card can do when more than one person is in the room.
 
-## Here is the lab
 
-The fourth thing is the lab itself: the research sampler we built to study nonverbal, multimodal communication. It plays a short intro reel, about thirty seconds, then settles into a plain laboratory demo that a phone can drive.
+
+### Inside the Gesture Lab
+
+The fourth thing is the lab itself: Re·UI, the research sampler we built to study nonverbal, multimodal communication. It plays a short intro reel, about thirty seconds, then settles into a plain laboratory demo that a phone can drive.
 
 <div class="gx-lab gx-wide" id="gx-lab">
   <button type="button" aria-label="Start the research sampler here">
@@ -179,27 +231,42 @@ The fourth thing is the lab itself: the research sampler we built to study nonve
 </div>
 <p class="gx-cap gx-wide">Each visitor gets a fresh room. <a id="gx-lab-start" href="https://re.ui.research.daxfoundation.org/reui-start">Open it on your own screens</a>, with a phone to drive it.</p>
 
-Your phone is only a remote control. Its camera is used for one thing: reading your hand's gestures and where you point, as 21 points per hand. No image, no video and no sound ever leaves the phone, and nothing shows your face. Voice is optional: if you speak a command, only the words arrive. Every phone has a “See the data” link that shows, live, each message it sends and receives, with a short guide to checking it yourself in your browser's own tools.
+Your phone is only a remote control. It sends two things: 21 points for each hand, which trace the gesture and where you point, and, if you choose to speak a command, the words it recognised. Nothing else. Every phone has a “See the data” link that shows, live, each message it sends and receives, with a short guide to checking it yourself in your browser's own tools.
 
 It is purposely plain, because it is a laboratory. What matters is what passes from one person to another without words, not how the screen looks. The time-limited sampler links in the call-out above are for institutions; if yours needs something else, [message the founder on LinkedIn](https://www.linkedin.com/in/jasonjeyanandan).
 
+## Opening soon
+
+Both labs are open today, and both are early. Here is what is coming next.
+
+- **In the Sound Lab:** translations reviewed by native speakers; the open research round, where you can add your experiment to the dataset if you choose; and chords from more songs and traditions, each one credited to its source.
+- **In the Gesture Lab:** the one-time sampler links for everyone who answered the call-out, sent at launch; a home for the research at one partner site; and the first open data.
+- **Across both:** the open dataset itself, free to anyone, anywhere.
+
 ## What today is
 
-A foundation, a gift, a question and a lab. Incorporation is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
+A foundation, two labs, a gift and a question. Incorporation is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
 
-Which of the four would you try first?
+Which would you try first: the sound of love, or the lab?
+
+<div class="gx-share" id="gx-share">
+  <p><b>Pass it on.</b> Send the gift to someone you love: <a href="/gift/">daxfoundation.org/gift</a>. Know a lab, a college or a teacher-education program that should see the call? Send them this page.</p>
+  <button type="button" data-share="/gift/" data-text="What does love sound like in your language? Make yours.">Share the gift</button>
+  <button type="button" data-share="/writing/a-gift-and-an-open-call/" data-text="An open call for research into nonverbal communication in learning, from the DAX Foundation.">Share this page</button>
+  <span class="gx-copied" id="gx-copied" role="status" aria-live="polite"></span>
+</div>
 
 ## Sources
 
 - DAX Foundation Research, "Formerly brunswicklab.com, now part of DAX Foundation Research": https://daxfoundation.org/metadax/research/#formerly-brunswicklab
 - DAX Research, research.daxfoundation.org: https://research.daxfoundation.org/
-- The research sampler, DAX Foundation Research: https://re.ui.research.daxfoundation.org/reui-start
-- Hipo, university-domains-list, the open list of university domains the call-out checks against: https://github.com/Hipo/university-domains-list
+- Re·UI, the research sampler, DAX Foundation Research: https://re.ui.research.daxfoundation.org/reui-start
+- Hipo, university-domains-list, one of the open lists of university domains the call-out checks against: https://github.com/Hipo/university-domains-list
 - The "before" images are the daxfoundation.org home page as it stood on 4 November 2026. The "after" images are stills from the sampler's card scene, rendered across three screens.
 
 <script>
   (function () {
-    var LINKEDIN = 'https://www.linkedin.com/in/jasonjeyanandan';
+    var ASK_FOUNDER = '<a href="https://www.linkedin.com/in/jasonjeyanandan">Message the founder on LinkedIn</a>';
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // The lab: a fresh room per visitor, and the iframe only after a click.
@@ -258,41 +325,93 @@ Which of the four would you try first?
       sync();
     }
 
-    // The call-out: post to the research worker; if it is not there, fall back to LinkedIn.
+    // The call-out, in two steps: the address (a code is emailed), then the code.
     var form = document.getElementById('gx-form');
-    if (form) form.addEventListener('submit', function (e) {
-      e.preventDefault();
+    if (form) {
       var status = document.getElementById('gx-status');
       var say = function (html) { status.innerHTML = html; };
-      var fallback = 'The request service is not open yet. <a href="' + LINKEDIN + '">Message the founder on LinkedIn</a> with your institutional address. You will be notified when we launch, and your sampler link will be emailed to it.';
-      var email = form.email.value.trim();
-      if (!form.email.checkValidity() || !email) { say('Please enter your institutional email address.'); form.email.focus(); return; }
-      if (!form.consent.checked) { say('Please tick the consent box. Participation is voluntary.'); form.consent.focus(); return; }
-      var body = {
-        email: email, name: form.name.value, institution: form.institution.value, role: form.role.value,
-        interest: form.interest.value, consent: true, website: form.website.value, source: 'daxfoundation.org/writing'
+      var esc = function (t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
+      var base = form.action.replace(/\/api\/sampler-request$/, '');
+      var fallback = 'The request service is not open yet. ' + ASK_FOUNDER + ' with your institutional address, and you will be notified when we launch.';
+      var post = function (path, body) {
+        return fetch(base + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { code: r.status, j: j }; }); });
       };
-      var button = form.querySelector('button[type="submit"]');
-      button.disabled = true;
-      say('Sending…');
-      fetch(form.action, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-        .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { code: r.status, j: j }; }); })
-        .then(function (res) {
-          var esc = email.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; });
+      var sent = '';
+      var sendButton = form.querySelector('button[type="submit"]');
+      var verifyButton = document.getElementById('gx-verify');
+      var codeInput = form.querySelector('input[name="code"]');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (form.classList.contains('is-code')) { verifyButton.click(); return; }
+        var email = form.email.value.trim();
+        if (!form.email.checkValidity() || !email) { say('Please enter your institutional email address.'); form.email.focus(); return; }
+        if (!form.consent.checked) { say('Please tick the consent box. Participation is voluntary.'); form.consent.focus(); return; }
+        var body = {
+          email: email, name: form.name.value, institution: form.institution.value, role: form.role.value,
+          interest: form.interest.value, consent: true, website: form.website.value, source: 'daxfoundation.org/writing'
+        };
+        sendButton.disabled = true;
+        say('Sending a code…');
+        post('/api/sampler-request', body).then(function (res) {
+          sendButton.disabled = false;
           if (res.code === 200 && res.j && res.j.ok) {
-            say(res.j.repeat
-              ? 'We already have ' + esc + '. You will be notified there when we launch, with your one-time sampler link.'
-              : 'Thank you. You will be notified at ' + esc + ' when we launch, with your one-time sampler link.');
-            form.reset();
-          } else if (res.code === 422) {
-            say('We could not recognise that address as a university or college. <a href="' + LINKEDIN + '">Message the founder on LinkedIn</a> and we will check it by hand.');
-            button.disabled = false;
+            sent = email;
+            form.classList.add('is-code');
+            say('We emailed a code to ' + esc(email) + '. Type it here. No email? Check your spam folder.');
+            codeInput.value = '';
+            codeInput.focus();
           } else if (res.code === 400) {
             say('Please check your email address and the consent box.');
-            button.disabled = false;
-          } else { say(fallback); button.disabled = false; }
-        })
-        .catch(function () { say(fallback); button.disabled = false; });
-    });
+          } else if (res.code === 429) {
+            say('Too many requests from here. Please try again in an hour.');
+          } else { say(fallback); }
+        }).catch(function () { sendButton.disabled = false; say(fallback); });
+      });
+      verifyButton.addEventListener('click', function () {
+        var code = codeInput.value.replace(/\s+/g, '');
+        if (!/^\d{6}$/.test(code)) { say('The code is six digits.'); codeInput.focus(); return; }
+        verifyButton.disabled = true;
+        say('Checking…');
+        post('/api/sampler-verify', { email: sent, code: code }).then(function (res) {
+          verifyButton.disabled = false;
+          var j = res.j || {};
+          if (res.code === 200 && j.ok) {
+            form.classList.remove('is-code');
+            form.reset();
+            say(j.university
+              ? 'Confirmed. You will be notified at ' + esc(sent) + ' when we launch, with your one-time sampler link.'
+              : 'Confirmed. We could not recognise ' + esc(sent) + ' as a university or college, so we will check it by hand.');
+          } else if (j.error === 'code_invalid') {
+            say('That code did not match.' + (j.tries_left ? ' ' + j.tries_left + (j.tries_left === 1 ? ' try' : ' tries') + ' left.' : ''));
+            codeInput.select();
+          } else if (j.error === 'code_expired' || j.error === 'too_many_tries') {
+            say((j.error === 'code_expired' ? 'That code has expired.' : 'Too many tries for that code.') + ' Press “Use another address” and send the form again for a new one.');
+          } else if (res.code === 429) {
+            say('Too many tries from here. Please try again in an hour.');
+          } else { say(fallback); }
+        }).catch(function () { verifyButton.disabled = false; say(fallback); });
+      });
+      codeInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); verifyButton.click(); } });
+      document.getElementById('gx-again').addEventListener('click', function () {
+        form.classList.remove('is-code'); say(''); form.email.focus();
+      });
+    }
+
+    // Pass it on: the system share sheet where there is one, else copy the link.
+    var share = document.getElementById('gx-share');
+    if (share) {
+      var copied = document.getElementById('gx-copied');
+      var buttons = share.querySelectorAll('[data-share]');
+      for (var q = 0; q < buttons.length; q++) buttons[q].addEventListener('click', function (e) {
+        var b = e.currentTarget;
+        var link = new URL(b.getAttribute('data-share'), location.origin).href;
+        var text = b.getAttribute('data-text');
+        if (navigator.share) { navigator.share({ title: 'DAX Foundation', text: text, url: link }).catch(function () {}); return; }
+        var done = function () { copied.textContent = 'Link copied: ' + link; };
+        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text + ' ' + link).then(done, function () { copied.textContent = link; });
+        else copied.textContent = link;
+      });
+    }
   })();
 </script>

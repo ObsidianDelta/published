@@ -2,7 +2,9 @@
   "_about": "Where every regular page on daxfoundation.org sits in the guided runs (2026-10-23). One source of truth for both link directions: the 'Where this fits' strip on a page (Base.astro) and the 'Go deeper' row on a chapter (Chapter.astro). tests/explain/site-cohesion.test.mjs fails the build if a built page is missing here or unlinked. A trailing * matches every page under that path (not listed in Go deeper; its index page is). 'also' adds extra Go deeper links to a chapter.",
   "exempt": [
     "/404.html",
-    "/metadax/play/scenes/demo.html"
+    "/metadax/play/scenes/demo.html",
+    "/gift/",
+    "/writing/a-gift-and-an-open-call/"
   ],
   "pages": [
     {

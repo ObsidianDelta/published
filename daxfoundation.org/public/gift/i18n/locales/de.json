@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "locale": "de",
+    "name": "Deutsch",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "de_DE",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Bevor es losgeht: Bist du 13 oder älter?",
+    "age_yes": "Ja, ich bin 13 oder älter",
+    "age_skip": "Möchte ich nicht sagen",
+    "spark_q": "Wie fühlt sich Liebe für dich gerade an?",
+    "spark_hint": "Wähl das, was passt. Es gibt keine falsche Antwort.",
+    "echo_intro": "Andere Sprachen haben ein Wort dafür:",
+    "see_others": "Sehen, was andere fühlen",
+    "keep_going": "Weiter",
+    "dataset_title": "Das haben Menschen bisher gesagt.",
+    "dataset_meta": "{n} Antworten · Datensatz: öffentlich · Täglich aktualisiert",
+    "dataset_link": "Den vollständigen offenen Datensatz ansehen",
+    "consent_q": "Möchtest du, dass deine Antwort in dieses Forschungsprojekt einfließt?",
+    "consent_yes": "Ja, meine anonym hinzufügen",
+    "consent_no": "Nein, nur hier behalten",
+    "consent_explain_q": "Was heißt „anonym“ hier?",
+    "consent_explain": "Wir speichern das Wort, das du gewählt hast, deine Sprache und grob die Weltregion, in der du bist. Sonst nichts. Du kannst es jederzeit löschen.",
+    "when_q": "Wann hast du dich zuletzt so gefühlt?",
+    "toward_q": "Gibt es jemanden oder etwas, dem diese Liebe gilt?",
+    "composition_title": "So klingt deine Liebe.",
+    "hear_it": "Anhören (5 Sekunden)",
+    "compare": "Vergleichen",
+    "share_it": "Teilen",
+    "share_title": "Schick es jemandem.",
+    "share_hint": "Dein Link enthält nur die Wörter und den Klang, die du gewählt hast. Nie deinen Namen, nie etwas, das du getippt hast.",
+    "copy_link": "Link kopieren",
+    "copied": "Link kopiert",
+    "save_image": "Bild speichern",
+    "save_story": "Als Story speichern",
+    "make_mine": "Meinen Klang machen",
+    "received_banner": "Jemand hat dir Liebe geschickt, als Klang. Hör rein und mach dann deinen eigenen.",
+    "received_chain": "Dieser Klang wurde schon {n}-mal weitergegeben.",
+    "answer_back": "Mit deinem antworten",
+    "duet_title": "Zwei Klänge, zusammen.",
+    "circle_invite": "Deine Gruppe fragen",
+    "circle_title": "Wie klingt Liebe in deinem Kreis?",
+    "circle_hint": "Alle fügen einen Klang hinzu. Niemand sieht, wer was gewählt hat, nur den Akkord, den ihr zusammen bildet.",
+    "try_another": "Anderes Gefühl ausprobieren",
+    "start_over": "Neu anfangen",
+    "take_breath": "Atme kurz durch",
+    "breath_body": "Du kannst hier aufhören. Nichts geht verloren, und nichts wurde gesendet, ohne dass du Ja gesagt hast.",
+    "data_panel": "Was diese Seite über dich weiß",
+    "delete_mine": "Meine Antwort löschen",
+    "framing": "Ein Forschungsprojekt der DAX Foundation",
+    "language": "Sprache",
+    "sound_credit": "Von uns selbst gespielt: nur Harmonie, nie eine Aufnahme.",
+    "translate_invite": "Du sprichst eine andere Sprache? Hilf uns, es richtig zu sagen."
+  },
+  "feelings": {
+    "warm": "Wärme",
+    "quiet": "Stille",
+    "longing": "Sehnsucht",
+    "joyful": "Freude",
+    "tender": "Zärtlichkeit",
+    "lost": "auf der Suche"
+  },
+  "letters": {
+    "love": "Liebe",
+    "tenderness": "Zärtlichkeit",
+    "togetherness": "Verbundenheit",
+    "trust": "Vertrauen",
+    "curiosity": "Neugier",
+    "adventure": "Abenteuer",
+    "creativity": "Kreativität",
+    "discovery": "Entdeckung",
+    "joy": "Freude",
+    "hope": "Hoffnung",
+    "birth": "Neuanfang",
+    "awe": "Staunen",
+    "gratitude": "Dankbarkeit",
+    "longing": "Sehnsucht",
+    "doubt": "Zweifel",
+    "re_love": "Liebe als Antwort",
+    "empathy": "Empathie",
+    "compassion": "Mitgefühl"
+  },
+  "tense": {
+    "was": "die Liebe, die war",
+    "is": "die Liebe, die ist",
+    "will": "die Liebe, die noch kommt"
+  },
+  "when": {
+    "today": "heute",
+    "week": "diese Woche",
+    "ago": "vor einer Weile",
+    "unsure": "weiß ich nicht genau"
+  },
+  "toward": {
+    "person": "ein Mensch",
+    "place": "ein Ort oder eine Zeit",
+    "idea": "eine Idee",
+    "feeling": "einfach ein Gefühl"
+  },
+  "card": {
+    "brand": "Ein Geschenk",
+    "head_mine": "So klingt meine Liebe.",
+    "head_gift": "Diesen Klang hab ich für dich gemacht.",
+    "head_answer": "Du hast mir deinen geschickt. Hier ist meiner.",
+    "head_circle": "So klingt unsere Liebe.",
+    "cta": "Mach deinen Klang",
+    "chain": "{n}-mal weitergegeben",
+    "alt": "Eine Karte mit dem Wort „{feeling}“ und einem Ring aus Noten. Ein Forschungsprojekt der DAX Foundation."
+  },
+  "share": {
+    "og_title": "Wie klingt Liebe in deiner Sprache?",
+    "og_description": "Finde den Klang deiner Liebe und schick ihn jemandem. Ein Forschungsprojekt der DAX Foundation.",
+    "default": "Wie klingt Liebe? Meine gerade: {feeling}. Mach deinen Klang: {url}",
+    "whatsapp": "Ich hab dir was gemacht 🎁 So klingt meine Liebe gerade: {feeling}. Hör rein und schick mir deinen 👉 {url}",
+    "whatsapp_status": "So klingt meine Liebe heute: {feeling} ✦ Mach deinen, der Link ist in meinem Status 👇",
+    "sms": "Ich hab den Klang meiner Liebe gemacht: {feeling}. Mach deinen und schick ihn mir: {url}",
+    "x": "Wie klingt Liebe in deiner Sprache? Meine, heute: {feeling}.",
+    "telegram": "Wie klingt Liebe? Meine: {feeling}. Mach deinen und gib ihn weiter → {url}",
+    "line": "Hab dir was gemacht: der Klang von „{feeling}“. Du bist dran → {url}",
+    "wechat": "Wie klingt Liebe? Meine: {feeling}. Mach deinen Klang: {url}",
+    "kakao": "So klingt meine Liebe heute: {feeling}. Mach deinen und schick ihn zurück → {url}",
+    "story_caption": "so klingt meine Liebe: {feeling} ✦ und deine?",
+    "group_invite": "Kleines Experiment für die Gruppe: Alle fügen den Klang ihrer Liebe hinzu, und wir hören, wie wir zusammen klingen. Niemand sieht, wer was gewählt hat. {url}",
+    "answer_back": "Du hast mir deinen geschickt, hier ist meine Antwort 💛 {url}",
+    "email_subject": "Ich hab dir was gemacht",
+    "email_body": "So klingt Liebe für mich gerade: {feeling}.\n\nHör rein, dann mach deinen und schick ihn mir zurück:\n{url}\n\n(Ein Forschungsprojekt der DAX Foundation. Ohne Anmeldung, nichts zu installieren.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "{n} Antwort · Datensatz: öffentlich · Täglich aktualisiert",
+      "other": "{n} Antworten · Datensatz: öffentlich · Täglich aktualisiert"
+    },
+    "ui.received_chain": {
+      "one": "Dieser Klang wurde schon einmal weitergegeben.",
+      "other": "Dieser Klang wurde schon {n}-mal weitergegeben."
+    },
+    "card.chain": {
+      "one": "einmal weitergegeben",
+      "other": "{n}-mal weitergegeben"
+    }
+  }
+}
