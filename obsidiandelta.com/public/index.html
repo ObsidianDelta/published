@@ -331,6 +331,33 @@
   .dax-constraint__body a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); }
   .dax-constraint__body a:hover { color: var(--white); border-color: var(--white); }
 
+  /* LATEST — one short list right under the hero (2026-11-04) */
+  .latest { border-top: 1px solid var(--steel); padding: clamp(40px,7vw,64px) var(--gutter); max-width: 1080px; margin: 0 auto; }
+  .latest__kicker { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--orange); margin-bottom: 20px; }
+  .latest__list li { display: grid; grid-template-columns: 9.5em 1fr; gap: 4px 20px; padding: 14px 0; border-top: 1px solid var(--steel); }
+  .latest__list li:first-child { border-top: 0; padding-top: 0; }
+  .latest__date { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ash); padding-top: 4px; }
+  .latest__text { font-family: var(--font-body); color: var(--bone); font-size: 16px; line-height: 1.6; }
+  .latest__text a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--orange); }
+  .latest__text a:hover { color: var(--orange); }
+  @media (max-width: 559px) { .latest__list li { grid-template-columns: 1fr; } .latest__date { padding-top: 0; } }
+
+  /* WITH THE DAX FOUNDATION — what we build together (2026-11-04) */
+  .with-dax { border-top: 1px solid var(--steel); padding: clamp(40px,7vw,72px) var(--gutter); max-width: 1080px; margin: 0 auto; }
+  .with-dax__lede { font-family: var(--font-body); color: var(--bone); font-size: 16px; line-height: 1.7; max-width: 680px; }
+  .with-dax__lede + .with-dax__lede { margin-top: 14px; }
+  .with-dax__lede a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); }
+  .with-dax__lede a:hover { color: var(--white); border-color: var(--white); }
+  .with-dax__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--steel); border: 1px solid var(--steel); margin-top: 36px; }
+  @media (max-width: 719px) { .with-dax__grid { grid-template-columns: 1fr; } }
+  .with-dax__card { background: var(--black); padding: 28px 24px; display: flex; flex-direction: column; gap: 10px; }
+  .with-dax__tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ash); }
+  .with-dax__name { font-family: var(--font-display); font-weight: 500; font-size: 22px; line-height: 1.2; letter-spacing: -.01em; color: var(--white); }
+  .with-dax__text { font-family: var(--font-body); color: var(--bone); font-size: 15px; line-height: 1.65; }
+  .with-dax__go { margin-top: auto; padding-top: 6px; font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; }
+  .with-dax__go a { color: var(--orange); text-decoration: none; border-bottom: 1px solid var(--orange); }
+  .with-dax__go a:hover { color: var(--white); border-color: var(--white); }
+
 </style>
 </head>
 <body>
@@ -352,6 +379,16 @@
   </div>
   <h1 class="hero__name">Obsidian Delta</h1>
   <div class="hero__rule"></div>
+</section>
+
+<!-- LATEST (2026-11-04): newest first, three lines, nothing else -->
+<section class="latest" aria-labelledby="latest-h">
+  <h2 class="latest__kicker" id="latest-h">Latest</h2>
+  <ol class="latest__list">
+    <li><span class="latest__date">Nov 4, 2026</span><p class="latest__text">The DAX Foundation opens two labs and an open call to universities. <a href="#with-dax">What we're building with it</a>.</p></li>
+    <li><span class="latest__date">Nov 4, 2026</span><p class="latest__text">Meta DAX opens to the world: anyone can build a course. <a href="https://daxfoundation.org/metadax/">Meta DAX</a>.</p></li>
+    <li><span class="latest__date">Oct 20, 2026</span><p class="latest__text">On the blog: <a href="/blog/ninety-instances-three-humans/">Ninety instances, three humans</a>.</p></li>
+  </ol>
 </section>
 
 <section class="timeline">
@@ -408,6 +445,42 @@
       </video>
     </li>
   </ol>
+</section>
+
+<!-- WITH THE DAX FOUNDATION (2026-11-04). Launch rules: no legal claims about
+     the Foundation, no "charity", no vendor names, no Constraint Protocol
+     claims; the phone sends hand points and recognised words, nothing else. -->
+<section class="with-dax" id="with-dax" aria-labelledby="with-dax-h">
+  <p class="dax-constraint__kicker">With the DAX Foundation</p>
+  <h2 class="dax-constraint__heading" id="with-dax-h">What we're building with the DAX Foundation</h2>
+  <p class="with-dax__lede">Obsidian Delta is the company. We have been building since 2017. We build the infrastructure, and we give the tools to <a href="https://daxfoundation.org/">the DAX Foundation</a>.</p>
+  <p class="with-dax__lede">This week the Foundation opens its doors: <a href="https://daxfoundation.org/#opening">two labs and an open call</a>.</p>
+  <div class="with-dax__grid">
+    <div class="with-dax__card">
+      <p class="with-dax__tag">Sound Lab</p>
+      <h3 class="with-dax__name">What does love sound like?</h3>
+      <p class="with-dax__text">Heartbeats, and the language of love. Two hearts, two notes. It opens with a gift: make your own sound of love.</p>
+      <p class="with-dax__go"><a href="https://daxfoundation.org/gift/">Make the gift &rarr;</a></p>
+    </div>
+    <div class="with-dax__card">
+      <p class="with-dax__tag">Gesture Lab</p>
+      <h3 class="with-dax__name">Re&middot;UI</h3>
+      <p class="with-dax__text">What passes between people without words. Your phone is the remote control. It sends 21 points per hand and the words it recognised.</p>
+      <p class="with-dax__go"><a href="https://re.ui.research.daxfoundation.org/reui-start">Step into the lab &rarr;</a></p>
+    </div>
+    <div class="with-dax__card">
+      <p class="with-dax__tag">Open call</p>
+      <h3 class="with-dax__name">Universities: join the research</h3>
+      <p class="with-dax__text">Nonverbal, multimodal communication in learning. Open data, for everyone. We are looking for one partner site to be its home.</p>
+      <p class="with-dax__go"><a href="https://daxfoundation.org/writing/a-gift-and-an-open-call/#this-is-the-call-out">Answer the call &rarr;</a></p>
+    </div>
+    <div class="with-dax__card">
+      <p class="with-dax__tag">Meta DAX</p>
+      <h3 class="with-dax__name">Let the world build</h3>
+      <p class="with-dax__text">Anyone can build a course on their own AI subscription. Teachers review and own their courses. Institutions can fund extra compute, with a capped budget from their own account. Skippy coordinates the work.</p>
+      <p class="with-dax__go"><a href="https://daxfoundation.org/metadax/">See Meta DAX &rarr;</a></p>
+    </div>
+  </div>
 </section>
 
 <section class="dax-constraint">
