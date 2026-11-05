@@ -23,6 +23,9 @@
 // engine. /important/, /privacy/ and /auth-callback/ were taken off the site
 // on 2026-09-20 and came out of this list in the same change. Nothing may go
 // back in here that does not exist in dist/.
+//
+// DELIBERATELY NOT LISTED: /quote-contemplator/ (2026-11-05). It builds and serves, it
+// carries noindex, and it is linked from nowhere -- a review page for Jason. Do not add it.
 
 import { listedPosts } from './_posts.js';
 

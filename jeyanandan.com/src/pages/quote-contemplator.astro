@@ -1,0 +1,214 @@
+---
+import Base from '../layouts/Base.astro';
+import { PICKS, pickRows, IT, CELEB, LADDER, castSize, maxRung, contemplate } from './_contemplator.js';
+
+// /quote-contemplator/ -- the Quote Contemplator gadget, UNLISTED (Jason, 5 Nov 2026).
+//
+// This is a preview page for Jason to review: the hand-picked lines, grouped by pair,
+// each with a tick box, plus the generator ("Contemplate") for a fresh random line. The
+// ticks are saved only in the viewer's own browser (localStorage, wrapped in try/catch) --
+// nothing is submitted anywhere; the site has no backend and the CSP allows none.
+//
+// UNLISTED means: `noindex` is passed to Base (robots meta: noindex, nofollow), the page is
+// linked from nowhere, and it is NOT in src/pages/sitemap.xml.js -- STATIC_ROUTES there is
+// hand-maintained and this route is deliberately left out of it. The home page is not
+// touched: Jason picks first, and his picks then go into FUNNY_BAG in ./_quotes.js.
+//
+// The lines and the algorithm live in ./_contemplator.js, which this page imports twice:
+// here, server side, so every hand-picked line is real body text in the built HTML, and in
+// the <script> below, client side, for the generator.
+
+const rows = pickRows();
+const first = contemplate({ seed: 20261105, shuffle: true });
+const size = castSize();
+const top = maxRung();
+const assumed = CELEB.filter((c) => c.assumed).map((c) => c.name);
+---
+<Base title="Quote Contemplator" description="A rotating humour generator. Unlisted; for review." noindex={true}>
+  <section class="hero"><div class="shell">
+    <p class="eyebrow">Unlisted &middot; for Jason to pick</p>
+    <h1>Quote Contemplator</h1>
+    <div class="rule"></div>
+    <p class="lede">In my world you don't go to Disneyland. You go to see Geoffrey Hinton. And if the ticket says Hinton <em>or</em> Snoop, I choose neither, because neither is the only way I keep both.</p>
+  </div></section>
+
+  <section class="quote-band gadget"><div class="shell narrow">
+    <p class="quote" id="line" data-seed={first.seed}>{first.text}</p>
+    <p class="meta" id="meta">{first.it.short} &times; {first.celeb.short} &middot; stakes: {first.place} &middot; seed {first.seed}</p>
+    <div class="controls">
+      <button type="button" class="big" id="go">Contemplate</button>
+      <label class="toggle"><input type="checkbox" id="shuffle" checked /> shuffle pairs</label>
+      <button type="button" class="small" id="share">copy link</button>
+    </div>
+    <p class="ladder">Cast: {size} names ({IT.length} IT, {CELEB.length} celebrity) &rarr; stakes unlocked up to <strong>{LADDER[top].place}</strong>. Every name you add moves the whole cast one rung up the ladder: {LADDER.map((r) => r.place).join(' → ')}.</p>
+  </div></section>
+
+  <section class="picks"><div class="shell narrow">
+    <h2 class="eyebrow">The hand-picked lines</h2>
+    <p class="how">Tick the ones you want in the funny bag. Ticks stay in this browser only. <span class="fav" aria-hidden="true">&#9733;</span> marks Skippy's favourite in each group.{assumed.length > 0 && <> One name is a guess: <strong>{assumed.join(', ')}</strong> is my reading of &ldquo;Khan something&rdquo; &mdash; say the word and it becomes Aamir or Salman.</>}</p>
+    <p class="count"><span id="count">0</span> ticked &middot; <button type="button" class="small" id="copy">copy my picks</button> <span id="copied" class="copied" hidden>copied</span></p>
+    {PICKS.map((group, g) => (
+      <div class="group">
+        <h3>{group.label}</h3>
+        <ol>
+          {rows.filter((r) => r.group === g).map((r) => (
+            <li class={r.fav ? 'is-fav' : ''}>
+              <label>
+                <input type="checkbox" class="pick" data-id={r.id} />
+                <span class="text">{r.text}{r.fav && <span class="fav" title="Skippy's favourite"> &#9733;</span>}</span>
+              </label>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))}
+  </div></section>
+
+  <script>
+    import { contemplate, randomSeed } from './_contemplator.js';
+
+    const line = document.getElementById('line');
+    const meta = document.getElementById('meta');
+    const go = document.getElementById('go');
+    const shuffle = document.getElementById('shuffle');
+    const share = document.getElementById('share');
+    const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function show(seed) {
+      const r = contemplate({ seed, shuffle: shuffle.checked });
+      line.textContent = r.text;
+      line.dataset.seed = String(r.seed);
+      meta.textContent = r.it.short + ' × ' + r.celeb.short + ' · stakes: ' + r.place + ' · seed ' + r.seed;
+      if (!still) { line.classList.remove('fade'); void line.offsetWidth; line.classList.add('fade'); }
+      try {
+        const u = new URL(location.href);
+        u.searchParams.set('s', String(r.seed));
+        u.searchParams.set('shuffle', shuffle.checked ? '1' : '0');
+        history.replaceState(null, '', u);
+      } catch (e) { /* URL is a convenience, not a requirement */ }
+    }
+
+    // A shared link carries its seed; otherwise the first contemplation is fresh.
+    (function boot() {
+      let seed = null;
+      try {
+        const q = new URLSearchParams(location.search);
+        if (q.has('shuffle')) shuffle.checked = q.get('shuffle') !== '0';
+        const s = parseInt(q.get('s') || '', 10);
+        if (Number.isInteger(s) && s >= 0) seed = s;
+      } catch (e) { /* no query, no problem */ }
+      show(seed === null ? randomSeed() : seed);
+    })();
+
+    go.addEventListener('click', () => show(randomSeed()));
+    shuffle.addEventListener('change', () => show(randomSeed()));
+
+    async function copyText(text) {
+      try { await navigator.clipboard.writeText(text); return true; } catch (e) { /* fall through */ }
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.top = '-1000px';
+        document.body.appendChild(ta); ta.select();
+        const ok = document.execCommand('copy');
+        ta.remove();
+        return ok;
+      } catch (e) { return false; }
+    }
+
+    share.addEventListener('click', async () => {
+      const ok = await copyText(location.href);
+      share.textContent = ok ? 'link copied' : 'copy failed';
+      setTimeout(() => { share.textContent = 'copy link'; }, 1600);
+    });
+
+    // Picks: saved in this browser only. Every read and write is wrapped, because storage
+    // can be absent, full or blocked, and the page must work the same without it.
+    const KEY = 'qc-picks-v1';
+    const boxes = Array.from(document.querySelectorAll('input.pick'));
+    const count = document.getElementById('count');
+    const copied = document.getElementById('copied');
+
+    function load() {
+      try {
+        const raw = localStorage.getItem(KEY);
+        const ids = raw ? JSON.parse(raw) : [];
+        if (!Array.isArray(ids)) return;
+        const set = new Set(ids);
+        boxes.forEach((b) => { b.checked = set.has(b.dataset.id); });
+      } catch (e) { /* storage unavailable: start unticked */ }
+    }
+    function save() {
+      const ids = boxes.filter((b) => b.checked).map((b) => b.dataset.id);
+      try { localStorage.setItem(KEY, JSON.stringify(ids)); } catch (e) { /* ticks live for this page view only */ }
+      count.textContent = String(ids.length);
+    }
+    boxes.forEach((b) => b.addEventListener('change', save));
+    load();
+    save();
+
+    document.getElementById('copy').addEventListener('click', async () => {
+      const lines = boxes.filter((b) => b.checked).map((b) => '- ' + b.dataset.id + ': ' + b.closest('label').querySelector('.text').textContent.replace(/\s*★\s*$/, '').trim());
+      const ok = await copyText(lines.length ? lines.join('\n') : '(nothing ticked)');
+      copied.textContent = ok ? 'copied' : 'copy failed';
+      copied.hidden = false;
+      setTimeout(() => { copied.hidden = true; }, 1600);
+    });
+  </script>
+</Base>
+
+<style is:global>
+.hero{padding:clamp(2.5rem,7vw,4.5rem) 0 clamp(.5rem,2vw,1rem)}
+.hero .eyebrow{margin-bottom:1.1rem}
+.lede{font-size:clamp(1.15rem,2.4vw,1.45rem);line-height:1.4;color:var(--strong);margin:0;max-width:44rem;text-wrap:balance}
+.lede em{font-style:italic;color:var(--orange)}
+
+/* The generated line: the same quote band as the home page's rolling quotes. */
+.quote-band{padding:clamp(2.5rem,7vw,4.25rem) 0}
+.quote-band .narrow{max-width:38rem}
+.quote-band .narrow::before{content:"";display:block;width:22px;height:2px;background:var(--orange);margin:0 auto 1.15rem}
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(1.2rem,2.8vw,1.5rem);line-height:1.5;color:var(--soft);text-align:center;margin:0;text-wrap:balance}
+.quote.fade{animation:quotefade .7s ease both}
+@keyframes quotefade{from{opacity:0}to{opacity:1}}
+.gadget{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bone)}
+.meta{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin:1.1rem 0 0}
+.controls{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.9rem 1.4rem;margin:1.5rem 0 0}
+button.big{
+  font-family:var(--sans);font-weight:600;font-size:1.05rem;letter-spacing:.02em;
+  color:var(--paper);background:var(--orange);border:0;border-radius:6px;
+  padding:.8rem 1.9rem;cursor:pointer;
+}
+button.big:hover{background:var(--red)}
+button.big:active{transform:translateY(1px)}
+button.small{
+  font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);background:transparent;border:1px solid var(--line);border-radius:4px;
+  padding:.4rem .7rem;cursor:pointer;
+}
+button.small:hover{color:var(--orange);border-color:var(--orange)}
+.toggle{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:inline-flex;align-items:center;gap:.45rem;cursor:pointer}
+.toggle input{accent-color:var(--orange);width:1rem;height:1rem;margin:0}
+.ladder{font-family:var(--sans);font-size:.9rem;line-height:1.5;color:var(--muted);text-align:center;margin:1.6rem 0 0}
+.ladder strong{color:var(--strong);font-weight:600}
+
+/* The picks: a reading list with a tick box per line. */
+.picks{padding:clamp(2.25rem,6vw,3.5rem) 0}
+h2.eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:1.1rem}
+h2.eyebrow::after{content:"";flex:1 1 auto;height:1px;background:var(--line)}
+.how{font-size:1rem;color:var(--muted);margin:0 0 .6rem}
+.how strong{color:var(--strong);font-weight:600}
+.count{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 1.5rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap}
+.copied{color:var(--orange)}
+.fav{color:var(--orange);font-style:normal}
+.group{margin:0 0 2rem}
+.group h3{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin:0 0 .6rem}
+.group ol{list-style:none;margin:0;padding:0;counter-reset:line}
+.group li{border-top:1px solid var(--line);counter-increment:line}
+.group li:last-child{border-bottom:1px solid var(--line)}
+.group label{display:grid;grid-template-columns:auto 1.6rem 1fr;gap:.6rem;align-items:start;padding:.9rem 0;cursor:pointer}
+.group label::before{content:counter(line);font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:.35rem;grid-column:2}
+.group input{accent-color:var(--orange);width:1.1rem;height:1.1rem;margin:.3rem 0 0;grid-column:1}
+.group .text{font-family:var(--serif);font-style:italic;font-size:1.1rem;line-height:1.5;color:var(--ink);grid-column:3}
+.group li.is-fav .text{color:var(--strong)}
+.group label:hover .text{color:var(--orange)}
+.group input:checked ~ .text{color:var(--strong);text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:.16em}
+</style>
