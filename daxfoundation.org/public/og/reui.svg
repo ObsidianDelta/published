@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630">
+  <rect width="1200" height="630" fill="#0a0a0a"/>
+  <rect x="0" y="0" width="12" height="630" fill="#c9a45a"/>
+  <text x="92" y="96" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" letter-spacing="4" fill="#c9a45a">DAX FOUNDATION</text>
+  <text x="90" y="300" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="96" font-weight="300" fill="#e8e8e8">Re·UI</text>
+  <rect x="92" y="340" width="120" height="4" fill="#c9a45a"/>
+  <text x="92" y="418" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="36" font-weight="400" fill="#b4b4b4">Gestures and a voice. No mouse.</text>
+  <text x="1120" y="590" text-anchor="end" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="22" fill="#8c8c8c">re.ui.research.daxfoundation.org</text>
+</svg>

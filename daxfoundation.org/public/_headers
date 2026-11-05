@@ -1,0 +1,7 @@
+# 2026-11-04 (SEO launch): the pages.dev mirror and preview builds stay out of search;
+# daxfoundation.org is the one indexed host (every page also carries a canonical link to it).
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

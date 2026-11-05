@@ -6,6 +6,7 @@
 import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
+import { chapterDescription } from "../../../lib/seo.js";
 
 export async function getStaticPaths() {
   const chapters = await getCollectionChapters("metadax");
@@ -19,7 +20,7 @@ const RUN_LABEL = "Meta DAX";
 ---
 <Explain
   title={title}
-  description="The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative."
+  description={chapterDescription(chapter, "The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative.", "Meta DAX")}
 >
   {/* 2026-10-23: a one-chapter page (reached from a shared link) says which run it
       belongs to and opens the whole run at this chapter, so the reader keeps context. */}
