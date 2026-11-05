@@ -1,0 +1,84 @@
+/* The Uruguayan edition (?para=sabs): the studio's own tokens, nudged to the Uruguayan sky.
+   Celeste and white, the gold of the Sol de Mayo, a touch of Canadian red and white.
+   Everything is scoped to html[data-edition='sabs'], so the gift for everyone else is untouched. */
+
+html[data-edition='sabs'][data-skin='dusk'] {
+  --f-bg: #0a1a2e; --f-bg2: #10243c; --f-card: #132a45; --f-ink: #f2f8ff; --f-ink2: #c6dcf0; --f-mute: #8eaccb;
+  --f-line: rgba(140, 200, 240, 0.18); --f-acc: #4aa3df; --f-acc2: #8fd3f4; --f-cy: #8fd3f4;
+  --f-glow: rgba(110, 193, 228, 0.45); --f-warm: #f6c33a;
+  --sabs-celeste: #74c3ea; --sabs-blanco: #ffffff; --sabs-sol: #f6c33a; --sabs-sol2: #c98a12; --sabs-rojo: #d52b1e; --sabs-azul: #0038a8;
+}
+html[data-edition='sabs'], html[data-edition='sabs'] body {
+  background: radial-gradient(120% 80% at 50% 26%, #17385a 0%, #0a1a2e 55%, #050b14 100%) fixed;
+}
+/* buttons: celeste into white, ink of the night sky */
+html[data-edition='sabs'] .btn.pri { background: linear-gradient(135deg, var(--sabs-celeste), #dff2fc); color: #08213a; }
+html[data-edition='sabs'] .remix-btn { box-shadow: 0 0 30px rgb(116 195 234 / 0.55); }
+html[data-edition='sabs'] .open-title { text-shadow: 0 0 40px rgb(116 195 234 / 0.45); }
+html[data-edition='sabs'] .word:hover, html[data-edition='sabs'] .word:focus-visible { text-shadow: 0 0 18px rgb(143 211 244 / 0.85); }
+html[data-edition='sabs'] .word.on { text-shadow: 0 0 22px rgb(246 195 58 / 0.85); }
+html[data-edition='sabs'] .heart-ring { background: conic-gradient(from 0turn, var(--sabs-sol) calc(var(--p) * 1turn), rgb(143 211 244 / 0.22) 0); }
+/* the studio's mark becomes a little sun */
+html[data-edition='sabs'] .mark-dot {
+  background: radial-gradient(circle, #ffe9a8 0 30%, var(--sabs-sol) 31% 44%, transparent 45%), repeating-conic-gradient(var(--sabs-sol) 0 7deg, transparent 7deg 22.5deg);
+  box-shadow: 0 0 14px rgb(246 195 58 / 0.55); width: 16px; height: 16px;
+}
+
+/* the Sol de Mayo, drawn simply */
+.sol { display: inline-block; vertical-align: middle; }
+.sol .sol-rays { fill: var(--sabs-sol, #f6c33a); }
+.sol .sol-face { fill: var(--sabs-sol, #f6c33a); stroke: var(--sabs-sol2, #c98a12); stroke-width: 1.6; }
+.sol .sol-feat { fill: var(--sabs-sol2, #c98a12); stroke: var(--sabs-sol2, #c98a12); stroke-width: 1.6; stroke-linecap: round; }
+.sol.big { width: clamp(110px, 30vw, 150px); height: auto; filter: drop-shadow(0 0 26px rgb(246 195 58 / 0.55)); animation: sabs-turn 60s linear infinite; }
+.sol.tiny { width: 18px; height: 18px; }
+.sol.mini { width: 9px; height: 9px; }
+.sol.mini .sol-feat, .sol.tiny .sol-feat { display: none; }
+@keyframes sabs-turn { to { transform: rotate(360deg); } }
+
+/* two little flags: Uruguay ⇄ Canadá */
+.sabs-flags { display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; }
+.flag { display: inline-block; position: relative; width: 24px; height: 16px; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgb(255 255 255 / 0.35); }
+.flag.uy { background: repeating-linear-gradient(180deg, #fff 0 11.111%, var(--sabs-azul, #0038a8) 11.111% 22.222%); }
+.flag.uy::before { content: ''; position: absolute; inset: 0 auto auto 0; width: 44%; height: 55.6%; background: #fff; }
+.flag.uy .sol { position: absolute; left: 1px; top: 0; z-index: 1; width: 9px; height: 9px; }
+.flag.ca { background: linear-gradient(90deg, var(--sabs-rojo, #d52b1e) 0 25%, #fff 25% 75%, var(--sabs-rojo, #d52b1e) 75%); }
+.flag.ca svg { position: absolute; left: 50%; top: 50%; width: 9px; height: 9px; transform: translate(-50%, -50%); fill: var(--sabs-rojo, #d52b1e); }
+.flag-arrow { font-size: 12px; color: var(--f-ink2); }
+
+/* the dedication */
+.sabs-ded { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 24px 16px; text-align: center;
+  background: radial-gradient(90% 70% at 50% 30%, rgb(116 195 234 / 0.28), transparent 70%), rgb(8 22 40 / 0.94);
+  transition: opacity 0.7s ease, transform 0.7s ease; }
+.sabs-ded.out { opacity: 0; transform: scale(1.04); pointer-events: none; }
+.sabs-ded-in { max-width: 560px; display: flex; flex-direction: column; align-items: center; gap: 10px; animation: rise 1.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.sabs-k { color: var(--sabs-sol, #f6c33a); margin-top: 6px; }
+.sabs-h { font-size: clamp(40px, 10vw, 76px); margin: 0; color: #fff; text-shadow: 0 0 36px rgb(116 195 234 / 0.6); }
+.sabs-sub { font-family: var(--f-serif); font-size: clamp(20px, 5vw, 30px); font-style: italic; color: #e4f3fc; margin: 0; max-width: 22ch; }
+.sabs-line { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; color: var(--f-ink2); font-size: 14px; margin: 8px 0 0; }
+.sabs-note { color: var(--f-mute); font-size: 14px; max-width: 40ch; margin: 2px 0 10px; }
+.sabs-go { margin-top: 6px; }
+body.sabs-dedicating { overflow: hidden; }
+
+/* the ribbon: in the flow above the studio (never over its buttons) */
+.sabs-ribbon { position: relative; z-index: 2; display: flex; align-items: center; gap: 8px; width: fit-content; max-width: calc(100% - 32px); margin: 10px auto 0;
+  padding: 5px 6px 5px 10px; border-radius: 99px; background: rgb(10 26 46 / 0.72); border: 1px solid rgb(143 211 244 / 0.28); font-size: 13px; color: var(--f-ink2); }
+.sabs-for { font-weight: 600; color: #fff; white-space: nowrap; }
+.sabs-drum { display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgb(143 211 244 / 0.35); background: none; color: var(--f-ink); border-radius: 99px; padding: 4px 10px; font: 500 12.5px var(--f-sans); cursor: pointer; min-height: 30px; }
+.sabs-drum-dot { width: 8px; height: 8px; border-radius: 50%; background: rgb(255 255 255 / 0.3); }
+.sabs-drum[aria-pressed='true'] .sabs-drum-dot { background: var(--sabs-sol, #f6c33a); box-shadow: 0 0 10px var(--sabs-sol, #f6c33a); animation: sabs-pulse 0.909s ease-in-out infinite; }
+@keyframes sabs-pulse { 50% { transform: scale(1.5); } }
+
+/* the signature, at the end */
+.sabs-firma { margin: 6px 0 18px; padding: 18px 20px 14px; border-radius: 18px; text-align: center;
+  background: linear-gradient(180deg, rgb(116 195 234 / 0.14), rgb(255 255 255 / 0.04)); border: 1px solid rgb(143 211 244 / 0.25);
+  animation: rise 1.6s 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.sabs-firma-t { font-family: var(--f-serif); font-size: clamp(26px, 6vw, 36px); color: #fff; margin: 0; }
+.sabs-firma-j { font-family: var(--f-serif); font-style: italic; font-size: 20px; color: var(--sabs-sol, #f6c33a); margin: 2px 0 10px; }
+.sabs-firma-f { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--f-mute); margin: 0; padding-top: 8px; border-top: 2px solid; border-image: linear-gradient(90deg, transparent, var(--sabs-rojo, #d52b1e) 30%, #fff 50%, var(--sabs-rojo, #d52b1e) 70%, transparent) 1; }
+.sabs-foot { display: flex; align-items: center; gap: 8px; color: var(--f-ink2); }
+.still .sabs-firma { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .sol.big, .sabs-ded-in, .sabs-firma, .sabs-drum[aria-pressed='true'] .sabs-drum-dot { animation: none !important; }
+  .sabs-ded { transition: none; }
+}

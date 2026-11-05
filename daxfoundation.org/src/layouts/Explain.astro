@@ -9,6 +9,7 @@ import "../styles/tokens.css";
 import "../styles/colour.css";
 import { ClientRouter } from "astro:transitions";
 import SiteHeader from "../components/SiteHeader.astro";
+import SeoJsonLd from "../components/SeoJsonLd.astro";
 // The reading scale, as data (EXP-11): the chooser draws its chips from here, in
 // order, least background first. No hard-coded chips. `level` rides along on each
 // chip for the map (EXP-10 reads it).
@@ -20,6 +21,8 @@ interface Props {
   image?: string;
   ogType?: string;
   siteName?: string;
+  // 2026-11-04 (SEO launch): true asks search engines to keep this page off their indexes.
+  noindex?: boolean;
 }
 const {
   title = "DAX Foundation",
@@ -27,6 +30,7 @@ const {
   image,
   ogType = "website",
   siteName = "DAX Foundation",
+  noindex = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.png", Astro.site);
@@ -54,6 +58,10 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={`${title} — ${description}`} />
+    <meta property="og:locale" content="en_CA" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <SeoJsonLd />
     {/* 2026-10-23: no webfont; the guided pages use the site's own sans like every other page */}
     <ClientRouter />
     <slot name="head" />

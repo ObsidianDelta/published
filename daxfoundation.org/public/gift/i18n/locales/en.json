@@ -1,0 +1,147 @@
+{
+  "_meta": {
+    "locale": "en",
+    "name": "English",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "en_US",
+    "digits": "latn",
+    "status": "source",
+    "needs_native_review": false
+  },
+  "ui": {
+    "age_q": "Before we begin: are you 13 or older?",
+    "age_yes": "Yes, I'm 13 or older",
+    "age_skip": "I'd rather not say",
+    "spark_q": "What does love feel like for you right now?",
+    "spark_hint": "Pick the one that fits. There's no wrong answer.",
+    "echo_intro": "Other languages have a word for this:",
+    "see_others": "See what others are feeling",
+    "keep_going": "Keep going",
+    "dataset_title": "Here is what people have said so far.",
+    "dataset_meta": "{n} responses · Dataset: public · Updated daily",
+    "dataset_link": "View the full open dataset",
+    "consent_q": "Would you like your answer included in this research?",
+    "consent_yes": "Yes, add mine anonymously",
+    "consent_no": "No, keep it just here",
+    "consent_explain_q": "What does \"anonymously\" mean here?",
+    "consent_explain": "We store the word you chose, your language and the rough region of the world you're in. Nothing else. You can delete it any time.",
+    "when_q": "When did you last feel this way?",
+    "toward_q": "Is there someone or something you feel this love toward?",
+    "composition_title": "Here is the sound of your love.",
+    "hear_it": "Hear it (5 seconds)",
+    "compare": "See how it compares",
+    "share_it": "Share it",
+    "share_title": "Send it to someone.",
+    "share_hint": "Your link carries only the words and sound you chose. Never your name, never anything you typed.",
+    "copy_link": "Copy link",
+    "copied": "Link copied",
+    "save_image": "Save the image",
+    "save_story": "Save as a story",
+    "make_mine": "Make mine",
+    "received_banner": "Someone sent you their love, as a sound. Here's theirs. Now make yours.",
+    "received_chain": "This one has been passed on {n} times.",
+    "answer_back": "Answer with yours",
+    "duet_title": "Your two sounds, together.",
+    "circle_invite": "Ask your group",
+    "circle_title": "What does love sound like in your circle?",
+    "circle_hint": "Everyone adds a sound. Nobody sees who chose what, only the chord you make together.",
+    "try_another": "Try a different feeling",
+    "start_over": "Start over",
+    "take_breath": "Take a breath",
+    "breath_body": "You can stop here. Nothing is lost, and nothing was sent unless you said yes.",
+    "data_panel": "What this page knows about you",
+    "delete_mine": "Delete my answer",
+    "framing": "A research project of the DAX Foundation",
+    "language": "Language",
+    "sound_credit": "Played in our own voice: harmony only, never a recording.",
+    "translate_invite": "Speak another language? Help us say this right."
+  },
+  "feelings": {
+    "warm": "warm",
+    "quiet": "quiet",
+    "longing": "longing",
+    "joyful": "joyful",
+    "tender": "tender",
+    "lost": "lost"
+  },
+  "letters": {
+    "love": "love",
+    "tenderness": "tenderness",
+    "togetherness": "togetherness",
+    "trust": "trust",
+    "curiosity": "curiosity",
+    "adventure": "adventure",
+    "creativity": "creativity",
+    "discovery": "discovery",
+    "joy": "joy",
+    "hope": "hope",
+    "birth": "new beginnings",
+    "awe": "awe",
+    "gratitude": "gratitude",
+    "longing": "longing",
+    "doubt": "doubt",
+    "re_love": "love, answered",
+    "empathy": "empathy",
+    "compassion": "compassion"
+  },
+  "tense": {
+    "was": "the love that was",
+    "is": "the love that is",
+    "will": "the love that will be"
+  },
+  "when": {
+    "today": "today",
+    "week": "this week",
+    "ago": "a while ago",
+    "unsure": "I'm not sure"
+  },
+  "toward": {
+    "person": "a person",
+    "place": "a place or a time",
+    "idea": "an idea",
+    "feeling": "just a feeling"
+  },
+  "card": {
+    "brand": "A gift",
+    "head_mine": "This is what my love sounds like.",
+    "head_gift": "I made this sound for you.",
+    "head_answer": "You called. I answered.",
+    "head_circle": "This is what our love sounds like.",
+    "cta": "Make yours",
+    "chain": "passed on {n} times",
+    "alt": "A card with the word \"{feeling}\" and a ring of musical notes. A research project of the DAX Foundation."
+  },
+  "share": {
+    "og_title": "What does love sound like in your language?",
+    "og_description": "Find the sound of your love, then send it to someone. A research project of the DAX Foundation.",
+    "default": "What does love sound like? Mine sounds like {feeling}. Make yours: {url}",
+    "whatsapp": "I made you something 🎁 It's what my love sounds like right now: {feeling}. Open it, then send me yours 👉 {url}",
+    "whatsapp_status": "What my love sounds like today: {feeling} ✦ Make yours, link in my status 👇",
+    "sms": "I made the sound of my love ({feeling}). Make yours and send it back: {url}",
+    "x": "What does love sound like in your language? Mine, today: {feeling}.",
+    "telegram": "What does love sound like? Mine: {feeling}. Make yours and pass it on → {url}",
+    "line": "Made you something: the sound of {feeling}. Your turn → {url}",
+    "wechat": "What does love sound like? Mine is {feeling}. Make yours: {url}",
+    "kakao": "The sound of my love today: {feeling}. Make yours and send it back → {url}",
+    "story_caption": "my love sounds like {feeling} ✦ what does yours sound like?",
+    "group_invite": "Little experiment for this group: everyone adds the sound of their love, and we hear what we sound like together. Nobody sees who picked what. {url}",
+    "answer_back": "You sent me yours, so here's my answer 💛 {url}",
+    "email_subject": "I made you something",
+    "email_body": "It's what love sounds like to me right now: {feeling}.\n\nOpen it, then make yours and send it back:\n{url}\n\n(A research project of the DAX Foundation. No sign-up, nothing to install.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "{n} response · Dataset: public · Updated daily",
+      "other": "{n} responses · Dataset: public · Updated daily"
+    },
+    "ui.received_chain": {
+      "one": "This one has been passed on once.",
+      "other": "This one has been passed on {n} times."
+    },
+    "card.chain": {
+      "one": "passed on once",
+      "other": "passed on {n} times"
+    }
+  }
+}

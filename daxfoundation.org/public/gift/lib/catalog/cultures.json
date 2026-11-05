@@ -1,0 +1,6020 @@
+{
+  "version": "0.1.0",
+  "created": "2026-11-03",
+  "status": "SEED -- staff-authored from general reference knowledge. 'confidence' is the author's prior; 'verified' stays false until someone checks the cited source (or a scholar / native speaker confirms). Never display an unverified row as fact.",
+  "rule": "Naming + harmony only (THEME-CATALOG rule). No melody, lyrics or audio. Harmony entries describe conventions of a tradition, credited.",
+  "letters": [
+    "love",
+    "tenderness",
+    "togetherness",
+    "trust",
+    "curiosity",
+    "adventure",
+    "creativity",
+    "discovery",
+    "joy",
+    "hope",
+    "birth",
+    "awe",
+    "gratitude",
+    "longing",
+    "doubt"
+  ],
+  "cultures": [
+    {
+      "id": "pt-br",
+      "language": "Portuguese",
+      "endonym": "Português",
+      "lang": "pt-BR",
+      "region": "Brazil",
+      "vocab": [
+        {
+          "id": "cafune",
+          "word": "cafuné",
+          "romanization": null,
+          "gloss": "tenderly running one's fingers through a loved one's hair",
+          "nuance": "A single everyday word for an act of quiet care, given to partners, children and friends alike; often cited as hard to translate in one English word.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dicionário Houaiss da Língua Portuguesa (2001)",
+            "Wikipedia: Cafuné"
+          ],
+          "verified": false
+        },
+        {
+          "id": "xodo",
+          "word": "xodó",
+          "romanization": null,
+          "gloss": "sweetheart; a deep fondness for someone or something",
+          "nuance": "Strongly associated with Northeastern Brazil; used for a beloved person, but also for a favourite place or thing. Its origin is uncertain.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Dicionário Houaiss da Língua Portuguesa (2001)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "chamego",
+          "word": "chamego",
+          "romanization": null,
+          "gloss": "affectionate closeness, cuddling, fond attention",
+          "nuance": "Warm and playful rather than solemn; also used of the closeness between parent and child.",
+          "letters": [
+            "tenderness",
+            "togetherness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Dicionário Houaiss da Língua Portuguesa (2001)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "bossa-ii-v-i",
+          "kind": "progression",
+          "name": "Bossa nova ii-V-I with extended chords",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "ii7",
+            "V7",
+            "Imaj7"
+          ],
+          "tuning_note": null,
+          "feel": "Cool, intimate and gently bittersweet; seventh and ninth chords voiced softly on nylon-string guitar.",
+          "letters": [
+            "tenderness",
+            "longing"
+          ],
+          "credit": "The bossa nova tradition of late-1950s Rio de Janeiro; exemplified by Antônio Carlos Jobim and João Gilberto (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Ruy Castro, Bossa Nova: The Story of the Brazilian Music That Seduced the World (2000)",
+            "Wikipedia: Bossa nova"
+          ],
+          "verified": false
+        },
+        {
+          "id": "bossa-tritone-sub",
+          "kind": "progression",
+          "name": "Tritone substitution resolving to a major seventh",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "ii7",
+            "bII7",
+            "Imaj7"
+          ],
+          "tuning_note": null,
+          "feel": "A slippery chromatic step into home; sounds sophisticated and tender.",
+          "letters": [
+            "tenderness",
+            "discovery"
+          ],
+          "credit": "Jazz harmony convention widely used in bossa nova (style); documented in standard jazz theory texts.",
+          "confidence": "medium",
+          "sources": [
+            "Mark Levine, The Jazz Theory Book (1995)",
+            "Wikipedia: Tritone substitution"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "pt-pt",
+      "language": "Portuguese",
+      "endonym": "Português",
+      "lang": "pt-PT",
+      "region": "Portugal",
+      "vocab": [
+        {
+          "id": "saudade",
+          "word": "saudade",
+          "romanization": null,
+          "gloss": "longing for someone or something absent, loved and perhaps lost",
+          "nuance": "Holds sweetness and ache together: the presence of an absence. Shared with Brazil and Galicia, and central to Portuguese self-description.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Saudade",
+            "Dicionário Priberam da Língua Portuguesa"
+          ],
+          "verified": false
+        },
+        {
+          "id": "namorar",
+          "word": "namorar",
+          "romanization": null,
+          "gloss": "to court; to be in a romantic relationship; to spend time as a couple",
+          "nuance": "A verb for the shared time of being sweethearts, not only for a feeling.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dicionário Priberam da Língua Portuguesa"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "fado-minor",
+          "kind": "progression",
+          "name": "Fado minor: tonic, subdominant, dominant",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "iv",
+            "V7",
+            "i"
+          ],
+          "tuning_note": null,
+          "feel": "Plaintive and dignified; often described as the sound of saudade.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Fado tradition of Lisbon and Coimbra (UNESCO Intangible Cultural Heritage, 2011); exemplified by Amália Rodrigues (style only).",
+          "confidence": "medium",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Fado, urban popular song of Portugal (2011)",
+            "Wikipedia: Fado"
+          ],
+          "verified": false
+        },
+        {
+          "id": "fado-guitar-texture",
+          "kind": "texture",
+          "name": "Portuguese guitar over classical guitar accompaniment",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "The twelve-string guitarra portuguesa ornaments while the viola keeps a steady harmonic pulse.",
+          "letters": [
+            "longing",
+            "togetherness"
+          ],
+          "credit": "Fado tradition (instrumentation convention).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Portuguese guitar"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "es",
+      "language": "Spanish",
+      "endonym": "Español",
+      "lang": "es-ES",
+      "region": "Spain",
+      "vocab": [
+        {
+          "id": "querer",
+          "word": "querer",
+          "romanization": null,
+          "gloss": "to love (also: to want); everyday affectionate love",
+          "nuance": "'Te quiero' is used widely for family, friends and partners; it is warmer and more everyday than 'te amo'. Usage varies across the Spanish-speaking world.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "amar",
+          "word": "amar",
+          "romanization": null,
+          "gloss": "to love deeply",
+          "nuance": "'Te amo' is often felt as weightier or more solemn than 'te quiero', especially in Spain; in parts of Latin America it is used more freely.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "media-naranja",
+          "word": "media naranja",
+          "romanization": null,
+          "gloss": "one's other half (literally: half an orange)",
+          "nuance": "The partner who completes you, imagined as two halves of one fruit.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sobremesa",
+          "word": "sobremesa",
+          "romanization": null,
+          "gloss": "lingering at the table together after a meal, talking",
+          "nuance": "Love as unhurried shared time with family and friends.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "andalusian-cadence",
+          "kind": "cadence",
+          "name": "Andalusian cadence",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "bVII",
+            "bVI",
+            "V"
+          ],
+          "tuning_note": null,
+          "feel": "A stepwise descent that feels fated, passionate and proud.",
+          "letters": [
+            "longing",
+            "adventure"
+          ],
+          "credit": "Flamenco and Andalusian tradition (flamenco: UNESCO Intangible Cultural Heritage, 2010); term standard in music theory; exemplified by Paco de Lucía (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Andalusian cadence",
+            "Wikipedia: Flamenco"
+          ],
+          "verified": false
+        },
+        {
+          "id": "modo-flamenco",
+          "kind": "mode",
+          "name": "Phrygian mode (modo de mi / flamenco mode)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Dark, intense and proud; in practice the third is often raised over the tonic chord, giving the flamenco colour.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Flamenco tradition; documented in flamenco harmony studies.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Flamenco",
+            "Wikipedia: Phrygian mode"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "es-mx",
+      "language": "Mexican Spanish",
+      "endonym": "Español mexicano",
+      "lang": "es-MX",
+      "region": "Mexico",
+      "vocab": [
+        {
+          "id": "apapachar",
+          "word": "apapachar",
+          "romanization": null,
+          "gloss": "to hug or cuddle with deep affection; to comfort",
+          "nuance": "Widely said to come from Nahuatl 'papachoa' and to mean 'to hug with the soul'; the Nahuatl origin is commonly cited but the poetic 'soul' gloss is a popular folk etymology.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española): apapachar",
+            "Diccionario del español de México (El Colegio de México)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "carino",
+          "word": "cariño",
+          "romanization": null,
+          "gloss": "affection; also 'darling'",
+          "nuance": "Used both as a noun for fondness and as a term of address for loved ones.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "ranchera-i-iv-v",
+          "kind": "progression",
+          "name": "Ranchera / mariachi major cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Open-hearted, proud and emotional; love declared out loud.",
+          "letters": [
+            "love",
+            "joy"
+          ],
+          "credit": "Mariachi and ranchera tradition (mariachi: UNESCO Intangible Cultural Heritage, 2011); exemplified by José Alfredo Jiménez (style only).",
+          "confidence": "medium",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Mariachi, string music, song and trumpet (2011)",
+            "Wikipedia: Ranchera"
+          ],
+          "verified": false
+        },
+        {
+          "id": "bolero-turnaround",
+          "kind": "progression",
+          "name": "Romantic bolero turnaround",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "Imaj7",
+            "vi7",
+            "ii7",
+            "V7"
+          ],
+          "tuning_note": null,
+          "feel": "Slow, intimate, serenade-like.",
+          "letters": [
+            "tenderness",
+            "longing"
+          ],
+          "credit": "Mexican bolero tradition; exemplified by Agustín Lara and the trios such as Los Panchos (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Bolero"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "es-cu",
+      "language": "Cuban Spanish",
+      "endonym": "Español cubano",
+      "lang": "es-CU",
+      "region": "Cuba",
+      "vocab": [
+        {
+          "id": "mi-vida",
+          "word": "mi vida",
+          "romanization": null,
+          "gloss": "'my life'; a term of endearment",
+          "nuance": "Calls the beloved one's very life; used for partners and children.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "querer-cu",
+          "word": "querer",
+          "romanization": null,
+          "gloss": "to love with warm, everyday affection",
+          "nuance": "As across the Spanish-speaking world, 'te quiero' covers family, friends and partners.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "bolero-ii-v-i",
+          "kind": "progression",
+          "name": "Cuban bolero ii-V-I",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "ii7",
+            "V7",
+            "Imaj7"
+          ],
+          "tuning_note": null,
+          "feel": "Tender and unhurried; a serenade in a slow 2/4.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "credit": "Cuban trova and bolero tradition of Santiago de Cuba; the early bolero is credited to José 'Pepe' Sánchez (late 19th century).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Bolero",
+            "Wikipedia: Trova"
+          ],
+          "verified": false
+        },
+        {
+          "id": "son-montuno",
+          "kind": "progression",
+          "name": "Son montuno vamp",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "V7",
+            "IV"
+          ],
+          "tuning_note": null,
+          "feel": "Cyclic, warm, dance-inviting; joy that invites everyone in.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Cuban son tradition; tres guitar and clave; exemplified by Ignacio Piñeiro and Arsenio Rodríguez (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Son cubano",
+            "Wikipedia: Montuno"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "es-ar",
+      "language": "Rioplatense Spanish",
+      "endonym": "Español rioplatense",
+      "lang": "es-AR",
+      "region": "Argentina and Uruguay (Río de la Plata)",
+      "vocab": [
+        {
+          "id": "extranar",
+          "word": "extrañar",
+          "romanization": null,
+          "gloss": "to miss someone",
+          "nuance": "The usual Latin American verb for missing a loved one (in Spain 'echar de menos' is more common).",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario de la lengua española (Real Academia Española)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "abrazo",
+          "word": "abrazo",
+          "romanization": null,
+          "gloss": "embrace; in tango, the dance hold itself",
+          "nuance": "In tango the embrace is the foundation of the dance: two people moving as one.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Argentine tango"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "tango-minor",
+          "kind": "progression",
+          "name": "Tango minor cadence",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "iv",
+            "V7",
+            "i"
+          ],
+          "tuning_note": null,
+          "feel": "Dramatic, nostalgic and intense; harmonic minor colour with a strong dominant.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Río de la Plata tango tradition (UNESCO Intangible Cultural Heritage, 2009); exemplified by Carlos Gardel and Astor Piazzolla (style only).",
+          "confidence": "medium",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Tango (2009)",
+            "Wikipedia: Tango music"
+          ],
+          "verified": false
+        },
+        {
+          "id": "tango-marcato",
+          "kind": "texture",
+          "name": "Marcato and bandoneón texture",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Accented beats from the orquesta típica, with the bandoneón's breathing tone.",
+          "letters": [
+            "adventure",
+            "longing"
+          ],
+          "credit": "Tango orquesta típica convention.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Bandoneón",
+            "Wikipedia: Tango music"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "fr",
+      "language": "French",
+      "endonym": "Français",
+      "lang": "fr-FR",
+      "region": "France",
+      "vocab": [
+        {
+          "id": "retrouvailles",
+          "word": "retrouvailles",
+          "romanization": null,
+          "gloss": "the joy of reunion after time apart",
+          "nuance": "Names the reunion itself as an event, with the happiness of finding each other again.",
+          "letters": [
+            "joy",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Le Petit Robert",
+            "Larousse"
+          ],
+          "verified": false
+        },
+        {
+          "id": "coup-de-foudre",
+          "word": "coup de foudre",
+          "romanization": null,
+          "gloss": "love at first sight (literally: lightning strike)",
+          "nuance": "Sudden, overwhelming attraction or friendship that strikes at once.",
+          "letters": [
+            "love",
+            "discovery"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Larousse"
+          ],
+          "verified": false
+        },
+        {
+          "id": "calin",
+          "word": "câlin",
+          "romanization": null,
+          "gloss": "a cuddle or hug",
+          "nuance": "Everyday tenderness, used for children, friends and partners.",
+          "letters": [
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Larousse"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "impressionist-planing",
+          "kind": "texture",
+          "name": "Impressionist planing (parallel chords)",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Chords that glide in parallel rather than resolving; dreamy, luminous, suspended.",
+          "letters": [
+            "awe",
+            "tenderness"
+          ],
+          "credit": "French Impressionist practice; exemplified by Claude Debussy and Maurice Ravel (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Parallel harmony",
+            "Grove Music Online: Impressionism"
+          ],
+          "verified": false
+        },
+        {
+          "id": "whole-tone",
+          "kind": "scale",
+          "name": "Whole-tone scale",
+          "mode": "other",
+          "intervals": [
+            0,
+            2,
+            4,
+            6,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Weightless and floating; no leading tone pulls it home.",
+          "letters": [
+            "awe",
+            "curiosity"
+          ],
+          "credit": "Used prominently by Claude Debussy (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Whole-tone scale"
+          ],
+          "verified": false
+        },
+        {
+          "id": "musette-waltz",
+          "kind": "texture",
+          "name": "Bal-musette accordion waltz",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Nostalgic and companionable; a Paris dance-hall sound.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "credit": "Parisian bal-musette tradition (accordion).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Musette (dance hall)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "it",
+      "language": "Italian",
+      "endonym": "Italiano",
+      "lang": "it-IT",
+      "region": "Italy",
+      "vocab": [
+        {
+          "id": "ti-voglio-bene",
+          "word": "ti voglio bene",
+          "romanization": null,
+          "gloss": "I love you / I care for you (affection)",
+          "nuance": "Used for family and friends as well as partners; 'ti amo' is reserved mostly for romantic love.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Vocabolario Treccani"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ti-amo",
+          "word": "ti amo",
+          "romanization": null,
+          "gloss": "I love you (romantic)",
+          "nuance": "Weightier and mostly romantic in everyday usage.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Vocabolario Treccani"
+          ],
+          "verified": false
+        },
+        {
+          "id": "colpo-di-fulmine",
+          "word": "colpo di fulmine",
+          "romanization": null,
+          "gloss": "love at first sight (literally: lightning strike)",
+          "nuance": "Sudden, overwhelming attraction.",
+          "letters": [
+            "love",
+            "discovery"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Vocabolario Treccani"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "neapolitan-sixth",
+          "kind": "cadence",
+          "name": "Neapolitan sixth cadence (bII, usually in first inversion)",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "bII",
+            "V7",
+            "i"
+          ],
+          "tuning_note": null,
+          "feel": "A poignant, darkened approach to the dominant; heartache that turns home.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "credit": "Named after the Neapolitan school of the 17th-18th centuries (the attribution of the name is debated); a standard term of Western harmony.",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Neapolitan chord",
+            "Walter Piston, Harmony (1941)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "de",
+      "language": "German",
+      "endonym": "Deutsch",
+      "lang": "de-DE",
+      "region": "Germany, Austria and Switzerland",
+      "vocab": [
+        {
+          "id": "geborgenheit",
+          "word": "Geborgenheit",
+          "romanization": null,
+          "gloss": "the feeling of being safe, sheltered and cared for",
+          "nuance": "Combines security, warmth and belonging; often voted among the most beautiful German words.",
+          "letters": [
+            "trust",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Duden",
+            "Wikipedia: Geborgenheit"
+          ],
+          "verified": false
+        },
+        {
+          "id": "zweisamkeit",
+          "word": "Zweisamkeit",
+          "romanization": null,
+          "gloss": "the togetherness of two people",
+          "nuance": "A counterpart to Einsamkeit (loneliness): the contented solitude of a pair.",
+          "letters": [
+            "togetherness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Duden"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sehnsucht",
+          "word": "Sehnsucht",
+          "romanization": null,
+          "gloss": "intense yearning for something far or unattainable",
+          "nuance": "Central to German Romanticism; longing with a sense of the infinite.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Duden",
+            "Wikipedia: Sehnsucht"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "chromatic-mediant",
+          "kind": "progression",
+          "name": "Romantic chromatic mediant shift",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "bVI",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "A sudden change of light without leaving home; wonder and yearning.",
+          "letters": [
+            "awe",
+            "longing"
+          ],
+          "credit": "German Romantic Lied practice; exemplified by Franz Schubert and Robert Schumann (style only); theorised in neo-Riemannian theory by Richard Cohn.",
+          "confidence": "medium",
+          "sources": [
+            "Richard Cohn, Audacious Euphony (2012)",
+            "Wikipedia: Chromatic mediant"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "en",
+      "language": "English",
+      "endonym": "English",
+      "lang": "en",
+      "region": "United Kingdom, United States and the wider English-speaking world",
+      "vocab": [
+        {
+          "id": "cherish",
+          "word": "cherish",
+          "romanization": null,
+          "gloss": "to hold dear and care for tenderly",
+          "nuance": "Love as protective care over time.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Oxford English Dictionary",
+            "Merriam-Webster"
+          ],
+          "verified": false
+        },
+        {
+          "id": "crush",
+          "word": "crush",
+          "romanization": null,
+          "gloss": "a brief, intense fondness for someone, often unspoken",
+          "nuance": "Light and often youthful; the flutter before anything is said.",
+          "letters": [
+            "curiosity",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Oxford English Dictionary",
+            "Merriam-Webster"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kindred-spirit",
+          "word": "kindred spirit",
+          "romanization": null,
+          "gloss": "a person who shares your outlook and feelings",
+          "nuance": "Friendship-love: recognition and belonging.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Merriam-Webster"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "doo-wop",
+          "kind": "progression",
+          "name": "'50s / doo-wop progression",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "vi",
+            "IV",
+            "V"
+          ],
+          "tuning_note": null,
+          "feel": "Sweet, sentimental, nostalgic; slow-dance romance.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "credit": "Associated with 1950s doo-wop and early rock and roll (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: '50s progression"
+          ],
+          "verified": false
+        },
+        {
+          "id": "axis-progression",
+          "kind": "progression",
+          "name": "I-V-vi-IV pop progression",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "V",
+            "vi",
+            "IV"
+          ],
+          "tuning_note": null,
+          "feel": "Hopeful, anthemic, uplifting.",
+          "letters": [
+            "hope",
+            "joy"
+          ],
+          "credit": "Ubiquitous in Anglophone pop from the 1980s onward (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: I–V–vi–IV progression"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ga",
+      "language": "Irish",
+      "endonym": "Gaeilge",
+      "lang": "ga",
+      "region": "Ireland",
+      "vocab": [
+        {
+          "id": "gra",
+          "word": "grá",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The everyday word for love; also borrowed into Irish English ('she has great grá for him').",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Niall Ó Dónaill, Foclóir Gaeilge–Béarla (1977)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "a-chuisle-mo-chroi",
+          "word": "a chuisle mo chroí",
+          "romanization": null,
+          "gloss": "'pulse of my heart'; my darling",
+          "nuance": "A traditional endearment: the beloved as one's very heartbeat.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Niall Ó Dónaill, Foclóir Gaeilge–Béarla (1977)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mo-stor",
+          "word": "mo stór",
+          "romanization": null,
+          "gloss": "'my treasure'; my dear",
+          "nuance": "Affectionate address for partners, children and friends.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Niall Ó Dónaill, Foclóir Gaeilge–Béarla (1977)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "double-tonic",
+          "kind": "progression",
+          "name": "Double tonic (alternating I and bVII)",
+          "mode": "modal",
+          "intervals": null,
+          "progression": [
+            "I",
+            "bVII",
+            "I",
+            "bVII"
+          ],
+          "tuning_note": null,
+          "feel": "Swaying, open and timeless; neither chord feels like the final home.",
+          "letters": [
+            "longing",
+            "togetherness"
+          ],
+          "credit": "Irish and Scottish traditional music; the 'double tonic' term is used in Irish traditional music scholarship (e.g. Breandán Breathnach).",
+          "confidence": "medium",
+          "sources": [
+            "Breandán Breathnach, Folk Music and Dances of Ireland (1971)",
+            "Wikipedia: Double tonic"
+          ],
+          "verified": false
+        },
+        {
+          "id": "dorian-air",
+          "kind": "mode",
+          "name": "Dorian mode (common in slow airs)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            3,
+            5,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Wistful yet hopeful; minor with a brighter sixth.",
+          "letters": [
+            "longing",
+            "hope"
+          ],
+          "credit": "Irish traditional slow airs and sean-nós singing (modal practice).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Sean-nós song",
+            "Wikipedia: Dorian mode"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "gd",
+      "language": "Scottish Gaelic",
+      "endonym": "Gàidhlig",
+      "lang": "gd",
+      "region": "Scotland",
+      "vocab": [
+        {
+          "id": "gaol",
+          "word": "gaol",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The common Gaelic word for love; 'mo ghaol' is 'my love'.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Edward Dwelly, The Illustrated Gaelic-English Dictionary (1901-1911)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mo-chridhe",
+          "word": "mo chridhe",
+          "romanization": null,
+          "gloss": "'my heart'; my dear",
+          "nuance": "A warm term of address.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Edward Dwelly, The Illustrated Gaelic-English Dictionary (1901-1911)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "cianalas",
+          "word": "cianalas",
+          "romanization": null,
+          "gloss": "melancholy longing; homesickness",
+          "nuance": "The sadness of being far from home and one's people.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Edward Dwelly, The Illustrated Gaelic-English Dictionary (1901-1911)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "highland-pipe-scale",
+          "kind": "mode",
+          "name": "Highland bagpipe scale (Mixolydian on A)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            5,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the Great Highland bagpipe chanter uses its own near-just intonation and is pitched well above A440.",
+          "feel": "Stirring, outdoor, ancestral.",
+          "letters": [
+            "awe",
+            "longing"
+          ],
+          "credit": "Scottish piping tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Great Highland bagpipe"
+          ],
+          "verified": false
+        },
+        {
+          "id": "pipe-drone",
+          "kind": "texture",
+          "name": "Drone texture",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "A continuous drone beneath everything; steadiness under feeling.",
+          "letters": [
+            "trust",
+            "togetherness"
+          ],
+          "credit": "Scottish piping tradition (drones on tonic and fifth/octave).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Drone (music)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "cy",
+      "language": "Welsh",
+      "endonym": "Cymraeg",
+      "lang": "cy",
+      "region": "Wales",
+      "vocab": [
+        {
+          "id": "hiraeth",
+          "word": "hiraeth",
+          "romanization": null,
+          "gloss": "deep longing for home, a place or a time that may never have been",
+          "nuance": "A homesickness mixed with grief and love; central to Welsh identity.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Geiriadur Prifysgol Cymru (University of Wales Dictionary)",
+            "Wikipedia: Hiraeth"
+          ],
+          "verified": false
+        },
+        {
+          "id": "cariad",
+          "word": "cariad",
+          "romanization": null,
+          "gloss": "love; darling",
+          "nuance": "Both the noun 'love' and a common endearment.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Geiriadur Prifysgol Cymru (University of Wales Dictionary)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "cwtch",
+          "word": "cwtch",
+          "romanization": null,
+          "gloss": "a cuddle; a safe, cosy place",
+          "nuance": "A Welsh English word (from Welsh 'cwtsh'); a hug that also means shelter.",
+          "letters": [
+            "tenderness",
+            "trust"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Oxford English Dictionary"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "welsh-hymn-harmony",
+          "kind": "texture",
+          "name": "Four-part congregational hymn harmony",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Full, communal, swelling; many voices as one.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Welsh congregational singing tradition (cymanfa ganu) and male voice choirs.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Cymanfa ganu"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Hymn singing is part of religious worship for many Welsh communities; described here as a musical texture only.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "is",
+      "language": "Icelandic",
+      "endonym": "Íslenska",
+      "lang": "is",
+      "region": "Iceland",
+      "vocab": [
+        {
+          "id": "ast",
+          "word": "ást",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love; 'ástin mín' is 'my love'.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Íslensk orðabók"
+          ],
+          "verified": false
+        },
+        {
+          "id": "elskan",
+          "word": "elskan",
+          "romanization": null,
+          "gloss": "darling, dear",
+          "nuance": "Common address ('elskan mín', my darling) for partners and children.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Íslensk orðabók"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sakna",
+          "word": "sakna",
+          "romanization": null,
+          "gloss": "to miss (someone)",
+          "nuance": "'Ég sakna þín' is 'I miss you'.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Íslensk orðabók"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "tvisongur",
+          "kind": "texture",
+          "name": "Tvísöngur (two-voice singing in parallel fifths)",
+          "mode": "modal",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Bare, austere, ancient; two voices moving together in open fifths, often crossing.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Icelandic folk tradition; collected by Bjarni Þorsteinsson in Íslenzk þjóðlög (1906-1909).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Tvísöngur",
+            "Bjarni Þorsteinsson, Íslenzk þjóðlög (1906-1909)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "da",
+      "language": "Danish",
+      "endonym": "Dansk",
+      "lang": "da",
+      "region": "Denmark",
+      "vocab": [
+        {
+          "id": "hygge",
+          "word": "hygge",
+          "romanization": null,
+          "gloss": "cosy, warm togetherness and contentment",
+          "nuance": "A mood of shared comfort with people you trust: candles, food, unhurried company. Heavily marketed abroad since the 2010s.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Den Danske Ordbog",
+            "Wikipedia: Hygge"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kaereste",
+          "word": "kæreste",
+          "romanization": null,
+          "gloss": "sweetheart; partner",
+          "nuance": "Literally 'dearest'; the everyday word for a girlfriend or boyfriend.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Den Danske Ordbog"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "faellessang",
+          "kind": "texture",
+          "name": "Fællessang (communal song in simple diatonic harmony)",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Everyone singing together from one songbook; belonging made audible.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "credit": "Danish folk high school tradition (Højskolesangbogen songbook, inspired by N. F. S. Grundtvig).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Højskolesangbogen"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "nb",
+      "language": "Norwegian",
+      "endonym": "Norsk",
+      "lang": "nb",
+      "region": "Norway",
+      "vocab": [
+        {
+          "id": "forelsket",
+          "word": "forelsket",
+          "romanization": null,
+          "gloss": "the euphoric feeling of falling in love",
+          "nuance": "The early, giddy stage; distinct from settled love (kjærlighet). Shared with Danish.",
+          "letters": [
+            "love",
+            "joy"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Norsk Ordbok / Bokmålsordboka"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kjaereste",
+          "word": "kjæreste",
+          "romanization": null,
+          "gloss": "sweetheart; partner",
+          "nuance": "Literally 'dearest'.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Bokmålsordboka"
+          ],
+          "verified": false
+        },
+        {
+          "id": "koselig",
+          "word": "koselig",
+          "romanization": null,
+          "gloss": "cosy, warm, pleasant in good company",
+          "nuance": "A Norwegian cousin of hygge.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Bokmålsordboka"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "hardanger-raised-fourth",
+          "kind": "scale",
+          "name": "Hardanger fiddle scale with raised fourth",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            6,
+            7,
+            9,
+            11
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; in Norwegian folk music the fourth is often a 'neutral' pitch between the perfect and augmented fourth.",
+          "feel": "Bright, shimmering, slightly otherworldly.",
+          "letters": [
+            "awe",
+            "curiosity"
+          ],
+          "credit": "Hardingfele tradition; arranged by Edvard Grieg in his Slåtter, Op. 72 (1903) (style reference).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Hardanger fiddle",
+            "Wikipedia: Slåtter (Grieg)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "hardanger-sympathetic",
+          "kind": "texture",
+          "name": "Sympathetic-string resonance",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Unplayed strings ring in response to the played ones; a halo of answering sound.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Hardingfele construction (sympathetic strings).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Hardanger fiddle"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "nl",
+      "language": "Dutch",
+      "endonym": "Nederlands",
+      "lang": "nl",
+      "region": "Netherlands and Flanders",
+      "vocab": [
+        {
+          "id": "gezellig",
+          "word": "gezellig",
+          "romanization": null,
+          "gloss": "cosy, convivial, pleasant together",
+          "nuance": "Applies to people, places and evenings; the warmth of good company.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Van Dale Groot woordenboek",
+            "Wikipedia: Gezelligheid"
+          ],
+          "verified": false
+        },
+        {
+          "id": "verliefd",
+          "word": "verliefd",
+          "romanization": null,
+          "gloss": "in love (the state of falling in love)",
+          "nuance": "The infatuated early stage.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Van Dale Groot woordenboek"
+          ],
+          "verified": false
+        },
+        {
+          "id": "lieverd",
+          "word": "lieverd",
+          "romanization": null,
+          "gloss": "darling, sweetheart",
+          "nuance": "An endearment for partners and children.",
+          "letters": [
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Van Dale Groot woordenboek"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "levenslied",
+          "kind": "progression",
+          "name": "Levenslied major cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Sentimental and singalong; heartfelt everyday emotion.",
+          "letters": [
+            "togetherness",
+            "longing"
+          ],
+          "credit": "Dutch levenslied genre (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Levenslied"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "fi",
+      "language": "Finnish",
+      "endonym": "Suomi",
+      "lang": "fi",
+      "region": "Finland",
+      "vocab": [
+        {
+          "id": "rakkaus",
+          "word": "rakkaus",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kielitoimiston sanakirja"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ikava",
+          "word": "ikävä",
+          "romanization": null,
+          "gloss": "missing someone; longing",
+          "nuance": "'Minulla on ikävä sinua' is 'I miss you'.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kielitoimiston sanakirja"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kaiho",
+          "word": "kaiho",
+          "romanization": null,
+          "gloss": "wistful, melancholy longing",
+          "nuance": "A quiet, poetic yearning.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Kielitoimiston sanakirja"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "finnish-tango",
+          "kind": "progression",
+          "name": "Finnish tango minor cadence",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "iv",
+            "V7",
+            "i"
+          ],
+          "tuning_note": null,
+          "feel": "Melancholy, restrained, deeply felt.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Finnish tango tradition (mostly in minor keys); exemplified by Unto Mononen and Olavi Virta (style only); celebrated at the Tangomarkkinat festival in Seinäjoki.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Finnish tango"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kantele-pentachord",
+          "kind": "scale",
+          "name": "Five-string kantele pentachord",
+          "mode": "minor",
+          "intervals": [
+            0,
+            2,
+            3,
+            5,
+            7
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Intimate and ancient; five tones that ring together.",
+          "letters": [
+            "tenderness",
+            "awe"
+          ],
+          "credit": "Traditional Finnish and Karelian kantele tuning.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Kantele"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "hu",
+      "language": "Hungarian",
+      "endonym": "Magyar",
+      "lang": "hu",
+      "region": "Hungary",
+      "vocab": [
+        {
+          "id": "szerelem",
+          "word": "szerelem",
+          "romanization": null,
+          "gloss": "romantic love",
+          "nuance": "The love between partners; distinct from szeretet.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "A magyar nyelv értelmező szótára"
+          ],
+          "verified": false
+        },
+        {
+          "id": "szeretet",
+          "word": "szeretet",
+          "romanization": null,
+          "gloss": "love, affection (family, friends, people)",
+          "nuance": "Broader, caring love, used of family and humanity.",
+          "letters": [
+            "tenderness",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "A magyar nyelv értelmező szótára"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "hungarian-minor",
+          "kind": "scale",
+          "name": "Hungarian minor scale",
+          "mode": "minor",
+          "intervals": [
+            0,
+            2,
+            3,
+            6,
+            7,
+            8,
+            11
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Dramatic, exotic to Western ears, yearning.",
+          "letters": [
+            "longing",
+            "adventure"
+          ],
+          "credit": "A Western theory label linked to 19th-century verbunkos style and to Franz Liszt's usage; Romani musicians were central to that tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Hungarian minor scale",
+            "Wikipedia: Verbunkos"
+          ],
+          "verified": false
+        },
+        {
+          "id": "hungarian-folk-pentatonic",
+          "kind": "scale",
+          "name": "Old-style Hungarian folk pentatonic",
+          "mode": "minor",
+          "intervals": [
+            0,
+            3,
+            5,
+            7,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Archaic, plain-spoken, rooted.",
+          "letters": [
+            "longing",
+            "trust"
+          ],
+          "credit": "Documented by Béla Bartók and Zoltán Kodály in their folk-song collecting.",
+          "confidence": "high",
+          "sources": [
+            "Béla Bartók, Hungarian Folk Music (1924; English ed. 1931)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "The Hungarian minor is sometimes called the 'Gypsy scale'; we avoid that label, which many Roma consider a slur.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ro",
+      "language": "Romanian",
+      "endonym": "Română",
+      "lang": "ro",
+      "region": "Romania and Moldova",
+      "vocab": [
+        {
+          "id": "dor",
+          "word": "dor",
+          "romanization": null,
+          "gloss": "longing for someone or something loved",
+          "nuance": "Often compared with saudade; a cornerstone of Romanian folk poetry and song.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dicționarul explicativ al limbii române (DEX)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "drag",
+          "word": "drag",
+          "romanization": null,
+          "gloss": "dear; beloved (also: fondness)",
+          "nuance": "'Mi-e drag de tine' is roughly 'I am fond of you'.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dicționarul explicativ al limbii române (DEX)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "doina-dorian-sharp4",
+          "kind": "mode",
+          "name": "Dorian #4 (common in doina)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            3,
+            6,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Lamenting, improvised, intimate.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "credit": "Romanian doina tradition (UNESCO Intangible Cultural Heritage, 2009); collected by Béla Bartók.",
+          "confidence": "medium",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Doina (2009)",
+            "Wikipedia: Doina"
+          ],
+          "verified": false
+        },
+        {
+          "id": "doina-parlando",
+          "kind": "texture",
+          "name": "Free-rhythm (parlando rubato) song",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Unmetred and speech-like, following breath and feeling.",
+          "letters": [
+            "longing"
+          ],
+          "credit": "Romanian doina tradition; term 'parlando rubato' from Bartók's analyses.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Doina"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "pl",
+      "language": "Polish",
+      "endonym": "Polski",
+      "lang": "pl",
+      "region": "Poland",
+      "vocab": [
+        {
+          "id": "tesknota",
+          "word": "tęsknota",
+          "romanization": null,
+          "gloss": "longing; missing someone or a place",
+          "nuance": "Ranges from missing a person to a nostalgic ache for home.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Słownik języka polskiego PWN"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kochanie",
+          "word": "kochanie",
+          "romanization": null,
+          "gloss": "darling (also: loving)",
+          "nuance": "The most common Polish endearment.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Słownik języka polskiego PWN"
+          ],
+          "verified": false
+        },
+        {
+          "id": "milosc",
+          "word": "miłość",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Słownik języka polskiego PWN"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "podhale-lydian",
+          "kind": "mode",
+          "name": "Lydian mode (raised fourth, Podhale)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            6,
+            7,
+            9,
+            11
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Bright and bracing, mountain air.",
+          "letters": [
+            "joy",
+            "awe"
+          ],
+          "credit": "Podhale highland (Górale) folk music; Lydian inflections also in the mazurkas of Frédéric Chopin and Karol Szymanowski (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Lydian mode",
+            "Wikipedia: Mazurka"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mazurka-accent",
+          "kind": "texture",
+          "name": "Mazurka triple-meter accent",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "A lilting triple meter with accents falling off the first beat.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Polish mazurka folk dance tradition; exemplified by Frédéric Chopin (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Mazurka"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "uk",
+      "language": "Ukrainian",
+      "endonym": "Українська",
+      "lang": "uk",
+      "region": "Ukraine",
+      "vocab": [
+        {
+          "id": "kokhannia",
+          "word": "кохання",
+          "romanization": "kokhannia",
+          "gloss": "romantic love",
+          "nuance": "Usually reserved for love between partners.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Slovnyk ukrainskoi movy (Academic Dictionary of the Ukrainian Language)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "liubov",
+          "word": "любов",
+          "romanization": "liubov",
+          "gloss": "love (broad: family, homeland, people)",
+          "nuance": "Wider than kokhannia; the exact boundary between the two is debated among speakers.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Slovnyk ukrainskoi movy (Academic Dictionary of the Ukrainian Language)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "ukrainian-dorian",
+          "kind": "mode",
+          "name": "Ukrainian Dorian",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            3,
+            6,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Plaintive and searching; minor with a raised fourth.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "credit": "Ukrainian folk tradition; the name is used in klezmer and folk-music scholarship.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Ukrainian Dorian scale"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ukrainian-polyphony",
+          "kind": "texture",
+          "name": "Folk polyphonic choral singing",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Open-throated multi-part singing; communal and powerful.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Ukrainian village polyphonic singing tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Music of Ukraine"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ru",
+      "language": "Russian",
+      "endonym": "Русский",
+      "lang": "ru",
+      "region": "Russia",
+      "vocab": [
+        {
+          "id": "toska",
+          "word": "тоска",
+          "romanization": "toska",
+          "gloss": "anguished longing; spiritual ache",
+          "nuance": "Famously described by Vladimir Nabokov as having no single English equivalent; ranges from boredom to deep yearning.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Vladimir Nabokov, translation and commentary of Pushkin's Eugene Onegin (1964)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "lyubov",
+          "word": "любовь",
+          "romanization": "lyubov'",
+          "gloss": "love",
+          "nuance": "The core noun, for all kinds of love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Ozhegov, Slovar' russkogo yazyka"
+          ],
+          "verified": false
+        },
+        {
+          "id": "nezhnost",
+          "word": "нежность",
+          "romanization": "nezhnost'",
+          "gloss": "tenderness",
+          "nuance": "Gentle, caring love.",
+          "letters": [
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Ozhegov, Slovar' russkogo yazyka"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "russian-romance",
+          "kind": "progression",
+          "name": "Russian romance minor cadence",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "iv",
+            "V7",
+            "i"
+          ],
+          "tuning_note": null,
+          "feel": "Heartfelt, melancholy, intimate salon feeling.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Russian romance (romans) tradition; exemplified by Alexander Alyabyev and Mikhail Glinka (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Russian romance"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "el",
+      "language": "Greek",
+      "endonym": "Ελληνικά",
+      "lang": "el",
+      "region": "Greece and Cyprus",
+      "vocab": [
+        {
+          "id": "eros",
+          "word": "έρως",
+          "romanization": "eros",
+          "gloss": "passionate, romantic love",
+          "nuance": "One of four Greek words often contrasted; the neat four-way scheme was popularised by C. S. Lewis and is partly modern.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Liddell & Scott, Greek-English Lexicon",
+            "C. S. Lewis, The Four Loves (1960)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "agape",
+          "word": "αγάπη",
+          "romanization": "agápi",
+          "gloss": "selfless, unconditional love",
+          "nuance": "Modern Greek 'agápi' is the ordinary word for love; 'agape' as selfless love comes largely from Christian theology.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Liddell & Scott, Greek-English Lexicon",
+            "C. S. Lewis, The Four Loves (1960)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "philia",
+          "word": "φιλία",
+          "romanization": "filía",
+          "gloss": "friendship; affectionate love between friends",
+          "nuance": "Love as loyalty and companionship.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Liddell & Scott, Greek-English Lexicon"
+          ],
+          "verified": false
+        },
+        {
+          "id": "storge",
+          "word": "στοργή",
+          "romanization": "storgí",
+          "gloss": "familial affection",
+          "nuance": "The natural love of parents and children.",
+          "letters": [
+            "tenderness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Liddell & Scott, Greek-English Lexicon"
+          ],
+          "verified": false
+        },
+        {
+          "id": "meraki",
+          "word": "μεράκι",
+          "romanization": "meráki",
+          "gloss": "doing something with soul, care and love",
+          "nuance": "From Turkish 'merak'; popular explanations online sometimes romanticise it beyond everyday usage.",
+          "letters": [
+            "creativity",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Babiniotis, Lexiko tis Neas Ellinikis Glossas"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "dromos-hijaz",
+          "kind": "mode",
+          "name": "Rebetiko dromos Hijaz",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "On fretted bouzouki the dromoi are played in 12-TET; their makam ancestors use microtonal intervals.",
+          "feel": "Longing, smoky, intense.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Rebetiko tradition (dromoi derived from Ottoman makam); exemplified by Markos Vamvakaris and Vassilis Tsitsanis (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Dromos (music)",
+            "Wikipedia: Rebetiko"
+          ],
+          "verified": false
+        },
+        {
+          "id": "dromos-hijazkiar",
+          "kind": "mode",
+          "name": "Rebetiko dromos Hijazkiar",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            11
+          ],
+          "progression": null,
+          "tuning_note": "On fretted bouzouki played in 12-TET; makam ancestors are microtonal.",
+          "feel": "Exotic and dramatic, with an augmented step on both halves.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Rebetiko tradition (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Dromos (music)",
+            "Wikipedia: Double harmonic scale"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Agape also has specific theological meaning in Christianity; we present it as a word, not a doctrine.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "bs",
+      "language": "Bosnian",
+      "endonym": "Bosanski",
+      "lang": "bs",
+      "region": "Bosnia and Herzegovina",
+      "vocab": [
+        {
+          "id": "sevdah",
+          "word": "sevdah",
+          "romanization": null,
+          "gloss": "lovesick longing; melancholy love",
+          "nuance": "Via Turkish 'sevda' from Arabic 'sawdā'' (black bile, melancholy); gives its name to the sevdalinka song tradition.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Sevdalinka"
+          ],
+          "verified": false
+        },
+        {
+          "id": "asik",
+          "word": "ašik",
+          "romanization": null,
+          "gloss": "lover; one in love",
+          "nuance": "A Turkish loanword (aşık) used in Bosnian song culture.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Sevdalinka"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "sevdalinka-hijaz",
+          "kind": "mode",
+          "name": "Hijaz-type scale in sevdalinka",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; older performances can carry makam-derived intonation.",
+          "feel": "Slow, ornamented, heart-heavy.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Sevdalinka tradition; exemplified by Himzo Polovina and Safet Isović (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Sevdalinka"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "tr",
+      "language": "Turkish",
+      "endonym": "Türkçe",
+      "lang": "tr",
+      "region": "Turkey",
+      "vocab": [
+        {
+          "id": "ask",
+          "word": "aşk",
+          "romanization": null,
+          "gloss": "passionate love",
+          "nuance": "Also used of mystical love in Sufi poetry.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Türk Dil Kurumu, Güncel Türkçe Sözlük"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sevda",
+          "word": "sevda",
+          "romanization": null,
+          "gloss": "love, often melancholy or passionate",
+          "nuance": "From Arabic 'sawdā'' (black bile, melancholy); love tinged with longing.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Türk Dil Kurumu, Güncel Türkçe Sözlük"
+          ],
+          "verified": false
+        },
+        {
+          "id": "hasret",
+          "word": "hasret",
+          "romanization": null,
+          "gloss": "longing for someone or somewhere far away",
+          "nuance": "The ache of separation.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Türk Dil Kurumu, Güncel Türkçe Sözlük"
+          ],
+          "verified": false
+        },
+        {
+          "id": "gonul",
+          "word": "gönül",
+          "romanization": null,
+          "gloss": "heart, as the seat of affection and desire",
+          "nuance": "Distinct from the anatomical heart (kalp); 'gönül vermek' is to give one's heart.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Türk Dil Kurumu, Güncel Türkçe Sözlük"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "makam-hicaz",
+          "kind": "mode",
+          "name": "Makam Hicaz",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; Turkish makam theory (Arel-Ezgi-Uzdilek) divides the whole tone into commas, so the second and third degrees differ from equal temperament.",
+          "feel": "Longing and yearning; widely heard in love songs.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Ottoman/Turkish makam tradition; documented by Karl Signell.",
+          "confidence": "medium",
+          "sources": [
+            "Karl Signell, Makam: Modal Practice in Turkish Art Music (1977)",
+            "Wikipedia: Hicaz makam"
+          ],
+          "verified": false
+        },
+        {
+          "id": "makam-ussak",
+          "kind": "mode",
+          "name": "Makam Uşşak",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the second degree (segah) lies between a semitone and a whole tone; we round it down.",
+          "feel": "Tender, intimate; its name means 'lovers'.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "credit": "Ottoman/Turkish makam tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Karl Signell, Makam: Modal Practice in Turkish Art Music (1977)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "hy",
+      "language": "Armenian",
+      "endonym": "Հայերեն",
+      "lang": "hy",
+      "region": "Armenia and the Armenian diaspora",
+      "vocab": [
+        {
+          "id": "ser",
+          "word": "սեր",
+          "romanization": "ser",
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: սեր"
+          ],
+          "verified": false
+        },
+        {
+          "id": "jan",
+          "word": "ջան",
+          "romanization": "jan",
+          "gloss": "dear (affectionate suffix after a name)",
+          "nuance": "Shared with Persian and other regional languages; 'Ani jan' = dear Ani.",
+          "letters": [
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: ջան"
+          ],
+          "verified": false
+        },
+        {
+          "id": "karot",
+          "word": "կարոտ",
+          "romanization": "karot",
+          "gloss": "longing; missing someone",
+          "nuance": "Especially the longing of separation and diaspora.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: կարոտ"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "duduk-dam",
+          "kind": "texture",
+          "name": "Duduk melody over a sustained drone (dam)",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "The duduk is a double-reed instrument with its own intonation; the drone is not tied to 12-TET.",
+          "feel": "Mournful, warm, breath-like; one player sustains the drone while another sings out.",
+          "letters": [
+            "longing",
+            "trust"
+          ],
+          "credit": "Armenian duduk tradition (UNESCO Intangible Cultural Heritage, 2008); exemplified by Djivan Gasparyan (style only).",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Duduk and its music (2008)",
+            "Wikipedia: Duduk"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ka",
+      "language": "Georgian",
+      "endonym": "ქართული",
+      "lang": "ka",
+      "region": "Georgia",
+      "vocab": [
+        {
+          "id": "siqvaruli",
+          "word": "სიყვარული",
+          "romanization": "siq'varuli",
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: სიყვარული"
+          ],
+          "verified": false
+        },
+        {
+          "id": "genatsvale",
+          "word": "გენაცვალე",
+          "romanization": "genatsvale",
+          "gloss": "'I would take your place'; dear, darling",
+          "nuance": "Endearment implying you would bear another's suffering for them; the literal gloss is widely given but nuance varies by speaker.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: გენაცვალე"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "georgian-polyphony",
+          "kind": "texture",
+          "name": "Three-part polyphony with open fifths and drone",
+          "mode": "modal",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Traditional Georgian tuning is not 12-TET and is debated by scholars; our version is an approximation.",
+          "feel": "Resonant, ancient, communal; voices meeting on open fifths and unisons.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Georgian polyphonic singing (UNESCO Intangible Cultural Heritage, 2008); studied by Joseph Jordania.",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Georgian polyphonic singing (2008)",
+            "Joseph Jordania, Who Asked the First Question? (2006)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Much Georgian polyphony is liturgical (Orthodox chant); described here as texture only.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "he",
+      "language": "Hebrew",
+      "endonym": "עברית",
+      "lang": "he",
+      "region": "Israel and Jewish communities worldwide",
+      "vocab": [
+        {
+          "id": "ahava",
+          "word": "אהבה",
+          "romanization": "ahava",
+          "gloss": "love",
+          "nuance": "The core word for love, ancient and modern.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Even-Shoshan Dictionary"
+          ],
+          "verified": false
+        },
+        {
+          "id": "chesed",
+          "word": "חסד",
+          "romanization": "chesed",
+          "gloss": "loving-kindness; steadfast love",
+          "nuance": "A central ethical and religious concept: love expressed through kind deeds.",
+          "letters": [
+            "tenderness",
+            "gratitude"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Even-Shoshan Dictionary",
+            "Wikipedia: Chesed"
+          ],
+          "verified": false
+        },
+        {
+          "id": "neshama",
+          "word": "נשמה",
+          "romanization": "neshama",
+          "gloss": "'soul'; used as an endearment",
+          "nuance": "Calling someone 'my soul' in everyday Israeli speech.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Even-Shoshan Dictionary"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "ahava-rabbah",
+          "kind": "mode",
+          "name": "Ahava Rabbah prayer mode",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Yearning, intense, devotional.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Ashkenazi synagogue prayer-mode (nusach) tradition, named after a prayer; documented by A. Z. Idelsohn.",
+          "confidence": "medium",
+          "sources": [
+            "A. Z. Idelsohn, Jewish Music in Its Historical Development (1929)",
+            "Wikipedia: Ahava rabbah"
+          ],
+          "verified": false
+        },
+        {
+          "id": "adonai-malakh",
+          "kind": "mode",
+          "name": "Adonai Malakh prayer mode",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            5,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Majestic and bright, with a lowered seventh.",
+          "letters": [
+            "awe",
+            "hope"
+          ],
+          "credit": "Ashkenazi nusach tradition, named after a prayer; documented by A. Z. Idelsohn.",
+          "confidence": "medium",
+          "sources": [
+            "A. Z. Idelsohn, Jewish Music in Its Historical Development (1929)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Chesed and the prayer modes are religious concepts; named respectfully and described factually, never applied to sacred texts or chant.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "yi",
+      "language": "Yiddish",
+      "endonym": "ייִדיש",
+      "lang": "yi",
+      "region": "Ashkenazi Jewish communities worldwide",
+      "vocab": [
+        {
+          "id": "bashert",
+          "word": "באַשערט",
+          "romanization": "bashert",
+          "gloss": "destined; one's destined partner or match",
+          "nuance": "Also used of fated friendships or events.",
+          "letters": [
+            "love",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Uriel Weinreich, Modern English-Yiddish Yiddish-English Dictionary (1968)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "naches",
+          "word": "נחת",
+          "romanization": "naches",
+          "gloss": "proud joy, especially from children",
+          "nuance": "The glow of seeing loved ones flourish.",
+          "letters": [
+            "joy",
+            "gratitude"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Uriel Weinreich, Modern English-Yiddish Yiddish-English Dictionary (1968)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "mi-sheberakh",
+          "kind": "mode",
+          "name": "Mi Sheberakh / altered Dorian (klezmer)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            3,
+            6,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Searching and plaintive; a minor mode with a raised fourth.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "credit": "Klezmer tradition; mode named after a prayer.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Ukrainian Dorian scale",
+            "Wikipedia: Klezmer"
+          ],
+          "verified": false
+        },
+        {
+          "id": "freygish-klezmer",
+          "kind": "progression",
+          "name": "Freygish chord movement (I, iv, bvii)",
+          "mode": "modal",
+          "intervals": null,
+          "progression": [
+            "I",
+            "iv",
+            "bvii",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Bittersweet dance harmony built from the freygish (Phrygian dominant) mode.",
+          "letters": [
+            "longing",
+            "joy"
+          ],
+          "credit": "Klezmer accompaniment tradition (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Klezmer",
+            "Wikipedia: Phrygian dominant scale"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Several klezmer mode names come from synagogue prayers; named respectfully.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ar",
+      "language": "Arabic",
+      "endonym": "العربية",
+      "lang": "ar",
+      "region": "Arab world (North Africa and Western Asia)",
+      "vocab": [
+        {
+          "id": "hubb",
+          "word": "حب",
+          "romanization": "ḥubb",
+          "gloss": "love",
+          "nuance": "The general, everyday word for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Hans Wehr, A Dictionary of Modern Written Arabic (1961)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ishq",
+          "word": "عشق",
+          "romanization": "ʿishq",
+          "gloss": "passionate, consuming love",
+          "nuance": "Intense love; in Sufi poetry also love of the divine.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Hans Wehr, A Dictionary of Modern Written Arabic (1961)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "hiyam",
+          "word": "هيام",
+          "romanization": "hiyām",
+          "gloss": "love-madness; wandering, all-consuming love",
+          "nuance": "Often listed among the 'stages of love' in later Arabic writing; popular lists of dozens of 'Arabic words for love' simplify the sources.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Hans Wehr, A Dictionary of Modern Written Arabic (1961)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "gharam",
+          "word": "غرام",
+          "romanization": "gharām",
+          "gloss": "ardent love, devotion",
+          "nuance": "Common in song and poetry for deep attachment.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Hans Wehr, A Dictionary of Modern Written Arabic (1961)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "maqam-bayati",
+          "kind": "mode",
+          "name": "Maqam Bayati",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the second degree is a half-flat (about 150 cents above the tonic), which we round down to a semitone.",
+          "feel": "Warm, earthy, tender; one of the most common maqamat.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "credit": "Arab maqam tradition (discussed at the 1932 Cairo Congress of Arab Music); exemplified by Umm Kulthum and Mohammed Abdel Wahab (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Johnny Farraj & Sami Abu Shumays, Inside Arabic Music (2019)",
+            "Habib Hassan Touma, The Music of the Arabs (1996)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "maqam-hijaz",
+          "kind": "mode",
+          "name": "Maqam Hijaz",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation of the augmented second varies by region and performer; the upper jins can also vary.",
+          "feel": "Longing, distance, the desert.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Arab maqam tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Johnny Farraj & Sami Abu Shumays, Inside Arabic Music (2019)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "maqam-saba",
+          "kind": "mode",
+          "name": "Maqam Saba",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the second degree is a half-flat and the scale does not repeat at the octave (its upper octave is lowered), which 12-TET cannot fully show.",
+          "feel": "Grief and sorrow; heartache.",
+          "letters": [
+            "longing",
+            "doubt"
+          ],
+          "credit": "Arab maqam tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Johnny Farraj & Sami Abu Shumays, Inside Arabic Music (2019)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "'Ishq also carries Sufi devotional meaning; some maqamat are used in Qur'anic recitation, which we never imitate.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "fa",
+      "language": "Persian",
+      "endonym": "فارسی",
+      "lang": "fa",
+      "region": "Iran, Afghanistan (Dari) and Tajikistan (Tajik)",
+      "vocab": [
+        {
+          "id": "eshgh",
+          "word": "عشق",
+          "romanization": "eshgh",
+          "gloss": "love, passionate love",
+          "nuance": "Central to classical Persian poetry (Rumi, Hafez), both human and divine.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dehkhoda Dictionary"
+          ],
+          "verified": false
+        },
+        {
+          "id": "deltangi",
+          "word": "دلتنگی",
+          "romanization": "deltangi",
+          "gloss": "'tightness of heart'; missing someone",
+          "nuance": "The everyday word for missing a loved one.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dehkhoda Dictionary"
+          ],
+          "verified": false
+        },
+        {
+          "id": "janam",
+          "word": "جانم",
+          "romanization": "jānam",
+          "gloss": "'my soul'; dear",
+          "nuance": "A tender address and a warm way of answering someone who calls your name.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dehkhoda Dictionary"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "dastgah-shur",
+          "kind": "mode",
+          "name": "Dastgah Shur",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the second degree is a koron (roughly quarter-tone flat), rounded down here.",
+          "feel": "Introspective, longing; the 'mother' of many melodic modes.",
+          "letters": [
+            "longing",
+            "tenderness"
+          ],
+          "credit": "Persian radif tradition (UNESCO Intangible Cultural Heritage, 2009), codified by Mirza Abdollah; analysed by Hormoz Farhat.",
+          "confidence": "medium",
+          "sources": [
+            "Hormoz Farhat, The Dastgah Concept in Persian Music (1990)",
+            "Ella Zonis, Classical Persian Music: An Introduction (1973)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "dastgah-homayun",
+          "kind": "mode",
+          "name": "Dastgah Homayun",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            4,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; the second degree is a koron, rounded down here.",
+          "feel": "Grand and passionate.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Persian radif tradition; analysed by Hormoz Farhat.",
+          "confidence": "medium",
+          "sources": [
+            "Hormoz Farhat, The Dastgah Concept in Persian Music (1990)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "hi",
+      "language": "Hindi",
+      "endonym": "हिन्दी",
+      "lang": "hi",
+      "region": "India",
+      "vocab": [
+        {
+          "id": "pyaar",
+          "word": "प्यार",
+          "romanization": "pyaar",
+          "gloss": "love, affection",
+          "nuance": "The everyday word for love, for partners, family and friends.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "McGregor, The Oxford Hindi-English Dictionary (1993)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "prem",
+          "word": "प्रेम",
+          "romanization": "prem",
+          "gloss": "love (more formal or spiritual)",
+          "nuance": "From Sanskrit prema; also devotional love.",
+          "letters": [
+            "love",
+            "awe"
+          ],
+          "confidence": "high",
+          "sources": [
+            "McGregor, The Oxford Hindi-English Dictionary (1993)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ishq",
+          "word": "इश्क़",
+          "romanization": "ishq",
+          "gloss": "passionate love",
+          "nuance": "From Arabic via Persian/Urdu; common in film song and poetry.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "McGregor, The Oxford Hindi-English Dictionary (1993)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "viraha",
+          "word": "विरह",
+          "romanization": "viraha",
+          "gloss": "the pain of separation from the beloved",
+          "nuance": "A major theme of Indian poetry, including bhakti devotional love for the divine.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "McGregor, The Oxford Hindi-English Dictionary (1993)",
+            "Wikipedia: Viraha"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "raga-yaman",
+          "kind": "scale",
+          "name": "Raga Yaman (Kalyan thaat)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            6,
+            7,
+            9,
+            11
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; ragas are sung against a drone with flexible intonation, and a raga is more than its scale (characteristic phrases, ascent and descent rules).",
+          "feel": "Serene, romantic, evening devotion.",
+          "letters": [
+            "tenderness",
+            "awe"
+          ],
+          "credit": "Hindustani classical tradition; thaat classification by V. N. Bhatkhande (early 20th century).",
+          "confidence": "high",
+          "sources": [
+            "Walter Kaufmann, The Ragas of North India (1968)",
+            "Wikipedia: Yaman (raga)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "raga-bhairavi",
+          "kind": "scale",
+          "name": "Raga Bhairavi (Bhairavi thaat)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            8,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation is flexible and the raga allows additional notes in practice.",
+          "feel": "Devotional pathos; traditionally closes a concert.",
+          "letters": [
+            "longing",
+            "gratitude"
+          ],
+          "credit": "Hindustani classical tradition; thaat classification by V. N. Bhatkhande.",
+          "confidence": "high",
+          "sources": [
+            "Walter Kaufmann, The Ragas of North India (1968)",
+            "Wikipedia: Bhairavi (Hindustani)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Viraha and prem also belong to bhakti devotion; ragas carry spiritual meaning for many practitioners.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ur",
+      "language": "Urdu",
+      "endonym": "اردو",
+      "lang": "ur",
+      "region": "Pakistan and India",
+      "vocab": [
+        {
+          "id": "mohabbat",
+          "word": "محبت",
+          "romanization": "mohabbat",
+          "gloss": "love, affection",
+          "nuance": "The common Urdu word for love, from Arabic.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "John T. Platts, A Dictionary of Urdu, Classical Hindi and English (1884)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "hijr",
+          "word": "ہجر",
+          "romanization": "hijr",
+          "gloss": "separation from the beloved",
+          "nuance": "A core theme of the ghazal.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "John T. Platts, A Dictionary of Urdu, Classical Hindi and English (1884)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "vasl",
+          "word": "وصل",
+          "romanization": "vasl",
+          "gloss": "union with the beloved",
+          "nuance": "The counterpart of hijr in ghazal poetry.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "John T. Platts, A Dictionary of Urdu, Classical Hindi and English (1884)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "ghazal-texture",
+          "kind": "texture",
+          "name": "Ghazal performance texture",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Raga-based; intonation follows Hindustani practice, not 12-TET.",
+          "feel": "Intimate, reflective; harmonium and tabla support a poet's couplets.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Ghazal tradition; poets Mir Taqi Mir and Mirza Ghalib; singers Begum Akhtar and Mehdi Hassan (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Ghazal"
+          ],
+          "verified": false
+        },
+        {
+          "id": "khamaj-thaat",
+          "kind": "scale",
+          "name": "Khamaj thaat (light-classical colour)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            5,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation follows Hindustani practice.",
+          "feel": "Playful-romantic, light-classical.",
+          "letters": [
+            "tenderness",
+            "joy"
+          ],
+          "credit": "Hindustani tradition; thaat by V. N. Bhatkhande; common in thumri and ghazal.",
+          "confidence": "low",
+          "sources": [
+            "Walter Kaufmann, The Ragas of North India (1968)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ta",
+      "language": "Tamil",
+      "endonym": "தமிழ்",
+      "lang": "ta",
+      "region": "Tamil Nadu (India), Sri Lanka and the Tamil diaspora",
+      "vocab": [
+        {
+          "id": "kaadhal",
+          "word": "காதல்",
+          "romanization": "kaadhal",
+          "gloss": "romantic love",
+          "nuance": "The word for love between partners; ancient Sangam poetry calls the love genre 'akam' (the inner world).",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Madras University Tamil Lexicon (1924-1936)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "anbu",
+          "word": "அன்பு",
+          "romanization": "anbu",
+          "gloss": "love, affection, kindness",
+          "nuance": "Broad, caring love; the Thirukkural devotes a chapter to it.",
+          "letters": [
+            "tenderness",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Madras University Tamil Lexicon (1924-1936)",
+            "Wikipedia: Kural"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "kalyani",
+          "kind": "scale",
+          "name": "Kalyani (65th melakarta)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            4,
+            6,
+            7,
+            9,
+            11
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; Carnatic music uses gamaka (oscillation) and flexible intonation.",
+          "feel": "Auspicious, bright, devotional and romantic.",
+          "letters": [
+            "joy",
+            "awe"
+          ],
+          "credit": "Carnatic tradition; 72-melakarta scheme from Venkatamakhin's Chaturdandi Prakashika (17th century).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Kalyani (raga)",
+            "Wikipedia: Melakarta"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kharaharapriya",
+          "kind": "scale",
+          "name": "Kharaharapriya (22nd melakarta)",
+          "mode": "modal",
+          "intervals": [
+            0,
+            2,
+            3,
+            5,
+            7,
+            9,
+            10
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; gamaka and intonation are not captured.",
+          "feel": "Deep, compassionate, contemplative.",
+          "letters": [
+            "tenderness",
+            "longing"
+          ],
+          "credit": "Carnatic tradition; Venkatamakhin's melakarta scheme.",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Kharaharapriya"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mohanam",
+          "kind": "scale",
+          "name": "Mohanam (pentatonic)",
+          "mode": "major",
+          "intervals": [
+            0,
+            2,
+            4,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; gamaka not captured.",
+          "feel": "Joyful, tender, widely loved.",
+          "letters": [
+            "joy",
+            "tenderness"
+          ],
+          "credit": "Carnatic tradition; janya of Harikambhoji (28th melakarta).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Mohanam"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "bn",
+      "language": "Bengali",
+      "endonym": "বাংলা",
+      "lang": "bn",
+      "region": "Bangladesh and West Bengal (India)",
+      "vocab": [
+        {
+          "id": "bhalobasha",
+          "word": "ভালোবাসা",
+          "romanization": "bhalobasha",
+          "gloss": "love",
+          "nuance": "Literally 'good dwelling'; the everyday word for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Samsad Bengali-English Dictionary"
+          ],
+          "verified": false
+        },
+        {
+          "id": "maya",
+          "word": "মায়া",
+          "romanization": "maya",
+          "gloss": "tender attachment; affectionate care",
+          "nuance": "In Bengali everyday usage, the bond of affection toward people, animals and places; in philosophy the same word means 'illusion'.",
+          "letters": [
+            "tenderness",
+            "togetherness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Samsad Bengali-English Dictionary"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "rabindra-sangeet",
+          "kind": "texture",
+          "name": "Rabindra Sangeet",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Raga-based intonation, not 12-TET.",
+          "feel": "Lyrical, contemplative, drawing on raga, kirtan and baul folk.",
+          "letters": [
+            "awe",
+            "love"
+          ],
+          "credit": "Songs of Rabindranath Tagore (1861-1941), a defining Bengali genre (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Rabindra Sangeet"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "sa",
+      "language": "Sanskrit",
+      "endonym": "संस्कृतम्",
+      "lang": "sa",
+      "region": "South Asia (classical and liturgical language)",
+      "vocab": [
+        {
+          "id": "prema",
+          "word": "प्रेम",
+          "romanization": "prema",
+          "gloss": "love; devotional love",
+          "nuance": "In bhakti traditions, the highest love for the divine.",
+          "letters": [
+            "love",
+            "awe"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Monier-Williams, A Sanskrit-English Dictionary (1899)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "karuna",
+          "word": "करुणा",
+          "romanization": "karuṇā",
+          "gloss": "compassion",
+          "nuance": "Central in Buddhism and Hinduism; one of the four Buddhist brahmavihāras.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Monier-Williams, A Sanskrit-English Dictionary (1899)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "maitri",
+          "word": "मैत्री",
+          "romanization": "maitrī",
+          "gloss": "loving-kindness; friendliness",
+          "nuance": "Pali 'mettā'; goodwill toward all beings, another brahmavihāra.",
+          "letters": [
+            "togetherness",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Monier-Williams, A Sanskrit-English Dictionary (1899)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "vedic-chant",
+          "kind": "texture",
+          "name": "Vedic recitation with pitch accents",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Recited with three pitch accents (udātta, anudātta, svarita) that are not 12-TET pitches.",
+          "feel": "Steady, ancient, meditative.",
+          "letters": [
+            "awe",
+            "trust"
+          ],
+          "credit": "Tradition of Vedic chanting (UNESCO Intangible Cultural Heritage, 2008).",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Tradition of Vedic Chanting (2008)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "These are sacred concepts in Hindu, Buddhist and Jain traditions, and Vedic chanting is ritual practice: described factually, never imitated or remixed.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "zh",
+      "language": "Mandarin Chinese",
+      "endonym": "普通话",
+      "lang": "zh",
+      "region": "China, Taiwan and Chinese communities worldwide",
+      "vocab": [
+        {
+          "id": "ai",
+          "word": "爱",
+          "romanization": "ài",
+          "gloss": "love",
+          "nuance": "The core word for love; spoken directly less often than in English, with love shown through care.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Xiandai Hanyu Cidian (Contemporary Chinese Dictionary)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "yuanfen",
+          "word": "缘分",
+          "romanization": "yuánfèn",
+          "gloss": "fateful affinity between people",
+          "nuance": "The sense that a bond was meant to be; from Buddhist ideas of conditioned connection.",
+          "letters": [
+            "love",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Xiandai Hanyu Cidian (Contemporary Chinese Dictionary)",
+            "Wikipedia: Yuanfen"
+          ],
+          "verified": false
+        },
+        {
+          "id": "xinteng",
+          "word": "心疼",
+          "romanization": "xīnténg",
+          "gloss": "heartache on someone's behalf; to dote on",
+          "nuance": "Literally 'heart-ache'; the feeling of pain for a loved one's hardship, expressing deep care.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Xiandai Hanyu Cidian (Contemporary Chinese Dictionary)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sinian",
+          "word": "思念",
+          "romanization": "sīniàn",
+          "gloss": "to miss; to think of with longing",
+          "nuance": "Longing for an absent loved one.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Xiandai Hanyu Cidian (Contemporary Chinese Dictionary)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "gong-mode",
+          "kind": "scale",
+          "name": "Gong mode (major pentatonic)",
+          "mode": "major",
+          "intervals": [
+            0,
+            2,
+            4,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Open, balanced, bright.",
+          "letters": [
+            "joy",
+            "hope"
+          ],
+          "credit": "Chinese pentatonic modal theory (five modes: gong, shang, jue, zhi, yu).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Chinese musicology"
+          ],
+          "verified": false
+        },
+        {
+          "id": "yu-mode",
+          "kind": "scale",
+          "name": "Yu mode (minor pentatonic)",
+          "mode": "minor",
+          "intervals": [
+            0,
+            3,
+            5,
+            7,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Plaintive, tender, nostalgic.",
+          "letters": [
+            "longing",
+            "tenderness"
+          ],
+          "credit": "Chinese pentatonic modal theory.",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Chinese musicology"
+          ],
+          "verified": false
+        },
+        {
+          "id": "canon-progression",
+          "kind": "progression",
+          "name": "Canon-style progression (common in Mandopop)",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "V",
+            "vi",
+            "iii",
+            "IV",
+            "I",
+            "IV",
+            "V"
+          ],
+          "tuning_note": null,
+          "feel": "Warm, nostalgic, gently uplifting.",
+          "letters": [
+            "tenderness",
+            "hope"
+          ],
+          "credit": "Derived from the bass pattern of Johann Pachelbel's Canon (c. 1700); very common in Mandopop ballads (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Pachelbel's Canon"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "yue",
+      "language": "Cantonese",
+      "endonym": "廣東話",
+      "lang": "yue",
+      "region": "Hong Kong, Guangdong and Macau",
+      "vocab": [
+        {
+          "id": "zungji",
+          "word": "鍾意",
+          "romanization": "zung1 ji3",
+          "gloss": "to like; to be fond of",
+          "nuance": "The everyday way to say you like or love someone, gentler than 'oi3' (愛).",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "CantoDict",
+            "Wiktionary: 鍾意"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sek",
+          "word": "錫",
+          "romanization": "sek3",
+          "gloss": "to dote on; to kiss (colloquial)",
+          "nuance": "Colloquial Cantonese for cherishing someone; also used for a kiss.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "CantoDict",
+            "Wiktionary: 錫"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "cantopop-ballad",
+          "kind": "progression",
+          "name": "Cantopop ballad progression",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "V",
+            "vi",
+            "iii",
+            "IV",
+            "I",
+            "ii7",
+            "V7"
+          ],
+          "tuning_note": null,
+          "feel": "Lush and bittersweet; in Cantopop the song's tones must also fit the language's tones.",
+          "letters": [
+            "longing",
+            "tenderness"
+          ],
+          "credit": "Cantopop ballad tradition (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Cantopop"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ja",
+      "language": "Japanese",
+      "endonym": "日本語",
+      "lang": "ja",
+      "region": "Japan",
+      "vocab": [
+        {
+          "id": "koi",
+          "word": "恋",
+          "romanization": "koi",
+          "gloss": "romantic love, yearning love",
+          "nuance": "Often longing for someone, the early or unfulfilled stage.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kōjien (広辞苑)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ai",
+          "word": "愛",
+          "romanization": "ai",
+          "gloss": "deep, mature love",
+          "nuance": "Broader and deeper than koi; also love for family and humanity.",
+          "letters": [
+            "love",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kōjien (広辞苑)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "amae",
+          "word": "甘え",
+          "romanization": "amae",
+          "gloss": "dependence on another's indulgent love",
+          "nuance": "Popularised in psychology by Takeo Doi (The Anatomy of Dependence, 1971); the trust that you can lean on someone's care.",
+          "letters": [
+            "trust",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Takeo Doi, Amae no Kōzō (The Anatomy of Dependence) (1971)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "koi-no-yokan",
+          "word": "恋の予感",
+          "romanization": "koi no yokan",
+          "gloss": "the premonition of falling in love",
+          "nuance": "A sense on meeting someone that love will come; viral 'untranslatable' lists sometimes overstate how special the phrase is.",
+          "letters": [
+            "love",
+            "curiosity"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Kōjien (広辞苑)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "setsunai",
+          "word": "切ない",
+          "romanization": "setsunai",
+          "gloss": "bittersweet, heartrending",
+          "nuance": "A sweet ache of love or loss.",
+          "letters": [
+            "longing",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kōjien (広辞苑)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "royal-road",
+          "kind": "progression",
+          "name": "Royal road progression (Ōdō shinkō)",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "IVmaj7",
+            "V7",
+            "iii7",
+            "vi"
+          ],
+          "tuning_note": null,
+          "feel": "Wistful, emotional, bittersweet hope; a J-pop staple.",
+          "letters": [
+            "longing",
+            "hope"
+          ],
+          "credit": "Common in J-pop and anime music; widely discussed by Japanese music commentators (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Royal road progression"
+          ],
+          "verified": false
+        },
+        {
+          "id": "yonanuki-major",
+          "kind": "scale",
+          "name": "Yonanuki major (major pentatonic)",
+          "mode": "major",
+          "intervals": [
+            0,
+            2,
+            4,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Simple, nostalgic, bright.",
+          "letters": [
+            "joy",
+            "longing"
+          ],
+          "credit": "Japanese term ('without the 4th and 7th') from Meiji-era music education.",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Yonanuki scale"
+          ],
+          "verified": false
+        },
+        {
+          "id": "miyako-bushi",
+          "kind": "scale",
+          "name": "Miyako-bushi scale",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            5,
+            7,
+            8
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; traditional instruments such as koto and shamisen are not tied to equal temperament.",
+          "feel": "Austere, melancholic, traditional.",
+          "letters": [
+            "longing",
+            "awe"
+          ],
+          "credit": "Japanese traditional music; tetrachord theory by Koizumi Fumio (1958).",
+          "confidence": "high",
+          "sources": [
+            "Koizumi Fumio, Nihon dentō ongaku no kenkyū (1958)",
+            "Wikipedia: Miyako-bushi scale"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ko",
+      "language": "Korean",
+      "endonym": "한국어",
+      "lang": "ko",
+      "region": "Korea",
+      "vocab": [
+        {
+          "id": "jeong",
+          "word": "정",
+          "romanization": "jeong",
+          "gloss": "deep affection and attachment built over shared time",
+          "nuance": "Grows slowly between family, friends, neighbours and even rivals.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Standard Korean Language Dictionary (National Institute of Korean Language)",
+            "Wikipedia: Jeong"
+          ],
+          "verified": false
+        },
+        {
+          "id": "seollem",
+          "word": "설렘",
+          "romanization": "seollem",
+          "gloss": "heart-fluttering excitement",
+          "nuance": "The flutter of anticipation, often in new love.",
+          "letters": [
+            "love",
+            "curiosity"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Standard Korean Language Dictionary (National Institute of Korean Language)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "geurium",
+          "word": "그리움",
+          "romanization": "geurium",
+          "gloss": "longing for someone or something missed",
+          "nuance": "A tender, aching nostalgia.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Standard Korean Language Dictionary (National Institute of Korean Language)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "trot-yonanuki-minor",
+          "kind": "scale",
+          "name": "Yonanuki minor pentatonic (trot)",
+          "mode": "minor",
+          "intervals": [
+            0,
+            2,
+            3,
+            7,
+            8
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Melancholy and sentimental.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Korean trot (teuroteu) tradition, historically linked to Japanese enka; exemplified by Lee Mi-ja and Nam Jin (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Trot (music)",
+            "Wikipedia: Yonanuki scale"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ballad-key-change",
+          "kind": "texture",
+          "name": "Final-chorus upward key change",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Lifts emotion at the climax.",
+          "letters": [
+            "hope",
+            "longing"
+          ],
+          "credit": "A common convention in K-ballads (and in pop worldwide) (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Modulation (music)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "vi",
+      "language": "Vietnamese",
+      "endonym": "Tiếng Việt",
+      "lang": "vi",
+      "region": "Vietnam",
+      "vocab": [
+        {
+          "id": "yeu",
+          "word": "yêu",
+          "romanization": null,
+          "gloss": "to love (romantic)",
+          "nuance": "The word for romantic love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Từ điển tiếng Việt (Hoàng Phê, ed.)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "thuong",
+          "word": "thương",
+          "romanization": null,
+          "gloss": "to love tenderly; to care, to pity",
+          "nuance": "Love with compassion; used for family, partners and anyone one cares for.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Từ điển tiếng Việt (Hoàng Phê, ed.)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "nho",
+          "word": "nhớ",
+          "romanization": null,
+          "gloss": "to miss; to remember",
+          "nuance": "'Anh nhớ em' is 'I miss you'.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Từ điển tiếng Việt (Hoàng Phê, ed.)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "quan-ho",
+          "kind": "texture",
+          "name": "Quan họ antiphonal duet singing",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Traditional Vietnamese vocal intonation is not tied to 12-TET.",
+          "feel": "Call and response between groups of men and women; friendship and courtship.",
+          "letters": [
+            "togetherness",
+            "love"
+          ],
+          "credit": "Quan họ Bắc Ninh folk songs (UNESCO Intangible Cultural Heritage, 2009).",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Quan Họ Bắc Ninh folk songs (2009)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "tl",
+      "language": "Tagalog",
+      "endonym": "Tagalog",
+      "lang": "tl",
+      "region": "Philippines",
+      "vocab": [
+        {
+          "id": "kilig",
+          "word": "kilig",
+          "romanization": null,
+          "gloss": "the giddy thrill of romance",
+          "nuance": "The rush you feel, or feel for others, in a romantic moment.",
+          "letters": [
+            "love",
+            "joy"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Leo James English, Tagalog-English Dictionary (1986)",
+            "Wiktionary: kilig"
+          ],
+          "verified": false
+        },
+        {
+          "id": "pag-ibig",
+          "word": "pag-ibig",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core word for love, from 'ibig' (to want, to love).",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Leo James English, Tagalog-English Dictionary (1986)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sinta",
+          "word": "sinta",
+          "romanization": null,
+          "gloss": "beloved, sweetheart",
+          "nuance": "A poetic endearment.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Leo James English, Tagalog-English Dictionary (1986)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "kundiman-minor-major",
+          "kind": "progression",
+          "name": "Kundiman: minor opening, parallel-major close",
+          "mode": "minor",
+          "intervals": null,
+          "progression": [
+            "i",
+            "iv",
+            "V7",
+            "i",
+            "I",
+            "IV",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "From longing into hope.",
+          "letters": [
+            "longing",
+            "hope"
+          ],
+          "credit": "Filipino kundiman art-song tradition; exemplified by Francisco Santiago and Nicanor Abelardo (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Kundiman"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "id",
+      "language": "Indonesian",
+      "endonym": "Bahasa Indonesia",
+      "lang": "id",
+      "region": "Indonesia",
+      "vocab": [
+        {
+          "id": "rindu",
+          "word": "rindu",
+          "romanization": null,
+          "gloss": "longing; missing someone",
+          "nuance": "Shared with Malay.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kamus Besar Bahasa Indonesia (KBBI)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sayang",
+          "word": "sayang",
+          "romanization": null,
+          "gloss": "affection; dear; also 'what a pity'",
+          "nuance": "Love that cares; also used as an endearment.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kamus Besar Bahasa Indonesia (KBBI)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kasih",
+          "word": "kasih",
+          "romanization": null,
+          "gloss": "love, affection",
+          "nuance": "Gentle love; 'terima kasih' (thank you) literally 'receive love'.",
+          "letters": [
+            "love",
+            "gratitude"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Kamus Besar Bahasa Indonesia (KBBI)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "slendro",
+          "kind": "scale",
+          "name": "Slendro (gamelan five-tone tuning)",
+          "mode": "other",
+          "intervals": [
+            0,
+            2,
+            5,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": "Slendro has five near-equal steps of about 240 cents, and every gamelan set has its own tuning; no 12-TET fit is faithful, so ours is a rough approximation.",
+          "feel": "Calm, flowing, communal.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Javanese and Balinese gamelan tradition (gamelan: UNESCO Intangible Cultural Heritage, 2021).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Slendro",
+            "UNESCO Intangible Cultural Heritage: Gamelan (2021)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "pelog",
+          "kind": "scale",
+          "name": "Pelog (gamelan seven-tone tuning, five-tone subset)",
+          "mode": "other",
+          "intervals": [
+            0,
+            1,
+            3,
+            7,
+            8
+          ],
+          "progression": null,
+          "tuning_note": "Pelog intervals are unequal and vary by ensemble; this 12-TET subset is only an approximation.",
+          "feel": "Deep, solemn, mysterious.",
+          "letters": [
+            "awe",
+            "longing"
+          ],
+          "credit": "Javanese and Balinese gamelan tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Pelog"
+          ],
+          "verified": false
+        },
+        {
+          "id": "keroncong",
+          "kind": "texture",
+          "name": "Keroncong interlocking strings",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Gentle, nostalgic; small plucked lutes interlock over plucked cello.",
+          "letters": [
+            "longing",
+            "togetherness"
+          ],
+          "credit": "Keroncong tradition with Portuguese roots; exemplified by Gesang Martohartono (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Kroncong"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "th",
+      "language": "Thai",
+      "endonym": "ภาษาไทย",
+      "lang": "th",
+      "region": "Thailand",
+      "vocab": [
+        {
+          "id": "khwam-rak",
+          "word": "ความรัก",
+          "romanization": "khwam rak",
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Royal Institute Dictionary"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kreng-jai",
+          "word": "เกรงใจ",
+          "romanization": "kreng jai",
+          "gloss": "consideration; not wanting to burden others",
+          "nuance": "A form of care shown through restraint and respect.",
+          "letters": [
+            "tenderness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Royal Institute Dictionary",
+            "Wikipedia: Kreng jai"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "thai-equidistant",
+          "kind": "scale",
+          "name": "Thai classical scale (pentatonic in use)",
+          "mode": "other",
+          "intervals": [
+            0,
+            2,
+            4,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": "Thai classical tuning divides the octave into seven roughly equal steps (about 171 cents); our pentatonic 12-TET version is an approximation.",
+          "feel": "Graceful and serene.",
+          "letters": [
+            "awe",
+            "tenderness"
+          ],
+          "credit": "Thai classical tradition (piphat ensembles).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Music of Thailand"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "mn",
+      "language": "Mongolian",
+      "endonym": "Монгол хэл",
+      "lang": "mn",
+      "region": "Mongolia and Inner Mongolia (China)",
+      "vocab": [
+        {
+          "id": "khair",
+          "word": "хайр",
+          "romanization": "khair",
+          "gloss": "love",
+          "nuance": "The core noun for love, family and romantic.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: хайр"
+          ],
+          "verified": false
+        },
+        {
+          "id": "nutag",
+          "word": "нутаг",
+          "romanization": "nutag",
+          "gloss": "homeland; the land where one belongs",
+          "nuance": "Deep attachment to the land of one's birth and kin.",
+          "letters": [
+            "longing",
+            "togetherness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: нутаг"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "urtyn-duu",
+          "kind": "texture",
+          "name": "Urtyn duu (long song)",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Traditional intonation is not tied to 12-TET.",
+          "feel": "Spacious, melismatic, free-rhythm; the open steppe.",
+          "letters": [
+            "awe",
+            "longing"
+          ],
+          "credit": "Mongolian long song tradition (UNESCO Intangible Cultural Heritage, 2008, Mongolia and China).",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Urtiin Duu (2008)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "khoomii",
+          "kind": "texture",
+          "name": "Khöömii overtone singing over a drone",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Overtones follow the harmonic series, not 12-TET.",
+          "feel": "One voice sounding two layers at once; awe and wind.",
+          "letters": [
+            "awe",
+            "discovery"
+          ],
+          "credit": "Mongolian khöömei tradition (UNESCO Intangible Cultural Heritage, 2010).",
+          "confidence": "high",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Mongolian art of singing, Khöömei (2010)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "haw",
+      "language": "Hawaiian",
+      "endonym": "ʻŌlelo Hawaiʻi",
+      "lang": "haw",
+      "region": "Hawaiʻi",
+      "vocab": [
+        {
+          "id": "aloha",
+          "word": "aloha",
+          "romanization": null,
+          "gloss": "love, compassion, affection; a greeting",
+          "nuance": "A word and a way of life. The popular etymology 'alo' (presence) + 'hā' (breath) is a folk etymology without scholarly support.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Mary Kawena Pukui & Samuel H. Elbert, Hawaiian Dictionary (1986)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ipo",
+          "word": "ipo",
+          "romanization": null,
+          "gloss": "sweetheart, beloved",
+          "nuance": "A tender term of address.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Mary Kawena Pukui & Samuel H. Elbert, Hawaiian Dictionary (1986)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ohana",
+          "word": "ʻohana",
+          "romanization": null,
+          "gloss": "family, extended kin",
+          "nuance": "Includes chosen family and the duty of care between them.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Mary Kawena Pukui & Samuel H. Elbert, Hawaiian Dictionary (1986)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "hawaiian-vamp",
+          "kind": "progression",
+          "name": "Hawaiian vamp",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "II7",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Gentle, swaying, an invitation home.",
+          "letters": [
+            "tenderness",
+            "joy"
+          ],
+          "credit": "Hawaiian popular song tradition (the vamp between verses).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Music of Hawaii"
+          ],
+          "verified": false
+        },
+        {
+          "id": "slack-key",
+          "kind": "texture",
+          "name": "Kī hōʻalu (slack key guitar)",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Open tunings, alternating bass with ringing strings; warm and relaxed.",
+          "letters": [
+            "togetherness",
+            "tenderness"
+          ],
+          "credit": "Hawaiian slack key tradition; exemplified by Gabby Pahinui (style only).",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Slack-key guitar"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Aloha carries cultural and spiritual weight for Native Hawaiians; it is offered here with respect, not as a brand.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "mi",
+      "language": "Māori",
+      "endonym": "Te Reo Māori",
+      "lang": "mi",
+      "region": "Aotearoa New Zealand",
+      "vocab": [
+        {
+          "id": "aroha",
+          "word": "aroha",
+          "romanization": null,
+          "gloss": "love, compassion, empathy",
+          "nuance": "A broad love that includes care for others and the community.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Te Aka Māori Dictionary (John C. Moorfield)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "whanaungatanga",
+          "word": "whanaungatanga",
+          "romanization": null,
+          "gloss": "kinship; a sense of family connection",
+          "nuance": "Relationships built through shared experience and belonging.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Te Aka Māori Dictionary (John C. Moorfield)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "manaakitanga",
+          "word": "manaakitanga",
+          "romanization": null,
+          "gloss": "hospitality, generosity, care for others",
+          "nuance": "Showing respect by caring for guests and kin.",
+          "letters": [
+            "tenderness",
+            "gratitude"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Te Aka Māori Dictionary (John C. Moorfield)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "waiata-a-ringa",
+          "kind": "progression",
+          "name": "Waiata-ā-ringa (action song) major harmony",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Communal, joyful, guitar-led singing.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "credit": "Modern Māori action song tradition, developed in the 20th century (e.g. by Tuini Ngāwai and Sir Āpirana Ngata).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Waiata"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Waiata and their associated tikanga (customs) belong to iwi and hapū; some waiata are tapu (sacred) and not to be reused.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "sm",
+      "language": "Samoan",
+      "endonym": "Gagana Sāmoa",
+      "lang": "sm",
+      "region": "Samoa and American Samoa",
+      "vocab": [
+        {
+          "id": "alofa",
+          "word": "alofa",
+          "romanization": null,
+          "gloss": "love, compassion",
+          "nuance": "Related to Hawaiian aloha and Māori aroha.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "G. B. Milner, Samoan Dictionary (1966)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "aiga",
+          "word": "ʻāiga",
+          "romanization": null,
+          "gloss": "family, extended kin",
+          "nuance": "The basis of fa'a Sāmoa (the Samoan way).",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "G. B. Milner, Samoan Dictionary (1966)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "samoan-choral",
+          "kind": "texture",
+          "name": "Samoan choral four-part singing",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Rich, resonant, communal.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Samoan choral tradition (church and community choirs).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Music of Samoa"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "Much Samoan choral singing is part of church worship; described as texture only.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "qu",
+      "language": "Quechua",
+      "endonym": "Runa Simi",
+      "lang": "qu",
+      "region": "Andes (Peru, Bolivia, Ecuador)",
+      "vocab": [
+        {
+          "id": "munay",
+          "word": "munay",
+          "romanization": null,
+          "gloss": "to love; to want; love",
+          "nuance": "Also used in Andean philosophy for loving will; spelling and use vary across varieties.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Diccionario Quechua-Español-Quechua (Academia Mayor de la Lengua Quechua, 2005)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "kuyay",
+          "word": "kuyay",
+          "romanization": null,
+          "gloss": "to love tenderly; to care for",
+          "nuance": "Tender, caring love, also for family.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Diccionario Quechua-Español-Quechua (Academia Mayor de la Lengua Quechua, 2005)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sunqu",
+          "word": "sunqu",
+          "romanization": null,
+          "gloss": "heart",
+          "nuance": "Also spelled sonqo; seat of feeling and love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Diccionario Quechua-Español-Quechua (Academia Mayor de la Lengua Quechua, 2005)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "huayno-pentatonic",
+          "kind": "scale",
+          "name": "Huayno minor pentatonic",
+          "mode": "minor",
+          "intervals": [
+            0,
+            3,
+            5,
+            7,
+            10
+          ],
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Bittersweet, high and clear; dance and longing together.",
+          "letters": [
+            "longing",
+            "joy"
+          ],
+          "credit": "Andean huayno tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Huayno"
+          ],
+          "verified": false
+        },
+        {
+          "id": "yaravi",
+          "kind": "texture",
+          "name": "Yaraví (slow lament-love song)",
+          "mode": "minor",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Slow, melancholy; love and separation.",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "credit": "Andean yaraví tradition, descended from the pre-Hispanic harawi; associated with poet Mariano Melgar (early 19th century).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Yaraví"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "lkt",
+      "language": "Lakota",
+      "endonym": "Lakȟótiyapi",
+      "lang": "lkt",
+      "region": "Great Plains (United States)",
+      "vocab": [
+        {
+          "id": "mitakuye-oyasin",
+          "word": "mitákuye oyás'iŋ",
+          "romanization": null,
+          "gloss": "'all my relatives'; we are all related",
+          "nuance": "A prayer phrase expressing kinship with all beings.",
+          "letters": [
+            "togetherness",
+            "gratitude"
+          ],
+          "confidence": "high",
+          "sources": [
+            "New Lakota Dictionary (Lakota Language Consortium, 2008)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "thechihila",
+          "word": "thečhíhila",
+          "romanization": null,
+          "gloss": "I love you / I cherish you",
+          "nuance": "Spelling varies (e.g. 'techihila').",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "New Lakota Dictionary (Lakota Language Consortium, 2008)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "plains-drum-song",
+          "kind": "texture",
+          "name": "Plains drum-group song texture",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Not 12-TET; there is no chordal harmony.",
+          "feel": "Heartbeat-like drum with singers; communal power.",
+          "letters": [
+            "togetherness",
+            "awe"
+          ],
+          "credit": "Northern Plains song traditions, including powwow drum groups.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Powwow"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "'Mitákuye oyás'iŋ' is a prayer phrase and many songs are ceremonial or owned; we describe, never reproduce or commercialise, them.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "se",
+      "language": "Northern Sámi",
+      "endonym": "Davvisámegiella",
+      "lang": "se",
+      "region": "Sápmi (Norway, Sweden, Finland, Russia)",
+      "vocab": [
+        {
+          "id": "rahkistit",
+          "word": "ráhkistit",
+          "romanization": null,
+          "gloss": "to love",
+          "nuance": "The everyday verb for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: ráhkistit"
+          ],
+          "verified": false
+        },
+        {
+          "id": "rahkis",
+          "word": "ráhkis",
+          "romanization": null,
+          "gloss": "dear, beloved",
+          "nuance": "A tender adjective of affection.",
+          "letters": [
+            "tenderness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: ráhkis"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "joik",
+          "kind": "texture",
+          "name": "Joik (luohti)",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Joik intonation is not tied to 12-TET.",
+          "feel": "A joik is sung 'of' a person or place, not 'about' it; recalling a loved one into presence.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "credit": "Sámi joik tradition.",
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: Joik"
+          ],
+          "verified": false
+        }
+      ],
+      "care": "A personal joik belongs to the person it is for; joik was suppressed historically and is sacred to many Sámi.",
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "sw",
+      "language": "Swahili",
+      "endonym": "Kiswahili",
+      "lang": "sw",
+      "region": "East Africa",
+      "vocab": [
+        {
+          "id": "upendo",
+          "word": "upendo",
+          "romanization": null,
+          "gloss": "love (broad)",
+          "nuance": "Love in general: family, friendship, community.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "TUKI Kamusi ya Kiswahili-Kiingereza (2001)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mapenzi",
+          "word": "mapenzi",
+          "romanization": null,
+          "gloss": "romantic love",
+          "nuance": "Love between partners.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "TUKI Kamusi ya Kiswahili-Kiingereza (2001)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "mpenzi",
+          "word": "mpenzi",
+          "romanization": null,
+          "gloss": "beloved, lover",
+          "nuance": "Used as a term of endearment.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "TUKI Kamusi ya Kiswahili-Kiingereza (2001)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "taarab",
+          "kind": "texture",
+          "name": "Taarab orchestra texture",
+          "mode": "modal",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Taarab draws on Arab maqam intonation; our version is an approximation.",
+          "feel": "Elegant, poetic love song with oud, violins and qanun.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "credit": "Zanzibari and coastal taarab tradition; exemplified by Siti binti Saad (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Taarab"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "yo",
+      "language": "Yoruba",
+      "endonym": "Èdè Yorùbá",
+      "lang": "yo",
+      "region": "Nigeria and Benin",
+      "vocab": [
+        {
+          "id": "ife",
+          "word": "ìfẹ́",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "A Dictionary of the Yoruba Language (Church Missionary Society, 1913)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ololufe",
+          "word": "olólùfẹ́",
+          "romanization": null,
+          "gloss": "beloved, lover",
+          "nuance": "Literally 'one who loves'.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "A Dictionary of the Yoruba Language (Church Missionary Society, 1913)"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "juju",
+          "kind": "texture",
+          "name": "Jùjú: talking drum and interlocking guitars",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Celebratory, layered, communal praise and joy.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Nigerian jùjú tradition; exemplified by I. K. Dairo and King Sunny Adé (style only).",
+          "confidence": "high",
+          "sources": [
+            "Christopher Waterman, Jùjú: A Social History and Ethnography of an African Popular Music (1990)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ig",
+      "language": "Igbo",
+      "endonym": "Asụsụ Igbo",
+      "lang": "ig",
+      "region": "Nigeria",
+      "vocab": [
+        {
+          "id": "ihunanya",
+          "word": "ịhụnanya",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The common noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: ịhụnanya"
+          ],
+          "verified": false
+        },
+        {
+          "id": "nwanne",
+          "word": "nwanne",
+          "romanization": null,
+          "gloss": "sibling; kin",
+          "nuance": "Literally 'child of mother'; extends to kinsfolk and solidarity.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: nwanne"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "igbo-highlife",
+          "kind": "progression",
+          "name": "Igbo highlife major cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "V7",
+            "I"
+          ],
+          "tuning_note": null,
+          "feel": "Easy, joyful, conversational guitar music.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Igbo highlife tradition; exemplified by Chief Stephen Osita Osadebe (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Highlife"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "tw",
+      "language": "Akan (Twi)",
+      "endonym": "Twi",
+      "lang": "tw",
+      "region": "Ghana",
+      "vocab": [
+        {
+          "id": "odo",
+          "word": "ɔdɔ",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun; 'me dɔ wo' is 'I love you'.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: ɔdɔ"
+          ],
+          "verified": false
+        },
+        {
+          "id": "odofo",
+          "word": "ɔdɔfo",
+          "romanization": null,
+          "gloss": "beloved, lover",
+          "nuance": "Used as an endearment.",
+          "letters": [
+            "tenderness",
+            "love"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: ɔdɔfo"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "highlife-cadence",
+          "kind": "progression",
+          "name": "Highlife major cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "I",
+            "V7"
+          ],
+          "tuning_note": null,
+          "feel": "Bright, swinging, celebratory dance music.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Ghanaian highlife; dance-band highlife exemplified by E. T. Mensah, 'King of Highlife' (style only).",
+          "confidence": "medium",
+          "sources": [
+            "John Collins, Highlife Time (1996)",
+            "Wikipedia: Highlife"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ln",
+      "language": "Lingala",
+      "endonym": "Lingála",
+      "lang": "ln",
+      "region": "Democratic Republic of the Congo and Republic of the Congo",
+      "vocab": [
+        {
+          "id": "bolingo",
+          "word": "bolingo",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun; also a common term of endearment in song.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: bolingo"
+          ],
+          "verified": false
+        },
+        {
+          "id": "motema",
+          "word": "motema",
+          "romanization": null,
+          "gloss": "heart",
+          "nuance": "Seat of feeling.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: motema"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "congolese-rumba",
+          "kind": "progression",
+          "name": "Congolese rumba cyclic cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "I",
+            "V7"
+          ],
+          "tuning_note": null,
+          "feel": "Smooth, sweet, dance-inviting.",
+          "letters": [
+            "love",
+            "joy"
+          ],
+          "credit": "Congolese rumba (UNESCO Intangible Cultural Heritage, 2021); exemplified by Franco Luambo and Tabu Ley Rochereau (style only).",
+          "confidence": "medium",
+          "sources": [
+            "UNESCO Intangible Cultural Heritage: Congolese rumba (2021)",
+            "Gary Stewart, Rumba on the River (2000)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "sebene",
+          "kind": "texture",
+          "name": "Sebene interlocking guitars",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "An extended, cyclic guitar dance section; joy and release.",
+          "letters": [
+            "joy",
+            "togetherness"
+          ],
+          "credit": "Congolese rumba and soukous tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Gary Stewart, Rumba on the River (2000)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "am",
+      "language": "Amharic",
+      "endonym": "አማርኛ",
+      "lang": "am",
+      "region": "Ethiopia",
+      "vocab": [
+        {
+          "id": "fikir",
+          "word": "ፍቅር",
+          "romanization": "fikir",
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Thomas Leiper Kane, Amharic-English Dictionary (1990)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "tizita",
+          "word": "ትዝታ",
+          "romanization": "tizita",
+          "gloss": "memory; nostalgic longing",
+          "nuance": "Also the name of a song genre and a qenet (mode).",
+          "letters": [
+            "longing",
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Thomas Leiper Kane, Amharic-English Dictionary (1990)",
+            "Wikipedia: Tizita"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "qenet-tizita",
+          "kind": "scale",
+          "name": "Qenet Tizita (major)",
+          "mode": "major",
+          "intervals": [
+            0,
+            2,
+            4,
+            7,
+            9
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation of Ethiopian qenet varies by region and performer.",
+          "feel": "Nostalgic, longing, tender.",
+          "letters": [
+            "longing",
+            "tenderness"
+          ],
+          "credit": "Ethiopian qenet system; exemplified by Mulatu Astatke and Mahmoud Ahmed (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Qenet"
+          ],
+          "verified": false
+        },
+        {
+          "id": "qenet-bati",
+          "kind": "scale",
+          "name": "Qenet Bati (major)",
+          "mode": "major",
+          "intervals": [
+            0,
+            4,
+            5,
+            7,
+            11
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation varies.",
+          "feel": "Bright and spacious.",
+          "letters": [
+            "joy",
+            "hope"
+          ],
+          "credit": "Ethiopian qenet system.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Qenet"
+          ],
+          "verified": false
+        },
+        {
+          "id": "qenet-ambassel",
+          "kind": "scale",
+          "name": "Qenet Ambassel",
+          "mode": "modal",
+          "intervals": [
+            0,
+            1,
+            5,
+            7,
+            8
+          ],
+          "progression": null,
+          "tuning_note": "Our version is a 12-TET approximation; intonation varies.",
+          "feel": "Solemn and dark.",
+          "letters": [
+            "awe",
+            "longing"
+          ],
+          "credit": "Ethiopian qenet system.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Qenet"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "so",
+      "language": "Somali",
+      "endonym": "Af-Soomaali",
+      "lang": "so",
+      "region": "Somalia, Djibouti, Ethiopia and Kenya",
+      "vocab": [
+        {
+          "id": "jacayl",
+          "word": "jacayl",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wiktionary: jacayl"
+          ],
+          "verified": false
+        },
+        {
+          "id": "saaxiib",
+          "word": "saaxiib",
+          "romanization": null,
+          "gloss": "friend",
+          "nuance": "From Arabic; friendship-love.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wiktionary: saaxiib"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "qaraami",
+          "kind": "texture",
+          "name": "Qaraami love-song style (oud-led)",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Somali music is largely pentatonic; intonation not tied to 12-TET.",
+          "feel": "Gentle, poetic love songs.",
+          "letters": [
+            "love",
+            "longing"
+          ],
+          "credit": "Somali qaraami tradition (mid-20th century); Abdullahi Qarshe is often credited as a founding figure (style only).",
+          "confidence": "low",
+          "sources": [
+            "Wikipedia: Music of Somalia"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "zu",
+      "language": "Zulu",
+      "endonym": "isiZulu",
+      "lang": "zu",
+      "region": "South Africa",
+      "vocab": [
+        {
+          "id": "uthando",
+          "word": "uthando",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "The core noun for love.",
+          "letters": [
+            "love"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Doke, Malcolm & Sikakana, English-Zulu Zulu-English Dictionary (1990)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "ubuntu",
+          "word": "ubuntu",
+          "romanization": null,
+          "gloss": "humanity toward others; 'a person is a person through other people'",
+          "nuance": "Shared across Nguni languages; personhood grounded in community and care.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Doke, Malcolm & Sikakana, English-Zulu Zulu-English Dictionary (1990)",
+            "Wikipedia: Ubuntu philosophy"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "isicathamiya-cadence",
+          "kind": "progression",
+          "name": "Isicathamiya choral cadence",
+          "mode": "major",
+          "intervals": null,
+          "progression": [
+            "I",
+            "IV",
+            "I",
+            "V"
+          ],
+          "tuning_note": null,
+          "feel": "Soft, warm, close-harmony.",
+          "letters": [
+            "togetherness",
+            "tenderness"
+          ],
+          "credit": "Zulu isicathamiya a cappella tradition; exemplified by Solomon Linda and Ladysmith Black Mambazo (style only).",
+          "confidence": "medium",
+          "sources": [
+            "Veit Erlmann, Nightsong: Performance, Power, and Practice in South Africa (1996)"
+          ],
+          "verified": false
+        },
+        {
+          "id": "isicathamiya-texture",
+          "kind": "texture",
+          "name": "A cappella male choral close harmony",
+          "mode": "major",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": null,
+          "feel": "Bass-heavy, gentle, communal.",
+          "letters": [
+            "togetherness",
+            "trust"
+          ],
+          "credit": "Isicathamiya tradition.",
+          "confidence": "high",
+          "sources": [
+            "Veit Erlmann, Nightsong: Performance, Power, and Practice in South Africa (1996)"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "gl",
+      "language": "Galician",
+      "endonym": "Galego",
+      "lang": "gl",
+      "region": "Galicia (Spain)",
+      "vocab": [
+        {
+          "id": "morrina",
+          "word": "morriña",
+          "romanization": null,
+          "gloss": "homesick longing for Galicia",
+          "nuance": "Related to saudade.",
+          "letters": [
+            "longing"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Dicionario da Real Academia Galega"
+          ],
+          "verified": false
+        },
+        {
+          "id": "agarimo",
+          "word": "agarimo",
+          "romanization": null,
+          "gloss": "affectionate tenderness; shelter",
+          "nuance": "Warm care.",
+          "letters": [
+            "tenderness",
+            "trust"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Dicionario da Real Academia Galega"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [
+        {
+          "id": "gaita-drone",
+          "kind": "texture",
+          "name": "Gaita (bagpipe) drone",
+          "mode": "other",
+          "intervals": null,
+          "progression": null,
+          "tuning_note": "Gaita chanters have their own tuning; 12-TET is an approximation.",
+          "feel": "Steady, festive, ancestral.",
+          "letters": [
+            "togetherness",
+            "joy"
+          ],
+          "credit": "Galician gaita tradition.",
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: Gaita gallega"
+          ],
+          "verified": false
+        }
+      ],
+      "care": null,
+      "contributed_by": "staff-seed"
+    },
+    {
+      "id": "ase",
+      "language": "American Sign Language",
+      "endonym": "American Sign Language",
+      "lang": "ase",
+      "region": "United States and Canada",
+      "vocab": [
+        {
+          "id": "ily",
+          "word": "I-LOVE-YOU (ILY handshape)",
+          "romanization": null,
+          "gloss": "I love you",
+          "nuance": "Thumb, index and little finger extended, combining I, L and Y; widely used in Deaf culture and beyond.",
+          "letters": [
+            "love",
+            "togetherness"
+          ],
+          "confidence": "high",
+          "sources": [
+            "Wikipedia: ILY sign"
+          ],
+          "verified": false
+        },
+        {
+          "id": "love-sign",
+          "word": "LOVE",
+          "romanization": null,
+          "gloss": "love",
+          "nuance": "Commonly signed with crossed fists over the chest.",
+          "letters": [
+            "love",
+            "tenderness"
+          ],
+          "confidence": "medium",
+          "sources": [
+            "Wikipedia: American Sign Language"
+          ],
+          "verified": false
+        }
+      ],
+      "harmony": [],
+      "care": "Signs vary regionally; learn them from Deaf signers. Sign languages are full languages, not gestures.",
+      "contributed_by": "staff-seed"
+    }
+  ]
+}

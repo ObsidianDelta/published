@@ -1,0 +1,150 @@
+{
+  "_meta": {
+    "locale": "fr",
+    "name": "Français",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "fr_FR",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Avant de commencer : avez-vous 13 ans ou plus ?",
+    "age_yes": "Oui, j'ai 13 ans ou plus",
+    "age_skip": "Je préfère ne pas répondre",
+    "spark_q": "À quoi ressemble l'amour pour vous, en ce moment ?",
+    "spark_hint": "Choisissez celui qui vous parle. Il n'y a pas de mauvaise réponse.",
+    "echo_intro": "D'autres langues ont un mot pour ça :",
+    "see_others": "Voir ce que ressentent les autres",
+    "keep_going": "Continuer",
+    "dataset_title": "Voici ce que les gens ont dit jusqu'ici.",
+    "dataset_meta": "{n} réponses · Données publiques · Mise à jour quotidienne",
+    "dataset_link": "Voir l'ensemble des données ouvertes",
+    "consent_q": "Souhaitez-vous que votre réponse fasse partie de cette recherche ?",
+    "consent_yes": "Oui, ajouter la mienne anonymement",
+    "consent_no": "Non, la garder juste ici",
+    "consent_explain_q": "Que veut dire « anonymement » ici ?",
+    "consent_explain": "Nous enregistrons le mot que vous avez choisi, votre langue et la région approximative du monde où vous êtes. Rien d'autre. Vous pouvez effacer votre réponse quand vous voulez.",
+    "when_q": "Quand avez-vous ressenti cela pour la dernière fois ?",
+    "toward_q": "Cet amour est-il tourné vers quelqu'un ou quelque chose ?",
+    "composition_title": "Voici le son de votre amour.",
+    "hear_it": "L'écouter (5 secondes)",
+    "compare": "Comparer",
+    "share_it": "Partager",
+    "share_title": "Envoyez-le à quelqu'un.",
+    "share_hint": "Votre lien ne contient que les mots et le son que vous avez choisis. Jamais votre nom, jamais ce que vous avez écrit.",
+    "copy_link": "Copier le lien",
+    "copied": "Lien copié",
+    "save_image": "Enregistrer l'image",
+    "save_story": "Enregistrer en story",
+    "make_mine": "Créer le mien",
+    "received_banner": "Quelqu'un vous a envoyé de l'amour, sous la forme d'un son. Le voici. À vous de créer le vôtre.",
+    "received_chain": "Ce son a déjà été transmis {n} fois.",
+    "answer_back": "Répondre avec le vôtre",
+    "duet_title": "Vos deux sons, ensemble.",
+    "circle_invite": "Proposer à votre groupe",
+    "circle_title": "Quel est le son de l'amour dans votre cercle ?",
+    "circle_hint": "Chacun ajoute un son. Personne ne voit qui a choisi quoi, seulement l'accord que vous formez ensemble.",
+    "try_another": "Essayer un autre ressenti",
+    "start_over": "Recommencer",
+    "take_breath": "Prenez le temps de respirer",
+    "breath_body": "Vous pouvez vous arrêter ici. Rien n'est perdu, et rien n'a été envoyé sans votre accord.",
+    "data_panel": "Ce que cette page sait de vous",
+    "delete_mine": "Supprimer ma réponse",
+    "framing": "Un projet de recherche de la DAX Foundation",
+    "language": "Langue",
+    "sound_credit": "Joué par nos soins : de l'harmonie, jamais un enregistrement.",
+    "translate_invite": "Vous parlez une autre langue ? Aidez-nous à trouver les bons mots."
+  },
+  "feelings": {
+    "warm": "chaleur",
+    "quiet": "calme",
+    "longing": "manque",
+    "joyful": "joie",
+    "tender": "tendresse",
+    "lost": "flottement"
+  },
+  "letters": {
+    "love": "amour",
+    "tenderness": "tendresse",
+    "togetherness": "être ensemble",
+    "trust": "confiance",
+    "curiosity": "curiosité",
+    "adventure": "aventure",
+    "creativity": "créativité",
+    "discovery": "découverte",
+    "joy": "joie",
+    "hope": "espoir",
+    "birth": "nouveaux départs",
+    "awe": "émerveillement",
+    "gratitude": "gratitude",
+    "longing": "manque",
+    "doubt": "doute",
+    "re_love": "amour en retour",
+    "empathy": "empathie",
+    "compassion": "compassion"
+  },
+  "tense": {
+    "was": "l'amour d'hier",
+    "is": "l'amour d'aujourd'hui",
+    "will": "l'amour de demain"
+  },
+  "when": {
+    "today": "aujourd'hui",
+    "week": "cette semaine",
+    "ago": "il y a un moment",
+    "unsure": "je ne sais pas trop"
+  },
+  "toward": {
+    "person": "une personne",
+    "place": "un lieu ou une époque",
+    "idea": "une idée",
+    "feeling": "juste un ressenti"
+  },
+  "card": {
+    "brand": "Un cadeau",
+    "head_mine": "Voici le son de mon amour.",
+    "head_gift": "J'ai fait ce son pour toi.",
+    "head_answer": "Tu m'as envoyé le tien. Voici le mien.",
+    "head_circle": "Voici le son de notre amour.",
+    "cta": "Crée le tien",
+    "chain": "transmis {n} fois",
+    "alt": "Une carte avec le mot « {feeling} » et un cercle de notes de musique. Un projet de recherche de la DAX Foundation."
+  },
+  "share": {
+    "og_title": "Quel est le son de l'amour dans ta langue ?",
+    "og_description": "Trouve le son de ton amour, puis envoie-le à quelqu'un. Un projet de recherche de la DAX Foundation.",
+    "default": "L'amour, ça sonne comment ? Le mien : {feeling}. Crée le tien : {url}",
+    "whatsapp": "Je t'ai fait un petit truc 🎁 Le son de mon amour en ce moment : {feeling}. Ouvre-le, puis envoie-moi le tien 👉 {url}",
+    "whatsapp_status": "Le son de mon amour aujourd'hui : {feeling} ✦ Crée le tien, le lien est dans mon statut 👇",
+    "sms": "Voici le son de mon amour ({feeling}). Fais le tien et renvoie-le-moi. {url}",
+    "x": "Quel est le son de l'amour dans ta langue ? Le mien, aujourd'hui : {feeling}.",
+    "telegram": "L'amour, ça sonne comment ? Le mien : {feeling}. Crée le tien et fais tourner → {url}",
+    "line": "Je t'ai fait un truc : le son de « {feeling} ». À toi de jouer → {url}",
+    "wechat": "L'amour, ça sonne comment ? Le mien : {feeling}. Crée le tien : {url}",
+    "kakao": "Le son de mon amour aujourd'hui : {feeling}. Crée le tien et renvoie-le-moi → {url}",
+    "story_caption": "mon amour sonne comme « {feeling} » ✦ et le tien ?",
+    "group_invite": "Petite expérience pour le groupe : chacun ajoute le son de son amour, et on écoute ce que ça donne tous ensemble. Personne ne voit qui a choisi quoi. {url}",
+    "answer_back": "Tu m'as envoyé le tien, alors voici ma réponse 💛 {url}",
+    "email_subject": "Je t'ai préparé quelque chose",
+    "email_body": "C'est le son de l'amour pour moi en ce moment : {feeling}.\n\nOuvre-le, puis crée le tien et renvoie-le-moi :\n{url}\n\n(Un projet de recherche de la DAX Foundation. Sans inscription, rien à installer.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "one": "{n} réponse · Données publiques · Mise à jour quotidienne",
+      "many": "{n} réponses · Données publiques · Mise à jour quotidienne",
+      "other": "{n} réponses · Données publiques · Mise à jour quotidienne"
+    },
+    "ui.received_chain": {
+      "one": "Ce son a déjà été transmis {n} fois.",
+      "many": "Ce son a déjà été transmis {n} fois.",
+      "other": "Ce son a déjà été transmis {n} fois."
+    },
+    "card.chain": {
+      "one": "transmis {n} fois",
+      "many": "transmis {n} fois",
+      "other": "transmis {n} fois"
+    }
+  }
+}

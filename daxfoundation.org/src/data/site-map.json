@@ -36,6 +36,18 @@
       "label": "How this is paid for, and what we will measure"
     },
     {
+      "path": "/writing/a-gift-and-an-open-call/",
+      "chapter": "foundation/00-map",
+      "list": false,
+      "label": "Two labs open: the Sound Lab and the Gesture Lab"
+    },
+    {
+      "path": "/gift/",
+      "chapter": "foundation/00-map",
+      "list": false,
+      "label": "What does love sound like? (the Sound Lab)"
+    },
+    {
       "path": "/writing/twelve-scenes-01-the-nurses-walkthrough/",
       "chapter": "metadax/01-job",
       "list": true,

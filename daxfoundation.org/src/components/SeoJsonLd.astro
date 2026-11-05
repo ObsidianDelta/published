@@ -1,0 +1,7 @@
+---
+// 2026-11-04 (SEO launch pass): the Organization + WebSite graph on every page,
+// from src/data/organization.js (the one place the legal placeholders live).
+import { organizationNode, websiteNode, jsonLdString } from '../data/organization.js';
+const graph = { '@context': 'https://schema.org', '@graph': [organizationNode(), websiteNode()] };
+---
+<script type="application/ld+json" set:html={jsonLdString(graph)} />

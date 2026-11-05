@@ -1,5 +1,6 @@
 ---
 import SiteHeader from "../components/SiteHeader.astro";
+import SeoJsonLd from "../components/SeoJsonLd.astro";
 import WhereThisFits from "../components/WhereThisFits.astro";
 interface Props {
   title?: string;
@@ -8,6 +9,8 @@ interface Props {
   wide?: boolean;
   ogType?: string;
   siteName?: string;
+  // 2026-11-04 (SEO launch): true asks search engines to keep this page off their indexes.
+  noindex?: boolean;
 }
 const {
   title = 'DAX Foundation',
@@ -19,6 +22,7 @@ const {
   // "The DAX Foundation" in og:site_name. Optional, default unchanged, so every
   // other page emits exactly what it did before.
   siteName = 'DAX Foundation',
+  noindex = false,
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.png', Astro.site);
@@ -68,6 +72,10 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={`${title} — ${description}`} />
+    <meta property="og:locale" content="en_CA" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <SeoJsonLd />
     <slot name="head" />
   </head>
   <body>

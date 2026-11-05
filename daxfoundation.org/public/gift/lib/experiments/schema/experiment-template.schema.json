@@ -1,0 +1,659 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "state/gift/experiments/schema/experiment-template.schema.json",
+  "title": "Gift experiment template",
+  "description": "One way to run the love experiment: a question, an inspiration source, and ordered stages (widget -> transform -> visualization). Executed by state/gift/experiments/runner.mjs. Transform ids and argument types are defined in transforms/index.mjs (TRANSFORMS).",
+  "type": "object",
+  "required": [
+    "id",
+    "version",
+    "flagship",
+    "title",
+    "question",
+    "summary",
+    "source",
+    "depth",
+    "minutes",
+    "letters",
+    "care",
+    "unlockRule",
+    "stages",
+    "sample",
+    "unlocks",
+    "audience",
+    "interaction",
+    "variant",
+    "a11y"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "flagship": {
+      "type": "boolean"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 60
+    },
+    "question": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 240
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 10
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "type",
+        "label"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "movie",
+            "song-of-youth",
+            "city",
+            "person",
+            "smell",
+            "season",
+            "love-words",
+            "festival",
+            "memory",
+            "colour",
+            "prayer-ritual",
+            "lullaby",
+            "dance",
+            "weather",
+            "food",
+            "home",
+            "nature",
+            "sky",
+            "heartbeat",
+            "letter",
+            "heirloom",
+            "animal",
+            "journey",
+            "time-of-day",
+            "friendship",
+            "family",
+            "ancestors",
+            "remembrance",
+            "new-life",
+            "self",
+            "community",
+            "instrument",
+            "art",
+            "garden",
+            "touch",
+            "gift-giving",
+            "greeting",
+            "culture-harmony",
+            "school",
+            "work",
+            "migration",
+            "language-learning",
+            "sport",
+            "neighbours",
+            "caregiving",
+            "forgiveness",
+            "online",
+            "teacher",
+            "pet",
+            "craft",
+            "wedding",
+            "moving-home",
+            "reunion"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 2
+        }
+      }
+    },
+    "depth": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "description": "1 = one tap, ~1 min; 5 = deep, multi-source, ~10 min."
+    },
+    "minutes": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 20
+    },
+    "letters": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/$defs/letter"
+      }
+    },
+    "care": {
+      "type": "object",
+      "required": [
+        "sensitive",
+        "optional",
+        "note"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "sensitive": {
+          "type": "boolean"
+        },
+        "optional": {
+          "type": "boolean"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "privateNote": {
+      "type": "object",
+      "required": [
+        "prompt",
+        "storage"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "prompt": {
+          "type": "string"
+        },
+        "storage": {
+          "enum": [
+            "device-only"
+          ]
+        }
+      }
+    },
+    "unlockRule": {
+      "$ref": "#/$defs/rule"
+    },
+    "unlocks": {
+      "type": "object",
+      "required": [
+        "templates",
+        "stages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "templates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stages": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "make-it-yours",
+              "tense",
+              "re-love"
+            ]
+          }
+        }
+      }
+    },
+    "stages": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "$ref": "#/$defs/stage"
+      }
+    },
+    "sample": {
+      "type": "object",
+      "description": "Widget values that exercise the whole pipeline (tests run every template with them)."
+    },
+    "audience": {
+      "type": "object",
+      "required": [
+        "ages"
+      ],
+      "additionalProperties": false,
+      "description": "Age bands the experiment is written for. The whole gift is 13+ (engagement-flow Stage 0).",
+      "properties": {
+        "ages": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 5,
+          "items": {
+            "enum": [
+              "13-17",
+              "18-29",
+              "30-49",
+              "50-64",
+              "65+"
+            ]
+          }
+        }
+      }
+    },
+    "interaction": {
+      "type": "object",
+      "required": [
+        "mode",
+        "participants"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "enum": [
+            "solo",
+            "pair",
+            "group"
+          ]
+        },
+        "participants": {
+          "type": "object",
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 30
+            }
+          }
+        }
+      }
+    },
+    "variant": {
+      "enum": [
+        "standard",
+        "text-only",
+        "low-bandwidth"
+      ],
+      "description": "text-only: every widget works without pointer precision, timing or colour vision and every visualization is rendered as its text alternative. low-bandwidth: needs no catalog download and is small."
+    },
+    "a11y": {
+      "type": "object",
+      "required": [
+        "summary",
+        "keyboard",
+        "screenReader",
+        "reducedMotion",
+        "textOnly"
+      ],
+      "additionalProperties": false,
+      "description": "Derived by a11y/spec.mjs templateA11y(); validated.",
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 10
+        },
+        "keyboard": {
+          "const": true
+        },
+        "screenReader": {
+          "const": true
+        },
+        "reducedMotion": {
+          "const": "supported"
+        },
+        "textOnly": {
+          "type": "boolean"
+        }
+      }
+    },
+    "lineage": {
+      "type": "object",
+      "required": [
+        "parents",
+        "ancestors",
+        "transform",
+        "seed",
+        "generation"
+      ],
+      "additionalProperties": false,
+      "description": "Present on remixes: where this template came from, so the dataset can trace it.",
+      "properties": {
+        "parents": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "ancestors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "transform": {
+          "enum": [
+            "remix:theme",
+            "remix:culture",
+            "remix:palette",
+            "remix:rhythm",
+            "remix:interaction",
+            "remix:crossbreed"
+          ]
+        },
+        "seed": {
+          "type": "string"
+        },
+        "params": {
+          "type": "object"
+        },
+        "generation": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    }
+  },
+  "$defs": {
+    "letter": {
+      "enum": [
+        "love",
+        "tenderness",
+        "togetherness",
+        "trust",
+        "curiosity",
+        "adventure",
+        "creativity",
+        "discovery",
+        "joy",
+        "hope",
+        "birth",
+        "awe",
+        "gratitude",
+        "longing",
+        "doubt"
+      ]
+    },
+    "option": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "letters"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "letters": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/letter"
+          }
+        }
+      }
+    },
+    "widget": {
+      "type": "object",
+      "required": [
+        "type",
+        "default"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "none",
+            "tap-choice",
+            "multi-choice",
+            "slider-set",
+            "color-picker",
+            "tap-tempo",
+            "tense-picker",
+            "catalog-picker"
+          ]
+        },
+        "default": {},
+        "options": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/$defs/option"
+          }
+        },
+        "catalog": {
+          "enum": [
+            "films",
+            "cultures",
+            "vocab"
+          ]
+        },
+        "filter": {
+          "enum": [
+            "hasScale",
+            "hasProgression"
+          ]
+        },
+        "dependsOn": {
+          "type": "string"
+        },
+        "min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "minTaps": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "note": {
+          "type": "string"
+        },
+        "culture": {
+          "type": "string",
+          "description": "vocab picker fixed to one culture (culture-seeded templates)."
+        }
+      }
+    },
+    "stage": {
+      "type": "object",
+      "required": [
+        "id",
+        "prompt",
+        "widget",
+        "transform",
+        "visualization",
+        "a11y"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+        },
+        "prompt": {
+          "type": "string",
+          "minLength": 2
+        },
+        "why": {
+          "type": "string",
+          "description": "Plain-language music-theory explanation the studio may show."
+        },
+        "widget": {
+          "$ref": "#/$defs/widget"
+        },
+        "transform": {
+          "type": "object",
+          "required": [
+            "id",
+            "args"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "A key of TRANSFORMS in transforms/index.mjs."
+            },
+            "args": {
+              "type": "object",
+              "description": "Literals or references: $widget, $options, $stage.<id>, $widgets.<id>, $ctx.catalog, $ctx.films."
+            }
+          }
+        },
+        "visualization": {
+          "type": "object",
+          "required": [
+            "type"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "enum": [
+                "emotion-radar",
+                "compare-bars",
+                "color-field",
+                "word-card",
+                "chord-strip",
+                "film-credit",
+                "culture-card",
+                "note-wheel",
+                "piano-roll",
+                "heartbeat-pulse",
+                "share-card"
+              ]
+            },
+            "caption": {
+              "type": "string"
+            }
+          }
+        },
+        "bonus": {
+          "enum": [
+            "make-it-yours",
+            "tense",
+            "re-love"
+          ],
+          "description": "Runs only once this bonus stage is unlocked (progression.json)."
+        },
+        "passThrough": {
+          "type": "string",
+          "description": "Arg forwarded as output while the bonus stage is locked."
+        },
+        "actor": {
+          "enum": [
+            "A",
+            "B",
+            "group"
+          ],
+          "description": "Who answers this stage in pair/group mode."
+        },
+        "a11y": {
+          "type": "object",
+          "required": [
+            "label",
+            "hint"
+          ],
+          "additionalProperties": false,
+          "description": "Derived by a11y/spec.mjs stageA11y(); validated.",
+          "properties": {
+            "label": {
+              "type": "string",
+              "minLength": 2
+            },
+            "hint": {
+              "type": "string",
+              "minLength": 2
+            }
+          }
+        }
+      }
+    },
+    "rule": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": {
+        "always": {
+          "const": true
+        },
+        "ring": {
+          "enum": [
+            "spark",
+            "echo",
+            "chorus",
+            "harmony",
+            "constellation"
+          ]
+        },
+        "completed": {
+          "type": "string"
+        },
+        "completedCount": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourceCompleted": {
+          "type": "string"
+        },
+        "sourceTypesCompleted": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "depthCompleted": {
+          "type": "object",
+          "required": [
+            "min",
+            "count"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer"
+            },
+            "count": {
+              "type": "integer"
+            }
+          }
+        },
+        "all": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/rule"
+          }
+        },
+        "any": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/rule"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

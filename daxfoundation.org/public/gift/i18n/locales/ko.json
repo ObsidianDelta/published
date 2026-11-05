@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "locale": "ko",
+    "name": "한국어",
+    "dir": "ltr",
+    "script": "Kore",
+    "og_locale": "ko_KR",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "시작하기 전에: 만 13세 이상인가요?",
+    "age_yes": "네, 13세 이상이에요",
+    "age_skip": "말하고 싶지 않아요",
+    "spark_q": "지금 사랑은 어떤 느낌인가요?",
+    "spark_hint": "가장 가까운 걸 하나 골라 주세요. 정답은 없어요.",
+    "echo_intro": "다른 언어에는 이 마음을 가리키는 말이 있어요:",
+    "see_others": "다른 사람들의 마음 보기",
+    "keep_going": "계속하기",
+    "dataset_title": "지금까지 사람들이 남긴 답이에요.",
+    "dataset_meta": "응답 {n}건 · 공개 데이터셋 · 매일 업데이트",
+    "dataset_link": "전체 공개 데이터셋 보기",
+    "consent_q": "답변을 이 연구에 보태 주실래요?",
+    "consent_yes": "네, 익명으로 보탤게요",
+    "consent_no": "아니요, 여기에만 둘게요",
+    "consent_explain_q": "여기서 ‘익명’은 무슨 뜻인가요?",
+    "consent_explain": "고른 단어, 사용하는 언어, 지금 있는 대략적인 지역만 저장해요. 그 밖에는 아무것도 저장하지 않아요. 언제든 지울 수 있어요.",
+    "when_q": "마지막으로 이런 마음이 든 건 언제였나요?",
+    "toward_q": "이 사랑이 향하는 사람이나 무언가가 있나요?",
+    "composition_title": "지금 내가 느끼는 사랑은 이런 소리예요.",
+    "hear_it": "들어 보기 (5초)",
+    "compare": "다른 소리와 비교하기",
+    "share_it": "공유하기",
+    "share_title": "누군가에게 보내 보세요.",
+    "share_hint": "링크에는 고른 단어와 소리만 담겨요. 이름도, 입력한 내용도 절대 담기지 않아요.",
+    "copy_link": "링크 복사",
+    "copied": "링크를 복사했어요",
+    "save_image": "이미지 저장",
+    "save_story": "스토리용으로 저장",
+    "make_mine": "나도 만들기",
+    "received_banner": "누군가 자기 마음을 소리로 보내왔어요. 먼저 들어 보고, 이제 내 소리도 만들어 보세요.",
+    "received_chain": "이 소리는 지금까지 {n}번 전해졌어요.",
+    "answer_back": "내 소리로 답하기",
+    "duet_title": "함께 울리는 두 소리",
+    "circle_invite": "단톡방에 물어보기",
+    "circle_title": "우리 모임의 사랑은 어떤 소리일까요?",
+    "circle_hint": "모두 소리를 하나씩 더해요. 누가 무엇을 골랐는지는 아무도 몰라요. 함께 만든 화음만 들려요.",
+    "try_another": "다른 마음으로 해 보기",
+    "start_over": "처음부터 다시",
+    "take_breath": "잠깐 쉬어 가기",
+    "breath_body": "여기서 멈춰도 괜찮아요. 잃는 건 없고, ‘네’라고 하지 않았다면 아무것도 보내지지 않았어요.",
+    "data_panel": "이 페이지가 나에 대해 아는 것",
+    "delete_mine": "내 답변 삭제",
+    "framing": "DAX 재단의 연구 프로젝트",
+    "language": "언어",
+    "sound_credit": "우리만의 음색으로 연주해요. 화음만 쓰고, 녹음은 절대 쓰지 않아요.",
+    "translate_invite": "다른 언어를 할 줄 아세요? 이 말을 제대로 옮기도록 도와주세요."
+  },
+  "feelings": {
+    "warm": "따뜻함",
+    "quiet": "고요함",
+    "longing": "그리움",
+    "joyful": "즐거움",
+    "tender": "포근함",
+    "lost": "헷갈림"
+  },
+  "letters": {
+    "love": "사랑",
+    "tenderness": "다정함",
+    "togetherness": "함께함",
+    "trust": "믿음",
+    "curiosity": "호기심",
+    "adventure": "모험",
+    "creativity": "창의성",
+    "discovery": "발견",
+    "joy": "기쁨",
+    "hope": "희망",
+    "birth": "새로운 시작",
+    "awe": "경이로움",
+    "gratitude": "고마움",
+    "longing": "그리움",
+    "doubt": "망설임",
+    "re_love": "응답받은 사랑",
+    "empathy": "공감",
+    "compassion": "연민"
+  },
+  "tense": {
+    "was": "그때의 사랑",
+    "is": "지금의 사랑",
+    "will": "앞으로의 사랑"
+  },
+  "when": {
+    "today": "오늘",
+    "week": "이번 주",
+    "ago": "꽤 오래전",
+    "unsure": "잘 모르겠어요"
+  },
+  "toward": {
+    "person": "어떤 사람",
+    "place": "어떤 장소나 시절",
+    "idea": "어떤 생각",
+    "feeling": "그냥 느낌"
+  },
+  "card": {
+    "brand": "선물",
+    "head_mine": "내 마음은 이런 소리야.",
+    "head_gift": "선물하려고 만든 소리야.",
+    "head_answer": "네가 불러서, 내가 답했어.",
+    "head_circle": "우리 마음이 모이면 이런 소리야.",
+    "cta": "나도 만들기",
+    "chain": "{n}번 전해진 소리",
+    "alt": "‘{feeling}’ 글자를 음표가 동그랗게 둘러싼 카드. DAX 재단의 연구 프로젝트."
+  },
+  "share": {
+    "og_title": "내 언어로, 사랑은 어떤 소리일까요?",
+    "og_description": "내 사랑의 소리를 찾아서 누군가에게 보내 보세요. DAX 재단의 연구 프로젝트.",
+    "default": "사랑은 어떤 소리일까? 내 건 이거야: ‘{feeling}’. 너도 만들어 봐 → {url}",
+    "whatsapp": "너한테 주려고 만들었어 🎁 지금 내 마음의 소리: ‘{feeling}’. 들어 보고 네 것도 보내 줘 👉 {url}",
+    "whatsapp_status": "오늘 내 마음의 소리: ‘{feeling}’ ✦ 만들어 보고 싶으면 상태 메시지 링크 👇",
+    "sms": "내 마음을 소리로 만들어 봤어: ‘{feeling}’. 너도 만들어서 보내 줘 {url}",
+    "x": "내 언어로 사랑은 어떤 소리일까요? 오늘 제 소리: ‘{feeling}’.",
+    "telegram": "사랑은 어떤 소리일까? 내 건: ‘{feeling}’. 너도 만들어서 주고 싶은 사람한테 전해 줘 → {url}",
+    "line": "너 주려고 만들었어: ‘{feeling}’의 소리. 이제 네 차례 → {url}",
+    "wechat": "사랑은 어떤 소리일까? 내 건: ‘{feeling}’. 너도 만들어 봐: {url}",
+    "kakao": "🎁 작은 선물 도착! 오늘 내 마음의 소리: ‘{feeling}’. 너도 하나 만들어서 답장해 줘 ㅎㅎ → {url}",
+    "story_caption": "내 마음의 소리: ‘{feeling}’ ✦ 너는 어떤 소리야?",
+    "group_invite": "우리 방에서 작은 실험 하나 해 볼래? 각자 ‘사랑의 소리’를 하나씩 더해서, 우리가 함께 어떤 소리를 내는지 들어 보자. 누가 뭘 골랐는지는 아무도 몰라. 하고 싶은 사람만 🙌 {url}",
+    "answer_back": "네 거 잘 받았어, 이건 내 답장 💛 {url}",
+    "email_subject": "너한테 주려고 만든 게 있어",
+    "email_body": "지금 내게 사랑은 이런 소리야: ‘{feeling}’.\n\n열어서 들어 보고, 너도 만들어서 보내 줘:\n{url}\n\n(DAX 재단의 연구 프로젝트야. 가입도 설치도 필요 없어.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "other": "응답 {n}건 · 공개 데이터셋 · 매일 업데이트"
+    },
+    "ui.received_chain": {
+      "other": "이 소리는 지금까지 {n}번 전해졌어요."
+    },
+    "card.chain": {
+      "other": "{n}번 전해진 소리"
+    }
+  }
+}

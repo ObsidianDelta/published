@@ -1,0 +1,144 @@
+{
+  "_meta": {
+    "locale": "id",
+    "name": "Bahasa Indonesia",
+    "dir": "ltr",
+    "script": "Latn",
+    "og_locale": "id_ID",
+    "digits": "latn",
+    "status": "machine-draft",
+    "needs_native_review": true
+  },
+  "ui": {
+    "age_q": "Sebelum mulai: apakah usiamu 13 tahun atau lebih?",
+    "age_yes": "Ya, usiaku 13 tahun atau lebih",
+    "age_skip": "Aku memilih tidak menjawab",
+    "spark_q": "Seperti apa rasanya cinta bagimu saat ini?",
+    "spark_hint": "Pilih yang paling pas. Tidak ada jawaban yang salah.",
+    "echo_intro": "Bahasa lain punya kata untuk ini:",
+    "see_others": "Lihat apa yang dirasakan orang lain",
+    "keep_going": "Lanjut",
+    "dataset_title": "Ini jawaban orang-orang sejauh ini.",
+    "dataset_meta": "{n} jawaban · Dataset: publik · Diperbarui setiap hari",
+    "dataset_link": "Lihat dataset terbuka selengkapnya",
+    "consent_q": "Mau jawabanmu ikut dalam riset ini?",
+    "consent_yes": "Ya, masukkan jawabanku secara anonim",
+    "consent_no": "Tidak, simpan di sini saja",
+    "consent_explain_q": "Apa arti \"anonim\" di sini?",
+    "consent_explain": "Kami menyimpan kata yang kamu pilih, bahasamu, dan perkiraan wilayah dunia tempatmu berada. Tidak ada yang lain. Kamu bisa menghapusnya kapan saja.",
+    "when_q": "Kapan terakhir kali kamu merasakan ini?",
+    "toward_q": "Apakah cinta ini untuk seseorang atau sesuatu?",
+    "composition_title": "Inilah suara cintamu.",
+    "hear_it": "Dengarkan (5 detik)",
+    "compare": "Lihat perbandingannya",
+    "share_it": "Bagikan",
+    "share_title": "Kirim ke seseorang.",
+    "share_hint": "Tautanmu hanya membawa kata dan suara yang kamu pilih. Namamu tidak ikut, apa pun yang kamu ketik juga tidak.",
+    "copy_link": "Salin tautan",
+    "copied": "Tautan disalin",
+    "save_image": "Simpan gambar",
+    "save_story": "Simpan sebagai story",
+    "make_mine": "Buat punyaku",
+    "received_banner": "Seseorang mengirimkan rasa sayangnya untukmu, dalam bentuk suara. Ini punyanya. Sekarang buat punyamu.",
+    "received_chain": "Yang ini sudah diteruskan {n} kali.",
+    "answer_back": "Balas dengan punyamu",
+    "duet_title": "Dua suara kalian, berpadu.",
+    "circle_invite": "Ajak grupmu",
+    "circle_title": "Seperti apa suara cinta di antara orang-orang terdekatmu?",
+    "circle_hint": "Semua orang menambahkan satu suara. Tak ada yang tahu siapa memilih apa, hanya akor yang kalian buat bersama.",
+    "try_another": "Coba perasaan lain",
+    "start_over": "Mulai lagi",
+    "take_breath": "Tarik napas dulu",
+    "breath_body": "Kamu boleh berhenti di sini. Tidak ada yang hilang, dan tidak ada yang terkirim kecuali kamu bilang ya.",
+    "data_panel": "Apa yang diketahui halaman ini tentangmu",
+    "delete_mine": "Hapus jawabanku",
+    "framing": "Sebuah proyek riset dari DAX Foundation",
+    "language": "Bahasa",
+    "sound_credit": "Dimainkan dengan suara kami sendiri: hanya harmoni, bukan rekaman.",
+    "translate_invite": "Bisa bahasa lain? Bantu kami menyampaikannya dengan tepat."
+  },
+  "feelings": {
+    "warm": "hangat",
+    "quiet": "tenang",
+    "longing": "rindu",
+    "joyful": "bahagia",
+    "tender": "lembut",
+    "lost": "hilang arah"
+  },
+  "letters": {
+    "love": "cinta",
+    "tenderness": "kelembutan",
+    "togetherness": "kebersamaan",
+    "trust": "kepercayaan",
+    "curiosity": "rasa ingin tahu",
+    "adventure": "petualangan",
+    "creativity": "kreativitas",
+    "discovery": "penemuan",
+    "joy": "kegembiraan",
+    "hope": "harapan",
+    "birth": "awal yang baru",
+    "awe": "rasa takjub",
+    "gratitude": "rasa terima kasih",
+    "longing": "kerinduan",
+    "doubt": "keraguan",
+    "re_love": "cinta yang terjawab",
+    "empathy": "empati",
+    "compassion": "belas kasih"
+  },
+  "tense": {
+    "was": "cinta yang dulu",
+    "is": "cinta yang sekarang",
+    "will": "cinta yang akan datang"
+  },
+  "when": {
+    "today": "hari ini",
+    "week": "minggu ini",
+    "ago": "sudah agak lama",
+    "unsure": "aku kurang yakin"
+  },
+  "toward": {
+    "person": "seseorang",
+    "place": "sebuah tempat atau masa",
+    "idea": "sebuah gagasan",
+    "feeling": "sekadar perasaan"
+  },
+  "card": {
+    "brand": "Sebuah hadiah",
+    "head_mine": "Begini suara cintaku.",
+    "head_gift": "Suara ini kubuat untukmu.",
+    "head_answer": "Kamu memanggil. Aku menjawab.",
+    "head_circle": "Begini suara cinta kita.",
+    "cta": "Buat punyamu",
+    "chain": "sudah diteruskan {n} kali",
+    "alt": "Kartu bertuliskan kata \"{feeling}\" dan lingkaran not musik. Sebuah proyek riset dari DAX Foundation."
+  },
+  "share": {
+    "og_title": "Seperti apa suara cinta dalam bahasamu?",
+    "og_description": "Temukan suara cintamu, lalu kirimkan ke seseorang. Sebuah proyek riset dari DAX Foundation.",
+    "default": "Seperti apa suara cinta? Punyaku: \"{feeling}\". Bikin punyamu: {url}",
+    "whatsapp": "Aku bikinin kamu sesuatu 🎁 Ini suara sayangku sekarang: \"{feeling}\". Buka, terus kirim balik punyamu ya 👉 {url}",
+    "whatsapp_status": "Suara cintaku hari ini: \"{feeling}\" ✦ Mau bikin punyamu? Link-nya di statusku 👇",
+    "sms": "Aku bikin suara cintaku (\"{feeling}\"). Bikin punyamu, kirim balik ya: {url}",
+    "x": "Seperti apa suara cinta dalam bahasamu? Punyaku hari ini: \"{feeling}\".",
+    "telegram": "Seperti apa suara cinta? Punyaku: \"{feeling}\". Bikin punyamu, lalu teruskan → {url}",
+    "line": "Bikinin kamu sesuatu: suara \"{feeling}\". Giliranmu → {url}",
+    "wechat": "Seperti apa suara cinta? Punyaku \"{feeling}\". Bikin punyamu: {url}",
+    "kakao": "Suara cintaku hari ini: \"{feeling}\". Bikin punyamu, kirim balik ya → {url}",
+    "story_caption": "suara cintaku: {feeling} ✦ kalau punyamu, kayak apa?",
+    "group_invite": "Eksperimen kecil buat grup ini: masing-masing tambahkan suara cintanya, lalu kita dengar seperti apa suara kita bareng-bareng. Nggak ada yang tahu siapa pilih apa. {url}",
+    "answer_back": "Kamu sudah kirim punyamu, ini balasanku 💛 {url}",
+    "email_subject": "Aku bikin sesuatu untukmu",
+    "email_body": "Begini suara cinta buatku saat ini: \"{feeling}\".\n\nBuka, lalu bikin punyamu dan kirim balik ya:\n{url}\n\n(Sebuah proyek riset dari DAX Foundation. Tanpa daftar, tanpa perlu instal apa pun.)"
+  },
+  "plurals": {
+    "ui.dataset_meta": {
+      "other": "{n} jawaban · Dataset: publik · Diperbarui setiap hari"
+    },
+    "ui.received_chain": {
+      "other": "Yang ini sudah diteruskan {n} kali."
+    },
+    "card.chain": {
+      "other": "sudah diteruskan {n} kali"
+    }
+  }
+}
