@@ -1,0 +1,14 @@
+---
+// /privacy/ -- the Privacy Policy, English then French (v1.0, 2026-11-05).
+// Content lives in src/data/policies.js; change it there, under state/privacy/POLICY-PROCESS.md.
+import Base from '../../layouts/Base.astro';
+import PolicyDoc from '../../components/PolicyDoc.astro';
+import { PRIVACY } from '../../data/policies.js';
+---
+<Base
+  title="Privacy Policy · Politique de confidentialité"
+  description="How daxfoundation.org and its services handle personal information: what we collect, what never leaves your device, where it is stored and your rights. In English and French."
+  wide
+>
+  <PolicyDoc doc={PRIVACY} other={{ href: '/security/', en: 'Security Policy', fr: 'Politique de sécurité' }} />
+</Base>

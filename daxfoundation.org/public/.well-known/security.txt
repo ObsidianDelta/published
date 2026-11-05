@@ -1,0 +1,7 @@
+# Security contact for daxfoundation.org and its services (RFC 9116).
+# Policy, scope, safe harbour and response targets: https://daxfoundation.org/security/
+Contact: mailto:dax@daxfoundation.org
+Expires: 2027-05-05T00:00:00.000Z
+Preferred-Languages: en, fr
+Canonical: https://daxfoundation.org/.well-known/security.txt
+Policy: https://daxfoundation.org/security/#disclosure

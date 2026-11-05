@@ -5,3 +5,8 @@ https://:project.pages.dev/*
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex
+
+# 2026-11-05 (Security Policy v1.0): browsers use HTTPS only for daxfoundation.org.
+# Apex only (no includeSubDomains, no preload) so no other host is affected.
+/*
+  Strict-Transport-Security: max-age=31536000

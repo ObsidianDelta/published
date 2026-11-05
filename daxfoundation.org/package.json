@@ -7,7 +7,7 @@
     "tokens": "node scripts/explain/tokens-to-css.mjs",
     "prebuild": "npm run tokens",
     "dev": "astro dev",
-    "build": "astro build && node tools/cf-beacon.mjs",
+    "build": "astro build && node tools/cf-beacon.mjs && node tools/policy-links.mjs",
     "preview": "astro preview"
   },
   "dependencies": {

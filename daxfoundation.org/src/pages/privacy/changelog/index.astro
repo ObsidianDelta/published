@@ -1,0 +1,53 @@
+---
+// /privacy/changelog/ -- every version of the Privacy and Security Policies, newest first.
+// Past versions stay readable in the public record (the published repository's history)
+// and as frozen copies in Skippy state/privacy/archive/.
+import Base from '../../../layouts/Base.astro';
+import { POLICY, CHANGELOG } from '../../../data/policies.js';
+const HIST = 'https://github.com/ObsidianDelta/published/commits/main/daxfoundation.org/src/data/policies.js';
+---
+<Base
+  title="Policy changelog · Journal des modifications"
+  description="Every version of the daxfoundation.org Privacy Policy and Security Policy, what changed and when, and how the policies are reviewed. In English and French."
+>
+  <article class="log">
+    <section id="en" lang="en">
+      <h1>Policy changelog</h1>
+      <p>The <a href="/privacy/">Privacy Policy</a> and the <a href="/security/">Security Policy</a> change together. Current version: <strong>{POLICY.version}</strong>, in force since {POLICY.dateEn}. Next scheduled review: {POLICY.nextReviewEn}.</p>
+      <h2>How the policies change</h2>
+      <ul>
+        <li>Every new service, or new kind of data, ships its data-map entry and a policy update <strong>before</strong> it launches.</li>
+        <li>A review every quarter, and a legal review before any use with schools or with children under 16.</li>
+        <li>Material changes are announced on this site at least 30 days before they apply.</li>
+        <li>Every version is kept: see the <a href={HIST}>full history in the public record</a>.</li>
+      </ul>
+      <h2>Versions</h2>
+      <ol class="vers" reversed>
+        {CHANGELOG.map((c) => <li><strong>v{c.version}</strong> · <time datetime={c.date}>{c.date}</time> · {c.en}</li>)}
+      </ol>
+      <p><a href="#fr">Version française</a></p>
+    </section>
+    <section id="fr" lang="fr">
+      <h2 class="h1">Journal des modifications</h2>
+      <p>La <a href="/privacy/#fr">Politique de confidentialité</a> et la <a href="/security/#fr">Politique de sécurité</a> changent ensemble. Version en vigueur : <strong>{POLICY.version}</strong>, depuis le {POLICY.dateFr}. Prochaine révision prévue : {POLICY.nextReviewFr}.</p>
+      <h3>Comment les politiques changent</h3>
+      <ul>
+        <li>Chaque nouveau service, ou nouveau type de données, arrive avec son entrée dans la carte des données et une mise à jour de la politique <strong>avant</strong> son lancement.</li>
+        <li>Une révision chaque trimestre, et un examen juridique avant toute utilisation avec des écoles ou des enfants de moins de 16 ans.</li>
+        <li>Les changements importants sont annoncés sur ce site au moins 30 jours avant de s’appliquer.</li>
+        <li>Chaque version est conservée : voir <a href={HIST}>l’historique complet dans le registre public</a>.</li>
+      </ul>
+      <h3>Versions</h3>
+      <ol class="vers" reversed>
+        {CHANGELOG.map((c) => <li><strong>v{c.version}</strong> · <time datetime={c.date}>{c.date}</time> · {c.fr}</li>)}
+      </ol>
+      <p><a href="#en">English version</a></p>
+    </section>
+  </article>
+</Base>
+<style>
+  .log { padding-block: 1rem 2rem; }
+  .log h1, .log .h1 { font-size: clamp(1.6rem, 5vw, 2.2rem); line-height: 1.15; }
+  .log section + section { margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+  .vers li { margin-bottom: 0.6rem; }
+</style>

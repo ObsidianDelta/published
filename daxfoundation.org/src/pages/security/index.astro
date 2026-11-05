@@ -1,0 +1,14 @@
+---
+// /security/ -- the Security Policy and vulnerability disclosure, English then French (v1.0, 2026-11-05).
+// Content lives in src/data/policies.js. The machine-readable contact is public/.well-known/security.txt.
+import Base from '../../layouts/Base.astro';
+import PolicyDoc from '../../components/PolicyDoc.astro';
+import { SECURITY } from '../../data/policies.js';
+---
+<Base
+  title="Security Policy · Politique de sécurité"
+  description="The security guarantees built into daxfoundation.org and its services, their known limits, and how to report a vulnerability. In English and French."
+  wide
+>
+  <PolicyDoc doc={SECURITY} other={{ href: '/privacy/', en: 'Privacy Policy', fr: 'Politique de confidentialité' }} />
+</Base>

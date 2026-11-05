@@ -1,0 +1,67 @@
+---
+// One policy (privacy or security), English then French, from src/data/policies.js.
+// 2026-11-05 (v1.0). French section ids carry an "fr-" prefix so the two
+// languages can sit on one page without duplicate anchors.
+import { POLICY } from '../data/policies.js';
+interface Props {
+  doc: { en: any; fr: any };
+  other: { href: string; en: string; fr: string };
+}
+const { doc, other } = Astro.props;
+const langs = [
+  { code: 'en', d: doc.en, pre: '', shortH: 'The short version', tocH: 'Contents', ver: `Version ${POLICY.version} · in force since ${POLICY.dateEn} · next review ${POLICY.nextReviewEn}`, otherLabel: other.en, log: 'Changelog and past versions', back: 'Version française', backHref: '#fr' },
+  { code: 'fr', d: doc.fr, pre: 'fr-', shortH: 'En bref', tocH: 'Sommaire', ver: `Version ${POLICY.version} · en vigueur depuis le ${POLICY.dateFr} · prochaine révision le ${POLICY.nextReviewFr}`, otherLabel: other.fr, log: 'Journal des modifications et versions antérieures', back: 'English version', backHref: '#en' },
+];
+---
+<article class="pol">
+  {langs.map((L) => (
+    <section class="pol-lang" id={L.code} lang={L.code}>
+      <header class="pol-head">
+        <p class="pol-kicker">{L.d.kicker}</p>
+        <h1>{L.d.title}</h1>
+        <p class="pol-ver">{L.ver}</p>
+        <p class="pol-nav">
+          <a href={L.backHref}>{L.back}</a>
+          <a href={other.href + (L.code === 'fr' ? '#fr' : '')}>{L.otherLabel}</a>
+          <a href={'/privacy/changelog/' + (L.code === 'fr' ? '#fr' : '')}>{L.log}</a>
+        </p>
+      </header>
+      <p class="pol-lead">{L.d.lead}</p>
+      <div class="pol-short">
+        <h2 id={L.pre + 'short'}>{L.shortH}</h2>
+        <ul>{L.d.short.map((s: string) => <li set:html={s} />)}</ul>
+      </div>
+      <nav class="pol-toc" aria-label={L.tocH}>
+        <h2>{L.tocH}</h2>
+        <ol>{L.d.sections.map((s: any) => <li><a href={'#' + L.pre + s.id}>{s.h.replace(/^\d+\.\s*/, '')}</a></li>)}</ol>
+      </nav>
+      {L.d.sections.map((s: any) => (
+        <section class="pol-sec">
+          <h2 id={L.pre + s.id}>{s.h}</h2>
+          <Fragment set:html={s.html} />
+        </section>
+      ))}
+    </section>
+  ))}
+</article>
+
+<style>
+  .pol { padding-block: 1rem 2rem; }
+  .pol-lang + .pol-lang { margin-top: 4rem; padding-top: 3rem; border-top: 1px solid var(--line); }
+  .pol-kicker { font-size: 0.8125rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.5rem; }
+  .pol h1 { font-size: clamp(1.75rem, 5vw, 2.4rem); line-height: 1.15; margin: 0 0 0.5rem; }
+  .pol-ver { font-size: 0.875rem; color: var(--muted); margin: 0 0 0.75rem; }
+  .pol-nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; font-size: 0.875rem; margin: 0 0 2rem; }
+  .pol-nav a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .pol-lead { font-size: 1.125rem; }
+  .pol-short { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.25rem; margin: 1.5rem 0; background: #111; }
+  .pol-short h2 { margin-top: 0; font-size: 1.05rem; }
+  .pol-short li { margin-bottom: 0.45rem; }
+  .pol-toc h2 { font-size: 1rem; color: var(--muted); }
+  .pol-toc ol { padding-left: 1.25rem; font-size: 0.9375rem; columns: 2 16rem; }
+  .pol-toc a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .pol-sec h2 { font-size: 1.25rem; margin: 2.25rem 0 0.5rem; scroll-margin-top: 1rem; }
+  .pol-sec :global(h3) { font-size: 1.05rem; margin: 1.5rem 0 0.35rem; scroll-margin-top: 1rem; }
+  .pol-sec :global(li) { margin-bottom: 0.4rem; }
+  .pol-sec :global(a) { overflow-wrap: anywhere; }
+</style>
