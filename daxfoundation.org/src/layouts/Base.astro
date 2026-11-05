@@ -2,6 +2,7 @@
 import SiteHeader from "../components/SiteHeader.astro";
 import SeoJsonLd from "../components/SeoJsonLd.astro";
 import WhereThisFits from "../components/WhereThisFits.astro";
+import ShareBar from "../components/ShareBar.astro";
 interface Props {
   title?: string;
   description?: string;
@@ -11,6 +12,8 @@ interface Props {
   siteName?: string;
   // 2026-11-04 (SEO launch): true asks search engines to keep this page off their indexes.
   noindex?: boolean;
+  // 2026-11-04: the page's language (the share bar's default text follows it).
+  lang?: string;
 }
 const {
   title = 'DAX Foundation',
@@ -23,6 +26,7 @@ const {
   // other page emits exactly what it did before.
   siteName = 'DAX Foundation',
   noindex = false,
+  lang = 'en',
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.png', Astro.site);
@@ -50,7 +54,7 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
 // with it. Pages may pass `wide` for a slightly wider column.
 ---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -86,6 +90,8 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL('/og.p
     <main class:list={['wrap', { wide }]}>
       <slot />
     </main>
+    {/* 2026-11-04 (Jason): "let people share everything" -- plain share links, no scripts from anyone else */}
+    {!noindex && <ShareBar title={title} lang={lang} measure={wide ? '52rem' : '44rem'} />}
     <footer class="wrap foot">
       <span>DAX Foundation</span>
       <span class="foot-links">

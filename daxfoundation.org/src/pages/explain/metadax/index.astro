@@ -10,6 +10,7 @@ const chapters = await getCollectionChapters("metadax");
 <Explain
   title="Meta DAX — universal learning"
   description="The job that is left, built once already, turned inside out: Meta DAX, the DAX Foundation's universal learning initiative."
+  image="metadax"
 >
   <RunHeader run="metadax" chapters={chapters} />
   {chapters.map((c) => <Chapter chapter={c} total={chapters.length} />)}

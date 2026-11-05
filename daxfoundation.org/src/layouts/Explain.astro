@@ -10,6 +10,7 @@ import "../styles/colour.css";
 import { ClientRouter } from "astro:transitions";
 import SiteHeader from "../components/SiteHeader.astro";
 import SeoJsonLd from "../components/SeoJsonLd.astro";
+import ShareBar from "../components/ShareBar.astro";
 // The reading scale, as data (EXP-11): the chooser draws its chips from here, in
 // order, least background first. No hard-coded chips. `level` rides along on each
 // chip for the map (EXP-10 reads it).
@@ -23,6 +24,8 @@ interface Props {
   siteName?: string;
   // 2026-11-04 (SEO launch): true asks search engines to keep this page off their indexes.
   noindex?: boolean;
+  // 2026-11-04: the page's language (the share bar's default text follows it).
+  lang?: string;
 }
 const {
   title = "DAX Foundation",
@@ -31,12 +34,13 @@ const {
   ogType = "website",
   siteName = "DAX Foundation",
   noindex = false,
+  lang = "en",
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.png", Astro.site);
 ---
 <!doctype html>
-<html lang="en" data-theme="dark">
+<html lang={lang} data-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -78,6 +82,8 @@ const ogImage = image ? new URL(`/og/${image}.png`, Astro.site) : new URL("/og.p
     <main>
       <slot />
     </main>
+    {/* 2026-11-04 (Jason): "let people share everything" -- plain share links, no scripts from anyone else */}
+    {!noindex && <ShareBar title={title} lang={lang} measure="72rem" />}
     <footer class="foot">
       <span>DAX Foundation</span>
       <span class="foot-links">

@@ -1,0 +1,153 @@
+---
+// ShareBar (2026-11-04, Jason 23:06): "let people share everything on
+// daxfoundation.org." One small bar at the foot of every page (Base.astro and
+// Explain.astro). On a phone that can, one Share button opens the phone's own
+// share sheet (navigator.share); everywhere else, plain links for LinkedIn,
+// Facebook, X, Bluesky, WhatsApp and email, and a copy-link button.
+//
+// No third-party share script, widget, pixel or cookie: every button is a plain
+// URL the reader's own browser opens, so the site's no-cookies analytics promise
+// holds. Each shared link carries ?utm_source=<network>&utm_campaign=share so the
+// cookieless analytics can tell which network a visit came from.
+//
+// The links are server-rendered (they work with scripts off); the script only
+// adds the native share sheet and copy-link.
+interface Props {
+  title?: string;
+  lang?: string;
+  measure?: string;
+}
+const { title = "DAX Foundation", lang = "en", measure = "44rem" } = Astro.props;
+const TEXT = {
+  en: "Help start universal learning. We need more guides of every kind than ever, especially teachers.",
+  fr: "Aidez à lancer l'apprentissage universel. Nous avons besoin de plus de guides de toutes sortes que jamais, surtout des enseignants.",
+};
+const fr = lang.toLowerCase().startsWith("fr");
+const text = fr ? TEXT.fr : TEXT.en;
+const page = new URL(Astro.url.pathname, Astro.site);
+const tagged = (src: string) => {
+  const u = new URL(page);
+  u.searchParams.set("utm_source", src);
+  u.searchParams.set("utm_campaign", "share");
+  return u.toString();
+};
+const enc = encodeURIComponent;
+const NETWORKS = [
+  { id: "linkedin", label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(tagged("linkedin"))}` },
+  { id: "facebook", label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${enc(tagged("facebook"))}` },
+  { id: "x", label: "X", href: `https://x.com/intent/tweet?text=${enc(text)}&url=${enc(tagged("x"))}` },
+  { id: "bluesky", label: "Bluesky", href: `https://bsky.app/intent/compose?text=${enc(`${text} ${tagged("bluesky")}`)}` },
+  { id: "whatsapp", label: "WhatsApp", href: `https://wa.me/?text=${enc(`${text} ${tagged("whatsapp")}`)}` },
+  { id: "email", label: fr ? "Courriel" : "Email", href: `mailto:?subject=${enc(title)}&body=${enc(`${text}\n\n${tagged("email")}`)}` },
+];
+const L = fr
+  ? { h: "Partager cette page", share: "Partager", copy: "Copier le lien", copied: "Lien copié", aria: "Partager cette page" }
+  : { h: "Share this page", share: "Share", copy: "Copy link", copied: "Link copied", aria: "Share this page" };
+---
+<aside class="share" aria-label={L.aria} data-share data-url={page.toString()} data-title={title}
+  data-text={text} data-copied={L.copied} style={`--share-measure: ${measure}`}>
+  <div class="share-in">
+    <p class="share-h"><span class="share-dot" aria-hidden="true"></span>{L.h}{!fr && <span class="share-fr" lang="fr"> · Partager</span>}</p>
+    <div class="share-row">
+      <button type="button" class="share-btn share-native" data-share-native hidden>
+        <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path d="M12 3v12M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        {L.share}
+      </button>
+      <ul class="share-list" role="list" data-share-list>
+        {NETWORKS.map((n) => (
+          <li><a class="share-btn" href={n.href} data-net={n.id} target={n.id === "email" ? undefined : "_blank"}
+            rel={n.id === "email" ? undefined : "noopener noreferrer"}>{n.label}</a></li>
+        ))}
+        <li><button type="button" class="share-btn" data-share-copy hidden>{L.copy}</button></li>
+      </ul>
+    </div>
+    <p class="share-status" aria-live="polite" data-share-status></p>
+  </div>
+</aside>
+
+<script>
+  function tagged(url: string, src: string): string {
+    try {
+      const u = new URL(url);
+      u.searchParams.set("utm_source", src);
+      u.searchParams.set("utm_campaign", "share");
+      return u.toString();
+    } catch { return url; }
+  }
+  async function copy(s: string): Promise<boolean> {
+    try { await navigator.clipboard.writeText(s); return true; } catch { /* fall through */ }
+    try {
+      const t = document.createElement("textarea");
+      t.value = s; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
+      document.body.appendChild(t); t.select();
+      const ok = document.execCommand("copy");
+      t.remove();
+      return ok;
+    } catch { return false; }
+  }
+  function boot(): void {
+    document.querySelectorAll<HTMLElement>("[data-share]").forEach((bar) => {
+      if ((bar as any).__wired) return;
+      (bar as any).__wired = true;
+      const url = bar.dataset.url || location.href.split(/[?#]/)[0];
+      const status = bar.querySelector<HTMLElement>("[data-share-status]");
+      const say = (m: string) => {
+        if (!status) return;
+        status.textContent = m;
+        setTimeout(() => { if (status.textContent === m) status.textContent = ""; }, 2500);
+      };
+      // Copy link needs a script, so it shows only when one runs.
+      const copyBtn = bar.querySelector<HTMLButtonElement>("[data-share-copy]");
+      if (copyBtn) {
+        copyBtn.hidden = false;
+        copyBtn.addEventListener("click", async () => {
+          if (await copy(tagged(url, "copy"))) say(bar.dataset.copied || "Link copied");
+        });
+      }
+      // On a phone with a share sheet, one button instead of the list.
+      const native = bar.querySelector<HTMLButtonElement>("[data-share-native]");
+      const coarse = matchMedia("(pointer: coarse)").matches;
+      if (native && typeof navigator.share === "function" && coarse) {
+        native.hidden = false;
+        bar.classList.add("is-native");
+        native.addEventListener("click", async () => {
+          try {
+            await navigator.share({ title: bar.dataset.title || document.title, text: bar.dataset.text || "", url: tagged(url, "native") });
+          } catch { /* the reader closed the sheet */ }
+        });
+      }
+    });
+  }
+  document.addEventListener("astro:page-load", boot);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+</script>
+
+<style>
+  .share { width: 100%; margin-top: 2.5rem; }
+  .share-in {
+    max-width: var(--share-measure, 44rem); margin-inline: auto;
+    padding: 1.1rem clamp(1rem, 4vw, 1.5rem) 0.25rem;
+    border-top: 1px solid var(--line, #1e1e1e);
+  }
+  .share-h { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 0.65rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted, #8c8c8c); }
+  .share-fr { text-transform: none; letter-spacing: 0.02em; color: var(--faint, #5c5c5c); }
+  .share-dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: var(--lane, #b48cff); }
+  .share-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+  .share-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .share-list li { min-width: 0; }
+  .share.is-native .share-list { display: none; }
+  .share-btn {
+    display: inline-flex; align-items: center; gap: 0.4rem; min-height: 36px; padding: 0.3rem 0.85rem;
+    border: 1px solid var(--line, #1e1e1e); border-radius: 999px; background: transparent;
+    color: var(--ink-muted, var(--muted, #8c8c8c)); font: inherit; font-size: 0.8125rem; line-height: 1.2;
+    text-decoration: none; cursor: pointer; white-space: nowrap;
+    transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+  }
+  .share-btn:hover, .share-btn:focus-visible { color: var(--fg, #e8e8e8); border-color: var(--lane, #8c8c8c); background: color-mix(in oklch, var(--lane, #8c8c8c) 10%, transparent); }
+  .share-btn:focus-visible { outline: 2px solid var(--lane, #e8e8e8); outline-offset: 2px; }
+  .share-btn[hidden] { display: none; }
+  .share-native { border-color: var(--lane, #8c8c8c); color: var(--fg, #e8e8e8); padding-inline: 1.1rem; min-height: 40px; }
+  .share-status { min-height: 1.2em; margin: 0.4rem 0 0; font-size: 0.8125rem; color: var(--lane, #8c8c8c); }
+  @media (prefers-reduced-motion: reduce) { .share-btn { transition: none; } }
+</style>

@@ -3,6 +3,8 @@ import Explain from '../layouts/Explain.astro';
 import MapHome from '../components/explain/MapHome.astro';
 import RunHeader from '../components/explain/RunHeader.astro';
 import Chapter from '../components/explain/Chapter.astro';
+import ExperiencePicker from '../components/explain/ExperiencePicker.astro';
+import lenses from '../data/lenses.json';
 import { getCollectionChapters } from '../lib/explain/chapters.js';
 import { home as libraryHome, byKind } from '../data/library.js';
 import { posts, SERIES, seriesOf } from './_posts.js';
@@ -103,6 +105,13 @@ const writing = posts.filter((p) => !p.series).slice(0, 2);
 
 const runChapters = await getCollectionChapters('metadax');
 
+// 2026-11-04 (Jason, 22:59): "they have to pick their experience and then it opens
+// up." A first-time visitor picks an experience (ExperiencePicker, after Opening)
+// before the experience-dependent part opens; a returning visitor goes straight in.
+// The order of the page is unchanged. The head script below names the state on
+// <html data-xp-gate> before the page paints (see ExperiencePicker.astro for the states).
+const lensIds = lenses.map((l) => l.id);
+
 const findings = 'https://github.com/daxfoundation/metadax/blob/main/experiments/FINDINGS-20261010.md';
 
 // 2026-11-04 (Jason: "there's nothing happening on my homepage... show upcoming
@@ -156,6 +165,18 @@ const firstLook = [
   title="DAX Foundation · Meta DAX, universal learning"
   description="DAX: preservation and expansion of life, humanity, and consciousness. Meta DAX, the Foundation's universal learning initiative: any subject, built for one person, free."
 >
+  <Fragment slot="head">
+    <script is:inline define:vars={{ lensIds }}>
+      (function () {
+        var s = 'peek';
+        try {
+          var v = localStorage.getItem('dax-explain-lens');
+          s = v && lensIds.indexOf(v) !== -1 ? 'known' : (location.hash.length > 1 ? 'peek' : 'pick');
+        } catch (e) { s = 'peek'; }
+        document.documentElement.setAttribute('data-xp-gate', s);
+      })();
+    </script>
+  </Fragment>
   <section class="home-w home-lede" aria-labelledby="dax">
     <h1 id="dax">DAX: preservation and expansion of life, humanity, and consciousness.</h1>
     <p class="to-founder"><a href="#founder">A note from the founder &darr;</a></p>
@@ -206,6 +227,10 @@ const firstLook = [
     </div>
   </section>
 
+  {/* 2026-11-04: pick your experience first; everything under it waits for the pick */}
+  <ExperiencePicker />
+
+  <div class="xp-fold" id="xp-fold" data-xp-fold tabindex="-1">
   {/* the window: choose your experience, the live graph, the other three runs */}
   <div class="home-w">
     <MapHome exclude={["metadax"]} />
@@ -337,6 +362,10 @@ const firstLook = [
     </p>
   </section>
 
+  </div>
+  {/* shown only while the page waits for a pick (data-xp-gate="pick") */}
+  <p class="home-w xp-fold-note"><a href="#experience">&uarr; Pick your experience and the page opens.<span lang="fr">Choisissez votre expérience et la page s’ouvre.</span></a></p>
+
   {/* Old links such as daxfoundation.org/#cognitive-companion still land:
       a definition anchor that no longer exists here forwards to the same
       anchor on /definitions/. */}
@@ -379,6 +408,25 @@ const firstLook = [
   .show-all-btn { all: unset; cursor: pointer; color: var(--muted); border-bottom: 1px solid var(--line); font-size: 0.875rem; }
   .show-all-btn:hover, .show-all-btn:focus-visible { color: var(--fg); border-bottom-color: var(--run); }
   .founder-block { padding-bottom: 1rem; }
+
+  /* 2026-11-04: while the page waits for a first pick (html[data-xp-gate="pick"]) the
+     content under the picker is folded and dimmed; it is all in the HTML. */
+  .xp-fold:focus { outline: none; }
+  .xp-fold.xp-opening { overflow: hidden; transition: max-height 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.5s ease, filter 0.5s ease; }
+  :global(:root[data-xp-gate="pick"]) .xp-fold {
+    max-height: 24rem; overflow: hidden; pointer-events: none; user-select: none;
+    opacity: 0.4; filter: saturate(0.4);
+    -webkit-mask-image: linear-gradient(#000 0%, #000 25%, transparent 100%);
+    mask-image: linear-gradient(#000 0%, #000 25%, transparent 100%);
+  }
+  .xp-fold-note { display: none; margin: -3rem auto 3rem; position: relative; text-align: center; }
+  :global(:root[data-xp-gate="pick"]) .xp-fold-note { display: block; }
+  .xp-fold-note a { display: inline-flex; flex-direction: column; gap: 0.2rem; padding: 0.75rem 1.25rem; border: 1px solid var(--lane); border-radius: 999px; background: var(--bg, #0a0a0a); color: var(--fg); text-decoration: none; font-size: 0.9375rem; }
+  .xp-fold-note a span { font-size: 0.8125rem; color: var(--muted); }
+  .xp-fold-note a:hover, .xp-fold-note a:focus-visible { background: color-mix(in oklch, var(--lane) 14%, var(--bg, #0a0a0a)); }
+  .xp-fold-note a:focus-visible { outline: 2px solid var(--lane); outline-offset: 3px; }
+  @media (max-width: 40rem) { .xp-fold-note a { border-radius: 16px; } }
+  @media (prefers-reduced-motion: reduce) { .xp-fold.xp-opening { transition: none; } }
 
   /* Opening · Ouverture (2026-11-04): the labs' gold, the share cards' palette. */
   .opening { --op-gold: #c9a45a; --op-gold-hi: #f1d9a0; --op-gold-line: #3a3222; padding-block: 1.25rem 2.5rem; }

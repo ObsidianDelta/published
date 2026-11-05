@@ -1,0 +1,328 @@
+---
+// ExperiencePicker (2026-11-04, Jason 22:59): "you know how they have to pick
+// their experience, right? ... Right now we're defaulting their experience. On
+// the new version, I think they have to pick their experience and then it opens
+// up." The home page asks a first-time visitor to pick an experience before the
+// experience-dependent part (the map, the Meta DAX run, Go further, the founder's
+// note) opens. Order is unchanged: the DAX line, Opening, then this, then the rest.
+//
+// States, set on <html data-xp-gate> by the inline head script in index.astro before
+// the page paints, and again by the script below (view transitions):
+//   (none)  scripts off: the picker shows, the content is open (never blank).
+//   pick    first visit, storage works, no #anchor: the content below is folded
+//           and dimmed until a pick.
+//   peek    first visit but storage is blocked, or the visitor came in on an
+//           #anchor: the picker shows, the content is open.
+//   known   a returning visitor (a stored experience): straight in, no picker.
+//   chosen  picked on this visit: the picker folds to one line.
+// The pick goes through the top menu's switcher (SiteHeader, #lens-chips), so it
+// is stored under the same key (dax-explain-lens) and every page follows it.
+// Every word below the picker stays in the HTML for search engines; the fold is
+// CSS only (no noindex, nothing removed).
+import lenses from "../../data/lenses.json";
+
+// One plain line per experience, in English (lenses.json "voice") and French.
+// The Tamil experience keeps its own label; its line says what it is, never who
+// it is for.
+const FR: Record<string, { name: string; line: string; lineEn?: string }> = {
+  kid: { name: "Droit au but", line: "Simple et chaleureux." },
+  curious: { name: "Simple curiosité", line: "Un peu plus de détails, toujours en mots simples." },
+  parent: { name: "Je suis parent", line: "Pour qui a un enfant à la table." },
+  guide: { name: "Je suis guide", line: "Pour qui enseigne, accompagne ou forme." },
+  manager: { name: "Je dirige une équipe", line: "Pour qui veille à l’apprentissage des autres au travail." },
+  entrepreneur: { name: "Je veux bâtir dessus", line: "Pour qui veut en vivre." },
+  builder: { name: "Je fais du logiciel", line: "Pour qui livre du logiciel." },
+  funder: { name: "Je finance des projets", line: "Pour qui décide où va l’argent." },
+  researcher: { name: "Je fais de la recherche", line: "Pour qui veut aller au fond des choses." },
+  ta: { name: "En tamoul", line: "En tamoul, tout doucement.", lineEn: "In Tamil, gently." },
+};
+const cards = (lenses as any[]).map((l) => ({
+  id: l.id as string,
+  hue: l.hue as number,
+  level: l.level as number,
+  name: l.label as string,
+  nameFr: FR[l.id]?.name ?? "",
+  line: FR[l.id]?.lineEn ?? `${l.voice}.`,
+  lineFr: FR[l.id]?.line ?? "",
+  lang: l.id === "ta" ? "ta" : undefined,
+}));
+---
+<section class="home-w xp-pick" id="experience" aria-labelledby="xp-pick-h" data-xp-pick>
+  <div class="xp-full">
+    <p class="xp-kicker"><span class="xp-beat" aria-hidden="true"></span>Your experience&nbsp;<span class="xp-sep">·</span>&nbsp;<span lang="fr">Votre expérience</span></p>
+    <h2 class="xp-h" id="xp-pick-h">Pick your experience.<span class="xp-fr" lang="fr">Choisissez votre expérience.</span></h2>
+    <p class="xp-sub">Everything below is written for the one you pick. You can change it any time, from <b>Your experience</b> at the top of every page.
+      <span class="xp-fr" lang="fr">Tout ce qui suit est écrit pour celle que vous choisissez. Vous pouvez la changer à tout moment, depuis « Your experience » en haut de chaque page.</span></p>
+    <noscript><p class="xp-sub xp-nojs">Scripts are off, so the page below shows its standard edition.<span class="xp-fr" lang="fr">Les scripts sont désactivés : la page ci-dessous montre son édition standard.</span></p></noscript>
+    <p class="xp-axis" aria-hidden="true"><span>Plainest <i lang="fr">le plus simple</i></span><span class="xp-axis-line"></span><span>Deepest <i lang="fr">le plus poussé</i></span></p>
+    <ul class="xp-cards" role="list">
+      {cards.map((c) => (
+        <li>
+          <a class="xp-card" href="#learning" data-pick={c.id} style={`--chip-h: ${c.hue}`}>
+            <span class="xp-pips" aria-hidden="true">{[1, 2, 3, 4, 5].map((n) => <i class={n <= c.level ? "on" : undefined}></i>)}</span>
+            <strong class="xp-name" lang={c.lang}>{c.name}</strong>
+            <span class="xp-name-fr" lang="fr">{c.nameFr}</span>
+            <span class="xp-line">{c.line}</span>
+            <span class="xp-line xp-fr" lang="fr">{c.lineFr}</span>
+            <span class="xp-go" aria-hidden="true">&rarr;</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="xp-unsure">Not sure? Start with the first one.<span class="xp-fr-inline" lang="fr">Vous hésitez ? Commencez par la première.</span></p>
+  </div>
+
+  {/* After a pick on this visit: one line, and a way to see the cards again. */}
+  <div class="xp-done">
+    <p class="xp-done-line"><span class="xp-done-dot" aria-hidden="true"></span>Reading as <b data-xp-done-name></b><span class="xp-sep" aria-hidden="true">·</span><span lang="fr">Vous lisez en</span>&nbsp;<b lang="fr" data-xp-done-name-fr></b></p>
+    <button type="button" class="xp-change" data-xp-change aria-controls="experience">Change<span class="xp-sep" aria-hidden="true">·</span><span lang="fr">Changer</span></button>
+  </div>
+  <p class="xp-live" aria-live="polite" data-xp-live></p>
+</section>
+
+<script type="application/json" data-xp-names set:html={JSON.stringify(Object.fromEntries(cards.map((c) => [c.id, { en: c.name, fr: c.nameFr }])))} />
+
+<script>
+  const KEY = "dax-explain-lens";
+  const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const html = document.documentElement;
+
+  function ids(): string[] {
+    return Array.from(document.querySelectorAll<HTMLElement>("[data-pick]")).map((a) => a.dataset.pick || "");
+  }
+  function names(): Record<string, { en: string; fr: string }> {
+    try { return JSON.parse(document.querySelector("[data-xp-names]")?.textContent || "{}"); } catch { return {}; }
+  }
+  // The same rule as the inline head script, so a view-transition visit agrees.
+  function decide(): string {
+    try {
+      const v = localStorage.getItem(KEY);
+      if (v && ids().includes(v)) return "known";
+      return location.hash.length > 1 ? "peek" : "pick";
+    } catch { return "peek"; }
+  }
+  function fold(): HTMLElement | null { return document.querySelector<HTMLElement>("[data-xp-fold]"); }
+
+  function setState(s: string): void {
+    html.dataset.xpGate = s;
+    const f = fold();
+    if (f) {
+      if (s === "pick") f.setAttribute("inert", ""); else f.removeAttribute("inert");
+    }
+  }
+
+  function paintChosen(lens: string): void {
+    const n = names()[lens];
+    document.querySelectorAll<HTMLElement>("[data-xp-done-name]").forEach((b) => { b.textContent = n?.en || ""; });
+    document.querySelectorAll<HTMLElement>("[data-xp-done-name-fr]").forEach((b) => { b.textContent = n?.fr || n?.en || ""; });
+    document.querySelectorAll<HTMLElement>("[data-pick]").forEach((a) => {
+      if (a.dataset.pick === lens) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+  }
+
+  // Open the folded content: from its folded height to its full height, then let
+  // it be (no max-height left behind). Instant under reduced motion.
+  function unfold(then?: () => void): void {
+    const f = fold();
+    if (!f || REDUCED || html.dataset.xpGate !== "pick") { then?.(); return; }
+    const from = f.getBoundingClientRect().height;
+    f.style.maxHeight = `${from}px`;
+    f.classList.add("xp-opening");
+    requestAnimationFrame(() => {
+      f.style.maxHeight = `${f.scrollHeight}px`;
+      let done = false;
+      const end = () => {
+        if (done) return; done = true;
+        f.style.maxHeight = "";
+        f.classList.remove("xp-opening");
+      };
+      f.addEventListener("transitionend", (e) => { if (e.target === f && e.propertyName === "max-height") end(); }, { once: false });
+      setTimeout(end, 900);
+      then?.();
+    });
+  }
+
+  function chosen(lens: string, scroll: boolean): void {
+    const wasPick = html.dataset.xpGate === "pick";
+    paintChosen(lens);
+    const root = document.querySelector<HTMLElement>("[data-xp-pick]");
+    root?.classList.remove("is-expanded");
+    const go = () => {
+      setState("chosen");
+      const live = document.querySelector<HTMLElement>("[data-xp-live]");
+      const n = names()[lens];
+      if (live) live.textContent = `Reading as ${n?.en || lens}. The page is open.`;
+      const f = fold();
+      if (scroll && f) {
+        // the one-line "Reading as" sits at the top, the opened page right under it
+        root?.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" });
+        f.focus({ preventScroll: true });
+      }
+    };
+    if (wasPick) unfold(go); else go();
+  }
+
+  let picking = false;
+  function pick(lens: string): void {
+    // through the top menu's switcher: it stores, paints and tells the page
+    picking = true;
+    const chip = document.querySelector<HTMLElement>(`#lens-chips .chip[data-lens="${lens}"]`);
+    if (chip) chip.click();
+    else {
+      try { localStorage.setItem(KEY, lens); } catch { /* private mode */ }
+      document.dispatchEvent(new CustomEvent("dax-lens", { detail: lens }));
+    }
+    picking = false;
+    chosen(lens, true);
+  }
+
+  function boot(): void {
+    const root = document.querySelector<HTMLElement>("[data-xp-pick]");
+    if (!root || (root as any).__wired) return;
+    (root as any).__wired = true;
+    setState(decide());
+
+    root.addEventListener("click", (e) => {
+      const a = (e.target as Element | null)?.closest<HTMLElement>("[data-pick]");
+      if (a?.dataset.pick) { e.preventDefault(); pick(a.dataset.pick); return; }
+      const ch = (e.target as Element | null)?.closest<HTMLElement>("[data-xp-change]");
+      if (ch) {
+        root.classList.add("is-expanded");
+        const cur = root.querySelector<HTMLElement>('[data-pick][aria-current="true"]') || root.querySelector<HTMLElement>("[data-pick]");
+        cur?.focus();
+      }
+    });
+  }
+
+  // Document-level listeners, once per load (boot runs again on every
+  // view-transition visit to the home page).
+  if (!(window as any).__xpDocWired) {
+    (window as any).__xpDocWired = true;
+    // picked from the top menu instead: the page opens the same way
+    document.addEventListener("dax-lens", (e) => {
+      const lens = (e as CustomEvent).detail;
+      if (typeof lens !== "string" || picking) return;
+      if (!document.querySelector("[data-xp-pick]")) return;
+      const s = html.dataset.xpGate;
+      if (s === "pick" || s === "peek") chosen(lens, false);
+      else paintChosen(lens);
+    });
+
+    // a link to a spot further down (the founder's note, #cp, ...) opens the page
+    // for this visit without choosing for the reader. The click is caught first
+    // (the view-transition router moves in-page without a hashchange).
+    function openFor(id: string): boolean {
+      if (html.dataset.xpGate !== "pick") return false;
+      const target = id ? document.getElementById(id) : null;
+      const f = fold();
+      if (!target || !f || !f.contains(target)) return false;
+      setState("peek");
+      f.scrollTop = 0;
+      return true;
+    }
+    document.addEventListener("click", (e) => {
+      const a = (e.target as Element | null)?.closest<HTMLAnchorElement>('a[href^="#"]:not([data-pick])');
+      const id = a ? decodeURIComponent(a.getAttribute("href")!.slice(1)) : "";
+      if (id && openFor(id)) {
+        e.preventDefault();
+        history.pushState(null, "", `#${id}`);
+        document.getElementById(id)?.scrollIntoView({ behavior: REDUCED ? "auto" : "smooth", block: "start" });
+      }
+    }, true);
+    window.addEventListener("hashchange", () => {
+      if (html.dataset.xpGate !== "pick") return;
+      const id = decodeURIComponent(location.hash.slice(1));
+      const target = id ? document.getElementById(id) : null;
+      if (!target || !fold()?.contains(target)) return;
+      unfold(() => { setState("peek"); target.scrollIntoView({ block: "start" }); });
+    });
+  }
+
+  document.addEventListener("astro:page-load", boot);
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot, { once: true });
+  else boot();
+</script>
+
+<style>
+  .xp-pick { width: 100%; max-width: var(--measure-scene, 72rem); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 1.5rem); padding-block: 0.5rem 2.25rem; scroll-margin-top: 1rem; }
+  .xp-kicker { display: flex; align-items: center; gap: 0.55rem; margin: 0 0 0.6rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--lane); }
+  .xp-sep { color: var(--faint); margin-inline: 0.4rem; }
+  .xp-kicker .xp-sep { margin: 0; }
+  /* the heartbeat: two beats, then rest (Jason's pulse; the Opening's gold dot in the lane colour) */
+  .xp-beat { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: var(--lane); animation: xp-beat 0.909s ease-out infinite; }
+  @keyframes xp-beat {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 color-mix(in oklch, var(--lane) 55%, transparent); }
+    14% { transform: scale(1.35); }
+    28% { transform: scale(1); }
+    42% { transform: scale(1.2); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0.7rem transparent; }
+  }
+  .xp-h { margin: 0; font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.2rem); font-weight: 400; letter-spacing: -0.01em; line-height: 1.2; color: var(--fg); text-wrap: balance; }
+  .xp-fr { display: block; color: var(--muted); }
+  .xp-h .xp-fr { font-size: 0.62em; margin-top: 0.3rem; color: var(--lane); opacity: 0.85; }
+  .xp-sub { margin: 0.75rem 0 1.25rem; max-width: 42em; font-size: 0.9375rem; color: var(--ink-muted, #cfcfcf); }
+  .xp-sub b { font-weight: 600; color: var(--fg); }
+  .xp-sub .xp-fr { font-size: 0.875rem; margin-top: 0.2rem; }
+  .xp-nojs { margin-top: -0.5rem; }
+
+  .xp-axis { display: flex; align-items: center; gap: 0.75rem; margin: 0 0 0.6rem; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+  .xp-axis i { font-style: normal; text-transform: none; letter-spacing: 0.02em; opacity: 0.8; }
+  .xp-axis-line { flex: 1; height: 1px; background: linear-gradient(to right, oklch(0.8 0.13 95), oklch(0.8 0.13 52), oklch(0.8 0.13 346), oklch(0.8 0.13 288)); opacity: 0.55; }
+
+  .xp-cards { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(min(100%, 12.5rem), 1fr)); }
+  @media (min-width: 64rem) { .xp-cards { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  .xp-cards li { min-width: 0; }
+  .xp-card {
+    --chip: oklch(var(--lane-l) var(--lane-c) var(--chip-h));
+    position: relative; display: flex; flex-direction: column; gap: 0.2rem; height: 100%;
+    padding: 0.85rem 0.95rem 1rem; border: 1px solid color-mix(in oklch, var(--chip) 35%, var(--line));
+    border-radius: 12px; color: inherit; text-decoration: none;
+    background: linear-gradient(165deg, color-mix(in oklch, var(--chip) 10%, var(--surface, #141414)), var(--bg, #0a0a0a) 75%);
+    transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .xp-card:hover, .xp-card:focus-visible { border-color: var(--chip); transform: translateY(-2px); box-shadow: 0 10px 28px -14px color-mix(in oklch, var(--chip) 60%, transparent); }
+  .xp-card:focus-visible { outline: 2px solid var(--chip); outline-offset: 3px; }
+  .xp-card[aria-current="true"] { border-color: var(--chip); background: color-mix(in oklch, var(--chip) 18%, var(--surface, #141414)); }
+  .xp-pips { display: flex; gap: 3px; margin-bottom: 0.45rem; }
+  .xp-pips i { width: 0.9rem; height: 3px; border-radius: 2px; background: color-mix(in oklch, var(--chip) 22%, var(--line)); }
+  .xp-pips i.on { background: var(--chip); }
+  .xp-name { font-size: 1.02rem; font-weight: 500; line-height: 1.25; color: var(--fg); }
+  .xp-name-fr { font-size: 0.8125rem; color: var(--chip); }
+  .xp-line { margin-top: 0.4rem; font-size: 0.84rem; line-height: 1.45; color: var(--ink-muted, #bdbdbd); }
+  .xp-line.xp-fr { margin-top: 0.15rem; font-size: 0.78rem; color: var(--faint); }
+  .xp-go { position: absolute; right: 0.85rem; top: 0.7rem; color: var(--chip); opacity: 0; transition: opacity 0.18s ease, transform 0.18s ease; }
+  .xp-card:hover .xp-go, .xp-card:focus-visible .xp-go { opacity: 1; transform: translateX(2px); }
+  .xp-card[aria-current="true"] .xp-go { opacity: 1; }
+  .xp-unsure { margin: 0.9rem 0 0; font-size: 0.8125rem; color: var(--muted); }
+  .xp-fr-inline { margin-left: 0.6rem; color: var(--faint); }
+
+  /* after a pick: one line */
+  .xp-done { display: none; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem 1rem; padding: 0.75rem 1rem; border: 1px solid color-mix(in oklch, var(--lane) 45%, var(--line)); border-radius: 12px; background: color-mix(in oklch, var(--lane) 8%, transparent); }
+  .xp-done-line { margin: 0; font-size: 0.9375rem; color: var(--ink-muted, #cfcfcf); min-width: 0; }
+  .xp-done-line b { color: var(--lane); font-weight: 600; }
+  .xp-done-dot { display: inline-block; width: 0.55rem; height: 0.55rem; margin-right: 0.55rem; border-radius: 50%; background: var(--lane); vertical-align: 0.05em; }
+  .xp-change { font: inherit; font-size: 0.875rem; min-height: 40px; padding: 0.3rem 0.95rem; border-radius: 999px; border: 1px solid var(--lane); background: transparent; color: var(--fg); cursor: pointer; }
+  .xp-change:hover, .xp-change:focus-visible { background: color-mix(in oklch, var(--lane) 16%, transparent); }
+  .xp-change:focus-visible { outline: 2px solid var(--lane); outline-offset: 3px; }
+  .xp-live { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  :global(:root[data-xp-gate="known"]) .xp-pick { display: none; }
+  :global(:root[data-xp-gate="chosen"]) .xp-pick:not(.is-expanded) .xp-full { display: none; }
+  :global(:root[data-xp-gate="chosen"]) .xp-pick:not(.is-expanded) .xp-done { display: flex; }
+  :global(:root[data-xp-gate="chosen"]) .xp-pick:not(.is-expanded) { padding-bottom: 1.5rem; }
+
+  /* Phone: two cards a row, tighter, the page never scrolls sideways. */
+  @media (max-width: 40rem) {
+    .xp-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.55rem; }
+    .xp-card { padding: 0.7rem 0.75rem 0.8rem; }
+    .xp-name { font-size: 0.95rem; }
+    .xp-line { font-size: 0.8rem; }
+    .xp-line.xp-fr { font-size: 0.74rem; }
+    .xp-go { display: none; }
+    .xp-fr-inline { display: block; margin: 0.15rem 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .xp-beat { animation: none; }
+    .xp-card, .xp-card:hover, .xp-card:focus-visible, .xp-go { transition: none; transform: none; }
+  }
+</style>
