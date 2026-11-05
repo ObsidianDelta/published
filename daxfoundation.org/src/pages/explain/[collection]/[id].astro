@@ -5,6 +5,7 @@
 import Explain from "../../../layouts/Explain.astro";
 import Chapter from "../../../components/explain/Chapter.astro";
 import { getCollectionChapters } from "../../../lib/explain/chapters.js";
+import { chapterDescription } from "../../../lib/seo.js";
 
 const TITLE: Record<string, string> = {
   "constraint-protocol": "The Constraint Protocol",
@@ -39,7 +40,7 @@ export async function getStaticPaths() {
 }
 
 const { chapter, total, collection } = Astro.props as {
-  chapter: { data: { id: string; question: { en: string } } };
+  chapter: { data: { id: string; question: { en: string }; canon?: string[] } };
   total: number;
   collection: string;
 };
@@ -47,7 +48,7 @@ const title = `${chapter.data.question.en} — ${TITLE[collection]}`;
 const RUN_HREF = `/explain/${collection}/#${chapter.data.id}`;
 const RUN_LABEL = TITLE[collection];
 ---
-<Explain title={title} description={DESCRIPTION[collection]}>
+<Explain title={title} description={chapterDescription(chapter, DESCRIPTION[collection], TITLE[collection])}>
   {/* 2026-10-23: a one-chapter page (reached from a shared link) says which run it
       belongs to and opens the whole run at this chapter, so the reader keeps context. */}
   <p class="run-context"><a href={RUN_HREF}>&larr; {RUN_LABEL}: all {total} questions</a></p>

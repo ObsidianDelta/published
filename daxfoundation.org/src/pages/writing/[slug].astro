@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { posts, formatDate, historyUrl, SERIES, seriesOf, isUnlisted } from '../_posts.js';
+import { orgRef } from '../../data/organization.js';
 
 // One piece under /writing/. Same shape as views/jeyanandan/src/pages/blog/
 // [slug].astro: two dates (first published, never moves; updated, by hand, shown
@@ -87,8 +88,10 @@ const jsonLd = {
   datePublished,
   dateModified,
   mainEntityOfPage: canonical,
-  author: { '@type': 'Organization', name: 'The DAX Foundation', url: 'https://daxfoundation.org/' },
-  publisher: { '@type': 'Organization', name: 'The DAX Foundation', url: 'https://daxfoundation.org/' },
+  // 2026-11-04 (SEO launch): author/publisher point at the one Organization node.
+  author: orgRef,
+  publisher: orgRef,
+  inLanguage: 'en',
   ...(seriesMeta && thisPartNum
     ? { isPartOf: { '@type': 'CreativeWorkSeries', name: seriesMeta.title }, position: thisPartNum }
     : {}),
