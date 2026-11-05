@@ -192,6 +192,9 @@ const firstLook = [
     {/* 2026-11-04 (Jason: "an epic for Meta DAX"): one line to the epic, /metadax/epic/.
         data-astro-reload: that page has its own canvas and no client router. */}
     <p class="op-epic"><a href="/metadax/epic/" data-astro-reload><span class="op-epic-dot" aria-hidden="true"></span>Universal learning is aspirational. Meta DAX, version 0.0.0.1 &rarr;<span class="op-fr" lang="fr">L’apprentissage universel est une aspiration. Meta DAX, version 0.0.0.1</span></a></p>
+    {/* 2026-11-05 (Jason): "say coming soon preview ... give every single highlight ... start
+        collecting names". One modest line to /preview/; the order of the page is unchanged. No date. */}
+    <p class="op-epic op-preview"><a href="/preview/"><span class="op-epic-dot" aria-hidden="true"></span>Coming soon &middot; Preview: everything we are building, and the preview list &rarr;<span class="op-fr" lang="fr">Bientôt &middot; Aperçu : tout ce que nous construisons, et la liste d’aperçu</span></a></p>
     <ul class="op-tiles">
       {labs.map((l) => (
         <li>
@@ -453,6 +456,10 @@ const firstLook = [
   .op-epic a:hover, .op-epic a:focus-visible { border-bottom-color: #f7b452; }
   .op-epic .op-fr { flex-basis: 100%; font-size: 0.8125rem; }
   .op-epic-dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #f7b452; box-shadow: 0 0 10px #f7b452; align-self: center; }
+  .op-preview { margin-top: -0.6rem; }
+  .op-preview a { border-bottom-color: #2e2648; }
+  .op-preview a:hover, .op-preview a:focus-visible { border-bottom-color: #a78bfa; }
+  .op-preview .op-epic-dot { background: #a78bfa; box-shadow: 0 0 10px #a78bfa; }
   .op-tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .op-tiles li { min-width: 0; }
   .op-tile { display: flex; flex-direction: column; height: 100%; border: 1px solid var(--op-gold-line); border-radius: 10px; overflow: hidden; background: linear-gradient(160deg, #17130b, #0d0d0d 65%); color: inherit; text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }
