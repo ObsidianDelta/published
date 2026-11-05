@@ -1,0 +1,8 @@
+---
+// One string, two languages (Meta DAX epic, 2026-11-04). Emits an English span and a
+// French span; the page's EN/FR toggle hides one with CSS (html[data-lang]). With no
+// script the English shows, and the page is complete. Strings are ours, not user text.
+interface Props { en: string; fr: string }
+const { en, fr } = Astro.props;
+---
+<span class="en" set:html={en} /><span class="fr" lang="fr" set:html={fr} />

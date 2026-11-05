@@ -168,6 +168,9 @@ const firstLook = [
     <h2 class="op-h" id="opening-h">Two labs and an open call.<span class="op-fr" lang="fr">Deux labos et un appel ouvert.</span></h2>
     <p class="op-sub">{OPENED ? 'The doors are open. Come in.' : 'The doors open soon. You can already look inside.'}
       <span class="op-fr" lang="fr">{OPENED ? 'Les portes sont ouvertes. Entrez.' : 'Les portes ouvrent bientôt. Vous pouvez déjà jeter un œil.'}</span></p>
+    {/* 2026-11-04 (Jason: "an epic for Meta DAX"): one line to the epic, /metadax/epic/.
+        data-astro-reload: that page has its own canvas and no client router. */}
+    <p class="op-epic"><a href="/metadax/epic/" data-astro-reload><span class="op-epic-dot" aria-hidden="true"></span>Universal learning is aspirational. Meta DAX, version 0.0.0.1 &rarr;<span class="op-fr" lang="fr">L’apprentissage universel est une aspiration. Meta DAX, version 0.0.0.1</span></a></p>
     <ul class="op-tiles">
       {labs.map((l) => (
         <li>
@@ -396,6 +399,11 @@ const firstLook = [
   .op-h .op-fr { font-size: 0.62em; margin-top: 0.3rem; color: var(--op-gold); opacity: 0.85; }
   .op-sub { margin: 0.75rem 0 1.4rem; max-width: 40em; font-size: 0.9375rem; color: #cfcfcf; }
   .op-sub .op-fr { font-size: 0.875rem; }
+  .op-epic { margin: -0.4rem 0 1.4rem; }
+  .op-epic a { display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 0 0.5rem; text-decoration: none; font-size: 0.9375rem; color: var(--fg); border-bottom: 1px solid #3a3222; padding-bottom: 0.2rem; }
+  .op-epic a:hover, .op-epic a:focus-visible { border-bottom-color: #f7b452; }
+  .op-epic .op-fr { flex-basis: 100%; font-size: 0.8125rem; }
+  .op-epic-dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: #f7b452; box-shadow: 0 0 10px #f7b452; align-self: center; }
   .op-tiles { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .op-tiles li { min-width: 0; }
   .op-tile { display: flex; flex-direction: column; height: 100%; border: 1px solid var(--op-gold-line); border-radius: 10px; overflow: hidden; background: linear-gradient(160deg, #17130b, #0d0d0d 65%); color: inherit; text-decoration: none; transition: border-color 0.2s ease, transform 0.2s ease; }

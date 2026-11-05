@@ -185,6 +185,12 @@
       "label": "Print a MetaDAX package"
     },
     {
+      "path": "/metadax/epic/",
+      "chapter": "metadax/09-horizon",
+      "list": true,
+      "label": "Meta DAX, version 0.0.0.1"
+    },
+    {
       "path": "/metadax/",
       "chapter": "metadax/08-exists",
       "list": true,
