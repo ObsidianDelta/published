@@ -97,7 +97,7 @@ related:
 
 Today the DAX Foundation opens two labs: the Sound Lab and the Gesture Lab.
 
-The Foundation was incorporated on [INC-DATE] under the Canada Not-for-profit Corporations Act, corporation number [CORP-NO]. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
+The Foundation filed its articles under the Canada Not-for-profit Corporations Act on 4 November 2026, and the certificate is on its way. We are marking the day the way we mean to go on: with something given away, something asked for, and an honest look at the work as it stands.
 
 <div class="gx-labs">
   <a href="#the-sound-lab"><strong>The Sound Lab</strong><span>Heartbeats, and the language of love. It opens with a gift.</span></a>
@@ -246,7 +246,7 @@ Both labs are open today, and both are early. Here is what is coming next.
 
 ## What today is
 
-A foundation, two labs, a gift and a question. The certificate, number [CORP-NO], is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
+A foundation, two labs, a gift and a question. The certificate is one piece of paper. The rest is the work it is for, and we would rather do that work with you.
 
 Which would you try first: the sound of love, or the lab?
 
