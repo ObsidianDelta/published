@@ -39,7 +39,7 @@ const curated = [
     url: '/metadax/showcases/stockage-imbrique/',
     play: '/metadax/play/?sample=stockage-imbrique',
     lang: 'fr',
-    subject: 'virtualized storage in Proxmox VE for a second-year networking course',
+    subject: 'virtualized storage in Proxmox VE for a networking and virtualisation course',
     chairs: ['teacher', 'trainer'],
     date: '2026-10-15',
     note: 'Virtualized storage in Proxmox VE, written in French for networking students: six 3D scenes, a configuration simulation and a bilingual lexicon.',
@@ -164,7 +164,7 @@ const curated = [
 const familyMeta = {
   '01-megan-liam': { chairs: ['parent'], lang: 'en' },
   '02-priya-mateus': { chairs: ['teacher'], lang: 'en' },
-  '03-dinah-jordan': { chairs: ['teacher'], lang: 'en' },
+  '03-mara-jordan': { chairs: ['teacher'], lang: 'en' },
   '04-renee-marcus': { chairs: ['trainer'], lang: 'en' },
   '05-dave-aisha': { chairs: ['trainer'], lang: 'en' },
   '06-theo-lucille': { chairs: ['parent'], lang: 'fr+en' },
