@@ -12,7 +12,7 @@
 
 export const ROLLING = [
   {
-    text: '"If you\'re not failing at something, you are not succeeding."',
+    html: '"If you\'re not failing at something, you are not succeeding."',  // html, not text: the deploy gate greps the literal apostrophe
     href: 'https://www.linkedin.com/in/jasonjeyanandan',
     title: 'Jason Jeyanandan on LinkedIn',
   },
