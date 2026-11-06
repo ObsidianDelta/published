@@ -1,0 +1,85 @@
+---
+// /press/ -- a plain press area (2026-11-06). Reuses the fact sheet from
+//   state/launch/levers/traction/02-press.md
+// and obeys its "do NOT say" list: no legal-status claim (the Foundation is not
+// incorporated, so the status line is omitted entirely), nothing about the
+// Constraint Protocol being in production, no dollar projection, no named
+// learner, no AI vendor named (cognition is "provided by Obsidian Delta").
+// Quiet front-door page: `noindex, follow`, kept out of sitemap.xml.js.
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Press — the DAX Foundation"
+  description="For journalists writing about the DAX Foundation: the plain version, the things you can check, and how to reach a person. In English and French."
+  wide
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <article class="front">
+    <header class="lede">
+      <h1>Press</h1>
+      <p class="body">If you&rsquo;re writing about the DAX Foundation, here is the plain version and the things you can check for yourself. Tell us your angle and your deadline, and we&rsquo;ll get you a person on the record.</p>
+      <p class="body fr" lang="fr">Si vous &eacute;crivez sur la Fondation DAX, voici la version simple et ce que vous pouvez v&eacute;rifier vous-m&ecirc;me. Dites-nous votre angle et votre &eacute;ch&eacute;ance, et nous vous mettrons en contact avec quelqu&rsquo;un &agrave; micro ouvert.</p>
+    </header>
+
+    <section>
+      <h2>Fact sheet</h2>
+      <ul class="facts">
+        <li>Meta&nbsp;DAX is a universal learning initiative: any subject, for one learner, built through what the learner loves. Free, forever. Built on paid compute.</li>
+        <li>A guide &mdash; anyone a step ahead of someone &mdash; sends a short scenario with no names, and gets a page back: one side for the guide, one for the learner. Teachers stay in charge.</li>
+        <li>The recipe is open, for anyone to read: <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>.</li>
+        <li>Samples anyone can open, with made-up people throughout: <a href="/metadax/samples/">/metadax/samples/</a> and <a href="/metadax/showcases/">/metadax/showcases/</a>.</li>
+        <li>Cognition is provided by <a href="https://www.obsidiandelta.com/">Obsidian&nbsp;Delta</a>.</li>
+      </ul>
+      <ul class="facts fr" lang="fr">
+        <li>Meta&nbsp;DAX est une initiative d&rsquo;apprentissage universel : n&rsquo;importe quel sujet, pour un apprenant, b&acirc;ti &agrave; travers ce qu&rsquo;il aime. Gratuit, pour toujours. B&acirc;ti sur du calcul pay&eacute;.</li>
+        <li>Un guide &mdash; quiconque a une longueur d&rsquo;avance sur quelqu&rsquo;un &mdash; envoie un court sc&eacute;nario sans noms, et re&ccedil;oit une page : un c&ocirc;t&eacute; pour le guide, un pour l&rsquo;apprenant. Les enseignants gardent la main.</li>
+        <li>La recette est ouverte, &agrave; qui veut la lire : <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>.</li>
+        <li>Des &eacute;chantillons que tous peuvent ouvrir, avec des personnages invent&eacute;s : <a href="/metadax/samples/">/metadax/samples/</a> et <a href="/metadax/showcases/">/metadax/showcases/</a>.</li>
+        <li>La cognition est fournie par <a href="https://www.obsidiandelta.com/">Obsidian&nbsp;Delta</a>.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>What we won&rsquo;t claim</h2>
+      <p class="body">We&rsquo;ll be plain about it: no outcomes beyond what is published here, and nothing about any named learner.</p>
+      <p class="body fr" lang="fr">Nous le dirons franchement : aucun r&eacute;sultat au-del&agrave; de ce qui est publi&eacute; ici, et rien sur un apprenant nomm&eacute;.</p>
+    </section>
+
+    <section>
+      <h2>Reach us</h2>
+      <p class="body"><a href="mailto:dax@daxfoundation.org">dax@daxfoundation.org</a> &mdash; see <a href="/contact/">Contact</a>.</p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .lede { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+  }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .body.fr { font-size: 0.9375em; color: var(--muted); }
+  .facts { margin: 0; max-width: 40em; padding-left: 1.1rem; color: #cfcfcf; }
+  .facts li { margin: 0.6rem 0 0; }
+  .facts.fr { margin-top: 1.5rem; font-size: 0.9375em; color: var(--muted); }
+  section { padding-block: 1.25rem 0; border-top: 1px solid var(--line); }
+  section:first-of-type { margin-top: 1.25rem; }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  a:hover, a:focus-visible { border-bottom-color: currentColor; }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 2.5rem 2rem; }
+  }
+</style>

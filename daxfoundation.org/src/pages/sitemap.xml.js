@@ -24,6 +24,12 @@ import samplesData from '../data/metadax-samples.json';
 
 const SITE = 'https://daxfoundation.org';
 
+// 2026-11-06: the general contact area (Contact, What this is, Press, Partners)
+// is findable by link, not promoted in search. Each of those pages carries a
+// `noindex, follow` robots meta, and they are kept out of this sitemap so they
+// are never submitted to search engines. Keep this set in step with those pages.
+const NOINDEX = new Set(['/contact/', '/what-this-is/', '/press/', '/partners/']);
+
 const day = (value) => {
   if (!value) return null;
   const d = new Date(value);
@@ -45,7 +51,8 @@ const routePaths = Object.keys(routeModules)
   .filter((f) => !f.startsWith('404'))
   .filter((f) => !f.split('/').some((seg) => seg.startsWith('_')))
   .filter((f) => !f.includes('['))
-  .map((f) => (f === 'index' ? '/' : '/' + f.replace(/\/index$/, '') + '/'));
+  .map((f) => (f === 'index' ? '/' : '/' + f.replace(/\/index$/, '') + '/'))
+  .filter((p) => !NOINDEX.has(p));
 
 // 2. The published posts, under /writing/<slug>/.
 const postEntries = posts.map((p) => ({

@@ -1,0 +1,77 @@
+---
+// /partners/ -- the partner call, "Get people moving" (2026-11-06). Grounded in
+// claude/PR-BRANCH-20261106.md (initiative #1: technology giver, not gatekeeper)
+// and the tone of state/launch/levers/traction/03-help-join.md (honest, early,
+// "tell us what you're good at"). The offer: give the tools away free, teach
+// institutions to implement them, invite them to be validators. Humble, never
+// thirsty -- no money ask. Quiet front-door page: `noindex, follow`, kept out
+// of sitemap.xml.js. No AI vendor named; no private individuals.
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="Partners — the DAX Foundation"
+  description="We're looking for partners to get people moving. We give the tools away free and teach you to run them. In English and French."
+  wide
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <article class="front">
+    <header class="lede">
+      <h1>Get people moving</h1>
+      <p class="body">We&rsquo;re looking for partners &mdash; anyone who can help people move and learn. We&rsquo;ll give you the technology, and we&rsquo;ll teach you how to run it. It&rsquo;s free, and it stays free.</p>
+      <p class="body fr" lang="fr">Nous cherchons des partenaires &mdash; toute personne qui peut aider les gens &agrave; bouger et &agrave; apprendre. Nous vous donnons la technologie et nous vous apprenons &agrave; vous en servir. C&rsquo;est gratuit, et &ccedil;a le reste.</p>
+    </header>
+
+    <section>
+      <h2>What we&rsquo;re offering</h2>
+      <p class="body">If you run a clinic, a gym, a school, a library, or a community program &mdash; a health institution or any institution that brings people together &mdash; we&rsquo;d like to hand you the tools and show you how to use them well. Keep them. Have fun with them. Do good with them.</p>
+      <p class="body fr" lang="fr">Si vous dirigez une clinique, un gymnase, une &eacute;cole, une biblioth&egrave;que ou un programme communautaire &mdash; un &eacute;tablissement de sant&eacute; ou tout milieu qui rassemble les gens &mdash; nous aimerions vous remettre les outils et vous montrer &agrave; bien les utiliser. Gardez-les. Amusez-vous avec. Faites du bien avec.</p>
+    </section>
+
+    <section>
+      <h2>Be a validator</h2>
+      <p class="body">We&rsquo;re early, and we&rsquo;d rather say so than pretend otherwise. The most useful thing a partner can do is run this for real and help us check that it works &mdash; tell us what holds up and what doesn&rsquo;t. That&rsquo;s what we mean by a validator.</p>
+      <p class="body fr" lang="fr">Nous en sommes au d&eacute;but, et nous pr&eacute;f&eacute;rons le dire plut&ocirc;t que de faire semblant. La chose la plus utile qu&rsquo;un partenaire puisse faire, c&rsquo;est de l&rsquo;utiliser pour de vrai et de nous aider &agrave; v&eacute;rifier que &ccedil;a fonctionne &mdash; nous dire ce qui tient et ce qui ne tient pas. C&rsquo;est ce que nous appelons un validateur.</p>
+    </section>
+
+    <section>
+      <h2>Take a look first</h2>
+      <p class="body">The recipe is open for anyone to read: <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>. You can see what Meta&nbsp;DAX does at the <a href="/metadax/">hub</a>, with <a href="/metadax/samples/">samples</a> you can open (everyone in them is made up).</p>
+      <p class="body fr" lang="fr">La recette est ouverte &agrave; qui veut la lire : <a href="https://github.com/daxfoundation/metadax">github.com/daxfoundation/metadax</a>. Vous pouvez voir ce que fait Meta&nbsp;DAX au <a href="/metadax/">centre</a>, avec des <a href="/metadax/samples/">&eacute;chantillons</a> &agrave; ouvrir (tous les personnages sont invent&eacute;s).</p>
+    </section>
+
+    <section>
+      <h2>Team up with us</h2>
+      <p class="body">Tell us what you do and what you&rsquo;d like to try. Write to <a href="mailto:dax@daxfoundation.org">dax@daxfoundation.org</a> &mdash; see <a href="/contact/">Contact</a>.</p>
+      <p class="body fr" lang="fr">Dites-nous ce que vous faites et ce que vous aimeriez essayer. &Eacute;crivez &agrave; <a href="mailto:dax@daxfoundation.org">dax@daxfoundation.org</a> &mdash; voir <a href="/contact/">Contact</a>.</p>
+    </section>
+  </article>
+</Base>
+
+<style>
+  .lede { padding-block: 3.5rem 2.5rem; }
+  h1 {
+    margin: 0 0 1rem;
+    font-size: clamp(1.75rem, 1.2rem + 2.6vw, 2.75rem);
+    font-weight: 400;
+    line-height: 1.22;
+    letter-spacing: -0.012em;
+  }
+  .body { margin: 0; max-width: 40em; color: #cfcfcf; }
+  .body + .body { margin-top: 1rem; }
+  .body.fr { font-size: 0.9375em; color: var(--muted); }
+  section { padding-block: 1.25rem 0; border-top: 1px solid var(--line); }
+  section:first-of-type { margin-top: 1.25rem; }
+  h2 {
+    margin: 0 0 1.25rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .body a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .body a:hover, .body a:focus-visible { border-bottom-color: currentColor; }
+  @media (max-width: 34rem) {
+    .lede { padding-block: 2.5rem 2rem; }
+  }
+</style>

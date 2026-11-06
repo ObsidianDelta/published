@@ -1,0 +1,46 @@
+---
+// /what-this-is/ -- the Foundation's "what this is" statement, in Jason's voice
+// (2026-11-06). Reuses the staged module verbatim:
+//   state/launch/levers/frontpage/MODULE-what-this-is.html
+// Only the DRAFT banner comment was dropped (Astro pages use {/* */}). Part of
+// the quiet front-door cluster: `noindex, follow` and kept out of sitemap.xml.js.
+// The detailed, indexed About lives at /about/; this is the humble statement.
+import Base from '../../layouts/Base.astro';
+---
+<Base
+  title="What this is — the DAX Foundation"
+  description="The DAX Foundation, in the founder's own words. In English and French."
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <section class="dxf dxf-what" id="what-this-is" aria-labelledby="what-h">
+    <p class="dxf-kicker"><span class="dxf-dot" aria-hidden="true"></span>What this is&nbsp;&middot;&nbsp;<span lang="fr">Ce que c&rsquo;est</span></p>
+    <h2 id="what-h">In my own words.<span class="dxf-fr" lang="fr">Dans mes propres mots.</span></h2>
+    <div class="dxf-body">
+      <p>I think in pictures and feelings first, and words come second. So here is the picture. Every person is already reaching toward something. Love has many faces, and the one that helps you reach is different for each of us.</p>
+      <p class="dxf-fr" lang="fr">Je pense d&rsquo;abord en images et en sentiments, les mots viennent ensuite. Voici l&rsquo;image : chaque personne tend d&eacute;j&agrave; vers quelque chose. L&rsquo;amour a bien des visages, et celui qui vous aide &agrave; avancer n&rsquo;est pas le m&ecirc;me pour chacun.</p>
+      <p>The DAX Foundation exists to listen for that face, and then to build tools that help a person go the direction they chose. Learning is where we start, with Meta DAX. We do not decide where you should go. We help you get there, and we try to bring out the best in everyone along the way.</p>
+      <p class="dxf-fr" lang="fr">La Fondation DAX existe pour reconna&icirc;tre ce visage, puis pour b&acirc;tir des outils qui aident chacun &agrave; aller dans la direction qu&rsquo;il a choisie. Nous commen&ccedil;ons par l&rsquo;apprentissage, avec Meta DAX. Nous ne d&eacute;cidons pas o&ugrave; vous devez aller. Nous vous aidons &agrave; y arriver, et nous cherchons le meilleur de chacun en chemin.</p>
+      <p>The thinking is done by people and by cognition provided by Obsidian Delta. The goal stays yours.</p>
+      <p class="dxf-fr" lang="fr">La r&eacute;flexion vient des personnes et d&rsquo;une cognition fournie par Obsidian Delta. Le but reste le v&ocirc;tre.</p>
+    </div>
+    <p class="dxf-meta">Jason, founder &middot; <span lang="fr">fondateur</span></p>
+    <p class="dxf-more"><a href="/about/">More about the Foundation</a> &middot; <a href="/contact/">Contact</a></p>
+  </section>
+</Base>
+
+<style>
+.dxf{--dxf-gold:#c9a45a;--dxf-gold-hi:#f1d9a0;width:100%;max-width:var(--measure-scene,72rem);margin-inline:auto;padding:2.5rem clamp(1rem,4vw,1.5rem);color:var(--fg,#e8e8e8);font-family:var(--font-sans,system-ui,sans-serif)}
+.dxf *{box-sizing:border-box}
+.dxf-kicker{display:flex;align-items:center;gap:.55rem;margin:0 0 .6rem;font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--dxf-gold)}
+.dxf-dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--dxf-gold)}
+.dxf h2{margin:0;font-family:var(--font-display,var(--font-sans,system-ui));font-size:clamp(1.5rem,1.1rem + 1.8vw,2.2rem);font-weight:400;letter-spacing:-.01em;line-height:1.2;text-transform:none;color:var(--fg,#e8e8e8);text-wrap:balance}
+.dxf .dxf-fr{display:block;color:var(--muted,#8c8c8c)}
+.dxf h2 .dxf-fr{font-size:.62em;margin-top:.3rem;color:var(--dxf-gold);opacity:.85}
+.dxf-body{max-width:var(--measure-text,704px);margin-top:1.25rem;border-left:3px solid var(--dxf-gold);padding-left:1rem}
+.dxf-body p{margin:.75rem 0 0;font-size:1.0625rem;line-height:1.6}
+.dxf-body p.dxf-fr{font-size:.95rem;margin-top:.4rem}
+.dxf-meta{margin:1.25rem 0 0;font-size:.8125rem;color:var(--faint,#5c5c5c)}
+.dxf-more{margin:.6rem 0 0;font-size:.8125rem;color:var(--faint,#5c5c5c)}
+.dxf a{color:var(--fg,#e8e8e8);text-decoration:none;border-bottom:1px solid var(--faint,#5c5c5c)}
+.dxf a:hover,.dxf a:focus-visible{border-bottom-color:var(--dxf-gold)}
+@media (prefers-reduced-motion:reduce){.dxf *{transition:none!important;animation:none!important}}</style>
