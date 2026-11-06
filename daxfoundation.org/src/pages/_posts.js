@@ -78,6 +78,10 @@ export const SERIES = {
     title: 'Accountability: the Constraint Protocol',
     blurb: 'A record, not a wall: what a declared constraint is and what one run of it showed.',
   },
+  'everybody-moves': {
+    title: 'Everybody Moves',
+    blurb: 'A tribute series. Arnold Schwarzenegger has spent years making one public case — that movement belongs to every body, at every age, for free — and we read it as the clearest statement of what our get-off-the-screen tools are for. Our commentary, not his word.',
+  },
 };
 
 /** Published posts of a named series, sorted by part ascending. */
