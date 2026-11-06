@@ -82,6 +82,10 @@ export const SERIES = {
     title: 'Everybody Moves',
     blurb: 'A tribute series. Arnold Schwarzenegger has spent years making one public case — that movement belongs to every body, at every age, for free — and we read it as the clearest statement of what our get-off-the-screen tools are for. Our commentary, not his word.',
   },
+  'the-teacher': {
+    title: 'The Teacher',
+    blurb: 'A tribute series on Geoffrey Hinton. For fifty years he pursued an unfashionable idea — that a machine could learn the way a brain does — and handed the world the science our free-learning mission is built on, then spent his last working years warning us about it. Our commentary, not his word.',
+  },
 };
 
 /** Published posts of a named series, sorted by part ascending. */
