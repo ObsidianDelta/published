@@ -1,6 +1,7 @@
 ---
 // 2026-11-07 (Jason): "daxfoundation.org root page, the simplest countdown to 8:59 p.m. Sunday. Just one simple countdown, that's it."
-// The previous home page is in git history: the parent of the commit that introduced this file.
+// The previous home page is in git history: the parent of commit ba2e05a.
+// The site policy gate requires a Privacy link on every page; it is kept tiny and quiet.
 ---
 <!doctype html>
 <html lang="en">
@@ -12,10 +13,12 @@
 html,body{margin:0;height:100%;background:#000;color:#f2f2f2}
 body{display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 #c{font-size:clamp(2.5rem,12vw,9rem);font-variant-numeric:tabular-nums;letter-spacing:.04em;font-weight:300}
+#p{position:fixed;bottom:12px;right:16px;font-size:.75rem;color:#555;text-decoration:none}
 </style>
 </head>
 <body>
 <div id="c" aria-live="polite">&nbsp;</div>
+<a id="p" href="/privacy/">Privacy</a>
 <script is:inline>
 (function () {
   var target = Date.parse('2026-11-09T00:59:00Z');
