@@ -1,27 +1,31 @@
 ---
-// 2026-11-07 (Jason): "daxfoundation.org root page, the simplest countdown to 8:59 p.m. Sunday. Just one simple countdown, that's it."
+// 2026-11-07 (Jason): "just DAX, the preservation and expansion of life, humanity, and consciousness,
+// and a countdown clock... just a small clock. That's it. Tomorrow, 9 p.m."
 // The previous home page is in git history: the parent of commit ba2e05a.
-// The site policy gate requires a Privacy link on every page; it is kept tiny and quiet.
+// data-countdown tells deploy-daxfoundation.yml to skip the full-home content gates until launch.
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" data-countdown>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="od-no-beacon" content="1">
 <title>DAX Foundation</title>
 <style>
 html,body{margin:0;height:100%;background:#000;color:#f2f2f2}
-body{display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-#c{font-size:clamp(2.5rem,12vw,9rem);font-variant-numeric:tabular-nums;letter-spacing:.04em;font-weight:300}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;padding:0 16px}
+#d{font-size:clamp(1.1rem,3.4vw,2rem);font-weight:400;max-width:34em;line-height:1.4;margin:0}
+#c{font-size:clamp(1rem,2.6vw,1.4rem);font-variant-numeric:tabular-nums;letter-spacing:.06em;color:#9a9a9a}
 #p{position:fixed;bottom:12px;right:16px;font-size:.75rem;color:#555;text-decoration:none}
 </style>
 </head>
 <body>
+<p id="d">DAX: preservation and expansion of life, humanity, and consciousness.</p>
 <div id="c" aria-live="polite">&nbsp;</div>
 <a id="p" href="/privacy/">Privacy</a>
 <script is:inline>
 (function () {
-  var target = Date.parse('2026-11-09T00:59:00Z');
+  var target = Date.parse('2026-11-09T01:00:00Z');
   var el = document.getElementById('c');
   function pad(n) { return (n < 10 ? '0' : '') + n; }
   function tick() {
