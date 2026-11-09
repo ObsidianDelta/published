@@ -3,7 +3,7 @@ title: "The phones never stopped"
 subtitle: "Delta Suite 1.0, and a decade of keeping a dispatch line up"
 description: "The first product shipped on 1 September 2015: an enterprise telephony platform for taxi dispatch. Its architecture let call takers and dispatchers work from anywhere, years before a pandemic made that ordinary. This is what that meant, and one fact about the cost of keeping a line up."
 date: 2026-11-09
-draft: true
+draft: false
 ---
 
 A taxi dispatch line is a piece of infrastructure that is not allowed to fail. When someone calls for a car, there is usually a person at the other end of a cold street, and there is a driver who gets paid only when the call connects. The phone does not get to ring out. That is the constraint the whole thing is built around, and it does not relax on weekends, holidays, or at three in the morning.

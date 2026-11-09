@@ -3,7 +3,7 @@ title: "Sixty Percent"
 subtitle: "What Delta Suite 2.0 took to build, feature by feature — and where those features actually came from"
 description: "In February 2022 we shipped voice automation for taxi dispatch that sat in front of any backend and cut the need for live call takers by up to 60%. This is what that number cost, and an honest note on which of its conveniences were ever new."
 date: 2026-11-09
-draft: true
+draft: false
 ---
 
 In February 2022 we shipped Delta Suite 2.0: voice automation for the taxi industry that sat in front of any dispatch backend and reduced the need for live call takers by up to 60%.

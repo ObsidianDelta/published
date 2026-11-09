@@ -3,12 +3,12 @@ title: The industry had already innovated
 subtitle: A practitioner's account of a public argument — generous about the newcomer, precise about what already existed
 description: Long before ride-hailing, the taxi industry had been solving its own problems with technology — GPS dispatch, cashless payment, app-based hailing, live arrival times. This is the argument one taxi-industry technology advocate made in public, set out with dates.
 date: 2026-11-09
-draft: true
+draft: false
 ---
 
 When ride-hailing arrived, it arrived with a story attached: that the taxi industry was a technological desert, and that a newcomer had walked in and invented the things a modern passenger expects — a cashless ride, a car you can see coming on a map, a trip you book from a phone without talking to anyone. It is a good story, and parts of it are true. The newcomer did build something polished, at scale, and fast.
 
-But the part that said *invented* was wrong, and our founder, Jason, stood up in public and said so.
+But the part that said *invented* was wrong, and Jason, our founder, said so publicly.
 
 He spoke as a technology advocate for the taxi industry, during the years the ride-hailing question was being argued in city halls across North America. His argument was not that the newcomer was bad. It was narrower and harder to wave away: the taxi industry had been overcoming its problems through technology for decades, and most of the specific capabilities being presented as inventions already had dated precedents. You did not have to take his word for it. The vendors who built those systems had published the dates themselves.
 

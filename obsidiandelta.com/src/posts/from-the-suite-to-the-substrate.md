@@ -3,7 +3,7 @@ title: "From the Suite to the Substrate"
 subtitle: "How a company that built telephones for taxi fleets ended up building cognitive infrastructure — and why it is giving the work away"
 description: "Obsidian Delta started by selling enterprise telephony to taxi fleets in 2015. It is now the cognition provider behind a personal AI agent, an open learning platform, and an accountability protocol. This is the honest shape of how one became the other, and the decision to hand it all over."
 date: 2026-11-09
-draft: true
+draft: false
 ---
 
 Here is a decision, in the plainest words we can give it:

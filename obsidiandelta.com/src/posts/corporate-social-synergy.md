@@ -3,7 +3,7 @@ title: "Corporate Social Synergy"
 subtitle: "One idea, attempted four times across twenty-two years, and why it kept failing"
 description: "When a telephony company starts talking about donating its intellectual property to a foundation, the natural reading is a pivot. It is the opposite. It is the fourth attempt at a single idea that began in 2004, and that only ever failed for one reason: coordinating what companies give had nothing to run on."
 date: 2026-11-09
-draft: true
+draft: false
 ---
 
 When a company that built telephone systems for taxi fleets starts talking about donating its intellectual property to a foundation, the natural reading is that it found a warmer subject and pivoted into it. That is not what happened here. The clearest way to show it is to go back twenty-two years and lay out, in order, the same idea being attempted four times.
@@ -28,7 +28,7 @@ Underneath 1Click1Life was a principle with a name: **corporate social synergy**
 
 Here is the part that has not been said in public until now, and it is the hinge of the whole story. The "corporations" in corporate social synergy were not an abstraction. They were his own taxi clients.
 
-This was not theory running under a treasure-hunt app. It was something he actually did. The taxi business is an infrastructure business: a fleet is already woven into a city, through its cars, its drivers, and its phone lines. Our client **Blue and White** in Mississauga ran around three hundred vehicles across that one city. So he did community outreach for clients like that — finding ways for a business already serving a community to draw support back from it by putting its reach behind a cause. A fleet that already answered three thousand calls a day could carry something into the same city those calls came from. The company that wired the phones was the same company trying to wire the giving.
+This was not theory running under a treasure-hunt app. It was something he actually did. The taxi business is an infrastructure business: a fleet is already woven into a city, through its cars, its drivers, and its phone lines. Our client **Blue and White** in Mississauga ran around three hundred vehicles across that one city. So he did community outreach for clients like that — finding ways for a business already serving a community to draw support back from it by putting its reach behind a cause. The company that wired the phones was the same company trying to wire the giving.
 
 So the count is four, not two. AllCharities.org in 2004. 1Click1Life after Somalia. Corporate social synergy, practised directly with the taxi fleets. And now a fourth attempt, which we will come to. One idea. Four runs at it. Twenty-two years.
 
@@ -62,7 +62,7 @@ Which brings us to the thing that looks like a pivot and is not.
 
 Obsidian Delta is in the process of donating intellectual property to the [DAX Foundation](https://daxfoundation.org). That sentence is the fourth run at the 2004 idea, and it is the most literal one yet.
 
-The logic is the one from the 2016 outreach, turned on ourselves. In corporate social synergy, a company commits to a cause, and a neutral party in the middle holds that commitment — because the party that makes a promise should not also be the only party that gets to decide whether it was kept. That was 1Click1Life's job in the plan. It is now structural. A company can commit to a constraint; it should not also be the body that holds the constraint. So the work that holds it sits in the Foundation, apart from the company. The neutral party in the middle, which in 2011 was one overcommitted man picking up litter in a snowstorm, is finally a thing that exists outside him.
+The logic is the one from the taxi-fleet outreach, turned on ourselves. In corporate social synergy, a company commits to a cause, and a neutral party in the middle holds that commitment — because the party that makes a promise should not also be the only party that gets to decide whether it was kept. That was 1Click1Life's job in the plan. It is now structural. A company can commit to a constraint; it should not also be the body that holds the constraint. So the work that holds it sits in the Foundation, apart from the company. The neutral party in the middle, which in 2011 was one overcommitted man picking up litter in a snowstorm, is finally a thing that exists outside him.
 
 This is the whole argument, and it is unmistakable once the four are in a row. 2004, evidence for giving. 2011, reach for giving. The taxi years, the practice of it with real clients. And now, a company placing what it built where the company itself cannot quietly take it back. The domain kept changing. The idea never did.
 
