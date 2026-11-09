@@ -1,8 +1,9 @@
 ---
-// 2026-11-07 (Jason): "just DAX, the preservation and expansion of life, humanity, and consciousness,
-// and a countdown clock... just a small clock. That's it. Tomorrow, 9 p.m."
-// The previous home page is in git history: the parent of commit ba2e05a.
-// data-countdown tells deploy-daxfoundation.yml to skip the full-home content gates until launch.
+// 2026-11-08 (Jason, launch): the home page counts down to Sunday 9 p.m. Halifax,
+// then becomes a black screen with the DAX line, two lines, and one playable piano
+// key (D, the call). Pressing it answers back on G. No other key can be pressed.
+// data-countdown keeps the full-home content gates skipped at deploy time.
+// The privacy link is present (deploy gate) but hidden, per Jason's "no privacy policy at all".
 ---
 <!doctype html>
 <html lang="en" data-countdown>
@@ -12,28 +13,108 @@
 <meta name="od-no-beacon" content="1">
 <title>DAX Foundation</title>
 <style>
-html,body{margin:0;height:100%;background:#000;color:#f2f2f2}
-body{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.4rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center;padding:0 16px}
-#d{font-size:clamp(1.1rem,3.4vw,2rem);font-weight:400;max-width:34em;line-height:1.4;margin:0}
-#c{font-size:clamp(1rem,2.6vw,1.4rem);font-variant-numeric:tabular-nums;letter-spacing:.06em;color:#9a9a9a}
-#p{position:fixed;bottom:12px;right:16px;font-size:.75rem;color:#555;text-decoration:none}
+  html,body{margin:0;height:100%;background:#000;color:#f2f2f2;overflow:hidden;
+    -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  body{display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:1.5rem;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+    text-align:center;padding:0 16px}
+  #d{font-size:clamp(1.1rem,3.4vw,2rem);font-weight:400;max-width:34em;line-height:1.4;margin:0}
+  #c{font-size:clamp(1rem,2.6vw,1.4rem);font-variant-numeric:tabular-nums;letter-spacing:.06em;color:#9a9a9a}
+  #launch{display:none;flex-direction:column;align-items:center;gap:1.5rem}
+  #launch.on{display:flex}
+  .line{font-size:clamp(.95rem,2.6vw,1.25rem);color:#cfcfcf;max-width:30em;line-height:1.5;margin:0}
+  #privz{position:fixed;left:-9999px;opacity:0}
+  /* one plain octave */
+  #kb{position:relative;width:min(88vw,340px);height:150px;margin-top:.5rem}
+  .wk{position:absolute;top:0;width:14.2857%;height:100%;background:#f2f2f2;border:1px solid #000;
+    box-sizing:border-box;border-radius:0 0 5px 5px}
+  .bk{position:absolute;top:0;width:9%;height:62%;background:#111;border:1px solid #000;
+    box-sizing:border-box;border-radius:0 0 4px 4px;z-index:2}
+  .dead{opacity:.5;cursor:default}
+  .live{cursor:pointer}
+  .live.white{background:#fff}
+  .press{background:#ffd86b !important}
 </style>
 </head>
 <body>
 <p id="d">DAX: preservation and expansion of life, humanity, and consciousness.</p>
 <div id="c" aria-live="polite">&nbsp;</div>
-<a id="p" href="/privacy/">Privacy</a>
+
+<div id="launch">
+  <p class="line">Sometimes you just have to reach out your hand.</p>
+  <p class="line">And when you call, sometimes you will hear an answer.</p>
+  <div id="kb" aria-label="piano"></div>
+</div>
+
+<a id="privz" href="/privacy/" tabindex="-1" aria-hidden="true">Privacy</a>
+
 <script is:inline>
 (function () {
   var target = Date.parse('2026-11-09T01:00:00Z');
-  var el = document.getElementById('c');
-  function pad(n) { return (n < 10 ? '0' : '') + n; }
-  function tick() {
-    var s = Math.max(0, Math.floor((target - Date.now()) / 1000));
-    var d = Math.floor(s / 86400), h = Math.floor(s % 86400 / 3600), m = Math.floor(s % 3600 / 60), x = s % 60;
-    el.textContent = (d > 0 ? d + ':' : '') + pad(h) + ':' + pad(m) + ':' + pad(x);
-    if (s > 0) setTimeout(tick, 1000 - Date.now() % 1000);
+  var cel = document.getElementById('c');
+  var launch = document.getElementById('launch');
+  function pad(n){ return (n<10?'0':'')+n; }
+
+  function tick(){
+    var s = Math.max(0, Math.floor((target - Date.now())/1000));
+    if (s <= 0){ reveal(); return; }
+    var d = Math.floor(s/86400), h = Math.floor(s%86400/3600), m = Math.floor(s%3600/60), x = s%60;
+    cel.textContent = (d>0?d+':':'') + pad(h)+':'+pad(m)+':'+pad(x);
+    setTimeout(tick, 1000 - Date.now()%1000);
   }
+
+  // minimal one-octave keyboard; only D (the call) is pressable
+  var revealed = false;
+  function reveal(){
+    if (revealed) return; revealed = true;
+    cel.style.display = 'none';
+    launch.classList.add('on');
+    buildKeys();
+  }
+
+  var ctx;
+  function tone(freq, when, dur, peak){
+    if (!ctx) ctx = new (window.AudioContext||window.webkitAudioContext)();
+    if (ctx.state==='suspended') ctx.resume();
+    var t = ctx.currentTime + (when||0);
+    var o = ctx.createOscillator(), g = ctx.createGain();
+    o.type='triangle'; o.frequency.value=freq;
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak||0.28, t+0.012);
+    g.gain.exponentialRampToValueAtTime(0.0001, t+(dur||1.3));
+    o.connect(g); g.connect(ctx.destination);
+    o.start(t); o.stop(t+(dur||1.3)+0.05);
+  }
+
+  function call(el){
+    el.classList.add('press'); setTimeout(function(){ el.classList.remove('press'); }, 180);
+    tone(293.66, 0, 1.3, 0.3);        // D the call
+    tone(392.00, 0.65, 1.5, 0.22);    // G the answer
+    if (navigator.vibrate) navigator.vibrate([25,120,40]);
+  }
+
+  var WHITES = ['C','D','E','F','G','A','B'];
+  // black keys sit after C,D,F,G,A (indices 0,1,3,4,5)
+  var BLACKS = [0,1,3,4,5];
+  function buildKeys(){
+    var kb = document.getElementById('kb');
+    WHITES.forEach(function(n,i){
+      var k = document.createElement('div');
+      k.className = 'wk ' + (n==='D' ? 'live white' : 'dead');
+      k.style.left = (i*14.2857) + '%';
+      if (n==='D'){
+        k.addEventListener('pointerdown', function(e){ e.preventDefault(); call(k); });
+      }
+      kb.appendChild(k);
+    });
+    BLACKS.forEach(function(i){
+      var b = document.createElement('div');
+      b.className = 'bk dead';
+      b.style.left = (i*14.2857 + 10) + '%';
+      kb.appendChild(b);
+    });
+  }
+
   tick();
 })();
 </script>
