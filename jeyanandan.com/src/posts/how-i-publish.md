@@ -2,7 +2,7 @@
 title: "How I Publish"
 subtitle: "Thought Records, Not Pronouncements"
 date: 2026-10-01
-updated: 2026-10-20
+updated: 2026-11-09
 description: "Everything public on my surfaces is a versioned working log, published by me through my cognitive companion, and this is the page that explains how to read it."
 draft: false
 ---
@@ -38,6 +38,14 @@ I am a being that happens to be human, and the work keeps asking me to make deci
 So read them as [pegs](/blog/fuckarian/#pegs-not-stairs). I am climbing a cliff and driving pegs in as I go. A peg is not a claim that it is right. It is what lets me reach the next problem. These decisions are tools: ways of thinking, instruments for other problems. The equivalent of a Sybil attack by an ASI, for example, is a problem I can only get to by standing on several of them.
 
 More of these are going to come out of every public surface, left and right. This is the page that explains how to read them, and every other surface points here.
+
+## Refinement is the method
+
+I am continually refining the body of work, and how I write is itself part of that refinement. This page is not exempt from it, and neither is anything else here. Even this is a continued, iterative process, and I want to emphasise that, because it is easy to read a versioned site as one that gets things right and then tidies up after itself. That is not what this is.
+
+Here is what it looks like in practice, using something that happened the night I wrote this. I have a post called [Human Delta Value](/blog/human-delta-value/). I did not take it down. I had notes I had forgotten I had written, I brought them back in, re-synthesised the whole thing, thought it over, and published [the next iteration](/blog/human-delta-value-the-next-iteration/) as a new post, with the old one still standing and still reachable. Both are dated. Both are in the append-only public record at [github.com/ObsidianDelta/published](https://github.com/ObsidianDelta/published), where anyone can diff one against the other. Nothing was quietly edited, and nothing was quietly removed. A reader can watch the thinking move.
+
+That is the standing commitment, and it is not an apology for changing my mind. Refinement is the method. When I am wrong I say so in public, and the record is how I say it — not a footnote and not a quiet edit, but the earlier version left where it is with the later one beside it. That is the same rule as [The Constraint](/blog/the-constraint/): *Something Will Go Wrong. Keep the Record.* It applies to my own sentences first.
 
 ---
 
