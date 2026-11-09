@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { listedPosts, formatDate } from '../_posts.js';
+import { listedPosts, formatDate, isTelemetry } from '../_posts.js';
 
 // The reading list. It shows listedPosts, not every post that builds: a post
 // marked unlisted still has its own URL and still serves in full, it is simply
@@ -17,7 +17,7 @@ import { listedPosts, formatDate } from '../_posts.js';
     <ul class="posts">
       {listedPosts.map((p) => (
         <li>
-          <a href={`/blog/${p.slug}/`}>{p.title}</a>
+          <a href={`/blog/${p.slug}/`}>{p.title}{isTelemetry(p) && <span class="tag">Telemetry</span>}</a>
           <time datetime={new Date(p.date).toISOString()}>{formatDate(p.date)}{p.updated && new Date(p.updated) > new Date(p.date) && ` · Updated ${formatDate(p.updated)}`}</time>
           {p.description && <p>{p.description}</p>}
         </li>

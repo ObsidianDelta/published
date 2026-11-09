@@ -92,6 +92,15 @@ export const posts = Object.entries(modules)
 /** The posts an index is allowed to advertise. */
 export const listedPosts = posts.filter((p) => !p.unlisted);
 
+// The `telemetry: true` frontmatter flag rides through on `...frontmatter` above,
+// so every index already sees it. These two helpers are the explicit passthrough
+// the pipeline reads: /telemetry/ lists telemetryPosts; /blog/ shows a small
+// "Telemetry" label where isTelemetry(p) is true.
+/** Telemetry posts (Jason's media pipeline), newest first, listed only. */
+export const telemetryPosts = listedPosts.filter((p) => p.telemetry === true);
+/** True for a telemetry post. */
+export const isTelemetry = (p) => p.telemetry === true;
+
 /** Title and deck rejoined, for the places that show a post on one line. */
 export const fullTitle = (p) => (p.subtitle ? `${p.title} — ${p.subtitle}` : p.title);
 
