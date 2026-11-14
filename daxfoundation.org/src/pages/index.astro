@@ -1,7 +1,15 @@
 ---
-// 2026-11-08 (Jason, launch): the curtain IS the gift. The home page opens the gift
-// (the heart, the languages, the beeps) at /gift/. DAX line kept for the deploy gate;
-// data-countdown skips the full-home content gates; privacy link present but hidden.
+// 2026-11-08 (Jason, launch): the curtain IS the gift -- / opened straight into the
+// gift (the heart, the languages, the beeps) at /gift/.
+//
+// 2026-11-14 (site/sasquatch-films): / now opens the content home (/home/) so the
+// films band is the first thing a visitor meets ("the moment someone lands on the
+// front page they get it"), nothing is orphaned, and the external /#cp, /#founder
+// and /#cognitive-companion anchors land again (this redirect preserves the hash;
+// the gift redirect dropped it). The gift is still one tap away -- the Sound Lab
+// tile on /home/. The gift at /gift/ is unchanged. See the report for the one tap
+// Jason owns if he wants / to open the gift again instead: revert this file.
+// DAX line kept for the deploy gate; privacy link present but hidden.
 ---
 <!doctype html>
 <html lang="en" data-countdown>
@@ -9,7 +17,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="od-no-beacon" content="1">
-<meta http-equiv="refresh" content="0; url=/gift/">
+<meta http-equiv="refresh" content="0; url=/home/">
 <title>DAX Foundation</title>
 <style>
   html,body{margin:0;height:100%;background:#000;color:#f2f2f2;
@@ -18,7 +26,7 @@
   #d{font-size:clamp(1rem,3vw,1.6rem);max-width:34em;line-height:1.4;font-weight:400;opacity:.85}
   #privz{position:fixed;left:-9999px;opacity:0}
 </style>
-<script is:inline>window.location.replace('/gift/');</script>
+<script is:inline>window.location.replace('/home/' + (location.hash || ''));</script>
 </head>
 <body>
 <p id="d">DAX: preservation and expansion of life, humanity, and consciousness.</p>
