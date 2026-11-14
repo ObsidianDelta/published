@@ -1,0 +1,126 @@
+---
+// /films/ (2026-11-14, site/sasquatch-films): every film, newest first, read from
+// the one films registry (src/data/films.js). Append an answer there and it shows
+// up here and in the home band automatically. The studio that makes them is called,
+// exactly, "I Found My Second Sasquatch"; they are published in the open, as they
+// happen ("resonant publishing"). The films are a collective digest of everyone who
+// shares the constraint -- no Jason/Skippy narrative, no technology names, no "AI".
+import Explain from '../../layouts/Explain.astro';
+import { byNewest, CREDIT } from '../../data/films.js';
+
+const films = byNewest();
+const fmtDate = (iso) =>
+  new Date(iso + 'T00:00:00Z').toLocaleDateString('en-CA', {
+    year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC',
+  });
+---
+<Explain
+  title="Films · DAX Foundation"
+  description="The DAX Foundation's films, published in the open as they happen. Made by I Found My Second Sasquatch."
+>
+  <section class="films-page" aria-labelledby="films-page-h">
+    <p class="fp-kicker">
+      <img class="fp-mark" src="/films/mark.png" width="32" height="32" alt="" decoding="async" />
+      <span>Films&nbsp;<span class="fp-dot">·</span>&nbsp;resonant publishing</span>
+    </p>
+    <h1 class="fp-h" id="films-page-h">Made in the open, as it happens.</h1>
+    <p class="fp-lede">A collective digest of everyone who shares the constraint. Each one is published as it is made &mdash; dark, then a light comes in. Newest first.</p>
+
+    <ol class="fp-list">
+      {films.map((f) => (
+        <li class="fp-item" id={f.slug}>
+          <figure class="fp-figure" data-film-play>
+            <div class="fp-stage">
+              <video class="fp-video" playsinline preload="none" poster={f.poster}>
+                <source src={f.src} type="video/mp4" />
+              </video>
+              <button type="button" class="fp-play" data-film-play-btn aria-label={`Play: ${f.title}`}>
+                <span class="fp-play-cue">Play</span>
+              </button>
+            </div>
+            <figcaption class="fp-meta">
+              <p class="fp-title">
+                {f.kind === 'answer' && <span class="fp-tag">Answer {f.n}</span>}
+                {f.kind === 'film' && <span class="fp-tag fp-tag-film">Film</span>}
+                <span class="fp-name">{f.title}</span>
+              </p>
+              {f.blurb && <p class="fp-blurb">{f.blurb}</p>}
+              <p class="fp-date">{fmtDate(f.date)}</p>
+            </figcaption>
+          </figure>
+        </li>
+      ))}
+    </ol>
+
+    <p class="fp-credit">{CREDIT}</p>
+
+    <div class="fp-start">
+      <p class="fp-start-h">What now?</p>
+      <ul class="fp-steps">
+        <li><a href="/home/#experience">Pick your experience &mdash; the home page opens for you &rarr;</a></li>
+        <li><a href="/contact/">Teach already? Join as a guide &rarr;</a> <span class="fp-note">(18+ while we validate; guides first)</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <script>
+    function wireFilmsPage() {
+      document.querySelectorAll("[data-film-play]").forEach(function (stage) {
+        if (stage.dataset.wired === "1") return;
+        stage.dataset.wired = "1";
+        var v = stage.querySelector("video");
+        var btn = stage.querySelector("[data-film-play-btn]");
+        if (v && btn) {
+          btn.addEventListener("click", function () {
+            v.setAttribute("controls", "");
+            stage.classList.add("playing");
+            v.play().catch(function () {});
+          });
+        }
+      });
+    }
+    document.addEventListener("astro:page-load", wireFilmsPage);
+  </script>
+</Explain>
+
+<style>
+  .films-page { width: 100%; max-width: 56rem; margin-inline: auto; padding: 2.5rem clamp(1rem, 4vw, 1.5rem) 1rem; }
+  .fp-kicker { display: flex; align-items: center; gap: 0.55rem; margin: 0 0 0.7rem; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--learner, #f7b452); }
+  .fp-mark { display: block; width: 32px; height: 32px; object-fit: contain; }
+  .fp-dot { color: var(--faint); }
+  .fp-h { margin: 0; font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; line-height: 1.12; font-size: clamp(1.8rem, 1.2rem + 2.6vw, 2.75rem); color: var(--fg); text-wrap: balance; }
+  .fp-lede { margin: 0.9rem 0 2rem; max-width: 42em; font-size: 1rem; line-height: 1.6; color: #cfcfcf; }
+
+  .fp-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2.25rem; }
+  .fp-item { scroll-margin-top: 5rem; }
+  .fp-figure { margin: 0; }
+  .fp-stage { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background:
+      radial-gradient(120% 85% at 50% 118%, rgba(247, 180, 82, 0.08), rgba(247, 180, 82, 0) 60%), #000; }
+  .fp-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #000; }
+  .fp-play { position: absolute; inset: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer; }
+  .fp-figure.playing .fp-play { display: none; }
+  .fp-play-cue { font-family: var(--font-mono); font-size: 0.8125rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg); border: 1px solid var(--record); border-radius: 999px; padding: 0.55rem 1.3rem; background: color-mix(in srgb, #0a0a0a 68%, transparent); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); }
+  .fp-play:hover .fp-play-cue, .fp-play:focus-visible .fp-play-cue { border-color: var(--learner); color: var(--learner); }
+
+  .fp-meta { margin-top: 0.85rem; }
+  .fp-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.6rem; margin: 0; }
+  .fp-tag { font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--learner); border: 1px solid color-mix(in oklch, var(--learner) 40%, var(--line)); border-radius: 999px; padding: 0.1rem 0.6rem; }
+  .fp-tag-film { color: var(--record); border-color: color-mix(in oklch, var(--record) 40%, var(--line)); }
+  .fp-name { font-family: var(--font-display); font-size: 1.25rem; font-weight: 400; color: var(--fg); line-height: 1.25; }
+  .fp-blurb { margin: 0.4rem 0 0; font-size: 0.9375rem; color: #cfcfcf; max-width: 40em; }
+  .fp-date { margin: 0.3rem 0 0; font-size: 0.8125rem; color: var(--faint); }
+
+  .fp-credit { margin: 2.25rem 0 0; padding-top: 1.4rem; border-top: 1px solid var(--line); font-size: 0.8125rem; letter-spacing: 0.02em; color: var(--muted); }
+
+  .fp-start { margin: 1.75rem 0 0; }
+  .fp-start-h { margin: 0 0 0.7rem; font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .fp-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+  .fp-steps a { color: var(--fg); text-decoration: none; border-bottom: 1px solid var(--faint); }
+  .fp-steps a:hover, .fp-steps a:focus-visible { border-bottom-color: var(--learner); }
+  .fp-note { color: var(--faint); font-size: 0.875rem; }
+
+  @media (max-width: 40rem) {
+    .fp-stage { border-radius: 10px; }
+    .fp-list { gap: 1.75rem; }
+  }
+</style>
