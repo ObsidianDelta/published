@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" role="img" aria-label="Dark, then a light coming in">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="58%" r="60%">
+      <stop offset="0%" stop-color="#1a1710"/>
+      <stop offset="42%" stop-color="#0f0d09"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </radialGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#glow)"/>
+  <g fill="none" stroke="#d9d2c5" stroke-opacity="0.16" stroke-width="2">
+    <circle cx="640" cy="388" r="112"/>
+  </g>
+  <path d="M640 322 L697 430 L583 430 Z" fill="none" stroke="#f7b452" stroke-opacity="0.22" stroke-width="2"/>
+  <circle cx="640" cy="404" r="5.5" fill="#f7b452" fill-opacity="0.5"/>
+</svg>
