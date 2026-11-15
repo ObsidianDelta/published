@@ -288,3 +288,6 @@ body.is-opening .foot .mute { display: none; }
 
 /* headings receive focus programmatically on each stage (for screen readers), without a box */
 h1[tabindex='-1']:focus, h2[tabindex='-1']:focus { outline: none; }
+
+/* QR code canvas rendered in the share box */
+.qr-canvas { display: block; margin: 10px auto 0; image-rendering: pixelated; image-rendering: crisp-edges; border-radius: 6px; max-width: 100%; }

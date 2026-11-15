@@ -20,6 +20,7 @@ import { API_CONFIG, makeClient, experimentBody, looksLikeApiToken } from './cor
 import { sanitize as ogSanitize, encodeState as ogEncode, decodeState as ogDecode, soundLetter as ogLetter } from './lib/gift-og/state.js';
 import { createPlayer } from './audio.js';
 import { createField } from './field.js';
+import { drawQR } from './vendor/qr-canvas.js';
 
 const store = makeStore(globalThis.localStorage);
 const player = createPlayer();
@@ -37,7 +38,7 @@ const S = {
   tpl: null, tStage: 0,
   shared: null, sharedId: null, sharedBad: false, ogState: null, apiToken: null,
   libTab: 'mine', tplFilter: 'all', depth: 0, pubText: false, nowPlaying: -1,
-  toast: [], breath: false, over16: false, apiStatus: null, apiMe: null, apiData: null,
+  toast: [], breath: false, over16: false, apiStatus: null, apiMe: null, apiData: null, qrOpen: false,
   openWords: [], openHue: null, revealN: 0,
 };
 let tables = { shared: {}, studio: {} };
@@ -763,6 +764,25 @@ function shareBox(item) {
       const a = el('a', { href: URL.createObjectURL(blob), download: 'love-sounds-like.png' }); document.body.appendChild(a); a.click(); a.remove();
     }, 'image/png');
   };
+  const qrIcon = () => svg('svg', { viewBox: '0 0 20 20', width: '20', height: '20', 'aria-hidden': 'true', style: { display: 'block' } },
+    svg('rect', { x: '1', y: '1', width: '6', height: '6', fill: 'currentColor' }),
+    svg('rect', { x: '2', y: '2', width: '4', height: '4', fill: 'var(--f-bg2,#1a1830)' }),
+    svg('rect', { x: '3', y: '3', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '13', y: '1', width: '6', height: '6', fill: 'currentColor' }),
+    svg('rect', { x: '14', y: '2', width: '4', height: '4', fill: 'var(--f-bg2,#1a1830)' }),
+    svg('rect', { x: '15', y: '3', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '1', y: '13', width: '6', height: '6', fill: 'currentColor' }),
+    svg('rect', { x: '2', y: '14', width: '4', height: '4', fill: 'var(--f-bg2,#1a1830)' }),
+    svg('rect', { x: '3', y: '15', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '9', y: '9', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '13', y: '13', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '9', y: '13', width: '2', height: '2', fill: 'currentColor' }),
+    svg('rect', { x: '13', y: '9', width: '2', height: '2', fill: 'currentColor' }));
+  let qrCanvas = null;
+  if (S.qrOpen) {
+    qrCanvas = el('canvas', { class: 'qr-canvas', 'aria-hidden': 'true' });
+    try { drawQR(qrCanvas, link()); } catch { qrCanvas = null; }
+  }
   return el('section', { class: 'share', 'data-share-link': link() },
     el('h3', null, t('share.lead')),
     el('p', { class: 'mute small' }, t('share.hint')),
@@ -772,7 +792,9 @@ function shareBox(item) {
       button(t('btn.copy'), async () => { status.textContent = (await copyText(link())) ? t('btn.copied') : link(); }, 'pri'),
       navigator.share ? button(t('btn.share'), async () => { try { await navigator.share({ title: t('share.title'), text: text() }); } catch { /* cancelled */ } }) : null,
       button(t('btn.image'), saveImage),
-      status));
+      el('button', { type: 'button', class: 'chip', 'aria-label': t('share.lead'), 'aria-expanded': String(!!S.qrOpen), on: { click: () => { S.qrOpen = !S.qrOpen; render(); } } }, qrIcon()),
+      status),
+    qrCanvas);
 }
 
 // open research, through the love data API (off by default; 13+ here, 16+ for the API, explicit yes)
