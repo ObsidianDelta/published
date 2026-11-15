@@ -896,7 +896,7 @@ function viewShared() {
     cardView(item, S.sharedId, false),
     el('div', { class: 'row' },
       button(t('btn.makemine'), () => (item.kind === 'free' ? startNew({ q: makeMineFrom(item.exp).q, size: item.exp.size }, 1) : startTemplate(item.payload.t)), 'pri big'),
-      button(el('span', null, '✦ ', t('remix.one')), () => remixNow(item, S.sharedId), 'ghost remix-btn', { 'data-remix': '1' })),
+      button(el('span', null, '✦ ', t('remix.one'), ' · ', String((R.gen || 0) + 1)), () => remixNow(item, S.sharedId), 'ghost remix-btn', { 'data-remix': '1', 'aria-label': t('shared.gen', { n: (R.gen || 0) + 1 }) })),
     button(t('nav.home'), goHome, 'ghost'));
 }
 /** a bare gift-og link (?s= share-state, no experiment): show the card, invite "make yours". */
