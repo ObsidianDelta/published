@@ -878,7 +878,7 @@ function viewShared() {
     cardView(item, S.sharedId, false),
     el('div', { class: 'row' },
       button(t('btn.makemine'), () => (item.kind === 'free' ? startNew({ q: makeMineFrom(item.exp).q, size: item.exp.size }, 1) : startTemplate(item.payload.t)), 'pri big'),
-      button(el('span', null, '✦ ', t('remix.one')), () => remixNow(item, S.sharedId), 'big remix-btn', { 'data-remix': '1' })),
+      button(el('span', null, '✦ ', t('remix.one')), () => remixNow(item, S.sharedId), 'ghost remix-btn', { 'data-remix': '1' })),
     button(t('nav.home'), goHome, 'ghost'));
 }
 /** a bare gift-og link (?s= share-state, no experiment): show the card, invite "make yours". */
@@ -889,7 +889,7 @@ function viewGift() {
     el('h1', null, L(l === 're_love' ? 'love' : l)),
     el('figure', { class: 'ogcard' }, el('img', { src: ogImage(l), width: '1200', height: '630', alt: t('card.alt', { feeling: L(l === 're_love' ? 'love' : l) }) })),
     S.ogState.g ? el('p', { class: 'mute small' }, t('shared.chain', { n: S.ogState.g })) : null,
-    el('div', { class: 'row' }, button(t('gift.make'), goHome, 'pri big')));
+    el('div', { class: 'row' }, button(t('gift.make'), () => startNew({ q: 'q.mynotes', size: 'small' }, 1), 'pri big')));
 }
 /** an API share token (?s=<token>): opening it contacts the research server, so ask first. */
 function viewApiShare() {
