@@ -32,7 +32,10 @@
       "name": "Echo",
       "promise": "Your first sound opens the doors: places, people, seasons.",
       "rule": {
-        "completedCount": 1
+        "any": [
+          { "completedCount": 1 },
+          { "streak": 3 }
+        ]
       }
     },
     {
@@ -40,13 +43,14 @@
       "name": "Chorus",
       "promise": "Blend two things you love into one sound.",
       "rule": {
-        "all": [
+        "any": [
           {
-            "completedCount": 3
+            "all": [
+              { "completedCount": 3 },
+              { "sourceTypesCompleted": 2 }
+            ]
           },
-          {
-            "sourceTypesCompleted": 2
-          }
+          { "streak": 7 }
         ]
       }
     },
@@ -55,16 +59,19 @@
       "name": "Harmony",
       "promise": "Words for love from other languages; harmony from other traditions.",
       "rule": {
-        "all": [
+        "any": [
           {
-            "completedCount": 6
+            "all": [
+              { "completedCount": 6 },
+              {
+                "depthCompleted": {
+                  "min": 3,
+                  "count": 1
+                }
+              }
+            ]
           },
-          {
-            "depthCompleted": {
-              "min": 3,
-              "count": 1
-            }
-          }
+          { "streak": 15 }
         ]
       }
     },

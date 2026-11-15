@@ -169,7 +169,7 @@ export function normalizeTemplatePayload(raw, bundle) {
 }
 
 // ---- the game layer: the library's own unlock rules ----
-export const libraryProgress = (completed, bundle) => progress({ completed }, bundle.library, bundle.progression);
-export function completeTemplate(completed, id, bundle) {
-  try { return complete({ completed }, id, bundle.library, bundle.progression); } catch { return { state: { completed }, opened: { templates: [], stages: [], rings: [] } }; }
+export const libraryProgress = (completed, bundle, streak = 0) => progress({ completed, streak }, bundle.library, bundle.progression);
+export function completeTemplate(completed, id, bundle, streak = 0) {
+  try { return complete({ completed, streak }, id, bundle.library, bundle.progression); } catch { return { state: { completed }, opened: { templates: [], stages: [], rings: [] } }; }
 }

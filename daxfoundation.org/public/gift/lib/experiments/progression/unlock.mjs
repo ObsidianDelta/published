@@ -12,6 +12,7 @@ export function evaluateRule(rule, state, library, progression, _depth = 0) {
   const v = rule[op];
   switch (op) {
     case 'always': return v === true;
+    case 'streak': return (state.streak || 0) >= v;
     case 'completed': return done.has(v);
     case 'completedCount': return doneT.length >= v;
     case 'sourceCompleted': return doneT.some((t) => t.source.type === v);

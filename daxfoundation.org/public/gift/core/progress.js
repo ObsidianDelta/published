@@ -6,9 +6,10 @@
 import { SOURCE_KINDS, LETTER_IDS } from './catalog.js';
 
 export const FEATURE_UNLOCKS = Object.freeze({ tense: 2, layer: 5 });
+export const STREAK_THRESHOLDS = Object.freeze([3, 7, 15]);
 
 export function emptyProgress() {
-  return { v: 1, discoveries: 0, letters: [], kinds: [], harmonies: [], streak: 0, lastDay: null, best: 0, remixes: 0 };
+  return { v: 1, discoveries: 0, letters: [], kinds: [], harmonies: [], streak: 0, lastDay: null, best: 0, remixes: 0, streakMilestones: [] };
 }
 
 export function normalizeProgress(p) {
@@ -26,6 +27,7 @@ export function normalizeProgress(p) {
     lastDay: typeof p.lastDay === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(p.lastDay) ? p.lastDay : null,
     best: Number.isInteger(p.best) && p.best >= 0 ? p.best : 0,
     remixes: Number.isInteger(p.remixes) && p.remixes >= 0 ? p.remixes : 0,
+    streakMilestones: arr(p.streakMilestones, (m) => STREAK_THRESHOLDS.includes(m)),
   };
 }
 
@@ -37,6 +39,11 @@ export function addDays(day, n) {
   const [y, m, d] = day.split('-').map(Number);
   const t = new Date(Date.UTC(y, m - 1, d + n));
   return t.toISOString().slice(0, 10);
+}
+
+/** thresholds not yet recorded in p.streakMilestones that streak has reached. */
+export function newStreakMilestones(p, streak) {
+  return STREAK_THRESHOLDS.filter((m) => streak >= m && !p.streakMilestones.includes(m));
 }
 
 /** the streak to show today: it rests (shows 0) once a whole day has passed without a discovery. */

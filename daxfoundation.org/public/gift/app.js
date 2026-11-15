@@ -13,7 +13,7 @@ import { linkCopy, hasTypedWords, codeFromHash, decodeRaw, encode, encodePayload
 import { toCard, toTemplateCard, checkCard, depthsOf } from './core/card.js';
 import { LANGS, makeTranslator, loadTables, pickLang, dirOf, needsReview } from './core/i18n.js';
 import { loadJSON } from './core/load.js';
-import { recordCompletion, currentStreak, isUnlocked, featureOn, nextUnlock, dayString, FEATURE_UNLOCKS } from './core/progress.js';
+import { recordCompletion, currentStreak, isUnlocked, featureOn, nextUnlock, dayString, FEATURE_UNLOCKS, STREAK_THRESHOLDS, newStreakMilestones } from './core/progress.js';
 import { makeStore, upsert } from './core/store.js';
 import { makeBundle, widgetOptions, stageActive, needsAnswer, cleanWidgets, runUpTo, summarize, playable, outputType, templatePayload, normalizeTemplatePayload, libraryProgress, completeTemplate } from './core/tpl.js';
 import { API_CONFIG, makeClient, experimentBody, looksLikeApiToken } from './core/api.js';
@@ -210,7 +210,7 @@ function lettersStrip() {
 }
 function progressBox() {
   const p = S.progress, streak = currentStreak(p, today());
-  const lp = libraryProgress(S.done, bundle);
+  const lp = libraryProgress(S.done, bundle, streak);
   return el('section', { class: 'progress', 'aria-label': t('prog.disc', { n: p.discoveries }) },
     lettersStrip(),
     el('p', { class: 'prog-line' },
@@ -238,7 +238,7 @@ function templateCard(tpl, open, done) {
       open ? null : el('span', { class: 'lock small' }, t('tpl.locked', { ring: ringName || ring || '…' }))));
 }
 function templatePicker() {
-  const lp = libraryProgress(S.done, bundle);
+  const lp = libraryProgress(S.done, bundle, currentStreak(S.progress, today()));
   const avail = new Set(lp.available), done = new Set(lp.completed);
   const f = S.tplFilter;
   const list = bundle.library.templates.filter((x) => f === 'all' || (f === 'quick' && x.depth === 1) || (f === 'deep' && x.depth >= 2) || (f === 'open' && avail.has(x.id)))
@@ -511,7 +511,7 @@ function startTemplate(id, o = {}) {
   const tpl = bundle.byId.get(id);
   if (!tpl) return;
   player.stop();
-  const u = libraryProgress(S.done, bundle).unlockedStages;
+  const u = libraryProgress(S.done, bundle, currentStreak(S.progress, today())).unlockedStages;
   S.tpl = templatePayload(id, cleanWidgets(tpl, o.w || {}, bundle), u, o.gen || 0, o.parent);
   S.view = 'tpl'; S.tStage = 0; S.recorded = null; S.depth = 0; S.apiStatus = null; S.toast = [];
   clearHash(); render(); focusMain();
@@ -698,6 +698,22 @@ function viewTemplate() {
       }, 'pri', { disabled: missing })));
 }
 
+// ---------- streak milestone ring announcements ----------
+// Returns tpl.opened toast strings for any ring just opened by a streak crossing 3/7/15.
+// Records the milestone so each threshold fires exactly once per device.
+function streakRingToasts(streak) {
+  if (!bundle) return [];
+  const fresh = newStreakMilestones(S.progress, streak);
+  if (!fresh.length) return [];
+  const prevStreak = Math.max(0, ...STREAK_THRESHOLDS.filter((m) => S.progress.streakMilestones.includes(m)));
+  const before = libraryProgress(S.done, bundle, prevStreak);
+  const after = libraryProgress(S.done, bundle, streak);
+  const newRings = after.rings.filter((r) => r.open && !before.rings.find((b) => b.id === r.id).open);
+  S.progress = { ...S.progress, streakMilestones: [...S.progress.streakMilestones, ...fresh] };
+  store.setProgress(S.progress);
+  return newRings.map((r) => t('tpl.opened', { x: (bundle.progression.rings.find((x) => x.id === r.id) || {}).name || r.id }));
+}
+
 // ---------- result (both kinds) ----------
 async function recordResult(item) {
   const id = await entryId(item);
@@ -711,7 +727,8 @@ async function recordResult(item) {
   const out = recordCompletion(S.progress, { letters: R.letters, kinds, harmony: R.chords.join('-'), remix: !!R.parent }, today());
   S.progress = out.progress; store.setProgress(S.progress);
   let opened = { templates: [], stages: [], rings: [] };
-  if (item.kind === 'tpl') { const c = completeTemplate(S.done, item.payload.t, bundle); S.done = c.state.completed; store.setTemplatesDone(S.done); opened = c.opened; }
+  const streak = currentStreak(S.progress, today());
+  if (item.kind === 'tpl') { const c = completeTemplate(S.done, item.payload.t, bundle, streak); S.done = c.state.completed; store.setTemplatesDone(S.done); opened = c.opened; }
   const ringName = (id2) => (bundle.progression.rings.find((r) => r.id === id2) || {}).name || id2;
   const stageName = (id2) => (bundle.progression.bonus_stages.find((b) => b.id === id2) || {}).name || id2;
   S.toast = [
@@ -720,6 +737,7 @@ async function recordResult(item) {
     ...opened.rings.map((r) => t('tpl.opened', { x: ringName(r) })),
     ...opened.stages.map((s) => t('tpl.opened', { x: stageName(s) })),
     ...(opened.templates.length ? [t('tpl.opened', { x: t('tpl.count', { n: opened.templates.length }) })] : []),
+    ...streakRingToasts(streak),
   ];
   if (S.toast.length) say(t('result.found') + ': ' + S.toast.join(', '));
   render();
@@ -1021,6 +1039,8 @@ applySkin(); if (darkMq && darkMq.addEventListener) darkMq.addEventListener('cha
   bundle = makeBundle(library, cultures, films, progression);
   S.lib = { mine: S.lib.mine, shared: S.lib.shared };
   await openFromLink();
+  const bootToasts = streakRingToasts(currentStreak(S.progress, today()));
+  if (bootToasts.length) { S.toast = bootToasts; say(t('result.found') + ': ' + S.toast.join(', ')); }
   render();
   document.documentElement.dataset.ready = 'true';
 })();
