@@ -8,5 +8,12 @@ https://:version.:project.pages.dev/*
 
 # 2026-11-05 (Security Policy v1.0): browsers use HTTPS only for daxfoundation.org.
 # Apex only (no includeSubDomains, no preload) so no other host is affected.
+#
+# 2026-11-15 (veil, ask D6VU): the whole host is noindex now. The veil middleware
+# (functions/_middleware.js) already stamps X-Robots-Tag on every response it
+# returns; this static rule is defence-in-depth for any asset response and keeps
+# the directive present even if the middleware is ever disabled. og tags are
+# untouched, so link previews still unfurl.
 /*
   Strict-Transport-Security: max-age=31536000
+  X-Robots-Tag: noindex, nofollow
