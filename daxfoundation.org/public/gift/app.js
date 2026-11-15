@@ -232,7 +232,7 @@ function templateCard(tpl, open, done) {
       el('strong', { class: 'tcard-t', lang: 'en' }, tpl.title),
       el('span', { class: 'tcard-q', lang: 'en' }, tpl.question),
       el('span', { class: 'tcard-m' },
-        el('span', { class: 'mini-dots', 'aria-hidden': 'true' }, tpl.letters.map((l) => el('span', { class: 'ldot on', style: { '--h': hueOf(l) } }))),
+        el('span', { class: 'mini-dots', 'aria-hidden': 'true' }, tpl.letters.map((l) => el('span', { class: 'ldot' + (S.progress.letters.includes(l) ? ' on' : ''), style: { '--h': hueOf(l) } }))),
         `${t('tpl.depth', { n: tpl.depth })} · ${t('tpl.minutes', { n: tpl.minutes })}${done ? ' · ✓' : ''}`),
       tpl.care && tpl.care.sensitive ? el('span', { class: 'mute small' }, t('tpl.care')) : null,
       open ? null : el('span', { class: 'lock small' }, t('tpl.locked', { ring: ringName || ring || '…' }))));
@@ -241,8 +241,10 @@ function templatePicker() {
   const lp = libraryProgress(S.done, bundle, currentStreak(S.progress, today()));
   const avail = new Set(lp.available), done = new Set(lp.completed);
   const f = S.tplFilter;
+  const found = new Set(S.progress.letters);
+  const missingOf = (x) => x.letters.filter((l) => !found.has(l)).length;
   const list = bundle.library.templates.filter((x) => f === 'all' || (f === 'quick' && x.depth === 1) || (f === 'deep' && x.depth >= 2) || (f === 'open' && avail.has(x.id)))
-    .sort((a, b) => (b.flagship - a.flagship) || (avail.has(b.id) - avail.has(a.id)) || (a.depth - b.depth));
+    .sort((a, b) => (b.flagship - a.flagship) || (avail.has(b.id) - avail.has(a.id)) || (missingOf(b) - missingOf(a)) || (a.depth - b.depth));
   return el('section', { class: 'picker-t', 'aria-labelledby': 'tpl-h' },
     el('h2', { id: 'tpl-h' }, t('tpl.title')),
     el('p', { class: 'mute' }, t('tpl.sub')),
