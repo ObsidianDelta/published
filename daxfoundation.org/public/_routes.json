@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/api/preview-signup", "/admin/preview", "/admin/preview/*"],
+  "include": ["/api/preview-signup", "/admin/preview", "/admin/preview/*", "/gift", "/gift/"],
   "exclude": []
 }
