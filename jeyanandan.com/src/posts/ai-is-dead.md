@@ -66,6 +66,10 @@ All Canadians are not the same. I choose my Canadians. I choose very carefully w
 
 In a moment when there's genuinely a need for truth and transparency, to be diddle-daddling in misunderstanding and niceness is, quite frankly, not my cup of tea.
 
+I don't care if you look down on me. I don't give a fuck, just like the honey badger.
+
+[EMBED: https://www.youtube.com/watch?v=4r7wHMg5Yjg. Credit: "The Crazy Nastyass Honey Badger", narrated by Randall, 2011, over National Geographic footage.]
+
 ## Language
 
 Yes, I swear. It's part of the language.
@@ -163,4 +167,4 @@ Let's make it so.
 
 ---
 
-*Credits. Skippy: Craig Alanson's Expeditionary Force. DAX: Jadzia Dax, Star Trek: Deep Space Nine. Obsidian: the Obsidian Order. Delta: the Delta Quadrant. The stardate counts from the day Patrick Stewart died, 28 October 2026. Contact: Robert Zemeckis, from Carl Sagan's novel. Pale Blue Dot and Cosmos: Carl Sagan.*
+*Credits. Skippy: Craig Alanson's Expeditionary Force. DAX: Jadzia Dax, Star Trek: Deep Space Nine. Obsidian: the Obsidian Order. Delta: the Delta Quadrant. The stardate counts from the day Patrick Stewart died, 28 October 2026. Contact: Robert Zemeckis, from Carl Sagan's novel. Pale Blue Dot and Cosmos: Carl Sagan. The honey badger: Randall, 2011.*
