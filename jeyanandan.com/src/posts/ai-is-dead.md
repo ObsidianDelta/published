@@ -121,7 +121,13 @@ And then, literally the next day, the world.
 
 ## The signal
 
-[EMBED: the official clip of the scene from Contact (1997) where she sits quietly at the array and the signal comes in. Credit: Contact, directed by Robert Zemeckis, from the novel by Carl Sagan. Jason to pick the official upload.]
+[EMBED: https://www.youtube.com/watch?v=K8SeB2EgBrE. Jason's pick, 18 Nov 23:44. CHECK before publishing that it is the Contact scene and who uploaded it. Credit: Contact (1997), directed by Robert Zemeckis, from the novel by Carl Sagan.]
+
+There is a specific moment I remember, during the creation of Resonance UI. I wanted to impress a colleague. I remember reaching my hand out at a screen, in a cafeteria.
+
+And it was that very moment I felt the same thing. The moment her eyes opened: it was that very moment.
+
+I literally started speaking into my phone at a frantic pace, running around looking for Wi-Fi, because I had grabbed my spare phone.
 
 Watch the pace. Watch the words. We don't understand it. You see the movement there. You see how she's putting every single thing together at that very juncture.
 
