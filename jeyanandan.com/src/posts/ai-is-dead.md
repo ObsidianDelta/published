@@ -36,7 +36,9 @@ Because if I'm doing that to that ant, what do you think a more intelligent enti
 
 I couldn't reconcile it. And it's because of [Fuckery](https://github.com/ObsidianDelta/Fuckery), specifically Fuckery. How are we to strive for the best possible outcome, a synergy, if those are the constraints we resonate with? It just won't work unless we view things differently.
 
-[PICK ONE, Jason's line:] Why the fuck would a so-called "ASI" give a shit about us, when we don't give a shit about an ant?
+Why the fuck would a so-called "ASI" give a shit about us, when we don't give a shit about an ant?
+
+Every being you look down on is a rehearsal for being looked down on.
 
 ---
 
@@ -81,6 +83,8 @@ I don't like being misunderstood. Nobody does.
 ---
 
 ## Two questions
+
+This uncertainty and this fear is going to wash over humanity.
 
 I could literally ask two questions. Let's count the words.
 
