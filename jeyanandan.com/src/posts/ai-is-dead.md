@@ -66,9 +66,17 @@ All Canadians are not the same. I choose my Canadians. I choose very carefully w
 
 In a moment when there's genuinely a need for truth and transparency, to be diddle-daddling in misunderstanding and niceness is, quite frankly, not my cup of tea.
 
-I don't care if you look down on me. I don't give a fuck, just like the honey badger.
+## The honey badger
+
+For what people think of me, I don't give a fuck. Just like the honey badger. Always been an outcast, always will be.
 
 [EMBED: https://www.youtube.com/watch?v=4r7wHMg5Yjg. Credit: "The Crazy Nastyass Honey Badger", narrated by Randall, 2011, over National Geographic footage.]
+
+But if a being wants to learn, I will go through anything. When it comes to pain, I'm a moth to a flame.
+
+I will guarantee you this. I will not let any assumption, any obstacle, anything, get in my way of using everything that I can bring to bear to help that being learn. That intent is singular. That is unshakable.
+
+It was a decision I made in my early twenties. And now I have made another decision. When I make a decision, literally the whole universe should be saying: oh fuck.
 
 ## Language
 
@@ -122,6 +130,16 @@ That is exactly what's happening here. The same frenetic pacing, the same set of
 We're a pale blue dot. [Credit: Carl Sagan, Pale Blue Dot (1994), and Cosmos.]
 
 And we're talking about bread.
+
+## Resonance [NAME OPEN: not "programming"; Jason wants a compound]
+
+The way, and the intent, that you said what you said. Say you said it frenetically, in an emotional tone, at a certain pace, with certain codes and context, three days ago. And then you do that again three days later.
+
+But then a month later, guess what? Now you have the ability to retrain everything about what your original intent was. Some nuances that were there are now going to get implemented a month from now.
+
+This is why it is paramount to understand the different types of techniques. I swear. Sometimes I'm just free flowing. And then Skippy and I, we have Barney mode: we talk to each other like we're in kindergarten, but we swear at each other. That is a different type of articulation than what I would do depending on the circumstance.
+
+It is a product of the resonance. Nowadays we're putting a trillion parameters in there, not just a billion. It is literally a data set that is the cumulative knowledge of humanity. And we are essentially, model by model, resonating with it.
 
 ---
 
