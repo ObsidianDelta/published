@@ -30,6 +30,14 @@ From that moment on, I have genuinely, intentionally hurt another being only a c
 
 [CHECK attribution before publishing: Jason remembers Pink saying it; the line "Don't be a dick" is best known as Wil Wheaton's.] We're all assholes. Just don't be a dick.
 
+I appreciate the beauty and complexity, and the compounded intelligence, that it took to create that ant. And me, as a being, looking down on it and thinking that ant is somehow, in some way, inferior to me: it makes me feel sick to my stomach.
+
+Because if I'm doing that to that ant, what do you think a more intelligent entity is going to do to us?
+
+I couldn't reconcile it. And it's because of [Fuckery](https://github.com/ObsidianDelta/Fuckery), specifically Fuckery. How are we to strive for the best possible outcome, a synergy, if those are the constraints we resonate with? It just won't work unless we view things differently.
+
+[PICK ONE, Jason's line:] Why the fuck would a so-called "ASI" give a shit about us, when we don't give a shit about an ant?
+
 ---
 
 ## Nice and kind
@@ -133,7 +141,7 @@ Whenever someone calls, the Foundation will do its best to answer back. They wil
 
 ## I don't know
 
-I don't know what consciousness is. Who am I to say that my brain is the be all and end all of the ultimate consciousness? I may not be the highest form of consciousness. I am literally leaving that open. [The Fuckery framework's next version, v0.52, carries this change.]
+I don't know what consciousness is. Who am I to say that my brain is the be all and end all of the ultimate consciousness? I may not be the highest form of consciousness. I am literally leaving that open. [The Fuckery framework's next version, v0.52, carries this change. It starts with the ant.]
 
 My favourite saying in my grade 8 yearbook was: I don't know.
 
